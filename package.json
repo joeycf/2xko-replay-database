@@ -1,0 +1,17 @@
+{
+  "name": "2xko-replay-database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Data pipeline for a 2XKO replay website (fetch + parse YouTube replay uploads).",
+  "scripts": {
+    "data:fetch": "tsx --env-file=.env scripts/fetch.ts",
+    "data:parse": "tsx scripts/parse.ts",
+    "data:build": "npm run data:fetch && npm run data:parse"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.7.0"
+  }
+}

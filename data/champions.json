@@ -1,0 +1,17 @@
+{
+  "ahri": { "id": "ahri", "name": "Ahri", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["ahri"] },
+  "akali": { "id": "akali", "name": "Akali", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["akali"] },
+  "blitzcrank": { "id": "blitzcrank", "name": "Blitzcrank", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["blitzcrank", "blitz"] },
+  "braum": { "id": "braum", "name": "Braum", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["braum"] },
+  "caitlyn": { "id": "caitlyn", "name": "Caitlyn", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["caitlyn", "cait"] },
+  "darius": { "id": "darius", "name": "Darius", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["darius"] },
+  "ekko": { "id": "ekko", "name": "Ekko", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["ekko"] },
+  "illaoi": { "id": "illaoi", "name": "Illaoi", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["illaoi", "illoai"] },
+  "jinx": { "id": "jinx", "name": "Jinx", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["jinx"] },
+  "senna": { "id": "senna", "name": "Senna", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["senna"] },
+  "teemo": { "id": "teemo", "name": "Teemo", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["teemo"] },
+  "thresh": { "id": "thresh", "name": "Thresh", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["thresh"] },
+  "vi": { "id": "vi", "name": "Vi", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["vi"] },
+  "warwick": { "id": "warwick", "name": "Warwick", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["warwick", "ww"] },
+  "yasuo": { "id": "yasuo", "name": "Yasuo", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["yasuo", "yas"] }
+}
