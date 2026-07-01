@@ -475,6 +475,7 @@ for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
   players[d.id] = {
     id: d.id,
     displayName: bestDisplay(d),
+    verified: false, // parser-discovered — not part of the curated seed roster
     aliases: [...d.aliases].sort(),
     region: null,
     socials: {},

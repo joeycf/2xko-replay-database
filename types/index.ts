@@ -18,6 +18,8 @@ export interface Champion {
 export interface Player {
   id: string;
   displayName: string;
+  /** true for the hand-curated seed roster, false for parser-discovered names. */
+  verified: boolean;
   aliases: string[];
   region: string | null;
   socials: Record<string, string>;

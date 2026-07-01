@@ -2,6 +2,7 @@
   "sonicfox": {
     "id": "sonicfox",
     "displayName": "SonicFox",
+    "verified": true,
     "aliases": [
       "sonicfox",
       "sonic fox"
@@ -12,6 +13,7 @@
   "inzem": {
     "id": "inzem",
     "displayName": "INZEM",
+    "verified": true,
     "aliases": [
       "inzem"
     ],
@@ -21,6 +23,7 @@
   "hikari": {
     "id": "hikari",
     "displayName": "Hikari",
+    "verified": true,
     "aliases": [
       "hikari"
     ],
@@ -30,6 +33,7 @@
   "kayne": {
     "id": "kayne",
     "displayName": "Kayne",
+    "verified": true,
     "aliases": [
       "kayne"
     ],
@@ -39,6 +43,7 @@
   "zane": {
     "id": "zane",
     "displayName": "Zane",
+    "verified": true,
     "aliases": [
       "zane"
     ],
@@ -48,6 +53,7 @@
   "poka": {
     "id": "poka",
     "displayName": "Poka",
+    "verified": true,
     "aliases": [
       "poka"
     ],
@@ -57,6 +63,7 @@
   "ken": {
     "id": "ken",
     "displayName": "Ken",
+    "verified": true,
     "aliases": [
       "ken"
     ],
@@ -66,6 +73,7 @@
   "wade": {
     "id": "wade",
     "displayName": "WADE",
+    "verified": true,
     "aliases": [
       "wade"
     ],
@@ -75,6 +83,7 @@
   "garanti": {
     "id": "garanti",
     "displayName": "Garanti",
+    "verified": true,
     "aliases": [
       "garanti"
     ],
@@ -84,6 +93,7 @@
   "haru": {
     "id": "haru",
     "displayName": "Haru",
+    "verified": true,
     "aliases": [
       "haru"
     ],
@@ -93,6 +103,7 @@
   "toshi": {
     "id": "toshi",
     "displayName": "Toshi",
+    "verified": true,
     "aliases": [
       "toshi"
     ],
@@ -102,6 +113,7 @@
   "yasha": {
     "id": "yasha",
     "displayName": "Yasha",
+    "verified": true,
     "aliases": [
       "yasha"
     ],
@@ -111,6 +123,7 @@
   "shanks": {
     "id": "shanks",
     "displayName": "Shanks",
+    "verified": true,
     "aliases": [
       "shanks"
     ],
@@ -120,6 +133,7 @@
   "genisgod": {
     "id": "genisgod",
     "displayName": "GenisGod",
+    "verified": true,
     "aliases": [
       "genisgod"
     ],
@@ -129,6 +143,7 @@
   "verso": {
     "id": "verso",
     "displayName": "Verso",
+    "verified": true,
     "aliases": [
       "verso"
     ],
@@ -138,6 +153,7 @@
   "wawa": {
     "id": "wawa",
     "displayName": "Wawa",
+    "verified": true,
     "aliases": [
       "wawa"
     ],
@@ -147,6 +163,7 @@
   "opal": {
     "id": "opal",
     "displayName": "Opal",
+    "verified": true,
     "aliases": [
       "opal"
     ],
@@ -156,6 +173,7 @@
   "dekillsage": {
     "id": "dekillsage",
     "displayName": "dekillsage",
+    "verified": true,
     "aliases": [
       "dekillsage"
     ],
@@ -165,6 +183,7 @@
   "apologyman": {
     "id": "apologyman",
     "displayName": "ApologyMan",
+    "verified": true,
     "aliases": [
       "apologyman"
     ],
@@ -174,6 +193,7 @@
   "luciensfl": {
     "id": "luciensfl",
     "displayName": "LucienSFL",
+    "verified": true,
     "aliases": [
       "luciensfl"
     ],
@@ -183,6 +203,7 @@
   "sendo": {
     "id": "sendo",
     "displayName": "Sendo",
+    "verified": true,
     "aliases": [
       "sendo"
     ],
@@ -192,6 +213,7 @@
   "fumiko": {
     "id": "fumiko",
     "displayName": "Fumiko",
+    "verified": true,
     "aliases": [
       "fumiko"
     ],
@@ -201,6 +223,7 @@
   "supernoon": {
     "id": "supernoon",
     "displayName": "Supernoon",
+    "verified": true,
     "aliases": [
       "supernoon"
     ],
@@ -210,6 +233,7 @@
   "shine": {
     "id": "shine",
     "displayName": "Shine",
+    "verified": true,
     "aliases": [
       "shine"
     ],
@@ -219,6 +243,7 @@
   "lightwhisp": {
     "id": "lightwhisp",
     "displayName": "LightWhisp",
+    "verified": false,
     "aliases": [
       "lightwhisp"
     ],
@@ -228,6 +253,7 @@
   "bleed": {
     "id": "bleed",
     "displayName": "Bleed",
+    "verified": false,
     "aliases": [
       "bleed"
     ],
@@ -237,6 +263,7 @@
   "zando": {
     "id": "zando",
     "displayName": "Zando",
+    "verified": false,
     "aliases": [
       "zando"
     ],
@@ -246,6 +273,7 @@
   "leffen": {
     "id": "leffen",
     "displayName": "LEFFEN",
+    "verified": false,
     "aliases": [
       "leffen"
     ],
@@ -255,6 +283,7 @@
   "filipinochamp": {
     "id": "filipinochamp",
     "displayName": "Filipino Champ",
+    "verified": false,
     "aliases": [
       "filipino champ"
     ],
@@ -264,6 +293,7 @@
   "windzero7": {
     "id": "windzero7",
     "displayName": "Windzero7",
+    "verified": false,
     "aliases": [
       "windzero 7",
       "windzero7"
@@ -274,6 +304,7 @@
   "k7showoff": {
     "id": "k7showoff",
     "displayName": "K7 Showoff",
+    "verified": false,
     "aliases": [
       "k7 showoff"
     ],
@@ -283,6 +314,7 @@
   "noka": {
     "id": "noka",
     "displayName": "NOKA",
+    "verified": false,
     "aliases": [
       "noka"
     ],
@@ -292,6 +324,7 @@
   "chrisg": {
     "id": "chrisg",
     "displayName": "CHRISG",
+    "verified": false,
     "aliases": [
       "chrisg"
     ],
@@ -301,6 +334,7 @@
   "blaizzy": {
     "id": "blaizzy",
     "displayName": "Blaizzy",
+    "verified": false,
     "aliases": [
       "blaizzy"
     ],
@@ -310,6 +344,7 @@
   "cloud805": {
     "id": "cloud805",
     "displayName": "Cloud805",
+    "verified": false,
     "aliases": [
       "cloud 805",
       "cloud805"
@@ -320,6 +355,7 @@
   "dizzymx": {
     "id": "dizzymx",
     "displayName": "DizzyMX",
+    "verified": false,
     "aliases": [
       "dizzymx"
     ],
@@ -329,6 +365,7 @@
   "tate": {
     "id": "tate",
     "displayName": "Tate",
+    "verified": false,
     "aliases": [
       "tate"
     ],
@@ -338,6 +375,7 @@
   "souldemonxl": {
     "id": "souldemonxl",
     "displayName": "SoulDemonXL",
+    "verified": false,
     "aliases": [
       "souldemonxl"
     ],
@@ -347,6 +385,7 @@
   "l1nz": {
     "id": "l1nz",
     "displayName": "L1Nz",
+    "verified": false,
     "aliases": [
       "l1nz"
     ],
@@ -356,6 +395,7 @@
   "quainty": {
     "id": "quainty",
     "displayName": "Quainty",
+    "verified": false,
     "aliases": [
       "quainty"
     ],
@@ -365,6 +405,7 @@
   "maze": {
     "id": "maze",
     "displayName": "Maze",
+    "verified": false,
     "aliases": [
       "maze"
     ],
@@ -374,6 +415,7 @@
   "diaphone": {
     "id": "diaphone",
     "displayName": "Diaphone",
+    "verified": false,
     "aliases": [
       "diaphone"
     ],
@@ -383,6 +425,7 @@
   "yata": {
     "id": "yata",
     "displayName": "Yata",
+    "verified": false,
     "aliases": [
       "yata"
     ],
@@ -392,6 +435,7 @@
   "interestinglamp": {
     "id": "interestinglamp",
     "displayName": "INTERESTINGLAMP",
+    "verified": false,
     "aliases": [
       "interesting lamp",
       "interestinglamp"
@@ -402,6 +446,7 @@
   "mrchupy": {
     "id": "mrchupy",
     "displayName": "MrChupy",
+    "verified": false,
     "aliases": [
       "mrchupy"
     ],
@@ -411,6 +456,7 @@
   "jakeythesnakey": {
     "id": "jakeythesnakey",
     "displayName": "JakeyTheSnakey",
+    "verified": false,
     "aliases": [
       "jakeythesnakey"
     ],
@@ -420,6 +466,7 @@
   "yosep": {
     "id": "yosep",
     "displayName": "YOSEP",
+    "verified": false,
     "aliases": [
       "yosep"
     ],
@@ -429,6 +476,7 @@
   "strayerin": {
     "id": "strayerin",
     "displayName": "STRAYERIN",
+    "verified": false,
     "aliases": [
       "strayerin"
     ],
@@ -438,6 +486,7 @@
   "unsafeonhit": {
     "id": "unsafeonhit",
     "displayName": "UnsafeonHit",
+    "verified": false,
     "aliases": [
       "unsafeonhit"
     ],
@@ -447,6 +496,7 @@
   "gsmvoid": {
     "id": "gsmvoid",
     "displayName": "GSMVOID",
+    "verified": false,
     "aliases": [
       "gsmvoid"
     ],
@@ -456,6 +506,7 @@
   "sun": {
     "id": "sun",
     "displayName": "Sun",
+    "verified": false,
     "aliases": [
       "sun"
     ],
@@ -465,6 +516,7 @@
   "bobateamo": {
     "id": "bobateamo",
     "displayName": "BobaTeamo",
+    "verified": false,
     "aliases": [
       "bobateamo"
     ],
@@ -474,6 +526,7 @@
   "galladiated": {
     "id": "galladiated",
     "displayName": "Galladiated",
+    "verified": false,
     "aliases": [
       "galladiated"
     ],
@@ -483,6 +536,7 @@
   "jaazzrap": {
     "id": "jaazzrap",
     "displayName": "JAAZZRAP",
+    "verified": false,
     "aliases": [
       "jaazzrap"
     ],
@@ -492,6 +546,7 @@
   "foonanigims": {
     "id": "foonanigims",
     "displayName": "Foonanigims",
+    "verified": false,
     "aliases": [
       "foonanigims"
     ],
@@ -501,6 +556,7 @@
   "semiij": {
     "id": "semiij",
     "displayName": "Semiij",
+    "verified": false,
     "aliases": [
       "semiij"
     ],
@@ -510,6 +566,7 @@
   "crillou": {
     "id": "crillou",
     "displayName": "Crillou",
+    "verified": false,
     "aliases": [
       "crillou"
     ],
@@ -519,6 +576,7 @@
   "goomboo": {
     "id": "goomboo",
     "displayName": "Goomboo",
+    "verified": false,
     "aliases": [
       "goomboo"
     ],
@@ -528,6 +586,7 @@
   "solbirdguy": {
     "id": "solbirdguy",
     "displayName": "Solbirdguy",
+    "verified": false,
     "aliases": [
       "solbirdguy"
     ],
@@ -537,6 +596,7 @@
   "warnedjacka": {
     "id": "warnedjacka",
     "displayName": "WARNEDJACKA",
+    "verified": false,
     "aliases": [
       "warned jacka",
       "warnedjacka"
@@ -547,6 +607,7 @@
   "huebert": {
     "id": "huebert",
     "displayName": "Huebert",
+    "verified": false,
     "aliases": [
       "huebert"
     ],
@@ -556,6 +617,7 @@
   "ssjila": {
     "id": "ssjila",
     "displayName": "SSJILA",
+    "verified": false,
     "aliases": [
       "ssjila"
     ],
@@ -565,6 +627,7 @@
   "ronnichu": {
     "id": "ronnichu",
     "displayName": "Ronnichu",
+    "verified": false,
     "aliases": [
       "ronnichu"
     ],
@@ -574,6 +637,7 @@
   "redditto": {
     "id": "redditto",
     "displayName": "RedDitto",
+    "verified": false,
     "aliases": [
       "red ditto",
       "redditto"
@@ -584,6 +648,7 @@
   "truedevin": {
     "id": "truedevin",
     "displayName": "TRUEDEVIN",
+    "verified": false,
     "aliases": [
       "truedevin"
     ],
@@ -593,6 +658,7 @@
   "jordana": {
     "id": "jordana",
     "displayName": "JORDANA",
+    "verified": false,
     "aliases": [
       "jordana"
     ],
@@ -602,6 +668,7 @@
   "icebergxi": {
     "id": "icebergxi",
     "displayName": "IcebergXI",
+    "verified": false,
     "aliases": [
       "icebergxi"
     ],
@@ -611,6 +678,7 @@
   "dylnyan": {
     "id": "dylnyan",
     "displayName": "Dylnyan",
+    "verified": false,
     "aliases": [
       "dylnyan"
     ],
@@ -620,6 +688,7 @@
   "pink": {
     "id": "pink",
     "displayName": "Pink",
+    "verified": false,
     "aliases": [
       "pink"
     ],
@@ -629,6 +698,7 @@
   "pinkpinkpinkpink": {
     "id": "pinkpinkpinkpink",
     "displayName": "Pinkpinkpinkpink",
+    "verified": false,
     "aliases": [
       "pinkpinkpinkpink"
     ],
@@ -638,6 +708,7 @@
   "cheflolo": {
     "id": "cheflolo",
     "displayName": "Chef Lolo",
+    "verified": false,
     "aliases": [
       "chef lolo"
     ],
@@ -647,6 +718,7 @@
   "fonz": {
     "id": "fonz",
     "displayName": "FONZ",
+    "verified": false,
     "aliases": [
       "fonz"
     ],
@@ -656,6 +728,7 @@
   "jtene": {
     "id": "jtene",
     "displayName": "Jtene",
+    "verified": false,
     "aliases": [
       "jtene"
     ],
@@ -665,6 +738,7 @@
   "frezz": {
     "id": "frezz",
     "displayName": "Frezz",
+    "verified": false,
     "aliases": [
       "frezz"
     ],
@@ -674,6 +748,7 @@
   "catgirlillaoi": {
     "id": "catgirlillaoi",
     "displayName": "Cat Girl Illaoi",
+    "verified": false,
     "aliases": [
       "cat girl illaoi"
     ],
@@ -683,6 +758,7 @@
   "dinguspunch": {
     "id": "dinguspunch",
     "displayName": "DINGUSPUNCH",
+    "verified": false,
     "aliases": [
       "dinguspunch"
     ],
@@ -692,6 +768,7 @@
   "ogobelisk": {
     "id": "ogobelisk",
     "displayName": "OGOBELISK",
+    "verified": false,
     "aliases": [
       "ogobelisk"
     ],
@@ -701,6 +778,7 @@
   "archersempire": {
     "id": "archersempire",
     "displayName": "ArchersEmpire",
+    "verified": false,
     "aliases": [
       "archers empire",
       "archersempire"
@@ -711,6 +789,7 @@
   "galliated": {
     "id": "galliated",
     "displayName": "GALLIATED",
+    "verified": false,
     "aliases": [
       "galliated"
     ],
@@ -720,6 +799,7 @@
   "levishoto": {
     "id": "levishoto",
     "displayName": "LEVISHOTO",
+    "verified": false,
     "aliases": [
       "levi shoto",
       "levishoto"
@@ -730,6 +810,7 @@
   "remyr": {
     "id": "remyr",
     "displayName": "REMYR",
+    "verified": false,
     "aliases": [
       "remyr"
     ],
@@ -739,6 +820,7 @@
   "habaduba": {
     "id": "habaduba",
     "displayName": "Habaduba",
+    "verified": false,
     "aliases": [
       "habaduba"
     ],
@@ -748,6 +830,7 @@
   "heapski": {
     "id": "heapski",
     "displayName": "HEAPSKI",
+    "verified": false,
     "aliases": [
       "heapski"
     ],
@@ -757,6 +840,7 @@
   "uncivilninja": {
     "id": "uncivilninja",
     "displayName": "Uncivil Ninja",
+    "verified": false,
     "aliases": [
       "uncivil ninja"
     ],
@@ -766,6 +850,7 @@
   "hiki": {
     "id": "hiki",
     "displayName": "HIKI",
+    "verified": false,
     "aliases": [
       "hiki"
     ],
@@ -775,6 +860,7 @@
   "opressorislame": {
     "id": "opressorislame",
     "displayName": "Opressor Is Lame",
+    "verified": false,
     "aliases": [
       "opressor is lame"
     ],
@@ -784,6 +870,7 @@
   "sajam": {
     "id": "sajam",
     "displayName": "Sajam",
+    "verified": false,
     "aliases": [
       "sajam"
     ],
@@ -793,6 +880,7 @@
   "james060606": {
     "id": "james060606",
     "displayName": "James060606",
+    "verified": false,
     "aliases": [
       "james060606"
     ],
@@ -802,6 +890,7 @@
   "genesis": {
     "id": "genesis",
     "displayName": "GENESIS",
+    "verified": false,
     "aliases": [
       "genesis"
     ],
@@ -811,6 +900,7 @@
   "obelisk": {
     "id": "obelisk",
     "displayName": "OBELISK",
+    "verified": false,
     "aliases": [
       "obelisk"
     ],
@@ -820,6 +910,7 @@
   "zaidi": {
     "id": "zaidi",
     "displayName": "ZAIDI",
+    "verified": false,
     "aliases": [
       "zaidi"
     ],
@@ -829,6 +920,7 @@
   "josch": {
     "id": "josch",
     "displayName": "Josch",
+    "verified": false,
     "aliases": [
       "josch"
     ],
@@ -838,6 +930,7 @@
   "broski": {
     "id": "broski",
     "displayName": "BROSKI",
+    "verified": false,
     "aliases": [
       "broski"
     ],
@@ -847,6 +940,7 @@
   "mundank": {
     "id": "mundank",
     "displayName": "Mundank",
+    "verified": false,
     "aliases": [
       "mundank"
     ],
@@ -856,6 +950,7 @@
   "hispanicathedsco": {
     "id": "hispanicathedsco",
     "displayName": "HISPANICATHEDSCO",
+    "verified": false,
     "aliases": [
       "hispanicathedsco"
     ],
@@ -865,6 +960,7 @@
   "okaysway": {
     "id": "okaysway",
     "displayName": "Okaysway",
+    "verified": false,
     "aliases": [
       "okaysway"
     ],
@@ -874,6 +970,7 @@
   "bsdang": {
     "id": "bsdang",
     "displayName": "BS Dang",
+    "verified": false,
     "aliases": [
       "bs dang"
     ],
@@ -883,6 +980,7 @@
   "senshii": {
     "id": "senshii",
     "displayName": "Senshii",
+    "verified": false,
     "aliases": [
       "senshii"
     ],
@@ -892,6 +990,7 @@
   "pinkpink": {
     "id": "pinkpink",
     "displayName": "PINKPINK",
+    "verified": false,
     "aliases": [
       "pinkpink"
     ],
@@ -901,6 +1000,7 @@
   "theredrito": {
     "id": "theredrito",
     "displayName": "THEREDRITO",
+    "verified": false,
     "aliases": [
       "theredrito"
     ],
@@ -910,6 +1010,7 @@
   "squirrel147": {
     "id": "squirrel147",
     "displayName": "Squirrel147",
+    "verified": false,
     "aliases": [
       "squirrel147"
     ],
@@ -919,6 +1020,7 @@
   "lynx": {
     "id": "lynx",
     "displayName": "Lynx",
+    "verified": false,
     "aliases": [
       "lynx"
     ],
@@ -928,6 +1030,7 @@
   "hiamjoy": {
     "id": "hiamjoy",
     "displayName": "HiAmJoy",
+    "verified": false,
     "aliases": [
       "hiamjoy"
     ],
@@ -937,6 +1040,7 @@
   "mako": {
     "id": "mako",
     "displayName": "Mako",
+    "verified": false,
     "aliases": [
       "mako"
     ],
@@ -946,6 +1050,7 @@
   "justcapitalb": {
     "id": "justcapitalb",
     "displayName": "JustCapitalB",
+    "verified": false,
     "aliases": [
       "justcapitalb"
     ],
@@ -955,6 +1060,7 @@
   "tapion": {
     "id": "tapion",
     "displayName": "TAPION",
+    "verified": false,
     "aliases": [
       "tapion"
     ],
@@ -964,6 +1070,7 @@
   "edgerunner": {
     "id": "edgerunner",
     "displayName": "Edgerunner",
+    "verified": false,
     "aliases": [
       "edgerunner"
     ],
@@ -973,6 +1080,7 @@
   "hookganggod": {
     "id": "hookganggod",
     "displayName": "Hookganggod",
+    "verified": false,
     "aliases": [
       "hookganggod"
     ],
@@ -982,6 +1090,7 @@
   "freezesy": {
     "id": "freezesy",
     "displayName": "Freezesy",
+    "verified": false,
     "aliases": [
       "freezesy"
     ],
@@ -991,6 +1100,7 @@
   "beindeiz": {
     "id": "beindeiz",
     "displayName": "BEINDEIZ",
+    "verified": false,
     "aliases": [
       "beindeiz"
     ],
@@ -1000,6 +1110,7 @@
   "fiendishone": {
     "id": "fiendishone",
     "displayName": "FIENDISHONE",
+    "verified": false,
     "aliases": [
       "fiendish one",
       "fiendishone"
@@ -1010,6 +1121,7 @@
   "brandonthe4sian": {
     "id": "brandonthe4sian",
     "displayName": "BrandonThe4Sian",
+    "verified": false,
     "aliases": [
       "brandonthe4sian"
     ],
@@ -1019,6 +1131,7 @@
   "eyeconic": {
     "id": "eyeconic",
     "displayName": "EYECONIC",
+    "verified": false,
     "aliases": [
       "eyeconic"
     ],
@@ -1028,6 +1141,7 @@
   "lordvenom": {
     "id": "lordvenom",
     "displayName": "LORD VENOM",
+    "verified": false,
     "aliases": [
       "lord venom"
     ],
@@ -1037,6 +1151,7 @@
   "mth": {
     "id": "mth",
     "displayName": "Mth",
+    "verified": false,
     "aliases": [
       "mth"
     ],
@@ -1046,6 +1161,7 @@
   "cino": {
     "id": "cino",
     "displayName": "Cino",
+    "verified": false,
     "aliases": [
       "cino"
     ],
@@ -1055,6 +1171,7 @@
   "finessdan": {
     "id": "finessdan",
     "displayName": "FinessDan",
+    "verified": false,
     "aliases": [
       "finessdan"
     ],
@@ -1064,6 +1181,7 @@
   "kuroten": {
     "id": "kuroten",
     "displayName": "Kuroten",
+    "verified": false,
     "aliases": [
       "kuroten"
     ],
@@ -1073,6 +1191,7 @@
   "sonic": {
     "id": "sonic",
     "displayName": "Sonic",
+    "verified": false,
     "aliases": [
       "sonic"
     ],
@@ -1082,6 +1201,7 @@
   "vlad": {
     "id": "vlad",
     "displayName": "VLAD",
+    "verified": false,
     "aliases": [
       "vlad"
     ],
@@ -1091,6 +1211,7 @@
   "akaoni": {
     "id": "akaoni",
     "displayName": "AKAONI",
+    "verified": false,
     "aliases": [
       "akaoni"
     ],
@@ -1100,6 +1221,7 @@
   "2winzharu": {
     "id": "2winzharu",
     "displayName": "2WINZ HARU",
+    "verified": false,
     "aliases": [
       "2winz haru"
     ],
@@ -1109,6 +1231,7 @@
   "apologyboy": {
     "id": "apologyboy",
     "displayName": "Apology Boy",
+    "verified": false,
     "aliases": [
       "apology boy"
     ],
@@ -1118,6 +1241,7 @@
   "dabestmang": {
     "id": "dabestmang",
     "displayName": "DaBestMang",
+    "verified": false,
     "aliases": [
       "dabestmang"
     ],
@@ -1127,6 +1251,7 @@
   "keyz": {
     "id": "keyz",
     "displayName": "KEYZ",
+    "verified": false,
     "aliases": [
       "keyz"
     ],
@@ -1136,6 +1261,7 @@
   "jonathantene": {
     "id": "jonathantene",
     "displayName": "JONATHANTENE",
+    "verified": false,
     "aliases": [
       "jonathan tene",
       "jonathantene"
@@ -1146,6 +1272,7 @@
   "marcpq": {
     "id": "marcpq",
     "displayName": "MARCPQ",
+    "verified": false,
     "aliases": [
       "marcpq"
     ],
@@ -1155,6 +1282,7 @@
   "linj": {
     "id": "linj",
     "displayName": "Linj",
+    "verified": false,
     "aliases": [
       "linj"
     ],
@@ -1164,6 +1292,7 @@
   "inzemsonicfox": {
     "id": "inzemsonicfox",
     "displayName": "INZEM-SONICFOX",
+    "verified": false,
     "aliases": [
       "inzem-sonicfox"
     ],
@@ -1173,6 +1302,7 @@
   "bellahikari": {
     "id": "bellahikari",
     "displayName": "BELLAHIKARI",
+    "verified": false,
     "aliases": [
       "bella hikari",
       "bellahikari"
@@ -1183,6 +1313,7 @@
   "fullmetalfury": {
     "id": "fullmetalfury",
     "displayName": "Fullmetalfury",
+    "verified": false,
     "aliases": [
       "fullmetalfury"
     ],
@@ -1192,6 +1323,7 @@
   "eduardohook": {
     "id": "eduardohook",
     "displayName": "EDUARDOHOOK",
+    "verified": false,
     "aliases": [
       "eduardohook"
     ],
@@ -1201,6 +1333,7 @@
   "xyzzy": {
     "id": "xyzzy",
     "displayName": "Xyzzy",
+    "verified": false,
     "aliases": [
       "xyzzy"
     ],
@@ -1210,6 +1343,7 @@
   "skinhoff": {
     "id": "skinhoff",
     "displayName": "SKINHOFF",
+    "verified": false,
     "aliases": [
       "skinhoff"
     ],
@@ -1219,6 +1353,7 @@
   "noize": {
     "id": "noize",
     "displayName": "Noize",
+    "verified": false,
     "aliases": [
       "noize"
     ],
@@ -1228,6 +1363,7 @@
   "fabulouszucchini": {
     "id": "fabulouszucchini",
     "displayName": "Fabulouszucchini",
+    "verified": false,
     "aliases": [
       "fabulouszucchini"
     ],
@@ -1237,6 +1373,7 @@
   "redx": {
     "id": "redx",
     "displayName": "RedX",
+    "verified": false,
     "aliases": [
       "redx"
     ],
@@ -1246,6 +1383,7 @@
   "tensatrics": {
     "id": "tensatrics",
     "displayName": "Tensatrics",
+    "verified": false,
     "aliases": [
       "tensatrics"
     ],
@@ -1255,6 +1393,7 @@
   "jakey": {
     "id": "jakey",
     "displayName": "Jakey",
+    "verified": false,
     "aliases": [
       "jakey"
     ],
@@ -1264,6 +1403,7 @@
   "yajin": {
     "id": "yajin",
     "displayName": "YAJIN",
+    "verified": false,
     "aliases": [
       "yajin"
     ],
@@ -1273,6 +1413,7 @@
   "2winztoshi": {
     "id": "2winztoshi",
     "displayName": "2WINZ TOSHI",
+    "verified": false,
     "aliases": [
       "2winz toshi"
     ],
@@ -1282,6 +1423,7 @@
   "dragonfgc": {
     "id": "dragonfgc",
     "displayName": "DragonFGC",
+    "verified": false,
     "aliases": [
       "dragonfgc"
     ],
@@ -1291,6 +1433,7 @@
   "soukur": {
     "id": "soukur",
     "displayName": "SOUKUR",
+    "verified": false,
     "aliases": [
       "soukur"
     ],
@@ -1300,6 +1443,7 @@
   "romerulez": {
     "id": "romerulez",
     "displayName": "Romerulez",
+    "verified": false,
     "aliases": [
       "romerulez"
     ],
@@ -1309,6 +1453,7 @@
   "squirrel": {
     "id": "squirrel",
     "displayName": "SQUIRREL",
+    "verified": false,
     "aliases": [
       "squirrel"
     ],
@@ -1318,6 +1463,7 @@
   "dandypenguin": {
     "id": "dandypenguin",
     "displayName": "Dandy Penguin",
+    "verified": false,
     "aliases": [
       "dandy penguin"
     ],
@@ -1327,6 +1473,7 @@
   "ohwegaming": {
     "id": "ohwegaming",
     "displayName": "OHWEGAMING",
+    "verified": false,
     "aliases": [
       "ohwegaming"
     ],
@@ -1336,6 +1483,7 @@
   "fgczippy": {
     "id": "fgczippy",
     "displayName": "FGCZippy",
+    "verified": false,
     "aliases": [
       "fgczippy"
     ],
@@ -1345,6 +1493,7 @@
   "nopro": {
     "id": "nopro",
     "displayName": "NoPro",
+    "verified": false,
     "aliases": [
       "nopro"
     ],
@@ -1354,6 +1503,7 @@
   "otanick": {
     "id": "otanick",
     "displayName": "OTANICK",
+    "verified": false,
     "aliases": [
       "otanick"
     ],
@@ -1363,6 +1513,7 @@
   "spize": {
     "id": "spize",
     "displayName": "SPIZE",
+    "verified": false,
     "aliases": [
       "spize"
     ],
@@ -1372,6 +1523,7 @@
   "janemba": {
     "id": "janemba",
     "displayName": "JANEMBA",
+    "verified": false,
     "aliases": [
       "janemba"
     ],
@@ -1381,6 +1533,7 @@
   "lordwaddle": {
     "id": "lordwaddle",
     "displayName": "LORDWADDLE",
+    "verified": false,
     "aliases": [
       "lordwaddle"
     ],
@@ -1390,6 +1543,7 @@
   "lemontender": {
     "id": "lemontender",
     "displayName": "LEMONTENDER",
+    "verified": false,
     "aliases": [
       "lemontender"
     ],
@@ -1399,6 +1553,7 @@
   "novix": {
     "id": "novix",
     "displayName": "NOVIX",
+    "verified": false,
     "aliases": [
       "novix"
     ],
@@ -1408,6 +1563,7 @@
   "mouaz": {
     "id": "mouaz",
     "displayName": "Mouaz",
+    "verified": false,
     "aliases": [
       "mouaz"
     ],
@@ -1417,6 +1573,7 @@
   "llonnu13": {
     "id": "llonnu13",
     "displayName": "LLONNU13",
+    "verified": false,
     "aliases": [
       "llonnu13"
     ],
@@ -1426,6 +1583,7 @@
   "maskedman": {
     "id": "maskedman",
     "displayName": "MASKEDMAN",
+    "verified": false,
     "aliases": [
       "maskedman"
     ],
@@ -1435,6 +1593,7 @@
   "mrsqueak3rs": {
     "id": "mrsqueak3rs",
     "displayName": "MrSqueak3rs",
+    "verified": false,
     "aliases": [
       "mrsqueak3rs"
     ],
@@ -1444,6 +1603,7 @@
   "hispanicathedisco": {
     "id": "hispanicathedisco",
     "displayName": "HISPANICATHEDISCO",
+    "verified": false,
     "aliases": [
       "hispanicathedisco"
     ],
@@ -1453,6 +1613,7 @@
   "senshi": {
     "id": "senshi",
     "displayName": "Senshi",
+    "verified": false,
     "aliases": [
       "senshi"
     ],
@@ -1462,6 +1623,7 @@
   "froncois": {
     "id": "froncois",
     "displayName": "Froncois",
+    "verified": false,
     "aliases": [
       "froncois"
     ],
@@ -1471,6 +1633,7 @@
   "kagami": {
     "id": "kagami",
     "displayName": "Kagami",
+    "verified": false,
     "aliases": [
       "kagami"
     ],
@@ -1480,6 +1643,7 @@
   "fchamp": {
     "id": "fchamp",
     "displayName": "F. Champ",
+    "verified": false,
     "aliases": [
       "f. champ"
     ],
@@ -1489,6 +1653,7 @@
   "zleeeek": {
     "id": "zleeeek",
     "displayName": "Zleeeek",
+    "verified": false,
     "aliases": [
       "zleeeek"
     ],
@@ -1498,6 +1663,7 @@
   "bigpoppaa": {
     "id": "bigpoppaa",
     "displayName": "BigPoppaa",
+    "verified": false,
     "aliases": [
       "bigpoppaa"
     ],
@@ -1507,6 +1673,7 @@
   "iheartjustice": {
     "id": "iheartjustice",
     "displayName": "iHeartJustice",
+    "verified": false,
     "aliases": [
       "iheartjustice"
     ],
@@ -1516,6 +1683,7 @@
   "prism22": {
     "id": "prism22",
     "displayName": "PRISM22",
+    "verified": false,
     "aliases": [
       "prism22"
     ],
@@ -1525,6 +1693,7 @@
   "yorozuya": {
     "id": "yorozuya",
     "displayName": "YOROZUYA",
+    "verified": false,
     "aliases": [
       "yorozuya"
     ],
@@ -1534,6 +1703,7 @@
   "james06": {
     "id": "james06",
     "displayName": "JAMES06",
+    "verified": false,
     "aliases": [
       "james06"
     ],
@@ -1543,6 +1713,7 @@
   "watimoha": {
     "id": "watimoha",
     "displayName": "WATI MOHA",
+    "verified": false,
     "aliases": [
       "wati moha"
     ],
@@ -1552,6 +1723,7 @@
   "pikete": {
     "id": "pikete",
     "displayName": "Pikete",
+    "verified": false,
     "aliases": [
       "pikete"
     ],
@@ -1561,6 +1733,7 @@
   "ivanpotato": {
     "id": "ivanpotato",
     "displayName": "IVANPOTATO",
+    "verified": false,
     "aliases": [
       "ivanpotato"
     ],
@@ -1570,6 +1743,7 @@
   "riotpolkadot": {
     "id": "riotpolkadot",
     "displayName": "RIOT POLKADOT",
+    "verified": false,
     "aliases": [
       "riot polkadot"
     ],
@@ -1579,6 +1753,7 @@
   "ikoan": {
     "id": "ikoan",
     "displayName": "IKOAN",
+    "verified": false,
     "aliases": [
       "ikoan"
     ],
@@ -1588,6 +1763,7 @@
   "thorturator": {
     "id": "thorturator",
     "displayName": "THORTURATOR",
+    "verified": false,
     "aliases": [
       "thorturator"
     ],
@@ -1597,6 +1773,7 @@
   "antoinerun": {
     "id": "antoinerun",
     "displayName": "ANTOINERUN",
+    "verified": false,
     "aliases": [
       "antoinerun"
     ],
@@ -1606,6 +1783,7 @@
   "invisk": {
     "id": "invisk",
     "displayName": "INVIS K",
+    "verified": false,
     "aliases": [
       "invis k"
     ],
@@ -1615,6 +1793,7 @@
   "jigorou": {
     "id": "jigorou",
     "displayName": "JIGOROU",
+    "verified": false,
     "aliases": [
       "jigorou"
     ],
@@ -1624,6 +1803,7 @@
   "adrianriven": {
     "id": "adrianriven",
     "displayName": "ADRIAN RIVEN",
+    "verified": false,
     "aliases": [
       "adrian riven"
     ],
@@ -1633,6 +1813,7 @@
   "steebo": {
     "id": "steebo",
     "displayName": "Steebo",
+    "verified": false,
     "aliases": [
       "steebo"
     ],
@@ -1642,6 +1823,7 @@
   "gazpachito": {
     "id": "gazpachito",
     "displayName": "Gazpachito",
+    "verified": false,
     "aliases": [
       "gazpachito"
     ],
@@ -1651,6 +1833,7 @@
   "blob": {
     "id": "blob",
     "displayName": "Blob",
+    "verified": false,
     "aliases": [
       "blob"
     ],
@@ -1660,6 +1843,7 @@
   "iicaniixxx": {
     "id": "iicaniixxx",
     "displayName": "IICaNiixXx",
+    "verified": false,
     "aliases": [
       "iicaniixxx"
     ],
@@ -1669,6 +1853,7 @@
   "umisho": {
     "id": "umisho",
     "displayName": "Umisho",
+    "verified": false,
     "aliases": [
       "umisho"
     ],
@@ -1678,6 +1863,7 @@
   "lak": {
     "id": "lak",
     "displayName": "Lak",
+    "verified": false,
     "aliases": [
       "lak"
     ],
@@ -1687,6 +1873,7 @@
   "blook": {
     "id": "blook",
     "displayName": "Blook",
+    "verified": false,
     "aliases": [
       "blook"
     ],
@@ -1696,6 +1883,7 @@
   "finessedan": {
     "id": "finessedan",
     "displayName": "FINESSEDAN",
+    "verified": false,
     "aliases": [
       "finessedan"
     ],
@@ -1705,6 +1893,7 @@
   "nsxc": {
     "id": "nsxc",
     "displayName": "NSXC",
+    "verified": false,
     "aliases": [
       "nsxc"
     ],
@@ -1714,6 +1903,7 @@
   "khyper": {
     "id": "khyper",
     "displayName": "KHYPER",
+    "verified": false,
     "aliases": [
       "khyper"
     ],
@@ -1723,6 +1913,7 @@
   "illa": {
     "id": "illa",
     "displayName": "ILLA",
+    "verified": false,
     "aliases": [
       "illa"
     ],
@@ -1732,6 +1923,7 @@
   "herculian": {
     "id": "herculian",
     "displayName": "HERCULIAN",
+    "verified": false,
     "aliases": [
       "herculian"
     ],
@@ -1741,6 +1933,7 @@
   "mistgem": {
     "id": "mistgem",
     "displayName": "Mistgem",
+    "verified": false,
     "aliases": [
       "mistgem"
     ],
@@ -1750,6 +1943,7 @@
   "devillion": {
     "id": "devillion",
     "displayName": "DEVILLION",
+    "verified": false,
     "aliases": [
       "devillion"
     ],
@@ -1759,6 +1953,7 @@
   "tomichi": {
     "id": "tomichi",
     "displayName": "TOMICHI",
+    "verified": false,
     "aliases": [
       "tomichi"
     ],
@@ -1768,6 +1963,7 @@
   "kaneblueriver": {
     "id": "kaneblueriver",
     "displayName": "KANEBLUERIVER",
+    "verified": false,
     "aliases": [
       "kaneblueriver"
     ],
@@ -1777,6 +1973,7 @@
   "judezilla": {
     "id": "judezilla",
     "displayName": "JUDEZILLA",
+    "verified": false,
     "aliases": [
       "judezilla"
     ],
@@ -1786,6 +1983,7 @@
   "geobraun": {
     "id": "geobraun",
     "displayName": "GEOBRAUN",
+    "verified": false,
     "aliases": [
       "geobraun"
     ],
@@ -1795,6 +1993,7 @@
   "honeybae": {
     "id": "honeybae",
     "displayName": "HONEYBAE",
+    "verified": false,
     "aliases": [
       "honeybae"
     ],
@@ -1804,6 +2003,7 @@
   "benimaru": {
     "id": "benimaru",
     "displayName": "BENIMARU",
+    "verified": false,
     "aliases": [
       "benimaru"
     ],
@@ -1813,6 +2013,7 @@
   "mekasue": {
     "id": "mekasue",
     "displayName": "MEKASUE",
+    "verified": false,
     "aliases": [
       "mekasue"
     ],
@@ -1822,6 +2023,7 @@
   "hazen": {
     "id": "hazen",
     "displayName": "HAZEN",
+    "verified": false,
     "aliases": [
       "hazen"
     ],
@@ -1831,6 +2033,7 @@
   "whalebot": {
     "id": "whalebot",
     "displayName": "WHALEBOT",
+    "verified": false,
     "aliases": [
       "whalebot"
     ],
@@ -1840,6 +2043,7 @@
   "fchampryan": {
     "id": "fchampryan",
     "displayName": "FCHAMPRYAN",
+    "verified": false,
     "aliases": [
       "fchampryan"
     ],
@@ -1849,6 +2053,7 @@
   "nitrony": {
     "id": "nitrony",
     "displayName": "NitroNY",
+    "verified": false,
     "aliases": [
       "nitrony"
     ],
@@ -1858,6 +2063,7 @@
   "poemeenprose": {
     "id": "poemeenprose",
     "displayName": "POEME EN PROSE",
+    "verified": false,
     "aliases": [
       "poeme en prose",
       "poème en prose"
@@ -1868,6 +2074,7 @@
   "olibe": {
     "id": "olibe",
     "displayName": "OLIBE",
+    "verified": false,
     "aliases": [
       "olibe"
     ],
@@ -1877,6 +2084,7 @@
   "nocturne008": {
     "id": "nocturne008",
     "displayName": "Nocturne008",
+    "verified": false,
     "aliases": [
       "nocturne008"
     ],
@@ -1886,6 +2094,7 @@
   "bubbs": {
     "id": "bubbs",
     "displayName": "BUBBS",
+    "verified": false,
     "aliases": [
       "bubbs"
     ],
@@ -1895,6 +2104,7 @@
   "nocturne": {
     "id": "nocturne",
     "displayName": "Nocturne",
+    "verified": false,
     "aliases": [
       "nocturne"
     ],
@@ -1904,6 +2114,7 @@
   "gish": {
     "id": "gish",
     "displayName": "Gish",
+    "verified": false,
     "aliases": [
       "gish"
     ],
@@ -1913,6 +2124,7 @@
   "emmy": {
     "id": "emmy",
     "displayName": "Emmy",
+    "verified": false,
     "aliases": [
       "emmy"
     ],
@@ -1922,6 +2134,7 @@
   "kingrope": {
     "id": "kingrope",
     "displayName": "King Rope",
+    "verified": false,
     "aliases": [
       "king rope"
     ],
@@ -1931,6 +2144,7 @@
   "boldbuffoon": {
     "id": "boldbuffoon",
     "displayName": "BoldBuffoon",
+    "verified": false,
     "aliases": [
       "bold buffoon",
       "boldbuffoon"
@@ -1941,6 +2155,7 @@
   "oeyeconico": {
     "id": "oeyeconico",
     "displayName": "o EyECoNiC o",
+    "verified": false,
     "aliases": [
       "o eyeconic o"
     ],
@@ -1950,6 +2165,7 @@
   "sway": {
     "id": "sway",
     "displayName": "Sway",
+    "verified": false,
     "aliases": [
       "sway"
     ],
@@ -1959,6 +2175,7 @@
   "nahralma": {
     "id": "nahralma",
     "displayName": "Nahr Alma",
+    "verified": false,
     "aliases": [
       "nahr alma"
     ],
@@ -1968,6 +2185,7 @@
   "semij": {
     "id": "semij",
     "displayName": "Semij",
+    "verified": false,
     "aliases": [
       "semij"
     ],
@@ -1977,6 +2195,7 @@
   "imhalalbro": {
     "id": "imhalalbro",
     "displayName": "Imhalalbro",
+    "verified": false,
     "aliases": [
       "imhalalbro"
     ],
@@ -1986,6 +2205,7 @@
   "126fighting": {
     "id": "126fighting",
     "displayName": "126Fighting",
+    "verified": false,
     "aliases": [
       "126fighting"
     ],
@@ -1995,6 +2215,7 @@
   "riotyohosie": {
     "id": "riotyohosie",
     "displayName": "RIOT YOHOSIE",
+    "verified": false,
     "aliases": [
       "riot yohosie"
     ],
@@ -2004,6 +2225,7 @@
   "icanii": {
     "id": "icanii",
     "displayName": "ICANII",
+    "verified": false,
     "aliases": [
       "icanii"
     ],
@@ -2013,6 +2235,7 @@
   "ssf": {
     "id": "ssf",
     "displayName": "SSF",
+    "verified": false,
     "aliases": [
       "ssf"
     ],
@@ -2022,6 +2245,7 @@
   "seinaru": {
     "id": "seinaru",
     "displayName": "SEINARU",
+    "verified": false,
     "aliases": [
       "seinaru"
     ],
@@ -2031,6 +2255,7 @@
   "levi": {
     "id": "levi",
     "displayName": "Levi",
+    "verified": false,
     "aliases": [
       "levi"
     ],
@@ -2040,6 +2265,7 @@
   "senkh": {
     "id": "senkh",
     "displayName": "SENKH",
+    "verified": false,
     "aliases": [
       "senkh"
     ],
@@ -2049,6 +2275,7 @@
   "3x3pistondoor": {
     "id": "3x3pistondoor",
     "displayName": "3x3 piston door",
+    "verified": false,
     "aliases": [
       "3x3 piston door"
     ],
@@ -2058,6 +2285,7 @@
   "maxizh": {
     "id": "maxizh",
     "displayName": "MAX IZH",
+    "verified": false,
     "aliases": [
       "max izh"
     ],
@@ -2067,6 +2295,7 @@
   "iicani": {
     "id": "iicani",
     "displayName": "IICANI",
+    "verified": false,
     "aliases": [
       "iicani"
     ],
@@ -2076,6 +2305,7 @@
   "lowkey": {
     "id": "lowkey",
     "displayName": "LOWKEY",
+    "verified": false,
     "aliases": [
       "lowkey"
     ],
@@ -2085,6 +2315,7 @@
   "stigid": {
     "id": "stigid",
     "displayName": "STIGID",
+    "verified": false,
     "aliases": [
       "stigid"
     ],
@@ -2094,6 +2325,7 @@
   "perzeusxd": {
     "id": "perzeusxd",
     "displayName": "PERZEUSXD",
+    "verified": false,
     "aliases": [
       "perzeusxd"
     ],
@@ -2103,6 +2335,7 @@
   "levtrinki76": {
     "id": "levtrinki76",
     "displayName": "LEV TRINKI76",
+    "verified": false,
     "aliases": [
       "lev trinki76"
     ],
@@ -2112,6 +2345,7 @@
   "templenut": {
     "id": "templenut",
     "displayName": "TEMPLENUT",
+    "verified": false,
     "aliases": [
       "templenut"
     ],
@@ -2121,6 +2355,7 @@
   "mrzeim": {
     "id": "mrzeim",
     "displayName": "MRZEIM",
+    "verified": false,
     "aliases": [
       "mrzeim"
     ],
@@ -2130,6 +2365,7 @@
   "kawafgc": {
     "id": "kawafgc",
     "displayName": "KAWAFGC",
+    "verified": false,
     "aliases": [
       "kawafgc"
     ],
@@ -2139,6 +2375,7 @@
   "levtrinki": {
     "id": "levtrinki",
     "displayName": "LEV TRINKI",
+    "verified": false,
     "aliases": [
       "lev trinki"
     ],
@@ -2148,6 +2385,7 @@
   "foonanigimsokaysway": {
     "id": "foonanigimsokaysway",
     "displayName": "FOONANIGIMS-OKAYSWAY",
+    "verified": false,
     "aliases": [
       "foonanigims-okaysway"
     ],
@@ -2157,6 +2395,7 @@
   "oxephi": {
     "id": "oxephi",
     "displayName": "OXEPHI",
+    "verified": false,
     "aliases": [
       "oxephi"
     ],
@@ -2166,6 +2405,7 @@
   "syrtic": {
     "id": "syrtic",
     "displayName": "SYRTIC",
+    "verified": false,
     "aliases": [
       "syrtic"
     ],
@@ -2175,6 +2415,7 @@
   "jazzrap": {
     "id": "jazzrap",
     "displayName": "JAZZRAP",
+    "verified": false,
     "aliases": [
       "jazzrap"
     ],
@@ -2184,6 +2425,7 @@
   "drxpoka": {
     "id": "drxpoka",
     "displayName": "DRX POKA",
+    "verified": false,
     "aliases": [
       "drx poka"
     ],
@@ -2193,6 +2435,7 @@
   "doropon": {
     "id": "doropon",
     "displayName": "DOROPON",
+    "verified": false,
     "aliases": [
       "doropon"
     ],
@@ -2202,6 +2445,7 @@
   "pokevirus": {
     "id": "pokevirus",
     "displayName": "POKEVIRUS",
+    "verified": false,
     "aliases": [
       "pokevirus"
     ],
@@ -2211,6 +2455,7 @@
   "kendon": {
     "id": "kendon",
     "displayName": "KENDON",
+    "verified": false,
     "aliases": [
       "kendon"
     ],
@@ -2220,6 +2465,7 @@
   "roboluigi": {
     "id": "roboluigi",
     "displayName": "ROBOLUIGI",
+    "verified": false,
     "aliases": [
       "robo luigi",
       "roboluigi"
@@ -2230,6 +2476,7 @@
   "brandonthe4asian": {
     "id": "brandonthe4asian",
     "displayName": "BRANDONTHE4ASIAN",
+    "verified": false,
     "aliases": [
       "brandonthe4asian"
     ],
@@ -2239,6 +2486,7 @@
   "clbab": {
     "id": "clbab",
     "displayName": "CLBAB",
+    "verified": false,
     "aliases": [
       "clbab"
     ],
@@ -2248,6 +2496,7 @@
   "pinkpinkpink": {
     "id": "pinkpinkpink",
     "displayName": "PINKPINKPINK",
+    "verified": false,
     "aliases": [
       "pinkpinkpink"
     ],
@@ -2257,6 +2506,7 @@
   "mamadeswy": {
     "id": "mamadeswy",
     "displayName": "MAMADESWY",
+    "verified": false,
     "aliases": [
       "mamadeswy"
     ],
@@ -2266,6 +2516,7 @@
   "gwendor": {
     "id": "gwendor",
     "displayName": "GWENDOR",
+    "verified": false,
     "aliases": [
       "gwendor"
     ],
@@ -2275,6 +2526,7 @@
   "justcapital": {
     "id": "justcapital",
     "displayName": "JUSTCAPITAL",
+    "verified": false,
     "aliases": [
       "justcapital"
     ],
@@ -2284,6 +2536,7 @@
   "rymo": {
     "id": "rymo",
     "displayName": "RYMO",
+    "verified": false,
     "aliases": [
       "rymo"
     ],
@@ -2293,6 +2546,7 @@
   "drorzi": {
     "id": "drorzi",
     "displayName": "DRORZI",
+    "verified": false,
     "aliases": [
       "drorzi"
     ],
@@ -2302,6 +2556,7 @@
   "tryuga": {
     "id": "tryuga",
     "displayName": "TRYUGA",
+    "verified": false,
     "aliases": [
       "tryuga"
     ],
@@ -2311,6 +2566,7 @@
   "silent": {
     "id": "silent",
     "displayName": "SILENT",
+    "verified": false,
     "aliases": [
       "silent"
     ],
@@ -2320,6 +2576,7 @@
   "crocks": {
     "id": "crocks",
     "displayName": "CROCKS",
+    "verified": false,
     "aliases": [
       "crocks"
     ],
@@ -2329,6 +2586,7 @@
   "kawamatsu": {
     "id": "kawamatsu",
     "displayName": "KAWAMATSU",
+    "verified": false,
     "aliases": [
       "kawamatsu"
     ],
@@ -2338,6 +2596,7 @@
   "heyitsmedunk": {
     "id": "heyitsmedunk",
     "displayName": "HEYITSMEDUNK",
+    "verified": false,
     "aliases": [
       "heyitsmedunk"
     ],
@@ -2347,6 +2606,7 @@
   "zyngbett": {
     "id": "zyngbett",
     "displayName": "ZYNGBETT",
+    "verified": false,
     "aliases": [
       "zyngbett"
     ],
@@ -2356,6 +2616,7 @@
   "polkadot": {
     "id": "polkadot",
     "displayName": "POLKADOT",
+    "verified": false,
     "aliases": [
       "polkadot"
     ],
@@ -2365,6 +2626,7 @@
   "masao": {
     "id": "masao",
     "displayName": "MASAO",
+    "verified": false,
     "aliases": [
       "masao"
     ],
@@ -2374,6 +2636,7 @@
   "geekydave": {
     "id": "geekydave",
     "displayName": "GEEKYDAVE",
+    "verified": false,
     "aliases": [
       "geekydave"
     ],
@@ -2383,6 +2646,7 @@
   "yougan": {
     "id": "yougan",
     "displayName": "YOUGAN",
+    "verified": false,
     "aliases": [
       "yougan"
     ],
@@ -2392,6 +2656,7 @@
   "panunu": {
     "id": "panunu",
     "displayName": "PANUNU",
+    "verified": false,
     "aliases": [
       "panunu"
     ],
@@ -2401,6 +2666,7 @@
   "gojo": {
     "id": "gojo",
     "displayName": "GOJO",
+    "verified": false,
     "aliases": [
       "gojo"
     ],
@@ -2410,6 +2676,7 @@
   "boldbuffon": {
     "id": "boldbuffon",
     "displayName": "BOLDBUFFON",
+    "verified": false,
     "aliases": [
       "boldbuffon"
     ],
@@ -2419,6 +2686,7 @@
   "koshty": {
     "id": "koshty",
     "displayName": "KOSHTY",
+    "verified": false,
     "aliases": [
       "koshty"
     ],
@@ -2428,6 +2696,7 @@
   "adkei": {
     "id": "adkei",
     "displayName": "ADKEI",
+    "verified": false,
     "aliases": [
       "adkei"
     ],
@@ -2437,6 +2706,7 @@
   "gonemad": {
     "id": "gonemad",
     "displayName": "GONEMAD",
+    "verified": false,
     "aliases": [
       "gonemad"
     ],
@@ -2446,6 +2716,7 @@
   "vexx92": {
     "id": "vexx92",
     "displayName": "VEXX92",
+    "verified": false,
     "aliases": [
       "vexx92"
     ],
@@ -2455,6 +2726,7 @@
   "kthesupreme": {
     "id": "kthesupreme",
     "displayName": "KTHESUPREME",
+    "verified": false,
     "aliases": [
       "kthesupreme"
     ],
@@ -2464,6 +2736,7 @@
   "meowskii": {
     "id": "meowskii",
     "displayName": "MEOWSKII",
+    "verified": false,
     "aliases": [
       "meowskii"
     ],
@@ -2473,6 +2746,7 @@
   "jrojro": {
     "id": "jrojro",
     "displayName": "JROJRO",
+    "verified": false,
     "aliases": [
       "jrojro"
     ],
@@ -2482,6 +2756,7 @@
   "shadowx": {
     "id": "shadowx",
     "displayName": "SHADOWX",
+    "verified": false,
     "aliases": [
       "shadowx"
     ],
@@ -2491,6 +2766,7 @@
   "jeanbackdash": {
     "id": "jeanbackdash",
     "displayName": "JEAN BACKDASH",
+    "verified": false,
     "aliases": [
       "jean backdash"
     ],
@@ -2500,6 +2776,7 @@
   "goombo": {
     "id": "goombo",
     "displayName": "GOOMBO",
+    "verified": false,
     "aliases": [
       "goombo"
     ],
@@ -2509,6 +2786,7 @@
   "kiji": {
     "id": "kiji",
     "displayName": "KIJI",
+    "verified": false,
     "aliases": [
       "kiji"
     ],
@@ -2518,6 +2796,7 @@
   "tismatic": {
     "id": "tismatic",
     "displayName": "TISMATIC",
+    "verified": false,
     "aliases": [
       "tismatic"
     ],
@@ -2527,6 +2806,7 @@
   "archempire": {
     "id": "archempire",
     "displayName": "ARCHEMPIRE",
+    "verified": false,
     "aliases": [
       "archempire"
     ],
@@ -2536,6 +2816,7 @@
   "shoco2": {
     "id": "shoco2",
     "displayName": "SHOCO2",
+    "verified": false,
     "aliases": [
       "shoco2"
     ],
@@ -2545,6 +2826,7 @@
   "h2": {
     "id": "h2",
     "displayName": "H2",
+    "verified": false,
     "aliases": [
       "h 2",
       "h2"
@@ -2555,6 +2837,7 @@
   "monyman": {
     "id": "monyman",
     "displayName": "MONYMAN",
+    "verified": false,
     "aliases": [
       "monyman"
     ],
@@ -2564,6 +2847,7 @@
   "akaza": {
     "id": "akaza",
     "displayName": "AKAZA",
+    "verified": false,
     "aliases": [
       "akaza"
     ],
@@ -2573,6 +2857,7 @@
   "makasue": {
     "id": "makasue",
     "displayName": "MAKASUE",
+    "verified": false,
     "aliases": [
       "makasue"
     ],
@@ -2582,6 +2867,7 @@
   "phidx": {
     "id": "phidx",
     "displayName": "PHIDX",
+    "verified": false,
     "aliases": [
       "phidx"
     ],
@@ -2591,6 +2877,7 @@
   "mysticsmash": {
     "id": "mysticsmash",
     "displayName": "MYSTIC SMASH",
+    "verified": false,
     "aliases": [
       "mystic smash"
     ],
@@ -2600,6 +2887,7 @@
   "brandontheasian": {
     "id": "brandontheasian",
     "displayName": "BRANDONTHEASIAN",
+    "verified": false,
     "aliases": [
       "brandontheasian"
     ],
@@ -2609,6 +2897,7 @@
   "yammini": {
     "id": "yammini",
     "displayName": "Yammini",
+    "verified": false,
     "aliases": [
       "yammini"
     ],
@@ -2618,6 +2907,7 @@
   "llonu13": {
     "id": "llonu13",
     "displayName": "LLONU13",
+    "verified": false,
     "aliases": [
       "llonu13"
     ],
@@ -2627,6 +2917,7 @@
   "kitisi": {
     "id": "kitisi",
     "displayName": "KITISI",
+    "verified": false,
     "aliases": [
       "kitisi"
     ],
@@ -2636,6 +2927,7 @@
   "kanura": {
     "id": "kanura",
     "displayName": "KANURA",
+    "verified": false,
     "aliases": [
       "kanura"
     ],
@@ -2645,6 +2937,7 @@
   "kogre": {
     "id": "kogre",
     "displayName": "KOGRE",
+    "verified": false,
     "aliases": [
       "kogre"
     ],
@@ -2654,6 +2947,7 @@
   "axllow": {
     "id": "axllow",
     "displayName": "AXL LOW",
+    "verified": false,
     "aliases": [
       "axl low"
     ],
@@ -2663,6 +2957,7 @@
   "willumpssnowball": {
     "id": "willumpssnowball",
     "displayName": "WILLUMPSSNOWBALL",
+    "verified": false,
     "aliases": [
       "willumpssnowball"
     ],
@@ -2672,6 +2967,7 @@
   "nowahboah": {
     "id": "nowahboah",
     "displayName": "NOWAHBOAH",
+    "verified": false,
     "aliases": [
       "nowahboah"
     ],
@@ -2681,6 +2977,7 @@
   "dietsquirt": {
     "id": "dietsquirt",
     "displayName": "DIETSQUIRT",
+    "verified": false,
     "aliases": [
       "dietsquirt"
     ],
@@ -2690,6 +2987,7 @@
   "punkdagod": {
     "id": "punkdagod",
     "displayName": "PUNKDAGOD",
+    "verified": false,
     "aliases": [
       "punkdagod"
     ],
@@ -2699,6 +2997,7 @@
   "francowasgood": {
     "id": "francowasgood",
     "displayName": "Francowasgood",
+    "verified": false,
     "aliases": [
       "francowasgood"
     ],
@@ -2708,6 +3007,7 @@
   "kahsuga": {
     "id": "kahsuga",
     "displayName": "Kahsuga",
+    "verified": false,
     "aliases": [
       "kahsuga"
     ],
@@ -2717,6 +3017,7 @@
   "james": {
     "id": "james",
     "displayName": "James",
+    "verified": false,
     "aliases": [
       "james"
     ],
@@ -2726,6 +3027,7 @@
   "luigifgc": {
     "id": "luigifgc",
     "displayName": "LuigiFGC",
+    "verified": false,
     "aliases": [
       "luigifgc"
     ],
@@ -2735,6 +3037,7 @@
   "yangheart": {
     "id": "yangheart",
     "displayName": "YangHeart",
+    "verified": false,
     "aliases": [
       "yangheart"
     ],
@@ -2744,6 +3047,7 @@
   "windzero": {
     "id": "windzero",
     "displayName": "Windzero",
+    "verified": false,
     "aliases": [
       "windzero"
     ],
@@ -2753,6 +3057,7 @@
   "brandon": {
     "id": "brandon",
     "displayName": "Brandon",
+    "verified": false,
     "aliases": [
       "brandon"
     ],
@@ -2762,6 +3067,7 @@
   "swarm": {
     "id": "swarm",
     "displayName": "Swarm",
+    "verified": false,
     "aliases": [
       "swarm"
     ],
@@ -2771,6 +3077,7 @@
   "darkshotgun": {
     "id": "darkshotgun",
     "displayName": "Darkshotgun",
+    "verified": false,
     "aliases": [
       "darkshotgun"
     ],
@@ -2780,6 +3087,7 @@
   "noircyan": {
     "id": "noircyan",
     "displayName": "NoirCyan",
+    "verified": false,
     "aliases": [
       "noircyan"
     ],
@@ -2789,6 +3097,7 @@
   "onecheekwonder": {
     "id": "onecheekwonder",
     "displayName": "Onecheekwonder",
+    "verified": false,
     "aliases": [
       "onecheekwonder"
     ],
@@ -2798,6 +3107,7 @@
   "aka": {
     "id": "aka",
     "displayName": "AKA",
+    "verified": false,
     "aliases": [
       "aka"
     ],
@@ -2807,6 +3117,7 @@
   "maggie": {
     "id": "maggie",
     "displayName": "Maggie",
+    "verified": false,
     "aliases": [
       "maggie"
     ],
@@ -2816,6 +3127,7 @@
   "l1zn": {
     "id": "l1zn",
     "displayName": "L1Zn",
+    "verified": false,
     "aliases": [
       "l1zn"
     ],
@@ -2825,6 +3137,7 @@
   "thearm": {
     "id": "thearm",
     "displayName": "TheArm",
+    "verified": false,
     "aliases": [
       "thearm"
     ],
@@ -2834,6 +3147,7 @@
   "shinmei": {
     "id": "shinmei",
     "displayName": "Shinmei",
+    "verified": false,
     "aliases": [
       "shinmei"
     ],
@@ -2843,6 +3157,7 @@
   "dillonny": {
     "id": "dillonny",
     "displayName": "DillonNY",
+    "verified": false,
     "aliases": [
       "dillonny"
     ],
@@ -2852,6 +3167,7 @@
   "matt": {
     "id": "matt",
     "displayName": "Matt",
+    "verified": false,
     "aliases": [
       "matt"
     ],
@@ -2861,6 +3177,7 @@
   "ttvevn85": {
     "id": "ttvevn85",
     "displayName": "TTV evn85",
+    "verified": false,
     "aliases": [
       "ttv evn85"
     ],
@@ -2870,6 +3187,7 @@
   "tob": {
     "id": "tob",
     "displayName": "Tob",
+    "verified": false,
     "aliases": [
       "tob"
     ],
@@ -2879,6 +3197,7 @@
   "champo": {
     "id": "champo",
     "displayName": "Champo",
+    "verified": false,
     "aliases": [
       "champo"
     ],
@@ -2888,6 +3207,7 @@
   "seisu": {
     "id": "seisu",
     "displayName": "Seisu",
+    "verified": false,
     "aliases": [
       "seisu"
     ],
@@ -2897,6 +3217,7 @@
   "dn7": {
     "id": "dn7",
     "displayName": "DN7",
+    "verified": false,
     "aliases": [
       "dn7"
     ],
@@ -2906,6 +3227,7 @@
   "miami": {
     "id": "miami",
     "displayName": "MIAMI",
+    "verified": false,
     "aliases": [
       "miami"
     ],
@@ -2915,6 +3237,7 @@
   "xan": {
     "id": "xan",
     "displayName": "XAN",
+    "verified": false,
     "aliases": [
       "xan"
     ],
@@ -2924,6 +3247,7 @@
   "faiz": {
     "id": "faiz",
     "displayName": "FAIZ",
+    "verified": false,
     "aliases": [
       "faiz"
     ],
@@ -2933,6 +3257,7 @@
   "diaphonezane": {
     "id": "diaphonezane",
     "displayName": "DIAPHONE-ZANE",
+    "verified": false,
     "aliases": [
       "diaphone-zane"
     ],
@@ -2942,6 +3267,7 @@
   "roethor": {
     "id": "roethor",
     "displayName": "ROETHOR",
+    "verified": false,
     "aliases": [
       "roethor"
     ],
@@ -2951,6 +3277,7 @@
   "igris": {
     "id": "igris",
     "displayName": "IGRIS",
+    "verified": false,
     "aliases": [
       "igris"
     ],
@@ -2960,6 +3287,7 @@
   "whathemath": {
     "id": "whathemath",
     "displayName": "WHATHEMATH",
+    "verified": false,
     "aliases": [
       "whathemath"
     ],
@@ -2969,6 +3297,7 @@
   "conboman": {
     "id": "conboman",
     "displayName": "CONBOMAN",
+    "verified": false,
     "aliases": [
       "conboman"
     ],
@@ -2978,6 +3307,7 @@
   "sparkz": {
     "id": "sparkz",
     "displayName": "SPARKZ",
+    "verified": false,
     "aliases": [
       "sparkz"
     ],
@@ -2987,6 +3317,7 @@
   "khiriz": {
     "id": "khiriz",
     "displayName": "KHIRIZ",
+    "verified": false,
     "aliases": [
       "khiriz"
     ],
@@ -2996,6 +3327,7 @@
   "iicanii": {
     "id": "iicanii",
     "displayName": "IICANII",
+    "verified": false,
     "aliases": [
       "iicanii"
     ],
@@ -3005,6 +3337,7 @@
   "yilongma": {
     "id": "yilongma",
     "displayName": "YI LONG MA",
+    "verified": false,
     "aliases": [
       "yi long ma"
     ],
@@ -3014,6 +3347,7 @@
   "blackdemonica": {
     "id": "blackdemonica",
     "displayName": "BLACKDEMONICA",
+    "verified": false,
     "aliases": [
       "blackdemonica"
     ],
@@ -3023,6 +3357,7 @@
   "pepedrato": {
     "id": "pepedrato",
     "displayName": "PEPEDRATO",
+    "verified": false,
     "aliases": [
       "pepedrato"
     ],
@@ -3032,6 +3367,7 @@
   "lilou": {
     "id": "lilou",
     "displayName": "LILOU",
+    "verified": false,
     "aliases": [
       "lilou"
     ],
@@ -3041,6 +3377,7 @@
   "darheal": {
     "id": "darheal",
     "displayName": "DARHEAL",
+    "verified": false,
     "aliases": [
       "darheal"
     ],
@@ -3050,6 +3387,7 @@
   "fcchamp": {
     "id": "fcchamp",
     "displayName": "FC CHAMP",
+    "verified": false,
     "aliases": [
       "fc champ"
     ],
@@ -3059,6 +3397,7 @@
   "squegeslightwhisp": {
     "id": "squegeslightwhisp",
     "displayName": "SQUEGES-LIGHTWHISP",
+    "verified": false,
     "aliases": [
       "squeges-lightwhisp"
     ],
@@ -3068,6 +3407,7 @@
   "heph": {
     "id": "heph",
     "displayName": "HEPH",
+    "verified": false,
     "aliases": [
       "heph"
     ],
@@ -3077,6 +3417,7 @@
   "aglight": {
     "id": "aglight",
     "displayName": "AGLIGHT",
+    "verified": false,
     "aliases": [
       "aglight"
     ],
@@ -3086,6 +3427,7 @@
   "minisinj": {
     "id": "minisinj",
     "displayName": "MINI SINJ",
+    "verified": false,
     "aliases": [
       "mini sinj"
     ],
@@ -3095,6 +3437,7 @@
   "nurukhi": {
     "id": "nurukhi",
     "displayName": "NURUKHI",
+    "verified": false,
     "aliases": [
       "nurukhi"
     ],
@@ -3104,6 +3447,7 @@
   "bucheram": {
     "id": "bucheram",
     "displayName": "BUCHERAM",
+    "verified": false,
     "aliases": [
       "bucheram"
     ],
@@ -3113,6 +3457,7 @@
   "pepinozombi": {
     "id": "pepinozombi",
     "displayName": "PEPINOZOMBI",
+    "verified": false,
     "aliases": [
       "pepinozombi"
     ],
@@ -3122,6 +3467,7 @@
   "kaitessico": {
     "id": "kaitessico",
     "displayName": "KAITESSICO",
+    "verified": false,
     "aliases": [
       "kaitessico"
     ],
@@ -3131,6 +3477,7 @@
   "gamba": {
     "id": "gamba",
     "displayName": "GAMBA",
+    "verified": false,
     "aliases": [
       "gamba"
     ],
@@ -3140,6 +3487,7 @@
   "joemama": {
     "id": "joemama",
     "displayName": "JOEMAMA",
+    "verified": false,
     "aliases": [
       "joemama"
     ],
@@ -3149,6 +3497,7 @@
   "age": {
     "id": "age",
     "displayName": "AGE",
+    "verified": false,
     "aliases": [
       "age"
     ],
@@ -3158,6 +3507,7 @@
   "noffam": {
     "id": "noffam",
     "displayName": "NOFFAM",
+    "verified": false,
     "aliases": [
       "noffam"
     ],
@@ -3167,6 +3517,7 @@
   "luckyzera": {
     "id": "luckyzera",
     "displayName": "LUCKYZERA",
+    "verified": false,
     "aliases": [
       "luckyzera"
     ],
@@ -3176,6 +3527,7 @@
   "ash": {
     "id": "ash",
     "displayName": "ASH",
+    "verified": false,
     "aliases": [
       "ash"
     ],
@@ -3185,6 +3537,7 @@
   "sillyfroggy": {
     "id": "sillyfroggy",
     "displayName": "SILLYFROGGY",
+    "verified": false,
     "aliases": [
       "sillyfroggy"
     ],
@@ -3194,6 +3547,7 @@
   "bertendiih": {
     "id": "bertendiih",
     "displayName": "BERTENDIIH",
+    "verified": false,
     "aliases": [
       "bertendiih"
     ],
@@ -3203,6 +3557,7 @@
   "xishan": {
     "id": "xishan",
     "displayName": "XISHAN",
+    "verified": false,
     "aliases": [
       "xishan"
     ],
@@ -3212,6 +3567,7 @@
   "swarn": {
     "id": "swarn",
     "displayName": "SWARN",
+    "verified": false,
     "aliases": [
       "swarn"
     ],
@@ -3221,6 +3577,7 @@
   "exdajinx": {
     "id": "exdajinx",
     "displayName": "EX DA JINX",
+    "verified": false,
     "aliases": [
       "ex da jinx"
     ],
@@ -3230,6 +3587,7 @@
   "maestroexe": {
     "id": "maestroexe",
     "displayName": "MAESTROEXE",
+    "verified": false,
     "aliases": [
       "maestroexe"
     ],
@@ -3239,6 +3597,7 @@
   "mrchupy01": {
     "id": "mrchupy01",
     "displayName": "MRCHUPY01",
+    "verified": false,
     "aliases": [
       "mrchupy01"
     ],
@@ -3248,6 +3607,7 @@
   "ddmjc0": {
     "id": "ddmjc0",
     "displayName": "DDMJC0",
+    "verified": false,
     "aliases": [
       "ddmjc0"
     ],
@@ -3257,6 +3617,7 @@
   "knackflack": {
     "id": "knackflack",
     "displayName": "KNACKFLACK",
+    "verified": false,
     "aliases": [
       "knackflack"
     ],
@@ -3266,6 +3627,7 @@
   "lessie": {
     "id": "lessie",
     "displayName": "LESSIE",
+    "verified": false,
     "aliases": [
       "lessie"
     ],
@@ -3275,6 +3637,7 @@
   "adranmetech": {
     "id": "adranmetech",
     "displayName": "ADRANMETECH",
+    "verified": false,
     "aliases": [
       "adranmetech"
     ],
@@ -3284,6 +3647,7 @@
   "romeluz": {
     "id": "romeluz",
     "displayName": "ROMELUZ",
+    "verified": false,
     "aliases": [
       "romeluz"
     ],
@@ -3293,6 +3657,7 @@
   "drift": {
     "id": "drift",
     "displayName": "DRIFT",
+    "verified": false,
     "aliases": [
       "drift"
     ],
@@ -3302,6 +3667,7 @@
   "ricogrz": {
     "id": "ricogrz",
     "displayName": "RICOGRZ",
+    "verified": false,
     "aliases": [
       "ricogrz"
     ],
@@ -3311,6 +3677,7 @@
   "alem": {
     "id": "alem",
     "displayName": "ALEM",
+    "verified": false,
     "aliases": [
       "alem"
     ],
@@ -3320,6 +3687,7 @@
   "adranmelech": {
     "id": "adranmelech",
     "displayName": "ADRANMELECH",
+    "verified": false,
     "aliases": [
       "adranmelech"
     ],
@@ -3329,6 +3697,7 @@
   "reiyogiraiyoko": {
     "id": "reiyogiraiyoko",
     "displayName": "REIYOGI-RAIYOKO",
+    "verified": false,
     "aliases": [
       "reiyogi-raiyoko"
     ],
@@ -3338,6 +3707,7 @@
   "elendiill": {
     "id": "elendiill",
     "displayName": "ELENDIILL",
+    "verified": false,
     "aliases": [
       "elendiill"
     ],
@@ -3347,6 +3717,7 @@
   "onecheek": {
     "id": "onecheek",
     "displayName": "ONECHEEK",
+    "verified": false,
     "aliases": [
       "onecheek"
     ],
@@ -3356,6 +3727,7 @@
   "prcody": {
     "id": "prcody",
     "displayName": "PR CODY",
+    "verified": false,
     "aliases": [
       "pr cody"
     ],
@@ -3365,6 +3737,7 @@
   "kumofly": {
     "id": "kumofly",
     "displayName": "KUMOFLY",
+    "verified": false,
     "aliases": [
       "kumofly"
     ],
@@ -3374,6 +3747,7 @@
   "barbek": {
     "id": "barbek",
     "displayName": "BARBEK",
+    "verified": false,
     "aliases": [
       "barbek"
     ],
@@ -3383,6 +3757,7 @@
   "novum": {
     "id": "novum",
     "displayName": "NOVUM",
+    "verified": false,
     "aliases": [
       "novum"
     ],
@@ -3392,6 +3767,7 @@
   "shiro": {
     "id": "shiro",
     "displayName": "SHIRO",
+    "verified": false,
     "aliases": [
       "shiro"
     ],
@@ -3401,6 +3777,7 @@
   "veryepicmasoff": {
     "id": "veryepicmasoff",
     "displayName": "VERYEPIC-MASOFF",
+    "verified": false,
     "aliases": [
       "veryepic-masoff"
     ],
@@ -3410,6 +3787,7 @@
   "mezza": {
     "id": "mezza",
     "displayName": "MEZZA",
+    "verified": false,
     "aliases": [
       "mezza"
     ],
@@ -3419,6 +3797,7 @@
   "uncrownedwins": {
     "id": "uncrownedwins",
     "displayName": "UNCROWNEDWINS",
+    "verified": false,
     "aliases": [
       "uncrownedwins"
     ],
@@ -3428,6 +3807,7 @@
   "spolarity": {
     "id": "spolarity",
     "displayName": "S POLARITY",
+    "verified": false,
     "aliases": [
       "s polarity"
     ],
@@ -3437,6 +3817,7 @@
   "elbardo": {
     "id": "elbardo",
     "displayName": "EL BARDO",
+    "verified": false,
     "aliases": [
       "el bardo"
     ],
@@ -3446,6 +3827,7 @@
   "carlosjager": {
     "id": "carlosjager",
     "displayName": "CARLOSJAGER",
+    "verified": false,
     "aliases": [
       "carlosjager"
     ],
@@ -3455,6 +3837,7 @@
   "tutturu": {
     "id": "tutturu",
     "displayName": "TUTTURU",
+    "verified": false,
     "aliases": [
       "tutturu"
     ],
@@ -3464,6 +3847,7 @@
   "masoff": {
     "id": "masoff",
     "displayName": "MASOFF",
+    "verified": false,
     "aliases": [
       "masoff"
     ],
@@ -3473,6 +3857,7 @@
   "fusionhomero": {
     "id": "fusionhomero",
     "displayName": "FUSION HOMERO",
+    "verified": false,
     "aliases": [
       "fusion homero"
     ],
@@ -3482,6 +3867,7 @@
   "clampbr": {
     "id": "clampbr",
     "displayName": "CLAMPBR",
+    "verified": false,
     "aliases": [
       "clampbr"
     ],
@@ -3491,6 +3877,7 @@
   "kuroten06": {
     "id": "kuroten06",
     "displayName": "KUROTEN06",
+    "verified": false,
     "aliases": [
       "kuroten06"
     ],
@@ -3500,6 +3887,7 @@
   "hirashino": {
     "id": "hirashino",
     "displayName": "HIRASHINO",
+    "verified": false,
     "aliases": [
       "hirashino"
     ],
@@ -3509,6 +3897,7 @@
   "snacks": {
     "id": "snacks",
     "displayName": "SNACKS",
+    "verified": false,
     "aliases": [
       "snacks"
     ],
@@ -3518,6 +3907,7 @@
   "saino": {
     "id": "saino",
     "displayName": "SAINO",
+    "verified": false,
     "aliases": [
       "saino"
     ],
@@ -3527,6 +3917,7 @@
   "iicaniix": {
     "id": "iicaniix",
     "displayName": "IICANIIX",
+    "verified": false,
     "aliases": [
       "iicaniix"
     ],
@@ -3536,6 +3927,7 @@
   "kamuisenketsu": {
     "id": "kamuisenketsu",
     "displayName": "KAMUI SENKETSU",
+    "verified": false,
     "aliases": [
       "kamui senketsu"
     ],
@@ -3545,6 +3937,7 @@
   "lunovune": {
     "id": "lunovune",
     "displayName": "LUNOVUNE",
+    "verified": false,
     "aliases": [
       "lunovune"
     ],
@@ -3554,6 +3947,7 @@
   "sunmate": {
     "id": "sunmate",
     "displayName": "SUNMATE",
+    "verified": false,
     "aliases": [
       "sunmate"
     ],
@@ -3563,6 +3957,7 @@
   "lastsurprise": {
     "id": "lastsurprise",
     "displayName": "LAST SURPRISE",
+    "verified": false,
     "aliases": [
       "last surprise"
     ],
@@ -3572,6 +3967,7 @@
   "kuromi": {
     "id": "kuromi",
     "displayName": "KUROMI",
+    "verified": false,
     "aliases": [
       "kuromi"
     ],
@@ -3581,6 +3977,7 @@
   "sendmethatinv": {
     "id": "sendmethatinv",
     "displayName": "SENDMETHATINV",
+    "verified": false,
     "aliases": [
       "sendmethatinv"
     ],
@@ -3590,6 +3987,7 @@
   "twilightzone": {
     "id": "twilightzone",
     "displayName": "TWILIGHTZONE",
+    "verified": false,
     "aliases": [
       "twilightzone"
     ],
@@ -3599,6 +3997,7 @@
   "2xno": {
     "id": "2xno",
     "displayName": "2XNO",
+    "verified": false,
     "aliases": [
       "2xno"
     ],
@@ -3608,6 +4007,7 @@
   "spoops": {
     "id": "spoops",
     "displayName": "SPOOPS",
+    "verified": false,
     "aliases": [
       "spoops"
     ],
@@ -3617,6 +4017,7 @@
   "interestinglamps": {
     "id": "interestinglamps",
     "displayName": "INTERESTINGLAMPS",
+    "verified": false,
     "aliases": [
       "interestinglamps"
     ],
@@ -3626,6 +4027,7 @@
   "nvmlesarbitres": {
     "id": "nvmlesarbitres",
     "displayName": "NVM LES ARBITRES",
+    "verified": false,
     "aliases": [
       "nvm les arbitres"
     ],
@@ -3635,6 +4037,7 @@
   "nolbie": {
     "id": "nolbie",
     "displayName": "NOLBIE",
+    "verified": false,
     "aliases": [
       "nolbie"
     ],
@@ -3644,6 +4047,7 @@
   "sword": {
     "id": "sword",
     "displayName": "SWORD",
+    "verified": false,
     "aliases": [
       "sword"
     ],
@@ -3653,6 +4057,7 @@
   "hawksey": {
     "id": "hawksey",
     "displayName": "HAWKSEY",
+    "verified": false,
     "aliases": [
       "hawksey"
     ],
@@ -3662,6 +4067,7 @@
   "flatrey": {
     "id": "flatrey",
     "displayName": "FLATREY",
+    "verified": false,
     "aliases": [
       "flatrey"
     ],
@@ -3671,6 +4077,7 @@
   "benzy": {
     "id": "benzy",
     "displayName": "BENZY",
+    "verified": false,
     "aliases": [
       "benzy"
     ],
@@ -3680,6 +4087,7 @@
   "fightzone": {
     "id": "fightzone",
     "displayName": "FIGHTZONE",
+    "verified": false,
     "aliases": [
       "fightzone"
     ],
@@ -3689,6 +4097,7 @@
   "jbp": {
     "id": "jbp",
     "displayName": "JBP",
+    "verified": false,
     "aliases": [
       "jbp"
     ],
@@ -3698,6 +4107,7 @@
   "yarrrco": {
     "id": "yarrrco",
     "displayName": "YARRRCO",
+    "verified": false,
     "aliases": [
       "yarrrco"
     ],
@@ -3707,6 +4117,7 @@
   "flamie": {
     "id": "flamie",
     "displayName": "FLAMIE",
+    "verified": false,
     "aliases": [
       "flamie"
     ],
@@ -3716,6 +4127,7 @@
   "drixkarasu": {
     "id": "drixkarasu",
     "displayName": "DRIXKARASU",
+    "verified": false,
     "aliases": [
       "drixkarasu"
     ],
@@ -3725,6 +4137,7 @@
   "bigmo": {
     "id": "bigmo",
     "displayName": "BIG MO",
+    "verified": false,
     "aliases": [
       "big mo"
     ],
@@ -3734,6 +4147,7 @@
   "yarisu": {
     "id": "yarisu",
     "displayName": "YARISU",
+    "verified": false,
     "aliases": [
       "yarisu"
     ],
@@ -3743,6 +4157,7 @@
   "marmiteinajar": {
     "id": "marmiteinajar",
     "displayName": "MARMITEINAJAR",
+    "verified": false,
     "aliases": [
       "marmiteinajar"
     ],
@@ -3752,6 +4167,7 @@
   "protomxn": {
     "id": "protomxn",
     "displayName": "PROTOMXN",
+    "verified": false,
     "aliases": [
       "protomxn"
     ],
@@ -3761,6 +4177,7 @@
   "varminvein": {
     "id": "varminvein",
     "displayName": "VARMINVEIN",
+    "verified": false,
     "aliases": [
       "varminvein"
     ],
@@ -3770,6 +4187,7 @@
   "snyp3r": {
     "id": "snyp3r",
     "displayName": "SNYP3R",
+    "verified": false,
     "aliases": [
       "snyp3r"
     ],
@@ -3779,6 +4197,7 @@
   "koumakishima": {
     "id": "koumakishima",
     "displayName": "KOUMA KISHIMA",
+    "verified": false,
     "aliases": [
       "kouma kishima"
     ],
@@ -3788,6 +4207,7 @@
   "demiurgefgc": {
     "id": "demiurgefgc",
     "displayName": "DEMIURGEFGC",
+    "verified": false,
     "aliases": [
       "demiurgefgc"
     ],
@@ -3797,6 +4217,7 @@
   "lapouille": {
     "id": "lapouille",
     "displayName": "LAPOUILLE",
+    "verified": false,
     "aliases": [
       "lapouille"
     ],
@@ -3806,6 +4227,7 @@
   "xishen": {
     "id": "xishen",
     "displayName": "XISHEN",
+    "verified": false,
     "aliases": [
       "xishen"
     ],
@@ -3815,6 +4237,7 @@
   "plarvel": {
     "id": "plarvel",
     "displayName": "PLARVEL",
+    "verified": false,
     "aliases": [
       "plarvel"
     ],
@@ -3824,6 +4247,7 @@
   "gravetongue": {
     "id": "gravetongue",
     "displayName": "GRAVETONGUE",
+    "verified": false,
     "aliases": [
       "gravetongue"
     ],
@@ -3833,6 +4257,7 @@
   "airdash": {
     "id": "airdash",
     "displayName": "AIRDASH",
+    "verified": false,
     "aliases": [
       "airdash"
     ],
@@ -3842,6 +4267,7 @@
   "shjisa": {
     "id": "shjisa",
     "displayName": "SHJISA",
+    "verified": false,
     "aliases": [
       "shjisa"
     ],
@@ -3851,6 +4277,7 @@
   "bou": {
     "id": "bou",
     "displayName": "BOU",
+    "verified": false,
     "aliases": [
       "bou"
     ],
@@ -3860,6 +4287,7 @@
   "nexxyy": {
     "id": "nexxyy",
     "displayName": "NEXXYY",
+    "verified": false,
     "aliases": [
       "nexxyy"
     ],
@@ -3869,6 +4297,7 @@
   "neo": {
     "id": "neo",
     "displayName": "NEO",
+    "verified": false,
     "aliases": [
       "neo"
     ],
@@ -3878,6 +4307,7 @@
   "okan": {
     "id": "okan",
     "displayName": "OKAN",
+    "verified": false,
     "aliases": [
       "okan"
     ],
@@ -3887,6 +4317,7 @@
   "ihcapipaple": {
     "id": "ihcapipaple",
     "displayName": "IHCAPIPAPLE",
+    "verified": false,
     "aliases": [
       "ihcapipaple"
     ],
@@ -3896,6 +4327,7 @@
   "madeinheaven": {
     "id": "madeinheaven",
     "displayName": "MADEINHEAVEN",
+    "verified": false,
     "aliases": [
       "madeinheaven"
     ],
@@ -3905,6 +4337,7 @@
   "teiguincursio": {
     "id": "teiguincursio",
     "displayName": "TEIGU INCURSIO",
+    "verified": false,
     "aliases": [
       "teigu incursio"
     ],
@@ -3914,6 +4347,7 @@
   "help": {
     "id": "help",
     "displayName": "HELP",
+    "verified": false,
     "aliases": [
       "help"
     ],
@@ -3923,6 +4357,7 @@
   "tokavein": {
     "id": "tokavein",
     "displayName": "TOKAVEIN",
+    "verified": false,
     "aliases": [
       "tokavein"
     ],
@@ -3932,6 +4367,7 @@
   "tametsuna": {
     "id": "tametsuna",
     "displayName": "TAMETSUNA",
+    "verified": false,
     "aliases": [
       "tametsuna"
     ],
@@ -3941,6 +4377,7 @@
   "derecho4": {
     "id": "derecho4",
     "displayName": "DERECHO4",
+    "verified": false,
     "aliases": [
       "derecho4"
     ],
@@ -3950,6 +4387,7 @@
   "hikiko": {
     "id": "hikiko",
     "displayName": "HIKIKO",
+    "verified": false,
     "aliases": [
       "hikiko"
     ],
@@ -3959,6 +4397,7 @@
   "piggcommander": {
     "id": "piggcommander",
     "displayName": "PIGGCOMMANDER",
+    "verified": false,
     "aliases": [
       "piggcommander"
     ],
@@ -3968,6 +4407,7 @@
   "klee": {
     "id": "klee",
     "displayName": "KLEE",
+    "verified": false,
     "aliases": [
       "klee"
     ],
@@ -3977,6 +4417,7 @@
   "3gangaz": {
     "id": "3gangaz",
     "displayName": "3GANGAZ",
+    "verified": false,
     "aliases": [
       "3gangaz"
     ],
@@ -3986,6 +4427,7 @@
   "remyrrr": {
     "id": "remyrrr",
     "displayName": "REMYRRR",
+    "verified": false,
     "aliases": [
       "remyrrr"
     ],
@@ -3995,6 +4437,7 @@
   "imed": {
     "id": "imed",
     "displayName": "IMED",
+    "verified": false,
     "aliases": [
       "imed"
     ],
@@ -4004,6 +4447,7 @@
   "otxo": {
     "id": "otxo",
     "displayName": "OTXO",
+    "verified": false,
     "aliases": [
       "otxo"
     ],
@@ -4013,6 +4457,7 @@
   "mono": {
     "id": "mono",
     "displayName": "MONO",
+    "verified": false,
     "aliases": [
       "mono"
     ],
@@ -4022,6 +4467,7 @@
   "demerdashy": {
     "id": "demerdashy",
     "displayName": "DEMERDASHY",
+    "verified": false,
     "aliases": [
       "demerdashy"
     ],
@@ -4031,6 +4477,7 @@
   "chapyguy": {
     "id": "chapyguy",
     "displayName": "CHAPYGUY",
+    "verified": false,
     "aliases": [
       "chapyguy"
     ],
@@ -4040,6 +4487,7 @@
   "neonoexe": {
     "id": "neonoexe",
     "displayName": "NEONOEXE",
+    "verified": false,
     "aliases": [
       "neonoexe"
     ],
@@ -4049,6 +4497,7 @@
   "vanmanser": {
     "id": "vanmanser",
     "displayName": "VANMANSER",
+    "verified": false,
     "aliases": [
       "vanmanser"
     ],
@@ -4058,6 +4507,7 @@
   "tsubasaknight": {
     "id": "tsubasaknight",
     "displayName": "TSUBASAKNIGHT",
+    "verified": false,
     "aliases": [
       "tsubasaknight"
     ],
@@ -4067,6 +4517,7 @@
   "whitekingyakub": {
     "id": "whitekingyakub",
     "displayName": "WHITEKING YAKUB",
+    "verified": false,
     "aliases": [
       "whiteking yakub"
     ],
@@ -4076,6 +4527,7 @@
   "nero": {
     "id": "nero",
     "displayName": "NERO",
+    "verified": false,
     "aliases": [
       "nero"
     ],
@@ -4085,6 +4537,7 @@
   "yungquaff": {
     "id": "yungquaff",
     "displayName": "YUNG QUAFF",
+    "verified": false,
     "aliases": [
       "yung quaff"
     ],
@@ -4094,6 +4547,7 @@
   "myatox": {
     "id": "myatox",
     "displayName": "MYATOX",
+    "verified": false,
     "aliases": [
       "myatox"
     ],
@@ -4103,6 +4557,7 @@
   "agentmeatball": {
     "id": "agentmeatball",
     "displayName": "AGENT MEATBALL",
+    "verified": false,
     "aliases": [
       "agent meatball"
     ],
@@ -4112,6 +4567,7 @@
   "winterwolf": {
     "id": "winterwolf",
     "displayName": "WINTERWOLF",
+    "verified": false,
     "aliases": [
       "winterwolf"
     ],
@@ -4121,6 +4577,7 @@
   "infamousrayn": {
     "id": "infamousrayn",
     "displayName": "INFAMOUSRAYN",
+    "verified": false,
     "aliases": [
       "infamousrayn"
     ],
@@ -4130,6 +4587,7 @@
   "shining2lk": {
     "id": "shining2lk",
     "displayName": "SHINING2LK",
+    "verified": false,
     "aliases": [
       "shining2lk"
     ],
@@ -4139,6 +4597,7 @@
   "logic": {
     "id": "logic",
     "displayName": "LOGIC",
+    "verified": false,
     "aliases": [
       "logic"
     ],
@@ -4148,6 +4607,7 @@
   "kirua": {
     "id": "kirua",
     "displayName": "KIRUA",
+    "verified": false,
     "aliases": [
       "kirua"
     ],
@@ -4157,6 +4617,7 @@
   "soulbirdguy": {
     "id": "soulbirdguy",
     "displayName": "SOULBIRDGUY",
+    "verified": false,
     "aliases": [
       "soulbirdguy"
     ],
@@ -4166,6 +4627,7 @@
   "cibab": {
     "id": "cibab",
     "displayName": "CIBAB",
+    "verified": false,
     "aliases": [
       "cibab"
     ],
@@ -4175,6 +4637,7 @@
   "mtlhayatei": {
     "id": "mtlhayatei",
     "displayName": "MTLHAYATEI",
+    "verified": false,
     "aliases": [
       "mtlhayatei"
     ],
@@ -4184,6 +4647,7 @@
   "turtlewastaken": {
     "id": "turtlewastaken",
     "displayName": "TURTLEWASTAKEN",
+    "verified": false,
     "aliases": [
       "turtlewastaken"
     ],
@@ -4193,6 +4657,7 @@
   "greenbean": {
     "id": "greenbean",
     "displayName": "GREEN BEAN",
+    "verified": false,
     "aliases": [
       "green bean"
     ],
@@ -4202,6 +4667,7 @@
   "bananaberry": {
     "id": "bananaberry",
     "displayName": "BANANABERRY",
+    "verified": false,
     "aliases": [
       "bananaberry"
     ],
@@ -4211,6 +4677,7 @@
   "gerwulf": {
     "id": "gerwulf",
     "displayName": "GERWULF",
+    "verified": false,
     "aliases": [
       "gerwulf"
     ],
@@ -4220,6 +4687,7 @@
   "dom": {
     "id": "dom",
     "displayName": "DOM",
+    "verified": false,
     "aliases": [
       "dom"
     ],
@@ -4229,6 +4697,7 @@
   "dannyboy": {
     "id": "dannyboy",
     "displayName": "DANNYBOY",
+    "verified": false,
     "aliases": [
       "dannyboy"
     ],
@@ -4238,6 +4707,7 @@
   "zleeek7": {
     "id": "zleeek7",
     "displayName": "ZLEEEK7",
+    "verified": false,
     "aliases": [
       "zleeek7"
     ],
@@ -4247,6 +4717,7 @@
   "queenkoa": {
     "id": "queenkoa",
     "displayName": "QUEENKOA",
+    "verified": false,
     "aliases": [
       "queenkoa"
     ],
@@ -4256,6 +4727,7 @@
   "lethalpop": {
     "id": "lethalpop",
     "displayName": "LETHALPOP",
+    "verified": false,
     "aliases": [
       "lethalpop"
     ],
@@ -4265,6 +4737,7 @@
   "r3ed": {
     "id": "r3ed",
     "displayName": "R3ED",
+    "verified": false,
     "aliases": [
       "r3ed"
     ],
@@ -4274,6 +4747,7 @@
   "dillony": {
     "id": "dillony",
     "displayName": "DILLONY",
+    "verified": false,
     "aliases": [
       "dillony"
     ],
@@ -4283,6 +4757,7 @@
   "jontrek": {
     "id": "jontrek",
     "displayName": "JONTREK",
+    "verified": false,
     "aliases": [
       "jontrek"
     ],
@@ -4292,6 +4767,7 @@
   "lucifrax": {
     "id": "lucifrax",
     "displayName": "LUCIFRAX",
+    "verified": false,
     "aliases": [
       "lucifrax"
     ],
@@ -4301,6 +4777,7 @@
   "haveaniceday": {
     "id": "haveaniceday",
     "displayName": "HAVEANICEDAY",
+    "verified": false,
     "aliases": [
       "haveaniceday"
     ],
@@ -4310,6 +4787,7 @@
   "onewolf101": {
     "id": "onewolf101",
     "displayName": "ONEWOLF101",
+    "verified": false,
     "aliases": [
       "onewolf101"
     ],
@@ -4319,6 +4797,7 @@
   "eoshen": {
     "id": "eoshen",
     "displayName": "EOSHEN",
+    "verified": false,
     "aliases": [
       "eoshen"
     ],
@@ -4328,6 +4807,7 @@
   "flibbertigilbbet": {
     "id": "flibbertigilbbet",
     "displayName": "FLIBBERTIGILBBET",
+    "verified": false,
     "aliases": [
       "flibbertigilbbet"
     ],
@@ -4337,6 +4817,7 @@
   "nidalee": {
     "id": "nidalee",
     "displayName": "NIDALEE",
+    "verified": false,
     "aliases": [
       "nidalee"
     ],
@@ -4346,6 +4827,7 @@
   "enilyart": {
     "id": "enilyart",
     "displayName": "ENILYART",
+    "verified": false,
     "aliases": [
       "enilyart"
     ],
@@ -4355,6 +4837,7 @@
   "snormanda": {
     "id": "snormanda",
     "displayName": "SNORMANDA",
+    "verified": false,
     "aliases": [
       "snormanda"
     ],
@@ -4364,6 +4847,7 @@
   "lueshi": {
     "id": "lueshi",
     "displayName": "LUESHI",
+    "verified": false,
     "aliases": [
       "lueshi"
     ],
@@ -4373,6 +4857,7 @@
   "jogadorgamer": {
     "id": "jogadorgamer",
     "displayName": "JOGADORGAMER",
+    "verified": false,
     "aliases": [
       "jogadorgamer"
     ],
@@ -4382,6 +4867,7 @@
   "kouma": {
     "id": "kouma",
     "displayName": "KOUMA",
+    "verified": false,
     "aliases": [
       "kouma"
     ],
@@ -4391,6 +4877,7 @@
   "slauw": {
     "id": "slauw",
     "displayName": "SLAUW",
+    "verified": false,
     "aliases": [
       "slauw"
     ],
@@ -4400,6 +4887,7 @@
   "xiaofeng": {
     "id": "xiaofeng",
     "displayName": "XIAOFENG",
+    "verified": false,
     "aliases": [
       "xiaofeng"
     ],
@@ -4409,6 +4897,7 @@
   "demo": {
     "id": "demo",
     "displayName": "DEMO",
+    "verified": false,
     "aliases": [
       "demo"
     ],
@@ -4418,6 +4907,7 @@
   "minoth3": {
     "id": "minoth3",
     "displayName": "MINOTH3",
+    "verified": false,
     "aliases": [
       "minoth3"
     ],
@@ -4427,6 +4917,7 @@
   "drredacted": {
     "id": "drredacted",
     "displayName": "DRREDACTED",
+    "verified": false,
     "aliases": [
       "drredacted"
     ],
@@ -4436,6 +4927,7 @@
   "kingmathur": {
     "id": "kingmathur",
     "displayName": "KINGMATHUR",
+    "verified": false,
     "aliases": [
       "kingmathur"
     ],
@@ -4445,6 +4937,7 @@
   "powspotz": {
     "id": "powspotz",
     "displayName": "POWSPOTZ",
+    "verified": false,
     "aliases": [
       "powspotz"
     ],
@@ -4454,6 +4947,7 @@
   "env85": {
     "id": "env85",
     "displayName": "ENV85",
+    "verified": false,
     "aliases": [
       "env85"
     ],
@@ -4463,6 +4957,7 @@
   "syko": {
     "id": "syko",
     "displayName": "SYKO",
+    "verified": false,
     "aliases": [
       "syko"
     ],
@@ -4472,6 +4967,7 @@
   "bushinz": {
     "id": "bushinz",
     "displayName": "BUSHINZ",
+    "verified": false,
     "aliases": [
       "bushinz"
     ],
@@ -4481,6 +4977,7 @@
   "poyo": {
     "id": "poyo",
     "displayName": "POYO",
+    "verified": false,
     "aliases": [
       "poyo"
     ],
@@ -4490,6 +4987,7 @@
   "mondososewa": {
     "id": "mondososewa",
     "displayName": "MONDOSOSEWA",
+    "verified": false,
     "aliases": [
       "mondososewa"
     ],
@@ -4499,6 +4997,7 @@
   "hdkfang": {
     "id": "hdkfang",
     "displayName": "HDKFANG",
+    "verified": false,
     "aliases": [
       "hdkfang"
     ],
@@ -4508,6 +5007,7 @@
   "gazpachitoabuser": {
     "id": "gazpachitoabuser",
     "displayName": "GAZPACHITOABUSER",
+    "verified": false,
     "aliases": [
       "gazpachitoabuser"
     ],
@@ -4517,6 +5017,7 @@
   "brules": {
     "id": "brules",
     "displayName": "BRULES",
+    "verified": false,
     "aliases": [
       "brules"
     ],
@@ -4526,6 +5027,7 @@
   "sh4rin": {
     "id": "sh4rin",
     "displayName": "SH4RIN",
+    "verified": false,
     "aliases": [
       "sh4rin"
     ],
@@ -4535,6 +5037,7 @@
   "fibriza": {
     "id": "fibriza",
     "displayName": "FIBRIZA",
+    "verified": false,
     "aliases": [
       "fibriza"
     ],
@@ -4544,6 +5047,7 @@
   "mezukilord": {
     "id": "mezukilord",
     "displayName": "MEZUKILORD",
+    "verified": false,
     "aliases": [
       "mezukilord"
     ],
@@ -4553,6 +5057,7 @@
   "gimblebock": {
     "id": "gimblebock",
     "displayName": "GIMBLEBOCK",
+    "verified": false,
     "aliases": [
       "gimblebock"
     ],
@@ -4562,6 +5067,7 @@
   "shiftedfn": {
     "id": "shiftedfn",
     "displayName": "SHIFTEDFN",
+    "verified": false,
     "aliases": [
       "shiftedfn"
     ],
@@ -4571,6 +5077,7 @@
   "quyetaylan": {
     "id": "quyetaylan",
     "displayName": "QUYETAYLAN",
+    "verified": false,
     "aliases": [
       "quyetaylan"
     ],
@@ -4580,6 +5087,7 @@
   "guerreiro": {
     "id": "guerreiro",
     "displayName": "GUERREIRO",
+    "verified": false,
     "aliases": [
       "guerreiro"
     ],
@@ -4589,6 +5097,7 @@
   "amse": {
     "id": "amse",
     "displayName": "AMSE",
+    "verified": false,
     "aliases": [
       "amse"
     ],
@@ -4598,6 +5107,7 @@
   "bardo": {
     "id": "bardo",
     "displayName": "BARDO",
+    "verified": false,
     "aliases": [
       "bardo"
     ],
@@ -4607,6 +5117,7 @@
   "nouze": {
     "id": "nouze",
     "displayName": "NOUZE",
+    "verified": false,
     "aliases": [
       "nouze"
     ],
@@ -4616,6 +5127,7 @@
   "yarisugicabbage": {
     "id": "yarisugicabbage",
     "displayName": "YARISUGICABBAGE",
+    "verified": false,
     "aliases": [
       "yarisugicabbage"
     ],
@@ -4625,6 +5137,7 @@
   "bladedsnake": {
     "id": "bladedsnake",
     "displayName": "BLADEDSNAKE",
+    "verified": false,
     "aliases": [
       "bladedsnake"
     ],
@@ -4634,6 +5147,7 @@
   "tjinr": {
     "id": "tjinr",
     "displayName": "TJINR",
+    "verified": false,
     "aliases": [
       "tjinr"
     ],
@@ -4643,6 +5157,7 @@
   "hagoromof": {
     "id": "hagoromof",
     "displayName": "HAGOROMOF",
+    "verified": false,
     "aliases": [
       "hagoromof"
     ],
@@ -4652,6 +5167,7 @@
   "hallowhavyn": {
     "id": "hallowhavyn",
     "displayName": "HALLOWHAVYN",
+    "verified": false,
     "aliases": [
       "hallowhavyn"
     ],
@@ -4661,6 +5177,7 @@
   "jawirbroken": {
     "id": "jawirbroken",
     "displayName": "JAWIRBROKEN",
+    "verified": false,
     "aliases": [
       "jawirbroken"
     ],
@@ -4670,6 +5187,7 @@
   "metallichawk": {
     "id": "metallichawk",
     "displayName": "METALLIC HAWK",
+    "verified": false,
     "aliases": [
       "metallic hawk"
     ],
@@ -4679,6 +5197,7 @@
   "smitty": {
     "id": "smitty",
     "displayName": "SMITTY",
+    "verified": false,
     "aliases": [
       "smitty"
     ],
@@ -4688,6 +5207,7 @@
   "xizzy": {
     "id": "xizzy",
     "displayName": "XIZZY",
+    "verified": false,
     "aliases": [
       "xizzy"
     ],
@@ -4697,6 +5217,7 @@
   "prodijay": {
     "id": "prodijay",
     "displayName": "PRODIJAY",
+    "verified": false,
     "aliases": [
       "prodijay"
     ],
@@ -4706,6 +5227,7 @@
   "ikura": {
     "id": "ikura",
     "displayName": "IKURA",
+    "verified": false,
     "aliases": [
       "ikura"
     ],
@@ -4715,6 +5237,7 @@
   "domitto": {
     "id": "domitto",
     "displayName": "DOMITTO",
+    "verified": false,
     "aliases": [
       "domitto"
     ],
@@ -4724,6 +5247,7 @@
   "garendaiza": {
     "id": "garendaiza",
     "displayName": "GARENDAIZA",
+    "verified": false,
     "aliases": [
       "garendaiza"
     ],
@@ -4733,6 +5257,7 @@
   "pchai": {
     "id": "pchai",
     "displayName": "PCHAI",
+    "verified": false,
     "aliases": [
       "pchai"
     ],
@@ -4742,6 +5267,7 @@
   "justice": {
     "id": "justice",
     "displayName": "JUSTICE",
+    "verified": false,
     "aliases": [
       "justice"
     ],
@@ -4751,6 +5277,7 @@
   "iamwaiting": {
     "id": "iamwaiting",
     "displayName": "I AM WAITING",
+    "verified": false,
     "aliases": [
       "i am waiting"
     ],
@@ -4760,6 +5287,7 @@
   "leffensupernoon": {
     "id": "leffensupernoon",
     "displayName": "LEFFEN-SUPERNOON",
+    "verified": false,
     "aliases": [
       "leffen-supernoon"
     ],
@@ -4769,6 +5297,7 @@
   "honegumi": {
     "id": "honegumi",
     "displayName": "HONEGUMI",
+    "verified": false,
     "aliases": [
       "honegumi"
     ],
@@ -4778,6 +5307,7 @@
   "brandontehasian": {
     "id": "brandontehasian",
     "displayName": "BRANDONTEHASIAN",
+    "verified": false,
     "aliases": [
       "brandontehasian"
     ],
@@ -4787,6 +5317,7 @@
   "2winztoshi2winzharu": {
     "id": "2winztoshi2winzharu",
     "displayName": "2WINZ TOSHI-2WINZ HARU",
+    "verified": false,
     "aliases": [
       "2winz toshi-2winz haru"
     ],
@@ -4796,6 +5327,7 @@
   "tsunodoriru": {
     "id": "tsunodoriru",
     "displayName": "TSUNODORIRU",
+    "verified": false,
     "aliases": [
       "tsunodoriru"
     ],
@@ -4805,6 +5337,7 @@
   "llcaniix": {
     "id": "llcaniix",
     "displayName": "LLCANIIX",
+    "verified": false,
     "aliases": [
       "llcaniix"
     ],
@@ -4814,6 +5347,7 @@
   "winklez": {
     "id": "winklez",
     "displayName": "WINKLEZ",
+    "verified": false,
     "aliases": [
       "winklez"
     ],
@@ -4823,6 +5357,7 @@
   "cloud805iheartjustice": {
     "id": "cloud805iheartjustice",
     "displayName": "CLOUD805-IHEARTJUSTICE",
+    "verified": false,
     "aliases": [
       "cloud805-iheartjustice"
     ],
@@ -4832,6 +5367,7 @@
   "phos": {
     "id": "phos",
     "displayName": "PHOS",
+    "verified": false,
     "aliases": [
       "phos"
     ],
@@ -4841,6 +5377,7 @@
   "cruncho": {
     "id": "cruncho",
     "displayName": "CRUNCHO",
+    "verified": false,
     "aliases": [
       "cruncho"
     ],
@@ -4850,6 +5387,7 @@
   "snatchingdefeat": {
     "id": "snatchingdefeat",
     "displayName": "SNATCHING DEFEAT",
+    "verified": false,
     "aliases": [
       "snatching defeat"
     ],
@@ -4859,6 +5397,7 @@
   "sonicfoxinzem": {
     "id": "sonicfoxinzem",
     "displayName": "SONICFOX-INZEM",
+    "verified": false,
     "aliases": [
       "sonicfox-inzem"
     ],
@@ -4868,6 +5407,7 @@
   "semlij": {
     "id": "semlij",
     "displayName": "SEMLIJ",
+    "verified": false,
     "aliases": [
       "semlij"
     ],
@@ -4877,6 +5417,7 @@
   "sells": {
     "id": "sells",
     "displayName": "SELLS",
+    "verified": false,
     "aliases": [
       "sells"
     ],
@@ -4886,6 +5427,7 @@
   "measy718": {
     "id": "measy718",
     "displayName": "MEASY718",
+    "verified": false,
     "aliases": [
       "measy718"
     ],
@@ -4895,6 +5437,7 @@
   "asurasswagdaddy": {
     "id": "asurasswagdaddy",
     "displayName": "ASURASSWAGDADDY",
+    "verified": false,
     "aliases": [
       "asurasswagdaddy"
     ],
@@ -4904,6 +5447,7 @@
   "gcyoshi13": {
     "id": "gcyoshi13",
     "displayName": "GCYOSHI13",
+    "verified": false,
     "aliases": [
       "gcyoshi13"
     ],
@@ -4913,6 +5457,7 @@
   "cloud805justice": {
     "id": "cloud805justice",
     "displayName": "CLOUD805-JUSTICE",
+    "verified": false,
     "aliases": [
       "cloud805-justice"
     ],
@@ -4922,6 +5467,7 @@
   "mysticsmashshiro": {
     "id": "mysticsmashshiro",
     "displayName": "MYSTICSMASH-SHIRO",
+    "verified": false,
     "aliases": [
       "mysticsmash-shiro"
     ],
@@ -4931,6 +5477,7 @@
   "tracheotomy": {
     "id": "tracheotomy",
     "displayName": "TRACHEOTOMY",
+    "verified": false,
     "aliases": [
       "tracheotomy"
     ],
@@ -4940,6 +5487,7 @@
   "breet": {
     "id": "breet",
     "displayName": "BREET",
+    "verified": false,
     "aliases": [
       "breet"
     ],
@@ -4949,6 +5497,7 @@
   "mollat": {
     "id": "mollat",
     "displayName": "MOLLAT",
+    "verified": false,
     "aliases": [
       "mollat"
     ],
@@ -4958,6 +5507,7 @@
   "pay": {
     "id": "pay",
     "displayName": "PAY",
+    "verified": false,
     "aliases": [
       "pay"
     ],
@@ -4967,6 +5517,7 @@
   "thedoza": {
     "id": "thedoza",
     "displayName": "THEDOZA",
+    "verified": false,
     "aliases": [
       "thedoza"
     ],
@@ -4976,6 +5527,7 @@
   "webo": {
     "id": "webo",
     "displayName": "WEBO",
+    "verified": false,
     "aliases": [
       "webo"
     ],
@@ -4985,6 +5537,7 @@
   "patstaresat": {
     "id": "patstaresat",
     "displayName": "PATSTARESAT",
+    "verified": false,
     "aliases": [
       "patstaresat"
     ],
@@ -4994,6 +5547,7 @@
   "umamusume": {
     "id": "umamusume",
     "displayName": "UMAMUSUME",
+    "verified": false,
     "aliases": [
       "umamusume"
     ],
@@ -5003,6 +5557,7 @@
   "aeuol": {
     "id": "aeuol",
     "displayName": "AEUOL",
+    "verified": false,
     "aliases": [
       "aeuol"
     ],
@@ -5012,6 +5567,7 @@
   "lush": {
     "id": "lush",
     "displayName": "LUSH",
+    "verified": false,
     "aliases": [
       "lush"
     ],
@@ -5021,6 +5577,7 @@
   "lowtierhero": {
     "id": "lowtierhero",
     "displayName": "LOW TIER HERO",
+    "verified": false,
     "aliases": [
       "low tier hero"
     ],
@@ -5030,6 +5587,7 @@
   "spizethorturator": {
     "id": "spizethorturator",
     "displayName": "SPIZE-THORTURATOR",
+    "verified": false,
     "aliases": [
       "spize-thorturator"
     ],
@@ -5039,6 +5597,7 @@
   "squilly": {
     "id": "squilly",
     "displayName": "SQUILLY",
+    "verified": false,
     "aliases": [
       "squilly"
     ],
@@ -5048,6 +5607,7 @@
   "aarondamac": {
     "id": "aarondamac",
     "displayName": "AARONDAMAC",
+    "verified": false,
     "aliases": [
       "aarondamac"
     ],
@@ -5057,6 +5617,7 @@
   "infernasuredditto": {
     "id": "infernasuredditto",
     "displayName": "INFERNASU-RED DITTO",
+    "verified": false,
     "aliases": [
       "infernasu-red ditto"
     ],
@@ -5066,6 +5627,7 @@
   "supernoonadrianriven": {
     "id": "supernoonadrianriven",
     "displayName": "SUPERNOON-ADRIAN RIVEN",
+    "verified": false,
     "aliases": [
       "supernoon-adrian riven"
     ],
@@ -5075,6 +5637,7 @@
   "minigi": {
     "id": "minigi",
     "displayName": "MINIGI",
+    "verified": false,
     "aliases": [
       "minigi"
     ],
@@ -5084,6 +5647,7 @@
   "danfango": {
     "id": "danfango",
     "displayName": "DANFANGO",
+    "verified": false,
     "aliases": [
       "danfango"
     ],
@@ -5093,6 +5657,7 @@
   "grover": {
     "id": "grover",
     "displayName": "GROVER",
+    "verified": false,
     "aliases": [
       "grover"
     ],
@@ -5102,6 +5667,7 @@
   "maza": {
     "id": "maza",
     "displayName": "MAZA",
+    "verified": false,
     "aliases": [
       "maza"
     ],
@@ -5111,6 +5677,7 @@
   "marah": {
     "id": "marah",
     "displayName": "MARAH",
+    "verified": false,
     "aliases": [
       "marah"
     ],
@@ -5120,6 +5687,7 @@
   "infy": {
     "id": "infy",
     "displayName": "INFY",
+    "verified": false,
     "aliases": [
       "infy"
     ],
@@ -5129,6 +5697,7 @@
   "liddamselette": {
     "id": "liddamselette",
     "displayName": "LID-DAMSELETTE",
+    "verified": false,
     "aliases": [
       "lid-damselette"
     ],
@@ -5138,6 +5707,7 @@
   "sumasa": {
     "id": "sumasa",
     "displayName": "SUMASA",
+    "verified": false,
     "aliases": [
       "sumasa"
     ],
@@ -5147,6 +5717,7 @@
   "zex": {
     "id": "zex",
     "displayName": "ZEX",
+    "verified": false,
     "aliases": [
       "zex"
     ],
@@ -5156,6 +5727,7 @@
   "detz": {
     "id": "detz",
     "displayName": "DETZ",
+    "verified": false,
     "aliases": [
       "detz"
     ],
@@ -5165,6 +5737,7 @@
   "trinki76": {
     "id": "trinki76",
     "displayName": "TRINKI76",
+    "verified": false,
     "aliases": [
       "trinki76"
     ],
@@ -5174,6 +5747,7 @@
   "lookewarm": {
     "id": "lookewarm",
     "displayName": "LOOKEWARM",
+    "verified": false,
     "aliases": [
       "lookewarm"
     ],
@@ -5183,6 +5757,7 @@
   "peebz": {
     "id": "peebz",
     "displayName": "Peebz",
+    "verified": false,
     "aliases": [
       "peebz"
     ],
@@ -5192,6 +5767,7 @@
   "synnove": {
     "id": "synnove",
     "displayName": "SYNNOVE",
+    "verified": false,
     "aliases": [
       "synnove"
     ],
@@ -5201,6 +5777,7 @@
   "themonstar66": {
     "id": "themonstar66",
     "displayName": "THEMONSTAR66",
+    "verified": false,
     "aliases": [
       "themonstar66"
     ],
@@ -5210,6 +5787,7 @@
   "zeke": {
     "id": "zeke",
     "displayName": "ZEKE",
+    "verified": false,
     "aliases": [
       "zeke"
     ],
@@ -5219,6 +5797,7 @@
   "grandino": {
     "id": "grandino",
     "displayName": "GRANDINO",
+    "verified": false,
     "aliases": [
       "grandino"
     ],
@@ -5228,6 +5807,7 @@
   "nmbardock": {
     "id": "nmbardock",
     "displayName": "NMBARDOCK",
+    "verified": false,
     "aliases": [
       "nmbardock"
     ],
@@ -5237,6 +5817,7 @@
   "veritymasterthresh": {
     "id": "veritymasterthresh",
     "displayName": "VERITY-MASTER THRESH",
+    "verified": false,
     "aliases": [
       "verity-master thresh"
     ],
@@ -5246,6 +5827,7 @@
   "shuking": {
     "id": "shuking",
     "displayName": "SHUKING",
+    "verified": false,
     "aliases": [
       "shuking"
     ],
@@ -5255,6 +5837,7 @@
   "inahk": {
     "id": "inahk",
     "displayName": "INAHK",
+    "verified": false,
     "aliases": [
       "inahk"
     ],
@@ -5264,6 +5847,7 @@
   "kktcat": {
     "id": "kktcat",
     "displayName": "KKTCAT",
+    "verified": false,
     "aliases": [
       "kktcat"
     ],
@@ -5273,6 +5857,7 @@
   "aeris": {
     "id": "aeris",
     "displayName": "AERIS",
+    "verified": false,
     "aliases": [
       "aeris"
     ],
@@ -5282,6 +5867,7 @@
   "bodacksea": {
     "id": "bodacksea",
     "displayName": "BODACKSEA",
+    "verified": false,
     "aliases": [
       "bodacksea"
     ],
@@ -5291,6 +5877,7 @@
   "depp": {
     "id": "depp",
     "displayName": "DEPP",
+    "verified": false,
     "aliases": [
       "depp"
     ],
@@ -5300,6 +5887,7 @@
   "clou805": {
     "id": "clou805",
     "displayName": "CLOU805",
+    "verified": false,
     "aliases": [
       "clou805"
     ],
@@ -5309,6 +5897,7 @@
   "mokuvagabond": {
     "id": "mokuvagabond",
     "displayName": "MOKU-VAGABOND",
+    "verified": false,
     "aliases": [
       "moku-vagabond"
     ],
@@ -5318,6 +5907,7 @@
   "ailent": {
     "id": "ailent",
     "displayName": "AILENT",
+    "verified": false,
     "aliases": [
       "ailent"
     ],
@@ -5327,6 +5917,7 @@
   "xlenigma": {
     "id": "xlenigma",
     "displayName": "XLENIGMA",
+    "verified": false,
     "aliases": [
       "xlenigma"
     ],
@@ -5336,6 +5927,7 @@
   "zevamint": {
     "id": "zevamint",
     "displayName": "ZEVAMINT",
+    "verified": false,
     "aliases": [
       "zevamint"
     ],
@@ -5345,6 +5937,7 @@
   "jtene3": {
     "id": "jtene3",
     "displayName": "JTENE #3",
+    "verified": false,
     "aliases": [
       "jtene #3"
     ],
@@ -5354,6 +5947,7 @@
   "foxfox": {
     "id": "foxfox",
     "displayName": "FOXFOX",
+    "verified": false,
     "aliases": [
       "foxfox"
     ],
@@ -5363,6 +5957,7 @@
   "cutrong": {
     "id": "cutrong",
     "displayName": "CUTRONG",
+    "verified": false,
     "aliases": [
       "cutrong"
     ],
@@ -5372,6 +5967,7 @@
   "faultything": {
     "id": "faultything",
     "displayName": "FAULTYTHING",
+    "verified": false,
     "aliases": [
       "faultything"
     ],
@@ -5381,6 +5977,7 @@
   "venux": {
     "id": "venux",
     "displayName": "VENUX",
+    "verified": false,
     "aliases": [
       "venux"
     ],
@@ -5390,6 +5987,7 @@
   "ragingricana": {
     "id": "ragingricana",
     "displayName": "RAGINGRICANA",
+    "verified": false,
     "aliases": [
       "ragingricana"
     ],
@@ -5399,6 +5997,7 @@
   "yousagi": {
     "id": "yousagi",
     "displayName": "YOUSAGI",
+    "verified": false,
     "aliases": [
       "yousagi"
     ],
@@ -5408,6 +6007,7 @@
   "popmagoot": {
     "id": "popmagoot",
     "displayName": "POP MAGOOT",
+    "verified": false,
     "aliases": [
       "pop magoot"
     ],
@@ -5417,6 +6017,7 @@
   "1insiide": {
     "id": "1insiide",
     "displayName": "1INSIIDE",
+    "verified": false,
     "aliases": [
       "1insiide"
     ],
@@ -5426,6 +6027,7 @@
   "evilstark": {
     "id": "evilstark",
     "displayName": "EVILSTARK",
+    "verified": false,
     "aliases": [
       "evilstark"
     ],
@@ -5435,6 +6037,7 @@
   "skylight": {
     "id": "skylight",
     "displayName": "SKYLIGHT",
+    "verified": false,
     "aliases": [
       "skylight"
     ],
@@ -5444,6 +6047,7 @@
   "sansofsparda": {
     "id": "sansofsparda",
     "displayName": "SANSOFSPARDA",
+    "verified": false,
     "aliases": [
       "sansofsparda"
     ],
@@ -5453,6 +6057,7 @@
   "kayex": {
     "id": "kayex",
     "displayName": "KAYEX",
+    "verified": false,
     "aliases": [
       "kayex"
     ],
@@ -5462,6 +6067,7 @@
   "ako": {
     "id": "ako",
     "displayName": "AKO",
+    "verified": false,
     "aliases": [
       "ako"
     ],
@@ -5471,6 +6077,7 @@
   "crumpet": {
     "id": "crumpet",
     "displayName": "CRUMPET",
+    "verified": false,
     "aliases": [
       "crumpet"
     ],
@@ -5480,6 +6087,7 @@
   "huf": {
     "id": "huf",
     "displayName": "HUF",
+    "verified": false,
     "aliases": [
       "huf"
     ],
@@ -5489,6 +6097,7 @@
   "kawa": {
     "id": "kawa",
     "displayName": "KAWA",
+    "verified": false,
     "aliases": [
       "kawa"
     ],
@@ -5498,6 +6107,7 @@
   "maestro": {
     "id": "maestro",
     "displayName": "MAESTRO",
+    "verified": false,
     "aliases": [
       "maestro"
     ],
@@ -5507,6 +6117,7 @@
   "icedietcoke": {
     "id": "icedietcoke",
     "displayName": "ICEDIETCOKE",
+    "verified": false,
     "aliases": [
       "icedietcoke"
     ],
@@ -5516,6 +6127,7 @@
   "jayhan": {
     "id": "jayhan",
     "displayName": "JAYHAN",
+    "verified": false,
     "aliases": [
       "jayhan"
     ],
@@ -5525,6 +6137,7 @@
   "ferrucio": {
     "id": "ferrucio",
     "displayName": "FERRUCIO",
+    "verified": false,
     "aliases": [
       "ferrucio"
     ],
@@ -5534,6 +6147,7 @@
   "ddjmc0": {
     "id": "ddjmc0",
     "displayName": "DDJMC0",
+    "verified": false,
     "aliases": [
       "ddjmc0"
     ],
@@ -5543,6 +6157,7 @@
   "2ezmk": {
     "id": "2ezmk",
     "displayName": "2EZMK",
+    "verified": false,
     "aliases": [
       "2ezmk"
     ],
@@ -5552,6 +6167,7 @@
   "rayray": {
     "id": "rayray",
     "displayName": "RAYRAY",
+    "verified": false,
     "aliases": [
       "rayray"
     ],
@@ -5561,6 +6177,7 @@
   "yamcher": {
     "id": "yamcher",
     "displayName": "YAMCHER",
+    "verified": false,
     "aliases": [
       "yamcher"
     ],
@@ -5570,6 +6187,7 @@
   "diaphonek7showoff": {
     "id": "diaphonek7showoff",
     "displayName": "DIAPHONE-K7 SHOWOFF",
+    "verified": false,
     "aliases": [
       "diaphone-k7 showoff"
     ],
@@ -5579,6 +6197,7 @@
   "puddles": {
     "id": "puddles",
     "displayName": "PUDDLES",
+    "verified": false,
     "aliases": [
       "puddles"
     ],
@@ -5588,6 +6207,7 @@
   "yammi": {
     "id": "yammi",
     "displayName": "YAMMI",
+    "verified": false,
     "aliases": [
       "yammi"
     ],
@@ -5597,6 +6217,7 @@
   "mighty": {
     "id": "mighty",
     "displayName": "MIGHTY",
+    "verified": false,
     "aliases": [
       "mighty"
     ],
@@ -5606,6 +6227,7 @@
   "suspecmiddle": {
     "id": "suspecmiddle",
     "displayName": "SUSPECMIDDLE",
+    "verified": false,
     "aliases": [
       "suspecmiddle"
     ],
@@ -5615,6 +6237,7 @@
   "sukkyo": {
     "id": "sukkyo",
     "displayName": "SUKKYO",
+    "verified": false,
     "aliases": [
       "sukkyo"
     ],
@@ -5624,6 +6247,7 @@
   "shetmaic": {
     "id": "shetmaic",
     "displayName": "SHETMAIC",
+    "verified": false,
     "aliases": [
       "shetmaic"
     ],
@@ -5633,6 +6257,7 @@
   "kyuda": {
     "id": "kyuda",
     "displayName": "KYUDA",
+    "verified": false,
     "aliases": [
       "kyuda"
     ],
@@ -5642,6 +6267,7 @@
   "trevwerd": {
     "id": "trevwerd",
     "displayName": "TREVWERD",
+    "verified": false,
     "aliases": [
       "trevwerd"
     ],
@@ -5651,6 +6277,7 @@
   "lyaz": {
     "id": "lyaz",
     "displayName": "Lyaz",
+    "verified": false,
     "aliases": [
       "lyaz"
     ],
@@ -5660,6 +6287,7 @@
   "bluntontheground": {
     "id": "bluntontheground",
     "displayName": "BLUNTONTHEGROUND",
+    "verified": false,
     "aliases": [
       "bluntontheground"
     ],
@@ -5669,6 +6297,7 @@
   "viqqqy": {
     "id": "viqqqy",
     "displayName": "VIQQQY",
+    "verified": false,
     "aliases": [
       "viqqqy"
     ],
@@ -5678,6 +6307,7 @@
   "vert": {
     "id": "vert",
     "displayName": "VERT",
+    "verified": false,
     "aliases": [
       "vert"
     ],
@@ -5687,6 +6317,7 @@
   "kingxii": {
     "id": "kingxii",
     "displayName": "KING XII",
+    "verified": false,
     "aliases": [
       "king xii"
     ],
@@ -5696,6 +6327,7 @@
   "berserk": {
     "id": "berserk",
     "displayName": "BERSERK",
+    "verified": false,
     "aliases": [
       "berserk"
     ],
@@ -5705,6 +6337,7 @@
   "jotac": {
     "id": "jotac",
     "displayName": "JOTAC",
+    "verified": false,
     "aliases": [
       "jotac"
     ],
@@ -5714,6 +6347,7 @@
   "justinwong": {
     "id": "justinwong",
     "displayName": "Justin Wong",
+    "verified": false,
     "aliases": [
       "justin wong"
     ],
@@ -5723,6 +6357,7 @@
   "mega20xx": {
     "id": "mega20xx",
     "displayName": "Mega20xx",
+    "verified": false,
     "aliases": [
       "mega20xx"
     ],
@@ -5732,6 +6367,7 @@
   "fenritti": {
     "id": "fenritti",
     "displayName": "FENRITTI",
+    "verified": false,
     "aliases": [
       "fenritti"
     ],
@@ -5741,6 +6377,7 @@
   "trazact": {
     "id": "trazact",
     "displayName": "TRAZACT",
+    "verified": false,
     "aliases": [
       "trazact"
     ],
@@ -5750,6 +6387,7 @@
   "tobyfly": {
     "id": "tobyfly",
     "displayName": "TOBY FLY",
+    "verified": false,
     "aliases": [
       "toby fly"
     ],
@@ -5759,6 +6397,7 @@
   "gofish": {
     "id": "gofish",
     "displayName": "GOFISH",
+    "verified": false,
     "aliases": [
       "gofish"
     ],
@@ -5768,6 +6407,7 @@
   "alfa": {
     "id": "alfa",
     "displayName": "ALFA",
+    "verified": false,
     "aliases": [
       "alfa"
     ],
@@ -5777,6 +6417,7 @@
   "snakeeyez": {
     "id": "snakeeyez",
     "displayName": "SNAKEEYEZ",
+    "verified": false,
     "aliases": [
       "snakeeyez"
     ],
@@ -5786,6 +6427,7 @@
   "broskifgc": {
     "id": "broskifgc",
     "displayName": "BroskiFGC",
+    "verified": false,
     "aliases": [
       "broskifgc"
     ],
@@ -5795,6 +6437,7 @@
   "samo": {
     "id": "samo",
     "displayName": "Samo",
+    "verified": false,
     "aliases": [
       "samo"
     ],
@@ -5804,6 +6447,7 @@
   "opressor": {
     "id": "opressor",
     "displayName": "Opressor",
+    "verified": false,
     "aliases": [
       "opressor"
     ],
@@ -5813,6 +6457,7 @@
   "mystic": {
     "id": "mystic",
     "displayName": "Mystic",
+    "verified": false,
     "aliases": [
       "mystic"
     ],
@@ -5822,6 +6467,7 @@
   "dizzy": {
     "id": "dizzy",
     "displayName": "Dizzy",
+    "verified": false,
     "aliases": [
       "dizzy"
     ],
@@ -5831,6 +6477,7 @@
   "claoud805": {
     "id": "claoud805",
     "displayName": "Claoud805",
+    "verified": false,
     "aliases": [
       "claoud805"
     ],
@@ -5840,6 +6487,7 @@
   "chromeheartscz": {
     "id": "chromeheartscz",
     "displayName": "ChromeheartsCZ",
+    "verified": false,
     "aliases": [
       "chromeheartscz"
     ],
@@ -5849,6 +6497,7 @@
   "nastynuts": {
     "id": "nastynuts",
     "displayName": "NastyNuts",
+    "verified": false,
     "aliases": [
       "nastynuts"
     ],
@@ -5858,6 +6507,7 @@
   "illayt": {
     "id": "illayt",
     "displayName": "Illa YT",
+    "verified": false,
     "aliases": [
       "illa yt"
     ],
@@ -5867,6 +6517,7 @@
   "chromeheartcz": {
     "id": "chromeheartcz",
     "displayName": "ChromeheartCZ",
+    "verified": false,
     "aliases": [
       "chromeheartcz"
     ],
@@ -5876,6 +6527,7 @@
   "frodan": {
     "id": "frodan",
     "displayName": "Frodan",
+    "verified": false,
     "aliases": [
       "frodan"
     ],
@@ -5885,6 +6537,7 @@
   "lethalaf": {
     "id": "lethalaf",
     "displayName": "Lethal Af",
+    "verified": false,
     "aliases": [
       "lethal af"
     ],
@@ -5894,6 +6547,7 @@
   "pirudeasadelta": {
     "id": "pirudeasadelta",
     "displayName": "PiruDeAsaDelta",
+    "verified": false,
     "aliases": [
       "pirudeasadelta"
     ],
@@ -5903,6 +6557,7 @@
   "uninja": {
     "id": "uninja",
     "displayName": "U. Ninja",
+    "verified": false,
     "aliases": [
       "u. ninja"
     ],
@@ -5912,6 +6567,7 @@
   "linkerdey": {
     "id": "linkerdey",
     "displayName": "Linkerdey",
+    "verified": false,
     "aliases": [
       "linkerdey"
     ],
@@ -5921,6 +6577,7 @@
   "kirito": {
     "id": "kirito",
     "displayName": "Kirito",
+    "verified": false,
     "aliases": [
       "kirito"
     ],
@@ -5930,6 +6587,7 @@
   "squegee": {
     "id": "squegee",
     "displayName": "Squegee",
+    "verified": false,
     "aliases": [
       "squegee"
     ],
@@ -5939,6 +6597,7 @@
   "kuuhaku": {
     "id": "kuuhaku",
     "displayName": "KuuHaku",
+    "verified": false,
     "aliases": [
       "kuuhaku"
     ],
@@ -5948,6 +6607,7 @@
   "cloud80yasuo": {
     "id": "cloud80yasuo",
     "displayName": "Cloud80Yasuo",
+    "verified": false,
     "aliases": [
       "cloud80yasuo"
     ],
@@ -5957,6 +6617,7 @@
   "samoel": {
     "id": "samoel",
     "displayName": "Samoel",
+    "verified": false,
     "aliases": [
       "samoel"
     ],
@@ -5966,6 +6627,7 @@
   "elexiao": {
     "id": "elexiao",
     "displayName": "Elexiao",
+    "verified": false,
     "aliases": [
       "elexiao"
     ],
@@ -5975,6 +6637,7 @@
   "jahmezi": {
     "id": "jahmezi",
     "displayName": "Jahmezi",
+    "verified": false,
     "aliases": [
       "jahmezi"
     ],
@@ -5984,6 +6647,7 @@
   "sofwill": {
     "id": "sofwill",
     "displayName": "S. Of Will",
+    "verified": false,
     "aliases": [
       "s. of will"
     ],
@@ -5993,6 +6657,7 @@
   "pdpiu": {
     "id": "pdpiu",
     "displayName": "Pdpiu",
+    "verified": false,
     "aliases": [
       "pdpiu"
     ],
@@ -6002,6 +6667,7 @@
   "fenrirrz": {
     "id": "fenrirrz",
     "displayName": "FenrirRz",
+    "verified": false,
     "aliases": [
       "fenrirrz"
     ],
@@ -6011,6 +6677,7 @@
   "hababuda": {
     "id": "hababuda",
     "displayName": "Hababuda",
+    "verified": false,
     "aliases": [
       "hababuda"
     ],
@@ -6020,6 +6687,7 @@
   "lumen": {
     "id": "lumen",
     "displayName": "Lumen",
+    "verified": false,
     "aliases": [
       "lumen"
     ],
@@ -6029,6 +6697,7 @@
   "choysauce": {
     "id": "choysauce",
     "displayName": "Choysauce",
+    "verified": false,
     "aliases": [
       "choysauce"
     ],
@@ -6038,6 +6707,7 @@
   "killerxinok": {
     "id": "killerxinok",
     "displayName": "Killer Xinok",
+    "verified": false,
     "aliases": [
       "killer xinok"
     ],
@@ -6047,6 +6717,7 @@
   "zenith": {
     "id": "zenith",
     "displayName": "Zenith",
+    "verified": false,
     "aliases": [
       "zenith"
     ],
@@ -6056,6 +6727,7 @@
   "lighitwhisp": {
     "id": "lighitwhisp",
     "displayName": "LighitWhisp",
+    "verified": false,
     "aliases": [
       "lighitwhisp"
     ],
@@ -6065,6 +6737,7 @@
   "jaxin": {
     "id": "jaxin",
     "displayName": "Jaxin",
+    "verified": false,
     "aliases": [
       "jaxin"
     ],
@@ -6074,6 +6747,7 @@
   "bleedclone9": {
     "id": "bleedclone9",
     "displayName": "Bleed Clone 9",
+    "verified": false,
     "aliases": [
       "bleed clone 9"
     ],
@@ -6083,6 +6757,7 @@
   "trinki": {
     "id": "trinki",
     "displayName": "Trinki",
+    "verified": false,
     "aliases": [
       "trinki"
     ],
@@ -6092,6 +6767,7 @@
   "elgordobes": {
     "id": "elgordobes",
     "displayName": "El Gordobes",
+    "verified": false,
     "aliases": [
       "el gordobes"
     ],
@@ -6101,6 +6777,7 @@
   "notpeachu": {
     "id": "notpeachu",
     "displayName": "NotPeachu",
+    "verified": false,
     "aliases": [
       "notpeachu"
     ],
@@ -6110,6 +6787,7 @@
   "xphapper": {
     "id": "xphapper",
     "displayName": "Xphapper",
+    "verified": false,
     "aliases": [
       "xphapper"
     ],
@@ -6119,6 +6797,7 @@
   "cmptdmusica": {
     "id": "cmptdmusica",
     "displayName": "Cmptd Musica",
+    "verified": false,
     "aliases": [
       "cmptd musica"
     ],
@@ -6128,6 +6807,7 @@
   "kayrim": {
     "id": "kayrim",
     "displayName": "Kayrim",
+    "verified": false,
     "aliases": [
       "kayrim"
     ],
@@ -6137,6 +6817,7 @@
   "insifu": {
     "id": "insifu",
     "displayName": "Insifu",
+    "verified": false,
     "aliases": [
       "insifu"
     ],
@@ -6146,6 +6827,7 @@
   "spinda": {
     "id": "spinda",
     "displayName": "Spinda",
+    "verified": false,
     "aliases": [
       "spinda"
     ],
@@ -6155,6 +6837,7 @@
   "jamonini": {
     "id": "jamonini",
     "displayName": "Jamonini",
+    "verified": false,
     "aliases": [
       "jamonini"
     ],
@@ -6164,6 +6847,7 @@
   "jechtj": {
     "id": "jechtj",
     "displayName": "JechtJ",
+    "verified": false,
     "aliases": [
       "jechtj"
     ],
@@ -6173,6 +6857,7 @@
   "ryftdark": {
     "id": "ryftdark",
     "displayName": "RyftDark",
+    "verified": false,
     "aliases": [
       "ryftdark"
     ],
@@ -6182,6 +6867,7 @@
   "zaneular": {
     "id": "zaneular",
     "displayName": "Zaneular",
+    "verified": false,
     "aliases": [
       "zaneular"
     ],
@@ -6191,6 +6877,7 @@
   "nitten": {
     "id": "nitten",
     "displayName": "Nitten",
+    "verified": false,
     "aliases": [
       "nitten"
     ],
@@ -6200,6 +6887,7 @@
   "qeuw": {
     "id": "qeuw",
     "displayName": "Qeuw",
+    "verified": false,
     "aliases": [
       "qeuw"
     ],
@@ -6209,6 +6897,7 @@
   "charimore": {
     "id": "charimore",
     "displayName": "Charimore",
+    "verified": false,
     "aliases": [
       "charimore"
     ],
@@ -6218,6 +6907,7 @@
   "huhz": {
     "id": "huhz",
     "displayName": "Huhz",
+    "verified": false,
     "aliases": [
       "huhz"
     ],
@@ -6227,6 +6917,7 @@
   "poog": {
     "id": "poog",
     "displayName": "Poog",
+    "verified": false,
     "aliases": [
       "poog"
     ],
@@ -6236,6 +6927,7 @@
   "geesel": {
     "id": "geesel",
     "displayName": "Geese L",
+    "verified": false,
     "aliases": [
       "geese l"
     ],
@@ -6245,6 +6937,7 @@
   "unfaseonhit": {
     "id": "unfaseonhit",
     "displayName": "UnfaseonHit",
+    "verified": false,
     "aliases": [
       "unfaseonhit"
     ],
@@ -6254,6 +6947,7 @@
   "setchi": {
     "id": "setchi",
     "displayName": "Setchi",
+    "verified": false,
     "aliases": [
       "setchi"
     ],
@@ -6263,6 +6957,7 @@
   "superunc9000": {
     "id": "superunc9000",
     "displayName": "SuperUnc9000",
+    "verified": false,
     "aliases": [
       "superunc9000"
     ],
@@ -6272,6 +6967,7 @@
   "rayditz": {
     "id": "rayditz",
     "displayName": "Rayditz",
+    "verified": false,
     "aliases": [
       "rayditz"
     ],
@@ -6281,6 +6977,7 @@
   "mfcr": {
     "id": "mfcr",
     "displayName": "MFCR",
+    "verified": false,
     "aliases": [
       "mfcr"
     ],
@@ -6290,6 +6987,7 @@
   "zeke149": {
     "id": "zeke149",
     "displayName": "Zeke149",
+    "verified": false,
     "aliases": [
       "zeke149"
     ],
@@ -6299,6 +6997,7 @@
   "batkev": {
     "id": "batkev",
     "displayName": "BatKev",
+    "verified": false,
     "aliases": [
       "batkev"
     ],
@@ -6308,6 +7007,7 @@
   "jester": {
     "id": "jester",
     "displayName": "Jester",
+    "verified": false,
     "aliases": [
       "jester"
     ],
@@ -6317,6 +7017,7 @@
   "laflair": {
     "id": "laflair",
     "displayName": "LaFlair",
+    "verified": false,
     "aliases": [
       "laflair"
     ],
@@ -6326,6 +7027,7 @@
   "quinn": {
     "id": "quinn",
     "displayName": "Quinn",
+    "verified": false,
     "aliases": [
       "quinn"
     ],
@@ -6335,6 +7037,7 @@
   "ttvremyrrr": {
     "id": "ttvremyrrr",
     "displayName": "TTV Remyrrr",
+    "verified": false,
     "aliases": [
       "ttv remyrrr"
     ],
@@ -6344,6 +7047,7 @@
   "nou": {
     "id": "nou",
     "displayName": "Nou",
+    "verified": false,
     "aliases": [
       "nou"
     ],
@@ -6353,6 +7057,7 @@
   "mingi": {
     "id": "mingi",
     "displayName": "Mingi",
+    "verified": false,
     "aliases": [
       "mingi"
     ],
@@ -6362,6 +7067,7 @@
   "russel": {
     "id": "russel",
     "displayName": "Russel",
+    "verified": false,
     "aliases": [
       "russel"
     ],
@@ -6371,6 +7077,7 @@
   "zatovan": {
     "id": "zatovan",
     "displayName": "ZatoVaN",
+    "verified": false,
     "aliases": [
       "zatovan"
     ],
@@ -6380,6 +7087,7 @@
   "elmaza": {
     "id": "elmaza",
     "displayName": "El Maza",
+    "verified": false,
     "aliases": [
       "el maza"
     ],
@@ -6389,6 +7097,7 @@
   "som3n": {
     "id": "som3n",
     "displayName": "SOM3N",
+    "verified": false,
     "aliases": [
       "som3n"
     ],
@@ -6398,6 +7107,7 @@
   "yamas": {
     "id": "yamas",
     "displayName": "Yamas",
+    "verified": false,
     "aliases": [
       "yamas"
     ],
@@ -6407,6 +7117,7 @@
   "nephew": {
     "id": "nephew",
     "displayName": "Nephew",
+    "verified": false,
     "aliases": [
       "nephew"
     ],
@@ -6416,6 +7127,7 @@
   "fuufighters": {
     "id": "fuufighters",
     "displayName": "FuuFighters",
+    "verified": false,
     "aliases": [
       "fuufighters"
     ],
@@ -6425,6 +7137,7 @@
   "mcchomp": {
     "id": "mcchomp",
     "displayName": "McChomp",
+    "verified": false,
     "aliases": [
       "mcchomp"
     ],
@@ -6434,6 +7147,7 @@
   "matau32": {
     "id": "matau32",
     "displayName": "Matau32",
+    "verified": false,
     "aliases": [
       "matau32"
     ],
