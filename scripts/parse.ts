@@ -386,16 +386,17 @@ function buildStats(records: VideoRecord[]): Stats {
     characterUsage: {},
     pairingUsage: {},
     bySeasonUsage: {},
+    totals: { videos: records.length, bySeason: {} },
     playerCharacters: {},
     matchupMatrix: {},
   };
   for (const v of records) {
     for (const c of v.allCharacters) inc(stats.characterUsage, c); // per-video dedup
-    if (v.season !== null) {
-      const sk = String(v.season);
-      (stats.bySeasonUsage[sk] ??= {});
-      for (const c of v.allCharacters) inc(stats.bySeasonUsage[sk], c);
-    }
+    // season === null → the pre-Season-0 "beta" era; timeline order is beta → 0 → 1 → 2
+    const sk = v.season === null ? "beta" : String(v.season);
+    inc(stats.totals.bySeason, sk);
+    (stats.bySeasonUsage[sk] ??= {});
+    for (const c of v.allCharacters) inc(stats.bySeasonUsage[sk], c);
     for (const t of v.teams) {
       if (t.characters.length === 2) {
         inc(stats.pairingUsage, [...t.characters].sort().join("|")); // per team occurrence
@@ -507,6 +508,7 @@ const statsOut: Stats = {
   characterUsage: sort1(stats.characterUsage),
   pairingUsage: sort1(stats.pairingUsage),
   bySeasonUsage: sort2(stats.bySeasonUsage),
+  totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason) },
   playerCharacters: sort2(stats.playerCharacters!),
   matchupMatrix: sort2(stats.matchupMatrix!),
 };

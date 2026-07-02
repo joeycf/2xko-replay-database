@@ -98,8 +98,10 @@ export interface Stats {
   characterUsage: Record<string, number>;
   /** "a|b" (ids sorted) -> count of team occurrences */
   pairingUsage: Record<string, number>;
-  /** season -> championId -> count */
+  /** era ("beta" for pre-Season-0, else the season number as string) -> championId -> count */
   bySeasonUsage: Record<string, Record<string, number>>;
+  /** total video counts, overall and per era (same keys as bySeasonUsage) */
+  totals: { videos: number; bySeason: Record<string, number> };
   /** optional: playerId -> championId -> count */
   playerCharacters?: Record<string, Record<string, number>>;
   /** optional: "a|b" (champion ids sorted) -> "c|d" -> count */

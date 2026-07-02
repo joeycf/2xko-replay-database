@@ -162,6 +162,26 @@
       "vi": 55,
       "warwick": 38,
       "yasuo": 91
+    },
+    "beta": {
+      "ahri": 38,
+      "blitzcrank": 49,
+      "braum": 19,
+      "darius": 51,
+      "ekko": 133,
+      "illaoi": 64,
+      "jinx": 87,
+      "vi": 78,
+      "yasuo": 107
+    }
+  },
+  "totals": {
+    "videos": 2809,
+    "bySeason": {
+      "0": 1099,
+      "1": 1174,
+      "2": 351,
+      "beta": 185
     }
   },
   "playerCharacters": {
