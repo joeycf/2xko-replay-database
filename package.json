@@ -10,7 +10,7 @@
     "generate": "nuxt generate && node scripts/postgenerate.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "data:fetch": "tsx --env-file=.env scripts/fetch.ts",
+    "data:fetch": "tsx --env-file-if-exists=.env scripts/fetch.ts",
     "data:parse": "tsx scripts/parse.ts",
     "data:build": "npm run data:fetch && npm run data:parse",
     "data:champions": "tsx scripts/champions.ts"
