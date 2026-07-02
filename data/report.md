@@ -1,16 +1,17 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-02T03:08:22.647Z._
+_Generated 2026-07-02T13:01:58.265Z._
 
 ## Summary
-- Total videos: **2809**
-- High confidence: **2795**  ·  Low confidence: **14**
+- Total videos: **2819**
+- High confidence: **2804**  ·  Low confidence: **15**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **93.4%** · patch: **0.0%** · fuse: **0.0%**
 
-## Low-confidence records (14)
+## Low-confidence records (15)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
 | `z_g1JJjLn7g` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ SUPERNOON (Teemo-Ekko) vs HUEBERT (Akalai-Ekko) ▰ 2XKO Pro level replays |
 | `SVGjJmhAGRQ` | proReplays | fuzzy character "Ysuo" → yasuo on right | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
 | `WeXMoFuuG_g` | proReplays | fuzzy character "Teeo" → teemo on left | 2XKO ▰ INZEM-SONICFOX (Teeo-Ahri) vs SEMIIJ (Vi-Ahri) ▰ 2XKO Pro level replays |
