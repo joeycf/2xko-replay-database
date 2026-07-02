@@ -104,6 +104,8 @@ export interface Stats {
   totals: { videos: number; bySeason: Record<string, number> };
   /** optional: playerId -> championId -> count */
   playerCharacters?: Record<string, Record<string, number>>;
+  /** optional: playerId -> "a|b" (champion ids sorted) -> team occurrences */
+  playerPairings?: Record<string, Record<string, number>>;
   /** optional: "a|b" (champion ids sorted) -> "c|d" -> count */
   matchupMatrix?: Record<string, Record<string, number>>;
 }

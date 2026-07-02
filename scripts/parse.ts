@@ -388,6 +388,7 @@ function buildStats(records: VideoRecord[]): Stats {
     bySeasonUsage: {},
     totals: { videos: records.length, bySeason: {} },
     playerCharacters: {},
+    playerPairings: {},
     matchupMatrix: {},
   };
   for (const v of records) {
@@ -398,12 +399,15 @@ function buildStats(records: VideoRecord[]): Stats {
     (stats.bySeasonUsage[sk] ??= {});
     for (const c of v.allCharacters) inc(stats.bySeasonUsage[sk], c);
     for (const t of v.teams) {
-      if (t.characters.length === 2) {
-        inc(stats.pairingUsage, [...t.characters].sort().join("|")); // per team occurrence
-      }
+      const pairKey = t.characters.length === 2 ? [...t.characters].sort().join("|") : null;
+      if (pairKey) inc(stats.pairingUsage, pairKey); // per team occurrence
       for (const p of t.players) {
         (stats.playerCharacters![p.id] ??= {});
         for (const c of t.characters) inc(stats.playerCharacters![p.id], c);
+        if (pairKey) {
+          (stats.playerPairings![p.id] ??= {});
+          inc(stats.playerPairings![p.id], pairKey);
+        }
       }
     }
     if (v.teams.length === 2 && v.teams.every((t) => t.characters.length === 2)) {
@@ -510,6 +514,7 @@ const statsOut: Stats = {
   bySeasonUsage: sort2(stats.bySeasonUsage),
   totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason) },
   playerCharacters: sort2(stats.playerCharacters!),
+  playerPairings: sort2(stats.playerPairings!),
   matchupMatrix: sort2(stats.matchupMatrix!),
 };
 
