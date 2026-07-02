@@ -1,17 +1,187 @@
 {
-  "ahri": { "id": "ahri", "name": "Ahri", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["ahri"] },
-  "akali": { "id": "akali", "name": "Akali", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["akali"] },
-  "blitzcrank": { "id": "blitzcrank", "name": "Blitzcrank", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["blitzcrank", "blitz"] },
-  "braum": { "id": "braum", "name": "Braum", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["braum"] },
-  "caitlyn": { "id": "caitlyn", "name": "Caitlyn", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["caitlyn", "cait"] },
-  "darius": { "id": "darius", "name": "Darius", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["darius"] },
-  "ekko": { "id": "ekko", "name": "Ekko", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["ekko"] },
-  "illaoi": { "id": "illaoi", "name": "Illaoi", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["illaoi", "illoai"] },
-  "jinx": { "id": "jinx", "name": "Jinx", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["jinx"] },
-  "senna": { "id": "senna", "name": "Senna", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["senna"] },
-  "teemo": { "id": "teemo", "name": "Teemo", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["teemo"] },
-  "thresh": { "id": "thresh", "name": "Thresh", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": null, "aliases": ["thresh"] },
-  "vi": { "id": "vi", "name": "Vi", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["vi"] },
-  "warwick": { "id": "warwick", "name": "Warwick", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["warwick", "ww"] },
-  "yasuo": { "id": "yasuo", "name": "Yasuo", "archetype": null, "portrait": null, "splash": null, "accent": null, "releasedSeason": 0, "aliases": ["yasuo", "yas"] }
+  "ahri": {
+    "id": "ahri",
+    "name": "Ahri",
+    "archetype": null,
+    "portrait": "/img/champions/ahri-portrait.webp",
+    "splash": "/img/champions/ahri-splash.webp",
+    "accent": "#FF5DA2",
+    "releasedSeason": 0,
+    "aliases": [
+      "ahri"
+    ]
+  },
+  "akali": {
+    "id": "akali",
+    "name": "Akali",
+    "archetype": null,
+    "portrait": "/img/champions/akali-portrait.webp",
+    "splash": "/img/champions/akali-splash.webp",
+    "accent": "#35D98A",
+    "releasedSeason": null,
+    "aliases": [
+      "akali"
+    ]
+  },
+  "blitzcrank": {
+    "id": "blitzcrank",
+    "name": "Blitzcrank",
+    "archetype": null,
+    "portrait": "/img/champions/blitzcrank-portrait.webp",
+    "splash": "/img/champions/blitzcrank-splash.webp",
+    "accent": "#FFC24B",
+    "releasedSeason": 0,
+    "aliases": [
+      "blitzcrank",
+      "blitz"
+    ]
+  },
+  "braum": {
+    "id": "braum",
+    "name": "Braum",
+    "archetype": null,
+    "portrait": "/img/champions/braum-portrait.webp",
+    "splash": "/img/champions/braum-splash.webp",
+    "accent": "#58C7E8",
+    "releasedSeason": 0,
+    "aliases": [
+      "braum"
+    ]
+  },
+  "caitlyn": {
+    "id": "caitlyn",
+    "name": "Caitlyn",
+    "archetype": null,
+    "portrait": "/img/champions/caitlyn-portrait.webp",
+    "splash": "/img/champions/caitlyn-splash.webp",
+    "accent": "#B98AE0",
+    "releasedSeason": 0,
+    "aliases": [
+      "caitlyn",
+      "cait"
+    ]
+  },
+  "darius": {
+    "id": "darius",
+    "name": "Darius",
+    "archetype": null,
+    "portrait": "/img/champions/darius-portrait.webp",
+    "splash": "/img/champions/darius-splash.webp",
+    "accent": "#F0463F",
+    "releasedSeason": 0,
+    "aliases": [
+      "darius"
+    ]
+  },
+  "ekko": {
+    "id": "ekko",
+    "name": "Ekko",
+    "archetype": null,
+    "portrait": "/img/champions/ekko-portrait.webp",
+    "splash": "/img/champions/ekko-splash.webp",
+    "accent": "#1FE0D4",
+    "releasedSeason": 0,
+    "aliases": [
+      "ekko"
+    ]
+  },
+  "illaoi": {
+    "id": "illaoi",
+    "name": "Illaoi",
+    "archetype": null,
+    "portrait": "/img/champions/illaoi-portrait.webp",
+    "splash": "/img/champions/illaoi-splash.webp",
+    "accent": "#CE9138",
+    "releasedSeason": 0,
+    "aliases": [
+      "illaoi",
+      "illoai"
+    ]
+  },
+  "jinx": {
+    "id": "jinx",
+    "name": "Jinx",
+    "archetype": null,
+    "portrait": "/img/champions/jinx-portrait.webp",
+    "splash": "/img/champions/jinx-splash.webp",
+    "accent": "#5B8CFF",
+    "releasedSeason": 0,
+    "aliases": [
+      "jinx"
+    ]
+  },
+  "senna": {
+    "id": "senna",
+    "name": "Senna",
+    "archetype": null,
+    "portrait": "/img/champions/senna-portrait.webp",
+    "splash": "/img/champions/senna-splash.webp",
+    "accent": "#97DB4A",
+    "releasedSeason": null,
+    "aliases": [
+      "senna"
+    ]
+  },
+  "teemo": {
+    "id": "teemo",
+    "name": "Teemo",
+    "archetype": null,
+    "portrait": "/img/champions/teemo-portrait.webp",
+    "splash": "/img/champions/teemo-splash.webp",
+    "accent": "#E27E3C",
+    "releasedSeason": 0,
+    "aliases": [
+      "teemo"
+    ]
+  },
+  "thresh": {
+    "id": "thresh",
+    "name": "Thresh",
+    "archetype": null,
+    "portrait": "/img/champions/thresh-portrait.webp",
+    "splash": "/img/champions/thresh-splash.webp",
+    "accent": "#49E0A6",
+    "releasedSeason": null,
+    "aliases": [
+      "thresh"
+    ]
+  },
+  "vi": {
+    "id": "vi",
+    "name": "Vi",
+    "archetype": null,
+    "portrait": "/img/champions/vi-portrait.webp",
+    "splash": "/img/champions/vi-splash.webp",
+    "accent": "#FF6F61",
+    "releasedSeason": 0,
+    "aliases": [
+      "vi"
+    ]
+  },
+  "warwick": {
+    "id": "warwick",
+    "name": "Warwick",
+    "archetype": null,
+    "portrait": "/img/champions/warwick-portrait.webp",
+    "splash": "/img/champions/warwick-splash.webp",
+    "accent": "#7A6BE8",
+    "releasedSeason": 0,
+    "aliases": [
+      "warwick",
+      "ww"
+    ]
+  },
+  "yasuo": {
+    "id": "yasuo",
+    "name": "Yasuo",
+    "archetype": null,
+    "portrait": "/img/champions/yasuo-portrait.webp",
+    "splash": "/img/champions/yasuo-splash.webp",
+    "accent": "#52C4C4",
+    "releasedSeason": 0,
+    "aliases": [
+      "yasuo",
+      "yas"
+    ]
+  }
 }
