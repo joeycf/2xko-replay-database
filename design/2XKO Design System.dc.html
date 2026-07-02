@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#0A0B0F;}
+  ::selection{background:rgba(255,46,136,.32);color:#fff;}
+  @keyframes barfill{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+  @keyframes livepulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+</style>
+</helmet>
+<div style="background:#0A0B0F;min-height:100vh;font-family:'Barlow',sans-serif;color:#F4F5F8;-webkit-font-smoothing:antialiased;padding-bottom:80px;">
+
+  <!-- ============ MASTHEAD ============ -->
+  <div style="position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.09);background:#07080B;">
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 88% -10%, rgba(255,46,136,.16), transparent 55%),radial-gradient(90% 80% at 8% 120%, rgba(56,207,255,.08), transparent 55%);"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF2E88,#38CFFF 60%,transparent);"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:56px 40px 48px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#6B7185;">Design System</span>
+        <span style="width:6px;height:6px;background:#FF2E88;transform:rotate(45deg);"></span>
+        <span style="font-family:'JetBrains Mono';font-size:11px;color:#474C5C;">v1.0 · Nuxt 3 + Tailwind handoff</span>
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;">
+        <h1 style="font-family:'Chakra Petch';font-weight:700;font-size:clamp(40px,7vw,80px);line-height:.92;margin:0;letter-spacing:-.02em;">2XKO<span style="color:#FF2E88;">/</span>REPLAY</h1>
+        <span style="font-family:'Chakra Petch';font-weight:500;font-size:clamp(20px,3vw,34px);color:#6B7185;letter-spacing:.04em;padding-bottom:6px;">DATABASE</span>
+      </div>
+      <p style="max-width:620px;margin:22px 0 0;font-size:16px;line-height:1.55;color:#A8AEBE;">The broadcast-grade design language for browsing 2XKO pro &amp; high-level replays. Layered darks, one electric-magenta scalpel, a per-champion accent slot, and sharp corner-cut geometry.</p>
+      <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:11px;">
+        <span style="padding:7px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#A8AEBE;">2,809 replays</span>
+        <span style="padding:7px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#A8AEBE;">15 champions</span>
+        <span style="padding:7px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#A8AEBE;">2 channels</span>
+        <span style="padding:7px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#A8AEBE;">Seasons 0–2</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+
+    <!-- ============ 01 COLOR ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#FF2E88;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">01 / Foundations</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 6px;letter-spacing:-.01em;">Color</h2>
+      <p style="margin:0 0 28px;color:#6B7185;font-size:14px;">Layered cool near-blacks build depth; the neon accent is rationed, never wallpapered.</p>
+
+      <!-- backgrounds -->
+      <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:12px;">Surfaces &amp; depth</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:36px;">
+        <div><div style="height:72px;background:#07080B;border:1px solid rgba(255,255,255,.11);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Inset</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#07080B · --bg-inset</div></div>
+        <div><div style="height:72px;background:#0A0B0F;border:1px solid rgba(255,255,255,.11);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Base</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#0A0B0F · --bg-base</div></div>
+        <div><div style="height:72px;background:#12141B;border:1px solid rgba(255,255,255,.11);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Surface</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#12141B · --bg-surface</div></div>
+        <div><div style="height:72px;background:#1A1D26;border:1px solid rgba(255,255,255,.11);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Elevated</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#1A1D26 · --bg-elevated</div></div>
+      </div>
+
+      <!-- accents -->
+      <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:12px;">Accents &amp; semantic</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:20px;">
+        <div><div style="height:72px;background:#FF2E88;box-shadow:0 8px 28px rgba(255,46,136,.34);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Accent · Primary</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#FF2E88 · --accent</div></div>
+        <div><div style="height:72px;background:#FF529E;"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Accent · Hover</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#FF529E</div></div>
+        <div><div style="height:72px;background:#E11E71;"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Accent · Active</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#E11E71</div></div>
+        <div><div style="height:72px;background:#38CFFF;box-shadow:0 8px 28px rgba(56,207,255,.24);"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Secondary</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#38CFFF · --accent-2</div></div>
+        <div><div style="height:72px;background:#F0463F;"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Danger</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#F0463F</div></div>
+        <div><div style="height:72px;background:#F5B33C;"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Warning</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#F5B33C</div></div>
+        <div><div style="height:72px;background:#35D07A;"></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Success</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#35D07A</div></div>
+        <div><div style="height:72px;background:linear-gradient(90deg,#0A0B0F,#12141B);border:1px solid rgba(255,255,255,.11);position:relative;"><span style="position:absolute;bottom:8px;left:8px;right:8px;height:1px;background:rgba(255,255,255,.11);"></span></div><div style="padding-top:10px;font-weight:600;font-size:13px;">Borders</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">rgba(255,255,255,.06–.18)</div></div>
+      </div>
+
+      <!-- text -->
+      <div style="display:flex;gap:28px;flex-wrap:wrap;padding:20px 22px;background:#12141B;border:1px solid rgba(255,255,255,.08);">
+        <div><div style="font-size:19px;font-weight:600;color:#F4F5F8;">Primary text</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:3px;">#F4F5F8</div></div>
+        <div><div style="font-size:19px;font-weight:600;color:#A8AEBE;">Secondary</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:3px;">#A8AEBE</div></div>
+        <div><div style="font-size:19px;font-weight:600;color:#6B7185;">Muted</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:3px;">#6B7185</div></div>
+        <div><div style="font-size:19px;font-weight:600;color:#474C5C;">Faint</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:3px;">#474C5C</div></div>
+      </div>
+    </section>
+
+    <!-- ============ 02 CHAMPION ACCENTS ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#FF2E88;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">02 / Foundations</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 6px;letter-spacing:-.01em;">Champion Accent Slot</h2>
+      <p style="margin:0 0 28px;color:#6B7185;font-size:14px;">Each of the 15 champions owns one accent — used on cards, character pages, and chart bars. Injected as <span style="font-family:'JetBrains Mono';color:#A8AEBE;">--champ-accent</span>.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:14px;">
+        <!-- 15 champs, hardcoded literals so color paints instantly -->
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#1FE0D4,rgba(31,224,212,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">EK</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Ekko</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#1FE0D4</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#FF5DA2,rgba(255,93,162,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">AH</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Ahri</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#FF5DA2</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#52C4C4,rgba(82,196,196,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">YA</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Yasuo</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#52C4C4</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#35D98A,rgba(53,217,138,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">AK</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Akali</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#35D98A</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#FFC24B,rgba(255,194,75,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">BL</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Blitzcrank</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#FFC24B</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#58C7E8,rgba(88,199,232,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">BR</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Braum</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#58C7E8</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#B98AE0,rgba(185,138,224,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">CA</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Caitlyn</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#B98AE0</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#F0463F,rgba(240,70,63,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">DA</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Darius</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#F0463F</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#CE9138,rgba(206,145,56,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">IL</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Illaoi</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#CE9138</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#5B8CFF,rgba(91,140,255,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">JI</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Jinx</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#5B8CFF</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#97DB4A,rgba(151,219,74,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">SE</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Senna</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#97DB4A</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#E27E3C,rgba(226,126,60,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">TE</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Teemo</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#E27E3C</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#49E0A6,rgba(73,224,166,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">TH</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Thresh</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#49E0A6</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#FF6F61,rgba(255,111,97,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">VI</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Vi</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#FF6F61</div></div>
+        <div><div style="aspect-ratio:1;background:linear-gradient(155deg,#7A6BE8,rgba(122,107,232,.12));border:1px solid rgba(255,255,255,.1);display:flex;align-items:flex-end;padding:9px;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));"><span style="font-family:'Chakra Petch';font-weight:700;font-size:24px;color:#050607;">WW</span></div><div style="padding-top:9px;font-weight:600;font-size:12px;">Warwick</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">#7A6BE8</div></div>
+      </div>
+    </section>
+
+    <!-- ============ 03 TYPE ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#FF2E88;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">03 / Foundations</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 6px;letter-spacing:-.01em;">Typography</h2>
+      <p style="margin:0 0 28px;color:#6B7185;font-size:14px;">Three voices: an angular HUD display, a clean UI sans, and a monospace for data readouts.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:32px;">
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;"><div style="font-family:'Chakra Petch';font-weight:700;font-size:44px;line-height:1;">Aa</div><div style="font-family:'Chakra Petch';font-weight:600;font-size:15px;margin-top:14px;">Chakra Petch</div><div style="font-family:'JetBrains Mono';font-size:11px;color:#6B7185;margin-top:4px;">Display · titles · hero numbers</div></div>
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;"><div style="font-family:'Barlow';font-weight:600;font-size:44px;line-height:1;">Aa</div><div style="font-family:'Barlow';font-weight:600;font-size:15px;margin-top:14px;">Barlow</div><div style="font-family:'JetBrains Mono';font-size:11px;color:#6B7185;margin-top:4px;">UI · body · labels</div></div>
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;"><div style="font-family:'JetBrains Mono';font-weight:500;font-size:44px;line-height:1;">Aa</div><div style="font-family:'JetBrains Mono';font-weight:500;font-size:15px;margin-top:14px;">JetBrains Mono</div><div style="font-family:'JetBrains Mono';font-size:11px;color:#6B7185;margin-top:4px;">Data · counts · timestamps</div></div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.08);">
+        <div style="display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Hero · 72/.92</span><span style="font-family:'Chakra Petch';font-weight:700;font-size:52px;line-height:1;letter-spacing:-.02em;">Ekko + Yasuo</span></div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Display 1 · 40</span><span style="font-family:'Chakra Petch';font-weight:700;font-size:40px;line-height:1.05;">Team Pairings</span></div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Title · 22</span><span style="font-family:'Chakra Petch';font-weight:600;font-size:22px;">Most viewed this season</span></div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Body · 14/1.5</span><span style="font-family:'Barlow';font-size:15px;color:#C4C8D4;">Combine facets to narrow 2,809 replays — champion, pairing, player, channel and season.</span></div>
+        <div style="display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Label · 11</span><span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A8AEBE;">Pro Replays · Season 2</span></div>
+        <div style="display:flex;align-items:center;gap:20px;padding:18px 0;"><span style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;width:130px;flex:none;">Data · mono</span><span style="font-family:'JetBrains Mono';font-weight:500;font-size:15px;color:#F4F5F8;">1,479 · 7:01 · 3d ago</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 04 SPACE / SHAPE / MOTION ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#FF2E88;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">04 / Foundations</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 28px;letter-spacing:-.01em;">Space · Shape · Motion</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+        <!-- spacing -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:16px;">Spacing · 4px base</div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:12px;"><span style="height:12px;width:4px;background:#FF2E88;"></span><span style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;">4 · 8 · 12 · 16</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="height:12px;width:24px;background:#FF2E88;"></span><span style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;">20 · 24 · 32</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><span style="height:12px;width:48px;background:#FF2E88;"></span><span style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;">40 · 48 · 64 · 80</span></div>
+          </div>
+        </div>
+        <!-- shape / corner cut -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:16px;">Shape · corner-cut motif</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <div style="width:60px;height:60px;background:#1A1D26;border:1px solid rgba(255,255,255,.14);"></div>
+            <div style="width:60px;height:60px;background:#1A1D26;border:1px solid rgba(255,255,255,.14);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));"></div>
+            <div style="width:60px;height:60px;background:#FF2E88;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:14px;line-height:1.5;">radii 2–8px · signature 11–14px diagonal notch via clip-path</div>
+        </div>
+        <!-- motion -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:16px;">Motion · broadcast snap</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;line-height:1.9;">
+            <div>ease-out <span style="color:#6B7185;">cubic-bezier(.16,1,.3,1)</span></div>
+            <div>micro <span style="color:#6B7185;">120ms</span> · standard <span style="color:#6B7185;">200ms</span></div>
+            <div>reveal <span style="color:#6B7185;">360–640ms</span> · count-up <span style="color:#6B7185;">900ms</span></div>
+            <div>bars stagger <span style="color:#6B7185;">60ms/index</span></div>
+          </div>
+        </div>
+        <!-- elevation -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Elevation</div>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+            <div style="width:52px;height:52px;background:#1A1D26;box-shadow:0 4px 16px rgba(0,0,0,.45);"></div>
+            <div style="width:52px;height:52px;background:#1A1D26;box-shadow:0 16px 48px rgba(0,0,0,.6);"></div>
+            <div style="width:52px;height:52px;background:#1A1D26;box-shadow:0 0 0 1px rgba(255,46,136,.5),0 8px 32px rgba(255,46,136,.28);"></div>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;margin-top:14px;">card · modal · accent-glow (hover only)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 COMPONENTS ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#FF2E88;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">05 / Components</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 28px;letter-spacing:-.01em;">Core Components</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:start;">
+
+        <!-- REPLAY CARD (hero, spans 2) -->
+        <div style="grid-column:span 2;background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:16px;">Replay card</div>
+          <div style="max-width:340px;background:#0A0B0F;border:1px solid rgba(255,255,255,.1);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));">
+            <div style="position:relative;aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#141821,#141821 9px,#10131a 9px,#10131a 18px);overflow:hidden;">
+              <div style="position:absolute;inset:0;background:radial-gradient(80% 120% at 50% -10%,rgba(53,217,138,.16),transparent 60%);"></div>
+              <span style="position:absolute;top:10px;left:10px;font-family:'Barlow';font-weight:700;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#FF2E88;padding:4px 8px;clip-path:polygon(0 0,100% 0,100% 100%,6px 100%);">Pro Replays</span>
+              <span style="position:absolute;bottom:10px;right:10px;font-family:'JetBrains Mono';font-size:11px;color:#fff;background:rgba(6,7,11,.82);padding:3px 7px;">7:01</span>
+              <div style="position:absolute;bottom:10px;left:10px;font-family:'JetBrains Mono';font-size:9px;color:#8A90A0;letter-spacing:.1em;">SCOUT · S2</div>
+            </div>
+            <div style="padding:14px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="display:flex;">
+                  <span style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#35D98A,rgba(53,217,138,.25));border:1px solid rgba(255,255,255,.16);font-family:'Chakra Petch';font-weight:700;font-size:11px;color:#050607;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">AK</span>
+                  <span style="width:26px;height:26px;margin-left:-6px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#97DB4A,rgba(151,219,74,.25));border:1px solid rgba(255,255,255,.16);font-family:'Chakra Petch';font-weight:700;font-size:11px;color:#050607;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">SE</span>
+                </div>
+                <span style="font-family:'Chakra Petch';font-weight:700;font-size:12px;color:#6B7185;">VS</span>
+                <div style="display:flex;">
+                  <span style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#E27E3C,rgba(226,126,60,.25));border:1px solid rgba(255,255,255,.16);font-family:'Chakra Petch';font-weight:700;font-size:11px;color:#050607;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">TE</span>
+                  <span style="width:26px;height:26px;margin-left:-6px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#52C4C4,rgba(82,196,196,.25));border:1px solid rgba(255,255,255,.16);font-family:'Chakra Petch';font-weight:700;font-size:11px;color:#050607;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">YA</span>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                <span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">ApologyMan</span>
+                <span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">Blook</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);">
+                <span style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">Ranked</span>
+                <span style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">3 days ago</span>
+              </div>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;margin-top:14px;line-height:1.6;">16:9 thumb · duration pill · channel badge · pair-vs-pair icons · players/side · type · date. Hover → lift + accent hairline glow + play.</div>
+        </div>
+
+        <!-- CHAMPION ICON + PAIR -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Champion icon · pair cluster</div>
+          <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+            <span style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#1FE0D4,rgba(31,224,212,.2));border:1.5px solid rgba(255,255,255,.18);font-family:'Chakra Petch';font-weight:700;font-size:16px;color:#050607;">EK</span>
+            <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#FF5DA2,rgba(255,93,162,.2));border:1.5px solid rgba(255,255,255,.18);font-family:'Chakra Petch';font-weight:700;font-size:16px;color:#050607;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));">AH</span>
+            <div style="display:flex;">
+              <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#1FE0D4,rgba(31,224,212,.2));border:1.5px solid rgba(255,255,255,.18);font-family:'Chakra Petch';font-weight:700;font-size:14px;color:#050607;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));">EK</span>
+              <span style="width:40px;height:40px;margin-left:-10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#52C4C4,rgba(82,196,196,.2));border:1.5px solid rgba(255,255,255,.18);font-family:'Chakra Petch';font-weight:700;font-size:14px;color:#050607;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));">YA</span>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;margin-top:16px;">round · angular badge · overlapped pair</div>
+        </div>
+
+        <!-- PLAYER CHIP -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Player chip · verified · duo</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <span style="display:inline-flex;align-items:center;gap:7px;align-self:flex-start;padding:6px 11px;background:#1A1D26;border:1px solid rgba(255,255,255,.12);"><span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">LightWhisp</span><span style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;">237</span></span>
+            <span style="display:inline-flex;align-items:center;gap:7px;align-self:flex-start;padding:6px 11px;background:rgba(255,46,136,.1);border:1px solid rgba(255,46,136,.4);"><span style="width:14px;height:14px;background:#FF2E88;transform:rotate(45deg);display:flex;align-items:center;justify-content:center;"></span><span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">SonicFox</span></span>
+            <span style="display:inline-flex;align-items:center;gap:6px;align-self:flex-start;padding:6px 11px;background:#1A1D26;border:1px solid rgba(255,255,255,.12);"><span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">SONICFOX</span><span style="font-family:'Chakra Petch';font-weight:700;font-size:11px;color:#FF2E88;">+</span><span style="font-family:'Barlow';font-weight:600;font-size:13px;color:#F4F5F8;">INZEM</span></span>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;margin-top:16px;">ranked · verified pro (◆) · duo</div>
+        </div>
+
+        <!-- CHANNEL BADGES -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Channel badges</div>
+          <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+            <span style="font-family:'Barlow';font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#FF2E88;padding:6px 12px;clip-path:polygon(0 0,100% 0,100% 100%,7px 100%);">Pro Replays</span>
+            <span style="font-family:'Barlow';font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#38CFFF;background:rgba(56,207,255,.1);border:1px solid rgba(56,207,255,.45);padding:5px 12px;clip-path:polygon(0 0,100% 0,100% 100%,7px 100%);">High Level</span>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;margin-top:16px;">2,809 replays across 2 channels</div>
+        </div>
+
+        <!-- FILTER CHIPS + SEARCH -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Search · filter chips</div>
+          <div style="display:flex;align-items:center;gap:9px;padding:10px 12px;background:#0A0B0F;border:1px solid rgba(255,255,255,.14);margin-bottom:14px;">
+            <span style="width:14px;height:14px;border:1.5px solid #6B7185;border-radius:50%;position:relative;flex:none;"><span style="position:absolute;width:6px;height:1.5px;background:#6B7185;bottom:-2px;right:-4px;transform:rotate(45deg);"></span></span>
+            <span style="font-family:'Barlow';font-size:13px;color:#6B7185;">Search title, player, champion…</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-family:'Barlow';font-weight:600;font-size:12px;color:#fff;background:#FF2E88;padding:6px 12px;display:inline-flex;align-items:center;gap:7px;">Ekko <span style="opacity:.7;">✕</span></span>
+            <span style="font-family:'Barlow';font-weight:500;font-size:12px;color:#A8AEBE;background:#1A1D26;border:1px solid rgba(255,255,255,.12);padding:6px 12px;">Champion ▾</span>
+            <span style="font-family:'Barlow';font-weight:500;font-size:12px;color:#A8AEBE;background:#1A1D26;border:1px solid rgba(255,255,255,.12);padding:6px 12px;">Season ▾</span>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:10px;color:#474C5C;margin-top:16px;">default · active (filled) · dropdown</div>
+        </div>
+
+        <!-- STAT BAR (animated) -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Stat bar · count-up</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:'Barlow';font-weight:600;font-size:12px;">Ekko</span><span data-countup="1479" data-fmt="comma" style="font-family:'JetBrains Mono';font-size:12px;color:#1FE0D4;">0</span></div><div style="height:8px;background:#0A0B0F;overflow:hidden;"><div style="height:100%;width:100%;background:linear-gradient(90deg,#1FE0D4,rgba(31,224,212,.4));transform-origin:left;animation:barfill .9s cubic-bezier(.16,1,.3,1) both;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:'Barlow';font-weight:600;font-size:12px;">Ahri</span><span data-countup="1244" data-fmt="comma" style="font-family:'JetBrains Mono';font-size:12px;color:#FF5DA2;">0</span></div><div style="height:8px;background:#0A0B0F;overflow:hidden;"><div style="height:100%;width:84%;background:linear-gradient(90deg,#FF5DA2,rgba(255,93,162,.4));transform-origin:left;animation:barfill .9s cubic-bezier(.16,1,.3,1) .08s both;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-family:'Barlow';font-weight:600;font-size:12px;">Yasuo</span><span data-countup="1186" data-fmt="comma" style="font-family:'JetBrains Mono';font-size:12px;color:#52C4C4;">0</span></div><div style="height:8px;background:#0A0B0F;overflow:hidden;"><div style="height:100%;width:80%;background:linear-gradient(90deg,#52C4C4,rgba(82,196,196,.4));transform-origin:left;animation:barfill .9s cubic-bezier(.16,1,.3,1) .16s both;"></div></div></div>
+          </div>
+        </div>
+
+        <!-- EMPTY + LOADING -->
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);padding:22px;">
+          <div style="font-family:'Barlow';font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B7185;margin-bottom:18px;">Empty · loading</div>
+          <div style="border:1px dashed rgba(255,255,255,.14);padding:20px;text-align:center;margin-bottom:14px;">
+            <div style="width:26px;height:26px;margin:0 auto 10px;border:1.5px solid #474C5C;transform:rotate(45deg);"></div>
+            <div style="font-family:'Chakra Petch';font-weight:600;font-size:14px;color:#A8AEBE;">No replays match</div>
+            <div style="font-family:'Barlow';font-size:12px;color:#6B7185;margin-top:3px;">Try clearing a filter</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="height:10px;background:linear-gradient(90deg,#161922 30%,#232733 50%,#161922 70%);background-size:200% 100%;animation:shimmer 1.4s infinite;"></div>
+            <div style="height:10px;width:70%;background:linear-gradient(90deg,#161922 30%,#232733 50%,#161922 70%);background-size:200% 100%;animation:shimmer 1.4s infinite;"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ 06 HANDOFF ============ -->
+    <section style="padding-top:64px;">
+      <div style="display:flex;align-items:center;gap:14px;margin:0 0 10px;">
+        <span style="width:9px;height:9px;background:#38CFFF;transform:rotate(45deg);flex:none;"></span>
+        <span style="font-family:'Barlow';font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#6B7185;">06 / Handoff</span>
+        <span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span>
+      </div>
+      <h2 style="font-family:'Chakra Petch';font-weight:700;font-size:30px;margin:0 0 6px;letter-spacing:-.01em;">Tailwind &amp; Token Export</h2>
+      <p style="margin:0 0 24px;color:#6B7185;font-size:14px;">Drop-in for the Nuxt 3 build. Full files also written to <span style="font-family:'JetBrains Mono';color:#A8AEBE;">/handoff</span>.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;">
+        <div style="background:#07080B;border:1px solid rgba(255,255,255,.1);overflow:hidden;">
+          <div style="display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:#0d0f14;"><span style="width:8px;height:8px;background:#FF2E88;"></span><span style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;">tokens.css</span></div>
+          <pre style="margin:0;padding:16px;overflow:auto;font-family:'JetBrains Mono';font-size:11px;line-height:1.7;color:#C4C8D4;"><span style="color:#6B7185;">:root {</span>
+  --bg-base:#0A0B0F;
+  --bg-surface:#12141B;
+  --bg-elevated:#1A1D26;
+  --border:rgba(255,255,255,.11);
+  <span style="color:#FF529E;">--accent:#FF2E88;</span>
+  --accent-hover:#FF529E;
+  --accent-2:#38CFFF;
+  --text-primary:#F4F5F8;
+  --text-muted:#6B7185;
+  <span style="color:#6B7185;">/* champ slot */</span>
+  --champ:#1FE0D4;
+  --ease:cubic-bezier(.16,1,.3,1);
+<span style="color:#6B7185;">}</span></pre>
+        </div>
+        <div style="background:#07080B;border:1px solid rgba(255,255,255,.1);overflow:hidden;">
+          <div style="display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:#0d0f14;"><span style="width:8px;height:8px;background:#38CFFF;"></span><span style="font-family:'JetBrains Mono';font-size:11px;color:#A8AEBE;">tailwind.config.js</span></div>
+          <pre style="margin:0;padding:16px;overflow:auto;font-family:'JetBrains Mono';font-size:11px;line-height:1.7;color:#C4C8D4;">theme:{extend:{
+  colors:{
+    base:<span style="color:#97DB4A;">'#0A0B0F'</span>,
+    surface:<span style="color:#97DB4A;">'#12141B'</span>,
+    accent:{DEFAULT:<span style="color:#97DB4A;">'#FF2E88'</span>,
+      hi:<span style="color:#97DB4A;">'#FF529E'</span>},
+  },
+  fontFamily:{
+    display:[<span style="color:#97DB4A;">'Chakra Petch'</span>],
+    sans:[<span style="color:#97DB4A;">'Barlow'</span>],
+    mono:[<span style="color:#97DB4A;">'JetBrains Mono'</span>],
+  },
+  transitionTimingFunction:{
+    snap:<span style="color:#97DB4A;">'cubic-bezier(.16,1,.3,1)'</span>},
+}}</pre>
+        </div>
+      </div>
+      <!-- component specs -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:16px;">
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);border-top:2px solid #FF2E88;padding:18px;"><div style="font-family:'Chakra Petch';font-weight:600;font-size:15px;margin-bottom:8px;">ReplayCard</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;line-height:1.7;">thumb 16:9 · pad 14 · gap 8/10/12 · notch 14 · hover: y-4px, scale-thumb 1.04, accent ring</div></div>
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);border-top:2px solid #38CFFF;padding:18px;"><div style="font-family:'Chakra Petch';font-weight:600;font-size:15px;margin-bottom:8px;">FilterControls</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;line-height:1.7;">chip h-32 · pad 6/12 · active=accent fill · mobile → bottom-sheet drawer + result count</div></div>
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);border-top:2px solid #97DB4A;padding:18px;"><div style="font-family:'Chakra Petch';font-weight:600;font-size:15px;margin-bottom:8px;">VideoModal</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;line-height:1.7;">scrim blur 8px · 16:9 embed · meta rail · related strip · mobile = full screen</div></div>
+        <div style="background:#12141B;border:1px solid rgba(255,255,255,.08);border-top:2px solid #FFC24B;padding:18px;"><div style="font-family:'Chakra Petch';font-weight:600;font-size:15px;margin-bottom:8px;">Charts ×3</div><div style="font-family:'JetBrains Mono';font-size:10px;color:#6B7185;line-height:1.7;">usage bars (count-up) · pairing matrix (heat, click→filter) · meta bump S0→S2</div></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div style="max-width:1200px;margin:64px auto 0;padding:24px 40px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+    <span style="font-family:'Chakra Petch';font-weight:700;font-size:14px;">2XKO<span style="color:#FF2E88;">/</span>REPLAY DATABASE</span>
+    <span style="font-family:'Barlow';font-size:11px;color:#6B7185;max-width:520px;text-align:right;">2XKO Replay Database is an unofficial fan project, not endorsed by or affiliated with Riot Games.</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    setTimeout(() => {
+      document.querySelectorAll('[data-countup]').forEach((el) => {
+        const target = parseFloat(el.getAttribute('data-countup')) || 0;
+        const comma = el.getAttribute('data-fmt') === 'comma';
+        const dur = 950;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const val = Math.round(target * eased);
+          el.textContent = comma ? val.toLocaleString() : String(val);
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, 220);
+  }
+}
+</script>
+</body>
+</html>

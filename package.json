@@ -5,13 +5,28 @@
   "type": "module",
   "description": "Data pipeline for a 2XKO replay website (fetch + parse YouTube replay uploads).",
   "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate && node scripts/postgenerate.mjs",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
     "data:fetch": "tsx --env-file=.env scripts/fetch.ts",
     "data:parse": "tsx scripts/parse.ts",
-    "data:build": "npm run data:fetch && npm run data:parse"
+    "data:build": "npm run data:fetch && npm run data:parse",
+    "data:champions": "tsx scripts/champions.ts"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/tailwindcss": "^6.14.0",
     "@types/node": "^24.0.0",
+    "nuxt": "^4.4.8",
+    "playwright-core": "^1.61.1",
+    "sharp": "^0.35.3",
     "tsx": "^4.22.4",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vue-tsc": "^3.3.6"
+  },
+  "dependencies": {
+    "animejs": "^4.5.0"
   }
 }

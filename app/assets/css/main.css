@@ -1,0 +1,70 @@
+/* Global stylesheet: design tokens first, then Tailwind, then base element styles.
+   tokens.css lives at the repo root (design/handoff) — imported relatively. */
+@import "../../../design/handoff/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scrollbar-gutter: stable;
+  }
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--text-on-accent);
+  }
+  /* On-token keyboard focus ring, app-wide. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Skip-to-content: visually hidden until keyboard-focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: #08090c;
+  font-weight: 700;
+  font-size: 13px;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+@layer utilities {
+  /* Signature corner-cut (top-right + bottom-left notch) at the design's sizes. */
+  .cut-7  { clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px)); }
+  .cut-8  { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+  .cut-14 { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+  .cut-20 { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); }
+  /* Bottom-left angled cut used on badges/buttons. */
+  .cut-bl-6  { clip-path: polygon(0 0, 100% 0, 100% 100%, 6px 100%); }
+  .cut-bl-7  { clip-path: polygon(0 0, 100% 0, 100% 100%, 7px 100%); }
+  .cut-bl-10 { clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%); }
+}
+
+/* Honor prefers-reduced-motion for all card/drawer/modal transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

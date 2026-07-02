@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /health
+
+Sitemap: https://2xko-replay-database.vercel.app/sitemap.xml
