@@ -1,0 +1,17 @@
+{
+  "_comment": "Normalized crop rects [x, y, w, h] (0-1, resolution-independent) for the fuse pill in the persistent match HUD. One layout serves both channels and all eras (beta-s2); restreamed captures scale/offset the game area slightly but the pill stays inside these windows (verified across 8 capture styles).",
+  "default": {
+    "left": [
+      0.105,
+      0.028,
+      0.135,
+      0.042
+    ],
+    "right": [
+      0.775,
+      0.028,
+      0.135,
+      0.042
+    ]
+  }
+}

@@ -50,6 +50,7 @@ reads it.
 | `npm run data:parse` | Parse titles/descriptions → `data/videos.json`, `stats.json`, `players.json`, `report.md` |
 | `npm run data:build` | fetch + parse |
 | `npm run data:champions` | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `champions.json` |
+| `npm run data:fuses` | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json` |
 | `npx tsx scripts/og.ts` | Regenerate the default OG card (`public/og-default.png`) |
 
 Verification: `npx tsc --noEmit` (pipeline) and `npx nuxt typecheck` (app)
@@ -77,6 +78,34 @@ commits `data/{videos,stats,players}.json` + `report.md` **only if changed**
 ("data: refresh YYYY-MM-DD — N videos"). The push triggers the Vercel deploy.
 Champion art is deliberately not part of the daily run.
 
+## Fuse detection (local CV pipeline)
+
+Neither channel labels fuses in titles/descriptions (0% across the catalog),
+but every replay shows each team's fuse as a labeled pill in the match HUD.
+`npm run data:fuses` downloads the **first 12 s** of each video (yt-dlp,
+≤720p, video-only), extracts 1 fps frames, and classifies the two HUD pills
+(hue voting gated + wide perceptual hash, validated at 98.75% with no class
+failing silently). Champion nameplates orient sides back to **title order**;
+genuinely ambiguous pairs are `ok-unordered` (filters/stats are order-agnostic,
+the modal shows the pair unattributed).
+
+- Output: `data/fuses-detected.json` (committed). `data:parse` merges it on
+  every run — title parse → fuse merge → `overrides.json` last — so detections
+  **survive the daily cron**, which regenerates `videos.json`/`stats.json`
+  from scratch.
+- Incremental + resumable: only ids missing from the output are processed;
+  `--limit N` for smoke tests, `--force` to redo, `--clean` to purge the
+  gitignored `cache/fuse/` working dir (~10 GB for the full backlog).
+- Run it **locally, weekly-ish**, and commit the refreshed
+  `fuses-detected.json`; the daily Action folds it in automatically. The
+  Action itself **never** runs yt-dlp — datacenter IPs are routinely blocked.
+- If YouTube throws a bot-check locally, retry with
+  `yt-dlp --cookies-from-browser <browser>`.
+- Review artifacts land in `cache/fuse/review/`: `low-review.md` (every
+  low/none with best guess + scores) and `unmatched-pills.png` (montage —
+  how a new/rare fuse style gets spotted, templated from those very frames,
+  and re-run incrementally).
+
 ## New-champion runbook
 
 1. Add the champion to `data/champions.json` (id, name, aliases; leave
@@ -99,8 +128,10 @@ Champion art is deliberately not part of the daily run.
 - **VideoObject structured data**: deliberately absent in v1 — video metadata
   is client-fetched, so crawlers wouldn't see it. Revisit together with the
   slim index (prerendering per-video pages or inlining top-N records).
-- **Fuse detection (Phase 7)**: fuse fill-rate is 0% — neither channel labels
-  fuses in titles/descriptions. The pipeline already parses fuses end-to-end
-  (registry, per-team fields, `overrides.json` patches), so a computer-vision
-  pass over the character-select/loading frames can fill it without schema
-  changes.
+- **Patch-version enrichment**: the in-game replay theater renders the build/
+  patch string bottom-center (e.g. `1.1.2 rls-patch-1-1-2 … 2026.01.27`) —
+  readable by the same frame pipeline; would fill the patch field's 0%.
+- **Nameplate champion recovery**: HUD nameplates carry each team's champions
+  as clean text — the fuse pipeline already reads them for side orientation,
+  and they could recover under-reported titles (e.g. Juggernaut teams listed
+  with one champion) beyond the five hand-verified overrides shipped in v1.

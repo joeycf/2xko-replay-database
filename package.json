@@ -13,7 +13,8 @@
     "data:fetch": "tsx --env-file-if-exists=.env scripts/fetch.ts",
     "data:parse": "tsx scripts/parse.ts",
     "data:build": "npm run data:fetch && npm run data:parse",
-    "data:champions": "tsx scripts/champions.ts"
+    "data:champions": "tsx scripts/champions.ts",
+    "data:fuses": "tsx scripts/fuses.ts"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
