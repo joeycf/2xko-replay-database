@@ -1,14 +1,14 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-03T14:09:09.804Z._
+_Generated 2026-07-03T14:26:17.127Z._
 
 ## Summary
-- Total videos: **2809**
-- High confidence: **2800**  ·  Low confidence: **9**
+- Total videos: **2825**
+- High confidence: **2815**  ·  Low confidence: **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.4%** · patch: **0.0%** · fuse: **92.1%**
+- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **91.6%**
 
-## Low-confidence records (9)
+## Low-confidence records (10)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
@@ -27,9 +27,7 @@ _Generated 2026-07-03T14:09:09.804Z._
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `faose` | Faose | 1 | faose |
+_None._
