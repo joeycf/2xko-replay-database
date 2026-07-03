@@ -105,6 +105,15 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(shown === pairN, `result-count ${shown} ≠ expected ${pairN}`)
   })
 
+  // (a3) regression (2026-07-03 report): the rarest fuse's UI count must equal
+  // the Node-computed count — guards over-matching and null-fuse leaks
+  const jugN = videos.filter((v) => orMatch(v, ['juggernaut'])).length
+  await test(`fuse filter: ?fuse=juggernaut shows ${jugN} replays (from videos.json)`, async () => {
+    await page.goto(`${base}/?fuse=juggernaut`)
+    const shown = await resultCount(page)
+    expect(shown === jugN, `result-count ${shown} ≠ expected ${jugN}`)
+  })
+
   // (b) deep-link round-trips: URL → chips, chip clicks → URL
   await test('fuse deep-link round-trips (URL ⇄ chip state)', async () => {
     await page.goto(`${base}/?fuse=juggernaut,2x-assist`)
