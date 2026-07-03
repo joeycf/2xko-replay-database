@@ -183,38 +183,40 @@
       "2": 366,
       "beta": 185
     },
-    "withFuse": 2588
+    "withFuse": 2558
   },
   "fuseUsage": {
-    "2x-assist": 1081,
-    "double-down": 903,
-    "freestyle": 3131,
-    "juggernaut": 61
+    "2x-assist": 1056,
+    "double-down": 899,
+    "freestyle": 3101,
+    "juggernaut": 19,
+    "teamfight": 41
   },
   "fuseBySeason": {
     "0": {
-      "2x-assist": 668,
-      "double-down": 532,
-      "freestyle": 774,
-      "juggernaut": 18
+      "2x-assist": 670,
+      "double-down": 529,
+      "freestyle": 755
     },
     "1": {
-      "2x-assist": 221,
-      "double-down": 205,
+      "2x-assist": 224,
+      "double-down": 212,
       "freestyle": 1784,
-      "juggernaut": 22
+      "juggernaut": 12,
+      "teamfight": 8
     },
     "2": {
-      "2x-assist": 97,
-      "double-down": 43,
-      "freestyle": 507,
-      "juggernaut": 13
+      "2x-assist": 73,
+      "double-down": 42,
+      "freestyle": 501,
+      "juggernaut": 3,
+      "teamfight": 33
     },
     "beta": {
-      "2x-assist": 95,
-      "double-down": 123,
-      "freestyle": 66,
-      "juggernaut": 8
+      "2x-assist": 89,
+      "double-down": 116,
+      "freestyle": 61,
+      "juggernaut": 4
     }
   },
   "playerCharacters": {

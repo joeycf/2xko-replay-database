@@ -3230,7 +3230,7 @@
           "jinx",
           "akali"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3248,7 +3248,7 @@
           "ahri",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -3295,7 +3295,7 @@
           "ahri",
           "darius"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3313,7 +3313,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -3356,7 +3356,7 @@
           "teemo",
           "akali"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3374,7 +3374,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -3421,7 +3421,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3435,7 +3435,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -3482,7 +3482,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3544,7 +3544,7 @@
           "warwick",
           "yasuo"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3604,7 +3604,7 @@
           "ekko",
           "teemo"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3618,7 +3618,7 @@
           "illaoi",
           "blitzcrank"
         ],
-        "fuse": "freestyle"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -3635,7 +3635,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "qRtuBPSsZ84",
@@ -3666,7 +3666,7 @@
           "ekko",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3680,7 +3680,7 @@
           "jinx",
           "akali"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -3696,7 +3696,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "LmTE5NPWU40",
@@ -3723,7 +3724,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -3783,7 +3784,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -3797,7 +3798,7 @@
           "akali",
           "caitlyn"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -3813,8 +3814,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "E9NsQ9f1ja8",
@@ -13952,7 +13952,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -17187,7 +17187,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -17215,7 +17215,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "3ldm1gRe7UA",
@@ -17855,7 +17856,7 @@
           "vi",
           "illaoi"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -17869,7 +17870,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -17910,7 +17911,7 @@
           "darius",
           "braum"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -19775,7 +19776,7 @@
           "darius",
           "braum"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -19789,7 +19790,7 @@
           "vi",
           "braum"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -19803,7 +19804,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "pTLxy8ww87Y",
@@ -19886,7 +19888,7 @@
           "caitlyn",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -19900,7 +19902,7 @@
           "ekko",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -20617,7 +20619,7 @@
           "blitzcrank",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -20631,7 +20633,7 @@
           "caitlyn",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -20646,8 +20648,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "gqWxKhAkVsk",
@@ -23120,7 +23121,7 @@
           "vi",
           "blitzcrank"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -23135,7 +23136,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "PK7W6mEiQdw",
@@ -25025,7 +25027,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -25054,8 +25056,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "m4bNSdZliek",
@@ -25561,7 +25562,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "4TOhfBrH7hQ",
@@ -25823,7 +25825,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -29450,7 +29452,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -30263,7 +30265,7 @@
           "caitlyn",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -30278,8 +30280,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "LpFJCYCz_VE",
@@ -31669,7 +31670,7 @@
           "jinx",
           "warwick"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -32828,7 +32829,7 @@
           "ahri",
           "braum"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -32843,7 +32844,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "xZN9DHJqPyk",
@@ -33059,7 +33060,7 @@
           "caitlyn",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -33943,7 +33944,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -33957,7 +33958,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -33972,7 +33973,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "h-ZHdkLoXRs",
@@ -34341,7 +34343,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -35361,7 +35363,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -35379,7 +35381,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -35592,7 +35594,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -35621,7 +35623,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "mR92xVB7sT0",
@@ -37742,7 +37745,7 @@
           "warwick",
           "illaoi"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -37771,8 +37774,7 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "gDatjxCFBcE",
@@ -38478,7 +38480,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -38492,7 +38494,7 @@
           "jinx",
           "warwick"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -38506,7 +38508,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "5gKVYwzRYO4",
@@ -39269,7 +39272,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -39283,7 +39286,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -40334,7 +40337,7 @@
           "yasuo",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -40348,7 +40351,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -40791,7 +40794,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -41128,7 +41131,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -41156,8 +41159,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "8LaPlLXYUWs",
@@ -43611,7 +43613,7 @@
           "warwick",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -44071,7 +44073,7 @@
           "warwick",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -45040,7 +45042,7 @@
           "ahri",
           "vi"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -46102,7 +46104,7 @@
           "illaoi",
           "darius"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -46116,8 +46118,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "IqQnQsh5PbI",
@@ -47762,7 +47763,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -50288,7 +50289,7 @@
           "vi",
           "illaoi"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -50567,7 +50568,7 @@
           "braum",
           "darius"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -50581,7 +50582,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -50596,8 +50597,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "Z34_Kh6vtbw",
@@ -51860,7 +51860,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -51889,8 +51889,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "lIoPNPI1yI0",
@@ -52142,7 +52141,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -52156,7 +52155,7 @@
           "yasuo",
           "darius"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -52171,8 +52170,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "XrpSv6VAQPc",
@@ -52382,7 +52380,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -53628,7 +53626,7 @@
           "warwick",
           "braum"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -53642,7 +53640,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -53915,7 +53913,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -53929,7 +53927,7 @@
           "darius",
           "warwick"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -53944,8 +53942,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "nY-0xIHhazQ",
@@ -54540,7 +54537,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -54554,7 +54551,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -57487,7 +57484,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -57501,7 +57498,7 @@
           "darius",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -57599,7 +57596,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -57613,7 +57610,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -57628,8 +57625,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "RiDlheysZQo",
@@ -58333,7 +58329,7 @@
           "braum",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -58347,7 +58343,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -58362,8 +58358,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "mCM_8LUO2y0",
@@ -58856,7 +58851,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       },
       {
         "side": "right",
@@ -58870,7 +58865,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -58912,7 +58907,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -58942,7 +58937,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "C90QsqGWTy4",
@@ -61251,7 +61246,7 @@
           "yasuo",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -61265,7 +61260,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -62427,7 +62422,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -62456,7 +62451,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "iPEkXkDDjZY",
@@ -62483,7 +62479,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -62497,7 +62493,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -63382,7 +63378,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -63669,7 +63665,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -64171,7 +64167,7 @@
           "ekko",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -64185,7 +64181,7 @@
           "yasuo",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -64200,8 +64196,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "5yZu_iiL4Ko",
@@ -64452,7 +64447,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -64466,7 +64461,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -64481,8 +64476,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "aT8VCI1yTk4",
@@ -65158,7 +65152,7 @@
           "warwick",
           "blitzcrank"
         ],
-        "fuse": "freestyle"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -65200,7 +65194,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -66893,7 +66887,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -68733,7 +68727,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -68762,7 +68756,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "RwD2KbPQMe8",
@@ -69569,7 +69564,7 @@
           "yasuo",
           "vi"
         ],
-        "fuse": "double-down"
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -69598,8 +69593,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "Y2I8gVrx-KU",
@@ -69959,7 +69953,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -69973,7 +69967,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -69988,8 +69982,7 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "ROBgC0fZVco",
@@ -70853,7 +70846,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       },
       {
         "side": "right",
@@ -70867,7 +70860,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -70881,8 +70874,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "9yeWYULwXpI",
@@ -71945,7 +71937,7 @@
           "jinx",
           "blitzcrank"
         ],
-        "fuse": "juggernaut"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -72392,7 +72384,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -72406,8 +72398,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "yZY61tUe_rc",
@@ -72491,7 +72482,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       },
       {
         "side": "right",
@@ -72505,7 +72496,7 @@
           "yasuo",
           "vi"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -72520,8 +72511,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "w2aOFmPaQPg",
@@ -72673,7 +72663,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": "juggernaut"
       }
     ],
     "allCharacters": [
@@ -72689,7 +72679,7 @@
     ],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "Y8ET_zxhLk8",
@@ -78728,7 +78718,7 @@
           "vi",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -80091,7 +80081,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -80106,7 +80096,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "Z_yiI1z3cBs",
@@ -80133,7 +80124,7 @@
           "thresh",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -80147,7 +80138,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -80763,7 +80754,7 @@
           "thresh",
           "teemo"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -80777,7 +80768,7 @@
           "caitlyn",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -80991,7 +80982,7 @@
           "thresh",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -81005,7 +80996,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -81020,7 +81011,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "MvoA9uTfcag",
@@ -81964,7 +81956,7 @@
           "thresh",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -84513,7 +84505,7 @@
           "akali",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -85310,7 +85302,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -85325,7 +85317,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "bT3BetHBR08",
@@ -85526,7 +85519,7 @@
           "caitlyn",
           "ahri"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -85544,7 +85537,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -85561,8 +85554,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "vQs7UtqBvlo",
@@ -86266,7 +86258,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -86280,7 +86272,7 @@
           "akali",
           "vi"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -86295,8 +86287,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "nwgCfreTbho",
@@ -87568,7 +87559,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -87685,7 +87676,7 @@
           "yasuo",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -87703,7 +87694,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -87720,8 +87711,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "TSOrCDgg16w",
@@ -87808,7 +87798,7 @@
           "yasuo",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -87979,7 +87969,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -88163,7 +88153,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -88600,7 +88590,7 @@
           "blitzcrank",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -89621,7 +89611,7 @@
           "teemo",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -89635,7 +89625,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -89900,7 +89890,7 @@
           "braum",
           "darius"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -89914,7 +89904,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -89928,8 +89918,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "OdQuKYoHWqc",
@@ -90185,7 +90174,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -90246,7 +90235,7 @@
           "jinx",
           "darius"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -90476,7 +90465,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -90505,7 +90494,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "d1Pu6QVhVws",
@@ -90536,7 +90526,7 @@
           "illaoi",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -90597,7 +90587,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -90615,7 +90605,7 @@
           "jinx",
           "darius"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -90849,7 +90839,7 @@
           "akali",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -91008,7 +90998,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91022,7 +91012,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -91127,7 +91117,7 @@
           "ahri",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91162,7 +91152,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "WDC2Zev39R4",
@@ -91207,7 +91198,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -91254,7 +91245,7 @@
           "ekko",
           "jinx"
         ],
-        "fuse": "freestyle"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91268,7 +91259,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": "juggernaut"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -91285,7 +91276,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "laYuHqfKvE0",
@@ -91316,7 +91307,7 @@
           "darius",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91439,7 +91430,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91457,7 +91448,7 @@
           "illaoi",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -91504,7 +91495,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91522,7 +91513,7 @@
           "jinx",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -91632,7 +91623,7 @@
           "ekko",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91650,7 +91641,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -91697,7 +91688,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91758,7 +91749,7 @@
           "teemo",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -91776,7 +91767,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "teamfight"
       }
     ],
     "allCharacters": [
@@ -92416,7 +92407,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -92431,7 +92422,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "Z_u4dAQcey0",
@@ -92585,7 +92577,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -93596,7 +93588,7 @@
           "vi",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -94504,7 +94496,7 @@
           "ahri",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -94518,8 +94510,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "FZ6vTyseCiI",
@@ -96195,7 +96186,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -96209,7 +96200,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "gRz_5SSu9Eg",
@@ -96461,7 +96453,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -96475,7 +96467,7 @@
           "akali",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -96489,8 +96481,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "CHMrhQBTLkg",
@@ -101446,7 +101437,7 @@
           "caitlyn",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -101460,8 +101451,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "VPeaIADSAtg",
@@ -109575,7 +109565,7 @@
           "darius",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -109590,7 +109580,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "nFypogcdpfc",
@@ -110026,7 +110017,7 @@
           "braum",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -111285,7 +111276,7 @@
           "vi",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -117662,7 +117653,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -117676,7 +117667,7 @@
           "ahri",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -117691,7 +117682,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "O8Uoz60MzeA",
@@ -117774,7 +117766,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -117901,7 +117893,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -117916,7 +117908,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "2adikmz0n78",
@@ -120517,7 +120510,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -120670,7 +120663,7 @@
           "blitzcrank",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -120684,7 +120677,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -120699,7 +120692,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "jPqQYXH-bOc",
@@ -123281,7 +123275,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -123296,8 +123290,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "QeDIGC7cck8",
@@ -123491,7 +123484,7 @@
           "caitlyn",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -123505,7 +123498,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -123520,7 +123513,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "Ky2CxgZ19X8",
@@ -124011,7 +124005,7 @@
           "braum",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -124235,7 +124229,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -124249,7 +124243,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "5da3GXnberM",
@@ -127783,7 +127778,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -127798,8 +127793,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "V4T8QQeIrsI",
@@ -128401,7 +128395,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -128415,8 +128409,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "6zZokjHC13Q",
@@ -128727,7 +128720,7 @@
           "blitzcrank",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -128741,7 +128734,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -128756,7 +128749,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "5KL0V7tBNPQ",
@@ -129363,7 +129357,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -129378,7 +129372,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "xmFFr2ClaFM",
@@ -129914,7 +129909,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -130325,7 +130320,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -130340,7 +130335,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "3PCJJWgWR3M",
@@ -130609,7 +130605,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -131121,7 +131117,7 @@
           "blitzcrank",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -131516,7 +131512,7 @@
           "warwick",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -132654,7 +132650,7 @@
           "warwick",
           "illaoi"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -133345,7 +133341,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -133360,7 +133356,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "o-VAOWqxDGg",
@@ -133628,7 +133625,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -133743,7 +133740,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -135547,7 +135544,7 @@
           "vi",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -135561,8 +135558,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "AkHnrEQvxDI",
@@ -136347,7 +136343,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -136363,8 +136359,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "3us28ySdOwo",
@@ -136395,7 +136390,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -136409,7 +136404,7 @@
           "warwick",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -136425,8 +136420,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "kvCEU_NZTaQ",
@@ -136792,7 +136786,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -136806,7 +136800,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -136862,7 +136856,7 @@
           "braum",
           "vi"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -136877,7 +136871,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "HxyYR_ppVHA",
@@ -137038,7 +137033,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -137054,8 +137049,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "YeMLA2GGyf0",
@@ -137543,7 +137537,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -138616,7 +138610,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -139476,7 +139470,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -139491,8 +139485,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "_THuv1vj1g0",
@@ -140274,7 +140267,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -140289,7 +140282,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "OeeXXDgIC0w",
@@ -140444,7 +140438,7 @@
           "vi",
           "braum"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -140459,7 +140453,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "iUqQb3hEgH4",
@@ -140500,7 +140495,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -140674,7 +140669,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -140689,7 +140684,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "mgp6UxDCYkM",
@@ -140796,7 +140792,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -141662,7 +141658,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -141893,7 +141889,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -141908,7 +141904,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "eMnnQC2TcFM",
@@ -142513,7 +142510,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -142528,8 +142525,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "sW0qPxKvsws",
@@ -142906,7 +142902,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -142921,8 +142917,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "u5_ryHQZVGQ",
@@ -143130,7 +143125,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -143145,8 +143140,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "wjw2QGeEyg8",
@@ -144479,7 +144473,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -145048,7 +145042,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -145219,7 +145213,7 @@
           "darius",
           "ahri"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -145233,7 +145227,7 @@
           "yasuo",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -145683,7 +145677,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": "juggernaut"
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -146386,7 +146380,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": "freestyle"
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -146415,7 +146409,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "0vgC7ybi9EE",
@@ -147588,7 +147583,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -147602,7 +147597,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -147618,8 +147613,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "NI9GL-fJl3M",
@@ -147757,7 +147751,7 @@
           "darius",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -147771,7 +147765,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -147786,8 +147780,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "Xhr81RAbtMg",
@@ -147984,7 +147977,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -147998,7 +147991,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -148781,7 +148774,7 @@
           "braum",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -148796,8 +148789,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "TMZHWywqSEk",
@@ -148994,7 +148986,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -149008,7 +149000,7 @@
           "braum",
           "jinx"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -149905,7 +149897,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -149961,7 +149953,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -149976,8 +149968,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "6Sm-TwrNjHk",
@@ -150340,7 +150331,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -150354,7 +150345,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -150410,7 +150401,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -150509,7 +150500,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -150523,7 +150514,7 @@
           "warwick",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -150538,8 +150529,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "8yi7FOOGW5M",
@@ -150805,7 +150795,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -152080,7 +152070,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -152261,7 +152251,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -152768,7 +152758,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -152783,8 +152773,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "QNAQyGS0RDc",
@@ -153270,7 +153259,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -154058,7 +154047,7 @@
           "warwick",
           "vi"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -154073,8 +154062,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "8jTSeJkzVr4",
@@ -154509,7 +154497,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -154524,7 +154512,8 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "5CPfY5QE3jI",
@@ -154833,7 +154822,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -154862,8 +154851,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "FEaipe03IMA",
@@ -155396,7 +155384,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -155410,7 +155398,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -155534,7 +155522,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "4LJNYWWMkkk",
@@ -156134,7 +156123,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -156286,7 +156275,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -156300,7 +156289,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -156453,7 +156442,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -156482,7 +156471,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "WPcyHWiAkss",
@@ -156678,7 +156667,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": "double-down"
+        "fuse": "juggernaut"
       },
       {
         "side": "right",
@@ -156692,7 +156681,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": "juggernaut"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -156706,7 +156695,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "5jEzXhRvotA",
@@ -156845,7 +156835,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -156859,7 +156849,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -158307,7 +158297,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": "2x-assist"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -158920,7 +158910,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "freestyle"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -158961,7 +158951,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       },
       {
         "side": "right",
@@ -158975,7 +158965,7 @@
           "darius",
           "ahri"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -159017,7 +159007,7 @@
           "ahri",
           "jinx"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -159031,7 +159021,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -159185,7 +159175,7 @@
           "blitzcrank",
           "ahri"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -159199,7 +159189,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": "double-down"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -159214,8 +159204,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "j7wHqxSHArk",
@@ -159633,7 +159622,7 @@
           "illaoi",
           "yasuo"
         ],
-        "fuse": "2x-assist"
+        "fuse": null
       },
       {
         "side": "right",
@@ -159647,7 +159636,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": "freestyle"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -159661,8 +159650,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "BU4gA-VkeHI",
@@ -159745,7 +159733,7 @@
           "ekko",
           "jinx"
         ],
-        "fuse": "double-down"
+        "fuse": null
       },
       {
         "side": "right",
@@ -159759,7 +159747,7 @@
           "braum",
           "jinx"
         ],
-        "fuse": "juggernaut"
+        "fuse": null
       }
     ],
     "allCharacters": [
@@ -159773,8 +159761,7 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null,
-    "fusesUnordered": true
+    "rawUnparsed": null
   },
   {
     "id": "QGM3HlZhAL8",
