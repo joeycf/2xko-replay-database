@@ -1,14 +1,14 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-03T09:34:45.093Z._
+_Generated 2026-07-03T07:52:16.078Z._
 
 ## Summary
-- Total videos: **2823**
-- High confidence: **2808**  ·  Low confidence: **15**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **93.4%** · patch: **0.0%** · fuse: **0.0%**
+- Total videos: **2809**
+- High confidence: **2800**  ·  Low confidence: **9**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **93.4%** · patch: **0.0%** · fuse: **92.1%**
 
-## Low-confidence records (15)
+## Low-confidence records (9)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |

@@ -17,6 +17,7 @@ import type {
   Champion,
   ChannelKey,
   Fuse,
+  FuseDetection,
   MatchType,
   ParseConfidence,
   Player,
@@ -67,6 +68,11 @@ const players = await readJson<Record<string, Player>>(join(DATA, "players.json"
 const fuses = await readJson<Record<string, Fuse>>(join(DATA, "fuses.json"));
 const boundaries = await readJson<SeasonBoundary[]>(join(DATA, "seasonBoundaries.json"));
 const overrides = await readJson<Record<string, Partial<VideoRecord>>>(join(DATA, "overrides.json"));
+// CV fuse detections live in their own committed artifact (scripts/fuses.ts,
+// local-only) so they survive the daily regeneration of videos.json.
+const fusesDetected: Record<string, FuseDetection> = await readJson<Record<string, FuseDetection>>(
+  join(DATA, "fuses-detected.json"),
+).catch(() => ({}));
 
 const rawRecords: RawVideoRecord[] = [];
 for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
@@ -387,6 +393,8 @@ function buildStats(records: VideoRecord[]): Stats {
     pairingUsage: {},
     bySeasonUsage: {},
     totals: { videos: records.length, bySeason: {} },
+    fuseUsage: {},
+    fuseBySeason: {},
     playerCharacters: {},
     playerPairings: {},
     matchupMatrix: {},
@@ -399,6 +407,11 @@ function buildStats(records: VideoRecord[]): Stats {
     (stats.bySeasonUsage[sk] ??= {});
     for (const c of v.allCharacters) inc(stats.bySeasonUsage[sk], c);
     for (const t of v.teams) {
+      if (t.fuse) {
+        inc(stats.fuseUsage, t.fuse);
+        (stats.fuseBySeason[sk] ??= {});
+        inc(stats.fuseBySeason[sk], t.fuse);
+      }
       const pairKey = t.characters.length === 2 ? [...t.characters].sort().join("|") : null;
       if (pairKey) inc(stats.pairingUsage, pairKey); // per team occurrence
       for (const p of t.players) {
@@ -495,9 +508,24 @@ const records: VideoRecord[] = baseRecords.map((rec) => {
     ...t,
     players: t.players.map((p) => ({ id: p.id, displayName: players[p.id]?.displayName ?? p.displayName })),
   }));
-  const normalized: VideoRecord = { ...rec, teams };
+  let merged: VideoRecord = { ...rec, teams };
+  // fuse merge: only confident detections set teams[].fuse ("low"/"none" stay
+  // null); ok-unordered pairs are flagged — filters/stats are order-agnostic,
+  // the modal shows the pair unattributed.
+  const det = fusesDetected[rec.id];
+  if (det && (det.status === "ok" || det.status === "ok-unordered") && merged.teams.length === 2) {
+    merged = {
+      ...merged,
+      teams: [
+        { ...merged.teams[0], fuse: det.left },
+        { ...merged.teams[1], fuse: det.right },
+      ],
+      ...(det.status === "ok-unordered" ? { fusesUnordered: true } : {}),
+    };
+  }
+  // overrides.json last — a manual fuse override beats detection
   const ov = overrides[rec.id];
-  return ov ? { ...normalized, ...ov } : normalized;
+  return ov ? { ...merged, ...ov } : merged;
 });
 
 const total = records.length;
@@ -513,6 +541,8 @@ const statsOut: Stats = {
   pairingUsage: sort1(stats.pairingUsage),
   bySeasonUsage: sort2(stats.bySeasonUsage),
   totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason) },
+  fuseUsage: sort1(stats.fuseUsage),
+  fuseBySeason: sort2(stats.fuseBySeason),
   playerCharacters: sort2(stats.playerCharacters!),
   playerPairings: sort2(stats.playerPairings!),
   matchupMatrix: sort2(stats.matchupMatrix!),

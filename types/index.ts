@@ -78,6 +78,19 @@ export interface VideoRecord {
   tags: string[];
   parseConfidence: ParseConfidence;
   rawUnparsed: string | null;
+  /** CV-detected fuses are confident as a pair but side attribution is ambiguous */
+  fusesUnordered?: boolean;
+}
+
+/** One video's CV fuse detection (data/fuses-detected.json, scripts/fuses.ts). */
+export interface FuseDetection {
+  /** teams[0]'s fuse IN TITLE ORDER (screen order only when status is ok-unordered) */
+  left: string | null;
+  right: string | null;
+  score: { left: number; right: number };
+  status: "ok" | "ok-unordered" | "low" | "none";
+  era: string;
+  detectedAt: string;
 }
 
 /** A raw video record as dumped by scripts/fetch.ts. Written to raw/<channel>.json. */
@@ -102,6 +115,10 @@ export interface Stats {
   bySeasonUsage: Record<string, Record<string, number>>;
   /** total video counts, overall and per era (same keys as bySeasonUsage) */
   totals: { videos: number; bySeason: Record<string, number> };
+  /** fuseId -> team occurrences (from CV-detected + override fuses) */
+  fuseUsage: Record<string, number>;
+  /** era -> fuseId -> team occurrences */
+  fuseBySeason: Record<string, Record<string, number>>;
   /** optional: playerId -> championId -> count */
   playerCharacters?: Record<string, Record<string, number>>;
   /** optional: playerId -> "a|b" (champion ids sorted) -> team occurrences */

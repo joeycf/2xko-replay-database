@@ -1,1 +1,198 @@
-{}
+{
+  "UMFIqq78mRk": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "lightwhisp",
+            "displayName": "LightWhisp"
+          }
+        ],
+        "characters": [
+          "braum",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "yata",
+            "displayName": "Yata"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "yasuo"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "allCharacters": [
+      "braum",
+      "darius",
+      "ekko",
+      "yasuo"
+    ],
+    "parseConfidence": "high"
+  },
+  "k-oWt-DQpcQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "souldemonxl",
+            "displayName": "SoulDemonXL"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "blitzcrank"
+        ],
+        "fuse": "juggernaut"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "windzero7",
+            "displayName": "Windzero7"
+          }
+        ],
+        "characters": [
+          "darius",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "allCharacters": [
+      "thresh",
+      "blitzcrank",
+      "darius"
+    ],
+    "parseConfidence": "high"
+  },
+  "EyL1PclHXuA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mrchupy",
+            "displayName": "MrChupy"
+          }
+        ],
+        "characters": [
+          "akali",
+          "darius"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "galladiated",
+            "displayName": "Galladiated"
+          }
+        ],
+        "characters": [
+          "akali",
+          "darius"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "allCharacters": [
+      "akali",
+      "darius"
+    ],
+    "parseConfidence": "high"
+  },
+  "YCOUZ-ukl1A": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "sonicfox",
+            "displayName": "SonicFox"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "juggernaut"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "k7showoff",
+            "displayName": "K7 Showoff"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "allCharacters": [
+      "ahri",
+      "ekko",
+      "yasuo"
+    ],
+    "parseConfidence": "high"
+  },
+  "OdQuKYoHWqc": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "goomboo",
+            "displayName": "Goomboo"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "blitzcrank"
+        ],
+        "fuse": "juggernaut"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "habaduba",
+            "displayName": "Habaduba"
+          }
+        ],
+        "characters": [
+          "akali",
+          "blitzcrank"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "allCharacters": [
+      "ahri",
+      "blitzcrank",
+      "akali"
+    ],
+    "allPlayers": [
+      "goomboo",
+      "habaduba"
+    ],
+    "matchType": "ranked",
+    "parseConfidence": "high",
+    "rawUnparsed": null
+  }
+}
