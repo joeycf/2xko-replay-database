@@ -38,6 +38,14 @@ jobs:
           git config user.name "2xko-data-refresh[bot]"
           git config user.email "data-refresh@users.noreply.github.com"
           git add data/videos.json data/stats.json data/players.json data/report.md
+          # report.md's "_Generated <timestamp>_" line changes every run; a diff
+          # that is ONLY that line is not a data change — drop it so a no-change
+          # day produces no commit (and no deploy). report.md still ships
+          # whenever anything real changes alongside it.
+          REAL=$(git diff --cached -- data/report.md | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | { grep -vc '^[+-]_Generated ' || true; })
+          if [ "$REAL" -eq 0 ]; then
+            git restore --staged --worktree data/report.md
+          fi
           if git diff --cached --quiet; then
             echo "No data changes — skipping commit."
             exit 0
