@@ -109,9 +109,22 @@ useSiteMeta({
     </div>
 
     <!-- Panel 3: meta over time -->
-    <div class="px-4 pb-6 md:px-7">
+    <div class="px-4 pb-5 md:px-7">
       <StatPanel title="Meta over time" :hint="`usage rank · ${eraLabel(eras[0] ?? '0')} → ${eraLabel(eras[eras.length - 1] ?? '2')}`">
         <MetaTimeline :top-n="5" />
+      </StatPanel>
+    </div>
+
+    <!-- Panel 4: fuses (NEW vs design mockups — Phase 7 CV detections) -->
+    <div class="grid grid-cols-1 gap-4 px-4 pb-6 md:grid-cols-2 md:px-7">
+      <StatPanel
+        title="Fuse usage"
+        :hint="`team picks · detected in ${totals.withFuse.toLocaleString('en-US')} of ${totals.videos.toLocaleString('en-US')} replays`"
+      >
+        <FuseUsageBars />
+      </StatPanel>
+      <StatPanel title="Fuse meta by era" hint="share of team picks per era">
+        <FuseEraShift />
       </StatPanel>
     </div>
   </div>

@@ -5,7 +5,13 @@ import type { VideoSort } from '~/composables/useFilters'
 
 const { list: champions } = useChampions()
 const { ranked, featured } = useFeaturedPlayers()
+const { detected: fuseChips, coverage } = useFuses()
 const f = useFilters()
+
+const fuseChipStyle = (id: string, accent: string | null) =>
+  f.selectedFuses.value.includes(id)
+    ? { borderColor: accent ?? '#F4F5F8', background: `${accent ?? '#F4F5F8'}26`, color: '#F4F5F8' }
+    : {}
 
 const typeaheadOpen = ref(false)
 const sameSideUsable = computed(() => f.selectedChampions.value.length >= 2)
@@ -140,6 +146,39 @@ const labelClass =
           <option value="views">Most viewed</option>
           <option value="longest">Longest</option>
         </select>
+      </div>
+    </div>
+
+    <!-- fuse facet — NEW vs the design mockups (Phase 4 omitted it): anatomy
+         ported from the Season/Type chip groups; accents from the HUD pill art.
+         Chips exist only for fuses with detections, OR-matched on either team. -->
+    <div class="mt-4">
+      <div class="mb-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span :class="labelClass">Fuse · either team</span>
+        <span data-testid="fuse-coverage" class="font-mono text-[10px] text-ink-muted">
+          fuse identified for {{ coverage.withFuse.toLocaleString('en-US') }} of
+          {{ coverage.total.toLocaleString('en-US') }} replays
+        </span>
+      </div>
+      <div class="flex flex-wrap items-center gap-[7px]">
+        <button
+          v-for="fu in fuseChips"
+          :key="fu.id"
+          type="button"
+          class="inline-flex h-9 cursor-pointer items-center gap-2 border px-[13px] font-sans text-[12px] font-semibold transition-colors cut-bl-7"
+          :class="
+            f.selectedFuses.value.includes(fu.id)
+              ? ''
+              : 'border-white/[0.12] bg-[#141722] text-ink-secondary hover:text-ink-primary'
+          "
+          :style="fuseChipStyle(fu.id, fu.accent)"
+          :aria-pressed="f.selectedFuses.value.includes(fu.id)"
+          :data-testid="`fuse-chip-${fu.id}`"
+          @click="f.toggleFuse(fu.id)"
+        >
+          <span class="h-2 w-2 flex-none rotate-45" :style="{ background: fu.accent ?? '#8B93A8' }" />
+          {{ fu.name }}
+        </button>
       </div>
     </div>
 

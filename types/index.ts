@@ -31,6 +31,8 @@ export interface Fuse {
   name: string;
   aliases: string[];
   active: boolean;
+  /** UI accent, sampled from the in-game HUD pill (null = never rendered) */
+  accent: string | null;
 }
 
 /** An editable season window. From data/seasonBoundaries.json. */
@@ -114,7 +116,7 @@ export interface Stats {
   /** era ("beta" for pre-Season-0, else the season number as string) -> championId -> count */
   bySeasonUsage: Record<string, Record<string, number>>;
   /** total video counts, overall and per era (same keys as bySeasonUsage) */
-  totals: { videos: number; bySeason: Record<string, number> };
+  totals: { videos: number; bySeason: Record<string, number>; withFuse: number };
   /** fuseId -> team occurrences (from CV-detected + override fuses) */
   fuseUsage: Record<string, number>;
   /** era -> fuseId -> team occurrences */

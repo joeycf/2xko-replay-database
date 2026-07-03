@@ -5,8 +5,14 @@ const open = useState('filter-drawer-open', () => false)
 
 const { list: champions } = useChampions()
 const { ranked, featured } = useFeaturedPlayers()
+const { detected: fuseChips, coverage } = useFuses()
 const f = useFilters()
 const { pending } = useVideos()
+
+const fuseChipStyle = (id: string, accent: string | null) =>
+  f.selectedFuses.value.includes(id)
+    ? { borderColor: accent ?? '#F4F5F8', background: `${accent ?? '#F4F5F8'}26`, color: '#F4F5F8' }
+    : {}
 
 const showAllPlayers = ref(false)
 const playerQuery = ref('')
@@ -185,6 +191,32 @@ onBeforeUnmount(() => {
                   </button>
                 </div>
               </div>
+            </div>
+
+            <!-- fuse facet — NEW vs design (see FilterBar): detected fuses only -->
+            <div :class="labelClass" class="mb-2.5 mt-5">Fuse · either team</div>
+            <div class="grid grid-cols-2 gap-2">
+              <button
+                v-for="fu in fuseChips"
+                :key="fu.id"
+                type="button"
+                class="inline-flex h-10 cursor-pointer items-center justify-center gap-2 border px-2 font-sans text-[12px] font-semibold"
+                :class="
+                  f.selectedFuses.value.includes(fu.id)
+                    ? ''
+                    : 'border-white/[0.12] bg-[#141722] text-ink-secondary'
+                "
+                :style="fuseChipStyle(fu.id, fu.accent)"
+                :aria-pressed="f.selectedFuses.value.includes(fu.id)"
+                @click="f.toggleFuse(fu.id)"
+              >
+                <span class="h-2 w-2 flex-none rotate-45" :style="{ background: fu.accent ?? '#8B93A8' }" />
+                {{ fu.name }}
+              </button>
+            </div>
+            <div class="mt-2 font-mono text-[10px] text-ink-muted">
+              fuse identified for {{ coverage.withFuse.toLocaleString('en-US') }} of
+              {{ coverage.total.toLocaleString('en-US') }} replays
             </div>
 
             <div :class="labelClass" class="mb-2.5 mt-5">Player · featured</div>

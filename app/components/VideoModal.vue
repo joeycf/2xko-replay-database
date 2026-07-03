@@ -64,6 +64,12 @@ const teamA = computed<Team | undefined>(() => video.value?.teams[0])
 const teamB = computed<Team | undefined>(() => video.value?.teams[1])
 const hasTeams = computed(() => (video.value?.teams.length ?? 0) === 2)
 
+// CV-detected fuses: per-side when ordered; `fusesUnordered` records show the
+// pair without side attribution (binding them left/right could be wrong)
+const fuseA = computed(() => teamA.value?.fuse ?? null)
+const fuseB = computed(() => teamB.value?.fuse ?? null)
+const fusesUnordered = computed(() => !!video.value?.fusesUnordered)
+
 const champNames = (t?: Team) =>
   t?.characters.map((c) => champById(c)?.name ?? c).join(' + ') ?? ''
 const playerLabel = (t?: Team) => t?.players.map((p) => p.displayName).join(' + ') ?? ''
@@ -185,6 +191,9 @@ const youtubeUrl = computed(() =>
                           playerLabel(teamA)
                         }}</span>
                       </div>
+                      <div v-if="fuseA && !fusesUnordered" data-testid="team-fuse-a" class="mt-1">
+                        <FuseTag :fuse-id="fuseA" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -200,6 +209,9 @@ const youtubeUrl = computed(() =>
                           playerLabel(teamB)
                         }}</span>
                         <VerifiedMark v-if="hasVerified(teamB)" :size="10" />
+                      </div>
+                      <div v-if="fuseB && !fusesUnordered" data-testid="team-fuse-b" class="mt-1">
+                        <FuseTag :fuse-id="fuseB" />
                       </div>
                     </div>
                     <div class="flex">
@@ -243,6 +255,9 @@ const youtubeUrl = computed(() =>
                         playerLabel(teamA)
                       }}</span>
                     </div>
+                    <div v-if="fuseA && !fusesUnordered" class="mt-0.5">
+                      <FuseTag :fuse-id="fuseA" size="sm" />
+                    </div>
                   </div>
                 </div>
                 <div class="my-2 text-center font-display text-[13px] font-bold text-accent">VS</div>
@@ -269,8 +284,27 @@ const youtubeUrl = computed(() =>
                         playerLabel(teamB)
                       }}</span>
                     </div>
+                    <div v-if="fuseB && !fusesUnordered" class="mt-0.5">
+                      <FuseTag :fuse-id="fuseB" size="sm" />
+                    </div>
                   </div>
                 </div>
+              </div>
+
+              <!-- ok-unordered detections: the pair is confident, sides aren't —
+                   shown match-level so we never render a wrong left/right claim -->
+              <div
+                v-if="hasTeams && fusesUnordered && (fuseA || fuseB)"
+                data-testid="fuses-unordered"
+                title="Fuses detected for this match — side attribution unconfirmed"
+                class="mt-3.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 md:justify-center"
+              >
+                <span class="font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted"
+                  >Fuses</span
+                >
+                <FuseTag v-if="fuseA" :fuse-id="fuseA" />
+                <span v-if="fuseA && fuseB" class="font-mono text-[11px] text-ink-muted">·</span>
+                <FuseTag v-if="fuseB" :fuse-id="fuseB" />
               </div>
 
               <!-- unparseable records: raw title -->

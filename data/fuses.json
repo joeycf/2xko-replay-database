@@ -1,10 +1,10 @@
 {
-  "double-down": { "id": "double-down", "name": "Double Down", "aliases": ["double down"], "active": true },
-  "freestyle": { "id": "freestyle", "name": "Freestyle", "aliases": ["freestyle"], "active": true },
-  "2x-assist": { "id": "2x-assist", "name": "2X Assist", "aliases": ["2x assist", "double assist"], "active": true },
-  "juggernaut": { "id": "juggernaut", "name": "Juggernaut", "aliases": ["juggernaut", "jug"], "active": true },
-  "sidekick": { "id": "sidekick", "name": "Sidekick", "aliases": ["sidekick"], "active": true },
-  "teamfight": { "id": "teamfight", "name": "Teamfight", "aliases": ["teamfight"], "active": true },
-  "fury": { "id": "fury", "name": "Fury", "aliases": ["fury"], "active": false },
-  "pulse": { "id": "pulse", "name": "Pulse", "aliases": ["pulse"], "active": false }
+  "double-down": { "id": "double-down", "name": "Double Down", "aliases": ["double down"], "active": true, "accent": "#9A6CF5" },
+  "freestyle": { "id": "freestyle", "name": "Freestyle", "aliases": ["freestyle"], "active": true, "accent": "#F2B63D" },
+  "2x-assist": { "id": "2x-assist", "name": "2X Assist", "aliases": ["2x assist", "double assist"], "active": true, "accent": "#38CFFF" },
+  "juggernaut": { "id": "juggernaut", "name": "Juggernaut", "aliases": ["juggernaut", "jug"], "active": true, "accent": "#FF5A4E" },
+  "sidekick": { "id": "sidekick", "name": "Sidekick", "aliases": ["sidekick"], "active": true, "accent": "#5BE18C" },
+  "teamfight": { "id": "teamfight", "name": "Teamfight", "aliases": ["teamfight"], "active": true, "accent": "#FF8C3B" },
+  "fury": { "id": "fury", "name": "Fury", "aliases": ["fury"], "active": false, "accent": null },
+  "pulse": { "id": "pulse", "name": "Pulse", "aliases": ["pulse"], "active": false, "accent": null }
 }

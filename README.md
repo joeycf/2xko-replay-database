@@ -51,10 +51,12 @@ reads it.
 | `npm run data:build` | fetch + parse |
 | `npm run data:champions` | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `champions.json` |
 | `npm run data:fuses` | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json` |
+| `npm run test:e2e` | Playwright e2e suite against the generated output (run `npm run generate` first) |
 | `npx tsx scripts/og.ts` | Regenerate the default OG card (`public/og-default.png`) |
 
 Verification: `npx tsc --noEmit` (pipeline) and `npx nuxt typecheck` (app)
-must both pass.
+must both pass, and `npm run test:e2e` must be green against a fresh
+`npm run generate`.
 
 ## Vercel
 
@@ -76,7 +78,9 @@ Deploys are triggered by pushes — including the daily data-refresh commit.
 `npm run data:build` with `YT_API_KEY` from repo **Actions secrets**, then
 commits `data/{videos,stats,players}.json` + `report.md` **only if changed**
 ("data: refresh YYYY-MM-DD — N videos"). The push triggers the Vercel deploy.
-Champion art is deliberately not part of the daily run.
+A run whose only diff is `report.md`'s `_Generated <timestamp>_` line counts
+as unchanged — no commit, no deploy — so a `report.md` diff in history always
+means real data changed. Champion art is deliberately not part of the daily run.
 
 ## Fuse detection (local CV pipeline)
 

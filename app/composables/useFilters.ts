@@ -14,6 +14,7 @@ export interface ActiveChip {
  * URL query scheme (all filter state lives in the route — shareable, back/forward safe):
  *   c=ahri,akali   side=1        p=sonicfox,inzem   ch=pro|high
  *   s=0|1|2|beta   mt=ranked|duo q=free+text        sort=oldest|views|longest
+ *   fuse=freestyle,juggernaut  (OR-match against either team's detected fuse)
  * `v=<videoId>` (the modal) is owned by useVideoModal and always preserved here.
  * Discrete toggles push (Back undoes a step); typing replaces, debounced.
  */
@@ -28,6 +29,7 @@ export function useFilters() {
   const { videos } = useVideos()
   const { byId: champById, list: champList } = useChampions()
   const { players: playerRegistry } = usePlayers()
+  const { fuseName } = useFuses()
 
   // ── state (derived from the URL) ──────────────────────────────────────────
   const selectedChampions = computed(() => csv(route.query.c))
@@ -46,6 +48,7 @@ export function useFilters() {
     const v = one(route.query.mt)
     return v === 'ranked' || v === 'duo' || v === 'tournament' ? v : null
   })
+  const selectedFuses = computed(() => csv(route.query.fuse))
   const search = computed(() => one(route.query.q) ?? '')
   const sort = computed<VideoSort>(() => {
     const v = one(route.query.sort)
@@ -77,6 +80,7 @@ export function useFilters() {
   const toggleSeason = (v: number | 'beta') =>
     write({ s: season.value === v ? null : String(v) })
   const toggleMatchType = (v: MatchType) => write({ mt: matchType.value === v ? null : v })
+  const toggleFuse = (id: string) => write({ fuse: toggled(selectedFuses.value, id).join(',') || null })
   const setSort = (v: VideoSort) => write({ sort: v === 'newest' ? null : v }, 'replace')
 
   let searchTimer: ReturnType<typeof setTimeout> | undefined
@@ -85,7 +89,7 @@ export function useFilters() {
     searchTimer = setTimeout(() => write({ q: v.trim() || null }, 'replace'), SEARCH_DEBOUNCE_MS)
   }
   const clearAll = () =>
-    write({ c: null, side: null, p: null, ch: null, s: null, mt: null, q: null, sort: null })
+    write({ c: null, side: null, p: null, ch: null, s: null, mt: null, fuse: null, q: null, sort: null })
 
   // ── active chips (design order: champions, same side, players, channel, season, type, query) ──
   const chips = computed<ActiveChip[]>(() => {
@@ -111,6 +115,8 @@ export function useFilters() {
       const v = matchType.value
       out.push({ key: `mt:${v}`, label: matchTypeLabel(v), remove: () => toggleMatchType(v) })
     }
+    for (const fu of selectedFuses.value)
+      out.push({ key: `fuse:${fu}`, label: fuseName(fu), remove: () => toggleFuse(fu) })
     if (search.value)
       out.push({ key: 'q', label: `“${search.value}”`, remove: () => write({ q: null }, 'replace') })
     return out
@@ -152,6 +158,10 @@ export function useFilters() {
         if (season.value === 'beta' ? v.season !== null : v.season !== season.value) return false
       }
       if (matchType.value && v.matchType !== matchType.value) return false
+      // fuse: OR-match against either team's detected fuse — undetected
+      // videos (teams[].fuse null) simply never match a fuse selection
+      if (selectedFuses.value.length && !v.teams.some((t) => t.fuse && selectedFuses.value.includes(t.fuse)))
+        return false
       if (tokens.length) {
         const hay = searchIndex.value.get(v.id) ?? ''
         if (!tokens.every((t) => hay.includes(t))) return false
@@ -180,14 +190,15 @@ export function useFilters() {
       channel.value,
       season.value,
       matchType.value,
+      selectedFuses.value,
       search.value,
       sort.value,
     ]),
   )
 
   return {
-    selectedChampions, sameSide, selectedPlayers, channel, season, matchType, search, sort,
-    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleMatchType,
+    selectedChampions, sameSide, selectedPlayers, channel, season, matchType, selectedFuses, search, sort,
+    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleMatchType, toggleFuse,
     setSort, setSearch, clearAll,
     chips, activeCount, filtered, filterKey,
   }

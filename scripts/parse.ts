@@ -392,7 +392,12 @@ function buildStats(records: VideoRecord[]): Stats {
     characterUsage: {},
     pairingUsage: {},
     bySeasonUsage: {},
-    totals: { videos: records.length, bySeason: {} },
+    totals: {
+      videos: records.length,
+      bySeason: {},
+      // videos with ≥1 detected/overridden team fuse — the UI's coverage line
+      withFuse: records.filter((v) => v.teams.some((t) => t.fuse)).length,
+    },
     fuseUsage: {},
     fuseBySeason: {},
     playerCharacters: {},
@@ -540,7 +545,7 @@ const statsOut: Stats = {
   characterUsage: sort1(stats.characterUsage),
   pairingUsage: sort1(stats.pairingUsage),
   bySeasonUsage: sort2(stats.bySeasonUsage),
-  totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason) },
+  totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason), withFuse: stats.totals.withFuse },
   fuseUsage: sort1(stats.fuseUsage),
   fuseBySeason: sort2(stats.fuseBySeason),
   playerCharacters: sort2(stats.playerCharacters!),

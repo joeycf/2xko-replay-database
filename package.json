@@ -14,7 +14,8 @@
     "data:parse": "tsx scripts/parse.ts",
     "data:build": "npm run data:fetch && npm run data:parse",
     "data:champions": "tsx scripts/champions.ts",
-    "data:fuses": "tsx scripts/fuses.ts"
+    "data:fuses": "tsx scripts/fuses.ts",
+    "test:e2e": "tsx scripts/e2e.ts"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
