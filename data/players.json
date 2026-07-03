@@ -7153,5 +7153,15 @@
     ],
     "region": null,
     "socials": {}
+  },
+  "faose": {
+    "id": "faose",
+    "displayName": "Faose",
+    "verified": false,
+    "aliases": [
+      "faose"
+    ],
+    "region": null,
+    "socials": {}
   }
 }
