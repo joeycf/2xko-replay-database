@@ -36,6 +36,11 @@ const MAX_SAT_FRAC = 0.75 // ceiling: full-screen effect flashes saturate nearly
 const NONE_SAT = 0.05 // no frame reaches this saturation → "none" (no HUD at all)
 const STRUCT_MAX = 30 // wide dHash (256-bit → /4 scale) structural sanity ceiling
 const ORIENT_MARGIN = 8 // min H1-vs-H2 gap for confident side orientation
+// full-crop color-flash backstop: a super/fire wash saturates far more of the
+// pill window (0.48–0.58 measured) than any real pill (≤0.23) while voting a
+// single class near-unanimously — skip those frames outright
+const FLASH_SAT = 0.45
+const FLASH_SHARE = 0.85
 
 // ── CLI ───────────────────────────────────────────────────────────────────────
 const argv = process.argv.slice(2)
@@ -293,6 +298,7 @@ async function readSide(frames: string[], side: 'left' | 'right', pills: PillTem
         if ((shares.get('__hbar') ?? 0) > (ranked[0]?.[1] ?? 0)) return null // health-bar dominated
         const candidates = ranked.filter(([, share]) => share >= CAND_SHARE)
         if (candidates.length === 0) return null
+        if (satFrac > FLASH_SAT && (ranked[0]?.[1] ?? 0) > FLASH_SHARE) return null // color-flash wash
         const wh = await wideHash(crop)
         const structFor = (fuse: string) => {
           let st = 64
@@ -321,8 +327,34 @@ async function readSide(frames: string[], side: 'left' | 'right', pills: PillTem
   // their template), margin capped so vacuous single-candidate 64s can't
   // outrank honest multi-candidate reads from cleaner frames
   const quality = (v: (typeof pool)[number]) => v.struct * 2 + v.dist * 0.5 - Math.min(v.margin, 30)
-  pool.sort((a, b) => quality(a) - quality(b))
-  const w = pool[0]!
+  // majority vote across FRAMES, not best single crop: a 1–2 frame red
+  // super-flash reads as juggernaut with near-perfect confidence, so the
+  // best-quality crop must not decide alone — the honest frames outnumber it.
+  // vote among STRONG verdicts when ≥2 frames have them: flash frames are
+  // strong but few (outvoted by honest strong frames), persistent dim washes
+  // (e.g. Blitzcrank lightning tinting the pill cyan for half the clip) are
+  // many but weak (excluded from the strong electorate entirely)
+  const byFrame = new Map<string, Verdict>()
+  for (const v of pool) {
+    const cur = byFrame.get(v.frame)
+    if (!cur || quality(v) < quality(cur)) byFrame.set(v.frame, v)
+  }
+  const strong = [...byFrame.values()].filter((v) => v.dist <= 25 && v.struct <= 15)
+  const voters = strong.length >= 2 ? strong : [...byFrame.values()]
+  const tally = new Map<string, { frames: number; qSum: number; best: Verdict }>()
+  for (const v of voters) {
+    const t = tally.get(v.fuse)
+    if (!t) tally.set(v.fuse, { frames: 1, qSum: quality(v), best: v })
+    else {
+      t.frames++
+      t.qSum += quality(v)
+      if (quality(v) < quality(t.best)) t.best = v
+    }
+  }
+  const winner = [...tally.values()].sort(
+    (a, b) => b.frames - a.frames || a.qSum / a.frames - b.qSum / b.frames,
+  )[0]!
+  const w = winner.best
   return { fuse: w.fuse, dist: w.dist, margin: w.margin, struct: w.struct, satFrac: w.satFrac, frame: w.frame, crop: w.crop }
 }
 
@@ -402,8 +434,12 @@ async function detect(
   const frames = await ensureFrames(id)
   if (!frames || frames.length === 0) return null
   const [L, R] = await Promise.all([readSide(frames, 'left', pills), readSide(frames, 'right', pills)])
+  // rare-class evidence floor: juggernaut is ~1% of real picks but the sole
+  // warm hue class, so red-lit stages funnel weak false votes into it — a
+  // weak juggernaut read is far more likely wash than pill (audited 2026-07-03)
   const conf = (s: SideRead) =>
-    s.fuse !== null && s.dist <= ACCEPT_DIST && s.margin >= ACCEPT_MARGIN && s.struct <= STRUCT_MAX
+    s.fuse !== null && s.dist <= ACCEPT_DIST && s.margin >= ACCEPT_MARGIN && s.struct <= STRUCT_MAX &&
+    (s.fuse !== 'juggernaut' || s.dist <= 30)
 
   let det: Detection = {
     left: L.fuse, right: R.fuse,
