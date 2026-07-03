@@ -192,7 +192,7 @@ async function loadPillTemplates(): Promise<PillTemplate[]> {
   const dir = join(ROOT, 'assets/fuse-templates')
   const out: PillTemplate[] = []
   for (const f of readdirSync(dir).filter((f) => f.endsWith('.png'))) {
-    const fuse = f.replace('.png', '').replace(/-restream$/, '')
+    const fuse = f.replace('.png', '').replace(/-(restream|broadcast)$/, '')
     const p = join(dir, f)
     out.push({ fuse, hue: await templateHue(p), wide: await wideHash(p), name: f })
   }

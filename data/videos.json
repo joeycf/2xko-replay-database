@@ -120742,7 +120742,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": "double-down-broadcast"
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -127369,7 +127369,7 @@
           "caitlyn",
           "jinx"
         ],
-        "fuse": "double-down-broadcast"
+        "fuse": "double-down"
       },
       {
         "side": "right",

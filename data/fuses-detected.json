@@ -22199,10 +22199,10 @@
  },
  "nk27qEJffEE": {
   "left": "freestyle",
-  "right": "double-down-broadcast",
+  "right": "double-down",
   "score": {
    "left": 16,
-   "right": 9
+   "right": 6
   },
   "status": "ok-unordered",
   "era": "s1",
@@ -23342,10 +23342,10 @@
   "detectedAt": "2026-07-03"
  },
  "qaBK0rCKbZE": {
-  "left": "double-down-broadcast",
+  "left": "double-down",
   "right": "2x-assist",
   "score": {
-   "left": 41,
+   "left": 26,
    "right": 5
   },
   "status": "ok-unordered",
@@ -28864,10 +28864,10 @@
   "detectedAt": "2026-07-03"
  },
  "UOoFjSWm0iI": {
-  "left": "double-down-broadcast",
+  "left": "double-down",
   "right": "freestyle",
   "score": {
-   "left": 10,
+   "left": 0,
    "right": 42
   },
   "status": "low",

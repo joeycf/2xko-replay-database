@@ -186,8 +186,7 @@
   },
   "fuseUsage": {
     "2x-assist": 1081,
-    "double-down": 901,
-    "double-down-broadcast": 2,
+    "double-down": 903,
     "freestyle": 3131,
     "juggernaut": 61
   },
@@ -200,8 +199,7 @@
     },
     "1": {
       "2x-assist": 221,
-      "double-down": 203,
-      "double-down-broadcast": 2,
+      "double-down": 205,
       "freestyle": 1784,
       "juggernaut": 22
     },
