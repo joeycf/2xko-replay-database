@@ -256,6 +256,64 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(line!.includes(stats.totals.videos.toLocaleString('en-US')), `line "${line}"`)
   })
 
+  // (h) SEO: canonical/OG on the deployed domain, valid JSON-LD (no
+  // VideoObject anywhere), sitemap/robots hygiene, crawlable internal anchors
+  const envFile = existsSync(join(ROOT, '.env')) ? readFileSync(join(ROOT, '.env'), 'utf8') : ''
+  const site = (
+    process.env.NUXT_PUBLIC_SITE_URL ??
+    envFile.match(/^NUXT_PUBLIC_SITE_URL=(.+)$/m)?.[1] ??
+    'https://2xko-replay-database.vercel.app'
+  ).trim().replace(/\/$/, '')
+  const html = (p: string) => readFileSync(join(OUT, p), 'utf8')
+  const ld = (doc: string): Record<string, unknown>[] =>
+    [...doc.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) =>
+      JSON.parse(m[1]!),
+    )
+  const champId = champIds[0]!
+  const playerId = Object.keys(stats.playerCharacters ?? {})[0]!
+  await test(`SEO: canonicals/OG on ${site}, JSON-LD valid, sitemap/robots, real anchors`, () => {
+    const home = html('index.html')
+    expect(home.includes(`<link rel="canonical" href="${site}/">`), 'home canonical')
+    expect(home.includes(`content="${site}/og-default.png"`), 'home og:image absolute')
+    const homeLd = ld(home)
+    const websiteNode = homeLd.find((n) => n['@type'] === 'WebSite') as Record<string, any> | undefined
+    expect(!!homeLd.find((n) => n['@type'] === 'Organization'), 'Organization node')
+    expect(
+      websiteNode?.potentialAction?.target?.urlTemplate === `${site}/?q={search_term_string}`,
+      'SearchAction target',
+    )
+    const champ = html(`champions/${champId}/index.html`)
+    expect(champ.includes(`<link rel="canonical" href="${site}/champions/${champId}">`), 'champ canonical')
+    expect(champ.includes('/img/champions/'), 'champ og:image uses splash art')
+    const champLd = ld(champ)
+    const crumbs = champLd.find((n) => n['@type'] === 'BreadcrumbList') as Record<string, any> | undefined
+    expect(crumbs?.itemListElement?.length === 3, 'champ breadcrumb depth')
+    expect(crumbs?.itemListElement?.[2]?.item === `${site}/champions/${champId}`, 'champ breadcrumb leaf')
+    expect(!!champLd.find((n) => n['@type'] === 'CollectionPage'), 'champ CollectionPage')
+    expect(champ.includes('<a href="/players/'), 'champ → player entity anchors (pilots)')
+    expect(/<a[^>]+href="\/\?c=/.test(champ), 'champ pairing deep-links are real anchors')
+    const player = html(`players/${playerId}/index.html`)
+    const pLd = ld(player)
+    const pCrumbs = pLd.find((n) => n['@type'] === 'BreadcrumbList') as Record<string, any> | undefined
+    expect(pCrumbs?.itemListElement?.[1]?.item === `${site}/players`, 'player breadcrumbs')
+    expect(player.includes('<a href="/champions/'), 'player → champion entity anchor')
+    for (const [route, doc] of [['/', home], [`/champions/${champId}`, champ], [`/players/${playerId}`, player], ['/stats', html('stats/index.html')]] as const) {
+      expect(!doc.includes('VideoObject'), `unexpected VideoObject on ${route}`)
+    }
+    const sm = html('sitemap.xml')
+    expect(
+      sm.includes(`<loc>${site}/</loc>`) &&
+        sm.includes(`<loc>${site}/champions/${champId}</loc>`) &&
+        sm.includes(`<loc>${site}/players/${playerId}</loc>`) &&
+        sm.includes(`<loc>${site}/stats</loc>`),
+      'sitemap host + core/entity routes',
+    )
+    expect(!sm.includes('/health'), 'sitemap excludes /health')
+    const robots = html('robots.txt')
+    expect(robots.includes('Disallow: /health') && robots.includes(`Sitemap: ${site}/sitemap.xml`), 'robots.txt')
+    expect(html('health/index.html').includes('name="robots" content="noindex"'), '/health noindex')
+  })
+
   await ctx.close()
 }
 

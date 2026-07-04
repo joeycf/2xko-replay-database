@@ -12,7 +12,12 @@ const cards = computed(() => [
   { label: 'Verified players', value: `${verifiedCount.value} / ${players.value.length}` },
 ])
 
-useHead({ title: 'Health — 2XKO Replay Database' })
+useHead({
+  title: 'Health — 2XKO Replay Database',
+  // internal scaffold page: kept out of the sitemap and robots-disallowed,
+  // noindex closes the loop for crawlers that reach it via a stray link
+  meta: [{ name: 'robots', content: 'noindex' }],
+})
 </script>
 
 <template>

@@ -66,6 +66,27 @@ useHead({
       ]
     : [],
 })
+
+const site = useRuntimeConfig().public.siteUrl.replace(/\/$/, '')
+useJsonLd([
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Champions', item: `${site}/champions` },
+      { '@type': 'ListItem', position: 3, name: champ.name, item: `${site}/champions/${champ.id}` },
+    ],
+  },
+  // CollectionPage over Dataset: the page is a curated replay collection with
+  // prerendered stats, not a downloadable data distribution
+  {
+    '@type': 'CollectionPage',
+    name: `${champ.name} — 2XKO replay collection`,
+    url: `${site}/champions/${champ.id}`,
+    description: `${usage.value.toLocaleString('en-US')} competitive 2XKO replay appearances featuring ${champ.name} (all-time usage rank #${usage.rank}), with top teammates and pilots.`,
+    isPartOf: { '@type': 'WebSite', name: '2XKO Replay Database', url: `${site}/` },
+  },
+])
 </script>
 
 <template>
@@ -135,10 +156,12 @@ useHead({
           Top pilots
         </h2>
         <div data-testid="top-pilots" class="flex flex-col gap-[9px]">
+          <!-- entity link (player profile) rather than a filtered-Browse query
+               URL: profiles are prerendered pages, so link equity lands there -->
           <NuxtLink
             v-for="p in pilots"
             :key="p.id"
-            :to="{ path: '/', query: { p: p.id, c: champ.id } }"
+            :to="`/players/${p.id}`"
             class="flex items-center gap-2 hover:text-accent-hover"
           >
             <VerifiedMark v-if="p.player!.verified" :size="10" />

@@ -28,10 +28,12 @@ const name = (id: string) => byId(id)?.name ?? id
 const accent = (id: string) => byId(id)?.accent ?? '#3a3f4e'
 const mateOf = (p: PairRow) => (p.a === props.soloFor ? p.b : p.a)
 
-const goPair = (p: PairRow) => {
+// real <a href> deep-links (NuxtLink), not JS-only click handlers — crawlers
+// follow these into the filtered Browse views
+const pairTo = (p: PairRow) => {
   const query: Record<string, string> = { c: `${p.a},${p.b}`, side: '1' }
   if (props.withPlayer) query.p = props.withPlayer
-  return navigateTo({ path: '/', query })
+  return { path: '/', query }
 }
 
 const root = ref<HTMLElement | null>(null)
@@ -41,13 +43,12 @@ useReveal(root, { prepare: prepareBars, reveal: animateBarsIn })
 <template>
   <!-- boxed: player-page signature pairings -->
   <div v-if="boxed" ref="root" data-testid="pairing-bars" class="flex flex-col gap-[11px]">
-    <button
+    <NuxtLink
       v-for="p in rows"
       :key="p.key"
-      type="button"
+      :to="pairTo(p)"
       :data-pair="p.key"
       class="flex w-full cursor-pointer items-center gap-2.5 border border-white/[0.08] bg-[#08090c] px-[11px] py-[9px] text-left transition-colors hover:border-accent/40"
-      @click="goPair(p)"
     >
       <div class="flex">
         <ChampBadge :champion-id="p.a" :size="28" :notch="6" :font-size="10" />
@@ -59,18 +60,17 @@ useReveal(root, { prepare: prepareBars, reveal: animateBarsIn })
       <span class="ml-auto font-mono text-[11px] text-ink-secondary">
         <span class="count-up" :data-value="p.value">{{ p.value.toLocaleString('en-US') }}</span>×
       </span>
-    </button>
+    </NuxtLink>
   </div>
 
   <!-- soloFor: champion-page top teammates -->
   <div v-else-if="soloFor" ref="root" data-testid="pairing-bars" class="flex flex-col gap-3">
-    <button
+    <NuxtLink
       v-for="p in rows"
       :key="p.key"
-      type="button"
+      :to="pairTo(p)"
       :data-pair="p.key"
       class="block w-full cursor-pointer text-left"
-      @click="goPair(p)"
     >
       <div class="mb-[5px] flex items-center gap-2">
         <ChampBadge :champion-id="mateOf(p)" :size="24" :notch="6" :font-size="10" />
@@ -91,18 +91,17 @@ useReveal(root, { prepare: prepareBars, reveal: animateBarsIn })
           }"
         />
       </div>
-    </button>
+    </NuxtLink>
   </div>
 
   <!-- default: stats dashboard ranked bars -->
   <div v-else ref="root" data-testid="pairing-bars" class="flex flex-col gap-[11px] md:gap-3">
-    <button
+    <NuxtLink
       v-for="p in rows"
       :key="p.key"
-      type="button"
+      :to="pairTo(p)"
       :data-pair="p.key"
       class="block w-full cursor-pointer text-left"
-      @click="goPair(p)"
     >
       <div class="mb-[5px] flex items-center gap-2 md:gap-[9px]">
         <div class="flex">
@@ -128,6 +127,6 @@ useReveal(root, { prepare: prepareBars, reveal: animateBarsIn })
           }"
         />
       </div>
-    </button>
+    </NuxtLink>
   </div>
 </template>

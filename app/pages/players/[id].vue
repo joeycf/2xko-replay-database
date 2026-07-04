@@ -32,6 +32,18 @@ useSiteMeta({
   title: `${player.displayName} — ${matches.toLocaleString('en-US')} 2XKO replays · 2XKO Replay Database`,
   description: `${player.displayName}${player.verified ? ' (verified pro)' : ''} in competitive 2XKO: ${matches.toLocaleString('en-US')} replays on file${mainChamp ? `, main champion ${mainChamp.name}` : ''}, most-used champions and signature pairings.`,
 })
+
+const site = useRuntimeConfig().public.siteUrl.replace(/\/$/, '')
+useJsonLd([
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Players', item: `${site}/players` },
+      { '@type': 'ListItem', position: 3, name: player.displayName, item: `${site}/players/${player.id}` },
+    ],
+  },
+])
 </script>
 
 <template>
@@ -85,7 +97,13 @@ useSiteMeta({
           <div class="w-px bg-white/10" aria-hidden="true" />
           <div class="text-right">
             <div class="truncate font-display text-[28px] font-bold text-ink-primary md:text-[34px]">
-              {{ mainChamp?.name ?? '—' }}
+              <NuxtLink
+                v-if="mainChamp"
+                :to="`/champions/${mainChamp.id}`"
+                class="hover:text-accent-hover"
+                >{{ mainChamp.name }}</NuxtLink
+              >
+              <template v-else>—</template>
             </div>
             <div class="font-sans text-[11px] text-ink-muted">main champion</div>
           </div>

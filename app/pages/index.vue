@@ -43,6 +43,27 @@ useSiteMeta({
   title: 'Browse — 2XKO Replay Database',
   description: `Browse ${totals.videos.toLocaleString('en-US')} competitive 2XKO replays — filter by champion, team pairing, player, season, and channel.`,
 })
+
+// sitelinks-searchbox: /?q= is the real search param (useFilters schema)
+const site = useRuntimeConfig().public.siteUrl.replace(/\/$/, '')
+useJsonLd([
+  {
+    '@type': 'WebSite',
+    name: '2XKO Replay Database',
+    url: `${site}/`,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${site}/?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@type': 'Organization',
+    name: '2XKO Replay Database',
+    url: `${site}/`,
+    logo: `${site}/og-default.png`,
+  },
+])
 </script>
 
 <template>
