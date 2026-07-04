@@ -1,15 +1,15 @@
 {
   "characterUsage": {
-    "ahri": 1257,
+    "ahri": 1258,
     "akali": 382,
-    "blitzcrank": 581,
+    "blitzcrank": 582,
     "braum": 542,
     "caitlyn": 367,
     "darius": 695,
-    "ekko": 1487,
+    "ekko": 1488,
     "illaoi": 704,
     "jinx": 677,
-    "senna": 51,
+    "senna": 52,
     "teemo": 626,
     "thresh": 132,
     "vi": 879,
@@ -18,7 +18,7 @@
   },
   "pairingUsage": {
     "ahri|akali": 177,
-    "ahri|blitzcrank": 140,
+    "ahri|blitzcrank": 141,
     "ahri|braum": 38,
     "ahri|caitlyn": 119,
     "ahri|darius": 30,
@@ -85,7 +85,7 @@
     "darius|yasuo": 91,
     "ekko|illaoi": 265,
     "ekko|jinx": 106,
-    "ekko|senna": 12,
+    "ekko|senna": 13,
     "ekko|teemo": 158,
     "ekko|thresh": 35,
     "ekko|vi": 221,
@@ -147,16 +147,16 @@
       "yasuo": 484
     },
     "2": {
-      "ahri": 178,
+      "ahri": 179,
       "akali": 139,
-      "blitzcrank": 75,
+      "blitzcrank": 76,
       "braum": 63,
       "caitlyn": 57,
       "darius": 91,
-      "ekko": 139,
+      "ekko": 140,
       "illaoi": 80,
       "jinx": 89,
-      "senna": 51,
+      "senna": 52,
       "teemo": 56,
       "thresh": 127,
       "vi": 56,
@@ -176,11 +176,11 @@
     }
   },
   "totals": {
-    "videos": 2825,
+    "videos": 2826,
     "bySeason": {
       "0": 1099,
       "1": 1175,
-      "2": 366,
+      "2": 367,
       "beta": 185
     },
     "withFuse": 2558
@@ -2791,9 +2791,9 @@
       "illaoi": 4
     },
     "senshii": {
-      "ekko": 13,
+      "ekko": 14,
       "illaoi": 3,
-      "senna": 9,
+      "senna": 10,
       "yasuo": 1
     },
     "setchi": {
@@ -2822,8 +2822,8 @@
       "jinx": 1
     },
     "shine": {
-      "ahri": 77,
-      "blitzcrank": 78,
+      "ahri": 78,
+      "blitzcrank": 79,
       "caitlyn": 1,
       "ekko": 1,
       "illaoi": 1
@@ -5664,7 +5664,7 @@
     },
     "senshii": {
       "ekko|illaoi": 3,
-      "ekko|senna": 9,
+      "ekko|senna": 10,
       "ekko|yasuo": 1
     },
     "setchi": {
@@ -5687,7 +5687,7 @@
       "ahri|jinx": 1
     },
     "shine": {
-      "ahri|blitzcrank": 77,
+      "ahri|blitzcrank": 78,
       "blitzcrank|caitlyn": 1,
       "ekko|illaoi": 1
     },
@@ -6427,7 +6427,7 @@
       "darius|yasuo": 2,
       "ekko|illaoi": 5,
       "ekko|jinx": 3,
-      "ekko|senna": 1,
+      "ekko|senna": 2,
       "ekko|teemo": 2,
       "ekko|vi": 1,
       "ekko|warwick": 3,
@@ -7967,7 +7967,7 @@
     },
     "ekko|senna": {
       "ahri|akali": 2,
-      "ahri|blitzcrank": 1,
+      "ahri|blitzcrank": 2,
       "ahri|caitlyn": 1,
       "ahri|senna": 1,
       "blitzcrank|thresh": 1,
