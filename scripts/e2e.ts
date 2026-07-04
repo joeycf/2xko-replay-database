@@ -195,6 +195,58 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(html.includes(fuses[topId]!.name), `static HTML missing ${fuses[topId]!.name}`)
   })
 
+  // (g) synergy-matrix hover tooltip: canonical names + count on a top cell AND
+  // its transpose (sorted-key lookup), diagonal shows "same champion", a true
+  // zero pair shows "never paired", and click-to-filter still deep-links
+  const champs = JSON.parse(readFileSync(join(ROOT, 'data/champions.json'), 'utf8')) as Record<
+    string, { name: string }
+  >
+  const champIds = Object.keys(champs)
+  const [topPairKey, topPairN] = Object.entries(stats.pairingUsage).sort((x, y) => y[1] - x[1])[0]!
+  const zeroPairKey = (() => {
+    for (let i = 0; i < champIds.length; i++)
+      for (let j = i + 1; j < champIds.length; j++) {
+        const k = [champIds[i]!, champIds[j]!].sort().join('|')
+        if (!stats.pairingUsage[k]) return k
+      }
+    return null
+  })()
+  await test(`stats: synergy tooltip (${topPairKey} = ${topPairN} on both mirror cells)`, async () => {
+    await page.goto(`${base}/stats`)
+    await page.waitForSelector('[data-testid="synergy-matrix"]')
+    const names = topPairKey.split('|').map((id) => champs[id]!.name)
+    const cells = await page.$$(`[data-testid="synergy-matrix"] [data-pair="${topPairKey}"]`)
+    expect(cells.length === 2, `expected 2 mirrored cells for ${topPairKey}, got ${cells.length}`)
+    // settle scroll first: the tooltip intentionally hides on scroll events,
+    // and hover() auto-scrolls the matrix into view
+    await cells[0]!.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(200)
+    for (const cell of cells) {
+      await page.mouse.move(0, 0)
+      await cell.hover()
+      await page.waitForSelector('[data-testid="synergy-tip"]')
+      const txt = norm(await page.textContent('[data-testid="synergy-tip"]'))
+      for (const n of names) expect(txt.includes(norm(n)), `tip "${txt}" missing name ${n}`)
+      expect(txt.includes(topPairN.toLocaleString('en-US')), `tip "${txt}" missing count ${topPairN}`)
+      await page.mouse.move(0, 0)
+      await page.waitForFunction(`!document.querySelector('[data-testid="synergy-tip"]')`)
+    }
+    await page.mouse.move(0, 0)
+    await page.hover(`[data-diag="${champIds[0]}"]`)
+    const diag = norm(await page.textContent('[data-testid="synergy-tip"]'))
+    expect(diag.includes('same champion') && !diag.includes('appearances'), `diagonal tip "${diag}"`)
+    if (zeroPairKey) {
+      await page.mouse.move(0, 0)
+      await page.hover(`[data-testid="synergy-matrix"] [data-pair="${zeroPairKey}"]`)
+      const zero = norm(await page.textContent('[data-testid="synergy-tip"]'))
+      expect(zero.includes('never paired'), `zero-pair tip "${zero}"`)
+    }
+    await page.click(`[data-testid="synergy-matrix"] [data-pair="${topPairKey}"]`)
+    await page.waitForFunction(`new URL(location.href).searchParams.get('side') === '1'`)
+    const c = String(await page.evaluate(`new URL(location.href).searchParams.get('c')`))
+    expect(c.split(',').sort().join('|') === topPairKey, `click filter c=${c}`)
+  })
+
   // (e) the coverage-honesty line shows the real detected/total counts
   await test(`coverage line: ${stats.totals.withFuse.toLocaleString('en-US')} of ${stats.totals.videos.toLocaleString('en-US')}`, async () => {
     await page.goto(`${base}/`)
