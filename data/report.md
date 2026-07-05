@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-04T08:50:23.368Z._
+_Generated 2026-07-05T09:21:58.210Z._
 
 ## Summary
-- Total videos: **2826**
-- High confidence: **2816**  ·  Low confidence: **10**
+- Total videos: **2834**
+- High confidence: **2824**  ·  Low confidence: **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **90.5%**
+- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **90.3%**
 
 ## Low-confidence records (10)
 | id | channel | reason | raw title |
