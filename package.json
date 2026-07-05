@@ -29,6 +29,7 @@
     "vue-tsc": "^3.3.6"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "animejs": "^4.5.0"
   }
 }
