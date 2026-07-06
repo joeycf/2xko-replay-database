@@ -95,6 +95,34 @@ export interface FuseDetection {
   detectedAt: string;
 }
 
+/** Which kind of fuse gap a missing-fuse video is (scripts/fuse-gaps.ts). */
+export type FuseGapBucket = "unavailable" | "low" | "none" | "pending" | "anomaly";
+
+/** One missing-fuse video in the gap diagnostic. */
+export interface FuseGapItem {
+  id: string;
+  bucket: FuseGapBucket;
+  era: string;
+  channel: ChannelKey;
+  publishedAt: string;
+  /** advisory markers: "maybe-pending" (appeared around the last run — may never have been attempted) · "premiere" (0-duration) */
+  flags: string[];
+  /** cached frame count (cache/fuse/frames/<id>/) — 0 when the download never succeeded */
+  frames: number;
+  /** low/none/anomaly only: raw detection read from fuses-detected.json */
+  detection?: Pick<FuseDetection, "left" | "right" | "score" | "status">;
+}
+
+/** cache/fuse/review/fuse-gaps.json — written by scripts/fuse-gaps.ts, served by /api/dev/fuse-gaps. */
+export interface FuseGapReport {
+  generatedAt: string;
+  /** the videos.json snapshot treated as "was attempted by the last download run" */
+  universe: { commit: string; videos: number; runDate: string };
+  totals: { videos: number; withFuse: number; missing: number };
+  counts: Record<FuseGapBucket, number>;
+  items: FuseGapItem[];
+}
+
 /** A raw video record as dumped by scripts/fetch.ts. Written to raw/<channel>.json. */
 export interface RawVideoRecord {
   id: string;
