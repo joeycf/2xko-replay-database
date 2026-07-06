@@ -1,16 +1,17 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-05T09:21:58.210Z._
+_Generated 2026-07-06T11:01:30.395Z._
 
 ## Summary
-- Total videos: **2834**
-- High confidence: **2824**  ·  Low confidence: **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **90.3%**
+- Total videos: **2841**
+- High confidence: **2830**  ·  Low confidence: **11**
+- Newly discovered players (auto-added to `players.json`): **2**
+- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **90.0%**
 
-## Low-confidence records (10)
+## Low-confidence records (11)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `Gy1V3_ctj3Q` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
 | `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
 | `z_g1JJjLn7g` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ SUPERNOON (Teemo-Ekko) vs HUEBERT (Akalai-Ekko) ▰ 2XKO Pro level replays |
 | `SVGjJmhAGRQ` | proReplays | fuzzy character "Ysuo" → yasuo on right | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
@@ -27,7 +28,10 @@ _Generated 2026-07-05T09:21:58.210Z._
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (0)
+## Newly discovered players (2)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `taterz` | Taterz | 1 | taterz |
+| `fightzoneita` | FightzoneITA | 1 | fightzoneita |

@@ -7163,5 +7163,25 @@
     ],
     "region": null,
     "socials": {}
+  },
+  "taterz": {
+    "id": "taterz",
+    "displayName": "Taterz",
+    "verified": false,
+    "aliases": [
+      "taterz"
+    ],
+    "region": null,
+    "socials": {}
+  },
+  "fightzoneita": {
+    "id": "fightzoneita",
+    "displayName": "FightzoneITA",
+    "verified": false,
+    "aliases": [
+      "fightzoneita"
+    ],
+    "region": null,
+    "socials": {}
   }
 }
