@@ -1,14 +1,14 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-06T11:01:30.395Z._
+_Generated 2026-07-06T20:43:33.172Z._
 
 ## Summary
-- Total videos: **2841**
-- High confidence: **2830**  ·  Low confidence: **11**
-- Newly discovered players (auto-added to `players.json`): **2**
-- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **90.0%**
+- Total videos: **2847**
+- High confidence: **2837**  ·  Low confidence: **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **89.9%**
 
-## Low-confidence records (11)
+## Low-confidence records (10)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `Gy1V3_ctj3Q` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
@@ -28,10 +28,7 @@ _Generated 2026-07-06T11:01:30.395Z._
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `taterz` | Taterz | 1 | taterz |
-| `fightzoneita` | FightzoneITA | 1 | fightzoneita |
+_None._

@@ -598,5 +598,48 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "2lDmsjDZe-k": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "leffen",
+            "displayName": "LEFFEN"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "yasuo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "teemo",
+      "yasuo",
+      "ekko"
+    ],
+    "allPlayers": [
+      "leffen",
+      "inzem"
+    ],
+    "parseConfidence": "high",
+    "rawUnparsed": null
   }
 }
