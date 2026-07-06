@@ -95,33 +95,6 @@
           Beta
         </button>
       </div>
-      <span class="h-6 w-px bg-white/10" />
-      <div class="flex items-center gap-1.5">
-        <span
-          :class="labelClass"
-          class="mr-1"
-        >
-          Type
-        </span>
-        <button
-          type="button"
-          class="cursor-pointer border px-[13px] py-2 font-sans text-[12px] font-semibold"
-          :class="togClass(f.matchType.value === 'ranked')"
-          :aria-pressed="f.matchType.value === 'ranked'"
-          @click="f.toggleMatchType('ranked')"
-        >
-          Ranked
-        </button>
-        <button
-          type="button"
-          class="cursor-pointer border px-[13px] py-2 font-sans text-[12px] font-semibold"
-          :class="togClass(f.matchType.value === 'duo')"
-          :aria-pressed="f.matchType.value === 'duo'"
-          @click="f.toggleMatchType('duo')"
-        >
-          Duo
-        </button>
-      </div>
       <div class="ml-auto flex items-center gap-2">
         <label
           :class="labelClass"

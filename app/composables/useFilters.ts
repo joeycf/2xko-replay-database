@@ -1,5 +1,5 @@
 import type { LocationQuery } from 'vue-router'
-import type { ChannelKey, MatchType, VideoRecord } from '~~/types'
+import type { ChannelKey, VideoRecord } from '~~/types'
 
 export type VideoSort = 'newest' | 'oldest' | 'views' | 'longest'
 export type SeasonFilter = number | 'beta' | null
@@ -13,7 +13,7 @@ export interface ActiveChip {
 /**
  * URL query scheme (all filter state lives in the route — shareable, back/forward safe):
  *   c=ahri,akali   side=1        p=sonicfox,inzem   ch=pro|high
- *   s=0|1|2|beta   mt=ranked|duo q=free+text        sort=oldest|views|longest
+ *   s=0|1|2|beta   q=free+text   sort=oldest|views|longest
  *   fuse=freestyle,juggernaut  (OR-match against either team's detected fuse)
  * `v=<videoId>` (the modal) is owned by useVideoModal and always preserved here.
  * Discrete toggles push (Back undoes a step); typing replaces, debounced.
@@ -43,10 +43,6 @@ export function useFilters() {
     const v = one(route.query.s)
     if (v === 'beta') return 'beta'
     return v !== null && /^\d+$/.test(v) ? Number(v) : null
-  })
-  const matchType = computed<MatchType | null>(() => {
-    const v = one(route.query.mt)
-    return v === 'ranked' || v === 'duo' || v === 'tournament' ? v : null
   })
   const selectedFuses = computed(() => csv(route.query.fuse))
   const search = computed(() => one(route.query.q) ?? '')
@@ -79,7 +75,6 @@ export function useFilters() {
     write({ ch: channel.value === key ? null : key === 'proReplays' ? 'pro' : 'high' })
   const toggleSeason = (v: number | 'beta') =>
     write({ s: season.value === v ? null : String(v) })
-  const toggleMatchType = (v: MatchType) => write({ mt: matchType.value === v ? null : v })
   const toggleFuse = (id: string) => write({ fuse: toggled(selectedFuses.value, id).join(',') || null })
   const setSort = (v: VideoSort) => write({ sort: v === 'newest' ? null : v }, 'replace')
 
@@ -89,9 +84,9 @@ export function useFilters() {
     searchTimer = setTimeout(() => write({ q: v.trim() || null }, 'replace'), SEARCH_DEBOUNCE_MS)
   }
   const clearAll = () =>
-    write({ c: null, side: null, p: null, ch: null, s: null, mt: null, fuse: null, q: null, sort: null })
+    write({ c: null, side: null, p: null, ch: null, s: null, fuse: null, q: null, sort: null })
 
-  // ── active chips (design order: champions, same side, players, channel, season, type, query) ──
+  // ── active chips (design order: champions, same side, players, channel, season, query) ──
   const chips = computed<ActiveChip[]>(() => {
     const out: ActiveChip[] = []
     for (const c of selectedChampions.value)
@@ -110,10 +105,6 @@ export function useFilters() {
     if (season.value !== null) {
       const v = season.value
       out.push({ key: `s:${v}`, label: v === 'beta' ? 'Beta' : `Season ${v}`, remove: () => toggleSeason(v) })
-    }
-    if (matchType.value) {
-      const v = matchType.value
-      out.push({ key: `mt:${v}`, label: matchTypeLabel(v), remove: () => toggleMatchType(v) })
     }
     for (const fu of selectedFuses.value)
       out.push({ key: `fuse:${fu}`, label: fuseName(fu), remove: () => toggleFuse(fu) })
@@ -157,7 +148,6 @@ export function useFilters() {
       if (season.value !== null) {
         if (season.value === 'beta' ? v.season !== null : v.season !== season.value) return false
       }
-      if (matchType.value && v.matchType !== matchType.value) return false
       // fuse: OR-match against either team's detected fuse — undetected
       // videos (teams[].fuse null) simply never match a fuse selection
       if (selectedFuses.value.length && !v.teams.some((t) => t.fuse && selectedFuses.value.includes(t.fuse)))
@@ -189,7 +179,6 @@ export function useFilters() {
       selectedPlayers.value,
       channel.value,
       season.value,
-      matchType.value,
       selectedFuses.value,
       search.value,
       sort.value,
@@ -197,8 +186,8 @@ export function useFilters() {
   )
 
   return {
-    selectedChampions, sameSide, selectedPlayers, channel, season, matchType, selectedFuses, search, sort,
-    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleMatchType, toggleFuse,
+    selectedChampions, sameSide, selectedPlayers, channel, season, selectedFuses, search, sort,
+    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleFuse,
     setSort, setSearch, clearAll,
     chips, activeCount, filtered, filterKey,
   }

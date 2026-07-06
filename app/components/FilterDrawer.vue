@@ -93,64 +93,34 @@
               </button>
             </div>
 
-            <div class="flex gap-6">
-              <div class="flex-1">
-                <div
-                  :class="labelClass"
-                  class="mb-2.5 mt-5"
-                >
-                  Season
-                </div>
-                <div class="flex gap-2">
-                  <button
-                    v-for="s in [0, 1, 2]"
-                    :key="s"
-                    type="button"
-                    class="h-10 flex-1 cursor-pointer border font-mono text-[14px]"
-                    :class="togClass(f.season.value === s)"
-                    :aria-pressed="f.season.value === s"
-                    @click="f.toggleSeason(s)"
-                  >
-                    {{ s }}
-                  </button>
-                  <button
-                    type="button"
-                    class="h-10 flex-1 cursor-pointer border font-mono text-[13px]"
-                    :class="togClass(f.season.value === 'beta')"
-                    :aria-pressed="f.season.value === 'beta'"
-                    @click="f.toggleSeason('beta')"
-                  >
-                    β
-                  </button>
-                </div>
+            <div>
+              <div
+                :class="labelClass"
+                class="mb-2.5 mt-5"
+              >
+                Season
               </div>
-              <div class="flex-1">
-                <div
-                  :class="labelClass"
-                  class="mb-2.5 mt-5"
+              <div class="flex gap-2">
+                <button
+                  v-for="s in [0, 1, 2]"
+                  :key="s"
+                  type="button"
+                  class="h-10 flex-1 cursor-pointer border font-mono text-[14px]"
+                  :class="togClass(f.season.value === s)"
+                  :aria-pressed="f.season.value === s"
+                  @click="f.toggleSeason(s)"
                 >
-                  Type
-                </div>
-                <div class="flex gap-2">
-                  <button
-                    type="button"
-                    class="h-10 flex-1 cursor-pointer border font-sans text-[12px] font-semibold"
-                    :class="togClass(f.matchType.value === 'ranked')"
-                    :aria-pressed="f.matchType.value === 'ranked'"
-                    @click="f.toggleMatchType('ranked')"
-                  >
-                    Ranked
-                  </button>
-                  <button
-                    type="button"
-                    class="h-10 flex-1 cursor-pointer border font-sans text-[12px] font-semibold"
-                    :class="togClass(f.matchType.value === 'duo')"
-                    :aria-pressed="f.matchType.value === 'duo'"
-                    @click="f.toggleMatchType('duo')"
-                  >
-                    Duo
-                  </button>
-                </div>
+                  {{ s }}
+                </button>
+                <button
+                  type="button"
+                  class="h-10 flex-1 cursor-pointer border font-mono text-[13px]"
+                  :class="togClass(f.season.value === 'beta')"
+                  :aria-pressed="f.season.value === 'beta'"
+                  @click="f.toggleSeason('beta')"
+                >
+                  β
+                </button>
               </div>
             </div>
 
