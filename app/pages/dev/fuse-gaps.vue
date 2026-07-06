@@ -70,6 +70,10 @@
                   :key="f"
                   class="text-warning"
                 >{{ f }}</span>
+                <span
+                  v-if="gap.attempts"
+                  :class="gap.attempts.length >= 2 ? 'text-warning' : 'text-ink-muted'"
+                >tried {{ gap.attempts.length }}×</span>
                 <a
                   :href="`https://youtu.be/${gap.id}`"
                   target="_blank"

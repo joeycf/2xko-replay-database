@@ -96,7 +96,22 @@ function attemptUniverse(): Universe {
   // no history (fresh clone with no committed detections): everything undetected is pending
   return { ids: new Set(), commit: '(none)', runDate: new Date().toISOString() }
 }
-const universe = attemptUniverse()
+
+// scripts/fuses.ts logs every download attempt to cache/fuse/attempted.json —
+// when present that answers "was this id ever attempted?" exactly (targeted
+// --ids retries included); the git inference above remains the fallback for a
+// purged cache, where only full-backlog runs are reconstructable.
+const attemptsPath = join(ROOT, 'cache/fuse/attempted.json')
+const attemptLog = existsSync(attemptsPath)
+  ? (JSON.parse(readFileSync(attemptsPath, 'utf8')) as Record<string, string[]>)
+  : null
+const universe: Universe = attemptLog
+  ? {
+      ids: new Set(Object.keys(attemptLog)),
+      commit: '(attempt log)',
+      runDate: Object.values(attemptLog).flat().sort().at(-1) ?? new Date().toISOString(),
+    }
+  : attemptUniverse()
 
 // ── bucket every missing-fuse video ───────────────────────────────────────────
 const frameCount = (id: string) => {
@@ -115,9 +130,10 @@ const items: FuseGapItem[] = missing.map((v) => {
   else bucket = 'anomaly' // confident detection that parse.ts could not merge
 
   const flags: string[] = []
-  // published within 48h of the run: the daily refresh may have added it after
-  // the run iterated, so "no entry" doesn't prove a failed download
-  if (bucket === 'unavailable' && runTime - Date.parse(v.publishedAt) < 48 * 3600 * 1000) flags.push('maybe-pending')
+  // git-fallback mode only — published within 48h of the run: the daily refresh
+  // may have added it after the run iterated, so "no entry" doesn't prove a
+  // failed download (with the attempt log this ambiguity doesn't exist)
+  if (bucket === 'unavailable' && !attemptLog && runTime - Date.parse(v.publishedAt) < 48 * 3600 * 1000) flags.push('maybe-pending')
   if (v.durationSec === 0) flags.push('premiere')
 
   return {
@@ -128,6 +144,7 @@ const items: FuseGapItem[] = missing.map((v) => {
     publishedAt: v.publishedAt,
     flags,
     frames: frameCount(v.id),
+    ...(attemptLog?.[v.id] ? { attempts: attemptLog[v.id] } : {}),
     ...(det ? { detection: { left: det.left, right: det.right, score: det.score, status: det.status } } : {}),
   }
 })
@@ -276,7 +293,9 @@ md.push('')
 md.push(
   `Inputs: videos.json (${videos.length}) · fuses-detected.json (${Object.keys(detected).length}: ` +
     `${Object.entries(statusTally).map(([k, v]) => `${k} ${v}`).join(' · ')}) · overrides.json (${Object.keys(overrides).length}) · ` +
-    `attempt universe: videos.json just before \`${universe.commit}\` (${universe.ids.size} ids, run landed ${universe.runDate.slice(0, 10)})`,
+    (attemptLog
+      ? `attempt log: cache/fuse/attempted.json (${universe.ids.size} ids, last run ${universe.runDate.slice(0, 10)})`
+      : `attempt universe: videos.json just before \`${universe.commit}\` (${universe.ids.size} ids, run landed ${universe.runDate.slice(0, 10)})`),
 )
 md.push('')
 md.push('## Summary')
@@ -319,13 +338,18 @@ md.push('')
 // ── bucket detail sections ────────────────────────────────────────────────────
 md.push(`## 1 · UNAVAILABLE (${counts.unavailable}) — no cached frames, excluded from review`)
 md.push('')
-md.push('No action here until a retry pass is decided on. `maybe-pending` = published within 48h of the run — the daily refresh may have added it after the run iterated, so it may simply never have been attempted.')
+md.push(
+  attemptLog
+    ? 'Attempt dates come from cache/fuse/attempted.json. 2+ attempts = persistent failure — candidates for a cookies retry (`yt-dlp --cookies-from-browser`), do not loop on them unauthenticated.'
+    : 'No action here until a retry pass is decided on. `maybe-pending` = published within 48h of the run — the daily refresh may have added it after the run iterated, so it may simply never have been attempted.',
+)
 md.push('')
-md.push('| video | era | channel | published | flags | title |')
-md.push('|---|---|---|---|---|---|')
+md.push('| video | era | channel | published | attempts | flags | title |')
+md.push('|---|---|---|---|---|---|---|')
 for (const i of inBucket('unavailable')) {
   const v = byId.get(i.id)!
-  md.push(`| \`${i.id}\` ${yt(i.id)} | ${i.era} | ${i.channel} | ${i.publishedAt.slice(0, 10)} | ${i.flags.join(' ') || ''} | ${esc(short(v.title))} |`)
+  const tries = i.attempts ? `${i.attempts.length}× (last ${i.attempts.at(-1)})` : '—'
+  md.push(`| \`${i.id}\` ${yt(i.id)} | ${i.era} | ${i.channel} | ${i.publishedAt.slice(0, 10)} | ${tries} | ${i.flags.join(' ') || ''} | ${esc(short(v.title))} |`)
 }
 md.push('')
 
@@ -369,11 +393,16 @@ for (const i of inBucket('pending')) {
 md.push('')
 
 const maybePending = inBucket('unavailable').filter((i) => i.flags.includes('maybe-pending')).length
+const persistent = inBucket('unavailable').filter((i) => (i.attempts?.length ?? 0) >= 2).length
 md.push('## Verdict — recoverable vs excluded vs pending')
 md.push('')
-md.push(`- **Recoverable by review now:** ${counts.low + counts.none} (LOW + NONE) — frames are cached, adjudication is a pass over gap-pills.png plus overrides.json entries. The anomaly (${counts.anomaly}) is also recoverable via a title-parse override.`)
-md.push(`- **Pending, no action:** ${counts.pending} certain + ~${maybePending} of the UNAVAILABLE flagged \`maybe-pending\` — the next \`data:fuses\` run attempts all of them.`)
-md.push(`- **Failed downloads:** ~${counts.unavailable - maybePending} — but since every one is still YouTube-listed (see reconciliation facts), "permanently un-fuseable" is unproven. They look like run-time yt-dlp failures (that backlog ran overnight at 0.09–0.10/s under throttle). A future targeted retry (\`npm run data:fuses -- --ids …\`) would sort them into detected vs truly-blocked; until then they stay excluded.`)
+md.push(`- **Recoverable by review now:** ${counts.low + counts.none} (LOW + NONE) — frames are cached, adjudication is a pass over gap-pills.png plus overrides.json entries. ${counts.anomaly ? `The anomal${counts.anomaly === 1 ? 'y' : 'ies'} (${counts.anomaly}) ${counts.anomaly === 1 ? 'is' : 'are'} also recoverable via a title-parse override.` : ''}`)
+md.push(`- **Pending, no action:** ${counts.pending} certain${maybePending ? ` + ~${maybePending} of the UNAVAILABLE flagged \`maybe-pending\`` : ''} — the next \`data:fuses\` run attempts all of them.`)
+md.push(
+  attemptLog
+    ? `- **Failed downloads:** ${counts.unavailable}, of which **${persistent} failed on 2+ separate runs** (persistent — candidates for a cookies retry, not for more unauthenticated loops). All are still YouTube-listed, so none are proven deleted.`
+    : `- **Failed downloads:** ~${counts.unavailable - maybePending} — but since every one is still YouTube-listed (see reconciliation facts), "permanently un-fuseable" is unproven. They look like run-time yt-dlp failures (that backlog ran overnight at 0.09–0.10/s under throttle). A future targeted retry (\`npm run data:fuses -- --ids …\`) would sort them into detected vs truly-blocked; until then they stay excluded.`,
+)
 md.push('')
 md.push('Eyeball everything in the app (dev only): `npm run dev` → **/dev/fuse-gaps** (bucket + era filters, thumbnails, in-app playback, pill strips for LOW).')
 md.push('')

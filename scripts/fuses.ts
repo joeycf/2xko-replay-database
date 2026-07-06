@@ -234,6 +234,10 @@ async function ensureFrames(id: string): Promise<string[] | null> {
         '-o', join(RAW, '%(id)s.%(ext)s'), `https://www.youtube.com/watch?v=${id}`],
       { stdio: ['ignore', 'ignore', 'pipe'], env: process.env, timeout: 180_000 },
     )
+    // pace EVERY attempt, failures included — the 07-02 backlog followed each
+    // failed download with the next request instantly, feeding the throttle
+    // spiral that produced the "unavailable" pile in the first place
+    await sleep((SLEEP_MIN + Math.random() * (SLEEP_MAX - SLEEP_MIN)) * 1000)
     if (r.status !== 0) {
       const err = String(r.stderr ?? '').slice(0, 300)
       if (/confirm you.re not a bot|sign in/i.test(err)) {
@@ -242,7 +246,6 @@ async function ensureFrames(id: string): Promise<string[] | null> {
       }
       return null
     }
-    await sleep((SLEEP_MIN + Math.random() * (SLEEP_MAX - SLEEP_MIN)) * 1000)
     raw = rawPath(id)
     if (!raw) return null
   }
@@ -580,6 +583,14 @@ async function runValidation(pills: PillTemplate[], names: Map<string, bigint>):
 // ── backlog mode ──────────────────────────────────────────────────────────────
 async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Promise<void> {
   const detected: Record<string, Detection> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : {}
+  // attempt log (id → ISO dates): a failed download leaves no other trace, so
+  // this is what lets fuse-gaps.ts tell "attempted, failed" from "never tried"
+  const ATTEMPTS = join(CACHE, 'attempted.json')
+  const attempted: Record<string, string[]> = existsSync(ATTEMPTS) ? JSON.parse(readFileSync(ATTEMPTS, 'utf8')) : {}
+  const logAttempt = (id: string) => {
+    const day = new Date().toISOString().slice(0, 10)
+    if (attempted[id]?.at(-1) !== day) (attempted[id] ??= []).push(day)
+  }
   let ids = ONLY_IDS ?? videos.map((v) => v.id).filter((id) => FORCE || !detected[id])
   if (LIMIT > 0) ids = ids.slice(0, LIMIT)
   console.log(`processing ${ids.length} video(s) — incremental, resumable`)
@@ -606,6 +617,7 @@ async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Pr
       }
     }
     done++
+    logAttempt(id)
     if (r) {
       detected[id] = r.det
       if (r.det.status === 'low' || r.det.status === 'none') {
@@ -617,12 +629,14 @@ async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Pr
     }
     if (done % 10 === 0 || done === ids.length) {
       writeFileSync(OUT, JSON.stringify(detected, null, 1) + '\n')
+      writeFileSync(ATTEMPTS, JSON.stringify(attempted, null, 1) + '\n')
       const rate = done / ((Date.now() - t0) / 1000)
       const eta = Math.round((ids.length - done) / rate / 60)
       process.stdout.write(`\r${done}/${ids.length}  (${rate.toFixed(2)}/s · eta ${eta}m)   `)
     }
   }
   writeFileSync(OUT, JSON.stringify(detected, null, 1) + '\n')
+  writeFileSync(ATTEMPTS, JSON.stringify(attempted, null, 1) + '\n')
   console.log(`\n✓ wrote data/fuses-detected.json (${Object.keys(detected).length} records)`)
 
   // review sheet for low/none + unmatched-pill montage (Sidekick/Teamfight hunt)

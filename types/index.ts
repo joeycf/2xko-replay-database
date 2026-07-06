@@ -109,6 +109,8 @@ export interface FuseGapItem {
   flags: string[];
   /** cached frame count (cache/fuse/frames/<id>/) — 0 when the download never succeeded */
   frames: number;
+  /** download-attempt dates from cache/fuse/attempted.json (absent in git-fallback mode) */
+  attempts?: string[];
   /** low/none/anomaly only: raw detection read from fuses-detected.json */
   detection?: Pick<FuseDetection, "left" | "right" | "score" | "status">;
 }
