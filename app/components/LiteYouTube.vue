@@ -1,18 +1,3 @@
-<script setup lang="ts">
-// Lite-YouTube facade: thumbnail + play button first; the youtube-nocookie
-// iframe is injected only on click. Grid cards never render this.
-const props = defineProps<{ videoId: string; thumbnail?: string | null; title?: string }>()
-
-const playing = ref(false)
-watch(
-  () => props.videoId,
-  () => (playing.value = false),
-)
-const embedSrc = computed(
-  () => `https://www.youtube-nocookie.com/embed/${props.videoId}?autoplay=1&rel=0`,
-)
-</script>
-
 <template>
   <div
     class="relative aspect-video overflow-hidden border-b border-white/[0.09]"
@@ -53,3 +38,20 @@ const embedSrc = computed(
     </button>
   </div>
 </template>
+
+<script setup lang="ts">
+// Lite-YouTube facade: thumbnail + play button first; the youtube-nocookie
+// iframe is injected only on click. Grid cards never render this.
+const props = defineProps<{ videoId: string; thumbnail?: string | null; title?: string }>();
+
+const playing = ref(false);
+
+const embedSrc = computed(
+  () => `https://www.youtube-nocookie.com/embed/${props.videoId}?autoplay=1&rel=0`
+);
+
+watch(
+  () => props.videoId,
+  () => (playing.value = false)
+);
+</script>

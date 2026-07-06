@@ -1,5 +1,8 @@
 <template>
-  <div class="border border-white/[0.09] bg-[#0F1118] cut-14" aria-hidden="true">
+  <div
+    class="border border-white/[0.09] bg-[#0F1118] cut-14"
+    aria-hidden="true"
+  >
     <div class="aspect-video bg-elevated motion-safe:animate-pulse" />
     <div class="px-3.5 py-[13px]">
       <div class="flex items-center justify-center gap-2.5">

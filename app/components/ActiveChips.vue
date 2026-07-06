@@ -1,16 +1,12 @@
-<script setup lang="ts">
-const { chips, filtered, clearAll } = useFilters()
-const { pending } = useVideos()
-</script>
-
 <template>
   <div
     class="flex flex-wrap items-center gap-3 border-b border-white/[0.07] bg-[#0C0D12] px-4 py-[13px] md:px-[26px]"
   >
     <span class="font-mono text-[13px] text-ink-secondary">
-      <b data-testid="result-count" class="font-bold text-white">{{
-        pending ? '…' : filtered.length.toLocaleString()
-      }}</b>
+      <b
+        data-testid="result-count"
+        class="font-bold text-white"
+      >{{ pending ? '…' : filtered.length.toLocaleString() }}</b>
       replays
     </span>
     <button
@@ -33,3 +29,8 @@ const { pending } = useVideos()
     </button>
   </div>
 </template>
+
+<script setup lang="ts">
+const { chips, filtered, clearAll } = useFilters();
+const { pending } = useVideos();
+</script>

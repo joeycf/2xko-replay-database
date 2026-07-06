@@ -1,98 +1,3 @@
-<script setup lang="ts">
-// Video view — desktop modal / mobile full-screen (design VIDEO VIEW screens).
-// Open state lives in ?v= (see useVideoModal). Lite-YouTube facade inside.
-import type { Team } from '~~/types'
-
-const { openId, video, pending, close, swap, related } = useVideoModal()
-const { players: playerRegistry } = usePlayers()
-const { byId: champById } = useChampions()
-
-const isOpen = computed(() => openId.value !== null)
-const panel = ref<HTMLElement>()
-let lastFocus: HTMLElement | null = null
-
-// Esc lives on document (capture) — focus may sit inside the YouTube iframe,
-// where a panel-level keydown would never fire.
-function onDocKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape') close()
-}
-watch(
-  isOpen,
-  (v) => {
-    if (import.meta.server) return
-    if (v) {
-      lastFocus = document.activeElement as HTMLElement | null
-      lockBodyScroll()
-      document.addEventListener('keydown', onDocKeydown, true)
-      nextTick(() => panel.value?.focus())
-    } else {
-      unlockBodyScroll()
-      document.removeEventListener('keydown', onDocKeydown, true)
-      lastFocus?.focus?.()
-      lastFocus = null
-    }
-  },
-  { immediate: true },
-)
-onBeforeUnmount(() => {
-  if (isOpen.value) {
-    unlockBodyScroll()
-    document.removeEventListener('keydown', onDocKeydown, true)
-  }
-})
-
-function onKeydown(e: KeyboardEvent) {
-  if (e.key !== 'Tab' || !panel.value) return
-  // visible elements only — hidden ones (e.g. the mobile top bar on desktop)
-  // can't take focus, and wrapping onto them lets Tab escape the dialog
-  const els = [...panel.value.querySelectorAll<HTMLElement>(
-    'button, a[href], input, select, [tabindex]:not([tabindex="-1"])',
-  )].filter((el) => el.checkVisibility?.() ?? el.offsetParent !== null)
-  if (!els.length) return
-  const first = els[0]!
-  const last = els[els.length - 1]!
-  if (e.shiftKey && document.activeElement === first) {
-    last.focus()
-    e.preventDefault()
-  } else if (!e.shiftKey && document.activeElement === last) {
-    first.focus()
-    e.preventDefault()
-  }
-}
-
-const teamA = computed<Team | undefined>(() => video.value?.teams[0])
-const teamB = computed<Team | undefined>(() => video.value?.teams[1])
-const hasTeams = computed(() => (video.value?.teams.length ?? 0) === 2)
-
-// CV-detected fuses: per-side when ordered; `fusesUnordered` records show the
-// pair without side attribution (binding them left/right could be wrong)
-const fuseA = computed(() => teamA.value?.fuse ?? null)
-const fuseB = computed(() => teamB.value?.fuse ?? null)
-const fusesUnordered = computed(() => !!video.value?.fusesUnordered)
-
-const champNames = (t?: Team) =>
-  t?.characters.map((c) => champById(c)?.name ?? c).join(' + ') ?? ''
-const playerLabel = (t?: Team) => t?.players.map((p) => p.displayName).join(' + ') ?? ''
-const hasVerified = (t?: Team) => !!t?.players.some((p) => playerRegistry.value[p.id]?.verified)
-const relPlayers = (v: { teams: Team[] }, i: number) =>
-  v.teams[i]?.players.map((p) => p.displayName).join(' + ') ?? '—'
-
-const metaLine = computed(() => {
-  const v = video.value
-  if (!v) return ''
-  return [
-    seasonLabel(v.season),
-    matchTypeLabel(v.matchType),
-    formatDuration(v.durationSec),
-    relativeDate(v.publishedAt),
-    `${formatViews(v.viewCount)} views`,
-  ].join(' · ')
-})
-const youtubeUrl = computed(() =>
-  openId.value ? `https://www.youtube.com/watch?v=${openId.value}` : '#',
-)
-</script>
-
 <template>
   <Teleport to="body">
     <Transition name="modal">
@@ -125,20 +30,27 @@ const youtubeUrl = computed(() =>
               ‹
             </button>
             <span class="font-display text-[15px] font-semibold text-ink-primary">Replay</span>
-            <ChannelBadge v-if="video" :channel="video.channel" class="ml-auto" />
+            <ChannelBadge
+              v-if="video"
+              :channel="video.channel"
+              class="ml-auto"
+            />
           </div>
 
           <!-- desktop top bar -->
           <div class="hidden items-center gap-3 border-b border-white/[0.09] px-5 py-3.5 md:flex">
-            <ChannelBadge v-if="video" :channel="video.channel" size="md" />
+            <ChannelBadge
+              v-if="video"
+              :channel="video.channel"
+              size="md"
+            />
             <span class="truncate font-mono text-[11px] text-ink-muted">{{ metaLine }}</span>
             <a
               :href="youtubeUrl"
               target="_blank"
               rel="noopener noreferrer"
               class="ml-auto whitespace-nowrap font-mono text-[11px] text-accent2 hover:underline"
-              >Watch on YouTube ↗</a
-            >
+            >Watch on YouTube ↗</a>
             <button
               type="button"
               class="h-[34px] w-[34px] flex-none cursor-pointer border border-white/[0.12] bg-elevated text-[16px] leading-none text-ink-secondary hover:text-ink-primary"
@@ -150,7 +62,11 @@ const youtubeUrl = computed(() =>
           </div>
 
           <template v-if="video">
-            <LiteYouTube :video-id="video.id" :thumbnail="video.thumbnail" :title="video.title" />
+            <LiteYouTube
+              :video-id="video.id"
+              :thumbnail="video.thumbnail"
+              :title="video.title"
+            />
 
             <!-- mobile meta line -->
             <div class="flex items-center justify-between gap-3 px-4 pt-4 md:hidden">
@@ -160,13 +76,15 @@ const youtubeUrl = computed(() =>
                 target="_blank"
                 rel="noopener noreferrer"
                 class="whitespace-nowrap font-mono text-[10px] text-accent2"
-                >YouTube ↗</a
-              >
+              >YouTube ↗</a>
             </div>
 
             <div class="px-4 py-5 md:px-6 md:py-[22px]">
               <!-- teams: desktop row -->
-              <div v-if="hasTeams" class="hidden flex-wrap items-stretch gap-5 md:flex">
+              <div
+                v-if="hasTeams"
+                class="hidden flex-wrap items-stretch gap-5 md:flex"
+              >
                 <div class="min-w-[200px] flex-1">
                   <div class="flex items-center gap-2.5">
                     <div class="flex">
@@ -186,12 +104,17 @@ const youtubeUrl = computed(() =>
                         {{ champNames(teamA) }}
                       </div>
                       <div class="mt-[3px] inline-flex items-center gap-1.5">
-                        <VerifiedMark v-if="hasVerified(teamA)" :size="10" />
-                        <span class="font-sans text-[14px] font-semibold text-ink-secondary">{{
-                          playerLabel(teamA)
-                        }}</span>
+                        <VerifiedMark
+                          v-if="hasVerified(teamA)"
+                          :size="10"
+                        />
+                        <span class="font-sans text-[14px] font-semibold text-ink-secondary">{{ playerLabel(teamA) }}</span>
                       </div>
-                      <div v-if="fuseA && !fusesUnordered" data-testid="team-fuse-a" class="mt-1">
+                      <div
+                        v-if="fuseA && !fusesUnordered"
+                        data-testid="team-fuse-a"
+                        class="mt-1"
+                      >
                         <FuseTag :fuse-id="fuseA" />
                       </div>
                     </div>
@@ -205,12 +128,17 @@ const youtubeUrl = computed(() =>
                         {{ champNames(teamB) }}
                       </div>
                       <div class="mt-[3px] inline-flex items-center gap-1.5">
-                        <span class="font-sans text-[14px] font-semibold text-ink-secondary">{{
-                          playerLabel(teamB)
-                        }}</span>
-                        <VerifiedMark v-if="hasVerified(teamB)" :size="10" />
+                        <span class="font-sans text-[14px] font-semibold text-ink-secondary">{{ playerLabel(teamB) }}</span>
+                        <VerifiedMark
+                          v-if="hasVerified(teamB)"
+                          :size="10"
+                        />
                       </div>
-                      <div v-if="fuseB && !fusesUnordered" data-testid="team-fuse-b" class="mt-1">
+                      <div
+                        v-if="fuseB && !fusesUnordered"
+                        data-testid="team-fuse-b"
+                        class="mt-1"
+                      >
                         <FuseTag :fuse-id="fuseB" />
                       </div>
                     </div>
@@ -231,7 +159,10 @@ const youtubeUrl = computed(() =>
               </div>
 
               <!-- teams: mobile stacked -->
-              <div v-if="hasTeams" class="md:hidden">
+              <div
+                v-if="hasTeams"
+                class="md:hidden"
+              >
                 <div class="mt-3.5 flex items-center gap-2.5">
                   <div class="flex">
                     <ChampBadge
@@ -251,12 +182,16 @@ const youtubeUrl = computed(() =>
                     </div>
                     <div class="inline-flex items-center gap-[5px]">
                       <VerifiedMark v-if="hasVerified(teamA)" />
-                      <span class="font-sans text-[13px] font-semibold text-ink-secondary">{{
-                        playerLabel(teamA)
-                      }}</span>
+                      <span class="font-sans text-[13px] font-semibold text-ink-secondary">{{ playerLabel(teamA) }}</span>
                     </div>
-                    <div v-if="fuseA && !fusesUnordered" class="mt-0.5">
-                      <FuseTag :fuse-id="fuseA" size="sm" />
+                    <div
+                      v-if="fuseA && !fusesUnordered"
+                      class="mt-0.5"
+                    >
+                      <FuseTag
+                        :fuse-id="fuseA"
+                        size="sm"
+                      />
                     </div>
                   </div>
                 </div>
@@ -280,12 +215,16 @@ const youtubeUrl = computed(() =>
                     </div>
                     <div class="inline-flex items-center gap-[5px]">
                       <VerifiedMark v-if="hasVerified(teamB)" />
-                      <span class="font-sans text-[13px] font-semibold text-ink-secondary">{{
-                        playerLabel(teamB)
-                      }}</span>
+                      <span class="font-sans text-[13px] font-semibold text-ink-secondary">{{ playerLabel(teamB) }}</span>
                     </div>
-                    <div v-if="fuseB && !fusesUnordered" class="mt-0.5">
-                      <FuseTag :fuse-id="fuseB" size="sm" />
+                    <div
+                      v-if="fuseB && !fusesUnordered"
+                      class="mt-0.5"
+                    >
+                      <FuseTag
+                        :fuse-id="fuseB"
+                        size="sm"
+                      />
                     </div>
                   </div>
                 </div>
@@ -299,28 +238,44 @@ const youtubeUrl = computed(() =>
                 title="Fuses detected for this match — side attribution unconfirmed"
                 class="mt-3.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 md:justify-center"
               >
-                <span class="font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted"
-                  >Fuses</span
-                >
-                <FuseTag v-if="fuseA" :fuse-id="fuseA" />
-                <span v-if="fuseA && fuseB" class="font-mono text-[11px] text-ink-muted">·</span>
-                <FuseTag v-if="fuseB" :fuse-id="fuseB" />
+                <span class="font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted">Fuses</span>
+                <FuseTag
+                  v-if="fuseA"
+                  :fuse-id="fuseA"
+                />
+                <span
+                  v-if="fuseA && fuseB"
+                  class="font-mono text-[11px] text-ink-muted"
+                >·</span>
+                <FuseTag
+                  v-if="fuseB"
+                  :fuse-id="fuseB"
+                />
               </div>
 
               <!-- unparseable records: raw title -->
-              <div v-if="!hasTeams" class="font-sans text-[14px] font-semibold text-ink-primary">
+              <div
+                v-if="!hasTeams"
+                class="font-sans text-[14px] font-semibold text-ink-primary"
+              >
                 {{ video.title }}
               </div>
 
               <!-- related replays -->
-              <div v-if="related.length" class="mt-6">
+              <div
+                v-if="related.length"
+                class="mt-6"
+              >
                 <div
                   class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted"
                 >
                   Related replays
                 </div>
                 <!-- desktop grid -->
-                <div data-testid="related-grid" class="hidden grid-cols-5 gap-3 md:grid">
+                <div
+                  data-testid="related-grid"
+                  class="hidden grid-cols-5 gap-3 md:grid"
+                >
                   <button
                     v-for="r in related.slice(0, 10)"
                     :key="r.id"
@@ -341,10 +296,7 @@ const youtubeUrl = computed(() =>
                         loading="lazy"
                         decoding="async"
                       />
-                      <span
-                        class="absolute bottom-[5px] right-[5px] bg-[rgba(6,7,11,.82)] px-[5px] py-[2px] font-mono text-[9px] text-white"
-                        >{{ formatDuration(r.durationSec) }}</span
-                      >
+                      <span class="absolute bottom-[5px] right-[5px] bg-[rgba(6,7,11,.82)] px-[5px] py-[2px] font-mono text-[9px] text-white">{{ formatDuration(r.durationSec) }}</span>
                     </div>
                     <div class="flex items-center justify-center gap-1 p-2">
                       <ChampBadge
@@ -368,7 +320,10 @@ const youtubeUrl = computed(() =>
                   </button>
                 </div>
                 <!-- mobile rows -->
-                <div data-testid="related-list" class="flex flex-col gap-[9px] md:hidden">
+                <div
+                  data-testid="related-list"
+                  class="flex flex-col gap-[9px] md:hidden"
+                >
                   <button
                     v-for="r in related.slice(0, 5)"
                     :key="r.id"
@@ -389,10 +344,7 @@ const youtubeUrl = computed(() =>
                         loading="lazy"
                         decoding="async"
                       />
-                      <span
-                        class="absolute bottom-1 right-1 bg-[rgba(6,7,11,.82)] px-1 py-px font-mono text-[8px] text-white"
-                        >{{ formatDuration(r.durationSec) }}</span
-                      >
+                      <span class="absolute bottom-1 right-1 bg-[rgba(6,7,11,.82)] px-1 py-px font-mono text-[8px] text-white">{{ formatDuration(r.durationSec) }}</span>
                     </div>
                     <div class="min-w-0 truncate font-sans text-[12px] font-semibold text-ink-primary">
                       {{ relPlayers(r, 0) }} <span class="text-ink-muted">vs</span>
@@ -417,10 +369,16 @@ const youtubeUrl = computed(() =>
               v-if="pending"
               class="aspect-video border-b border-white/[0.09] bg-elevated motion-safe:animate-pulse"
             />
-            <div v-if="pending" class="p-6 text-center font-mono text-[12px] text-ink-muted">
+            <div
+              v-if="pending"
+              class="p-6 text-center font-mono text-[12px] text-ink-muted"
+            >
               Loading replay…
             </div>
-            <div v-else class="p-10 text-center">
+            <div
+              v-else
+              class="p-10 text-center"
+            >
               <div class="font-display text-[18px] font-semibold text-ink-secondary">
                 Replay not found
               </div>
@@ -438,6 +396,102 @@ const youtubeUrl = computed(() =>
     </Transition>
   </Teleport>
 </template>
+
+<script setup lang="ts">
+// Video view — desktop modal / mobile full-screen (design VIDEO VIEW screens).
+// Open state lives in ?v= (see useVideoModal). Lite-YouTube facade inside.
+import type { Team } from '~~/types';
+
+const { openId, video, pending, close, swap, related } = useVideoModal();
+const { players: playerRegistry } = usePlayers();
+const { byId: champById } = useChampions();
+
+const panel = ref<HTMLElement>();
+let lastFocus: HTMLElement | null = null;
+
+// Esc lives on document (capture) — focus may sit inside the YouTube iframe,
+// where a panel-level keydown would never fire.
+function onDocKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close();
+}
+function onKeydown(e: KeyboardEvent) {
+  if (e.key !== 'Tab' || !panel.value) return;
+  // visible elements only — hidden ones (e.g. the mobile top bar on desktop)
+  // can't take focus, and wrapping onto them lets Tab escape the dialog
+  const els = [...panel.value.querySelectorAll<HTMLElement>(
+    'button, a[href], input, select, [tabindex]:not([tabindex="-1"])'
+  )].filter((el) => el.checkVisibility?.() ?? el.offsetParent !== null);
+  if (!els.length) return;
+  const first = els[0]!;
+  const last = els[els.length - 1]!;
+  if (e.shiftKey && document.activeElement === first) {
+    last.focus();
+    e.preventDefault();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    first.focus();
+    e.preventDefault();
+  }
+}
+
+const champNames = (t?: Team) =>
+  t?.characters.map((c) => champById(c)?.name ?? c).join(' + ') ?? '';
+const playerLabel = (t?: Team) => t?.players.map((p) => p.displayName).join(' + ') ?? '';
+const hasVerified = (t?: Team) => !!t?.players.some((p) => playerRegistry.value[p.id]?.verified);
+const relPlayers = (v: { teams: Team[] }, i: number) =>
+  v.teams[i]?.players.map((p) => p.displayName).join(' + ') ?? '—';
+
+const isOpen = computed(() => openId.value !== null);
+
+const teamA = computed<Team | undefined>(() => video.value?.teams[0]);
+const teamB = computed<Team | undefined>(() => video.value?.teams[1]);
+const hasTeams = computed(() => (video.value?.teams.length ?? 0) === 2);
+
+// CV-detected fuses: per-side when ordered; `fusesUnordered` records show the
+// pair without side attribution (binding them left/right could be wrong)
+const fuseA = computed(() => teamA.value?.fuse ?? null);
+const fuseB = computed(() => teamB.value?.fuse ?? null);
+const fusesUnordered = computed(() => !!video.value?.fusesUnordered);
+
+const metaLine = computed(() => {
+  const v = video.value;
+  if (!v) return '';
+  return [
+    seasonLabel(v.season),
+    matchTypeLabel(v.matchType),
+    formatDuration(v.durationSec),
+    relativeDate(v.publishedAt),
+    `${formatViews(v.viewCount)} views`
+  ].join(' · ');
+});
+const youtubeUrl = computed(() =>
+  openId.value ? `https://www.youtube.com/watch?v=${openId.value}` : '#'
+);
+
+watch(
+  isOpen,
+  (v) => {
+    if (import.meta.server) return;
+    if (v) {
+      lastFocus = document.activeElement as HTMLElement | null;
+      lockBodyScroll();
+      document.addEventListener('keydown', onDocKeydown, true);
+      nextTick(() => panel.value?.focus());
+    } else {
+      unlockBodyScroll();
+      document.removeEventListener('keydown', onDocKeydown, true);
+      lastFocus?.focus?.();
+      lastFocus = null;
+    }
+  },
+  { immediate: true }
+);
+onBeforeUnmount(() => {
+  if (isOpen.value) {
+    unlockBodyScroll();
+    document.removeEventListener('keydown', onDocKeydown, true);
+  }
+});
+</script>
 
 <style scoped>
 .modal-enter-active,

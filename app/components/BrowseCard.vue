@@ -1,23 +1,3 @@
-<script setup lang="ts">
-import type { Team, VideoRecord } from '~~/types'
-
-const props = defineProps<{ video: VideoRecord }>()
-const { open } = useVideoModal()
-const { players: playerRegistry } = usePlayers()
-
-const left = computed<Team | undefined>(() => props.video.teams[0])
-const right = computed<Team | undefined>(() => props.video.teams[1])
-const hasMatchup = computed(() => props.video.teams.length === 2)
-
-const playerLabel = (t?: Team) => t?.players.map((p) => p.displayName).join(' + ') ?? ''
-const hasVerified = (t?: Team) =>
-  !!t?.players.some((p) => playerRegistry.value[p.id]?.verified)
-
-const metaLine = computed(
-  () => `${seasonLabel(props.video.season)} · ${matchTypeLabel(props.video.matchType)}`,
-)
-</script>
-
 <template>
   <!-- accessible name comes from the visible content (players, champions,
        views) — an aria-label of the raw title would mismatch it (WCAG 2.5.3) -->
@@ -40,16 +20,15 @@ const metaLine = computed(
         loading="lazy"
         decoding="async"
       />
-      <ChannelBadge :channel="video.channel" class="absolute left-[9px] top-[9px]" />
+      <ChannelBadge
+        :channel="video.channel"
+        class="absolute left-[9px] top-[9px]"
+      />
       <span
         v-if="video.durationSec > 0"
         class="absolute bottom-[9px] right-[9px] bg-[rgba(6,7,11,.82)] px-[7px] py-[3px] font-mono text-[11px] text-white"
-        >{{ formatDuration(video.durationSec) }}</span
-      >
-      <span
-        class="absolute bottom-[9px] left-[9px] hidden font-mono text-[9px] tracking-[.08em] text-[#9198a8] sm:block"
-        >{{ metaLine }}</span
-      >
+      >{{ formatDuration(video.durationSec) }}</span>
+      <span class="absolute bottom-[9px] left-[9px] hidden font-mono text-[9px] tracking-[.08em] text-[#9198a8] sm:block">{{ metaLine }}</span>
       <!-- hover play affordance -->
       <span
         class="absolute inset-0 flex items-center justify-center bg-[rgba(6,7,11,.32)] opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
@@ -65,7 +44,10 @@ const metaLine = computed(
     <!-- body -->
     <div class="px-3.5 py-[13px]">
       <!-- matchup -->
-      <div v-if="hasMatchup" class="flex items-center justify-center gap-2.5">
+      <div
+        v-if="hasMatchup"
+        class="flex items-center justify-center gap-2.5"
+      >
         <div class="flex">
           <ChampBadge
             v-for="(c, i) in left!.characters.slice(0, 2)"
@@ -75,7 +57,11 @@ const metaLine = computed(
             :font-size="11"
             :class="i > 0 ? '-ml-[7px]' : ''"
           />
-          <ChampBadge v-if="left!.characters.length === 0" :size="28" :font-size="11" />
+          <ChampBadge
+            v-if="left!.characters.length === 0"
+            :size="28"
+            :font-size="11"
+          />
         </div>
         <span class="font-display text-[12px] font-bold text-ink-muted">VS</span>
         <div class="flex">
@@ -87,25 +73,31 @@ const metaLine = computed(
             :font-size="11"
             :class="i > 0 ? '-ml-[7px]' : ''"
           />
-          <ChampBadge v-if="right!.characters.length === 0" :size="28" :font-size="11" />
+          <ChampBadge
+            v-if="right!.characters.length === 0"
+            :size="28"
+            :font-size="11"
+          />
         </div>
       </div>
-      <div v-else class="truncate text-center font-sans text-[12.5px] font-semibold text-ink-secondary">
+      <div
+        v-else
+        class="truncate text-center font-sans text-[12.5px] font-semibold text-ink-secondary"
+      >
         {{ video.title }}
       </div>
 
       <!-- players -->
-      <div v-if="hasMatchup" class="mt-[11px] flex items-center justify-between gap-2">
+      <div
+        v-if="hasMatchup"
+        class="mt-[11px] flex items-center justify-between gap-2"
+      >
         <span class="inline-flex min-w-0 items-center gap-[5px]">
           <VerifiedMark v-if="hasVerified(left)" />
-          <span class="truncate font-sans text-[12.5px] font-semibold text-ink-primary">{{
-            playerLabel(left)
-          }}</span>
+          <span class="truncate font-sans text-[12.5px] font-semibold text-ink-primary">{{ playerLabel(left) }}</span>
         </span>
         <span class="inline-flex min-w-0 items-center justify-end gap-[5px]">
-          <span class="truncate font-sans text-[12.5px] font-semibold text-ink-primary">{{
-            playerLabel(right)
-          }}</span>
+          <span class="truncate font-sans text-[12.5px] font-semibold text-ink-primary">{{ playerLabel(right) }}</span>
           <VerifiedMark v-if="hasVerified(right)" />
         </span>
       </div>
@@ -120,3 +112,23 @@ const metaLine = computed(
     </div>
   </button>
 </template>
+
+<script setup lang="ts">
+import type { Team, VideoRecord } from '~~/types';
+
+const props = defineProps<{ video: VideoRecord }>();
+
+const { open } = useVideoModal();
+const { players: playerRegistry } = usePlayers();
+
+const playerLabel = (t?: Team) => t?.players.map((p) => p.displayName).join(' + ') ?? '';
+const hasVerified = (t?: Team) =>
+  !!t?.players.some((p) => playerRegistry.value[p.id]?.verified);
+
+const left = computed<Team | undefined>(() => props.video.teams[0]);
+const right = computed<Team | undefined>(() => props.video.teams[1]);
+const hasMatchup = computed(() => props.video.teams.length === 2);
+const metaLine = computed(
+  () => `${seasonLabel(props.video.season)} · ${matchTypeLabel(props.video.matchType)}`
+);
+</script>

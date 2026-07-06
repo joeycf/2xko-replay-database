@@ -1,11 +1,3 @@
-<script setup lang="ts">
-withDefaults(defineProps<{ code?: number; message?: string }>(), {
-  code: 404,
-  message: undefined,
-})
-const back = () => clearError({ redirect: '/' })
-</script>
-
 <template>
   <section class="mx-auto max-w-2xl px-6 py-20 text-center md:py-28">
     <div
@@ -18,7 +10,7 @@ const back = () => clearError({ redirect: '/' })
       {{ code === 404 ? 'No data at this route' : 'Something broke the combo' }}
     </h1>
     <p class="mt-3 font-mono text-[12px] text-ink-muted">
-      {{ message ?? 'That champion, player, or page isn’t in the database.' }}
+      {{ message ?? 'That champion, player, or page isn\'t in the database.' }}
     </p>
     <button
       type="button"
@@ -29,3 +21,12 @@ const back = () => clearError({ redirect: '/' })
     </button>
   </section>
 </template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{ code?: number; message?: string }>(), {
+  code: 404,
+  message: undefined
+});
+
+const back = () => clearError({ redirect: '/' });
+</script>

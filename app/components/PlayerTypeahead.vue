@@ -1,38 +1,3 @@
-<script setup lang="ts">
-// Typeahead over the full player registry (verified + discovered), anchored
-// under the "Search all N players" affordance. Click toggles; stays open for
-// multi-select; closes on outside click / Esc.
-const emit = defineEmits<{ close: [] }>()
-
-const { ranked } = useFeaturedPlayers()
-const { selectedPlayers, togglePlayer } = useFilters()
-
-const q = ref('')
-const root = ref<HTMLElement>()
-const input = ref<HTMLInputElement>()
-
-const results = computed(() => {
-  const n = normalizeText(q.value.trim())
-  const base = n
-    ? ranked.value.filter(
-        (p) =>
-          normalizeText(p.displayName).includes(n) ||
-          p.aliases.some((a) => normalizeText(a).includes(n)),
-      )
-    : ranked.value
-  return base.slice(0, 60)
-})
-
-function onOutside(e: PointerEvent) {
-  if (root.value && !root.value.contains(e.target as Node)) emit('close')
-}
-onMounted(() => {
-  input.value?.focus()
-  document.addEventListener('pointerdown', onOutside, true)
-})
-onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside, true))
-</script>
-
 <template>
   <div
     ref="root"
@@ -60,13 +25,55 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside, tru
         :aria-pressed="selectedPlayers.includes(p.id)"
         @click="togglePlayer(p.id)"
       >
-        <VerifiedMark v-if="p.verified" :size="9" />
+        <VerifiedMark
+          v-if="p.verified"
+          :size="9"
+        />
         <span class="min-w-0 truncate">{{ p.displayName }}</span>
         <span class="ml-auto font-mono text-[10px] text-ink-muted">{{ p.appearances }}</span>
       </button>
-      <div v-if="results.length === 0" class="px-3 py-4 font-sans text-[12px] text-ink-muted">
+      <div
+        v-if="results.length === 0"
+        class="px-3 py-4 font-sans text-[12px] text-ink-muted"
+      >
         No players match.
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+// Typeahead over the full player registry (verified + discovered), anchored
+// under the "Search all N players" affordance. Click toggles; stays open for
+// multi-select; closes on outside click / Esc.
+const emit = defineEmits<{ close: [] }>();
+
+const { ranked } = useFeaturedPlayers();
+const { selectedPlayers, togglePlayer } = useFilters();
+
+const q = ref('');
+const root = ref<HTMLElement>();
+const input = ref<HTMLInputElement>();
+
+function onOutside(e: PointerEvent) {
+  if (root.value && !root.value.contains(e.target as Node)) emit('close');
+}
+
+const results = computed(() => {
+  const n = normalizeText(q.value.trim());
+  const base = n
+    ? ranked.value.filter(
+        (p) =>
+          normalizeText(p.displayName).includes(n) ||
+          p.aliases.some((a) => normalizeText(a).includes(n))
+      )
+    : ranked.value;
+  return base.slice(0, 60);
+});
+
+onMounted(() => {
+  input.value?.focus();
+  document.addEventListener('pointerdown', onOutside, true);
+});
+onBeforeUnmount(() => document.removeEventListener('pointerdown', onOutside, true));
+</script>

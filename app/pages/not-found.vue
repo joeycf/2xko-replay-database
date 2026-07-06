@@ -1,3 +1,7 @@
+<template>
+  <NotFoundContent />
+</template>
+
 <script setup lang="ts">
 // The static host's not-found document: prerendered here, then copied over
 // nitro's SPA-fallback 404.html by scripts/postgenerate.mjs (Vercel serves
@@ -5,10 +9,9 @@
 // [...slug] catch-all → error.vue instead, which shows the same content.
 useHead({
   title: '404 — 2XKO Replay Database',
-  meta: [{ name: 'robots', content: 'noindex' }],
-})
+  meta: [{
+    name: 'robots',
+    content: 'noindex'
+  }]
+});
 </script>
-
-<template>
-  <NotFoundContent />
-</template>

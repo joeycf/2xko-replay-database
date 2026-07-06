@@ -1,69 +1,10 @@
-<script setup lang="ts">
-// Mobile bottom-sheet filter drawer (design 1A / 2a). Filters apply live;
-// "Show N replays" confirms & closes, Reset clears everything.
-const open = useState('filter-drawer-open', () => false)
-
-const { list: champions } = useChampions()
-const { ranked, featured } = useFeaturedPlayers()
-const { detected: fuseChips, coverage } = useFuses()
-const f = useFilters()
-const { pending } = useVideos()
-
-const fuseChipStyle = (id: string, accent: string | null) =>
-  f.selectedFuses.value.includes(id)
-    ? { borderColor: accent ?? '#F4F5F8', background: `${accent ?? '#F4F5F8'}26`, color: '#F4F5F8' }
-    : {}
-
-const showAllPlayers = ref(false)
-const playerQuery = ref('')
-const playerResults = computed(() => {
-  const n = normalizeText(playerQuery.value.trim())
-  if (!n) return []
-  return ranked.value
-    .filter(
-      (p) =>
-        normalizeText(p.displayName).includes(n) ||
-        p.aliases.some((a) => normalizeText(a).includes(n)),
-    )
-    .slice(0, 20)
-})
-
-const togClass = (on: boolean) =>
-  on ? 'bg-accent text-[#08090c] border-accent' : 'bg-[#141722] text-ink-secondary border-white/[0.12]'
-const highClass = computed(() =>
-  f.channel.value === 'highLevel'
-    ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
-    : 'bg-[#141722] text-ink-secondary border-white/[0.12]',
-)
-const labelClass =
-  'font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted'
-
-function close() {
-  open.value = false
-}
-function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape') close()
-}
-watch(open, (v) => {
-  if (import.meta.server) return
-  if (v) {
-    lockBodyScroll()
-    document.addEventListener('keydown', onKeydown)
-  } else {
-    unlockBodyScroll()
-    document.removeEventListener('keydown', onKeydown)
-  }
-})
-onBeforeUnmount(() => {
-  if (open.value) unlockBodyScroll()
-  document.removeEventListener('keydown', onKeydown)
-})
-</script>
-
 <template>
   <Teleport to="body">
     <Transition name="drawer">
-      <div v-if="open" class="fixed inset-0 z-[60] flex items-end md:hidden">
+      <div
+        v-if="open"
+        class="fixed inset-0 z-[60] flex items-end md:hidden"
+      >
         <button
           type="button"
           class="absolute inset-0 cursor-default bg-[rgba(6,7,11,.6)]"
@@ -90,7 +31,12 @@ onBeforeUnmount(() => {
 
           <!-- facets -->
           <div class="min-h-0 flex-1 overflow-y-auto px-[18px] pb-3 pt-1.5">
-            <div :class="labelClass" class="my-2.5">Champion · team includes</div>
+            <div
+              :class="labelClass"
+              class="my-2.5"
+            >
+              Champion · team includes
+            </div>
             <div class="flex flex-wrap gap-[7px]">
               <button
                 v-for="c in champions"
@@ -102,7 +48,7 @@ onBeforeUnmount(() => {
                 :style="{
                   background: champGradient(c.accent),
                   borderColor: f.selectedChampions.value.includes(c.id) ? (c.accent ?? '#fff') : 'rgba(255,255,255,.12)',
-                  opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46,
+                  opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46
                 }"
                 @click="f.toggleChampion(c.id)"
               >
@@ -120,7 +66,12 @@ onBeforeUnmount(() => {
               </button>
             </div>
 
-            <div :class="labelClass" class="mb-2.5 mt-5">Channel</div>
+            <div
+              :class="labelClass"
+              class="mb-2.5 mt-5"
+            >
+              Channel
+            </div>
             <div class="flex gap-2">
               <button
                 type="button"
@@ -144,7 +95,12 @@ onBeforeUnmount(() => {
 
             <div class="flex gap-6">
               <div class="flex-1">
-                <div :class="labelClass" class="mb-2.5 mt-5">Season</div>
+                <div
+                  :class="labelClass"
+                  class="mb-2.5 mt-5"
+                >
+                  Season
+                </div>
                 <div class="flex gap-2">
                   <button
                     v-for="s in [0, 1, 2]"
@@ -169,7 +125,12 @@ onBeforeUnmount(() => {
                 </div>
               </div>
               <div class="flex-1">
-                <div :class="labelClass" class="mb-2.5 mt-5">Type</div>
+                <div
+                  :class="labelClass"
+                  class="mb-2.5 mt-5"
+                >
+                  Type
+                </div>
                 <div class="flex gap-2">
                   <button
                     type="button"
@@ -194,7 +155,12 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- fuse facet — NEW vs design (see FilterBar): detected fuses only -->
-            <div :class="labelClass" class="mb-2.5 mt-5">Fuse · either team</div>
+            <div
+              :class="labelClass"
+              class="mb-2.5 mt-5"
+            >
+              Fuse · either team
+            </div>
             <div class="grid grid-cols-2 gap-2">
               <button
                 v-for="fu in fuseChips"
@@ -210,7 +176,10 @@ onBeforeUnmount(() => {
                 :aria-pressed="f.selectedFuses.value.includes(fu.id)"
                 @click="f.toggleFuse(fu.id)"
               >
-                <span class="h-2 w-2 flex-none rotate-45" :style="{ background: fu.accent ?? '#8B93A8' }" />
+                <span
+                  class="h-2 w-2 flex-none rotate-45"
+                  :style="{ background: fu.accent ?? '#8B93A8' }"
+                />
                 {{ fu.name }}
               </button>
             </div>
@@ -219,20 +188,26 @@ onBeforeUnmount(() => {
               {{ coverage.total.toLocaleString('en-US') }} replays
             </div>
 
-            <div :class="labelClass" class="mb-2.5 mt-5">Player · featured</div>
+            <div
+              :class="labelClass"
+              class="mb-2.5 mt-5"
+            >
+              Player · featured
+            </div>
             <div class="flex flex-wrap gap-[7px]">
               <button
                 v-for="p in featured"
                 :key="p.id"
                 type="button"
                 class="inline-flex cursor-pointer items-center gap-1.5 border bg-[#0F1118] px-[11px] py-2 font-sans text-[12px] font-semibold text-ink-primary"
-                :style="{
-                  borderColor: f.selectedPlayers.value.includes(p.id) ? '#FF2E88' : 'rgba(255,255,255,.12)',
-                }"
+                :style="{ borderColor: f.selectedPlayers.value.includes(p.id) ? '#FF2E88' : 'rgba(255,255,255,.12)' }"
                 :aria-pressed="f.selectedPlayers.value.includes(p.id)"
                 @click="f.togglePlayer(p.id)"
               >
-                <VerifiedMark v-if="p.verified" :size="10" />
+                <VerifiedMark
+                  v-if="p.verified"
+                  :size="10"
+                />
                 {{ p.displayName }}
               </button>
               <button
@@ -244,7 +219,10 @@ onBeforeUnmount(() => {
                 Search all {{ ranked.length.toLocaleString() }} players ▾
               </button>
             </div>
-            <div v-if="showAllPlayers" class="mt-2.5">
+            <div
+              v-if="showAllPlayers"
+              class="mt-2.5"
+            >
               <input
                 v-model="playerQuery"
                 type="search"
@@ -262,7 +240,10 @@ onBeforeUnmount(() => {
                   :aria-pressed="f.selectedPlayers.value.includes(p.id)"
                   @click="f.togglePlayer(p.id)"
                 >
-                  <VerifiedMark v-if="p.verified" :size="9" />
+                  <VerifiedMark
+                    v-if="p.verified"
+                    :size="9"
+                  />
                   <span class="min-w-0 truncate">{{ p.displayName }}</span>
                   <span class="ml-auto font-mono text-[10px] text-ink-muted">{{ p.appearances }}</span>
                 </button>
@@ -292,6 +273,74 @@ onBeforeUnmount(() => {
     </Transition>
   </Teleport>
 </template>
+
+<script setup lang="ts">
+// Mobile bottom-sheet filter drawer (design 1A / 2a). Filters apply live;
+// "Show N replays" confirms & closes, Reset clears everything.
+const open = useState('filter-drawer-open', () => false);
+
+const { list: champions } = useChampions();
+const { ranked, featured } = useFeaturedPlayers();
+const { detected: fuseChips, coverage } = useFuses();
+const f = useFilters();
+const { pending } = useVideos();
+
+const showAllPlayers = ref(false);
+const playerQuery = ref('');
+
+const fuseChipStyle = (id: string, accent: string | null) =>
+  f.selectedFuses.value.includes(id)
+    ? {
+        borderColor: accent ?? '#F4F5F8',
+        background: `${accent ?? '#F4F5F8'}26`,
+        color: '#F4F5F8'
+      }
+    : {};
+
+const togClass = (on: boolean) =>
+  on ? 'bg-accent text-[#08090c] border-accent' : 'bg-[#141722] text-ink-secondary border-white/[0.12]';
+
+function close() {
+  open.value = false;
+}
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close();
+}
+
+const labelClass = 'font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted';
+
+const playerResults = computed(() => {
+  const n = normalizeText(playerQuery.value.trim());
+  if (!n) return [];
+  return ranked.value
+    .filter(
+      (p) =>
+        normalizeText(p.displayName).includes(n) ||
+        p.aliases.some((a) => normalizeText(a).includes(n))
+    )
+    .slice(0, 20);
+});
+const highClass = computed(() =>
+  f.channel.value === 'highLevel'
+    ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
+    : 'bg-[#141722] text-ink-secondary border-white/[0.12]'
+);
+
+watch(open, (v) => {
+  if (import.meta.server) return;
+  if (v) {
+    lockBodyScroll();
+    document.addEventListener('keydown', onKeydown);
+  } else {
+    unlockBodyScroll();
+    document.removeEventListener('keydown', onKeydown);
+  }
+});
+onBeforeUnmount(() => {
+  if (open.value) unlockBodyScroll();
+  document.removeEventListener('keydown', onKeydown);
+});
+</script>
 
 <style scoped>
 .drawer-enter-active,

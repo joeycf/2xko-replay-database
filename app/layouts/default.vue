@@ -1,37 +1,11 @@
-<script setup lang="ts">
-const route = useRoute()
-
-const nav = [
-  { label: 'Browse', to: '/' },
-  { label: 'Stats', to: '/stats' },
-  { label: 'Champions', to: '/champions' },
-  { label: 'Players', to: '/players' },
-]
-
-const isActive = (to: string) =>
-  to === '/' ? route.path === '/' : route.path === to || route.path.startsWith(`${to}/`)
-const isBrowse = computed(() => route.path === '/')
-const drawerOpen = useState('filter-drawer-open', () => false)
-
-// Lightweight active-filter count (mirrors useFilters' chips without pulling
-// in the data composables — the layout must not trigger the videos fetch).
-const activeFilterCount = computed(() => {
-  const q = route.query
-  const csvLen = (v: unknown) =>
-    typeof v === 'string' && v ? v.split(',').filter(Boolean).length : 0
-  let n = csvLen(q.c) + csvLen(q.p)
-  if (q.side === '1') n++
-  if (typeof q.ch === 'string' && q.ch) n++
-  if (typeof q.s === 'string' && q.s) n++
-  if (typeof q.mt === 'string' && q.mt) n++
-  if (typeof q.q === 'string' && q.q) n++
-  return n
-})
-</script>
-
 <template>
   <div class="flex min-h-screen flex-col bg-base text-ink-primary">
-    <a href="#main" class="skip-link">Skip to content</a>
+    <a
+      href="#main"
+      class="skip-link"
+    >
+      Skip to content
+    </a>
 
     <header
       class="sticky top-0 z-50 border-b border-white/[0.09] backdrop-blur"
@@ -45,7 +19,10 @@ const activeFilterCount = computed(() => {
           2XKO<span class="text-accent">/</span><span class="hidden sm:inline">REPLAY</span>
         </NuxtLink>
 
-        <nav class="hidden gap-[22px] font-sans text-[14px] font-semibold md:flex" aria-label="Primary">
+        <nav
+          class="hidden gap-[22px] font-sans text-[14px] font-semibold md:flex"
+          aria-label="Primary"
+        >
           <NuxtLink
             v-for="item in nav"
             :key="item.to"
@@ -63,7 +40,10 @@ const activeFilterCount = computed(() => {
 
         <!-- search everywhere: live on Browse, submit→/?q= elsewhere -->
         <SearchBox class="ml-auto hidden w-[340px] md:flex" />
-        <SearchBox compact class="ml-auto min-w-0 max-w-[220px] flex-1 md:hidden" />
+        <SearchBox
+          compact
+          class="ml-auto min-w-0 max-w-[220px] flex-1 md:hidden"
+        />
         <button
           v-if="isBrowse"
           type="button"
@@ -71,7 +51,10 @@ const activeFilterCount = computed(() => {
           aria-label="Open filters"
           @click="drawerOpen = true"
         >
-          <span class="flex flex-col gap-[2.5px]" aria-hidden="true">
+          <span
+            class="flex flex-col gap-[2.5px]"
+            aria-hidden="true"
+          >
             <span class="h-0.5 w-3.5 bg-[#08090c]" />
             <span class="h-0.5 w-2.5 bg-[#08090c]" />
             <span class="h-0.5 w-1.5 bg-[#08090c]" />
@@ -81,8 +64,7 @@ const activeFilterCount = computed(() => {
             <span
               v-if="activeFilterCount > 0"
               class="absolute -right-1.5 -top-1.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full border border-accent bg-[#08090c] px-1 font-mono text-[10px] text-accent"
-              >{{ activeFilterCount }}</span
-            >
+            >{{ activeFilterCount }}</span>
           </ClientOnly>
         </button>
       </div>
@@ -103,7 +85,10 @@ const activeFilterCount = computed(() => {
       </nav>
     </header>
 
-    <main id="main" class="flex-1">
+    <main
+      id="main"
+      class="flex-1"
+    >
       <slot />
     </main>
 
@@ -116,3 +101,42 @@ const activeFilterCount = computed(() => {
     </footer>
   </div>
 </template>
+
+<script setup lang="ts">
+const route = useRoute();
+const drawerOpen = useState('filter-drawer-open', () => false);
+
+const nav = [{
+  label: 'Browse',
+  to: '/'
+}, {
+  label: 'Stats',
+  to: '/stats'
+}, {
+  label: 'Champions',
+  to: '/champions'
+}, {
+  label: 'Players',
+  to: '/players'
+}];
+
+const isActive = (to: string) =>
+  to === '/' ? route.path === '/' : route.path === to || route.path.startsWith(`${to}/`);
+
+const isBrowse = computed(() => route.path === '/');
+
+// Lightweight active-filter count (mirrors useFilters' chips without pulling
+// in the data composables — the layout must not trigger the videos fetch).
+const activeFilterCount = computed(() => {
+  const q = route.query;
+  const csvLen = (v: unknown) =>
+    typeof v === 'string' && v ? v.split(',').filter(Boolean).length : 0;
+  let n = csvLen(q.c) + csvLen(q.p);
+  if (q.side === '1') n++;
+  if (typeof q.ch === 'string' && q.ch) n++;
+  if (typeof q.s === 'string' && q.s) n++;
+  if (typeof q.mt === 'string' && q.mt) n++;
+  if (typeof q.q === 'string' && q.q) n++;
+  return n;
+});
+</script>

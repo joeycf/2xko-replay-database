@@ -1,38 +1,12 @@
-<script setup lang="ts">
-// Desktop filter bar — port of design 1A rows: champion chips + same-side,
-// channel/season/type/sort, player facet with featured chips + typeahead.
-import type { VideoSort } from '~/composables/useFilters'
-
-const { list: champions } = useChampions()
-const { ranked, featured } = useFeaturedPlayers()
-const { detected: fuseChips, coverage } = useFuses()
-const f = useFilters()
-
-const fuseChipStyle = (id: string, accent: string | null) =>
-  f.selectedFuses.value.includes(id)
-    ? { borderColor: accent ?? '#F4F5F8', background: `${accent ?? '#F4F5F8'}26`, color: '#F4F5F8' }
-    : {}
-
-const typeaheadOpen = ref(false)
-const sameSideUsable = computed(() => f.selectedChampions.value.length >= 2)
-
-const togClass = (on: boolean) =>
-  on
-    ? 'bg-accent text-[#08090c] border-accent'
-    : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary'
-const highClass = computed(() =>
-  f.channel.value === 'highLevel'
-    ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
-    : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary',
-)
-const labelClass =
-  'font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted'
-</script>
-
 <template>
   <div class="border-b border-white/[0.07] bg-base px-4 py-4 md:px-[26px]">
     <!-- champion facet -->
-    <div :class="labelClass" class="mb-2.5">Champion · team includes</div>
+    <div
+      :class="labelClass"
+      class="mb-2.5"
+    >
+      Champion · team includes
+    </div>
     <div class="flex flex-wrap items-center gap-[7px]">
       <button
         v-for="c in champions"
@@ -44,7 +18,7 @@ const labelClass =
         :style="{
           background: champGradient(c.accent),
           borderColor: f.selectedChampions.value.includes(c.id) ? (c.accent ?? '#fff') : 'rgba(255,255,255,.12)',
-          opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46,
+          opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46
         }"
         @click="f.toggleChampion(c.id)"
       >
@@ -66,7 +40,12 @@ const labelClass =
     <!-- channel · season · type · sort -->
     <div class="mt-4 flex flex-wrap items-center gap-[18px]">
       <div class="flex items-center gap-1.5">
-        <span :class="labelClass" class="mr-1">Channel</span>
+        <span
+          :class="labelClass"
+          class="mr-1"
+        >
+          Channel
+        </span>
         <button
           type="button"
           class="cursor-pointer border px-[13px] py-2 font-sans text-[12px] font-semibold cut-bl-7"
@@ -88,7 +67,12 @@ const labelClass =
       </div>
       <span class="h-6 w-px bg-white/10" />
       <div class="flex items-center gap-1.5">
-        <span :class="labelClass" class="mr-1">Season</span>
+        <span
+          :class="labelClass"
+          class="mr-1"
+        >
+          Season
+        </span>
         <button
           v-for="s in [0, 1, 2]"
           :key="s"
@@ -113,7 +97,12 @@ const labelClass =
       </div>
       <span class="h-6 w-px bg-white/10" />
       <div class="flex items-center gap-1.5">
-        <span :class="labelClass" class="mr-1">Type</span>
+        <span
+          :class="labelClass"
+          class="mr-1"
+        >
+          Type
+        </span>
         <button
           type="button"
           class="cursor-pointer border px-[13px] py-2 font-sans text-[12px] font-semibold"
@@ -134,7 +123,12 @@ const labelClass =
         </button>
       </div>
       <div class="ml-auto flex items-center gap-2">
-        <label :class="labelClass" for="browse-sort">Sort</label>
+        <label
+          :class="labelClass"
+          for="browse-sort"
+        >
+          Sort
+        </label>
         <select
           id="browse-sort"
           :value="f.sort.value"
@@ -155,7 +149,10 @@ const labelClass =
     <div class="mt-4">
       <div class="mb-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span :class="labelClass">Fuse · either team</span>
-        <span data-testid="fuse-coverage" class="font-mono text-[10px] text-ink-muted">
+        <span
+          data-testid="fuse-coverage"
+          class="font-mono text-[10px] text-ink-muted"
+        >
           fuse identified for {{ coverage.withFuse.toLocaleString('en-US') }} of
           {{ coverage.total.toLocaleString('en-US') }} replays
         </span>
@@ -176,7 +173,10 @@ const labelClass =
           :data-testid="`fuse-chip-${fu.id}`"
           @click="f.toggleFuse(fu.id)"
         >
-          <span class="h-2 w-2 flex-none rotate-45" :style="{ background: fu.accent ?? '#8B93A8' }" />
+          <span
+            class="h-2 w-2 flex-none rotate-45"
+            :style="{ background: fu.accent ?? '#8B93A8' }"
+          />
           {{ fu.name }}
         </button>
       </div>
@@ -184,20 +184,26 @@ const labelClass =
 
     <!-- player facet -->
     <div class="mt-4">
-      <div :class="labelClass" class="mb-2.5">Player · featured</div>
+      <div
+        :class="labelClass"
+        class="mb-2.5"
+      >
+        Player · featured
+      </div>
       <div class="flex flex-wrap items-center gap-[7px]">
         <button
           v-for="p in featured"
           :key="p.id"
           type="button"
           class="inline-flex cursor-pointer items-center gap-1.5 border bg-[#141722] px-[11px] py-1.5 font-sans text-[12px] font-semibold text-ink-primary"
-          :style="{
-            borderColor: f.selectedPlayers.value.includes(p.id) ? '#FF2E88' : 'rgba(255,255,255,.12)',
-          }"
+          :style="{ borderColor: f.selectedPlayers.value.includes(p.id) ? '#FF2E88' : 'rgba(255,255,255,.12)' }"
           :aria-pressed="f.selectedPlayers.value.includes(p.id)"
           @click="f.togglePlayer(p.id)"
         >
-          <VerifiedMark v-if="p.verified" :size="10" />
+          <VerifiedMark
+            v-if="p.verified"
+            :size="10"
+          />
           {{ p.displayName }}
           <span class="font-mono text-[10px] text-ink-muted">{{ p.appearances }}</span>
         </button>
@@ -210,9 +216,48 @@ const labelClass =
           >
             Search all {{ ranked.length.toLocaleString() }} players ▾
           </button>
-          <PlayerTypeahead v-if="typeaheadOpen" @close="typeaheadOpen = false" />
+          <PlayerTypeahead
+            v-if="typeaheadOpen"
+            @close="typeaheadOpen = false"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+// Desktop filter bar — port of design 1A rows: champion chips + same-side,
+// channel/season/type/sort, player facet with featured chips + typeahead.
+import type { VideoSort } from '~/composables/useFilters';
+
+const { list: champions } = useChampions();
+const { ranked, featured } = useFeaturedPlayers();
+const { detected: fuseChips, coverage } = useFuses();
+const f = useFilters();
+
+const typeaheadOpen = ref(false);
+
+const fuseChipStyle = (id: string, accent: string | null) =>
+  f.selectedFuses.value.includes(id)
+    ? {
+        borderColor: accent ?? '#F4F5F8',
+        background: `${accent ?? '#F4F5F8'}26`,
+        color: '#F4F5F8'
+      }
+    : {};
+
+const togClass = (on: boolean) =>
+  on
+    ? 'bg-accent text-[#08090c] border-accent'
+    : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary';
+
+const labelClass = 'font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted';
+
+const sameSideUsable = computed(() => f.selectedChampions.value.length >= 2);
+const highClass = computed(() =>
+  f.channel.value === 'highLevel'
+    ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
+    : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary'
+);
+</script>
