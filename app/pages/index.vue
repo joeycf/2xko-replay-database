@@ -100,7 +100,7 @@ onBeforeUnmount(() => io?.disconnect());
 
 useSiteMeta({
   title: 'Browse — 2XKO Replay Database',
-  description: `Browse ${totals.videos.toLocaleString('en-US')} competitive 2XKO replays — filter by champion, team pairing, player, season, and channel.`
+  description: `Browse ${totals.videos.toLocaleString('en-US')} competitive 2XKO replays — filter by champion, FUSE, team pairing, player, season, and channel.`
 });
 
 // sitelinks-searchbox: /?q= is the real search param (useFilters schema)
