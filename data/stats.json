@@ -183,39 +183,39 @@
       "2": 388,
       "beta": 185
     },
-    "withFuse": 2565
+    "withFuse": 2605
   },
   "fuseUsage": {
-    "2x-assist": 1057,
-    "double-down": 905,
-    "freestyle": 3102,
+    "2x-assist": 1063,
+    "double-down": 925,
+    "freestyle": 3116,
     "juggernaut": 19,
     "teamfight": 41
   },
   "fuseBySeason": {
     "0": {
-      "2x-assist": 671,
-      "double-down": 533,
-      "freestyle": 756
+      "2x-assist": 673,
+      "double-down": 548,
+      "freestyle": 760
     },
     "1": {
       "2x-assist": 224,
       "double-down": 212,
-      "freestyle": 1784,
+      "freestyle": 1788,
       "juggernaut": 12,
       "teamfight": 8
     },
     "2": {
-      "2x-assist": 73,
+      "2x-assist": 74,
       "double-down": 42,
-      "freestyle": 501,
+      "freestyle": 503,
       "juggernaut": 3,
       "teamfight": 33
     },
     "beta": {
-      "2x-assist": 89,
-      "double-down": 118,
-      "freestyle": 61,
+      "2x-assist": 92,
+      "double-down": 123,
+      "freestyle": 65,
       "juggernaut": 4
     }
   },

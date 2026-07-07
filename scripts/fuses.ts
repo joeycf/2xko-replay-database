@@ -23,7 +23,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp, { type OverlayOptions } from 'sharp'
-import type { VideoRecord } from '../types/index'
+import type { FuseOrientItem, VideoRecord } from '../types/index'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const CACHE = join(ROOT, 'cache/fuse')
@@ -707,6 +707,7 @@ async function runPromoteLows(pills: PillTemplate[], names: Map<string, bigint>)
     detail: string
   }
   const rows: Row[] = []
+  const orientQueue: FuseOrientItem[] = []
   let promotedSides = 0
 
   for (const [id, d] of lows) {
@@ -739,6 +740,19 @@ async function runPromoteLows(pills: PillTemplate[], names: Map<string, bigint>)
         unordered = true // pair known, sides not — same contract as ok-unordered
         sameOrder = true
       } else {
+        // hand-adjudication queue for /dev/fuse-orient: the fuse identity is
+        // settled here, only the owning title-team is not — never guess it
+        const s = okL ? L : R
+        orientQueue.push({
+          id,
+          montage: montageNo.get(id) ?? null,
+          screenSide: okL ? 'left' : 'right',
+          fuse: s.fuse!,
+          dist: s.dist,
+          margin: s.margin,
+          struct: s.struct,
+          frames: frames.length,
+        })
         rows.push({
           id,
           outcome: 'blocked-orientation',
@@ -784,6 +798,10 @@ async function runPromoteLows(pills: PillTemplate[], names: Map<string, bigint>)
   ]
   mkdirSync(REVIEW, { recursive: true })
   writeFileSync(join(REVIEW, 'promotions.md'), lines.join('\n'))
+  writeFileSync(
+    join(REVIEW, 'orient-queue.json'),
+    JSON.stringify({ generatedAt: new Date().toISOString(), items: orientQueue }, null, 1) + '\n',
+  )
 
   for (const r of promotedRows) console.log(`  ${tag(r.id)} ${r.id}  ${r.outcome.padEnd(9)} ${r.detail}`)
   const count = (o: Row['outcome']) => rows.filter((r) => r.outcome === o).length
@@ -793,6 +811,7 @@ async function runPromoteLows(pills: PillTemplate[], names: Map<string, bigint>)
       `${count('blocked-orientation')} blocked on orientation · ${count('ambiguous')} ambiguous`,
   )
   console.log('✓ wrote data/overrides.json + cache/fuse/review/promotions.md')
+  console.log(`✓ orientation queue: cache/fuse/review/orient-queue.json (${orientQueue.length} — adjudicate at /dev/fuse-orient)`)
 }
 
 // ── main ──────────────────────────────────────────────────────────────────────

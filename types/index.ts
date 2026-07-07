@@ -115,6 +115,27 @@ export interface FuseGapItem {
   detection?: Pick<FuseDetection, "left" | "right" | "score" | "status">;
 }
 
+/** One orientation-blocked low read: fuse is legible, owning title-team is not. */
+export interface FuseOrientItem {
+  id: string;
+  /** row # in the current gap-pills.png montage (null if report is stale) */
+  montage: number | null;
+  /** which SCREEN side the legible pill sits on */
+  screenSide: TeamSide;
+  fuse: string;
+  dist: number;
+  margin: number;
+  struct: number;
+  /** cached frame count, for the viewer's frame cycler */
+  frames: number;
+}
+
+/** cache/fuse/review/orient-queue.json — written by --promote-lows, consumed by /dev/fuse-orient. */
+export interface FuseOrientQueue {
+  generatedAt: string;
+  items: FuseOrientItem[];
+}
+
 /** cache/fuse/review/fuse-gaps.json — written by scripts/fuse-gaps.ts, served by /api/dev/fuse-gaps. */
 export interface FuseGapReport {
   generatedAt: string;
