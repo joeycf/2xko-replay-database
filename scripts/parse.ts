@@ -8,6 +8,8 @@
 //  • Season: description "(Season N)" primary, seasonBoundaries.json fallback.
 //  • Champions: exact alias → word-contains (tag balance notes) → Damerau/OSA ≤1 (low conf).
 
+import { execFileSync } from "node:child_process";
+import { existsSync, statSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -75,8 +77,54 @@ const fusesDetected: Record<string, FuseDetection> = await readJson<Record<strin
 ).catch(() => ({}));
 
 const rawRecords: RawVideoRecord[] = [];
+const rawPaths: string[] = [];
 for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
-  rawRecords.push(...(await readJson<RawVideoRecord[]>(join(RAW, `${key}.json`))));
+  const p = join(RAW, `${key}.json`);
+  if (!existsSync(p)) {
+    console.error(`✖ raw/${key}.json missing — run \`npm run data:fetch\` first (or \`npm run data:build\`).`);
+    process.exit(1);
+  }
+  rawPaths.push(p);
+  rawRecords.push(...(await readJson<RawVideoRecord[]>(p)));
+}
+
+// ── stale-raw guard ───────────────────────────────────────────────────────────
+// Daily refreshes are committed by the remote cron, so this machine's gitignored
+// raw/ can lag the committed videos.json — a bare parse would then silently
+// regress it (observed 2026-07-06: 2,847 → 2,825). Refuse when the existing
+// videos.json holds ids the dumps lack AND the dumps predate its last commit.
+// Fresh dumps missing ids are legitimate (that's how deleted videos get pruned),
+// and equal id sets (re-parse after an overrides/detections change) always pass.
+if (!process.argv.includes("--allow-stale")) {
+  const existing = await readJson<VideoRecord[]>(join(DATA, "videos.json")).catch(() => [] as VideoRecord[]);
+  const rawIds = new Set(rawRecords.map((r) => r.id));
+  const missing = existing.filter((v) => !rawIds.has(v.id));
+  if (missing.length > 0) {
+    let lastCommitMs: number | null = null;
+    try {
+      const out = execFileSync("git", ["log", "-1", "--format=%ct", "--", "data/videos.json"], {
+        cwd: ROOT,
+        stdio: ["ignore", "pipe", "ignore"],
+      }).toString().trim();
+      if (out) lastCommitMs = Number(out) * 1000;
+    } catch {
+      // no usable git history (CI shallow clone, tarball) — staleness can't be
+      // proven, and those environments fetch first anyway; fall through
+    }
+    const rawMtimeMs = Math.max(...rawPaths.map((p) => statSync(p).mtimeMs));
+    if (lastCommitMs !== null && rawMtimeMs < lastCommitMs) {
+      const day = (ms: number) => new Date(ms).toISOString().slice(0, 10);
+      console.error(
+        [
+          `✖ Stale raw/ dumps: data/videos.json (last committed ${day(lastCommitMs)}) contains ${missing.length} video(s)`,
+          `  missing from raw/*.json (fetched ${day(rawMtimeMs)}), e.g. ${missing[0].id}. The daily cron refreshes`,
+          `  remotely, so local raw/ lags — parsing now would silently drop those videos.`,
+          `  Run \`npm run data:fetch\` first (or \`npm run data:build\`); pass --allow-stale to override.`,
+        ].join("\n"),
+      );
+      process.exit(1);
+    }
+  }
 }
 
 // ── champion resolution ───────────────────────────────────────────────────────
