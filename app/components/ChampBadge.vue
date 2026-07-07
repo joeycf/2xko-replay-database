@@ -3,13 +3,26 @@
     class="flex flex-none items-center justify-center font-display font-bold text-[#050607]"
     :class="strong ? 'border-[1.5px] border-white/[0.18]' : 'border border-white/[0.16]'"
     :style="style"
-    :title="champ?.name"
+    :aria-label="champ?.name"
+    @mouseenter="champ && showTip($event, champ)"
+    @mouseleave="hideTip"
   >
     {{ initials }}
+    <!-- teleports to body; only a placeholder stays in the span, keeping it
+         the single root so caller attrs (class, etc.) still fall through -->
+    <HoverTip :tip="tip">
+      <span
+        v-if="tip"
+        class="font-sans text-[12px] font-semibold"
+        :style="{ color: tip.data.accent ?? '#FF2E88' }"
+      >{{ tip.data.name }}</span>
+    </HoverTip>
   </span>
 </template>
 
 <script setup lang="ts">
+import type { Champion } from '~~/types';
+
 const props = withDefaults(
   defineProps<{
     championId?: string | null;
@@ -32,6 +45,8 @@ const props = withDefaults(
 );
 
 const { byId } = useChampions();
+// full-name tooltip (was a native title) — shared HoverTip build
+const { tip, showTip, hideTip } = useHoverTip<Champion>({ clampX: 70 });
 
 const champ = computed(() => (props.championId ? byId(props.championId) : undefined));
 const initials = computed(() => (champ.value ? championInitials(champ.value) : '?'));

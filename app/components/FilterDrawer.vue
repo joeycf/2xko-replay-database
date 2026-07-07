@@ -42,7 +42,7 @@
                 v-for="c in champions"
                 :key="c.id"
                 type="button"
-                :title="c.name"
+                :aria-label="c.name"
                 :aria-pressed="f.selectedChampions.value.includes(c.id)"
                 class="flex h-[38px] w-[38px] flex-none cursor-pointer items-center justify-center border-2 p-0 font-display text-[12px] font-bold text-[#050607] cut-8"
                 :style="{
@@ -50,6 +50,8 @@
                   borderColor: f.selectedChampions.value.includes(c.id) ? (c.accent ?? '#fff') : 'rgba(255,255,255,.12)',
                   opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46
                 }"
+                @mouseenter="showTip($event, c)"
+                @mouseleave="hideTip"
                 @click="f.toggleChampion(c.id)"
               >
                 {{ championInitials(c) }}
@@ -241,12 +243,24 @@
         </div>
       </div>
     </Transition>
+
+    <HoverTip :tip="tip">
+      <span
+        v-if="tip"
+        class="font-sans text-[12px] font-semibold"
+        :style="{ color: tip.data.accent ?? '#FF2E88' }"
+      >{{ tip.data.name }}</span>
+    </HoverTip>
   </Teleport>
 </template>
 
 <script setup lang="ts">
 // Mobile bottom-sheet filter drawer (design 1A / 2a). Filters apply live;
 // "Show N replays" confirms & closes, Reset clears everything.
+// Champion-name HoverTip only fires on hover-capable pointers (narrow desktop
+// windows) — on touch, useHoverTip keeps a tap a pure toggle.
+import type { Champion } from '~~/types';
+
 const open = useState('filter-drawer-open', () => false);
 
 const { list: champions } = useChampions();
@@ -254,6 +268,7 @@ const { ranked, featured } = useFeaturedPlayers();
 const { detected: fuseChips, coverage } = useFuses();
 const f = useFilters();
 const { pending } = useVideos();
+const { tip, showTip, hideTip } = useHoverTip<Champion>({ clampX: 70 });
 
 const showAllPlayers = ref(false);
 const playerQuery = ref('');
@@ -304,6 +319,7 @@ watch(open, (v) => {
   } else {
     unlockBodyScroll();
     document.removeEventListener('keydown', onKeydown);
+    hideTip(); // chips unmount without a mouseleave when the sheet closes
   }
 });
 onBeforeUnmount(() => {

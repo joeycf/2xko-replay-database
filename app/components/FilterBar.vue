@@ -12,7 +12,7 @@
         v-for="c in champions"
         :key="c.id"
         type="button"
-        :title="c.name"
+        :aria-label="c.name"
         :aria-pressed="f.selectedChampions.value.includes(c.id)"
         class="flex h-9 w-9 flex-none cursor-pointer items-center justify-center border-2 p-0 font-display text-[12px] font-bold text-[#050607] transition-[opacity,border-color] duration-150 cut-8"
         :style="{
@@ -20,6 +20,8 @@
           borderColor: f.selectedChampions.value.includes(c.id) ? (c.accent ?? '#fff') : 'rgba(255,255,255,.12)',
           opacity: f.selectedChampions.value.includes(c.id) ? 1 : 0.46
         }"
+        @mouseenter="showTip($event, c)"
+        @mouseleave="hideTip"
         @click="f.toggleChampion(c.id)"
       >
         {{ championInitials(c) }}
@@ -196,18 +198,31 @@
         </div>
       </div>
     </div>
+
+    <HoverTip :tip="tip">
+      <span
+        v-if="tip"
+        class="font-sans text-[12px] font-semibold"
+        :style="{ color: tip.data.accent ?? '#FF2E88' }"
+      >{{ tip.data.name }}</span>
+    </HoverTip>
   </div>
 </template>
 
 <script setup lang="ts">
 // Desktop filter bar — port of design 1A rows: champion chips + same-side,
 // channel/season/type/sort, player facet with featured chips + typeahead.
+// Champion chips show the full name in a HoverTip (was a native title, now
+// consistent with the stats synergy matrix).
 import type { VideoSort } from '~/composables/useFilters';
+import type { Champion } from '~~/types';
 
 const { list: champions } = useChampions();
 const { ranked, featured } = useFeaturedPlayers();
 const { detected: fuseChips, coverage } = useFuses();
 const f = useFilters();
+// clampX sized for a single champion name, not the matrix's pairing line
+const { tip, showTip, hideTip } = useHoverTip<Champion>({ clampX: 70 });
 
 const typeaheadOpen = ref(false);
 
