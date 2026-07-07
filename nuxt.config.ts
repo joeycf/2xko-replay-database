@@ -23,7 +23,7 @@ const publicRoutes = [...coreRoutes, ...championRoutes, ...playerRoutes]
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-01',
   ssr: true,
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@vercel/analytics'],
 
   runtimeConfig: {
     public: {
