@@ -7,9 +7,16 @@
 // to decide whether the in-game sides are swapped vs the title.
 //
 //   npm run data:fuses -- [--validate] [--limit N] [--ids a,b] [--force] [--clean]
+//                         [--promote-lows]
 //
 // Statuses: "ok" (confident, ordered) · "ok-unordered" (both fuses confident,
 // side attribution ambiguous) · "low" (best guess kept, not merged) · "none".
+//
+// --promote-lows re-reads every un-overridden "low" record from cached frames
+// (no downloads, detection thresholds untouched) and auto-promotes a side into
+// data/overrides.json only when the pill is plainly legible: dist ≤ 6, margin
+// to the runner-up class ≥ 15, struct within the backlog ceiling. Everything
+// else stays null. Writes cache/fuse/review/promotions.md for review.
 
 import { execFileSync, spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -665,9 +672,133 @@ async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Pr
   }
 }
 
+// ── promote-lows mode ─────────────────────────────────────────────────────────
+// Clears the unambiguous slice of the "low" pile. A record is low when at
+// least one side missed conf() at backlog time — but the OTHER side is often a
+// perfect read, and per-side promotion doesn't need both. The bar here is far
+// stricter than conf() (dist ≤ 6 vs ≤ 75, margin ≥ 15 vs ≥ 5) so only
+// plainly-legible pills qualify; attribution to title order reuses orient(),
+// and a side that can't be confidently read AND attributed stays null.
+const PROMOTE_DIST = 6
+const PROMOTE_MARGIN = 15
+
+async function runPromoteLows(pills: PillTemplate[], names: Map<string, bigint>): Promise<void> {
+  const detected: Record<string, Detection> = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : {}
+  const ovPath = join(ROOT, 'data/overrides.json')
+  const overrides = JSON.parse(readFileSync(ovPath, 'utf8')) as Record<string, Partial<VideoRecord>>
+
+  // montage row numbers from the current gap report, for cross-checking crops
+  const gapsPath = join(REVIEW, 'fuse-gaps.json')
+  const montageNo = new Map<string, number>()
+  if (existsSync(gapsPath)) {
+    const gaps = JSON.parse(readFileSync(gapsPath, 'utf8')) as { items: { id: string; bucket: string }[] }
+    gaps.items.filter((i) => i.bucket === 'low' || i.bucket === 'none').forEach((i, idx) => montageNo.set(i.id, idx + 1))
+  }
+  const tag = (id: string) => (montageNo.has(id) ? `#${String(montageNo.get(id)).padStart(3, '0')}` : '—')
+
+  const lows = Object.entries(detected).filter(
+    ([id, d]) => d.status === 'low' && !overrides[id] && byId.get(id)?.teams.length === 2,
+  )
+  console.log(`re-reading ${lows.length} low record(s) from cached frames (bar: dist ≤ ${PROMOTE_DIST} · margin ≥ ${PROMOTE_MARGIN} · struct ≤ ${STRUCT_MAX})`)
+
+  interface Row {
+    id: string
+    outcome: 'both' | 'single' | 'unordered' | 'blocked-orientation' | 'ambiguous'
+    detail: string
+  }
+  const rows: Row[] = []
+  let promotedSides = 0
+
+  for (const [id, d] of lows) {
+    const dir = join(FRAMES, id)
+    if (!existsSync(join(dir, '01.png'))) {
+      rows.push({ id, outcome: 'ambiguous', detail: 'no cached frames — skipped (never re-read)' })
+      continue
+    }
+    const video = byId.get(id)!
+    const frames = readdirSync(dir).filter((f) => f.endsWith('.png')).sort().map((f) => join(dir, f))
+    const [L, R] = await Promise.all([readSide(frames, 'left', pills), readSide(frames, 'right', pills)])
+    const clear = (s: SideRead) =>
+      s.fuse !== null && s.dist <= PROMOTE_DIST && s.margin >= PROMOTE_MARGIN && s.struct <= STRUCT_MAX
+    const fmt = (s: SideRead) => `${s.fuse ?? '∅'} d${s.dist} m${s.margin} st${s.struct}`
+    const stored = `stored: ${d.left ?? '∅'}(${d.score.left})/${d.right ?? '∅'}(${d.score.right})`
+    const okL = clear(L)
+    const okR = clear(R)
+
+    if (!okL && !okR) {
+      rows.push({ id, outcome: 'ambiguous', detail: `L ${fmt(L)} · R ${fmt(R)} · ${stored}` })
+      continue
+    }
+
+    // map screen sides onto title-ordered teams: symmetric promotions need no
+    // orientation; everything else asks the nameplates
+    let sameOrder: boolean | null = okL && okR && L.fuse === R.fuse ? true : await orient(frames, video, names)
+    let unordered = false
+    if (sameOrder === null) {
+      if (okL && okR) {
+        unordered = true // pair known, sides not — same contract as ok-unordered
+        sameOrder = true
+      } else {
+        rows.push({
+          id,
+          outcome: 'blocked-orientation',
+          detail: `${okL ? 'L' : 'R'} reads ${fmt(okL ? L : R)} but nameplates can't attribute it · ${stored}`,
+        })
+        continue
+      }
+    }
+    const [team0Read, team1Read] = sameOrder ? [L, R] : [R, L]
+    const [team0Ok, team1Ok] = sameOrder ? [okL, okR] : [okR, okL]
+    overrides[id] = {
+      teams: video.teams.map((t, i) => ({
+        ...t,
+        fuse: (i === 0 ? team0Ok : team1Ok) ? (i === 0 ? team0Read : team1Read).fuse : null,
+      })),
+      fusesUnordered: unordered,
+    }
+    promotedSides += (okL ? 1 : 0) + (okR ? 1 : 0)
+    rows.push({
+      id,
+      outcome: unordered ? 'unordered' : okL && okR ? 'both' : 'single',
+      detail:
+        `teams[0]=${team0Ok ? fmt(team0Read) : 'null'} · teams[1]=${team1Ok ? fmt(team1Read) : 'null'}` +
+        `${unordered ? ' · UNORDERED PAIR' : ''} · ${stored}`,
+    })
+  }
+
+  writeFileSync(ovPath, JSON.stringify(overrides, null, 2) + '\n')
+
+  const promotedRows = rows.filter((r) => r.outcome === 'both' || r.outcome === 'single' || r.outcome === 'unordered')
+  const lines = [
+    `# Low-confidence auto-promotions — ${new Date().toISOString().slice(0, 10)}`,
+    '',
+    `Bar: dist ≤ ${PROMOTE_DIST} · margin ≥ ${PROMOTE_MARGIN} · struct ≤ ${STRUCT_MAX}; re-read from cached frames, attribution via nameplates.`,
+    `${promotedRows.length} of ${lows.length} videos promoted (${promotedSides} sides); the rest stay unidentified.`,
+    '',
+    '| montage | video | outcome | reads |',
+    '|---|---|---|---|',
+    ...rows
+      .sort((a, b) => (montageNo.get(a.id) ?? 999) - (montageNo.get(b.id) ?? 999))
+      .map((r) => `| ${tag(r.id)} | \`${r.id}\` | ${r.outcome} | ${r.detail} |`),
+    '',
+  ]
+  mkdirSync(REVIEW, { recursive: true })
+  writeFileSync(join(REVIEW, 'promotions.md'), lines.join('\n'))
+
+  for (const r of promotedRows) console.log(`  ${tag(r.id)} ${r.id}  ${r.outcome.padEnd(9)} ${r.detail}`)
+  const count = (o: Row['outcome']) => rows.filter((r) => r.outcome === o).length
+  console.log(
+    `\n✓ promoted ${promotedRows.length}/${lows.length} videos (${promotedSides} sides): ` +
+      `${count('both')} both-sides · ${count('single')} single-side · ${count('unordered')} unordered pairs; ` +
+      `${count('blocked-orientation')} blocked on orientation · ${count('ambiguous')} ambiguous`,
+  )
+  console.log('✓ wrote data/overrides.json + cache/fuse/review/promotions.md')
+}
+
 // ── main ──────────────────────────────────────────────────────────────────────
 const pills = await loadPillTemplates()
 const names = await loadNameTemplates()
 console.log(`templates: ${pills.length} pill · ${names.size} nameplate`)
 if (VALIDATE) await runValidation(pills, names)
+else if (has('--promote-lows')) await runPromoteLows(pills, names)
 else await runBacklog(pills, names)
