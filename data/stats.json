@@ -232,18 +232,6 @@
       "jinx": 1,
       "yasuo": 1
     },
-    "2winzharu": {
-      "ekko": 8,
-      "yasuo": 8
-    },
-    "2winztoshi": {
-      "ekko": 6,
-      "yasuo": 6
-    },
-    "2winztoshi2winzharu": {
-      "ekko": 1,
-      "yasuo": 1
-    },
     "2xno": {
       "ahri": 1,
       "caitlyn": 1
@@ -1259,8 +1247,8 @@
       "jinx": 1
     },
     "haru": {
-      "ekko": 3,
-      "yasuo": 3
+      "ekko": 12,
+      "yasuo": 12
     },
     "haveaniceday": {
       "illaoi": 1,
@@ -3205,8 +3193,8 @@
       "warwick": 2
     },
     "toshi": {
-      "ekko": 5,
-      "yasuo": 5
+      "ekko": 12,
+      "yasuo": 12
     },
     "tracheotomy": {
       "blitzcrank": 1,
@@ -3614,15 +3602,6 @@
     },
     "2ezmk": {
       "jinx|yasuo": 1
-    },
-    "2winzharu": {
-      "ekko|yasuo": 8
-    },
-    "2winztoshi": {
-      "ekko|yasuo": 6
-    },
-    "2winztoshi2winzharu": {
-      "ekko|yasuo": 1
     },
     "2xno": {
       "ahri|caitlyn": 1
@@ -4447,7 +4426,7 @@
       "ahri|jinx": 1
     },
     "haru": {
-      "ekko|yasuo": 3
+      "ekko|yasuo": 12
     },
     "haveaniceday": {
       "illaoi|yasuo": 1
@@ -6014,7 +5993,7 @@
       "ekko|warwick": 2
     },
     "toshi": {
-      "ekko|yasuo": 5
+      "ekko|yasuo": 12
     },
     "tracheotomy": {
       "blitzcrank|illaoi": 1

@@ -581,6 +581,19 @@ const records: VideoRecord[] = baseRecords.map((rec) => {
   return ov ? { ...merged, ...ov } : merged;
 });
 
+// Drop discovered players no final record references — an override that rewrites
+// a bad parse (e.g. an unsplit duo team) would otherwise re-register the bogus
+// name on every run. Seed entries are untouched.
+const referencedIds = new Set(
+  records.flatMap((r) => [...r.allPlayers, ...r.teams.flatMap((t) => t.players.map((p) => p.id))]),
+);
+for (const [slug, d] of discovered) {
+  if (!referencedIds.has(d.id)) {
+    discovered.delete(slug);
+    delete players[d.id];
+  }
+}
+
 const total = records.length;
 const seasonFilled = records.filter((r) => r.season !== null).length;
 const patchFilled = records.filter((r) => r.patch !== null).length;

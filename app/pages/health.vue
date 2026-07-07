@@ -65,8 +65,6 @@
         <span class="font-mono text-[11px] text-ink-faint">{{ c.accent ?? '—' }}</span>
       </div>
     </div>
-
-    <p class="mt-10 font-sans text-body text-ink-muted">Temporary scaffold page — remove before launch.</p>
   </section>
 </template>
 

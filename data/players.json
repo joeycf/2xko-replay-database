@@ -33,7 +33,7 @@
   "kayne": {
     "id": "kayne",
     "displayName": "Kayne",
-    "verified": true,
+    "verified": false,
     "aliases": [
       "kayne"
     ],
@@ -53,7 +53,7 @@
   "poka": {
     "id": "poka",
     "displayName": "Poka",
-    "verified": true,
+    "verified": false,
     "aliases": [
       "poka"
     ],
@@ -83,7 +83,7 @@
   "garanti": {
     "id": "garanti",
     "displayName": "Garanti",
-    "verified": true,
+    "verified": false,
     "aliases": [
       "garanti"
     ],
@@ -92,9 +92,10 @@
   },
   "haru": {
     "id": "haru",
-    "displayName": "Haru",
+    "displayName": "2WINZ HARU",
     "verified": true,
     "aliases": [
+      "2winz haru",
       "haru"
     ],
     "region": null,
@@ -102,9 +103,10 @@
   },
   "toshi": {
     "id": "toshi",
-    "displayName": "Toshi",
+    "displayName": "2WINZ TOSHI",
     "verified": true,
     "aliases": [
+      "2winz toshi",
       "toshi"
     ],
     "region": null,
@@ -213,7 +215,7 @@
   "fumiko": {
     "id": "fumiko",
     "displayName": "Fumiko",
-    "verified": true,
+    "verified": false,
     "aliases": [
       "fumiko"
     ],
@@ -253,7 +255,7 @@
   "bleed": {
     "id": "bleed",
     "displayName": "Bleed",
-    "verified": false,
+    "verified": true,
     "aliases": [
       "bleed"
     ],
@@ -273,7 +275,7 @@
   "leffen": {
     "id": "leffen",
     "displayName": "LEFFEN",
-    "verified": false,
+    "verified": true,
     "aliases": [
       "leffen"
     ],
@@ -415,7 +417,7 @@
   "diaphone": {
     "id": "diaphone",
     "displayName": "Diaphone",
-    "verified": false,
+    "verified": true,
     "aliases": [
       "diaphone"
     ],
@@ -870,7 +872,7 @@
   "sajam": {
     "id": "sajam",
     "displayName": "Sajam",
-    "verified": false,
+    "verified": true,
     "aliases": [
       "sajam"
     ],
@@ -1218,16 +1220,6 @@
     "region": null,
     "socials": {}
   },
-  "2winzharu": {
-    "id": "2winzharu",
-    "displayName": "2WINZ HARU",
-    "verified": false,
-    "aliases": [
-      "2winz haru"
-    ],
-    "region": null,
-    "socials": {}
-  },
   "apologyboy": {
     "id": "apologyboy",
     "displayName": "Apology Boy",
@@ -1406,16 +1398,6 @@
     "verified": false,
     "aliases": [
       "yajin"
-    ],
-    "region": null,
-    "socials": {}
-  },
-  "2winztoshi": {
-    "id": "2winztoshi",
-    "displayName": "2WINZ TOSHI",
-    "verified": false,
-    "aliases": [
-      "2winz toshi"
     ],
     "region": null,
     "socials": {}
@@ -5310,16 +5292,6 @@
     "verified": false,
     "aliases": [
       "brandontehasian"
-    ],
-    "region": null,
-    "socials": {}
-  },
-  "2winztoshi2winzharu": {
-    "id": "2winztoshi2winzharu",
-    "displayName": "2WINZ TOSHI-2WINZ HARU",
-    "verified": false,
-    "aliases": [
-      "2winz toshi-2winz haru"
     ],
     "region": null,
     "socials": {}

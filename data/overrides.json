@@ -2175,5 +2175,53 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "wicwZeIoR3E": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          },
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "tsunodoriru",
+            "displayName": "TSUNODORIRU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "yasuo",
+      "ekko",
+      "darius"
+    ],
+    "allPlayers": [
+      "toshi",
+      "haru",
+      "tsunodoriru"
+    ],
+    "matchType": "duo",
+    "parseConfidence": "high"
   }
 }

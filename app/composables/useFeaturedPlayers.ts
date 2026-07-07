@@ -30,5 +30,12 @@ export function useFeaturedPlayers() {
       .sort((a, b) => (b.verified ? 1 : 0) - (a.verified ? 1 : 0) || b.appearances - a.appearances),
   )
 
-  return { ranked, featured }
+  /** Everyone below the featured bar — mostly 1–2 appearance names, so tiebreak alphabetically. */
+  const rest = computed<RankedPlayer[]>(() =>
+    ranked.value
+      .filter((p) => !p.verified && p.appearances < FEATURED_MIN_APPEARANCES)
+      .sort((a, b) => b.appearances - a.appearances || a.displayName.localeCompare(b.displayName)),
+  )
+
+  return { ranked, featured, rest }
 }

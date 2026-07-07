@@ -29,16 +29,43 @@
         <span class="font-mono text-[10px] text-ink-muted">{{ p.appearances }}</span>
       </NuxtLink>
     </div>
+    <h2 class="mt-8 font-sans text-[10px] font-semibold uppercase tracking-[.16em] text-ink-muted">
+      All players
+    </h2>
+    <button
+      v-if="!showAll"
+      type="button"
+      class="mt-3 h-9 cursor-pointer border border-white/[0.12] bg-[#141722] px-3.5 font-sans text-[12px] font-semibold text-ink-primary transition-colors hover:border-accent/50"
+      @click="showAll = true"
+    >
+      Show {{ rest.length.toLocaleString('en-US') }} more players
+    </button>
+    <div
+      v-else
+      class="mt-3 flex flex-wrap gap-[7px]"
+    >
+      <NuxtLink
+        v-for="p in rest"
+        :key="p.id"
+        :to="`/players/${p.id}`"
+        :prefetch="false"
+        class="inline-flex items-center gap-1.5 border border-white/[0.12] bg-[#141722] px-[11px] py-1.5 font-sans text-[12px] font-semibold text-ink-primary transition-colors hover:border-accent/50"
+      >
+        {{ p.displayName }}
+        <span class="font-mono text-[10px] text-ink-muted">{{ p.appearances }}</span>
+      </NuxtLink>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
 // Players index: featured players (verified or ≥25 appearances) as crawlable
-// links into the 714 prerendered profiles; the rest are reachable via the
-// Browse typeahead and direct URLs. (No design screen exists for this route —
-// kept minimal and on-token.)
+// links into the 714 prerendered profiles; the rest sit behind a client-side
+// reveal so the prerendered HTML stays lean. (No design screen exists for this
+// route — kept minimal and on-token.)
 const { list } = usePlayers();
-const { featured } = useFeaturedPlayers();
+const { featured, rest } = useFeaturedPlayers();
+const showAll = ref(false);
 
 useSiteMeta({
   title: 'Players — 2XKO Replay Database',
