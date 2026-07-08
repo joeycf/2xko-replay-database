@@ -7155,5 +7155,15 @@
     ],
     "region": null,
     "socials": {}
+  },
+  "abysswyvern": {
+    "id": "abysswyvern",
+    "displayName": "ABYSSWYVERN",
+    "verified": false,
+    "aliases": [
+      "abysswyvern"
+    ],
+    "region": null,
+    "socials": {}
   }
 }

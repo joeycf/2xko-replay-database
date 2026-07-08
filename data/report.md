@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-07T18:40:16.704Z._
+_Generated 2026-07-08T08:43:56.542Z._
 
 ## Summary
-- Total videos: **2848**
-- High confidence: **2838**  ·  Low confidence: **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **91.5%**
+- Total videos: **2855**
+- High confidence: **2845**  ·  Low confidence: **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **91.2%**
 
 ## Low-confidence records (10)
 | id | channel | reason | raw title |
@@ -28,7 +28,9 @@ _Generated 2026-07-07T18:40:16.704Z._
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `abysswyvern` | ABYSSWYVERN | 1 | abysswyvern |
