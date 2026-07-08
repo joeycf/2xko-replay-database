@@ -97,8 +97,7 @@
       style="background: #0c0d12"
     >
       <p>
-        2XKO Replay Database is an unofficial fan project, not endorsed by or affiliated with Riot
-        Games.
+        2XKO Replay Database was built with passion and love for the game.
       </p>
       <a
         :href="BMC_URL"

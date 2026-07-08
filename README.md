@@ -233,3 +233,51 @@ For engineers reading the source — the stack, and the decisions worth knowing.
 - **Accessibility in the tokens.** `ink.muted` is deliberately lifted from the
   design spec's value to clear WCAG AA 4.5:1 for small text — the contrast fix
   lives in the token, not in per-component overrides.
+
+## Roadmap
+
+Planned directions for future versions. Priority depends on community interest and
+my ability to complete them unless it is something outside my control (like Riot's API).
+
+### Data & ingestion
+- **Streamlined manual entry for tournament and non-parseable footage.** Matches and
+  sets that already exist as individual videos but whose titles don't follow the
+  standard `player (champ-champ) vs player (champ-champ)` format (e.g. Evo Top 8 VODs,
+  which name players and rounds but not champions). The goal is a fast, validated way
+  to hand-author these as structured records so they slot into the site identically to
+  parsed matches, with a clear "tournament" type and round labels.
+- **Automatic parsing of full-length tournament streams.** Long single-video streams
+  that contain many matches back to back, auto-segmented into individual match records.
+  This is a hard problem: match boundaries, players, and champions all have to be read
+  from the video itself rather than the title. Likely an extension of the existing
+  computer-vision pipeline (the same approach already used to read fuses off the
+  in-game HUD) detecting VS/loading screens to find match starts and reading the
+  nameplates and champions from those frames.
+- **Additional replay sources with duplicate prevention.** Bringing in more channels
+  and playlists, with reliable de-duplication so the same match appearing on multiple 
+  channels isn't counted twice. Dedup would key on video identity first, with a fuzzy 
+  match on (players + champions + approximate date) as a backstop for genuinely 
+  re-uploaded footage.
+- **Recovering the currently un-detected fuses.** ~10% of matches don't yet have an
+  identified fuse, mostly because their frames couldn't be downloaded during a rate-
+  limited detection run. A retry pass (and a small manual-review path for genuinely
+  ambiguous old footage) would push fuse coverage higher.
+
+### Riot API integration
+- **Integrate official Riot data if/when a 2XKO API becomes available.** Riot does not
+  currently offer a 2XKO developer API. If they do, potential uses include verified
+  player identities and official champion assets, and possibly richer match data than
+  can be read from video. The pipeline currently already leaves room for this. Champion 
+  and player registries are structured so official data could enrich or replace the
+  derived-from-video approach.
+
+### Features & UX
+- **Player and champion detail improvements** — win/loss records where derivable,
+  head-to-head views between two players, and links out to players' own channels/socials.
+- **Matchup explorer** — filter to a specific champion-pair-vs-champion-pair matchup and
+  see every recorded instance, useful for studying a particular team's answers.
+- **Shareable filtered views and per-match deep links** — already URL-driven, but
+  surfacing "copy link to this filter/match" would make sharing specific study material
+  easier.
+
+> Feature requests and bug reports are welcome via Issues.
