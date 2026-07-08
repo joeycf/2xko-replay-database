@@ -9,3 +9,6 @@ export const SEARCH_DEBOUNCE_MS = 300
 
 /** Max related replays shown in the video modal. */
 export const RELATED_LIMIT = 10
+
+/** Buy Me a Coffee page linked from the site footer. */
+export const BMC_URL = 'https://buymeacoffee.com/whatdaflip'

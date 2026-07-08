@@ -12,6 +12,7 @@ import { tmpdir } from 'node:os'
 import { dirname, extname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium, type Browser, type Page } from 'playwright-core'
+import { BMC_URL } from '../app/utils/constants'
 import type { Fuse, Stats, VideoRecord } from '../types/index'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -312,6 +313,20 @@ async function run(browser: Browser, base: string): Promise<void> {
     const robots = html('robots.txt')
     expect(robots.includes('Disallow: /health') && robots.includes(`Sitemap: ${site}/sitemap.xml`), 'robots.txt')
     expect(html('health/index.html').includes('name="robots" content="noindex"'), '/health noindex')
+  })
+
+  // (i) footer support link: a real prerendered anchor (shared layout, so
+  // check every page type) with new-tab + nofollow attrs
+  await test(`footer: Buy Me a Coffee link → ${BMC_URL} on all page types`, () => {
+    const pages = ['index.html', 'stats/index.html', `champions/${champId}/index.html`, `players/${playerId}/index.html`]
+    for (const p of pages) {
+      const anchor = [...html(p).matchAll(/<a [^>]*>/g)]
+        .map((m) => m[0]).find((a) => a.includes(`href="${BMC_URL}"`))
+      expect(!!anchor, `${p}: no anchor with href="${BMC_URL}"`)
+      expect(anchor!.includes('target="_blank"'), `${p}: missing target="_blank" — ${anchor}`)
+      for (const r of ['noopener', 'noreferrer', 'nofollow'])
+        expect(new RegExp(`rel="[^"]*${r}`).test(anchor!), `${p}: rel missing ${r} — ${anchor}`)
+    }
   })
 
   await ctx.close()
