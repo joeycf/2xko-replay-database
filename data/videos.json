@@ -162020,8 +162020,12 @@
             "displayName": "INZEM"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "jinx",
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162031,11 +162035,19 @@
             "displayName": "Hikari"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "jinx",
+      "teemo",
+      "ahri",
+      "akali"
+    ],
     "allPlayers": [
       "sonicfox",
       "inzem",
@@ -162070,8 +162082,11 @@
             "displayName": "Supernoon"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162081,11 +162096,19 @@
             "displayName": "Hikari"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "teemo",
+      "ekko",
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "supernoon",
       "hikari"
@@ -162123,8 +162146,11 @@
             "displayName": "INZEM"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162134,11 +162160,18 @@
             "displayName": "Supernoon"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "jinx",
+      "teemo",
+      "ekko"
+    ],
     "allPlayers": [
       "sonicfox",
       "inzem",
@@ -162173,8 +162206,11 @@
             "displayName": "Poka"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162184,16 +162220,23 @@
             "displayName": "Hikari"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "poka",
       "hikari"
     ],
     "tags": [
+      "mirror",
       "semifinals"
     ],
     "parseConfidence": "manual",
@@ -162222,8 +162265,11 @@
             "displayName": "Hikari"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -162237,11 +162283,19 @@
             "displayName": "2WINZ HARU"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "thresh",
+      "jinx",
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "hikari",
       "toshi",
@@ -162274,7 +162328,10 @@
             "displayName": "Bleed"
           }
         ],
-        "characters": [],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
         "fuse": null
       },
       {
@@ -162285,11 +162342,19 @@
             "displayName": "Poka"
           }
         ],
-        "characters": [],
+        "characters": [
+          "akali",
+          "ahri"
+        ],
         "fuse": null
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "ekko",
+      "illaoi",
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "bleed",
       "poka"
@@ -162321,8 +162386,11 @@
             "displayName": "Globo"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "teemo",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162332,11 +162400,19 @@
             "displayName": "Hikari"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "teemo",
+      "yasuo",
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "globo",
       "hikari"
@@ -162368,8 +162444,11 @@
             "displayName": "NOKA"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "ekko",
+          "vi"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162379,11 +162458,19 @@
             "displayName": "Poka"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "ekko",
+      "vi",
+      "akali",
+      "ahri"
+    ],
     "allPlayers": [
       "noka",
       "poka"
@@ -162415,8 +162502,11 @@
             "displayName": "Supernoon"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "ekko",
+          "teemo"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162426,11 +162516,18 @@
             "displayName": "Bleed"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "ekko",
+      "teemo",
+      "illaoi"
+    ],
     "allPlayers": [
       "supernoon",
       "bleed"
@@ -162468,8 +162565,11 @@
             "displayName": "INZEM"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "ahri",
+          "thresh"
+        ],
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162483,11 +162583,18 @@
             "displayName": "2WINZ HARU"
           }
         ],
-        "characters": [],
-        "fuse": null
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
       }
     ],
-    "allCharacters": [],
+    "allCharacters": [
+      "ahri",
+      "thresh",
+      "jinx"
+    ],
     "allPlayers": [
       "sonicfox",
       "inzem",

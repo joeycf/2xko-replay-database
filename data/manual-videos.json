@@ -48,10 +48,29 @@
       "thumbnail": "https://i.ytimg.com/vi/zxRvkDeYL8w/maxresdefault.jpg",
       "durationSec": 2526,
       "viewCount": 36954,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["SonicFox", "INZEM"], "characters": [] },
-        { "players": ["Hikari"], "characters": [] }
+        {
+          "players": [
+            "SonicFox",
+            "INZEM"
+          ],
+          "characters": [
+            "jinx",
+            "teemo",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -64,10 +83,27 @@
       "thumbnail": "https://i.ytimg.com/vi/rZ_ZS28CYKw/maxresdefault.jpg",
       "durationSec": 791,
       "viewCount": 1363,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Supernoon"], "characters": [] },
-        { "players": ["Hikari"], "characters": [] }
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "teemo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -80,10 +116,28 @@
       "thumbnail": "https://i.ytimg.com/vi/5WBq0DVF-SA/maxresdefault.jpg",
       "durationSec": 956,
       "viewCount": 2206,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["SonicFox", "INZEM"], "characters": [] },
-        { "players": ["Supernoon"], "characters": [] }
+        {
+          "players": [
+            "SonicFox",
+            "INZEM"
+          ],
+          "characters": [
+            "jinx",
+            "teemo"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "teemo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -96,10 +150,27 @@
       "thumbnail": "https://i.ytimg.com/vi/GIeNm6oRUJk/maxresdefault.jpg",
       "durationSec": 682,
       "viewCount": 436,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Poka"], "characters": [] },
-        { "players": ["Hikari"], "characters": [] }
+        {
+          "players": [
+            "Poka"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -112,10 +183,28 @@
       "thumbnail": "https://i.ytimg.com/vi/f2KZcuecUe0/maxresdefault.jpg",
       "durationSec": 605,
       "viewCount": 2038,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Hikari"], "characters": [] },
-        { "players": ["Toshi", "Haru"], "characters": [] }
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "thresh",
+            "jinx"
+          ],
+          "fuse": "2x-assist"
+        },
+        {
+          "players": [
+            "Toshi",
+            "Haru"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -128,10 +217,27 @@
       "thumbnail": "https://i.ytimg.com/vi/2klXAMVlhAc/maxresdefault.jpg",
       "durationSec": 705,
       "viewCount": 1758,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Bleed"], "characters": [] },
-        { "players": ["Poka"], "characters": [] }
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": null
+        },
+        {
+          "players": [
+            "Poka"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": null
+        }
       ]
     },
     {
@@ -144,10 +250,27 @@
       "thumbnail": "https://i.ytimg.com/vi/VVGHdfYCYXU/maxresdefault.jpg",
       "durationSec": 1315,
       "viewCount": 1452,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Globo"], "characters": [] },
-        { "players": ["Hikari"], "characters": [] }
+        {
+          "players": [
+            "Globo"
+          ],
+          "characters": [
+            "teemo",
+            "yasuo"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -160,10 +283,27 @@
       "thumbnail": "https://i.ytimg.com/vi/fPU2yAfyziM/maxresdefault.jpg",
       "durationSec": 855,
       "viewCount": 430,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Noka"], "characters": [] },
-        { "players": ["Poka"], "characters": [] }
+        {
+          "players": [
+            "Noka"
+          ],
+          "characters": [
+            "ekko",
+            "vi"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Poka"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -176,10 +316,27 @@
       "thumbnail": "https://i.ytimg.com/vi/J5VoHVI5_Ls/maxresdefault.jpg",
       "durationSec": 519,
       "viewCount": 1583,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["Supernoon"], "characters": [] },
-        { "players": ["Bleed"], "characters": [] }
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "teemo"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
       ]
     },
     {
@@ -192,10 +349,29 @@
       "thumbnail": "https://i.ytimg.com/vi/ByDIZRY0NQE/maxresdefault.jpg",
       "durationSec": 1128,
       "viewCount": 3581,
-      "todo": "fill teams[].characters from the VS screens (set-level union)",
       "teams": [
-        { "players": ["SonicFox", "INZEM"], "characters": [] },
-        { "players": ["Toshi", "Haru"], "characters": [] }
+        {
+          "players": [
+            "SonicFox",
+            "INZEM"
+          ],
+          "characters": [
+            "ahri",
+            "thresh"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Toshi",
+            "Haru"
+          ],
+          "characters": [
+            "thresh",
+            "jinx"
+          ],
+          "fuse": "2x-assist"
+        }
       ]
     }
   ]

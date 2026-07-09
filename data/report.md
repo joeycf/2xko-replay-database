@@ -1,28 +1,28 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-09T03:22:00.112Z._
+_Generated 2026-07-09T05:08:29.932Z._
 
 ## Summary
 - Total videos: **2872**
 - High confidence: **2852**  ·  Low confidence: **10**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **90.7%**
+- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **91.0%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
 
 | id | tournament | round | todo |
 |---|---|---|---|
-| `zxRvkDeYL8w` | Evo 2026 | Grand Final | fill teams[].characters from the VS screens (set-level union) |
-| `rZ_ZS28CYKw` | Evo 2026 | Losers Final | fill teams[].characters from the VS screens (set-level union) |
-| `5WBq0DVF-SA` | Evo 2026 | Winners Final | fill teams[].characters from the VS screens (set-level union) |
-| `GIeNm6oRUJk` | Evo 2026 | Losers Semifinal | fill teams[].characters from the VS screens (set-level union) |
-| `f2KZcuecUe0` | Evo 2026 | Losers Quarterfinals | fill teams[].characters from the VS screens (set-level union) |
-| `2klXAMVlhAc` | Evo 2026 | Losers Quarterfinals | fill teams[].characters from the VS screens (set-level union) |
-| `VVGHdfYCYXU` | Evo 2026 | Losers Round 1 | fill teams[].characters from the VS screens (set-level union) |
-| `fPU2yAfyziM` | Evo 2026 | Losers Round 1 | fill teams[].characters from the VS screens (set-level union) |
-| `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals | fill teams[].characters from the VS screens (set-level union) |
-| `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals | fill teams[].characters from the VS screens (set-level union) |
+| `zxRvkDeYL8w` | Evo 2026 | Grand Final |  |
+| `rZ_ZS28CYKw` | Evo 2026 | Losers Final |  |
+| `5WBq0DVF-SA` | Evo 2026 | Winners Final |  |
+| `GIeNm6oRUJk` | Evo 2026 | Losers Semifinal |  |
+| `f2KZcuecUe0` | Evo 2026 | Losers Quarterfinals |  |
+| `2klXAMVlhAc` | Evo 2026 | Losers Quarterfinals |  |
+| `VVGHdfYCYXU` | Evo 2026 | Losers Round 1 |  |
+| `fPU2yAfyziM` | Evo 2026 | Losers Round 1 |  |
+| `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals |  |
+| `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals |  |
 
 ## Low-confidence records (10)
 | id | channel | reason | raw title |
