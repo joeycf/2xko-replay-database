@@ -20,6 +20,8 @@ import type {
   ChannelKey,
   Fuse,
   FuseDetection,
+  ManualVideoEntry,
+  ManualVideosFile,
   MatchType,
   ParseConfidence,
   Player,
@@ -70,6 +72,10 @@ const players = await readJson<Record<string, Player>>(join(DATA, "players.json"
 const fuses = await readJson<Record<string, Fuse>>(join(DATA, "fuses.json"));
 const boundaries = await readJson<SeasonBoundary[]>(join(DATA, "seasonBoundaries.json"));
 const overrides = await readJson<Record<string, Partial<VideoRecord>>>(join(DATA, "overrides.json"));
+// Hand-authored records (tournament VODs etc.) — validated + merged in below.
+// A malformed file must fail the run loudly, so no .catch here.
+const manualEntries: ManualVideoEntry[] =
+  (await readJson<ManualVideosFile>(join(DATA, "manual-videos.json"))).videos ?? [];
 // CV fuse detections live in their own committed artifact (scripts/fuses.ts,
 // local-only) so they survive the daily regeneration of videos.json.
 const fusesDetected: Record<string, FuseDetection> = await readJson<Record<string, FuseDetection>>(
@@ -98,7 +104,9 @@ for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
 if (!process.argv.includes("--allow-stale")) {
   const existing = await readJson<VideoRecord[]>(join(DATA, "videos.json")).catch(() => [] as VideoRecord[]);
   const rawIds = new Set(rawRecords.map((r) => r.id));
-  const missing = existing.filter((v) => !rawIds.has(v.id));
+  // manual-videos.json ids are never in the channel dumps — not a staleness signal
+  const manualIds = new Set(manualEntries.map((e) => e.id));
+  const missing = existing.filter((v) => !rawIds.has(v.id) && !manualIds.has(v.id));
   if (missing.length > 0) {
     let lastCommitMs: number | null = null;
     try {
@@ -434,6 +442,115 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
   };
 }
 
+// ── manual videos (data/manual-videos.json) ──────────────────────────────────
+// Hand-authored records the title parser can't produce (tournament VODs etc.).
+// Authoritative: never parsed, never overwritten, parseConfidence "manual".
+// Tournament entries are SET-level — teams[].characters is the union of
+// champions fielded across the set (see the file's "//" header).
+const manualNewPlayers: { id: string; displayName: string }[] = [];
+const manualTodos: { id: string; todo: string }[] = [];
+
+/** Strict validation: unknown champions/fuses, malformed entries, and id
+ *  collisions are hard errors — bad hand-authored data must never land. */
+function buildManualRecords(): VideoRecord[] {
+  const errors: string[] = [];
+  const err = (id: string, msg: string) => errors.push(`manual-videos.json [${id || "?"}]: ${msg}`);
+  const rawIds = new Set(rawRecords.map((r) => r.id));
+  const seenIds = new Set<string>();
+
+  // final registry lookup — includes this run's parser-discovered players
+  const finalAlias = new Map<string, string>(); // aliasLower -> playerId
+  for (const p of Object.values(players)) {
+    finalAlias.set(p.displayName.toLowerCase(), p.id);
+    for (const a of p.aliases) finalAlias.set(a.toLowerCase(), p.id);
+  }
+  const resolveManualPlayer = (rawName: string): { id: string; displayName: string } => {
+    const name = rawName.trim();
+    const known = finalAlias.get(name.toLowerCase());
+    if (known) return { id: known, displayName: players[known].displayName };
+    // Unknown → register as verified: manual entries are hand-curated, so the
+    // name is exact (tournament participants, not parser guesses).
+    const slug = slugify(name) || "player";
+    let id = slug;
+    for (let n = 2; usedIds.has(id); n++) id = `${slug}-${n}`;
+    usedIds.add(id);
+    players[id] = { id, displayName: name, verified: true, aliases: [name.toLowerCase()], region: null, socials: {} };
+    finalAlias.set(name.toLowerCase(), id);
+    manualNewPlayers.push({ id, displayName: name });
+    return { id, displayName: name };
+  };
+
+  const out: VideoRecord[] = [];
+  for (const e of manualEntries) {
+    const id = typeof e.id === "string" ? e.id : "";
+    if (!id) err("", `entry with missing/non-string id (title: ${e.title ?? "?"})`);
+    if (seenIds.has(id)) err(id, "duplicate id within manual-videos.json");
+    seenIds.add(id);
+    if (rawIds.has(id)) err(id, "id already exists in the channel dumps — fix the parse (overrides.json), don't duplicate it");
+    if (!e.title) err(id, "missing title");
+    if (!e.publishedAt || Number.isNaN(Date.parse(e.publishedAt))) err(id, `publishedAt "${e.publishedAt}" is not a parseable ISO timestamp`);
+    if (!e.tournament) err(id, "missing tournament (event name)");
+    if (!Array.isArray(e.teams) || e.teams.length !== 2) {
+      err(id, `expected exactly 2 teams, got ${Array.isArray(e.teams) ? e.teams.length : typeof e.teams}`);
+      continue; // team-level checks below would crash
+    }
+    if (e.matchType && !["ranked", "tournament", "duo"].includes(e.matchType)) err(id, `invalid matchType "${e.matchType}"`);
+
+    const sides: TeamSide[] = ["left", "right"];
+    const teams: Team[] = e.teams.map((t, i) => {
+      const names = (t.players ?? []).map((n) => String(n).trim()).filter(Boolean);
+      if (names.length === 0) err(id, `team ${sides[i]}: no players`);
+      const characters = uniq(
+        (t.characters ?? []).map((tok) => {
+          const cid = champByAlias.get(String(tok).trim().toLowerCase()); // exact only — no fuzzy for hand-authored data
+          if (!cid) err(id, `team ${sides[i]}: unknown champion "${tok}" (valid ids: ${Object.keys(champions).sort().join(", ")})`);
+          return cid ?? String(tok);
+        }),
+      );
+      if (t.fuse != null && !fuses[t.fuse]) err(id, `team ${sides[i]}: unknown fuse "${t.fuse}" (valid: ${Object.keys(fuses).sort().join(", ")})`);
+      return { side: sides[i], players: names.map(resolveManualPlayer), characters, fuse: t.fuse ?? null };
+    });
+
+    const tags = new Set<string>([...roundTags(e.title ?? ""), ...(e.tags ?? [])]);
+    if (
+      teams[0].characters.length === 2 && teams[1].characters.length === 2 &&
+      [...teams[0].characters].sort().join("|") === [...teams[1].characters].sort().join("|")
+    ) {
+      tags.add("mirror");
+    }
+    if (e.todo) manualTodos.push({ id, todo: e.todo });
+
+    out.push({
+      id,
+      channel: "manual",
+      channelName: e.channelName ?? e.tournament,
+      title: e.title,
+      publishedAt: e.publishedAt,
+      thumbnail: e.thumbnail ?? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+      durationSec: e.durationSec ?? 0,
+      viewCount: e.viewCount ?? 0,
+      season: e.season !== undefined ? e.season : extractSeason("", e.publishedAt ?? ""),
+      patch: e.patch ?? null,
+      matchType: e.matchType ?? "tournament",
+      teams,
+      allCharacters: uniq(teams.flatMap((t) => t.characters)),
+      allPlayers: uniq(teams.flatMap((t) => t.players.map((p) => p.id))),
+      tags: [...tags].sort(),
+      parseConfidence: "manual",
+      rawUnparsed: null,
+      tournament: e.tournament,
+      ...(e.round ? { round: e.round } : {}),
+    });
+  }
+
+  if (errors.length > 0) {
+    console.error(`✖ ${errors.length} error(s) in data/manual-videos.json — nothing written:`);
+    for (const m of errors) console.error(`  • ${m}`);
+    process.exit(1);
+  }
+  return out;
+}
+
 // ── stats ─────────────────────────────────────────────────────────────────────
 function buildStats(records: VideoRecord[]): Stats {
   const stats: Stats = {
@@ -502,16 +619,37 @@ function buildReport(records: VideoRecord[], counts: { seasonPct: string; patchP
   const low = records.filter((r) => r.parseConfidence === "low").length;
   const newPlayers = [...discovered.values()].sort((a, b) => b.count - a.count);
 
+  const manual = records.filter((r) => r.parseConfidence === "manual").length;
+
   const lines: string[] = [];
   lines.push(`# 2XKO replay parse report`, ``, `_Generated ${new Date().toISOString()}._`, ``);
   lines.push(`## Summary`);
   lines.push(`- Total videos: **${total}**`);
-  lines.push(`- High confidence: **${total - low}**  ·  Low confidence: **${low}**`);
+  lines.push(`- High confidence: **${total - low - manual}**  ·  Low confidence: **${low}**  ·  Manual (hand-authored): **${manual}**`);
   lines.push(`- Newly discovered players (auto-added to \`players.json\`): **${newPlayers.length}**`);
   lines.push(
     `- Fill rates — season: **${counts.seasonPct}%** · patch: **${counts.patchPct}%** · fuse: **${counts.fusePct}%**`,
     ``,
   );
+
+  if (manual > 0) {
+    lines.push(`## Manual videos (${manual})`);
+    lines.push(`_Hand-authored in \`data/manual-videos.json\` — never parse failures. Entries with an open \`todo\` need data filled in._`, ``);
+    lines.push(`| id | tournament | round | todo |`, `|---|---|---|---|`);
+    for (const r of records.filter((x) => x.parseConfidence === "manual")) {
+      const todo = manualTodos.find((t) => t.id === r.id)?.todo ?? "";
+      lines.push(`| \`${r.id}\` | ${cell(r.tournament ?? "")} | ${cell(r.round ?? "")} | ${cell(todo)} |`);
+    }
+    lines.push(``);
+    if (manualNewPlayers.length > 0) {
+      lines.push(
+        `_New players registered from manual entries (verified): ${manualNewPlayers
+          .map((p) => `\`${p.id}\` (${p.displayName})`)
+          .join(", ")}._`,
+        ``,
+      );
+    }
+  }
 
   lines.push(`## Low-confidence records (${low})`);
   if (low === 0) {
@@ -556,7 +694,7 @@ for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
 // Normalize embedded player displayNames to the final canonical value — discovery
 // merges casing variants as it goes, so records built early held stale snapshots —
 // then apply overrides.json LAST as a shallow merge.
-const records: VideoRecord[] = baseRecords.map((rec) => {
+const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
   const teams = rec.teams.map((t) => ({
     ...t,
     players: t.players.map((p) => ({ id: p.id, displayName: players[p.id]?.displayName ?? p.displayName })),
@@ -580,6 +718,11 @@ const records: VideoRecord[] = baseRecords.map((rec) => {
   const ov = overrides[rec.id];
   return ov ? { ...merged, ...ov } : merged;
 });
+
+// Manual records resolve players against the finalized registry (discovery
+// included), so they build after the loop above; appended last — additive,
+// authoritative, and absent from the raw dumps by definition.
+const records: VideoRecord[] = [...parsedRecords, ...buildManualRecords()];
 
 // Drop discovered players no final record references — an override that rewrites
 // a bad parse (e.g. an unsplit duo team) would otherwise re-register the bogus
@@ -620,8 +763,13 @@ await writeFile(join(DATA, "players.json"), JSON.stringify(players, null, 2) + "
 await writeFile(join(DATA, "report.md"), buildReport(records, counts), "utf8");
 
 const low = records.filter((r) => r.parseConfidence === "low").length;
+const manualN = records.filter((r) => r.parseConfidence === "manual").length;
 console.log(`✔ Parsed ${total} videos → data/videos.json`);
-console.log(`  high-confidence: ${total - low}   low-confidence: ${low}`);
+console.log(`  high-confidence: ${total - low - manualN}   low-confidence: ${low}   manual: ${manualN}`);
 console.log(`  newly discovered players: ${discovered.size}  (players.json now ${Object.keys(players).length} total)`);
+if (manualNewPlayers.length > 0) {
+  console.log(`  manual entries registered ${manualNewPlayers.length} new verified player(s): ${manualNewPlayers.map((p) => p.id).join(", ")}`);
+}
+for (const t of manualTodos) console.log(`  ⚠ manual ${t.id} — todo: ${t.todo}`);
 console.log(`  fill rates → season ${counts.seasonPct}%  ·  patch ${counts.patchPct}%  ·  fuse ${counts.fusePct}%`);
 console.log(`  wrote data/stats.json, data/report.md`);

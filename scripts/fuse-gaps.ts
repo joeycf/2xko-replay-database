@@ -31,7 +31,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp, { type OverlayOptions } from 'sharp'
-import type { FuseDetection, FuseGapBucket, FuseGapItem, FuseGapReport, VideoRecord } from '../types/index'
+import type { ChannelKey, FuseDetection, FuseGapBucket, FuseGapItem, FuseGapReport, VideoRecord } from '../types/index'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const FRAMES = join(ROOT, 'cache/fuse/frames')
@@ -43,7 +43,10 @@ const PAD_TOP = 0.006
 const PAD_BOTTOM = 0.016
 
 // ── data ──────────────────────────────────────────────────────────────────────
-const videos = JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[]
+// manual (hand-authored) records are excluded up front: tournament fuses aren't
+// CV-detected, so a fuse-less manual record is expected, not a gap
+const videos = (JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[])
+  .filter((v) => v.parseConfidence !== 'manual')
 const detected = JSON.parse(readFileSync(join(ROOT, 'data/fuses-detected.json'), 'utf8')) as Record<string, FuseDetection>
 const overrides = JSON.parse(readFileSync(join(ROOT, 'data/overrides.json'), 'utf8')) as Record<string, Partial<VideoRecord>>
 const regions = JSON.parse(readFileSync(join(ROOT, 'data/fuse-regions.json'), 'utf8')) as {
@@ -140,7 +143,7 @@ const items: FuseGapItem[] = missing.map((v) => {
     id: v.id,
     bucket,
     era: eraOf(v),
-    channel: v.channel,
+    channel: v.channel as ChannelKey, // manual records filtered out at load
     publishedAt: v.publishedAt,
     flags,
     frames: frameCount(v.id),

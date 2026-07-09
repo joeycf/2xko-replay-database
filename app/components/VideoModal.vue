@@ -458,6 +458,8 @@ const metaLine = computed(() => {
   return [
     seasonLabel(v.season),
     matchTypeLabel(v.matchType),
+    // manual tournament records carry the bracket round, e.g. "Grand Final"
+    ...(v.round ? [v.round] : []),
     formatDuration(v.durationSec),
     relativeDate(v.publishedAt),
     `${formatViews(v.viewCount)} views`

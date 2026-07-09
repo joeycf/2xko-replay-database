@@ -93,6 +93,16 @@
               >
                 High Level
               </button>
+              <!-- matchType filter, not a channel (see FilterBar) -->
+              <button
+                type="button"
+                class="flex-1 cursor-pointer border p-[11px] font-sans text-[13px] font-semibold"
+                :class="tournamentClass"
+                :aria-pressed="f.matchType.value === 'tournament'"
+                @click="f.toggleMatchType('tournament')"
+              >
+                Tournament
+              </button>
             </div>
 
             <div>
@@ -308,6 +318,11 @@ const playerResults = computed(() => {
 const highClass = computed(() =>
   f.channel.value === 'highLevel'
     ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
+    : 'bg-[#141722] text-ink-secondary border-white/[0.12]'
+);
+const tournamentClass = computed(() =>
+  f.matchType.value === 'tournament'
+    ? 'bg-[rgba(245,179,60,.16)] text-warning border-warning'
     : 'bg-[#141722] text-ink-secondary border-white/[0.12]'
 );
 

@@ -1,5 +1,5 @@
 import type { LocationQuery } from 'vue-router'
-import type { ChannelKey, VideoRecord } from '~~/types'
+import type { ChannelKey, MatchType, VideoRecord } from '~~/types'
 
 export type VideoSort = 'newest' | 'oldest' | 'views' | 'longest'
 export type SeasonFilter = number | 'beta' | null
@@ -15,6 +15,7 @@ export interface ActiveChip {
  *   c=ahri,akali   side=1        p=sonicfox,inzem   ch=pro|high
  *   s=0|1|2|beta   q=free+text   sort=oldest|views|longest
  *   fuse=freestyle,juggernaut  (OR-match against either team's detected fuse)
+ *   type=tournament|ranked|duo  (matchType — the UI only exposes Tournament)
  * `v=<videoId>` (the modal) is owned by useVideoModal and always preserved here.
  * Discrete toggles push (Back undoes a step); typing replaces, debounced.
  */
@@ -45,6 +46,10 @@ export function useFilters() {
     return v !== null && /^\d+$/.test(v) ? Number(v) : null
   })
   const selectedFuses = computed(() => csv(route.query.fuse))
+  const matchType = computed<MatchType | null>(() => {
+    const v = one(route.query.type)
+    return v === 'tournament' || v === 'ranked' || v === 'duo' ? v : null
+  })
   const search = computed(() => one(route.query.q) ?? '')
   const sort = computed<VideoSort>(() => {
     const v = one(route.query.sort)
@@ -76,6 +81,7 @@ export function useFilters() {
   const toggleSeason = (v: number | 'beta') =>
     write({ s: season.value === v ? null : String(v) })
   const toggleFuse = (id: string) => write({ fuse: toggled(selectedFuses.value, id).join(',') || null })
+  const toggleMatchType = (t: MatchType) => write({ type: matchType.value === t ? null : t })
   const setSort = (v: VideoSort) => write({ sort: v === 'newest' ? null : v }, 'replace')
 
   let searchTimer: ReturnType<typeof setTimeout> | undefined
@@ -84,7 +90,7 @@ export function useFilters() {
     searchTimer = setTimeout(() => write({ q: v.trim() || null }, 'replace'), SEARCH_DEBOUNCE_MS)
   }
   const clearAll = () =>
-    write({ c: null, side: null, p: null, ch: null, s: null, fuse: null, q: null, sort: null })
+    write({ c: null, side: null, p: null, ch: null, s: null, fuse: null, type: null, q: null, sort: null })
 
   // ── active chips (design order: champions, same side, players, channel, season, query) ──
   const chips = computed<ActiveChip[]>(() => {
@@ -105,6 +111,10 @@ export function useFilters() {
     if (season.value !== null) {
       const v = season.value
       out.push({ key: `s:${v}`, label: v === 'beta' ? 'Beta' : `Season ${v}`, remove: () => toggleSeason(v) })
+    }
+    if (matchType.value) {
+      const t = matchType.value
+      out.push({ key: `type:${t}`, label: matchTypeLabel(t), remove: () => toggleMatchType(t) })
     }
     for (const fu of selectedFuses.value)
       out.push({ key: `fuse:${fu}`, label: fuseName(fu), remove: () => toggleFuse(fu) })
@@ -145,6 +155,7 @@ export function useFilters() {
       if (selectedPlayers.value.length && !selectedPlayers.value.some((p) => v.allPlayers.includes(p)))
         return false
       if (channel.value && v.channel !== channel.value) return false
+      if (matchType.value && v.matchType !== matchType.value) return false
       if (season.value !== null) {
         if (season.value === 'beta' ? v.season !== null : v.season !== season.value) return false
       }
@@ -180,14 +191,15 @@ export function useFilters() {
       channel.value,
       season.value,
       selectedFuses.value,
+      matchType.value,
       search.value,
       sort.value,
     ]),
   )
 
   return {
-    selectedChampions, sameSide, selectedPlayers, channel, season, selectedFuses, search, sort,
-    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleFuse,
+    selectedChampions, sameSide, selectedPlayers, channel, season, selectedFuses, matchType, search, sort,
+    toggleChampion, toggleSameSide, togglePlayer, toggleChannel, toggleSeason, toggleFuse, toggleMatchType,
     setSort, setSearch, clearAll,
     chips, activeCount, filtered, filterKey,
   }

@@ -7165,5 +7165,25 @@
     ],
     "region": null,
     "socials": {}
+  },
+  "juannis": {
+    "id": "juannis",
+    "displayName": "JUANNIS",
+    "verified": false,
+    "aliases": [
+      "juannis"
+    ],
+    "region": null,
+    "socials": {}
+  },
+  "globo": {
+    "id": "globo",
+    "displayName": "Globo",
+    "verified": true,
+    "aliases": [
+      "globo"
+    ],
+    "region": null,
+    "socials": {}
   }
 }

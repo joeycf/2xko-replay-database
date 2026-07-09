@@ -66,6 +66,18 @@
         >
           High Level
         </button>
+        <!-- matchType filter, not a channel — includes hand-authored tournament
+             VODs (manual-videos.json) AND parsed round-tagged uploads -->
+        <button
+          type="button"
+          class="cursor-pointer border px-[13px] py-2 font-sans text-[12px] font-semibold cut-bl-7"
+          :class="tournamentClass"
+          :aria-pressed="f.matchType.value === 'tournament'"
+          data-testid="type-toggle-tournament"
+          @click="f.toggleMatchType('tournament')"
+        >
+          Tournament
+        </button>
       </div>
       <span class="h-6 w-px bg-white/10" />
       <div class="flex items-center gap-1.5">
@@ -246,6 +258,11 @@ const sameSideUsable = computed(() => f.selectedChampions.value.length >= 2);
 const highClass = computed(() =>
   f.channel.value === 'highLevel'
     ? 'bg-[rgba(56,207,255,.16)] text-accent2 border-accent2'
+    : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary'
+);
+const tournamentClass = computed(() =>
+  f.matchType.value === 'tournament'
+    ? 'bg-[rgba(245,179,60,.16)] text-warning border-warning'
     : 'bg-[#141722] text-ink-secondary border-white/[0.12] hover:text-ink-primary'
 );
 </script>

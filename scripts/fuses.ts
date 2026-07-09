@@ -73,7 +73,10 @@ if (!process.env.SSL_CERT_FILE && existsSync('/etc/ssl/certs/ca-certificates.crt
 }
 
 // ── data ──────────────────────────────────────────────────────────────────────
-const videos = JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[]
+// manual (hand-authored) records are excluded: tournament VODs have no fixed
+// HUD timing to CV-detect, and their fuses stay null by convention
+const videos = (JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[])
+  .filter((v) => v.parseConfidence !== 'manual')
 const regions = JSON.parse(readFileSync(join(ROOT, 'data/fuse-regions.json'), 'utf8')) as {
   default: { left: number[]; right: number[] }
 }

@@ -43,8 +43,11 @@ export interface SeasonBoundary {
 }
 
 export type ChannelKey = "proReplays" | "highLevel";
+/** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
+export type VideoSource = ChannelKey | "manual";
 export type MatchType = "ranked" | "tournament" | "duo";
-export type ParseConfidence = "high" | "low";
+/** "manual" = human-authored (data/manual-videos.json) — never a parse failure. */
+export type ParseConfidence = "high" | "low" | "manual";
 export type TeamSide = "left" | "right";
 
 /** A player reference as embedded in a parsed Team. */
@@ -64,7 +67,7 @@ export interface Team {
 /** A fully-parsed video record. Written to data/videos.json (Stage 2). */
 export interface VideoRecord {
   id: string;
-  channel: ChannelKey;
+  channel: VideoSource;
   channelName: string;
   title: string;
   publishedAt: string;
@@ -82,6 +85,60 @@ export interface VideoRecord {
   rawUnparsed: string | null;
   /** CV-detected fuses are confident as a pair but side attribution is ambiguous */
   fusesUnordered?: boolean;
+  /** manual tournament records only: event name, e.g. "Evo 2026" */
+  tournament?: string;
+  /** manual tournament records only: bracket round label, e.g. "Grand Final" */
+  round?: string;
+}
+
+/**
+ * One side of a hand-authored video (data/manual-videos.json). Tournament
+ * entries are SET-level: `characters` is the union of champions the player(s)
+ * fielded across the whole set, not a single game's duo — so it may hold more
+ * than 2 ids, and pairing/matchup stats only count it when it's exactly 2.
+ */
+export interface ManualTeamEntry {
+  /** display names; resolved against players.json aliases, unknown names are registered (verified) */
+  players: string[];
+  /** champion ids or aliases (validated on merge); [] while not yet known */
+  characters: string[];
+  /** fuse id; omit/null when unknown (tournament fuses aren't CV-detected) */
+  fuse?: string | null;
+}
+
+/** A hand-authored video record (data/manual-videos.json). Authoring docs live
+ *  in that file's "//" header; scripts/parse.ts validates and merges these. */
+export interface ManualVideoEntry {
+  id: string;
+  title: string;
+  publishedAt: string;
+  /** event name, e.g. "Evo 2026" */
+  tournament: string;
+  /** bracket round label, e.g. "Grand Final" */
+  round?: string;
+  /** hosting YouTube channel; defaults to the tournament name */
+  channelName?: string;
+  /** defaults to https://i.ytimg.com/vi/<id>/hqdefault.jpg */
+  thumbnail?: string;
+  durationSec?: number;
+  viewCount?: number;
+  /** defaults to "tournament" */
+  matchType?: MatchType;
+  /** defaults from publishedAt via seasonBoundaries.json */
+  season?: number | null;
+  patch?: string | null;
+  /** extra tags; round tags are still derived from the title */
+  tags?: string[];
+  /** free-text incompleteness marker — parse warns but proceeds */
+  todo?: string;
+  /** exactly 2, in title order (left, right) */
+  teams: ManualTeamEntry[];
+}
+
+/** Shape of data/manual-videos.json. */
+export interface ManualVideosFile {
+  "//"?: string[];
+  videos: ManualVideoEntry[];
 }
 
 /** One video's CV fuse detection (data/fuses-detected.json, scripts/fuses.ts). */

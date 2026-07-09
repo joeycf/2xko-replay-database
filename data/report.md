@@ -1,12 +1,28 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-08T08:43:56.542Z._
+_Generated 2026-07-09T03:22:00.112Z._
 
 ## Summary
-- Total videos: **2855**
-- High confidence: **2845**  ·  Low confidence: **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **93.5%** · patch: **0.0%** · fuse: **91.2%**
+- Total videos: **2872**
+- High confidence: **2852**  ·  Low confidence: **10**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **90.7%**
+
+## Manual videos (10)
+_Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
+
+| id | tournament | round | todo |
+|---|---|---|---|
+| `zxRvkDeYL8w` | Evo 2026 | Grand Final | fill teams[].characters from the VS screens (set-level union) |
+| `rZ_ZS28CYKw` | Evo 2026 | Losers Final | fill teams[].characters from the VS screens (set-level union) |
+| `5WBq0DVF-SA` | Evo 2026 | Winners Final | fill teams[].characters from the VS screens (set-level union) |
+| `GIeNm6oRUJk` | Evo 2026 | Losers Semifinal | fill teams[].characters from the VS screens (set-level union) |
+| `f2KZcuecUe0` | Evo 2026 | Losers Quarterfinals | fill teams[].characters from the VS screens (set-level union) |
+| `2klXAMVlhAc` | Evo 2026 | Losers Quarterfinals | fill teams[].characters from the VS screens (set-level union) |
+| `VVGHdfYCYXU` | Evo 2026 | Losers Round 1 | fill teams[].characters from the VS screens (set-level union) |
+| `fPU2yAfyziM` | Evo 2026 | Losers Round 1 | fill teams[].characters from the VS screens (set-level union) |
+| `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals | fill teams[].characters from the VS screens (set-level union) |
+| `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals | fill teams[].characters from the VS screens (set-level union) |
 
 ## Low-confidence records (10)
 | id | channel | reason | raw title |
@@ -28,9 +44,7 @@ _Generated 2026-07-08T08:43:56.542Z._
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `abysswyvern` | ABYSSWYVERN | 1 | abysswyvern |
+_None._

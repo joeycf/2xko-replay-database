@@ -1,0 +1,202 @@
+{
+  "//": [
+    "Hand-authored video records the title parser can't handle (tournament VODs etc.).",
+    "scripts/parse.ts validates these and merges them into data/videos.json with",
+    "parseConfidence 'manual' — they are authoritative, never parsed, never a parse failure.",
+    "",
+    "CONVENTION — tournament entries are SET-level: one record covers the whole set.",
+    "teams[].characters is the UNION of champions that side fielded across the set",
+    "(watch the VS screens), not a single game's duo. Pairing/matchup stats only count",
+    "a side when its union is exactly 2 champions; usage stats always count everything.",
+    "",
+    "Fields per entry (see ManualVideoEntry in types/index.ts):",
+    "  id            YouTube video id — required, must not collide with a parsed video",
+    "  title         real video title — required",
+    "  publishedAt   ISO timestamp — required (drives season fallback + date sort)",
+    "  tournament    event name, e.g. 'Evo 2026' — required",
+    "  round         bracket round label, e.g. 'Grand Final' — optional",
+    "  channelName   hosting YouTube channel — optional, defaults to the tournament name",
+    "  thumbnail     optional, defaults to https://i.ytimg.com/vi/<id>/hqdefault.jpg",
+    "  durationSec   optional, default 0    viewCount  optional, default 0",
+    "  matchType     optional, default 'tournament'",
+    "  season        optional, defaults from publishedAt via seasonBoundaries.json",
+    "  patch         optional, default null    tags  optional extra tags",
+    "  todo          optional free-text marker — parse warns but proceeds; remove when done",
+    "  teams         exactly 2, in title order (left, right):",
+    "    players     display names — resolved against players.json aliases;",
+    "                unknown names are registered as new verified players",
+    "    characters  champion ids or aliases — validated, unknown ids are a hard error;",
+    "                use [] while unknown (pair with a todo)",
+    "    fuse        optional fuse id, default null",
+    "",
+    "TEMPLATE — copy, fill, drop the todo when characters are in:",
+    "  { \"id\": \"XXXXXXXXXXX\", \"title\": \"…\", \"publishedAt\": \"2026-01-01T00:00:00Z\",",
+    "    \"tournament\": \"…\", \"round\": \"…\", \"channelName\": \"…\",",
+    "    \"durationSec\": 0, \"viewCount\": 0,",
+    "    \"todo\": \"fill teams[].characters from the VS screens\",",
+    "    \"teams\": [ { \"players\": [\"…\"], \"characters\": [] },",
+    "               { \"players\": [\"…\"], \"characters\": [] } ] }"
+  ],
+  "videos": [
+    {
+      "id": "zxRvkDeYL8w",
+      "title": "Evo 2026: SonicFox/INZEM vs Hikari | 2XKO | Grand Final",
+      "publishedAt": "2026-06-28T21:50:00Z",
+      "tournament": "Evo 2026",
+      "round": "Grand Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/zxRvkDeYL8w/maxresdefault.jpg",
+      "durationSec": 2526,
+      "viewCount": 36954,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["SonicFox", "INZEM"], "characters": [] },
+        { "players": ["Hikari"], "characters": [] }
+      ]
+    },
+    {
+      "id": "rZ_ZS28CYKw",
+      "title": "Evo 2026: Supernoon vs Hikari | 2XKO | Losers Final",
+      "publishedAt": "2026-06-28T20:43:54Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/rZ_ZS28CYKw/maxresdefault.jpg",
+      "durationSec": 791,
+      "viewCount": 1363,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Supernoon"], "characters": [] },
+        { "players": ["Hikari"], "characters": [] }
+      ]
+    },
+    {
+      "id": "5WBq0DVF-SA",
+      "title": "Evo 2026: SonicFox/INZEM vs Supernoon | 2XKO | Winners Final",
+      "publishedAt": "2026-06-28T20:10:17Z",
+      "tournament": "Evo 2026",
+      "round": "Winners Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/5WBq0DVF-SA/maxresdefault.jpg",
+      "durationSec": 956,
+      "viewCount": 2206,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["SonicFox", "INZEM"], "characters": [] },
+        { "players": ["Supernoon"], "characters": [] }
+      ]
+    },
+    {
+      "id": "GIeNm6oRUJk",
+      "title": "Evo 2026: Poka vs Hikari | 2XKO | Losers Semifinal",
+      "publishedAt": "2026-06-28T20:09:43Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Semifinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/GIeNm6oRUJk/maxresdefault.jpg",
+      "durationSec": 682,
+      "viewCount": 436,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Poka"], "characters": [] },
+        { "players": ["Hikari"], "characters": [] }
+      ]
+    },
+    {
+      "id": "f2KZcuecUe0",
+      "title": "Evo 2026: Hikari vs Toshi/Haru | 2XKO | Losers Quarterfinals",
+      "publishedAt": "2026-06-28T19:40:50Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Quarterfinals",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/f2KZcuecUe0/maxresdefault.jpg",
+      "durationSec": 605,
+      "viewCount": 2038,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Hikari"], "characters": [] },
+        { "players": ["Toshi", "Haru"], "characters": [] }
+      ]
+    },
+    {
+      "id": "2klXAMVlhAc",
+      "title": "Evo 2026: Bleed vs Poka | 2XKO | Losers Quarterfinals",
+      "publishedAt": "2026-06-28T19:20:16Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Quarterfinals",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/2klXAMVlhAc/maxresdefault.jpg",
+      "durationSec": 705,
+      "viewCount": 1758,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Bleed"], "characters": [] },
+        { "players": ["Poka"], "characters": [] }
+      ]
+    },
+    {
+      "id": "VVGHdfYCYXU",
+      "title": "Evo 2026: Globo vs Hikari | 2XKO | Losers Round 1",
+      "publishedAt": "2026-06-28T19:02:57Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Round 1",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/VVGHdfYCYXU/maxresdefault.jpg",
+      "durationSec": 1315,
+      "viewCount": 1452,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Globo"], "characters": [] },
+        { "players": ["Hikari"], "characters": [] }
+      ]
+    },
+    {
+      "id": "fPU2yAfyziM",
+      "title": "Evo 2026: Noka vs Poka | 2XKO | Losers Round 1",
+      "publishedAt": "2026-06-28T19:02:17Z",
+      "tournament": "Evo 2026",
+      "round": "Losers Round 1",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/fPU2yAfyziM/maxresdefault.jpg",
+      "durationSec": 855,
+      "viewCount": 430,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Noka"], "characters": [] },
+        { "players": ["Poka"], "characters": [] }
+      ]
+    },
+    {
+      "id": "J5VoHVI5_Ls",
+      "title": "Evo 2026: Supernoon vs Bleed | 2XKO | Winners Semifinals",
+      "publishedAt": "2026-06-28T18:21:10Z",
+      "tournament": "Evo 2026",
+      "round": "Winners Semifinals",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/J5VoHVI5_Ls/maxresdefault.jpg",
+      "durationSec": 519,
+      "viewCount": 1583,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["Supernoon"], "characters": [] },
+        { "players": ["Bleed"], "characters": [] }
+      ]
+    },
+    {
+      "id": "ByDIZRY0NQE",
+      "title": "Evo 2026: SonicFox/INZEM vs Toshi/Haru | 2XKO | Winners Semifinals",
+      "publishedAt": "2026-06-28T18:20:25Z",
+      "tournament": "Evo 2026",
+      "round": "Winners Semifinals",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/ByDIZRY0NQE/maxresdefault.jpg",
+      "durationSec": 1128,
+      "viewCount": 3581,
+      "todo": "fill teams[].characters from the VS screens (set-level union)",
+      "teams": [
+        { "players": ["SonicFox", "INZEM"], "characters": [] },
+        { "players": ["Toshi", "Haru"], "characters": [] }
+      ]
+    }
+  ]
+}
