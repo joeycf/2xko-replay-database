@@ -160,6 +160,32 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect((await page.$('[data-testid="team-fuse-b"]')) === null, 'per-side tag B must be absent')
   })
 
+  // (c2) card fuse attribution mirrors the modal's rules: ordered records pin
+  // each fuse to its side; fusesUnordered records must NOT bind either fuse to
+  // left/right — only the combined unbound row may appear
+  const cardQuery = (v: VideoRecord) =>
+    encodeURIComponent(v.teams.flatMap((t) => t.players.map((p) => p.displayName)).join(' '))
+  await test(`card: ordered ${ordered.id} shows per-side fuses, unordered ${unordered.id} stays unbound`, async () => {
+    await page.goto(`${base}/?q=${cardQuery(ordered)}`)
+    const oCard = `[data-video-id="${ordered.id}"]`
+    await page.waitForSelector(`${oCard} [data-testid="card-fuse-a"]`, { timeout: 30_000 })
+    const a = norm(await page.textContent(`${oCard} [data-testid="card-fuse-a"]`))
+    const b = norm(await page.textContent(`${oCard} [data-testid="card-fuse-b"]`))
+    expect(a === norm(fuses[ordered.teams[0]!.fuse!]!.name), `card left tag "${a}"`)
+    expect(b === norm(fuses[ordered.teams[1]!.fuse!]!.name), `card right tag "${b}"`)
+    expect((await page.$(`${oCard} [data-testid="card-fuses-unordered"]`)) === null, 'ordered card must not show the unbound row')
+
+    await page.goto(`${base}/?q=${cardQuery(unordered)}`)
+    const uCard = `[data-video-id="${unordered.id}"]`
+    await page.waitForSelector(`${uCard} [data-testid="card-fuses-unordered"]`, { timeout: 30_000 })
+    const row = norm(await page.textContent(`${uCard} [data-testid="card-fuses-unordered"]`))
+    for (const t of unordered.teams) {
+      if (t.fuse) expect(row.includes(norm(fuses[t.fuse]!.name)), `unbound row "${row}" missing ${t.fuse}`)
+    }
+    expect((await page.$(`${uCard} [data-testid="card-fuse-a"]`)) === null, 'unordered card must not pin a fuse to side A')
+    expect((await page.$(`${uCard} [data-testid="card-fuse-b"]`)) === null, 'unordered card must not pin a fuse to side B')
+  })
+
   // (d) stats panels render the real top values…
   const usageRanked = Object.entries(stats.fuseUsage).sort((x, y) => y[1] - x[1])
   const [topId, topN] = usageRanked[0]!
