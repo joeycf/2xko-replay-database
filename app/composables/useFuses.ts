@@ -25,8 +25,14 @@ const detectedByEra = new Map(
   Object.keys(stats.fuseBySeason).map((e) => [e, rankFuses(stats.fuseBySeason[e] ?? {})])
 );
 
+const fullList = Object.values(registry).sort(
+  (a, b) => Number(b.active) - Number(a.active) || a.name.localeCompare(b.name)
+);
+
 export const useFuses = () => ({
   detected,
+  /** the whole catalog (active first) — authoring UIs offer every fuse, not just detected ones */
+  list: fullList,
   /** ranked detected fuses for an era key, or all-time when null */
   detectedFor: (era: string | null): DetectedFuse[] =>
     era === null ? detected : (detectedByEra.get(era) ?? []),

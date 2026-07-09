@@ -257,6 +257,20 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(line!.includes(stats.totals.videos.toLocaleString('en-US')), `line "${line}"`)
   })
 
+  // (j) dev-only surfaces (authoring/diagnostic pages + their API routes) must
+  // not exist in the generated output — the served route falls to 404.html
+  await test('dev-only: /dev/* and /api/* absent from output, /dev/manual-entry 404s', async () => {
+    expect(!existsSync(join(OUT, 'dev')), 'OUT/dev/ must not be prerendered')
+    expect(!existsSync(join(OUT, 'api')), 'OUT/api/ must not exist in static output')
+    const res = await fetch(`${base}/dev/manual-entry`)
+    expect(res.status === 404, `/dev/manual-entry served ${res.status}, want 404`)
+    // root-level /dev routes only — player slugs like /players/devillion are fine
+    expect(
+      !/<loc>https?:\/\/[^/<]+\/dev(\/|<)/.test(readFileSync(join(OUT, 'sitemap.xml'), 'utf8')),
+      'sitemap must not list /dev routes',
+    )
+  })
+
   // (h) SEO: canonical/OG on the deployed domain, valid JSON-LD (no
   // VideoObject anywhere), sitemap/robots hygiene, crawlable internal anchors
   const envFile = existsSync(join(ROOT, '.env')) ? readFileSync(join(ROOT, '.env'), 'utf8') : ''
