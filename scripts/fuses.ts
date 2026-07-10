@@ -253,7 +253,11 @@ async function ensureFrames(id: string): Promise<string[] | null> {
     mkdirSync(RAW, { recursive: true })
     const r = spawnSync(
       'yt-dlp',
-      [...COOKIE_ARGS, '--quiet', '--no-warnings', '--download-sections', '*0-12', '-f', 'bv*[height<=720]/bv*',
+      // --js-runtimes node: YouTube's n-challenge needs yt-dlp's EJS solver
+      // (pipx inject yt-dlp "yt-dlp[default]"), and only Deno is enabled by
+      // default — this host solves via the pipeline's own Node instead
+      [...COOKIE_ARGS, '--js-runtimes', 'node', '--quiet', '--no-warnings',
+        '--download-sections', '*0-12', '-f', 'bv*[height<=720]/bv*',
         '-o', join(RAW, '%(id)s.%(ext)s'), `https://www.youtube.com/watch?v=${id}`],
       { stdio: ['ignore', 'ignore', 'pipe'], env: process.env, timeout: 180_000 },
     )
