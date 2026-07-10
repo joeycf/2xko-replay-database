@@ -61,6 +61,19 @@ const FORCE = has('--force')
 const LIMIT = Number(opt('--limit') ?? 0)
 const ONLY_IDS = opt('--ids')?.split(',').filter(Boolean)
 const [SLEEP_MIN, SLEEP_MAX] = (opt('--sleep') ?? '1-3').split('-').map(Number) as [number, number]
+// YouTube bot-check bypass (2026-07-10: this host's IP is flagged; every
+// player client gets "Sign in to confirm you're not a bot"). Pass a
+// Netscape-format export of your youtube.com session:
+//   npm run data:fuses -- --cookies ~/yt-cookies.txt
+// (--cookies-from-browser <spec> also forwarded, but on WSL2 it can't decrypt
+// a Windows browser profile — the cookies.txt export is the reliable path.)
+const COOKIES_FILE = opt('--cookies')
+const COOKIES_BROWSER = opt('--cookies-from-browser')
+const COOKIE_ARGS = COOKIES_FILE
+  ? ['--cookies', COOKIES_FILE]
+  : COOKIES_BROWSER
+    ? ['--cookies-from-browser', COOKIES_BROWSER]
+    : []
 
 if (has('--clean')) {
   rmSync(CACHE, { recursive: true, force: true })
@@ -240,7 +253,7 @@ async function ensureFrames(id: string): Promise<string[] | null> {
     mkdirSync(RAW, { recursive: true })
     const r = spawnSync(
       'yt-dlp',
-      ['--quiet', '--no-warnings', '--download-sections', '*0-12', '-f', 'bv*[height<=720]/bv*',
+      [...COOKIE_ARGS, '--quiet', '--no-warnings', '--download-sections', '*0-12', '-f', 'bv*[height<=720]/bv*',
         '-o', join(RAW, '%(id)s.%(ext)s'), `https://www.youtube.com/watch?v=${id}`],
       { stdio: ['ignore', 'ignore', 'pipe'], env: process.env, timeout: 180_000 },
     )
@@ -251,7 +264,11 @@ async function ensureFrames(id: string): Promise<string[] | null> {
     if (r.status !== 0) {
       const err = String(r.stderr ?? '').slice(0, 300)
       if (/confirm you.re not a bot|sign in/i.test(err)) {
-        console.error('\n✖ YouTube bot-check hit — retry with: yt-dlp --cookies-from-browser <browser>')
+        console.error(
+          COOKIE_ARGS.length
+            ? '\n✖ YouTube bot-check hit despite cookies — session expired? Re-export youtube.com cookies and retry.'
+            : '\n✖ YouTube bot-check hit — export youtube.com cookies (Netscape format) and retry with:\n  npm run data:fuses -- --cookies <cookies.txt>',
+        )
         process.exit(2)
       }
       return null
