@@ -226,7 +226,7 @@
             "ekko",
             "illaoi"
           ],
-          "fuse": null
+          "fuse": "freestyle"
         },
         {
           "players": [
@@ -236,7 +236,7 @@
             "akali",
             "ahri"
           ],
-          "fuse": null
+          "fuse": "freestyle"
         }
       ]
     },
