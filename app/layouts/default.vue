@@ -92,18 +92,21 @@
       <slot />
     </main>
 
+    <!-- sticky: the browse grid scrolls forever, so the footer pins to the
+         viewport bottom instead of waiting at an unreachable page end -->
     <footer
-      class="flex flex-wrap items-center justify-between gap-x-8 gap-y-1 border-t border-white/[0.08] px-7 py-4 font-sans text-[11px] text-ink-muted"
+      class="sticky bottom-0 z-40 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 border-t border-white/[0.08] px-7 py-4 font-sans text-[11px] text-ink-muted sm:justify-between"
       style="background: #0c0d12"
     >
-      <p>
+      <!-- tagline hidden on phones: the pinned bar must stay one line tall -->
+      <p class="hidden sm:block">
         2XKO Replay Database was built with passion and love for the game.
       </p>
       <a
         :href="BMC_URL"
         target="_blank"
         rel="noopener noreferrer nofollow"
-        aria-label="Buy me a coffee — support the site (opens in a new tab)"
+        aria-label="Support the site (opens in a new tab)"
         class="-mx-2 -my-2.5 flex flex-none items-center gap-1.5 px-2 py-2.5 font-semibold transition-colors duration-200 hover:text-ink-secondary"
       >
         <svg
@@ -121,7 +124,7 @@
           <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
           <path d="M6 2v2" />
         </svg>
-        Buy me a coffee
+        Help support the site
       </a>
     </footer>
   </div>
