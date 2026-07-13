@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-12T08:30:52.545Z._
+_Generated 2026-07-13T09:47:01.712Z._
 
 ## Summary
-- Total videos: **2893**
-- High confidence: **2872**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
+- Total videos: **2900**
+- High confidence: **2879**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **97.7%**
+- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **97.4%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -50,4 +50,4 @@ _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing /
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `cloud80thresh` | Cloud80Thresh | 1 | cloud80thresh |
+| `oislame` | O. is lame | 1 | o. is lame |
