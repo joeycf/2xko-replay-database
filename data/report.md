@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-13T09:47:01.712Z._
+_Generated 2026-07-14T08:27:15.667Z._
 
 ## Summary
-- Total videos: **2900**
-- High confidence: **2879**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **97.4%**
+- Total videos: **2907**
+- High confidence: **2885**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **97.2%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -24,7 +24,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals |  |
 | `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals |  |
 
-## Low-confidence records (11)
+## Low-confidence records (12)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `OXAeNs7Ocg8` | proReplays | fuzzy character "Akalai" → akali on left | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
@@ -39,15 +39,14 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `2lDmsjDZe-k` | proReplays | structural failure (team-split) | 2XKO ▰ LEFFEN (Teemo-Yasuo) vs INZEM (Teemo-Ekko) GF First Strike ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `ccgcjwxKpYc` | proReplays | structural failure (team-split) | Donkey Kong Bananza, Más bananza que nunca Directo 1 (wolfenzx) |
+| `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 | `k-oWt-DQpcQ` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ SoulDemonXL (Thresh) vs Windzero7 (Darius / Blitzcrank) ▰ High Level Gameplay |
 | `OdQuKYoHWqc` | highLevel | structural failure (team-split) | 2XKO Season 2 ▰ Goomboo (Blitzcrank vs Habaduba (Blitzcrank) ▰ High Level Gameplay |
 | `EyL1PclHXuA` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ MrChupy (Akali / Darius) vs Galladiated (Darius) ▰ High Level Gameplay |
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `oislame` | O. is lame | 1 | o. is lame |
+_None._
