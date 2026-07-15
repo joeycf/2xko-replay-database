@@ -7215,5 +7215,35 @@
     ],
     "region": null,
     "socials": {}
+  },
+  "defiantsouls": {
+    "id": "defiantsouls",
+    "displayName": "DEFIANTSOULS",
+    "verified": false,
+    "aliases": [
+      "defiantsouls"
+    ],
+    "region": null,
+    "socials": {}
+  },
+  "windzero7celestial": {
+    "id": "windzero7celestial",
+    "displayName": "WINDZERO7-CELESTIAL",
+    "verified": false,
+    "aliases": [
+      "windzero7-celestial"
+    ],
+    "region": null,
+    "socials": {}
+  },
+  "unbreakableoath": {
+    "id": "unbreakableoath",
+    "displayName": "UnbreakableOath",
+    "verified": false,
+    "aliases": [
+      "unbreakableoath"
+    ],
+    "region": null,
+    "socials": {}
   }
 }

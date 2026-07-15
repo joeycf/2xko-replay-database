@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-14T08:27:15.667Z._
+_Generated 2026-07-15T08:34:57.590Z._
 
 ## Summary
-- Total videos: **2907**
-- High confidence: **2885**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.6%** · patch: **0.0%** · fuse: **97.2%**
+- Total videos: **2915**
+- High confidence: **2893**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **3**
+- Fill rates — season: **93.7%** · patch: **0.0%** · fuse: **96.9%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -46,7 +46,11 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (0)
+## Newly discovered players (3)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `defiantsouls` | DEFIANTSOULS | 1 | defiantsouls |
+| `windzero7celestial` | WINDZERO7-CELESTIAL | 1 | windzero7-celestial |
+| `unbreakableoath` | UnbreakableOath | 1 | unbreakableoath |
