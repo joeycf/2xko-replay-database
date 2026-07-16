@@ -1,24 +1,15 @@
 <template>
-  <div
-    ref="root"
-    data-testid="fuse-usage-bars"
-    class="flex flex-col gap-2 md:gap-[9px]"
-  >
-    <div
-      v-for="row in rows"
-      :key="row.id"
-      class="flex items-center gap-2.5 md:gap-3"
-    >
-      <span class="hidden w-5 flex-none text-right font-mono text-[11px] text-ink-muted sm:block">
+  <div ref="root" data-testid="fuse-usage-bars" class="flex flex-col gap-2 md:gap-[9px]">
+    <div v-for="row in rows" :key="row.id" class="flex items-center gap-2.5 md:gap-3">
+      <span class="hidden w-5 flex-none text-right font-mono text-[11px] text-text-muted sm:block">
         {{ row.rank }}
       </span>
       <span class="flex h-7 w-7 flex-none items-center justify-center">
-        <span
-          class="h-2.5 w-2.5 rotate-45"
-          :style="{ background: row.accent ?? '#8B93A8' }"
-        />
+        <span class="h-2.5 w-2.5 rotate-45" :style="{ background: row.accent ?? '#8B93A8' }" />
       </span>
-      <span class="w-[86px] flex-none font-sans text-[12px] font-semibold text-ink-primary md:w-[104px] md:text-[13px]">
+      <span
+        class="w-[86px] flex-none font-ui text-[12px] font-semibold text-text md:w-[104px] md:text-[13px]"
+      >
         {{ row.name }}
       </span>
       <div class="h-4 flex-1 overflow-hidden bg-[#08090c] md:h-5">
@@ -27,12 +18,12 @@
           :data-pct="row.pct"
           :style="{
             width: `${row.pct}%`,
-            background: `linear-gradient(90deg, ${row.accent ?? '#8B93A8'}, ${row.accent ?? '#8B93A8'}55)`
+            background: `linear-gradient(90deg, ${row.accent ?? '#8B93A8'}, ${row.accent ?? '#8B93A8'}55)`,
           }"
         />
       </div>
       <span
-        class="count-up w-[42px] flex-none text-right font-mono text-[11px] text-ink-primary md:w-[52px] md:text-[13px]"
+        class="count-up w-[42px] flex-none text-right font-mono text-[11px] text-text md:w-[52px] md:text-[13px]"
         :data-value="row.count"
       >
         {{ row.count.toLocaleString('en-US') }}
@@ -62,7 +53,7 @@ const { revealed } = useReveal(root, {
     for (const fill of el.querySelectorAll<HTMLElement>('.bar-fill')) {
       setTimeout(() => (fill.style.transition = ''), 1500); // hand back to the CSS transition
     }
-  }
+  },
 });
 
 const rows = computed(() => {
@@ -70,7 +61,7 @@ const rows = computed(() => {
   return props.items.map((f, i) => ({
     ...f,
     rank: i + 1,
-    pct: f.count === 0 ? 0 : Math.max(4, Math.round((f.count / max) * 100))
+    pct: f.count === 0 ? 0 : Math.max(4, Math.round((f.count / max) * 100)),
   }));
 });
 
@@ -81,6 +72,6 @@ watch(
     if (!revealed.value || prefersReducedMotion()) return;
     await nextTick();
     if (root.value) animateCountUps(root.value, await import('animejs'));
-  }
+  },
 );
 </script>

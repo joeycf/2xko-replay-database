@@ -1,4 +1,16 @@
 {
+  "totals": {
+    "replays": 2915,
+    "characters": 15,
+    "players": 723,
+    "byPatch": {
+      "Beta": 185,
+      "S0": 1099,
+      "S1": 1178,
+      "S2": 453
+    },
+    "withFuse": 2826
+  },
   "characterUsage": {
     "ahri": 1301,
     "akali": 412,
@@ -15,6 +27,66 @@
     "vi": 893,
     "warwick": 619,
     "yasuo": 1220
+  },
+  "byPatchUsage": {
+    "Beta": {
+      "ahri": 38,
+      "blitzcrank": 49,
+      "braum": 19,
+      "darius": 51,
+      "ekko": 133,
+      "illaoi": 64,
+      "jinx": 87,
+      "vi": 78,
+      "yasuo": 107
+    },
+    "S0": {
+      "ahri": 468,
+      "blitzcrank": 231,
+      "braum": 273,
+      "darius": 310,
+      "ekko": 647,
+      "illaoi": 237,
+      "jinx": 256,
+      "teemo": 341,
+      "vi": 367,
+      "warwick": 340,
+      "yasuo": 507
+    },
+    "S1": {
+      "ahri": 575,
+      "akali": 243,
+      "blitzcrank": 227,
+      "braum": 187,
+      "caitlyn": 310,
+      "darius": 243,
+      "ekko": 570,
+      "illaoi": 323,
+      "jinx": 245,
+      "senna": 1,
+      "teemo": 230,
+      "thresh": 7,
+      "vi": 379,
+      "warwick": 233,
+      "yasuo": 485
+    },
+    "S2": {
+      "ahri": 220,
+      "akali": 169,
+      "blitzcrank": 89,
+      "braum": 80,
+      "caitlyn": 62,
+      "darius": 101,
+      "ekko": 176,
+      "illaoi": 105,
+      "jinx": 114,
+      "senna": 75,
+      "teemo": 65,
+      "thresh": 161,
+      "vi": 69,
+      "warwick": 46,
+      "yasuo": 121
+    }
   },
   "pairingUsage": {
     "ahri|akali": 197,
@@ -116,110 +188,6 @@
     "vi|warwick": 205,
     "vi|yasuo": 29,
     "warwick|yasuo": 73
-  },
-  "bySeasonUsage": {
-    "0": {
-      "ahri": 468,
-      "blitzcrank": 231,
-      "braum": 273,
-      "darius": 310,
-      "ekko": 647,
-      "illaoi": 237,
-      "jinx": 256,
-      "teemo": 341,
-      "vi": 367,
-      "warwick": 340,
-      "yasuo": 507
-    },
-    "1": {
-      "ahri": 575,
-      "akali": 243,
-      "blitzcrank": 227,
-      "braum": 187,
-      "caitlyn": 310,
-      "darius": 243,
-      "ekko": 570,
-      "illaoi": 323,
-      "jinx": 245,
-      "senna": 1,
-      "teemo": 230,
-      "thresh": 7,
-      "vi": 379,
-      "warwick": 233,
-      "yasuo": 485
-    },
-    "2": {
-      "ahri": 220,
-      "akali": 169,
-      "blitzcrank": 89,
-      "braum": 80,
-      "caitlyn": 62,
-      "darius": 101,
-      "ekko": 176,
-      "illaoi": 105,
-      "jinx": 114,
-      "senna": 75,
-      "teemo": 65,
-      "thresh": 161,
-      "vi": 69,
-      "warwick": 46,
-      "yasuo": 121
-    },
-    "beta": {
-      "ahri": 38,
-      "blitzcrank": 49,
-      "braum": 19,
-      "darius": 51,
-      "ekko": 133,
-      "illaoi": 64,
-      "jinx": 87,
-      "vi": 78,
-      "yasuo": 107
-    }
-  },
-  "totals": {
-    "videos": 2915,
-    "bySeason": {
-      "0": 1099,
-      "1": 1178,
-      "2": 453,
-      "beta": 185
-    },
-    "withFuse": 2826
-  },
-  "fuseUsage": {
-    "2x-assist": 1141,
-    "double-down": 987,
-    "freestyle": 3403,
-    "juggernaut": 21,
-    "teamfight": 44
-  },
-  "fuseBySeason": {
-    "0": {
-      "2x-assist": 722,
-      "double-down": 584,
-      "freestyle": 806
-    },
-    "1": {
-      "2x-assist": 232,
-      "double-down": 221,
-      "freestyle": 1868,
-      "juggernaut": 13,
-      "teamfight": 8
-    },
-    "2": {
-      "2x-assist": 92,
-      "double-down": 48,
-      "freestyle": 650,
-      "juggernaut": 3,
-      "teamfight": 36
-    },
-    "beta": {
-      "2x-assist": 95,
-      "double-down": 134,
-      "freestyle": 79,
-      "juggernaut": 5
-    }
   },
   "playerCharacters": {
     "126fighting": {
@@ -8914,6 +8882,40 @@
       "jinx|yasuo": 1,
       "teemo|yasuo": 1,
       "vi|warwick": 3
+    }
+  },
+  "fuseUsage": {
+    "2x-assist": 1141,
+    "double-down": 987,
+    "freestyle": 3403,
+    "juggernaut": 21,
+    "teamfight": 44
+  },
+  "fuseByPatch": {
+    "Beta": {
+      "2x-assist": 95,
+      "double-down": 134,
+      "freestyle": 79,
+      "juggernaut": 5
+    },
+    "S0": {
+      "2x-assist": 722,
+      "double-down": 584,
+      "freestyle": 806
+    },
+    "S1": {
+      "2x-assist": 232,
+      "double-down": 221,
+      "freestyle": 1868,
+      "juggernaut": 13,
+      "teamfight": 8
+    },
+    "S2": {
+      "2x-assist": 92,
+      "double-down": 48,
+      "freestyle": 650,
+      "juggernaut": 3,
+      "teamfight": 36
     }
   }
 }

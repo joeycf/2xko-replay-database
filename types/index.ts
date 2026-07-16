@@ -2,27 +2,35 @@
 // Registries (champions/players/fuses) are read from data/*.json at runtime —
 // never hardcode the rosters in code.
 
-/** A playable champion. Seeded from data/champions.json. */
+/** A playable champion — data/characters.json, the ENGINE-GENERIC Character
+ *  shape (Phase 3): the app plugin imports this file verbatim, and the
+ *  pipeline reads/writes the same shape (scripts/champions.ts enriches art +
+ *  accents; parse.ts matches on extra.aliases). */
 export interface Champion {
   id: string;
   name: string;
-  archetype: string | null;
-  portrait: string | null;
-  splash: string | null;
-  accent: string | null;
-  releasedSeason: number | null;
-  aliases: string[];
+  imgPortrait: string;
+  imgSplash?: string;
+  accent: string;
+  extra: {
+    /** search + two-letter badge initials (engine well-known key) */
+    aliases: string[];
+  };
 }
 
-/** A known player. Seeded from data/players.json; the parser auto-appends new ones. */
+/** A known player — data/players.json, the ENGINE-GENERIC Player shape
+ *  (Phase 3). Seeded hand-curated; the parser auto-appends discovered names.
+ *  `featured` carries the old `verified` semantics: true for the curated
+ *  seed roster + manual-entry registrations, false for parser discoveries —
+ *  it drives the VerifiedMark diamond and the featured filter rail. */
 export interface Player {
   id: string;
-  displayName: string;
-  /** true for the hand-curated seed roster, false for parser-discovered names. */
-  verified: boolean;
-  aliases: string[];
-  region: string | null;
-  socials: Record<string, string>;
+  handle: string;
+  featured: boolean;
+  extra: {
+    /** lowercased match variants (also the engine's search well-known key) */
+    aliases: string[];
+  };
 }
 
 /** A Fuse (team mechanic). From data/fuses.json. */
@@ -42,13 +50,13 @@ export interface SeasonBoundary {
   end: string | null;
 }
 
-export type ChannelKey = "proReplays" | "highLevel";
+export type ChannelKey = 'proReplays' | 'highLevel';
 /** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
-export type VideoSource = ChannelKey | "manual";
-export type MatchType = "ranked" | "tournament" | "duo";
+export type VideoSource = ChannelKey | 'manual';
+export type MatchType = 'ranked' | 'tournament' | 'duo';
 /** "manual" = human-authored (data/manual-videos.json) — never a parse failure. */
-export type ParseConfidence = "high" | "low" | "manual";
-export type TeamSide = "left" | "right";
+export type ParseConfidence = 'high' | 'low' | 'manual';
+export type TeamSide = 'left' | 'right';
 
 /** A player reference as embedded in a parsed Team. */
 export interface TeamPlayer {
@@ -137,7 +145,7 @@ export interface ManualVideoEntry {
 
 /** Shape of data/manual-videos.json. */
 export interface ManualVideosFile {
-  "//"?: string[];
+  '//'?: string[];
   videos: ManualVideoEntry[];
 }
 
@@ -147,13 +155,13 @@ export interface FuseDetection {
   left: string | null;
   right: string | null;
   score: { left: number; right: number };
-  status: "ok" | "ok-unordered" | "low" | "none";
+  status: 'ok' | 'ok-unordered' | 'low' | 'none';
   era: string;
   detectedAt: string;
 }
 
 /** Which kind of fuse gap a missing-fuse video is (scripts/fuse-gaps.ts). */
-export type FuseGapBucket = "unavailable" | "low" | "none" | "pending" | "anomaly";
+export type FuseGapBucket = 'unavailable' | 'low' | 'none' | 'pending' | 'anomaly';
 
 /** One missing-fuse video in the gap diagnostic. */
 export interface FuseGapItem {
@@ -169,7 +177,7 @@ export interface FuseGapItem {
   /** download-attempt dates from cache/fuse/attempted.json (absent in git-fallback mode) */
   attempts?: string[];
   /** low/none/anomaly only: raw detection read from fuses-detected.json */
-  detection?: Pick<FuseDetection, "left" | "right" | "score" | "status">;
+  detection?: Pick<FuseDetection, 'left' | 'right' | 'score' | 'status'>;
 }
 
 /** One orientation-blocked low read: fuse is legible, owning title-team is not. */

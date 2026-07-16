@@ -1,106 +1,105 @@
-import { cpSync, mkdirSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { cpSync, mkdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { joinURL } from 'ufo';
 
-import championsData from './data/champions.json'
-import playersData from './data/players.json'
+import charactersData from './data/characters.json';
+import playersData from './data/players.json';
 
-const rootDir = fileURLToPath(new URL('.', import.meta.url))
-const SITE_URL = (process.env.NUXT_PUBLIC_SITE_URL ?? 'https://2xko-replay-database.vercel.app').replace(/\/$/, '')
+const rootDir = fileURLToPath(new URL('.', import.meta.url));
+const engineDir = fileURLToPath(
+  new URL(process.env.ENGINE_PATH || '../replay-engine', new URL('.', import.meta.url)),
+);
 
-// Prerender EVERYTHING: core routes, all 15 champions, all ~714 players
-// (featured-but-unverified players like LightWhisp must not 404 on static
-// hosting), plus /404.html for the static host's not-found fallback.
-const champions = championsData as Record<string, { id: string }>
-const players = playersData as Record<string, { id: string }>
-const coreRoutes = ['/', '/stats', '/champions', '/players']
-const championRoutes = Object.keys(champions).map((id) => `/champions/${id}`)
-const playerRoutes = Object.keys(players).map((id) => `/players/${id}`)
-/** public, indexable routes (sitemap) — /health and /404.html excluded */
-const publicRoutes = [...coreRoutes, ...championRoutes, ...playerRoutes]
+// Prerender EVERYTHING entity-shaped: all 15 champions + every player profile
+// (featured-but-unverified players must not 404 on static hosting), plus the
+// core routes. The engine seeds '/', '/health', '/not-found' itself and emits
+// sitemap/robots/manifest/404.html from the REAL prerendered list
+// (modules/static-artifacts) — the old build:before sitemap hook and
+// postgenerate.mjs are retired.
+const characters = charactersData as { id: string }[];
+const players = playersData as { id: string }[];
+const appRoutes = [
+  '/stats',
+  '/champions',
+  '/players',
+  ...characters.map((c) => `/champions/${c.id}`),
+  ...players.map((p) => `/players/${p.id}`),
+];
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-01',
-  ssr: true,
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@vercel/analytics'],
+  // The replay-engine layer: local checkout during co-development
+  // (ENGINE_PATH in .env), the pinned tag everywhere else (Vercel leaves
+  // ENGINE_PATH unset). Never track a branch — bump the pin deliberately.
+  // `install: true` is REQUIRED for git layers: without it the cloned layer
+  // gets no node_modules and its runtime deps (@tailwindcss/vite, ufo, …)
+  // don't resolve — verified locally by building with ENGINE_PATH unset.
+  extends: [
+    process.env.ENGINE_PATH || ['github:joeycf/replay-engine#v0.2.1', { install: true }],
+  ],
 
-  runtimeConfig: {
-    public: {
-      siteUrl: SITE_URL,
+  compatibilityDate: '2025-07-01',
+
+  // 2XKO stays deployed at the domain root through this phase (PLAN §6.6);
+  // the subpath flip ('/2xko') happens with the shell, later.
+  app: {
+    baseURL: '/',
+  },
+
+  // The 2XKO theme (palette + self-hosted fonts) — loads after the engine's
+  // CSS, so its @theme values shadow the umbrella defaults (README contract).
+  css: ['~/assets/theme.css'],
+
+  nitro: {
+    prerender: {
+      // The /dev curation pages guard themselves behind import.meta.dev and
+      // 404 outside `nuxt dev`; the crawler still discovers them via the app
+      // manifest. The shipped build tolerated those 404s with
+      // failOnError:false — skipping the paths instead keeps every REAL page
+      // failure a hard build error.
+      ignore: ['/dev'],
     },
   },
+
+  modules: [
+    // Seed the entity routes under the final resolved base (same mechanism as
+    // the engine's own seeds — static prerender arrays are not base-prefixed).
+    function appPrerenderSeeds(_options, nuxt) {
+      nuxt.hook('nitro:init', (nitro) => {
+        for (const route of appRoutes) {
+          nitro.options.prerender.routes.push(joinURL(nuxt.options.app.baseURL, route));
+        }
+      });
+    },
+  ],
 
   hooks: {
-    // Build-time artifacts (dev, build, and generate):
-    //  • videos.json → public/data/ (client-fetched static asset, never bundled)
-    //  • sitemap.xml + robots.txt from the prerender route list
+    // The whale file: data/replays.json (committed, pipeline-emitted) →
+    // public/data/ (gitignored) for the engine's client fetch. Lives in the
+    // BUILD because Vercel never runs the pipeline — it builds from committed
+    // JSON, exactly like the shipped videos.json flow.
     'build:before'() {
-      const pub = join(rootDir, 'public')
-      mkdirSync(join(pub, 'data'), { recursive: true })
-      cpSync(join(rootDir, 'data/videos.json'), join(pub, 'data/videos.json'))
-      console.log('✓ copied data/videos.json → public/data/videos.json')
-
-      const today = new Date().toISOString().slice(0, 10)
-      const sitemap =
-        `<?xml version="1.0" encoding="UTF-8"?>\n` +
-        `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-        publicRoutes
-          .map((r) => `  <url><loc>${SITE_URL}${r}</loc><lastmod>${today}</lastmod></url>`)
-          .join('\n') +
-        `\n</urlset>\n`
-      writeFileSync(join(pub, 'sitemap.xml'), sitemap)
-      writeFileSync(
-        join(pub, 'robots.txt'),
-        `User-agent: *\nAllow: /\nDisallow: /health\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
-      )
-      console.log(`✓ wrote sitemap.xml (${publicRoutes.length} urls) + robots.txt`)
+      const dataDir = join(rootDir, 'public/data');
+      mkdirSync(dataDir, { recursive: true });
+      cpSync(join(rootDir, 'data/replays.json'), join(dataDir, 'replays.json'));
+      console.log('✓ copied data/replays.json → public/data/replays.json');
     },
   },
 
-  // Static generation targeting Vercel.
-  nitro: {
-    preset: 'vercel-static',
-    prerender: {
-      crawlLinks: true,
-      failOnError: false,
-      routes: [...publicRoutes, '/health', '/not-found'],
-    },
-  },
-
-  tailwindcss: {
-    cssPath: '~/assets/css/main.css',
-    configPath: '~~/tailwind.config.js',
-  },
-
-  googleFonts: {
-    families: {
-      'Chakra Petch': [400, 500, 600, 700],
-      Barlow: [400, 500, 600, 700],
-      'JetBrains Mono': [400, 500, 700],
-    },
-    display: 'swap',
-    preconnect: true,
-    download: true, // self-host fonts at build time
-  },
-
-  app: {
-    head: {
-      htmlAttrs: { lang: 'en', class: 'dark' },
-      title: '2XKO Replay Database',
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content: 'An unofficial fan-made index of 2XKO high-level and pro replay footage.',
+  typescript: {
+    // Typecheck runs explicitly via `npm run typecheck` (vue-tsc + pipeline tsc).
+    typeCheck: false,
+    // app/app.config.ts lands in the generated NODE tsconfig, which doesn't
+    // inherit the engine layer's @engine alias — mirror it for the type-only
+    // GameConfig import (erased at build; typecheck is a local operation that
+    // assumes the sibling engine checkout per the STACK dev loop).
+    nodeTsConfig: {
+      compilerOptions: {
+        paths: {
+          '@engine': [engineDir],
+          '@engine/*': [`${engineDir}/*`],
         },
-      ],
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      },
     },
   },
-
-  // App type-checking runs via `nuxt typecheck` (vue-tsc); the data pipeline is
-  // checked separately by `tsc --noEmit` against the root tsconfig.
-  typescript: { typeCheck: false },
-})
+});

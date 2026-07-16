@@ -1,0 +1,187 @@
+[
+  {
+    "id": "ahri",
+    "name": "Ahri",
+    "imgPortrait": "/img/champions/ahri-portrait.webp",
+    "imgSplash": "/img/champions/ahri-splash.webp",
+    "accent": "#FF5DA2",
+    "extra": {
+      "aliases": [
+        "ahri"
+      ]
+    }
+  },
+  {
+    "id": "akali",
+    "name": "Akali",
+    "imgPortrait": "/img/champions/akali-portrait.webp",
+    "imgSplash": "/img/champions/akali-splash.webp",
+    "accent": "#35D98A",
+    "extra": {
+      "aliases": [
+        "akali"
+      ]
+    }
+  },
+  {
+    "id": "blitzcrank",
+    "name": "Blitzcrank",
+    "imgPortrait": "/img/champions/blitzcrank-portrait.webp",
+    "imgSplash": "/img/champions/blitzcrank-splash.webp",
+    "accent": "#FFC24B",
+    "extra": {
+      "aliases": [
+        "blitzcrank",
+        "blitz"
+      ]
+    }
+  },
+  {
+    "id": "braum",
+    "name": "Braum",
+    "imgPortrait": "/img/champions/braum-portrait.webp",
+    "imgSplash": "/img/champions/braum-splash.webp",
+    "accent": "#58C7E8",
+    "extra": {
+      "aliases": [
+        "braum"
+      ]
+    }
+  },
+  {
+    "id": "caitlyn",
+    "name": "Caitlyn",
+    "imgPortrait": "/img/champions/caitlyn-portrait.webp",
+    "imgSplash": "/img/champions/caitlyn-splash.webp",
+    "accent": "#B98AE0",
+    "extra": {
+      "aliases": [
+        "caitlyn",
+        "cait"
+      ]
+    }
+  },
+  {
+    "id": "darius",
+    "name": "Darius",
+    "imgPortrait": "/img/champions/darius-portrait.webp",
+    "imgSplash": "/img/champions/darius-splash.webp",
+    "accent": "#F0463F",
+    "extra": {
+      "aliases": [
+        "darius"
+      ]
+    }
+  },
+  {
+    "id": "ekko",
+    "name": "Ekko",
+    "imgPortrait": "/img/champions/ekko-portrait.webp",
+    "imgSplash": "/img/champions/ekko-splash.webp",
+    "accent": "#1FE0D4",
+    "extra": {
+      "aliases": [
+        "ekko"
+      ]
+    }
+  },
+  {
+    "id": "illaoi",
+    "name": "Illaoi",
+    "imgPortrait": "/img/champions/illaoi-portrait.webp",
+    "imgSplash": "/img/champions/illaoi-splash.webp",
+    "accent": "#CE9138",
+    "extra": {
+      "aliases": [
+        "illaoi",
+        "illoai"
+      ]
+    }
+  },
+  {
+    "id": "jinx",
+    "name": "Jinx",
+    "imgPortrait": "/img/champions/jinx-portrait.webp",
+    "imgSplash": "/img/champions/jinx-splash.webp",
+    "accent": "#5B8CFF",
+    "extra": {
+      "aliases": [
+        "jinx"
+      ]
+    }
+  },
+  {
+    "id": "senna",
+    "name": "Senna",
+    "imgPortrait": "/img/champions/senna-portrait.webp",
+    "imgSplash": "/img/champions/senna-splash.webp",
+    "accent": "#97DB4A",
+    "extra": {
+      "aliases": [
+        "senna"
+      ]
+    }
+  },
+  {
+    "id": "teemo",
+    "name": "Teemo",
+    "imgPortrait": "/img/champions/teemo-portrait.webp",
+    "imgSplash": "/img/champions/teemo-splash.webp",
+    "accent": "#E27E3C",
+    "extra": {
+      "aliases": [
+        "teemo"
+      ]
+    }
+  },
+  {
+    "id": "thresh",
+    "name": "Thresh",
+    "imgPortrait": "/img/champions/thresh-portrait.webp",
+    "imgSplash": "/img/champions/thresh-splash.webp",
+    "accent": "#49E0A6",
+    "extra": {
+      "aliases": [
+        "thresh"
+      ]
+    }
+  },
+  {
+    "id": "vi",
+    "name": "Vi",
+    "imgPortrait": "/img/champions/vi-portrait.webp",
+    "imgSplash": "/img/champions/vi-splash.webp",
+    "accent": "#FF6F61",
+    "extra": {
+      "aliases": [
+        "vi"
+      ]
+    }
+  },
+  {
+    "id": "warwick",
+    "name": "Warwick",
+    "imgPortrait": "/img/champions/warwick-portrait.webp",
+    "imgSplash": "/img/champions/warwick-splash.webp",
+    "accent": "#7A6BE8",
+    "extra": {
+      "aliases": [
+        "warwick",
+        "ww"
+      ]
+    }
+  },
+  {
+    "id": "yasuo",
+    "name": "Yasuo",
+    "imgPortrait": "/img/champions/yasuo-portrait.webp",
+    "imgSplash": "/img/champions/yasuo-splash.webp",
+    "accent": "#52C4C4",
+    "extra": {
+      "aliases": [
+        "yasuo",
+        "yas"
+      ]
+    }
+  }
+]
