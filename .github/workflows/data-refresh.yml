@@ -21,7 +21,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # matches engines.node (the platform's Node policy — STACK.md §1)
+          node-version: 24
           cache: npm
 
       - run: npm ci
@@ -37,7 +38,10 @@ jobs:
         run: |
           git config user.name "2xko-data-refresh[bot]"
           git config user.email "data-refresh@users.noreply.github.com"
-          git add data/videos.json data/stats.json data/players.json data/report.md
+          # replays.json is the generic app artifact emitted alongside
+          # videos.json (Phase 3) — both must land in the same commit or the
+          # site's data desyncs from the pipeline substrate.
+          git add data/videos.json data/replays.json data/stats.json data/players.json data/report.md
           # report.md's "_Generated <timestamp>_" line changes every run; a diff
           # that is ONLY that line is not a data change — drop it so a no-change
           # day produces no commit (and no deploy). report.md still ships

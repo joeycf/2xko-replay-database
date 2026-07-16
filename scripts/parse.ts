@@ -8,13 +8,14 @@
 //  • Season: description "(Season N)" primary, seasonBoundaries.json fallback.
 //  • Champions: exact alias → word-contains (tag balance notes) → Damerau/OSA ≤1 (low conf).
 
-import { execFileSync } from "node:child_process";
-import { existsSync, statSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { execFileSync } from 'node:child_process';
+import { existsSync, statSync } from 'node:fs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { CHANNELS, CHAR_SEP, PLAYER_SEP } from "./channels";
+import { CHANNELS, CHAR_SEP, PLAYER_SEP } from './channels';
+import { applyExclusions, emitGeneric } from './emit';
 import type {
   Champion,
   ChannelKey,
@@ -27,23 +28,25 @@ import type {
   Player,
   RawVideoRecord,
   SeasonBoundary,
-  Stats,
   Team,
   TeamSide,
   VideoRecord,
-} from "../types/index";
+} from '../types/index';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, "..");
-const DATA = join(ROOT, "data");
-const RAW = join(ROOT, "raw");
+const ROOT = join(__dirname, '..');
+const DATA = join(ROOT, 'data');
+const RAW = join(ROOT, 'raw');
 
 // ── generic helpers ───────────────────────────────────────────────────────────
-const readJson = async <T>(p: string): Promise<T> => JSON.parse(await readFile(p, "utf8")) as T;
-const inc = (o: Record<string, number>, k: string) => (o[k] = (o[k] ?? 0) + 1);
+const readJson = async <T>(p: string): Promise<T> => JSON.parse(await readFile(p, 'utf8')) as T;
 const uniq = <T>(xs: T[]): T[] => [...new Set(xs)];
 const slugify = (s: string): string =>
-  s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  s
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
 
 /** Optimal String Alignment (Damerau–Levenshtein w/ adjacent transpositions). */
 function osaDistance(a: string, b: string): number {
@@ -67,19 +70,28 @@ function osaDistance(a: string, b: string): number {
 }
 
 // ── load registries + raw + config ────────────────────────────────────────────
-const champions = await readJson<Record<string, Champion>>(join(DATA, "champions.json"));
-const players = await readJson<Record<string, Player>>(join(DATA, "players.json"));
-const fuses = await readJson<Record<string, Fuse>>(join(DATA, "fuses.json"));
-const boundaries = await readJson<SeasonBoundary[]>(join(DATA, "seasonBoundaries.json"));
-const overrides = await readJson<Record<string, Partial<VideoRecord>>>(join(DATA, "overrides.json"));
+// Registries are the ENGINE-GENERIC arrays (Phase 3); the parser indexes them
+// by id internally and writes players back as an array at the end.
+const characterList = await readJson<Champion[]>(join(DATA, 'characters.json'));
+const champions: Record<string, Champion> = Object.fromEntries(characterList.map((c) => [c.id, c]));
+const playerList = await readJson<Player[]>(join(DATA, 'players.json'));
+const players: Record<string, Player> = Object.fromEntries(playerList.map((p) => [p.id, p]));
+const fuses = await readJson<Record<string, Fuse>>(join(DATA, 'fuses.json'));
+const boundaries = await readJson<SeasonBoundary[]>(join(DATA, 'seasonBoundaries.json'));
+// overrides may also EXCLUDE a record outright ({ "exclude": true } — e.g. a
+// stray non-2XKO upload a tracked channel published); applied after the manual
+// merge, before stats/writes/emit.
+const overrides = await readJson<Record<string, Partial<VideoRecord> & { exclude?: boolean }>>(
+  join(DATA, 'overrides.json'),
+);
 // Hand-authored records (tournament VODs etc.) — validated + merged in below.
 // A malformed file must fail the run loudly, so no .catch here.
 const manualEntries: ManualVideoEntry[] =
-  (await readJson<ManualVideosFile>(join(DATA, "manual-videos.json"))).videos ?? [];
+  (await readJson<ManualVideosFile>(join(DATA, 'manual-videos.json'))).videos ?? [];
 // CV fuse detections live in their own committed artifact (scripts/fuses.ts,
 // local-only) so they survive the daily regeneration of videos.json.
 const fusesDetected: Record<string, FuseDetection> = await readJson<Record<string, FuseDetection>>(
-  join(DATA, "fuses-detected.json"),
+  join(DATA, 'fuses-detected.json'),
 ).catch(() => ({}));
 
 const rawRecords: RawVideoRecord[] = [];
@@ -87,7 +99,9 @@ const rawPaths: string[] = [];
 for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
   const p = join(RAW, `${key}.json`);
   if (!existsSync(p)) {
-    console.error(`✖ raw/${key}.json missing — run \`npm run data:fetch\` first (or \`npm run data:build\`).`);
+    console.error(
+      `✖ raw/${key}.json missing — run \`npm run data:fetch\` first (or \`npm run data:build\`).`,
+    );
     process.exit(1);
   }
   rawPaths.push(p);
@@ -101,8 +115,10 @@ for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
 // videos.json holds ids the dumps lack AND the dumps predate its last commit.
 // Fresh dumps missing ids are legitimate (that's how deleted videos get pruned),
 // and equal id sets (re-parse after an overrides/detections change) always pass.
-if (!process.argv.includes("--allow-stale")) {
-  const existing = await readJson<VideoRecord[]>(join(DATA, "videos.json")).catch(() => [] as VideoRecord[]);
+if (!process.argv.includes('--allow-stale')) {
+  const existing = await readJson<VideoRecord[]>(join(DATA, 'videos.json')).catch(
+    () => [] as VideoRecord[],
+  );
   const rawIds = new Set(rawRecords.map((r) => r.id));
   // manual-videos.json ids are never in the channel dumps — not a staleness signal
   const manualIds = new Set(manualEntries.map((e) => e.id));
@@ -110,10 +126,12 @@ if (!process.argv.includes("--allow-stale")) {
   if (missing.length > 0) {
     let lastCommitMs: number | null = null;
     try {
-      const out = execFileSync("git", ["log", "-1", "--format=%ct", "--", "data/videos.json"], {
+      const out = execFileSync('git', ['log', '-1', '--format=%ct', '--', 'data/videos.json'], {
         cwd: ROOT,
-        stdio: ["ignore", "pipe", "ignore"],
-      }).toString().trim();
+        stdio: ['ignore', 'pipe', 'ignore'],
+      })
+        .toString()
+        .trim();
       if (out) lastCommitMs = Number(out) * 1000;
     } catch {
       // no usable git history (CI shallow clone, tarball) — staleness can't be
@@ -128,7 +146,7 @@ if (!process.argv.includes("--allow-stale")) {
           `  missing from raw/*.json (fetched ${day(rawMtimeMs)}), e.g. ${missing[0].id}. The daily cron refreshes`,
           `  remotely, so local raw/ lags — parsing now would silently drop those videos.`,
           `  Run \`npm run data:fetch\` first (or \`npm run data:build\`); pass --allow-stale to override.`,
-        ].join("\n"),
+        ].join('\n'),
       );
       process.exit(1);
     }
@@ -139,7 +157,7 @@ if (!process.argv.includes("--allow-stale")) {
 const champByAlias = new Map<string, string>(); // aliasLower -> championId
 const champAliases: { alias: string; id: string }[] = [];
 for (const c of Object.values(champions)) {
-  for (const a of new Set([c.name.toLowerCase(), ...c.aliases.map((x) => x.toLowerCase())])) {
+  for (const a of new Set([c.name.toLowerCase(), ...c.extra.aliases.map((x) => x.toLowerCase())])) {
     champByAlias.set(a, c.id);
     champAliases.push({ alias: a, id: c.id });
   }
@@ -158,7 +176,7 @@ function resolveChampion(rawToken: string): CharResult {
 
   // 1. exact alias / canonical name
   const exact = champByAlias.get(lower);
-  if (exact) return { id: exact, confidence: "high", notes: [], raw: token };
+  if (exact) return { id: exact, confidence: 'high', notes: [], raw: token };
 
   // 2. word-contains: a multi-word token carrying exactly one champion alias as a word
   //    e.g. "nerfed Ekko" → ekko (+ note "nerfed"), "adjusted Ahri" → ahri.
@@ -169,7 +187,7 @@ function resolveChampion(rawToken: string): CharResult {
       const notes = words
         .filter((w) => !champByAlias.has(w))
         .filter((w) => w.length >= 3 && /^[a-z]+$/.test(w));
-      return { id: hits[0], confidence: "high", notes, raw: token };
+      return { id: hits[0], confidence: 'high', notes, raw: token };
     }
   }
 
@@ -181,18 +199,18 @@ function resolveChampion(rawToken: string): CharResult {
       const dist = osaDistance(lower, alias);
       if (dist <= 1 && (best === null || dist < best.dist)) best = { id, dist };
     }
-    if (best) return { id: best.id, confidence: "low", notes: [], raw: token };
+    if (best) return { id: best.id, confidence: 'low', notes: [], raw: token };
   }
 
   // 4. unresolved
-  return { id: null, confidence: "low", notes: [], raw: token };
+  return { id: null, confidence: 'low', notes: [], raw: token };
 }
 
 // ── player resolution (with auto-discovery) ───────────────────────────────────
 const playerByAlias = new Map<string, string>(); // aliasLower -> playerId
 for (const p of Object.values(players)) {
-  playerByAlias.set(p.displayName.toLowerCase(), p.id);
-  for (const a of p.aliases) playerByAlias.set(a.toLowerCase(), p.id);
+  playerByAlias.set(p.handle.toLowerCase(), p.id);
+  for (const a of p.extra.aliases) playerByAlias.set(a.toLowerCase(), p.id);
 }
 
 interface Discovered {
@@ -211,9 +229,9 @@ function resolvePlayer(rawName: string): { id: string; displayName: string } {
   const lower = name.toLowerCase();
 
   const known = playerByAlias.get(lower);
-  if (known) return { id: known, displayName: players[known].displayName };
+  if (known) return { id: known, displayName: players[known].handle };
 
-  const slug = slugify(name) || "player";
+  const slug = slugify(name) || 'player';
   let entry = discovered.get(slug);
   if (!entry) {
     let id = slug;
@@ -242,9 +260,30 @@ function extractSeason(description: string, publishedAt: string): number | null 
 }
 
 const MONTHS: Record<string, number> = {
-  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5, july: 6,
-  august: 7, september: 8, october: 9, november: 10, december: 11,
-  jan: 0, feb: 1, mar: 2, apr: 3, jun: 5, jul: 6, aug: 7, sep: 8, sept: 8, oct: 9, nov: 10, dec: 11,
+  january: 0,
+  february: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11,
+  jan: 0,
+  feb: 1,
+  mar: 2,
+  apr: 3,
+  jun: 5,
+  jul: 6,
+  aug: 7,
+  sep: 8,
+  sept: 8,
+  oct: 9,
+  nov: 10,
+  dec: 11,
 };
 function extractPatch(description: string): string | null {
   const m = /Patch\s*:\s*([^\n\r]+)/i.exec(description);
@@ -269,7 +308,7 @@ for (const f of Object.values(fuses)) {
   }
 }
 fuseAliases.sort((a, b) => b.alias.length - a.alias.length);
-const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 /** Scan a per-team text segment for a fuse alias (accurate attribution, no guessing). */
 function scanFuse(text: string): string | null {
   const lower = text.toLowerCase();
@@ -281,14 +320,14 @@ function scanFuse(text: string): string | null {
 
 // Round / bracket tags (best-effort, from the raw title).
 const ROUND_TAGS: [RegExp, string][] = [
-  [/\bgrand\s*finals?\b/i, "grand-finals"],
-  [/\bgf\b/i, "grand-finals"],
-  [/\blosers?\s*finals?\b/i, "losers-final"],
-  [/\bwinners?\s*finals?\b/i, "winners-final"],
-  [/\bsemi[-\s]?finals?\b/i, "semifinals"],
-  [/\btop\s*8\b/i, "top-8"],
-  [/\btop\s*16\b/i, "top-16"],
-  [/\bfirst\s*strike\b/i, "first-strike"],
+  [/\bgrand\s*finals?\b/i, 'grand-finals'],
+  [/\bgf\b/i, 'grand-finals'],
+  [/\blosers?\s*finals?\b/i, 'losers-final'],
+  [/\bwinners?\s*finals?\b/i, 'winners-final'],
+  [/\bsemi[-\s]?finals?\b/i, 'semifinals'],
+  [/\btop\s*8\b/i, 'top-8'],
+  [/\btop\s*16\b/i, 'top-16'],
+  [/\bfirst\s*strike\b/i, 'first-strike'],
 ];
 function roundTags(title: string): string[] {
   return uniq(ROUND_TAGS.filter(([re]) => re.test(title)).map(([, t]) => t));
@@ -304,17 +343,19 @@ interface ParsedTeam {
   playersRaw: string;
   charsRaw: string;
 }
-function parseTitle(rawTitle: string): { ok: true; teams: [ParsedTeam, ParsedTeam] } | { ok: false; stage: string } {
-  let s = rawTitle.replace(/\s+/g, " ").trim(); // 1. normalize whitespace
-  s = s.replace(PREFIX, ""); // 2. strip leading prefix
-  s = s.replace(SUFFIX, "").trim(); // 3. strip trailing suffix
+function parseTitle(
+  rawTitle: string,
+): { ok: true; teams: [ParsedTeam, ParsedTeam] } | { ok: false; stage: string } {
+  let s = rawTitle.replace(/\s+/g, ' ').trim(); // 1. normalize whitespace
+  s = s.replace(PREFIX, ''); // 2. strip leading prefix
+  s = s.replace(SUFFIX, '').trim(); // 3. strip trailing suffix
   const m = TEAM_SPLIT.exec(s); // 4. split teams (parens-anchored)
-  if (!m) return { ok: false, stage: "team-split" };
+  if (!m) return { ok: false, stage: 'team-split' };
   const teams: ParsedTeam[] = [];
   for (const seg of [m[1], m[2]]) {
     // 5. extract players + chars
     const tm = TEAM_EXTRACT.exec(seg);
-    if (!tm?.groups) return { ok: false, stage: "team-extract" };
+    if (!tm?.groups) return { ok: false, stage: 'team-extract' };
     teams.push({ playersRaw: tm.groups.players, charsRaw: tm.groups.chars });
   }
   return { ok: true, teams: teams as [ParsedTeam, ParsedTeam] };
@@ -355,19 +396,19 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
     lowReports.push({ id: raw.id, channel: raw.channel, title: raw.title, reasons });
     return {
       ...base,
-      matchType: "ranked",
+      matchType: 'ranked',
       teams: [],
       allCharacters: [],
       allPlayers: [],
       tags: [...tags].sort(),
-      parseConfidence: "low",
+      parseConfidence: 'low',
       rawUnparsed: raw.title,
     };
   }
 
-  const sides: TeamSide[] = ["left", "right"];
+  const sides: TeamSide[] = ['left', 'right'];
   const teams: Team[] = [];
-  let confidence: ParseConfidence = "high";
+  let confidence: ParseConfidence = 'high';
 
   const rawSegments = [
     `${parsed.teams[0].playersRaw} (${parsed.teams[0].charsRaw})`,
@@ -377,21 +418,24 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
   for (let i = 0; i < parsed.teams.length; i++) {
     const pt = parsed.teams[i];
     // characters
-    const charTokens = pt.charsRaw.split(CHAR_SEP).map((x) => x.trim()).filter(Boolean);
+    const charTokens = pt.charsRaw
+      .split(CHAR_SEP)
+      .map((x) => x.trim())
+      .filter(Boolean);
     if (charTokens.length !== 2) {
-      confidence = "low";
+      confidence = 'low';
       reasons.push(`team ${sides[i]}: ${charTokens.length} character(s) (expected 2)`);
     }
     const characters: string[] = [];
     for (const tok of charTokens) {
       const r = resolveChampion(tok);
       if (r.id === null) {
-        confidence = "low";
+        confidence = 'low';
         reasons.push(`unresolved character "${tok}" on ${sides[i]}`);
         continue;
       }
-      if (r.confidence === "low") {
-        confidence = "low";
+      if (r.confidence === 'low') {
+        confidence = 'low';
         reasons.push(`fuzzy character "${tok}" → ${r.id} on ${sides[i]}`);
       }
       for (const n of r.notes) tags.add(n);
@@ -399,9 +443,12 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
     }
 
     // players (unified separator — both channels mix " + " and spaced "-")
-    const playerTokens = pt.playersRaw.split(PLAYER_SEP).map((x) => x.trim()).filter(Boolean);
+    const playerTokens = pt.playersRaw
+      .split(PLAYER_SEP)
+      .map((x) => x.trim())
+      .filter(Boolean);
     if (playerTokens.length === 0) {
-      confidence = "low";
+      confidence = 'low';
       reasons.push(`team ${sides[i]}: no players parsed`);
     }
     const teamPlayers = playerTokens.map((t) => resolvePlayer(t));
@@ -416,17 +463,17 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
 
   // tags: mirror (both teams same 2-character set)
   if (teams[0].characters.length === 2 && teams[1].characters.length === 2) {
-    if ([...teams[0].characters].sort().join("|") === [...teams[1].characters].sort().join("|")) {
-      tags.add("mirror");
+    if ([...teams[0].characters].sort().join('|') === [...teams[1].characters].sort().join('|')) {
+      tags.add('mirror');
     }
   }
 
   // matchType
   const maxPlayers = Math.max(teams[0].players.length, teams[1].players.length);
   const matchType: MatchType =
-    maxPlayers >= 2 ? "duo" : roundTags(raw.title).length > 0 ? "tournament" : "ranked";
+    maxPlayers >= 2 ? 'duo' : roundTags(raw.title).length > 0 ? 'tournament' : 'ranked';
 
-  if (confidence === "low") {
+  if (confidence === 'low') {
     lowReports.push({ id: raw.id, channel: raw.channel, title: raw.title, reasons });
   }
 
@@ -454,27 +501,28 @@ const manualTodos: { id: string; todo: string }[] = [];
  *  collisions are hard errors — bad hand-authored data must never land. */
 function buildManualRecords(): VideoRecord[] {
   const errors: string[] = [];
-  const err = (id: string, msg: string) => errors.push(`manual-videos.json [${id || "?"}]: ${msg}`);
+  const err = (id: string, msg: string) => errors.push(`manual-videos.json [${id || '?'}]: ${msg}`);
   const rawIds = new Set(rawRecords.map((r) => r.id));
   const seenIds = new Set<string>();
 
   // final registry lookup — includes this run's parser-discovered players
   const finalAlias = new Map<string, string>(); // aliasLower -> playerId
   for (const p of Object.values(players)) {
-    finalAlias.set(p.displayName.toLowerCase(), p.id);
-    for (const a of p.aliases) finalAlias.set(a.toLowerCase(), p.id);
+    finalAlias.set(p.handle.toLowerCase(), p.id);
+    for (const a of p.extra.aliases) finalAlias.set(a.toLowerCase(), p.id);
   }
   const resolveManualPlayer = (rawName: string): { id: string; displayName: string } => {
     const name = rawName.trim();
     const known = finalAlias.get(name.toLowerCase());
-    if (known) return { id: known, displayName: players[known].displayName };
-    // Unknown → register as verified: manual entries are hand-curated, so the
-    // name is exact (tournament participants, not parser guesses).
-    const slug = slugify(name) || "player";
+    if (known) return { id: known, displayName: players[known].handle };
+    // Unknown → register as featured (the old "verified"): manual entries are
+    // hand-curated, so the name is exact (tournament participants, not
+    // parser guesses).
+    const slug = slugify(name) || 'player';
     let id = slug;
     for (let n = 2; usedIds.has(id); n++) id = `${slug}-${n}`;
     usedIds.add(id);
-    players[id] = { id, displayName: name, verified: true, aliases: [name.toLowerCase()], region: null, socials: {} };
+    players[id] = { id, handle: name, featured: true, extra: { aliases: [name.toLowerCase()] } };
     finalAlias.set(name.toLowerCase(), id);
     manualNewPlayers.push({ id, displayName: name });
     return { id, displayName: name };
@@ -482,61 +530,84 @@ function buildManualRecords(): VideoRecord[] {
 
   const out: VideoRecord[] = [];
   for (const e of manualEntries) {
-    const id = typeof e.id === "string" ? e.id : "";
-    if (!id) err("", `entry with missing/non-string id (title: ${e.title ?? "?"})`);
-    if (seenIds.has(id)) err(id, "duplicate id within manual-videos.json");
+    const id = typeof e.id === 'string' ? e.id : '';
+    if (!id) err('', `entry with missing/non-string id (title: ${e.title ?? '?'})`);
+    if (seenIds.has(id)) err(id, 'duplicate id within manual-videos.json');
     seenIds.add(id);
-    if (rawIds.has(id)) err(id, "id already exists in the channel dumps — fix the parse (overrides.json), don't duplicate it");
-    if (!e.title) err(id, "missing title");
-    if (!e.publishedAt || Number.isNaN(Date.parse(e.publishedAt))) err(id, `publishedAt "${e.publishedAt}" is not a parseable ISO timestamp`);
-    if (!e.tournament) err(id, "missing tournament (event name)");
+    if (rawIds.has(id))
+      err(
+        id,
+        "id already exists in the channel dumps — fix the parse (overrides.json), don't duplicate it",
+      );
+    if (!e.title) err(id, 'missing title');
+    if (!e.publishedAt || Number.isNaN(Date.parse(e.publishedAt)))
+      err(id, `publishedAt "${e.publishedAt}" is not a parseable ISO timestamp`);
+    if (!e.tournament) err(id, 'missing tournament (event name)');
     if (!Array.isArray(e.teams) || e.teams.length !== 2) {
-      err(id, `expected exactly 2 teams, got ${Array.isArray(e.teams) ? e.teams.length : typeof e.teams}`);
+      err(
+        id,
+        `expected exactly 2 teams, got ${Array.isArray(e.teams) ? e.teams.length : typeof e.teams}`,
+      );
       continue; // team-level checks below would crash
     }
-    if (e.matchType && !["ranked", "tournament", "duo"].includes(e.matchType)) err(id, `invalid matchType "${e.matchType}"`);
+    if (e.matchType && !['ranked', 'tournament', 'duo'].includes(e.matchType))
+      err(id, `invalid matchType "${e.matchType}"`);
 
-    const sides: TeamSide[] = ["left", "right"];
+    const sides: TeamSide[] = ['left', 'right'];
     const teams: Team[] = e.teams.map((t, i) => {
       const names = (t.players ?? []).map((n) => String(n).trim()).filter(Boolean);
       if (names.length === 0) err(id, `team ${sides[i]}: no players`);
       const characters = uniq(
         (t.characters ?? []).map((tok) => {
           const cid = champByAlias.get(String(tok).trim().toLowerCase()); // exact only — no fuzzy for hand-authored data
-          if (!cid) err(id, `team ${sides[i]}: unknown champion "${tok}" (valid ids: ${Object.keys(champions).sort().join(", ")})`);
+          if (!cid)
+            err(
+              id,
+              `team ${sides[i]}: unknown champion "${tok}" (valid ids: ${Object.keys(champions).sort().join(', ')})`,
+            );
           return cid ?? String(tok);
         }),
       );
-      if (t.fuse != null && !fuses[t.fuse]) err(id, `team ${sides[i]}: unknown fuse "${t.fuse}" (valid: ${Object.keys(fuses).sort().join(", ")})`);
-      return { side: sides[i], players: names.map(resolveManualPlayer), characters, fuse: t.fuse ?? null };
+      if (t.fuse != null && !fuses[t.fuse])
+        err(
+          id,
+          `team ${sides[i]}: unknown fuse "${t.fuse}" (valid: ${Object.keys(fuses).sort().join(', ')})`,
+        );
+      return {
+        side: sides[i],
+        players: names.map(resolveManualPlayer),
+        characters,
+        fuse: t.fuse ?? null,
+      };
     });
 
-    const tags = new Set<string>([...roundTags(e.title ?? ""), ...(e.tags ?? [])]);
+    const tags = new Set<string>([...roundTags(e.title ?? ''), ...(e.tags ?? [])]);
     if (
-      teams[0].characters.length === 2 && teams[1].characters.length === 2 &&
-      [...teams[0].characters].sort().join("|") === [...teams[1].characters].sort().join("|")
+      teams[0].characters.length === 2 &&
+      teams[1].characters.length === 2 &&
+      [...teams[0].characters].sort().join('|') === [...teams[1].characters].sort().join('|')
     ) {
-      tags.add("mirror");
+      tags.add('mirror');
     }
     if (e.todo) manualTodos.push({ id, todo: e.todo });
 
     out.push({
       id,
-      channel: "manual",
+      channel: 'manual',
       channelName: e.channelName ?? e.tournament,
       title: e.title,
       publishedAt: e.publishedAt,
       thumbnail: e.thumbnail ?? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
       durationSec: e.durationSec ?? 0,
       viewCount: e.viewCount ?? 0,
-      season: e.season !== undefined ? e.season : extractSeason("", e.publishedAt ?? ""),
+      season: e.season !== undefined ? e.season : extractSeason('', e.publishedAt ?? ''),
       patch: e.patch ?? null,
-      matchType: e.matchType ?? "tournament",
+      matchType: e.matchType ?? 'tournament',
       teams,
       allCharacters: uniq(teams.flatMap((t) => t.characters)),
       allPlayers: uniq(teams.flatMap((t) => t.players.map((p) => p.id))),
       tags: [...tags].sort(),
-      parseConfidence: "manual",
+      parseConfidence: 'manual',
       rawUnparsed: null,
       tournament: e.tournament,
       ...(e.round ? { round: e.round } : {}),
@@ -552,81 +623,36 @@ function buildManualRecords(): VideoRecord[] {
 }
 
 // ── stats ─────────────────────────────────────────────────────────────────────
-function buildStats(records: VideoRecord[]): Stats {
-  const stats: Stats = {
-    characterUsage: {},
-    pairingUsage: {},
-    bySeasonUsage: {},
-    totals: {
-      videos: records.length,
-      bySeason: {},
-      // videos with ≥1 detected/overridden team fuse — the UI's coverage line
-      withFuse: records.filter((v) => v.teams.some((t) => t.fuse)).length,
-    },
-    fuseUsage: {},
-    fuseBySeason: {},
-    playerCharacters: {},
-    playerPairings: {},
-    matchupMatrix: {},
-  };
-  for (const v of records) {
-    for (const c of v.allCharacters) inc(stats.characterUsage, c); // per-video dedup
-    // season === null → the pre-Season-0 "beta" era; timeline order is beta → 0 → 1 → 2
-    const sk = v.season === null ? "beta" : String(v.season);
-    inc(stats.totals.bySeason, sk);
-    (stats.bySeasonUsage[sk] ??= {});
-    for (const c of v.allCharacters) inc(stats.bySeasonUsage[sk], c);
-    for (const t of v.teams) {
-      if (t.fuse) {
-        inc(stats.fuseUsage, t.fuse);
-        (stats.fuseBySeason[sk] ??= {});
-        inc(stats.fuseBySeason[sk], t.fuse);
-      }
-      const pairKey = t.characters.length === 2 ? [...t.characters].sort().join("|") : null;
-      if (pairKey) inc(stats.pairingUsage, pairKey); // per team occurrence
-      for (const p of t.players) {
-        (stats.playerCharacters![p.id] ??= {});
-        for (const c of t.characters) inc(stats.playerCharacters![p.id], c);
-        if (pairKey) {
-          (stats.playerPairings![p.id] ??= {});
-          inc(stats.playerPairings![p.id], pairKey);
-        }
-      }
-    }
-    if (v.teams.length === 2 && v.teams.every((t) => t.characters.length === 2)) {
-      const a = [...v.teams[0].characters].sort().join("|");
-      const b = [...v.teams[1].characters].sort().join("|");
-      (stats.matchupMatrix![a] ??= {});
-      inc(stats.matchupMatrix![a], b);
-      (stats.matchupMatrix![b] ??= {});
-      inc(stats.matchupMatrix![b], a);
-    }
-  }
-  return stats;
-}
-
-// Deterministic key ordering for stable diffs.
-const sort1 = (o: Record<string, number>): Record<string, number> =>
-  Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)));
-const sort2 = (o: Record<string, Record<string, number>>): Record<string, Record<string, number>> =>
-  Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => [k, sort1(v)]));
+// buildStats + the deterministic sort helpers moved VERBATIM to scripts/stats.ts
+// (Phase 3) so the standalone generic emitter derives identical numbers.
 
 // ── report.md ─────────────────────────────────────────────────────────────────
-const cell = (s: string) => s.replace(/\|/g, "\\|").replace(/[\r\n]+/g, " ").trim();
+const cell = (s: string) =>
+  s
+    .replace(/\|/g, '\\|')
+    .replace(/[\r\n]+/g, ' ')
+    .trim();
 
-function buildReport(records: VideoRecord[], counts: { seasonPct: string; patchPct: string; fusePct: string }): string {
+function buildReport(
+  records: VideoRecord[],
+  counts: { seasonPct: string; patchPct: string; fusePct: string },
+): string {
   const total = records.length;
-  const low = records.filter((r) => r.parseConfidence === "low").length;
+  const low = records.filter((r) => r.parseConfidence === 'low').length;
   const newPlayers = [...discovered.values()].sort((a, b) => b.count - a.count);
 
-  const manual = records.filter((r) => r.parseConfidence === "manual").length;
+  const manual = records.filter((r) => r.parseConfidence === 'manual').length;
 
   const lines: string[] = [];
   lines.push(`# 2XKO replay parse report`, ``, `_Generated ${new Date().toISOString()}._`, ``);
   lines.push(`## Summary`);
   lines.push(`- Total videos: **${total}**`);
-  lines.push(`- High confidence: **${total - low - manual}**  ·  Low confidence: **${low}**  ·  Manual (hand-authored): **${manual}**`);
-  lines.push(`- Newly discovered players (auto-added to \`players.json\`): **${newPlayers.length}**`);
+  lines.push(
+    `- High confidence: **${total - low - manual}**  ·  Low confidence: **${low}**  ·  Manual (hand-authored): **${manual}**`,
+  );
+  lines.push(
+    `- Newly discovered players (auto-added to \`players.json\`): **${newPlayers.length}**`,
+  );
   lines.push(
     `- Fill rates — season: **${counts.seasonPct}%** · patch: **${counts.patchPct}%** · fuse: **${counts.fusePct}%**`,
     ``,
@@ -634,18 +660,23 @@ function buildReport(records: VideoRecord[], counts: { seasonPct: string; patchP
 
   if (manual > 0) {
     lines.push(`## Manual videos (${manual})`);
-    lines.push(`_Hand-authored in \`data/manual-videos.json\` — never parse failures. Entries with an open \`todo\` need data filled in._`, ``);
+    lines.push(
+      `_Hand-authored in \`data/manual-videos.json\` — never parse failures. Entries with an open \`todo\` need data filled in._`,
+      ``,
+    );
     lines.push(`| id | tournament | round | todo |`, `|---|---|---|---|`);
-    for (const r of records.filter((x) => x.parseConfidence === "manual")) {
-      const todo = manualTodos.find((t) => t.id === r.id)?.todo ?? "";
-      lines.push(`| \`${r.id}\` | ${cell(r.tournament ?? "")} | ${cell(r.round ?? "")} | ${cell(todo)} |`);
+    for (const r of records.filter((x) => x.parseConfidence === 'manual')) {
+      const todo = manualTodos.find((t) => t.id === r.id)?.todo ?? '';
+      lines.push(
+        `| \`${r.id}\` | ${cell(r.tournament ?? '')} | ${cell(r.round ?? '')} | ${cell(todo)} |`,
+      );
     }
     lines.push(``);
     if (manualNewPlayers.length > 0) {
       lines.push(
-        `_New players registered from manual entries (verified): ${manualNewPlayers
+        `_New players registered from manual entries (featured): ${manualNewPlayers
           .map((p) => `\`${p.id}\` (${p.displayName})`)
-          .join(", ")}._`,
+          .join(', ')}._`,
         ``,
       );
     }
@@ -657,23 +688,30 @@ function buildReport(records: VideoRecord[], counts: { seasonPct: string; patchP
   } else {
     lines.push(`| id | channel | reason | raw title |`, `|---|---|---|---|`);
     for (const r of lowReports) {
-      lines.push(`| \`${r.id}\` | ${r.channel} | ${cell(r.reasons.join("; "))} | ${cell(r.title)} |`);
+      lines.push(
+        `| \`${r.id}\` | ${r.channel} | ${cell(r.reasons.join('; '))} | ${cell(r.title)} |`,
+      );
     }
     lines.push(``);
   }
 
   lines.push(`## Newly discovered players (${newPlayers.length})`);
-  lines.push(`_Auto-added to \`data/players.json\` with a best-guess \`displayName\`. Fix casing / add aliases as needed._`, ``);
+  lines.push(
+    `_Auto-added to \`data/players.json\` with a best-guess \`displayName\`. Fix casing / add aliases as needed._`,
+    ``,
+  );
   if (newPlayers.length === 0) {
     lines.push(`_None._`, ``);
   } else {
     lines.push(`| slug | displayName | occurrences | aliases seen |`, `|---|---|---|---|`);
     for (const d of newPlayers) {
-      lines.push(`| \`${d.id}\` | ${cell(bestDisplay(d))} | ${d.count} | ${cell([...d.aliases].sort().join(", "))} |`);
+      lines.push(
+        `| \`${d.id}\` | ${cell(bestDisplay(d))} | ${d.count} | ${cell([...d.aliases].sort().join(', '))} |`,
+      );
     }
     lines.push(``);
   }
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 // ── main ──────────────────────────────────────────────────────────────────────
@@ -683,11 +721,9 @@ const baseRecords = rawRecords.map(buildRecord);
 for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
   players[d.id] = {
     id: d.id,
-    displayName: bestDisplay(d),
-    verified: false, // parser-discovered — not part of the curated seed roster
-    aliases: [...d.aliases].sort(),
-    region: null,
-    socials: {},
+    handle: bestDisplay(d),
+    featured: false, // parser-discovered — not part of the curated seed roster
+    extra: { aliases: [...d.aliases].sort() },
   };
 }
 
@@ -697,32 +733,40 @@ for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
 const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
   const teams = rec.teams.map((t) => ({
     ...t,
-    players: t.players.map((p) => ({ id: p.id, displayName: players[p.id]?.displayName ?? p.displayName })),
+    players: t.players.map((p) => ({
+      id: p.id,
+      displayName: players[p.id]?.handle ?? p.displayName,
+    })),
   }));
   let merged: VideoRecord = { ...rec, teams };
   // fuse merge: only confident detections set teams[].fuse ("low"/"none" stay
   // null); ok-unordered pairs are flagged — filters/stats are order-agnostic,
   // the modal shows the pair unattributed.
   const det = fusesDetected[rec.id];
-  if (det && (det.status === "ok" || det.status === "ok-unordered") && merged.teams.length === 2) {
+  if (det && (det.status === 'ok' || det.status === 'ok-unordered') && merged.teams.length === 2) {
     merged = {
       ...merged,
       teams: [
         { ...merged.teams[0], fuse: det.left },
         { ...merged.teams[1], fuse: det.right },
       ],
-      ...(det.status === "ok-unordered" ? { fusesUnordered: true } : {}),
+      ...(det.status === 'ok-unordered' ? { fusesUnordered: true } : {}),
     };
   }
-  // overrides.json last — a manual fuse override beats detection
+  // overrides.json last — a manual fuse override beats detection. Exclusion
+  // entries don't shallow-merge (the record is dropped wholesale below).
   const ov = overrides[rec.id];
-  return ov ? { ...merged, ...ov } : merged;
+  return ov && !ov.exclude ? { ...merged, ...ov } : merged;
 });
 
 // Manual records resolve players against the finalized registry (discovery
 // included), so they build after the loop above; appended last — additive,
-// authoritative, and absent from the raw dumps by definition.
-const records: VideoRecord[] = [...parsedRecords, ...buildManualRecords()];
+// authoritative, and absent from the raw dumps by definition. Overrides-driven
+// exclusions apply to the final set (shared with the standalone emit).
+const records: VideoRecord[] = applyExclusions(
+  [...parsedRecords, ...buildManualRecords()],
+  overrides,
+);
 
 // Drop discovered players no final record references — an override that rewrites
 // a bad parse (e.g. an unsplit duo team) would otherwise re-register the bogus
@@ -733,6 +777,7 @@ const referencedIds = new Set(
 for (const [slug, d] of discovered) {
   if (!referencedIds.has(d.id)) {
     discovered.delete(slug);
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete -- registry pruning: the Record IS the mutable registry keyed by discovered ids
     delete players[d.id];
   }
 }
@@ -741,35 +786,45 @@ const total = records.length;
 const seasonFilled = records.filter((r) => r.season !== null).length;
 const patchFilled = records.filter((r) => r.patch !== null).length;
 const fuseFilled = records.filter((r) => r.teams.some((t) => t.fuse !== null)).length;
-const pctOf = (n: number) => (total === 0 ? "0.0" : ((n / total) * 100).toFixed(1));
-const counts = { seasonPct: pctOf(seasonFilled), patchPct: pctOf(patchFilled), fusePct: pctOf(fuseFilled) };
-
-const stats = buildStats(records);
-const statsOut: Stats = {
-  characterUsage: sort1(stats.characterUsage),
-  pairingUsage: sort1(stats.pairingUsage),
-  bySeasonUsage: sort2(stats.bySeasonUsage),
-  totals: { videos: stats.totals.videos, bySeason: sort1(stats.totals.bySeason), withFuse: stats.totals.withFuse },
-  fuseUsage: sort1(stats.fuseUsage),
-  fuseBySeason: sort2(stats.fuseBySeason),
-  playerCharacters: sort2(stats.playerCharacters!),
-  playerPairings: sort2(stats.playerPairings!),
-  matchupMatrix: sort2(stats.matchupMatrix!),
+const pctOf = (n: number) => (total === 0 ? '0.0' : ((n / total) * 100).toFixed(1));
+const counts = {
+  seasonPct: pctOf(seasonFilled),
+  patchPct: pctOf(patchFilled),
+  fusePct: pctOf(fuseFilled),
 };
 
-await writeFile(join(DATA, "videos.json"), JSON.stringify(records, null, 2) + "\n", "utf8");
-await writeFile(join(DATA, "stats.json"), JSON.stringify(statsOut, null, 2) + "\n", "utf8");
-await writeFile(join(DATA, "players.json"), JSON.stringify(players, null, 2) + "\n", "utf8");
-await writeFile(join(DATA, "report.md"), buildReport(records, counts), "utf8");
+await writeFile(join(DATA, 'videos.json'), JSON.stringify(records, null, 2) + '\n', 'utf8');
+await writeFile(
+  join(DATA, 'players.json'),
+  JSON.stringify(Object.values(players), null, 2) + '\n',
+  'utf8',
+);
+await writeFile(join(DATA, 'report.md'), buildReport(records, counts), 'utf8');
 
-const low = records.filter((r) => r.parseConfidence === "low").length;
-const manualN = records.filter((r) => r.parseConfidence === "manual").length;
+// Generic-schema artifacts (replays.json + stats.json) — shared emitter, same
+// stats math (scripts/stats.ts), count-asserted.
+await emitGeneric({
+  records,
+  characters: Object.values(champions),
+  players: Object.values(players),
+  root: ROOT,
+});
+
+const low = records.filter((r) => r.parseConfidence === 'low').length;
+const manualN = records.filter((r) => r.parseConfidence === 'manual').length;
 console.log(`✔ Parsed ${total} videos → data/videos.json`);
-console.log(`  high-confidence: ${total - low - manualN}   low-confidence: ${low}   manual: ${manualN}`);
-console.log(`  newly discovered players: ${discovered.size}  (players.json now ${Object.keys(players).length} total)`);
+console.log(
+  `  high-confidence: ${total - low - manualN}   low-confidence: ${low}   manual: ${manualN}`,
+);
+console.log(
+  `  newly discovered players: ${discovered.size}  (players.json now ${Object.keys(players).length} total)`,
+);
 if (manualNewPlayers.length > 0) {
-  console.log(`  manual entries registered ${manualNewPlayers.length} new verified player(s): ${manualNewPlayers.map((p) => p.id).join(", ")}`);
+  console.log(
+    `  manual entries registered ${manualNewPlayers.length} new featured player(s): ${manualNewPlayers.map((p) => p.id).join(', ')}`,
+  );
 }
 for (const t of manualTodos) console.log(`  ⚠ manual ${t.id} — todo: ${t.todo}`);
-console.log(`  fill rates → season ${counts.seasonPct}%  ·  patch ${counts.patchPct}%  ·  fuse ${counts.fusePct}%`);
-console.log(`  wrote data/stats.json, data/report.md`);
+console.log(
+  `  fill rates → season ${counts.seasonPct}%  ·  patch ${counts.patchPct}%  ·  fuse ${counts.fusePct}%`,
+);

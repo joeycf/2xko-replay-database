@@ -1,7 +1,7 @@
 # 2XKO Replay Database
 
 This is my passion project first step to creating a competitive replay database
-for multiple games. Beginning with my current favorite fighting game **2XKO** replay footage of 
+for multiple games. Beginning with my current favorite fighting game **2XKO** replay footage of
 2,800+ pro and high-level replays, filterable by champion, team pairing, player,
 season, channel, and fuse, with a stats dashboard (champion usage, fuse usage,
 top pairings, synergy matrix, meta over time, fuse-era shift) and per-champion / per-player pages.
@@ -48,17 +48,17 @@ reads it.
 
 ## Scripts
 
-| script | what it does |
-|---|---|
-| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build) |
-| `npm run data:fetch` | Pull every upload from both YouTube channels → `raw/` (needs `YT_API_KEY`) |
-| `npm run data:parse` | Parse titles/descriptions → `data/videos.json`, `stats.json`, `players.json`, `report.md` |
-| `npm run data:build` | fetch + parse |
-| `npm run data:champions` | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `champions.json` |
-| `npm run data:fuses` | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json` |
-| `npm run data:fuse-gaps` | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer) |
-| `npm run test:e2e` | Playwright e2e suite against the generated output (run `npm run generate` first) |
-| `npx tsx scripts/og.ts` | Regenerate the default OG card (`public/og-default.png`) |
+| script                                           | what it does                                                                                                                                                                                       |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                            |
+| `npm run data:fetch`                             | Pull every upload from both YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                         |
+| `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `stats.json`, `players.json`, `report.md`                                                                                                          |
+| `npm run data:build`                             | fetch + parse                                                                                                                                                                                      |
+| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `champions.json`                                                                                 |
+| `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                          |
+| `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer) |
+| `npm run test:e2e`                               | Playwright e2e suite against the generated output (run `npm run generate` first)                                                                                                                   |
+| `npx tsx scripts/og.ts`                          | Regenerate the default OG card (`public/og-default.png`)                                                                                                                                           |
 
 Verification: `npx tsc --noEmit` (pipeline) and `npx nuxt typecheck` (app)
 must both pass, and `npm run test:e2e` must be green against a fresh
@@ -68,12 +68,12 @@ must both pass, and `npm run test:e2e` must be green against a fresh
 
 Connect the repo and use:
 
-| setting | value |
-|---|---|
-| Framework preset | **Nuxt** |
-| Build command | `npm run generate` |
-| Output directory | *(auto — Build Output API, `.vercel/output`)* |
-| Node.js version | 20+ (22 recommended) |
+| setting               | value                                                                                                                                                |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework preset      | **Nuxt**                                                                                                                                             |
+| Build command         | `npm run generate`                                                                                                                                   |
+| Output directory      | _(auto — Build Output API, `.vercel/output`)_                                                                                                        |
+| Node.js version       | 20+ (22 recommended)                                                                                                                                 |
 | Environment variables | `NUXT_PUBLIC_SITE_URL` = your production URL (used for canonical/OG/sitemap absolute URLs). **No `YT_API_KEY`** — the pipeline never runs on Vercel. |
 
 Deploys are triggered by pushes — including the daily data-refresh commit.
@@ -91,7 +91,7 @@ prerendered HTML (they attach client-side):
 
 ## Daily data refresh
 
-`.github/workflows/data-refresh.yml` runs daily (and via *Run workflow*):
+`.github/workflows/data-refresh.yml` runs daily (and via _Run workflow_):
 `npm run data:build` with `YT_API_KEY` from repo **Actions secrets**, then
 commits `data/{videos,stats,players}.json` + `report.md` **only if changed**
 ("data: refresh YYYY-MM-DD — N videos"). The push triggers the Vercel deploy.
@@ -177,18 +177,18 @@ For engineers reading the source — the stack, and the decisions worth knowing.
 
 ### Stack
 
-| layer | choice | notes |
-|---|---|---|
-| Framework | **Nuxt 4** (Vue 3, `<script setup>`) | `ssr: true` for prerender fidelity, but the output is **100% static** — `nitro` `vercel-static` preset, `nuxt generate` |
-| Language | **TypeScript** end to end | dual typecheck: `nuxt typecheck` (vue-tsc) for the app, `tsc --noEmit` for the pipeline; shared types in `types/index.ts` |
-| Styling | **Tailwind CSS v3** (`@nuxtjs/tailwindcss`) | driven by a design-token layer (`design/handoff/tokens.css` → `tailwind.config.js`): custom color/type/shadow scales, per-champion accent slots, WCAG-AA-tuned ink colors |
-| Fonts | **`@nuxtjs/google-fonts`**, `download: true` | Chakra Petch / Barlow / JetBrains Mono self-hosted at build — no runtime CDN |
-| Animation | **anime.js v4** | reveal-on-scroll (`useReveal`) and animated stat bars |
-| Images | **sharp** | champion art (portrait + 1600w/800w splash), OG cards, fuse frame crops |
-| Data pipeline | standalone **`tsx`** scripts | no build step; YouTube Data API v3 for metadata, `yt-dlp` + `ffmpeg` for the CV fuse pipeline |
-| Tests | **playwright-core** (bespoke harness) | not `@playwright/test` — see below |
-| Analytics | Vercel **Web Analytics** + **Speed Insights** | client-only, inert outside production |
-| Host | **Vercel** Build Output API (`.vercel/output`) | daily GitHub Actions cron for the data refresh |
+| layer         | choice                                         | notes                                                                                                                                                                     |
+| ------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework     | **Nuxt 4** (Vue 3, `<script setup>`)           | `ssr: true` for prerender fidelity, but the output is **100% static** — `nitro` `vercel-static` preset, `nuxt generate`                                                   |
+| Language      | **TypeScript** end to end                      | dual typecheck: `nuxt typecheck` (vue-tsc) for the app, `tsc --noEmit` for the pipeline; shared types in `types/index.ts`                                                 |
+| Styling       | **Tailwind CSS v3** (`@nuxtjs/tailwindcss`)    | driven by a design-token layer (`design/handoff/tokens.css` → `tailwind.config.js`): custom color/type/shadow scales, per-champion accent slots, WCAG-AA-tuned ink colors |
+| Fonts         | **`@nuxtjs/google-fonts`**, `download: true`   | Chakra Petch / Barlow / JetBrains Mono self-hosted at build — no runtime CDN                                                                                              |
+| Animation     | **anime.js v4**                                | reveal-on-scroll (`useReveal`) and animated stat bars                                                                                                                     |
+| Images        | **sharp**                                      | champion art (portrait + 1600w/800w splash), OG cards, fuse frame crops                                                                                                   |
+| Data pipeline | standalone **`tsx`** scripts                   | no build step; YouTube Data API v3 for metadata, `yt-dlp` + `ffmpeg` for the CV fuse pipeline                                                                             |
+| Tests         | **playwright-core** (bespoke harness)          | not `@playwright/test` — see below                                                                                                                                        |
+| Analytics     | Vercel **Web Analytics** + **Speed Insights**  | client-only, inert outside production                                                                                                                                     |
+| Host          | **Vercel** Build Output API (`.vercel/output`) | daily GitHub Actions cron for the data refresh                                                                                                                            |
 
 ### Things worth knowing
 
@@ -240,6 +240,7 @@ Planned directions for future versions. Priority depends on community interest a
 my ability to complete them unless it is something outside my control (like Riot's API).
 
 ### Data & ingestion
+
 - **Streamlined manual entry for tournament and non-parseable footage.** Matches and
   sets that already exist as individual videos but whose titles don't follow the
   standard `player (champ-champ) vs player (champ-champ)` format (e.g. Evo Top 8 VODs,
@@ -254,9 +255,9 @@ my ability to complete them unless it is something outside my control (like Riot
   in-game HUD) detecting VS/loading screens to find match starts and reading the
   nameplates and champions from those frames.
 - **Additional replay sources with duplicate prevention.** Bringing in more channels
-  and playlists, with reliable de-duplication so the same match appearing on multiple 
-  channels isn't counted twice. Dedup would key on video identity first, with a fuzzy 
-  match on (players + champions + approximate date) as a backstop for genuinely 
+  and playlists, with reliable de-duplication so the same match appearing on multiple
+  channels isn't counted twice. Dedup would key on video identity first, with a fuzzy
+  match on (players + champions + approximate date) as a backstop for genuinely
   re-uploaded footage.
 - **Recovering the currently un-detected fuses.** ~10% of matches don't yet have an
   identified fuse, mostly because their frames couldn't be downloaded during a rate-
@@ -264,14 +265,16 @@ my ability to complete them unless it is something outside my control (like Riot
   ambiguous old footage) would push fuse coverage higher.
 
 ### Riot API integration
+
 - **Integrate official Riot data if/when a 2XKO API becomes available.** Riot does not
   currently offer a 2XKO developer API. If they do, potential uses include verified
   player identities and official champion assets, and possibly richer match data than
-  can be read from video. The pipeline currently already leaves room for this. Champion 
+  can be read from video. The pipeline currently already leaves room for this. Champion
   and player registries are structured so official data could enrich or replace the
   derived-from-video approach.
 
 ### Features & UX
+
 - **Player and champion detail improvements** — win/loss records where derivable,
   head-to-head views between two players, and links out to players' own channels/socials.
 - **Matchup explorer** — filter to a specific champion-pair-vs-champion-pair matchup and

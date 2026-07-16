@@ -2,11 +2,11 @@
 // The two channels use DIFFERENT delimiters between duo player names, but the
 // SAME delimiter between the two characters of a team.
 
-import type { ChannelKey } from "../types/index";
+import type { ChannelKey } from '../types/index';
 
 export interface ChannelResolve {
   /** how to resolve the channel to its uploads playlist */
-  by: "id" | "handle";
+  by: 'id' | 'handle';
   value: string;
 }
 
@@ -22,16 +22,16 @@ export interface ChannelConfig {
 
 export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
   proReplays: {
-    key: "proReplays",
-    name: "2XKO Pro Replays",
-    resolve: { by: "id", value: "UCdppkT52RXi-pGvyibNIXNw" },
+    key: 'proReplays',
+    name: '2XKO Pro Replays',
+    resolve: { by: 'id', value: 'UCdppkT52RXi-pGvyibNIXNw' },
     playerSep: /\s+-\s+/, // duo players joined by " - " (spaces)
     suffix: /2XKO Pro level replays/i,
   },
   highLevel: {
-    key: "highLevel",
-    name: "2XKO High Level Replays",
-    resolve: { by: "handle", value: "@2xkoHighLevelReplay" },
+    key: 'highLevel',
+    name: '2XKO High Level Replays',
+    resolve: { by: 'handle', value: '@2xkoHighLevelReplay' },
     playerSep: /\s*\+\s*/, // duo players joined by " + "
     suffix: /High Level Gameplay/i,
   },

@@ -4,22 +4,20 @@
 //
 // Run: npx tsx scripts/og.ts
 
-import { readFile, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { chromium } from 'playwright-core'
-import type { Champion } from '../types/index'
+import { readFile, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright-core';
+import type { Champion } from '../types/index';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 async function main(): Promise<void> {
-  const champions = JSON.parse(
-    await readFile(join(ROOT, 'data/champions.json'), 'utf8'),
-  ) as Record<string, Champion>
-  const accents = Object.values(champions).map((c) => c.accent ?? '#FF2E88')
-  const strip = accents
-    .map((a) => `<span style="flex:1;background:${a};"></span>`)
-    .join('')
+  const characters = JSON.parse(
+    await readFile(join(ROOT, 'data/characters.json'), 'utf8'),
+  ) as Champion[];
+  const accents = characters.map((c) => c.accent ?? '#FF2E88');
+  const strip = accents.map((a) => `<span style="flex:1;background:${a};"></span>`).join('');
 
   const html = `<!doctype html><html><head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,23 +37,25 @@ async function main(): Promise<void> {
     <div style="margin-top:16px;font-family:'JetBrains Mono';font-size:20px;color:#8B93A8;">champion usage · team pairings · meta over time</div>
   </div>
   <div style="position:absolute;left:0;right:0;bottom:0;height:14px;display:flex;">${strip}</div>
-</body></html>`
+</body></html>`;
 
   const browser = await chromium.launch({
     executablePath: '/usr/bin/google-chrome',
     headless: true,
     args: ['--no-sandbox', '--disable-dev-shm-usage'],
-  })
-  const page = await (await browser.newContext({ viewport: { width: 1200, height: 630 } })).newPage()
-  await page.setContent(html, { waitUntil: 'networkidle' })
-  await page.waitForTimeout(400)
-  const png = await page.screenshot({ type: 'png' })
-  await browser.close()
-  await writeFile(join(ROOT, 'public/og-default.png'), png)
-  console.log(`✓ public/og-default.png (${png.length} bytes)`)
+  });
+  const page = await (
+    await browser.newContext({ viewport: { width: 1200, height: 630 } })
+  ).newPage();
+  await page.setContent(html, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(400);
+  const png = await page.screenshot({ type: 'png' });
+  await browser.close();
+  await writeFile(join(ROOT, 'public/og-default.png'), png);
+  console.log(`✓ public/og-default.png (${png.length} bytes)`);
 }
 
 main().catch((err) => {
-  console.error('✖ og.ts failed:', err)
-  process.exit(1)
-})
+  console.error('✖ og.ts failed:', err);
+  process.exit(1);
+});

@@ -1,0 +1,62 @@
+/* =============================================================================
+   2XKO THEME — the neon pink/cyan skin, relocated from the engine-era
+   tailwind.config.js + design/handoff/tokens.css (PLAN §6.3a).
+
+   Loads AFTER the engine layer's CSS, so this @theme SHADOWS the umbrella
+   defaults (teal/gold, Space Grotesk) — removing this file drops the site to
+   the neutral ReplayDB look, which is the override-contract proof. Values are
+   the shipped design tokens, declared in full (not just the deltas) so the
+   2XKO skin never drifts with an engine default change.
+
+   Structural tokens (spacing, radii, corner cuts, shadows geometry, motion,
+   type scale) are engine-fixed and deliberately NOT declared here.
+   ========================================================================== */
+
+/* ---- Self-hosted faces via @fontsource (Vite-processed, hashed, base-path-
+   safe — never public/ url()s). Exact weights of the shipped googleFonts
+   config: Chakra Petch + Barlow 400/500/600/700, JetBrains Mono 400/500/700.
+   font-display: swap ships inside the fontsource CSS. ---------------------- */
+@import '@fontsource/chakra-petch/400.css';
+@import '@fontsource/chakra-petch/500.css';
+@import '@fontsource/chakra-petch/600.css';
+@import '@fontsource/chakra-petch/700.css';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+@theme {
+  /* ---- Surfaces (inset → base → surface → elevated, tokens.css) ---------- */
+  --color-bg: #0a0b0f;
+  --color-surface: #12141b;
+  --color-surface-raised: #1a1d26;
+  --color-surface-sunken: #07080b;
+  --color-border: #2a3040;
+  --color-border-subtle: #1e222c;
+
+  /* ---- Text tiers (ink.primary/secondary/muted/faint) -------------------- */
+  --color-text: #f4f5f8;
+  --color-text-secondary: #a8aebe;
+  --color-text-muted: #8b93a8;
+  --color-text-faint: #474c5c;
+
+  /* ---- Brand: the 2XKO neon pink + cyan ---------------------------------- */
+  --color-primary: #ff2e88;
+  --color-primary-hover: #ff529e;
+  --color-primary-contrast: #0a0b0f; /* tokens.css --text-on-accent */
+  --color-secondary: #38cfff;
+  --color-focus: #ff2e88; /* shipped :focus-visible ring = accent */
+
+  /* ---- Status ------------------------------------------------------------ */
+  --color-danger: #f0463f;
+  --color-warning: #f5b33c;
+  --color-success: #35d07a;
+
+  /* ---- Font families (scale stays structural) ---------------------------- */
+  --font-display: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
+  --font-ui: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
