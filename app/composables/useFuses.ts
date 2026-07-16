@@ -1,6 +1,6 @@
 import fusesData from '~~/data/fuses.json';
 import statsData from '~~/data/stats.json';
-import type { Fuse } from '~~/types';
+import type { Fuse, ReplayFuseFields } from '~~/types';
 
 // Static imports like the registries: tiny, synchronously available — fuse
 // panels prerender with real numbers and never touch replays.json. stats.json
@@ -52,6 +52,12 @@ export const useFuses = () => ({
   byId: (id: string): Fuse | undefined => registry[id],
   fuseName: (id: string): string => registry[id]?.name ?? id,
   fuseAccent: (id: string): string => registry[id]?.accent ?? '#8B93A8',
+  /** per-replay fuse read for the facet predicate + badge overrides — the
+   *  extension fields ride on the emitted replay objects (ReplayFuseFields) */
+  replayFuses: (replay: unknown): { a: string | null; b: string | null; unordered: boolean } => {
+    const r = replay as ReplayFuseFields;
+    return { a: r.fuses?.[0] ?? null, b: r.fuses?.[1] ?? null, unordered: !!r.fusesUnordered };
+  },
   /** the coverage honesty line: detections cover a subset of the catalog */
   coverage: {
     withFuse: stats.totals.withFuse,

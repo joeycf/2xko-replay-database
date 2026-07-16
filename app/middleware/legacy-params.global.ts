@@ -6,16 +6,16 @@
  *   ch=pro|high        → src=proReplays|highLevel
  *   s=beta|0|1|2       → patch=Beta|S0|S1|S2      (the emitted patch keys)
  *   type=tournament    → src=manual               (same set: manual tournament VODs)
- *   fuse=…, type=ranked|duo → dropped             (no engine equivalent — the
- *                        browse fuse facet retired with the layer refactor)
+ *   type=ranked|duo    → dropped                  (no engine equivalent)
  *
- * c / p / side / q / sort / v are schema-identical and pass through untouched.
+ * fuse= needs NO translation since Phase 3.5: the fuse facet registers the
+ * shipped param name (plugins/facets.ts), so old fuse deep links work
+ * natively. c / p / side / q / sort / v are schema-identical too.
  */
 export default defineNuxtRouteMiddleware((to) => {
   if (to.path !== '/') return;
   const q = to.query;
-  if (q.ch === undefined && q.s === undefined && q.type === undefined && q.fuse === undefined)
-    return;
+  if (q.ch === undefined && q.s === undefined && q.type === undefined) return;
 
   const out: Record<string, string> = {};
   for (const [k, v] of Object.entries(q)) {
@@ -33,7 +33,6 @@ export default defineNuxtRouteMiddleware((to) => {
 
   if (out.type === 'tournament') srcParts.add('manual');
   delete out.type;
-  delete out.fuse;
 
   if (srcParts.size) out.src = [...srcParts].join(',');
 

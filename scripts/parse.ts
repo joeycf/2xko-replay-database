@@ -15,7 +15,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, CHAR_SEP, PLAYER_SEP } from './channels';
-import { emitGeneric } from './emit';
+import { applyExclusions, emitGeneric } from './emit';
 import type {
   Champion,
   ChannelKey,
@@ -78,7 +78,10 @@ const playerList = await readJson<Player[]>(join(DATA, 'players.json'));
 const players: Record<string, Player> = Object.fromEntries(playerList.map((p) => [p.id, p]));
 const fuses = await readJson<Record<string, Fuse>>(join(DATA, 'fuses.json'));
 const boundaries = await readJson<SeasonBoundary[]>(join(DATA, 'seasonBoundaries.json'));
-const overrides = await readJson<Record<string, Partial<VideoRecord>>>(
+// overrides may also EXCLUDE a record outright ({ "exclude": true } — e.g. a
+// stray non-2XKO upload a tracked channel published); applied after the manual
+// merge, before stats/writes/emit.
+const overrides = await readJson<Record<string, Partial<VideoRecord> & { exclude?: boolean }>>(
   join(DATA, 'overrides.json'),
 );
 // Hand-authored records (tournament VODs etc.) — validated + merged in below.
@@ -750,15 +753,20 @@ const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
       ...(det.status === 'ok-unordered' ? { fusesUnordered: true } : {}),
     };
   }
-  // overrides.json last — a manual fuse override beats detection
+  // overrides.json last — a manual fuse override beats detection. Exclusion
+  // entries don't shallow-merge (the record is dropped wholesale below).
   const ov = overrides[rec.id];
-  return ov ? { ...merged, ...ov } : merged;
+  return ov && !ov.exclude ? { ...merged, ...ov } : merged;
 });
 
 // Manual records resolve players against the finalized registry (discovery
 // included), so they build after the loop above; appended last — additive,
-// authoritative, and absent from the raw dumps by definition.
-const records: VideoRecord[] = [...parsedRecords, ...buildManualRecords()];
+// authoritative, and absent from the raw dumps by definition. Overrides-driven
+// exclusions apply to the final set (shared with the standalone emit).
+const records: VideoRecord[] = applyExclusions(
+  [...parsedRecords, ...buildManualRecords()],
+  overrides,
+);
 
 // Drop discovered players no final record references — an override that rewrites
 // a bad parse (e.g. an unsplit duo team) would otherwise re-register the bogus

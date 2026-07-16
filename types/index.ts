@@ -50,6 +50,16 @@ export interface SeasonBoundary {
   end: string | null;
 }
 
+/** 2XKO extension fields riding on emitted replays (scripts/emit.ts): the
+ *  engine never reads them; the app's fuse facet + badge overrides do.
+ *  Declared engine-free so both typecheck tracks can import this file. */
+export interface ReplayFuseFields {
+  /** per-side fuse ids in sides order — present iff at least one is known */
+  fuses?: [string | null, string | null];
+  /** CV pair is confident but side attribution is not — never side-pin */
+  fusesUnordered?: true;
+}
+
 export type ChannelKey = 'proReplays' | 'highLevel';
 /** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
 export type VideoSource = ChannelKey | 'manual';

@@ -26,7 +26,20 @@ const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, '.vercel/output/static');
 
-const videos = JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[];
+// Node-side expectations use the SAME record set the site carries: the rich
+// substrate minus overrides.json exclusions (scripts/emit.ts applies the same
+// filter when emitting replays.json).
+const allVideos = JSON.parse(readFileSync(join(ROOT, 'data/videos.json'), 'utf8')) as VideoRecord[];
+const overrides = JSON.parse(readFileSync(join(ROOT, 'data/overrides.json'), 'utf8')) as Record<
+  string,
+  { exclude?: boolean }
+>;
+const excludedIds = new Set(
+  Object.entries(overrides)
+    .filter(([, ov]) => ov.exclude === true)
+    .map(([id]) => id),
+);
+const videos = allVideos.filter((v) => !excludedIds.has(v.id));
 const fuses = JSON.parse(readFileSync(join(ROOT, 'data/fuses.json'), 'utf8')) as Record<
   string,
   Fuse
@@ -121,12 +134,148 @@ async function run(browser: Browser, base: string): Promise<void> {
   const ctx = await browser.newContext({ viewport: { width: 1360, height: 960 } });
   const page = await ctx.newPage();
 
+  // (a0) overrides exclusion: the stray record is gone from the emitted set
+  await test(`exclusion: ${[...excludedIds].join(',')} absent from replays.json (${videos.length} carried)`, async () => {
+    const emitted = JSON.parse(readFileSync(join(ROOT, 'data/replays.json'), 'utf8')) as {
+      id: string;
+    }[];
+    expect(
+      emitted.length === videos.length,
+      `emitted ${emitted.length} ≠ expected ${videos.length}`,
+    );
+    for (const id of excludedIds)
+      expect(!emitted.some((r) => r.id === id), `excluded ${id} still present`);
+    await page.goto(`${base}/`);
+    expect((await resultCount(page)) === videos.length, 'Browse count includes an excluded record');
+  });
+
   // (a) source facet counts match Node-side counts from videos.json
   const bySource = (id: string) => videos.filter((v) => v.channel === id).length;
   await test(`source filter: ?src=manual shows ${bySource('manual')} tournament VODs`, async () => {
     await page.goto(`${base}/?src=manual`);
     const shown = await resultCount(page);
     expect(shown === bySource('manual'), `result-count ${shown} ≠ ${bySource('manual')}`);
+  });
+
+  // (f1) fuse facet counts match Node-side counts (the shipped a/a2 tests)
+  const orMatch = (v: VideoRecord, ids: string[]) =>
+    v.teams.some((t) => t.fuse && ids.includes(t.fuse));
+  const freestyleN = videos.filter((v) => orMatch(v, ['freestyle'])).length;
+  const fusePairN = videos.filter((v) => orMatch(v, ['juggernaut', '2x-assist'])).length;
+  await test(`fuse filter: ?fuse=freestyle shows ${freestyleN}, juggernaut+2x-assist OR-match ${fusePairN}`, async () => {
+    await page.goto(`${base}/?fuse=freestyle`);
+    expect((await resultCount(page)) === freestyleN, 'freestyle count');
+    await page.goto(`${base}/?fuse=juggernaut,2x-assist`);
+    expect((await resultCount(page)) === fusePairN, 'OR-pair count');
+  });
+
+  // (f2) regression (2026-07-03 report): the rarest fuse's UI count equals the
+  // Node-computed count — guards over-matching and null-fuse leaks. Also the
+  // LEGACY deep-link gate: this exact URL predates the layer refactor.
+  const jugN = videos.filter((v) => orMatch(v, ['juggernaut'])).length;
+  await test(`legacy fuse deep link: /?fuse=juggernaut filters to ${jugN} (param survives, no strip)`, async () => {
+    await page.goto(`${base}/?fuse=juggernaut`);
+    await page.waitForFunction(`new URL(location.href).searchParams.get('fuse') === 'juggernaut'`);
+    expect((await resultCount(page)) === jugN, 'juggernaut count');
+  });
+
+  // (f3) fuse chips round-trip (URL ⇄ chip state ⇄ URL) + active-chips/Clear
+  await test('fuse deep-link round-trips (URL ⇄ chip state), Clear all clears fuse=', async () => {
+    await page.goto(`${base}/?fuse=juggernaut,2x-assist`);
+    await page.waitForSelector('[data-testid="fuse-chip-juggernaut"]');
+    for (const [id, want] of [
+      ['juggernaut', 'true'],
+      ['2x-assist', 'true'],
+      ['freestyle', 'false'],
+    ] as const) {
+      const got = await page.getAttribute(`[data-testid="fuse-chip-${id}"]`, 'aria-pressed');
+      expect(got === want, `chip ${id} aria-pressed=${got}, want ${want}`);
+    }
+    await page.click('[data-testid="fuse-chip-2x-assist"]'); // deselect
+    await page.waitForFunction(`new URL(location.href).searchParams.get('fuse') === 'juggernaut'`);
+    await page.click('[data-testid="fuse-chip-freestyle"]'); // add
+    await page.waitForFunction(
+      `new URL(location.href).searchParams.get('fuse') === 'juggernaut,freestyle'`,
+    );
+    // Clear all (ActiveChips) wipes the custom facet too
+    await page.click('text=Clear all');
+    await page.waitForFunction(`new URL(location.href).searchParams.get('fuse') === null`);
+  });
+
+  // (f5) modal fuse attribution (the shipped c test): ordered records show
+  // per-side tags; fusesUnordered records show ONLY the combined unbound row
+  const ordered = videos.find(
+    (v) => v.teams.length === 2 && v.teams[0]!.fuse && v.teams[1]!.fuse && !v.fusesUnordered,
+  )!;
+  const unordered = videos.find(
+    (v) => v.fusesUnordered && v.teams.length === 2 && (v.teams[0]!.fuse || v.teams[1]!.fuse),
+  )!;
+  await test(`modal: ordered ${ordered.id} shows per-side tags, unordered ${unordered.id} stays unbound`, async () => {
+    await page.goto(`${base}/?v=${ordered.id}`);
+    await page.waitForSelector('[data-testid="team-fuse-a"]', { timeout: 30_000 });
+    const a = norm(await page.textContent('[data-testid="team-fuse-a"]'));
+    const b = norm(await page.textContent('[data-testid="team-fuse-b"]'));
+    expect(a === norm(fuses[ordered.teams[0]!.fuse!]!.name), `left tag "${a}"`);
+    expect(b === norm(fuses[ordered.teams[1]!.fuse!]!.name), `right tag "${b}"`);
+    expect(
+      (await page.$('[data-testid="fuses-unordered"]')) === null,
+      'unordered row must be absent',
+    );
+
+    await page.goto(`${base}/?v=${unordered.id}`);
+    await page.waitForSelector('[data-testid="fuses-unordered"]', { timeout: 30_000 });
+    const row = norm(await page.textContent('[data-testid="fuses-unordered"]'));
+    for (const t of unordered.teams) {
+      if (t.fuse) expect(row.includes(norm(fuses[t.fuse]!.name)), `row "${row}" missing ${t.fuse}`);
+    }
+    expect((await page.$('[data-testid="team-fuse-a"]')) === null, 'per-side tag A must be absent');
+    expect((await page.$('[data-testid="team-fuse-b"]')) === null, 'per-side tag B must be absent');
+  });
+
+  // (f6) card fuse attribution mirrors the modal's rules (the shipped c2 test)
+  const cardQuery = (v: VideoRecord) =>
+    encodeURIComponent(v.teams.flatMap((t) => t.players.map((p) => p.displayName)).join(' '));
+  await test(`card: ordered ${ordered.id} pins per-side, unordered ${unordered.id} stays unbound`, async () => {
+    await page.goto(`${base}/?q=${cardQuery(ordered)}`);
+    const oCard = `[data-replay-id="${ordered.id}"]`;
+    await page.waitForSelector(`${oCard} [data-testid="card-fuse-a"]`, { timeout: 30_000 });
+    const a = norm(await page.textContent(`${oCard} [data-testid="card-fuse-a"]`));
+    const b = norm(await page.textContent(`${oCard} [data-testid="card-fuse-b"]`));
+    expect(a === norm(fuses[ordered.teams[0]!.fuse!]!.name), `card left tag "${a}"`);
+    expect(b === norm(fuses[ordered.teams[1]!.fuse!]!.name), `card right tag "${b}"`);
+    expect(
+      (await page.$(`${oCard} [data-testid="card-fuses-unordered"]`)) === null,
+      'ordered card must not show the unbound row',
+    );
+
+    await page.goto(`${base}/?q=${cardQuery(unordered)}`);
+    const uCard = `[data-replay-id="${unordered.id}"]`;
+    await page.waitForSelector(`${uCard} [data-testid="card-fuses-unordered"]`, {
+      timeout: 30_000,
+    });
+    const row = norm(await page.textContent(`${uCard} [data-testid="card-fuses-unordered"]`));
+    for (const t of unordered.teams) {
+      if (t.fuse)
+        expect(row.includes(norm(fuses[t.fuse]!.name)), `unbound row "${row}" missing ${t.fuse}`);
+    }
+    expect(
+      (await page.$(`${uCard} [data-testid="card-fuse-a"]`)) === null,
+      'unordered card must not pin a fuse to side A',
+    );
+    expect(
+      (await page.$(`${uCard} [data-testid="card-fuse-b"]`)) === null,
+      'unordered card must not pin a fuse to side B',
+    );
+  });
+
+  // (f4) the coverage-honesty line rides the facet note
+  await test(`coverage line: ${videos.filter((v) => v.teams.some((t) => t.fuse)).length.toLocaleString('en-US')} of ${videos.length.toLocaleString('en-US')}`, async () => {
+    await page.goto(`${base}/`);
+    await page.waitForSelector('[data-testid="fuse-facet-note"]');
+    const line = await page.textContent('[data-testid="fuse-facet-note"]');
+    const withFuse = videos.filter((v) => v.teams.some((t) => t.fuse)).length;
+    expect(line!.includes(withFuse.toLocaleString('en-US')), `line "${line}"`);
+    expect(line!.includes(videos.length.toLocaleString('en-US')), `line "${line}"`);
   });
 
   // (a2) patch facet, single + OR
@@ -186,9 +335,6 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect((await resultCount(page)) === proS1, 'translated count');
     await page.goto(`${base}/?type=tournament`);
     await page.waitForFunction(`new URL(location.href).searchParams.get('src') === 'manual'`);
-    await page.goto(`${base}/?fuse=freestyle`);
-    await page.waitForFunction(`new URL(location.href).searchParams.get('fuse') === null`);
-    expect((await resultCount(page)) === videos.length, 'retired fuse param strips to all replays');
   });
 
   // (d) stats fuse panels (GameStatsPanels slot) render the real top values…

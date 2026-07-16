@@ -49,6 +49,12 @@ export interface GenericReplay {
   views?: number;
   thumb?: string;
   durationSec?: number;
+  /** 2XKO EXTENSION fields (the engine never reads them; the app's fuse facet
+   *  + badge overrides do): per-side fuse ids in sides order, and the
+   *  detection-confidence flag for pairs whose side attribution is unknown.
+   *  Present only when at least one side has a fuse. */
+  fuses?: [string | null, string | null];
+  fusesUnordered?: true;
 }
 
 /** Era → the display/patch key the whole UI keys on ('Beta', 'S0', 'S1', …).
@@ -87,6 +93,8 @@ function toReplay(v: VideoRecord): GenericReplay {
           { player: '', characters: [] },
           { player: '', characters: [] },
         ];
+  const fuseA = v.teams[0]?.fuse ?? null;
+  const fuseB = v.teams[1]?.fuse ?? null;
   return {
     id: v.id,
     sides,
@@ -97,7 +105,31 @@ function toReplay(v: VideoRecord): GenericReplay {
     views: v.viewCount,
     thumb: v.thumbnail,
     ...(v.durationSec > 0 ? { durationSec: v.durationSec } : {}),
+    ...(fuseA || fuseB ? { fuses: [fuseA, fuseB] as [string | null, string | null] } : {}),
+    ...(v.fusesUnordered ? { fusesUnordered: true as const } : {}),
   };
+}
+
+/** Overrides-driven exclusions (`{ "<id>": { "exclude": true } }`): drops
+ *  records the site must not carry (e.g. a stray non-2XKO upload a tracked
+ *  channel published). Shared by parse.ts (future runs regenerate videos.json
+ *  without them) and the standalone emit (applies them to the committed
+ *  substrate immediately). */
+export function applyExclusions(
+  records: VideoRecord[],
+  overrides: Record<string, Partial<VideoRecord> & { exclude?: boolean }>,
+): VideoRecord[] {
+  const excluded = new Set(
+    Object.entries(overrides)
+      .filter(([, ov]) => ov.exclude === true)
+      .map(([id]) => id),
+  );
+  if (excluded.size === 0) return records;
+  const out = records.filter((v) => !excluded.has(v.id));
+  console.log(
+    `  overrides.json excludes ${records.length - out.length} record(s): ${[...excluded].filter((id) => records.some((v) => v.id === id)).join(', ')}`,
+  );
+  return out;
 }
 
 export async function emitGeneric(opts: {
@@ -169,7 +201,11 @@ if (isMain) {
     console.error('✖ data/videos.json missing — run the pipeline first.');
     process.exit(1);
   }
-  const records = await readJson<VideoRecord[]>(join(root, 'data/videos.json'));
+  const all = await readJson<VideoRecord[]>(join(root, 'data/videos.json'));
+  const overrides = await readJson<Record<string, Partial<VideoRecord> & { exclude?: boolean }>>(
+    join(root, 'data/overrides.json'),
+  ).catch(() => ({}));
+  const records = applyExclusions(all, overrides);
   const characters = await readJson<Champion[]>(join(root, 'data/characters.json'));
   const players = await readJson<Player[]>(join(root, 'data/players.json'));
   await emitGeneric({ records, characters, players, root });
