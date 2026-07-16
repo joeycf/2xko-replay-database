@@ -1,10 +1,18 @@
 <script setup lang="ts">
-// 2XKO's stats-page extension panels — this component OVERRIDES the engine's
-// empty GameStatsPanels at the same path (layer precedence), the sanctioned
-// slot for game-specific analytics (PLAN §11: never genericize a mechanic one
-// game has). Receives the dashboard's active patch selection and feeds it to
-// the fuse system (patch keys = the emitted 'Beta'/'S0'/… timeline).
-const props = defineProps<{ patch?: string | null }>();
+// 2XKO's stats-page extension panels — same-path override of the engine's
+// GameStatsPanels, branching on the v0.4.0 positioned anchors to restore the
+// SHIPPED page composition exactly:
+//   after-usage     → Fuse usage (full-width, directly under Champion usage —
+//                     the shipped Panel 2)
+//   beside-timeline → Fuse meta by era (the Meta-over-time grid's second
+//                     cell — the shipped Panel 4 right)
+//   bottom          → nothing
+// Receives the dashboard's active patch selection (patch keys = the emitted
+// 'Beta'/'S0'/… timeline).
+const props = defineProps<{
+  patch?: string | null;
+  position?: 'after-usage' | 'beside-timeline' | 'bottom';
+}>();
 
 const { detectedFor, coverage } = useFuses();
 
@@ -17,17 +25,19 @@ const fuseHint = computed(() =>
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <!-- Fuse usage — patch-aware ranked bars (the shipped Stats Panel 2) -->
+  <!-- Fuse usage — the shipped Panel 2 (naked anchor: this div IS the row) -->
+  <div v-if="position === 'after-usage'" class="px-4 pb-5 md:px-7">
     <StatPanel title="Fuse usage" :hint="fuseHint">
       <FuseUsageBars :items="fuseRows" />
     </StatPanel>
-
-    <!-- Fuse meta by era — per-era pick-share small multiples (shipped Panel 4 right) -->
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <StatPanel title="Fuse meta by era" hint="share of team picks per era">
-        <FuseEraShift />
-      </StatPanel>
-    </div>
   </div>
+
+  <!-- Fuse meta by era — the shipped Panel 4 right (the grid's second cell) -->
+  <StatPanel
+    v-else-if="position === 'beside-timeline'"
+    title="Fuse meta by era"
+    hint="share of team picks per era"
+  >
+    <FuseEraShift />
+  </StatPanel>
 </template>
