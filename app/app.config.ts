@@ -16,7 +16,7 @@ export default defineAppConfig({
     name: '2XKO',
     shortName: '2XKO',
     rightsHolder: 'Riot Games',
-    baseURL: '/', // stays '/' until the shell phase, then '/2xko'
+    baseURL: '/2xko', // behind the shell at replaydatabase.com/2xko (Phase 5)
     siteUrl: 'https://replaydatabase.com',
     charactersPerSide: 2,
     filters: {
