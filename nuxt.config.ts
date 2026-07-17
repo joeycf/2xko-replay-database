@@ -45,7 +45,8 @@ export default defineNuxtConfig({
   },
 
   // The 2XKO theme (palette + self-hosted fonts) — loads after the engine's
-  // CSS, so its @theme values shadow the umbrella defaults (README contract).
+  // CSS, so its unlayered :root custom properties shadow the umbrella
+  // defaults (README contract; MUST stay :root, never @theme — see theme.css).
   css: ['~/assets/theme.css'],
 
   nitro: {

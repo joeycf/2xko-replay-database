@@ -2,9 +2,9 @@
    2XKO THEME — the neon pink/cyan skin, relocated from the engine-era
    tailwind.config.js + design/handoff/tokens.css (PLAN §6.3a).
 
-   Loads AFTER the engine layer's CSS, so this @theme SHADOWS the umbrella
-   defaults (teal/gold, Space Grotesk) — removing this file drops the site to
-   the neutral ReplayDB look, which is the override-contract proof. Values are
+   Loads AFTER the engine layer's CSS and SHADOWS the umbrella defaults
+   (teal/gold, Space Grotesk) — removing this file drops the site to the
+   neutral ReplayDB look, which is the override-contract proof. Values are
    the shipped design tokens, declared in full (not just the deltas) so the
    2XKO skin never drifts with an engine default change.
 
@@ -28,7 +28,15 @@
 @import '@fontsource/jetbrains-mono/500.css';
 @import '@fontsource/jetbrains-mono/700.css';
 
-@theme {
+/* :root, NOT @theme — deliberately. This file is a plain app stylesheet: it
+   never enters the engine's Tailwind root compile, so an `@theme` block here
+   ships to the browser as a raw unknown at-rule and is silently dropped in
+   the PRODUCTION bundle (the dev server compiles per-file and masks it —
+   the Phase-4 audit caught the live site wearing umbrella teal exactly this
+   way). Unlayered :root custom properties beat the engine's `@layer theme`
+   defaults in every build mode; engine utilities read var(--color-*) at use
+   time, so the override flows through. Same form as Tekken's theme.css. */
+:root {
   /* ---- Surfaces (inset → base → surface → elevated, tokens.css) ---------- */
   --color-bg: #0a0b0f;
   --color-surface: #12141b;

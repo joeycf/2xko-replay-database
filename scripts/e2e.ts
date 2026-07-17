@@ -12,7 +12,7 @@
 // Prereq: npm run generate       Run: npm run test:e2e
 
 import { execSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import { dirname, extname, join } from 'node:path';
@@ -133,6 +133,36 @@ async function resultCount(page: Page): Promise<number> {
 async function run(browser: Browser, base: string): Promise<void> {
   const ctx = await browser.newContext({ viewport: { width: 1360, height: 960 } });
   const page = await ctx.newPage();
+
+  // (t) THEME PRESENCE — the 2026-07-16 hotfix gate (Phase-4 audit). The 2XKO
+  // skin must actually APPLY on the BUILT output: theme.css ships plain
+  // unlayered :root custom properties; a raw @theme at-rule would reach the
+  // browser uncompiled and be dropped, silently shipping the umbrella
+  // teal/Space Grotesk (dev masks this — only the built bundle can prove it).
+  // Computed styles are the assertion, never source text.
+  await test('theme presence: built output computes #ff2e88 / Chakra Petch, no raw @theme ships', async () => {
+    await page.goto(`${base}/`);
+    const t = (await page.evaluate(`(() => {
+      const s = getComputedStyle(document.body);
+      return {
+        primary: s.getPropertyValue('--color-primary').trim().toLowerCase(),
+        secondary: s.getPropertyValue('--color-secondary').trim().toLowerCase(),
+        display: s.getPropertyValue('--font-display'),
+        bodyFont: s.fontFamily,
+      };
+    })()`)) as { primary: string; secondary: string; display: string; bodyFont: string };
+    expect(t.primary === '#ff2e88', `--color-primary "${t.primary}" ≠ #ff2e88 (umbrella leak)`);
+    expect(t.secondary === '#38cfff', `--color-secondary "${t.secondary}" ≠ #38cfff`);
+    expect(t.display.includes('Chakra Petch'), `--font-display "${t.display}" ≠ Chakra Petch`);
+    expect(t.bodyFont.includes('Barlow'), `body font "${t.bodyFont}" — --font-ui not applied`);
+    // mechanism tripwire: an UNCOMPILED @theme block in any built stylesheet
+    // is exactly how the regression shipped
+    const cssDir = join(OUT, '_nuxt');
+    const raw = readdirSync(cssDir)
+      .filter((f) => f.endsWith('.css'))
+      .filter((f) => /@theme[\s{]/.test(readFileSync(join(cssDir, f), 'utf8')));
+    expect(raw.length === 0, `raw @theme at-rule shipped in ${raw.join(', ')}`);
+  });
 
   // (a0) overrides exclusion: the stray record is gone from the emitted set
   await test(`exclusion: ${[...excludedIds].join(',')} absent from replays.json (${videos.length} carried)`, async () => {
