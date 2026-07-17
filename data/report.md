@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-16T08:33:02.794Z._
+_Generated 2026-07-17T08:27:27.326Z._
 
 ## Summary
-- Total videos: **2922**
-- High confidence: **2900**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
+- Total videos: **2928**
+- High confidence: **2907**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **93.7%** · patch: **0.0%** · fuse: **96.7%**
+- Fill rates — season: **93.7%** · patch: **0.0%** · fuse: **96.5%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -24,7 +24,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals |  |
 | `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals |  |
 
-## Low-confidence records (12)
+## Low-confidence records (11)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `OXAeNs7Ocg8` | proReplays | fuzzy character "Akalai" → akali on left | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
