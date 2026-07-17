@@ -1,5 +1,8 @@
 {
   "permissions": {
-    "allow": ["Bash(npx tsc *)"]
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(echo \"fuse backlog run exited — detections on disk: $\\(node -e \"const d=require\\('/home/joey/workspace/replay-database/2xko-replay-database/data/fuses-detected.json'\\); console.log\\(Object.keys\\(d\\).length\\)\"\\)\")"
+    ]
   }
 }
