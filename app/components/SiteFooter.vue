@@ -1,15 +1,3 @@
-<script setup lang="ts">
-// 2XKO footer — same-path override of the engine's SiteFooter (the mechanism
-// its own docblock earmarks for exactly this). Keeps the shipped behavior:
-// STICKY bottom bar (the browse grid scrolls forever, so the footer pins to
-// the viewport instead of waiting at an unreachable page end), the tagline
-// (hidden on phones — the pinned bar must stay one line tall), and the
-// Buy Me a Coffee link. The fan-project disclaimer lives in the VideoModal.
-
-/** Buy Me a Coffee page linked from the site footer. */
-const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
-</script>
-
 <template>
   <footer
     class="sticky bottom-0 z-40 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 border-t border-white/[0.08] bg-[#0c0d12] px-7 py-4 font-ui text-[11px] text-text-muted sm:justify-between"
@@ -45,3 +33,15 @@ const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
     </a>
   </footer>
 </template>
+
+<script setup lang="ts">
+// 2XKO footer — same-path override of the engine's SiteFooter (the mechanism
+// its own docblock earmarks for exactly this). Keeps the shipped behavior:
+// STICKY bottom bar (the browse grid scrolls forever, so the footer pins to
+// the viewport instead of waiting at an unreachable page end), the tagline
+// (hidden on phones — the pinned bar must stay one line tall), and the
+// Buy Me a Coffee link. The fan-project disclaimer lives in the VideoModal.
+
+/** Buy Me a Coffee page linked from the site footer. */
+const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
+</script>

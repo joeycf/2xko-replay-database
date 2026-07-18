@@ -225,18 +225,17 @@ const filtered = computed(() =>
   ),
 );
 
-function togglePills(id: string) {
+const togglePills = (id: string) => {
   const next = new Set(pillsOpen.value);
   if (!next.delete(id)) next.add(id);
   pillsOpen.value = next;
-}
+};
 
 /** early / mid / last cached frame numbers (frames are 01.png … NN.png) */
-function framePicks(frames: number): string[] {
-  return [...new Set([Math.min(3, frames), Math.ceil(frames / 2), frames])]
+const framePicks = (frames: number): string[] =>
+  [...new Set([Math.min(3, frames), Math.ceil(frames / 2), frames])]
     .filter((n) => n >= 1)
     .map((n) => String(n).padStart(2, '0'));
-}
 
 useHead({
   title: 'Fuse gaps (dev) — 2XKO Replay Database',

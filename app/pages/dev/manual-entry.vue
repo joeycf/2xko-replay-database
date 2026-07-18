@@ -16,7 +16,7 @@
         <button
           type="button"
           class="cursor-pointer border px-3 py-1.5 font-mono text-[12px]"
-          :class="onlyNeedy ? onClass : offClass"
+          :class="onlyNeedy ? ON_CLASS : OFF_CLASS"
           :aria-pressed="onlyNeedy"
           data-testid="filter-needy"
           @click="onlyNeedy = true"
@@ -26,7 +26,7 @@
         <button
           type="button"
           class="cursor-pointer border px-3 py-1.5 font-mono text-[12px]"
-          :class="!onlyNeedy ? onClass : offClass"
+          :class="!onlyNeedy ? ON_CLASS : OFF_CLASS"
           :aria-pressed="!onlyNeedy"
           data-testid="filter-all"
           @click="onlyNeedy = false"
@@ -412,21 +412,21 @@ const dirtyIds = computed(() => entries.value.filter((e) => dirty(e.id)).map((e)
 
 const champName = (id: string) => champById(id)?.name ?? id;
 
-function toggle(id: string, side: 0 | 1, cid: string) {
+const toggle = (id: string, side: 0 | 1, cid: string) => {
   const arr = sel.value[id]?.[side];
   if (!arr) return;
   const ix = arr.indexOf(cid);
   if (ix >= 0) arr.splice(ix, 1);
   else arr.push(cid);
   confirmEmpty.value[id] = false;
-}
+};
 
 // single-select per side; clicking the active fuse clears it (blank is valid)
-function toggleFuse(id: string, side: 0 | 1, fid: string) {
+const toggleFuse = (id: string, side: 0 | 1, fid: string) => {
   const pair = selFuse.value[id];
   if (!pair) return;
   pair[side] = pair[side] === fid ? null : fid;
-}
+};
 
 const embedSrc = (id: string, start: number) =>
   `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&start=${start}`;
@@ -440,7 +440,7 @@ const seekStops = (e: ManualVideoEntry) => {
   });
 };
 
-async function postOne(e: ManualVideoEntry): Promise<string[]> {
+const postOne = async (e: ManualVideoEntry): Promise<string[]> => {
   const res = await $fetch<{ ok: boolean; warnings: string[] }>('/api/dev/manual-entry', {
     method: 'POST',
     body: { id: e.id, characters: sel.value[e.id], fuses: selFuse.value[e.id] },
@@ -451,9 +451,9 @@ async function postOne(e: ManualVideoEntry): Promise<string[]> {
   todoOpen.value[e.id] = false;
   savedThisSession.value[e.id] = true;
   return res.warnings;
-}
+};
 
-async function saveOne(e: ManualVideoEntry) {
+const saveOne = async (e: ManualVideoEntry) => {
   const hasEmpty = (sel.value[e.id] ?? [[], []]).some((side) => side.length === 0);
   if (hasEmpty && !confirmEmpty.value[e.id]) {
     confirmEmpty.value[e.id] = true; // two-step: flag the blank side first
@@ -473,9 +473,9 @@ async function saveOne(e: ManualVideoEntry) {
   } finally {
     savingId.value = null;
   }
-}
+};
 
-async function saveAll() {
+const saveAll = async () => {
   savingAll.value = true;
   barNote.value = '';
   let written = 0;
@@ -494,10 +494,10 @@ async function saveAll() {
   } finally {
     savingAll.value = false;
   }
-}
+};
 
-const onClass = 'border-primary bg-primary/10 text-primary';
-const offClass = 'border-white/[0.12] bg-[#141722] text-text-secondary hover:text-text';
+const ON_CLASS = 'border-primary bg-primary/10 text-primary';
+const OFF_CLASS = 'border-white/[0.12] bg-[#141722] text-text-secondary hover:text-text';
 
 useHead({
   title: 'Manual entry champions (dev) — 2XKO Replay Database',

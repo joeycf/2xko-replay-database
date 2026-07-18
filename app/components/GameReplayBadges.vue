@@ -1,21 +1,3 @@
-<script setup lang="ts">
-// 2XKO fuse badges — same-path override of the engine's empty GameReplayBadges
-// (v0.3.0 badge slot). Restores the shipped attribution rules:
-//   ordered      → each fuse pinned to its side (card row variant here; the
-//                  modal's per-side tags live in GameSideBadge)
-//   fusesUnordered → the pair rendered together and UNBOUND — pinning
-//                  left/right could be wrong, so it never is
-//   null / undetected (incl. all tournament entries) → nothing at all
-import type { Replay } from '@engine/types';
-
-const props = defineProps<{ replay: Replay; context: 'card' | 'modal' }>();
-
-const { replayFuses } = useFuses();
-const info = computed(() => replayFuses(props.replay));
-// structural records (empty sides) render title-only cards — no fuse row
-const hasSides = computed(() => props.replay.sides.some((s) => s.characters.length > 0));
-</script>
-
 <template>
   <!-- card: the shipped BrowseCard fuse rows -->
   <template v-if="context === 'card'">
@@ -57,3 +39,22 @@ const hasSides = computed(() => props.replay.sides.some((s) => s.characters.leng
     <FuseTag v-if="info.b" :fuse-id="info.b" />
   </div>
 </template>
+
+<script setup lang="ts">
+// 2XKO fuse badges — same-path override of the engine's empty GameReplayBadges
+// (v0.3.0 badge slot). Restores the shipped attribution rules:
+//   ordered      → each fuse pinned to its side (card row variant here; the
+//                  modal's per-side tags live in GameSideBadge)
+//   fusesUnordered → the pair rendered together and UNBOUND — pinning
+//                  left/right could be wrong, so it never is
+//   null / undetected (incl. all tournament entries) → nothing at all
+import type { Replay } from '@engine/types';
+
+const props = defineProps<{ replay: Replay; context: 'card' | 'modal' }>();
+
+const { replayFuses } = useFuses();
+
+const info = computed(() => replayFuses(props.replay));
+// structural records (empty sides) render title-only cards — no fuse row
+const hasSides = computed(() => props.replay.sides.some((s) => s.characters.length > 0));
+</script>

@@ -214,12 +214,12 @@ const unsavedCount = computed(
 
 const frameOf = (item: FuseOrientItem) => frameN.value[item.id] ?? Math.min(6, item.frames);
 const nn = (n: number) => String(n).padStart(2, '0');
-function cycle(item: FuseOrientItem, dir: number) {
+const cycle = (item: FuseOrientItem, dir: number) => {
   const next = frameOf(item) + dir;
   frameN.value[item.id] = next < 1 ? item.frames : next > item.frames ? 1 : next;
-}
+};
 
-async function save() {
+const save = async () => {
   saving.value = true;
   saveNote.value = '';
   try {
@@ -238,7 +238,7 @@ async function save() {
   } finally {
     saving.value = false;
   }
-}
+};
 
 useHead({
   title: 'Fuse orientation (dev) — 2XKO Replay Database',
