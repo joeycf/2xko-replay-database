@@ -7245,5 +7245,15 @@
         "unbreakableoath"
       ]
     }
+  },
+  {
+    "id": "butcheram",
+    "handle": "ButcherAM",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "butcheram"
+      ]
+    }
   }
 ]
