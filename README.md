@@ -7,7 +7,7 @@ season, channel, and fuse, with a stats dashboard (champion usage, fuse usage,
 top pairings, synergy matrix, meta over time, fuse-era shift) and per-champion / per-player pages.
 
 The footer links a [Buy Me a Coffee](https://buymeacoffee.com/whatdaflip) page
-(`BMC_URL` in `app/utils/constants.ts`) for anyone who wants to support hosting.
+(`BMC_URL` in the engine's `SiteFooter.vue`) for anyone who wants to support hosting.
 
 ## Architecture
 

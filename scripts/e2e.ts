@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import type { Champion, Fuse, VideoRecord } from '../types/index';
 
-/** Buy Me a Coffee URL — must match app/components/SiteFooter.vue. */
+/** Buy Me a Coffee URL — must match the engine's SiteFooter.vue. */
 const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -562,8 +562,8 @@ async function run(browser: Browser, base: string): Promise<void> {
     );
   });
 
-  // (i) footer support link: a real prerendered anchor (shared layout via the
-  // SiteFooter override, so check every page type) with new-tab + nofollow
+  // (i) footer support link: a real prerendered anchor (shared engine layout +
+  // SiteFooter, so check every page type) with new-tab + nofollow
   await test(`footer: Buy Me a Coffee link → ${BMC_URL} on all page types`, () => {
     const pages = [
       'index.html',
