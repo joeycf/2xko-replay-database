@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-19T08:32:09.883Z._
+_Generated 2026-07-19T16:30:04.019Z._
 
 ## Summary
-- Total videos: **2942**
-- High confidence: **2921**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **93.7%** · patch: **0.0%** · fuse: **97.9%**
+- Total videos: **2946**
+- High confidence: **2925**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **93.8%** · patch: **0.0%** · fuse: **98.0%**
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -46,9 +46,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `UMFIqq78mRk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ LightWhisp (Braum / Darius) vs Yata (Yasuo) ▰ High Level Gameplay |
 | `YCOUZ-ukl1A` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ SonicFox (Ekko) vs K7 Showoff (Ekko) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `lassie` | Lassie | 1 | lassie |
+_None._
