@@ -7255,5 +7255,15 @@
         "butcheram"
       ]
     }
+  },
+  {
+    "id": "lassie",
+    "handle": "Lassie",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "lassie"
+      ]
+    }
   }
 ]
