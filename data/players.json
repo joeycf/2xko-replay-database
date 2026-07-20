@@ -7265,5 +7265,15 @@
         "lassie"
       ]
     }
+  },
+  {
+    "id": "psixou",
+    "handle": "Psixou",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "psixou"
+      ]
+    }
   }
 ]
