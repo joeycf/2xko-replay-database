@@ -24,7 +24,7 @@
           "ahri",
           "senna"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -38,7 +38,7 @@
           "blitzcrank",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -109,7 +109,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "rm-2B0EftLc",
@@ -4751,7 +4752,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -4765,7 +4766,7 @@
           "akali",
           "caitlyn"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -4781,7 +4782,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "E9NsQ9f1ja8",
@@ -18823,7 +18825,7 @@
           "vi",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -18837,7 +18839,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -18851,7 +18853,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "8FTO1SQ2CUg",
@@ -21586,7 +21589,7 @@
           "blitzcrank",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -21600,7 +21603,7 @@
           "caitlyn",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -21615,7 +21618,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "gqWxKhAkVsk",
@@ -31723,7 +31727,7 @@
           "caitlyn",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -31737,7 +31741,7 @@
           "jinx",
           "caitlyn"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -31751,7 +31755,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "QAmI6aOl9Z0",
@@ -35026,7 +35031,7 @@
           "warwick",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -35044,7 +35049,7 @@
           "jinx",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -35060,7 +35065,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "hMqiI34OAT4",
@@ -36332,7 +36338,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -36350,7 +36356,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -36367,7 +36373,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "LsuE7nTH88o",
@@ -36394,7 +36401,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -36408,7 +36415,7 @@
           "blitzcrank",
           "vi"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -36423,7 +36430,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "UcZLJGC0RaM",
@@ -36620,7 +36628,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -36634,7 +36642,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -36649,7 +36657,8 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "-_GIRsBXGPM",
@@ -39617,7 +39626,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -39631,7 +39640,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -39645,7 +39654,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "CC72x8GUbjU",
@@ -41195,7 +41205,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -41209,7 +41219,7 @@
           "teemo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -41224,7 +41234,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "DPbC1jSHnpk",
@@ -42883,7 +42894,7 @@
           "yasuo",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -42897,7 +42908,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -42912,7 +42923,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "62e0hpZwFDc",
@@ -50304,7 +50316,7 @@
           "vi",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -50318,7 +50330,7 @@
           "illaoi",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -50334,7 +50346,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "qxyChET_tgY",
@@ -50984,7 +50997,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -50998,7 +51011,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -51012,7 +51025,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "nGffhfcei-M",
@@ -53807,7 +53821,7 @@
           "vi",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -53821,7 +53835,7 @@
           "teemo",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -53835,7 +53849,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "vSih0pEIK9A",
@@ -55522,7 +55537,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -55536,7 +55551,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -55551,7 +55566,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "wVhgjSjGnBQ",
@@ -56655,7 +56671,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -56669,7 +56685,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -56684,7 +56700,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "Wo_9i0dLLV0",
@@ -58414,7 +58431,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -58428,7 +58445,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -58443,7 +58460,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "wfYtbTALbvc",
@@ -58470,7 +58488,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -58484,7 +58502,7 @@
           "darius",
           "braum"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -58499,7 +58517,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "panElBb_iKA",
@@ -58582,7 +58601,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -58596,7 +58615,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -58611,7 +58630,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "RiDlheysZQo",
@@ -59843,7 +59863,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -59857,7 +59877,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -59872,7 +59892,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "7tJPZDAwydE",
@@ -61494,7 +61515,7 @@
           "ahri",
           "braum"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -61508,7 +61529,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -61523,7 +61544,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "HAyvyFBBE0g",
@@ -62240,7 +62262,7 @@
           "yasuo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -62254,7 +62276,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -62269,7 +62291,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "FFXcFMGB9N0",
@@ -63473,7 +63496,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -63487,7 +63510,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -63502,7 +63525,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "Hf25f-nUzIs",
@@ -64939,7 +64963,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -64953,7 +64977,7 @@
           "vi",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -64968,7 +64992,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "ggnmBgY7Uyw",
@@ -67121,7 +67146,7 @@
           "ekko",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -67135,7 +67160,7 @@
           "yasuo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -67150,7 +67175,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "BwoIqfyQtkw",
@@ -68808,7 +68834,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -68822,7 +68848,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -68836,7 +68862,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "Ea4bVxMQ8GY",
@@ -70713,7 +70740,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -70727,7 +70754,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -70741,7 +70768,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "xFCt9-Jb8A4",
@@ -70991,7 +71019,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -71005,7 +71033,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -71020,7 +71048,8 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "ROBgC0fZVco",
@@ -71103,7 +71132,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -71117,7 +71146,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -71131,7 +71160,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "64FfWUMe8eU",
@@ -71495,7 +71525,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -71509,7 +71539,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -71524,7 +71554,8 @@
       "mirror"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "gimaCMBT6O8",
@@ -71608,7 +71639,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -71622,7 +71653,7 @@
           "yasuo",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -71637,7 +71668,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "9qno2837kyQ",
@@ -71833,7 +71865,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -71847,7 +71879,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -71861,7 +71893,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "EkI03vsc5-k",
@@ -71888,7 +71921,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -71902,7 +71935,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -71916,7 +71949,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "9yeWYULwXpI",
@@ -72681,7 +72715,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -72699,7 +72733,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -72715,7 +72749,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "2cvBXuMi1XQ",
@@ -73527,7 +73562,7 @@
           "illaoi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -73541,7 +73576,7 @@
           "yasuo",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -73556,7 +73591,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "w2aOFmPaQPg",
@@ -74035,7 +74071,7 @@
           "blitzcrank",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -74049,7 +74085,7 @@
           "blitzcrank",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -74063,7 +74099,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "Ew9Aafg4F8Y",
@@ -74490,7 +74527,7 @@
           "ahri",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -74508,7 +74545,7 @@
           "thresh",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -74551,7 +74588,7 @@
           "darius",
           "braum"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -74565,7 +74602,7 @@
           "vi",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -74580,7 +74617,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "AHtiINVeZXY",
@@ -74637,7 +74675,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "x52E8ViYfD8",
@@ -74693,7 +74731,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "_eHeAdzYmRY",
@@ -74749,7 +74788,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "s6JdYdTkvSk",
@@ -74805,7 +74845,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "UjgTFD0DcZk",
@@ -74861,7 +74902,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "or1DxTDKYmM",
@@ -74918,7 +74960,7 @@
     "tags": [],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false
   },
   {
     "id": "m3p0320CdBY",
@@ -77580,7 +77622,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -77594,7 +77636,7 @@
           "thresh",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -77609,7 +77651,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "UC96z0Nvn0I",
@@ -80843,7 +80886,7 @@
           "braum",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -80857,7 +80900,7 @@
           "caitlyn",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -80872,7 +80915,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "d-bLQFutlbM",
@@ -86836,7 +86880,7 @@
           "thresh",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -86850,7 +86894,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -86865,7 +86909,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "gIyPefJCJ5k",
@@ -90573,7 +90618,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -90587,7 +90632,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -90602,7 +90647,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "txdZ5Us-sG8",
@@ -96327,7 +96373,7 @@
           "teemo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "teamfight"
       },
       {
         "side": "right",
@@ -96341,7 +96387,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -96356,7 +96402,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "tlfN139sftM",
@@ -143648,7 +143695,7 @@
           "blitzcrank",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -143662,7 +143709,7 @@
           "braum",
           "vi"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -143678,7 +143725,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "pbLTJs8m-NM",
@@ -149302,7 +149350,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -149316,7 +149364,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -149331,7 +149379,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "AmgLQkmVVL8",
@@ -150312,7 +150361,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -150326,7 +150375,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -150341,7 +150390,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "QrqnCAsZOiM",
@@ -151169,7 +151219,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -151183,7 +151233,7 @@
           "vi",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -151199,7 +151249,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "uEToF8bzl-M",
@@ -154341,7 +154392,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -154355,7 +154406,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -154371,7 +154422,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "NI9GL-fJl3M",
@@ -154736,7 +154788,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -154750,7 +154802,7 @@
           "warwick",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -154764,7 +154816,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "2IFDExvGB-k",
@@ -157264,7 +157317,7 @@
           "jinx",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -157278,7 +157331,7 @@
           "warwick",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -157293,7 +157346,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "8yi7FOOGW5M",
@@ -162934,7 +162988,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -162948,7 +163002,7 @@
           "illaoi",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -162962,7 +163016,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "k1tqTzRjDkE",
@@ -163044,7 +163099,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -163058,7 +163113,7 @@
           "darius",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -163072,7 +163127,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "N09RnDauRRU",
@@ -163604,7 +163660,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -163618,7 +163674,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -163632,7 +163688,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "DZ-lxB6gN20",
@@ -163826,7 +163883,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -163840,7 +163897,7 @@
           "yasuo",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -163854,7 +163911,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "FuvuR47u1M8",
@@ -164608,7 +164666,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -164622,7 +164680,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -164636,7 +164694,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "M1oJfveYjX4",
@@ -165557,7 +165616,7 @@
           "illaoi",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -165571,7 +165630,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -165586,7 +165645,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "HV95dKscelE",
@@ -166511,7 +166571,7 @@
           "ekko",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -166525,7 +166585,7 @@
           "braum",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -166539,7 +166599,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "QGM3HlZhAL8",
