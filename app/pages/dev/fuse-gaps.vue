@@ -13,7 +13,12 @@
         <p class="mt-2 font-mono text-[12px] text-text-muted">
           generated {{ gaps.generatedAt.slice(0, 16).replace('T', ' ') }} · attempt universe
           {{ gaps.universe.commit }} ({{ gaps.universe.videos.toLocaleString() }} ids) · full report
-          in cache/fuse/review/fuse-gaps.md
+          in cache/fuse/review/fuse-gaps.md ·
+          <NuxtLink
+            to="/dev/fuse-review"
+            class="text-primary underline decoration-primary/30 hover:decoration-primary"
+            >adjudicate these →</NuxtLink
+          >
         </p>
 
         <!-- summary cards -->

@@ -211,6 +211,42 @@ export interface FuseOrientQueue {
   items: FuseOrientItem[];
 }
 
+/** What overrides.json currently says about one video's fuses, in title order. */
+export interface FuseReviewVerdict {
+  /** per-title-team fuse ids; null = this side is unread */
+  fuses: [string | null, string | null];
+  /** pair is settled but the owning teams are not — mirrors VideoRecord.fusesUnordered */
+  unordered: boolean;
+}
+
+/** One hand-reviewable missing-fuse video: the gap, its parsed teams, the
+ *  detector's rejected guess, and any verdict already in overrides.json.
+ *  Joined server-side so /dev/fuse-review never pulls all of videos.json. */
+export interface FuseReviewItem {
+  id: string;
+  bucket: FuseGapBucket;
+  era: string;
+  publishedAt: string;
+  season: number | null;
+  title: string;
+  channelName: string;
+  /** cached frame count (cache/fuse/frames/<id>/) — always ≥ 1 here */
+  frames: number;
+  /** exactly 2, in TITLE order (the order every verdict is expressed in) */
+  teams: Team[];
+  /** the read the detector made but did not trust; null when never attempted */
+  detection: Pick<FuseDetection, 'left' | 'right' | 'score' | 'status'> | null;
+  /** current overrides.json state, or null when this id is unresolved */
+  saved: FuseReviewVerdict | null;
+}
+
+/** Payload of /api/dev/fuse-review — the manual worklist for /dev/fuse-review. */
+export interface FuseReviewQueue {
+  /** generatedAt of the underlying gap report (staleness signal for the UI) */
+  generatedAt: string;
+  items: FuseReviewItem[];
+}
+
 /** cache/fuse/review/fuse-gaps.json — written by scripts/fuse-gaps.ts, served by /api/dev/fuse-gaps. */
 export interface FuseGapReport {
   generatedAt: string;
