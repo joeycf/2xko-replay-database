@@ -15,6 +15,11 @@ replaydatabase.com shell.
 The footer links a [Buy Me a Coffee](https://buymeacoffee.com/whatdaflip) page
 (`BMC_URL` in the engine's `SiteFooter.vue`) for anyone who wants to support hosting.
 
+> Part of the **Replay Database** platform — [replaydatabase.com](https://replaydatabase.com) ·
+> [engine](https://github.com/joeycf/replay-engine) ·
+> [shell](https://github.com/joeycf/replay-database-shell) ·
+> [Tekken](https://github.com/joeycf/tekken-replay-database)
+
 ## Architecture
 
 ```
@@ -35,13 +40,13 @@ data/replays.json + stats.json   (GENERIC engine-contract files)
                                   │
                                   ├─ registries (champions/players/stats/fuses)
                                   │    → static imports, prerendered into HTML
-                                  └─ replays.json (~1.3 MB) → copied to
+                                  └─ replays.json (~1.2 MB) → copied to
                                        public/data/ at build, fetched
                                        client-side on Browse and entity pages
                                        only (never bundled)
 ```
 
-Two schemas, deliberately: `videos.json` (3.6 MB, rich — fuses per team, parse
+Two schemas, deliberately: `videos.json` (3.4 MB, rich — fuses per team, parse
 confidence, match type) never reaches the browser; `emit.ts` maps it onto the
 engine's generic `Replay[]` contract, with the 2XKO fuse fields riding along as
 extensions the engine ignores.
@@ -53,6 +58,10 @@ extensions the engine ignores.
   old `build:before` sitemap hook and `postgenerate.mjs` are retired). Per-page
   **JSON-LD** (`WebSite` + `SearchAction`, `Organization`, `BreadcrumbList`,
   `CollectionPage`) is prerendered into the HTML.
+- Behind the shell, this app's `/2xko/sitemap.xml` is referenced by the apex
+  **sitemap index** that `replay-database-shell` owns. The app's own
+  `/2xko/robots.txt` is inert — crawlers read `/robots.txt` from the apex, which
+  the shell owns.
 - The site builds **purely from committed JSON** — no API keys at deploy time.
 
 ## Setup
@@ -85,7 +94,7 @@ Two other env vars matter locally, neither of them secret:
 | `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                          |
 | `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json` (+ the `public/data/` copy). Deterministic, no YouTube access — safe to re-run standalone                  |
 | `npm run data:build`                             | fetch + parse                                                                                                                                                                                      |
-| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `champions.json`                                                                                 |
+| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                           |
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                          |
 | `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer) |
 | `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                         |
@@ -106,21 +115,27 @@ Connect the repo and use:
 | Framework preset      | **Nuxt**                                                                                                                                             |
 | Build command         | `npm run generate`                                                                                                                                   |
 | Output directory      | _(auto — Build Output API, `.vercel/output`)_                                                                                                        |
-| Node.js version       | 22+ (24 recommended — the data-refresh Action runs 24)                                                                                               |
+| Node.js version       | 24 (`engines.node: ">=24 <25"`; the data-refresh Action runs 24 too)                                                                                 |
 | Environment variables | `NUXT_PUBLIC_SITE_URL` = your production URL (used for canonical/OG/sitemap absolute URLs). **No `YT_API_KEY`** — the pipeline never runs on Vercel. |
 
+`ENGINE_PATH` stays unset on Vercel, so the pinned `github:` tag is used.
 Deploys are triggered by pushes — including the daily data-refresh commit.
+
+The deployment's own `2xko-replay-database.vercel.app` alias stays reachable and
+is **never** host-redirected to the apex: the shell reaches this project through
+an edge rewrite, so a host redirect here would loop.
 
 ## Analytics
 
-Both are Vercel-native, inert outside production, and inject nothing into the
-prerendered HTML (they attach client-side):
+Both are Vercel-native, **inherited from the engine**, inert outside production,
+and inject nothing into the prerendered HTML (they attach client-side):
 
 - **Web Analytics** — `@vercel/analytics`, registered as a Nuxt module.
-- **Speed Insights** — `@vercel/speed-insights` via a client-only plugin
-  (`app/plugins/speed-insights.client.ts`) at `sampleRate 0.5`, so tournament-
-  weekend traffic spikes stay under the Hobby plan's monthly event cap while
-  Core Web Vitals stats stay sound.
+- **Speed Insights** — `@vercel/speed-insights` via the engine's client-only
+  plugin at `sampleRate 0.5`, so tournament-weekend traffic spikes stay under the
+  Hobby plan's monthly event cap while Core Web Vitals stats stay sound.
+
+Neither is configured in this repo — both arrive with the layer.
 
 ## Daily data refresh
 
@@ -230,10 +245,11 @@ order means those verdicts survive the daily cron like any other override.
 
 ## New-champion runbook
 
-1. Add the champion to `data/champions.json` (id, name, aliases; leave
+1. Add the champion to `data/characters.json` (id, name, aliases; leave
    `portrait`/`splash`/`accent` null).
-2. Add the accent token: `--champ-<id>` in `design/handoff/tokens.css` **and**
-   the `champ.<id>` color in `tailwind.config.js`.
+2. Add the accent token `--champ-<id>` to `design/handoff/tokens.css` (the design
+   source of truth) **and** the matching entry to `accents` in
+   `app/app.config.ts`, which is what the engine actually reads.
 3. Run `npm run data:champions` — downloads portrait + splash (1600w/800w)
    from the official site and reconciles the accent.
 4. Re-run `npm run data:parse` and check `data/report.md`: a spike in
@@ -243,7 +259,7 @@ order means those verdicts survive the daily cron like any other override.
 
 ## Post-v1 notes
 
-- **Slim videos index**: `videos.json` is ~3.5 MB raw (~350 KB compressed) and
+- **Slim videos index**: `videos.json` is ~3.4 MB raw (~250 KB compressed) and
   grows ~3.5 MB/year at current upload rates. The growth path is a slim
   browse index (id, teams, season, type, publishedAt, viewCount, duration)
   fetched first, with full records hydrated per-video on modal open.
@@ -268,6 +284,9 @@ For engineers reading the source — the stack, and the decisions worth knowing.
 
 ### Stack
 
+Shape only; the engine's [`STACK.md`](https://github.com/joeycf/replay-engine/blob/main/STACK.md)
+is the single source of pinned versions.
+
 | layer         | choice                                         | notes                                                                                                                                                                                                                          |
 | ------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Framework     | **Nuxt 4** (Vue 3, `<script setup>`)           | `ssr: true` for prerender fidelity, but the output is **100% static** — `nitro` `vercel-static` preset, `nuxt generate`                                                                                                        |
@@ -279,21 +298,22 @@ For engineers reading the source — the stack, and the decisions worth knowing.
 | Images        | **sharp**                                      | champion art (portrait + 1600w/800w splash), OG cards, fuse frame crops                                                                                                                                                        |
 | Data pipeline | standalone **`tsx`** scripts                   | no build step; YouTube Data API v3 for metadata, `yt-dlp` + `ffmpeg` for the CV fuse pipeline                                                                                                                                  |
 | Tests         | **playwright-core** (bespoke harness)          | not `@playwright/test` — see below                                                                                                                                                                                             |
-| Analytics     | Vercel **Web Analytics** + **Speed Insights**  | client-only, inert outside production                                                                                                                                                                                          |
+| Analytics     | Vercel **Web Analytics** + **Speed Insights**  | inherited from the engine; client-only, inert outside production                                                                                                                                                               |
 | Host          | **Vercel** Build Output API (`.vercel/output`) | daily GitHub Actions cron for the data refresh                                                                                                                                                                                 |
+| Node          | **24** (`engines.node: ">=24 <25"`)            | matched by the data-refresh Action                                                                                                                                                                                             |
 
 ### Things worth knowing
 
 - **The URL is the only state store.** Filters, sort, search, and the `?v=…`
   video modal all live in the query string — no Pinia/Vuex. Every view is
-  shareable and deep-linkable, the back button is correct, and
+  shareable and deep-linkable, the back button is correct, and the engine's
   `app/router.options.ts` suppresses scroll on query-only navigations so
   filtering never jumps the page.
 - **Two-tier data loading.** The small registries (champions/players/stats/
   fuses) are static-imported and prerendered into the HTML; the ~1.3 MB
   `replays.json` is copied to `public/data/` and fetched client-side only on the
   pages that need it — **never bundled**, so the JS payload stays flat as the
-  catalog grows. The 3.6 MB rich `videos.json` stays pipeline-side and never
+  catalog grows. The 3.4 MB rich `videos.json` stays pipeline-side and never
   ships.
 - **The theme must stay in `:root`.** `app/assets/theme.css` declares the 2XKO
   palette as plain `:root` custom properties, never `@theme`. Under `@theme` the
