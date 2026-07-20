@@ -13,7 +13,10 @@
         >
       </div>
 
-      <p v-if="queueError" class="mt-6 font-mono text-body text-warning">
+      <p
+        v-if="queueError"
+        class="mt-6 font-mono text-body text-warning"
+      >
         No gap report found — run <span class="text-text">npm run data:fuse-gaps</span> first.
       </p>
 
@@ -24,7 +27,11 @@
             <span class="text-text">{{ cursor + 1 }}</span> / {{ items.length }}
           </span>
           <span class="text-success">{{ resolvedCount }} resolved</span>
-          <span v-if="dirtyCount" class="text-warning">{{ dirtyCount }} unsaved</span>
+          <span
+            v-if="dirtyCount"
+            class="text-warning"
+            >{{ dirtyCount }} unsaved</span
+          >
           <span class="text-text-muted"
             >report {{ queue?.generatedAt.slice(0, 16).replace('T', ' ') }}</span
           >
@@ -57,9 +64,16 @@
           />
         </div>
 
-        <div v-if="showHelp" class="mt-3 cut border border-white/10 bg-surface px-4 py-3">
+        <div
+          v-if="showHelp"
+          class="mt-3 cut border border-white/10 bg-surface px-4 py-3"
+        >
           <dl class="grid grid-cols-2 gap-x-6 gap-y-1 font-mono text-[11px] sm:grid-cols-3">
-            <div v-for="k in keyHelp" :key="k[0]" class="flex gap-2">
+            <div
+              v-for="k in keyHelp"
+              :key="k[0]"
+              class="flex gap-2"
+            >
               <dt class="w-20 flex-none text-primary">{{ k[0] }}</dt>
               <dd class="text-text-secondary">{{ k[1] }}</dd>
             </div>
@@ -162,14 +176,19 @@
                 <span :class="row === i ? 'text-primary' : 'text-text-muted'">{{
                   row === i ? '▸' : ' '
                 }}</span>
-                <span class="uppercase" :class="row === i ? 'text-primary' : 'text-text-muted'">{{
-                  verdict.unordered ? `fuse ${i === 0 ? 'A' : 'B'}` : `team ${i + 1}`
-                }}</span>
+                <span
+                  class="uppercase"
+                  :class="row === i ? 'text-primary' : 'text-text-muted'"
+                  >{{ verdict.unordered ? `fuse ${i === 0 ? 'A' : 'B'}` : `team ${i + 1}` }}</span
+                >
                 <span class="text-text">{{
                   team.players.map((p) => p.displayName).join(' + ') || '?'
                 }}</span>
                 <span class="text-text-muted">({{ team.characters.join('-') || '?' }})</span>
-                <span v-if="guess[i]" class="ml-auto text-text-muted">
+                <span
+                  v-if="guess[i]"
+                  class="ml-auto text-text-muted"
+                >
                   detector: {{ fuseName(guess[i]!) }}
                   <span :class="guessScore(i) <= 75 ? 'text-text-secondary' : 'text-warning'"
                     >d{{ guessScore(i) }}</span
@@ -266,15 +285,28 @@
           >
             save all {{ dirtyCount }}
           </button>
-          <span v-if="note" class="font-mono text-[12px]" :class="noteTone">{{ note }}</span>
+          <span
+            v-if="note"
+            class="font-mono text-[12px]"
+            :class="noteTone"
+            >{{ note }}</span
+          >
         </div>
       </template>
 
-      <p v-else-if="queue" class="mt-8 font-mono text-body text-success">
+      <p
+        v-else-if="queue"
+        class="mt-8 font-mono text-body text-success"
+      >
         Nothing to review — every gap in the report either lacks cached frames or has no 2-team
         parse.
       </p>
-      <div v-else class="mt-8 font-mono text-body text-text-muted">Loading…</div>
+      <div
+        v-else
+        class="mt-8 font-mono text-body text-text-muted"
+      >
+        Loading…
+      </div>
     </ClientOnly>
   </section>
 </template>

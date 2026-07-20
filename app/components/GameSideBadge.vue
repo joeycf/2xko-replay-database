@@ -4,7 +4,10 @@
     :data-testid="compact ? undefined : `team-fuse-${side === 0 ? 'a' : 'b'}`"
     :class="compact ? 'mt-0.5' : 'mt-1'"
   >
-    <FuseTag :fuse-id="fuse" :size="compact ? 'sm' : 'md'" />
+    <FuseTag
+      :fuse-id="fuse"
+      :size="compact ? 'sm' : 'md'"
+    />
   </div>
 </template>
 

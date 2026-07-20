@@ -1,7 +1,13 @@
 <template>
   <!-- Fuse usage — the shipped Panel 2 (naked anchor: this div IS the row) -->
-  <div v-if="position === 'after-usage'" class="px-4 pb-5 md:px-7">
-    <StatPanel title="Fuse usage" :hint="fuseHint">
+  <div
+    v-if="position === 'after-usage'"
+    class="px-4 pb-5 md:px-7"
+  >
+    <StatPanel
+      title="Fuse usage"
+      :hint="fuseHint"
+    >
       <FuseUsageBars :items="fuseRows" />
     </StatPanel>
   </div>

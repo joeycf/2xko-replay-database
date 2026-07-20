@@ -7,12 +7,17 @@
         Each pill below is a settled, high-confidence read — only
         <em>which title team owns it</em> is unresolved. Pick the team whose nameplates sit under
         the highlighted pill.
-        <NuxtLink to="/dev/fuse-gaps" class="underline decoration-white/20 hover:text-text"
+        <NuxtLink
+          to="/dev/fuse-gaps"
+          class="underline decoration-white/20 hover:text-text"
           >← fuse gaps</NuxtLink
         >
       </p>
 
-      <p v-if="queueError" class="mt-6 font-mono text-body text-warning">
+      <p
+        v-if="queueError"
+        class="mt-6 font-mono text-body text-warning"
+      >
         No orientation queue — run
         <span class="text-text">npm run data:fuses -- --promote-lows</span> first.
       </p>
@@ -77,7 +82,10 @@
               <span
                 class="inline-flex items-center gap-2 font-mono text-[12px] text-text-secondary"
               >
-                <FuseTag :fuse-id="item.fuse" size="sm" />
+                <FuseTag
+                  :fuse-id="item.fuse"
+                  size="sm"
+                />
                 <span class="text-text-muted">d{{ item.dist }}</span>
                 reads on the
                 <strong class="text-text">screen-{{ item.screenSide.toUpperCase() }}</strong> pill
@@ -122,7 +130,11 @@
           <div class="mx-auto flex max-w-[1100px] items-center gap-4 px-4 py-3 md:px-[26px]">
             <span class="font-mono text-[12px] text-text-secondary">
               {{ assignedCount }} / {{ rows.length }} assigned
-              <span v-if="unsavedCount" class="text-warning">· {{ unsavedCount }} unsaved</span>
+              <span
+                v-if="unsavedCount"
+                class="text-warning"
+                >· {{ unsavedCount }} unsaved</span
+              >
             </span>
             <button
               type="button"
@@ -132,11 +144,20 @@
             >
               {{ saving ? 'saving…' : `save ${unsavedCount} assignment(s)` }}
             </button>
-            <span v-if="saveNote" class="font-mono text-[12px] text-success">{{ saveNote }}</span>
+            <span
+              v-if="saveNote"
+              class="font-mono text-[12px] text-success"
+              >{{ saveNote }}</span
+            >
           </div>
         </div>
       </template>
-      <div v-else class="mt-8 font-mono text-body text-text-muted">Loading…</div>
+      <div
+        v-else
+        class="mt-8 font-mono text-body text-text-muted"
+      >
+        Loading…
+      </div>
     </ClientOnly>
   </section>
 </template>

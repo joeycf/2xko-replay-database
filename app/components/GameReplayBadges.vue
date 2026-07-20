@@ -7,19 +7,41 @@
       title="Fuses detected — side attribution unconfirmed"
       class="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5"
     >
-      <FuseTag v-if="info.a" :fuse-id="info.a" size="sm" />
-      <span v-if="info.a && info.b" class="font-mono text-[10px] text-text-muted">·</span>
-      <FuseTag v-if="info.b" :fuse-id="info.b" size="sm" />
+      <FuseTag
+        v-if="info.a"
+        :fuse-id="info.a"
+        size="sm"
+      />
+      <span
+        v-if="info.a && info.b"
+        class="font-mono text-[10px] text-text-muted"
+        >·</span
+      >
+      <FuseTag
+        v-if="info.b"
+        :fuse-id="info.b"
+        size="sm"
+      />
     </div>
     <div
       v-else-if="hasSides && (info.a || info.b)"
       class="mt-2 flex items-center justify-between gap-2"
     >
       <span class="min-w-0">
-        <FuseTag v-if="info.a" data-testid="card-fuse-a" :fuse-id="info.a" size="sm" />
+        <FuseTag
+          v-if="info.a"
+          data-testid="card-fuse-a"
+          :fuse-id="info.a"
+          size="sm"
+        />
       </span>
       <span class="min-w-0">
-        <FuseTag v-if="info.b" data-testid="card-fuse-b" :fuse-id="info.b" size="sm" />
+        <FuseTag
+          v-if="info.b"
+          data-testid="card-fuse-b"
+          :fuse-id="info.b"
+          size="sm"
+        />
       </span>
     </div>
   </template>
@@ -34,9 +56,19 @@
     <span class="font-ui text-[10px] font-semibold uppercase tracking-label text-text-muted"
       >Fuses</span
     >
-    <FuseTag v-if="info.a" :fuse-id="info.a" />
-    <span v-if="info.a && info.b" class="font-mono text-[11px] text-text-muted">·</span>
-    <FuseTag v-if="info.b" :fuse-id="info.b" />
+    <FuseTag
+      v-if="info.a"
+      :fuse-id="info.a"
+    />
+    <span
+      v-if="info.a && info.b"
+      class="font-mono text-[11px] text-text-muted"
+      >·</span
+    >
+    <FuseTag
+      v-if="info.b"
+      :fuse-id="info.b"
+    />
   </div>
 </template>
 

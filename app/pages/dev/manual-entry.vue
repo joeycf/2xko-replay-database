@@ -35,11 +35,17 @@
         </button>
       </div>
 
-      <div v-if="loadError" class="mt-6 font-mono text-body text-warning">
+      <div
+        v-if="loadError"
+        class="mt-6 font-mono text-body text-warning"
+      >
         Failed to load manual-videos.json — is this `nuxt dev`?
       </div>
 
-      <div v-else-if="shown.length" class="mt-6 space-y-8 pb-28">
+      <div
+        v-else-if="shown.length"
+        class="mt-6 space-y-8 pb-28"
+      >
         <div
           v-for="e in shown"
           :key="e.id"
@@ -174,7 +180,12 @@
                     :data-selected-champ="cid"
                     @click="toggle(e.id, i as 0 | 1, cid)"
                   >
-                    <ChampBadge :champion-id="cid" :size="20" :notch="0" :font-size="8" />
+                    <ChampBadge
+                      :champion-id="cid"
+                      :size="20"
+                      :notch="0"
+                      :font-size="8"
+                    />
                     {{ champName(cid) }}
                     <span class="text-text-muted">✕</span>
                   </button>
@@ -294,10 +305,18 @@
         </div>
       </div>
 
-      <div v-else-if="entries.length" class="mt-8 font-mono text-body text-success">
+      <div
+        v-else-if="entries.length"
+        class="mt-8 font-mono text-body text-success"
+      >
         All entries have champions 🎯 — switch to “all” to review.
       </div>
-      <div v-else class="mt-8 font-mono text-body text-text-muted">Loading…</div>
+      <div
+        v-else
+        class="mt-8 font-mono text-body text-text-muted"
+      >
+        Loading…
+      </div>
 
       <!-- sticky save-all bar -->
       <div
@@ -307,7 +326,11 @@
         <div class="mx-auto flex max-w-[1240px] items-center gap-4 px-4 py-3 md:px-[26px]">
           <span class="font-mono text-[12px] text-text-secondary">
             {{ entries.length - needyCount }} / {{ entries.length }} complete
-            <span v-if="dirtyIds.length" class="text-warning">· {{ dirtyIds.length }} unsaved</span>
+            <span
+              v-if="dirtyIds.length"
+              class="text-warning"
+              >· {{ dirtyIds.length }} unsaved</span
+            >
           </span>
           <button
             type="button"
@@ -318,7 +341,11 @@
           >
             {{ savingAll ? 'saving…' : `save all (${dirtyIds.length})` }}
           </button>
-          <span v-if="barNote" class="font-mono text-[12px] text-success">{{ barNote }}</span>
+          <span
+            v-if="barNote"
+            class="font-mono text-[12px] text-success"
+            >{{ barNote }}</span
+          >
         </div>
       </div>
     </ClientOnly>

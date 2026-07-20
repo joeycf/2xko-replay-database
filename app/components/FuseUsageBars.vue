@@ -1,11 +1,22 @@
 <template>
-  <div ref="root" data-testid="fuse-usage-bars" class="flex flex-col gap-2 md:gap-[9px]">
-    <div v-for="row in rows" :key="row.id" class="flex items-center gap-2.5 md:gap-3">
+  <div
+    ref="root"
+    data-testid="fuse-usage-bars"
+    class="flex flex-col gap-2 md:gap-[9px]"
+  >
+    <div
+      v-for="row in rows"
+      :key="row.id"
+      class="flex items-center gap-2.5 md:gap-3"
+    >
       <span class="hidden w-5 flex-none text-right font-mono text-[11px] text-text-muted sm:block">
         {{ row.rank }}
       </span>
       <span class="flex h-7 w-7 flex-none items-center justify-center">
-        <span class="h-2.5 w-2.5 rotate-45" :style="{ background: row.accent ?? '#8B93A8' }" />
+        <span
+          class="h-2.5 w-2.5 rotate-45"
+          :style="{ background: row.accent ?? '#8B93A8' }"
+        />
       </span>
       <span
         class="w-[86px] flex-none font-ui text-[12px] font-semibold text-text md:w-[104px] md:text-[13px]"

@@ -75,7 +75,11 @@
 
         <!-- gap grid -->
         <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <div v-for="{ gap, video } in filtered" :key="gap.id" class="flex flex-col">
+          <div
+            v-for="{ gap, video } in filtered"
+            :key="gap.id"
+            class="flex flex-col"
+          >
             <BrowseCard :replay="toReplay(video)" />
             <!-- bucket-specific footer -->
             <div
@@ -87,7 +91,12 @@
                 <span v-if="gap.bucket === 'unavailable' || gap.bucket === 'pending'">{{
                   gap.publishedAt.slice(0, 10)
                 }}</span>
-                <span v-for="f in gap.flags" :key="f" class="text-warning">{{ f }}</span>
+                <span
+                  v-for="f in gap.flags"
+                  :key="f"
+                  class="text-warning"
+                  >{{ f }}</span
+                >
                 <span
                   v-if="gap.attempts"
                   :class="gap.attempts.length >= 2 ? 'text-warning' : 'text-text-muted'"
@@ -101,16 +110,27 @@
                   >youtube ↗</a
                 >
               </div>
-              <div v-if="gap.detection" class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <div
+                v-if="gap.detection"
+                class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1"
+              >
                 <span class="inline-flex items-center gap-1.5">
                   L
-                  <FuseTag v-if="gap.detection.left" :fuse-id="gap.detection.left" size="sm" />
+                  <FuseTag
+                    v-if="gap.detection.left"
+                    :fuse-id="gap.detection.left"
+                    size="sm"
+                  />
                   <span v-else>∅</span>
                   <span class="text-text-muted">d{{ gap.detection.score.left }}</span>
                 </span>
                 <span class="inline-flex items-center gap-1.5">
                   R
-                  <FuseTag v-if="gap.detection.right" :fuse-id="gap.detection.right" size="sm" />
+                  <FuseTag
+                    v-if="gap.detection.right"
+                    :fuse-id="gap.detection.right"
+                    size="sm"
+                  />
                   <span v-else>∅</span>
                   <span class="text-text-muted">d{{ gap.detection.score.right }}</span>
                 </span>
@@ -125,7 +145,10 @@
                 </button>
               </div>
               <!-- pill strips from cached frames (dev API crops on the fly) -->
-              <div v-if="pillsOpen.has(gap.id)" class="mt-2 space-y-1.5">
+              <div
+                v-if="pillsOpen.has(gap.id)"
+                class="mt-2 space-y-1.5"
+              >
                 <div
                   v-for="side in ['left', 'right'] as const"
                   :key="side"
@@ -158,7 +181,12 @@
 
         <VideoModal />
       </template>
-      <div v-else class="mt-8 font-mono text-body text-text-muted">Loading…</div>
+      <div
+        v-else
+        class="mt-8 font-mono text-body text-text-muted"
+      >
+        Loading…
+      </div>
     </ClientOnly>
   </section>
 </template>

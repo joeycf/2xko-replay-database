@@ -1,5 +1,9 @@
 <template>
-  <div ref="root" data-testid="fuse-era-shift" class="grid grid-cols-2 gap-3">
+  <div
+    ref="root"
+    data-testid="fuse-era-shift"
+    class="grid grid-cols-2 gap-3"
+  >
     <div
       v-for="card in cards"
       :key="card.patch"
@@ -14,7 +18,10 @@
         >
       </div>
       <div class="flex flex-col gap-2">
-        <div v-for="row in card.rows" :key="row.id">
+        <div
+          v-for="row in card.rows"
+          :key="row.id"
+        >
           <div class="mb-1 flex items-center gap-1.5">
             <span
               class="h-1.5 w-1.5 flex-none rotate-45"
