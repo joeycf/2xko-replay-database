@@ -7275,5 +7275,15 @@
         "psixou"
       ]
     }
+  },
+  {
+    "id": "oath",
+    "handle": "OATH",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "oath"
+      ]
+    }
   }
 ]
