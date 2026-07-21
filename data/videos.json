@@ -2901,8 +2901,8 @@
         "side": "left",
         "players": [
           {
-            "id": "finessedan",
-            "displayName": "FINESSEDAN"
+            "id": "finessdan",
+            "displayName": "FinessDan"
           }
         ],
         "characters": [
@@ -2933,7 +2933,7 @@
       "ekko"
     ],
     "allPlayers": [
-      "finessedan",
+      "finessdan",
       "supernoon"
     ],
     "tags": [],
@@ -4381,8 +4381,8 @@
             "displayName": "Cloud805"
           },
           {
-            "id": "fcchamp",
-            "displayName": "FC CHAMP"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           }
         ],
         "characters": [
@@ -4414,7 +4414,7 @@
     ],
     "allPlayers": [
       "cloud805",
-      "fcchamp",
+      "filipinochamp",
       "squegeslightwhisp"
     ],
     "tags": [],
@@ -26733,8 +26733,8 @@
         "side": "right",
         "players": [
           {
-            "id": "justcapital",
-            "displayName": "JUSTCAPITAL"
+            "id": "justcapitalb",
+            "displayName": "JustCapitalB"
           }
         ],
         "characters": [
@@ -26751,7 +26751,7 @@
     ],
     "allPlayers": [
       "bleed",
-      "justcapital"
+      "justcapitalb"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -33282,8 +33282,8 @@
             "displayName": "BobaTeamo"
           },
           {
-            "id": "polkadot",
-            "displayName": "POLKADOT"
+            "id": "riotpolkadot",
+            "displayName": "RIOT POLKADOT"
           }
         ],
         "characters": [
@@ -33302,7 +33302,7 @@
     "allPlayers": [
       "windzero7",
       "bobateamo",
-      "polkadot"
+      "riotpolkadot"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -43971,8 +43971,8 @@
         "side": "right",
         "players": [
           {
-            "id": "justcapital",
-            "displayName": "JUSTCAPITAL"
+            "id": "justcapitalb",
+            "displayName": "JustCapitalB"
           }
         ],
         "characters": [
@@ -43988,7 +43988,7 @@
     ],
     "allPlayers": [
       "hikari",
-      "justcapital"
+      "justcapitalb"
     ],
     "tags": [
       "mirror"
@@ -44130,8 +44130,8 @@
         "side": "left",
         "players": [
           {
-            "id": "goombo",
-            "displayName": "GOOMBO"
+            "id": "goomboo",
+            "displayName": "Goomboo"
           }
         ],
         "characters": [
@@ -44162,7 +44162,7 @@
       "illaoi"
     ],
     "allPlayers": [
-      "goombo",
+      "goomboo",
       "whalebot"
     ],
     "tags": [],
@@ -46742,8 +46742,8 @@
         "side": "right",
         "players": [
           {
-            "id": "senshi",
-            "displayName": "Senshi"
+            "id": "senshii",
+            "displayName": "Senshii"
           }
         ],
         "characters": [
@@ -46759,7 +46759,7 @@
     ],
     "allPlayers": [
       "k7showoff",
-      "senshi"
+      "senshii"
     ],
     "tags": [],
     "parseConfidence": "low",
@@ -55871,8 +55871,8 @@
         "side": "left",
         "players": [
           {
-            "id": "goombo",
-            "displayName": "GOOMBO"
+            "id": "goomboo",
+            "displayName": "Goomboo"
           }
         ],
         "characters": [
@@ -55902,7 +55902,7 @@
       "vi"
     ],
     "allPlayers": [
-      "goombo",
+      "goomboo",
       "habaduba"
     ],
     "tags": [],
@@ -62037,8 +62037,8 @@
         "side": "right",
         "players": [
           {
-            "id": "brandontheasian",
-            "displayName": "BRANDONTHEASIAN"
+            "id": "brandonthe4sian",
+            "displayName": "BrandonThe4Sian"
           }
         ],
         "characters": [
@@ -62056,7 +62056,7 @@
     ],
     "allPlayers": [
       "eduardohook",
-      "brandontheasian"
+      "brandonthe4sian"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -64068,8 +64068,8 @@
         "side": "right",
         "players": [
           {
-            "id": "finessedan",
-            "displayName": "FINESSEDAN"
+            "id": "finessdan",
+            "displayName": "FinessDan"
           }
         ],
         "characters": [
@@ -64086,7 +64086,7 @@
     ],
     "allPlayers": [
       "hikari",
-      "finessedan"
+      "finessdan"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -65124,8 +65124,8 @@
         "side": "left",
         "players": [
           {
-            "id": "senshi",
-            "displayName": "Senshi"
+            "id": "senshii",
+            "displayName": "Senshii"
           }
         ],
         "characters": [
@@ -65155,7 +65155,7 @@
       "yasuo"
     ],
     "allPlayers": [
-      "senshi",
+      "senshii",
       "josch"
     ],
     "tags": [],
@@ -69514,8 +69514,8 @@
         "side": "right",
         "players": [
           {
-            "id": "jtene3",
-            "displayName": "JTENE #3"
+            "id": "jtene",
+            "displayName": "Jtene"
           }
         ],
         "characters": [
@@ -69532,7 +69532,7 @@
     ],
     "allPlayers": [
       "k7showoff",
-      "jtene3"
+      "jtene"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -69794,8 +69794,8 @@
         "side": "right",
         "players": [
           {
-            "id": "brandontheasian",
-            "displayName": "BRANDONTHEASIAN"
+            "id": "brandonthe4sian",
+            "displayName": "BrandonThe4Sian"
           }
         ],
         "characters": [
@@ -69813,7 +69813,7 @@
     ],
     "allPlayers": [
       "gsmvoid",
-      "brandontheasian"
+      "brandonthe4sian"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -75937,8 +75937,8 @@
         "side": "left",
         "players": [
           {
-            "id": "oislame",
-            "displayName": "O. is lame"
+            "id": "opressorislame",
+            "displayName": "Opressor Is Lame"
           }
         ],
         "characters": [
@@ -75969,7 +75969,7 @@
       "blitzcrank"
     ],
     "allPlayers": [
-      "oislame",
+      "opressorislame",
       "hispanicathedsco"
     ],
     "tags": [],
@@ -77273,8 +77273,8 @@
         "side": "left",
         "players": [
           {
-            "id": "oislame",
-            "displayName": "O. is lame"
+            "id": "opressorislame",
+            "displayName": "Opressor Is Lame"
           }
         ],
         "characters": [
@@ -77308,7 +77308,7 @@
       "yasuo"
     ],
     "allPlayers": [
-      "oislame",
+      "opressorislame",
       "galladiated",
       "uninja"
     ],
@@ -82128,8 +82128,8 @@
         "side": "right",
         "players": [
           {
-            "id": "illayt",
-            "displayName": "Illa YT"
+            "id": "illa",
+            "displayName": "ILLA"
           }
         ],
         "characters": [
@@ -82147,7 +82147,7 @@
     ],
     "allPlayers": [
       "huebert",
-      "illayt"
+      "illa"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -84371,8 +84371,8 @@
         "side": "right",
         "players": [
           {
-            "id": "windzero",
-            "displayName": "Windzero"
+            "id": "windzero7",
+            "displayName": "Windzero7"
           }
         ],
         "characters": [
@@ -84389,7 +84389,7 @@
     ],
     "allPlayers": [
       "hispanicathedsco",
-      "windzero"
+      "windzero7"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -92199,8 +92199,8 @@
         "side": "left",
         "players": [
           {
-            "id": "fchamp",
-            "displayName": "F. Champ"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           },
           {
             "id": "chrisg",
@@ -92235,7 +92235,7 @@
       "warwick"
     ],
     "allPlayers": [
-      "fchamp",
+      "filipinochamp",
       "chrisg",
       "warnedjacka"
     ],
@@ -95693,8 +95693,8 @@
         "side": "right",
         "players": [
           {
-            "id": "fchamp",
-            "displayName": "F. Champ"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           }
         ],
         "characters": [
@@ -95712,7 +95712,7 @@
     ],
     "allPlayers": [
       "windzero7",
-      "fchamp"
+      "filipinochamp"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -98491,8 +98491,8 @@
         "side": "right",
         "players": [
           {
-            "id": "fchamp",
-            "displayName": "F. Champ"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           },
           {
             "id": "cloud805",
@@ -98515,7 +98515,7 @@
     "allPlayers": [
       "lightwhisp",
       "squegee",
-      "fchamp",
+      "filipinochamp",
       "cloud805"
     ],
     "tags": [],
@@ -98539,8 +98539,8 @@
         "side": "left",
         "players": [
           {
-            "id": "fchamp",
-            "displayName": "F. Champ"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           },
           {
             "id": "cloud805",
@@ -98575,7 +98575,7 @@
       "blitzcrank"
     ],
     "allPlayers": [
-      "fchamp",
+      "filipinochamp",
       "cloud805",
       "windzero7"
     ],
@@ -113571,8 +113571,8 @@
         "side": "right",
         "players": [
           {
-            "id": "oeyeconico",
-            "displayName": "o EyECoNiC o"
+            "id": "eyeconic",
+            "displayName": "EYECONIC"
           }
         ],
         "characters": [
@@ -113590,7 +113590,7 @@
     ],
     "allPlayers": [
       "windzero7",
-      "oeyeconico"
+      "eyeconic"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -114356,8 +114356,8 @@
         "side": "right",
         "players": [
           {
-            "id": "oeyeconico",
-            "displayName": "o EyECoNiC o"
+            "id": "eyeconic",
+            "displayName": "EYECONIC"
           }
         ],
         "characters": [
@@ -114375,7 +114375,7 @@
     ],
     "allPlayers": [
       "windzero7",
-      "oeyeconico"
+      "eyeconic"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -122208,8 +122208,8 @@
         "side": "left",
         "players": [
           {
-            "id": "windzero",
-            "displayName": "Windzero"
+            "id": "windzero7",
+            "displayName": "Windzero7"
           }
         ],
         "characters": [
@@ -122239,7 +122239,7 @@
       "illaoi"
     ],
     "allPlayers": [
-      "windzero",
+      "windzero7",
       "xyzzy"
     ],
     "tags": [],
@@ -134320,8 +134320,8 @@
             "displayName": "BobaTeamo"
           },
           {
-            "id": "polkadot",
-            "displayName": "POLKADOT"
+            "id": "riotpolkadot",
+            "displayName": "RIOT POLKADOT"
           }
         ],
         "characters": [
@@ -134340,7 +134340,7 @@
     "allPlayers": [
       "lightwhisp",
       "bobateamo",
-      "polkadot"
+      "riotpolkadot"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -139429,8 +139429,8 @@
         "side": "right",
         "players": [
           {
-            "id": "senshi",
-            "displayName": "Senshi"
+            "id": "senshii",
+            "displayName": "Senshii"
           }
         ],
         "characters": [
@@ -139448,7 +139448,7 @@
     ],
     "allPlayers": [
       "k7showoff",
-      "senshi"
+      "senshii"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -151891,8 +151891,8 @@
         "side": "left",
         "players": [
           {
-            "id": "oeyeconico",
-            "displayName": "o EyECoNiC o"
+            "id": "eyeconic",
+            "displayName": "EYECONIC"
           }
         ],
         "characters": [
@@ -151923,7 +151923,7 @@
       "ahri"
     ],
     "allPlayers": [
-      "oeyeconico",
+      "eyeconic",
       "strayerin"
     ],
     "tags": [],
@@ -152307,8 +152307,8 @@
         "side": "right",
         "players": [
           {
-            "id": "fchamp",
-            "displayName": "F. Champ"
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
           }
         ],
         "characters": [
@@ -152327,7 +152327,7 @@
     "allPlayers": [
       "cloud805",
       "iheartjustice",
-      "fchamp"
+      "filipinochamp"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -155803,8 +155803,8 @@
         "side": "right",
         "players": [
           {
-            "id": "senshi",
-            "displayName": "Senshi"
+            "id": "senshii",
+            "displayName": "Senshii"
           }
         ],
         "characters": [
@@ -155822,7 +155822,7 @@
     ],
     "allPlayers": [
       "wawa",
-      "senshi"
+      "senshii"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -157095,8 +157095,8 @@
         "side": "right",
         "players": [
           {
-            "id": "finessedan",
-            "displayName": "FINESSEDAN"
+            "id": "finessdan",
+            "displayName": "FinessDan"
           }
         ],
         "characters": [
@@ -157114,7 +157114,7 @@
     ],
     "allPlayers": [
       "mfcr",
-      "finessedan"
+      "finessdan"
     ],
     "tags": [],
     "parseConfidence": "high",
@@ -161969,8 +161969,8 @@
         "side": "left",
         "players": [
           {
-            "id": "senshi",
-            "displayName": "Senshi"
+            "id": "senshii",
+            "displayName": "Senshii"
           }
         ],
         "characters": [
@@ -162001,7 +162001,7 @@
       "blitzcrank"
     ],
     "allPlayers": [
-      "senshi",
+      "senshii",
       "genisgod"
     ],
     "tags": [],

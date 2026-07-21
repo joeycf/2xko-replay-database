@@ -288,6 +288,8 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "f. champ",
+        "fc champ",
         "filipino champ"
       ]
     }
@@ -298,6 +300,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "windzero",
         "windzero 7",
         "windzero7"
       ]
@@ -581,6 +584,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "goombo",
         "goomboo"
       ]
     }
@@ -733,7 +737,8 @@
     "featured": false,
     "extra": {
       "aliases": [
-        "jtene"
+        "jtene",
+        "jtene #3"
       ]
     }
   },
@@ -865,6 +870,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "o. is lame",
         "opressor is lame"
       ]
     }
@@ -985,6 +991,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "senshi",
         "senshii"
       ]
     }
@@ -1055,6 +1062,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "justcapital",
         "justcapitalb"
       ]
     }
@@ -1126,7 +1134,8 @@
     "featured": false,
     "extra": {
       "aliases": [
-        "brandonthe4sian"
+        "brandonthe4sian",
+        "brandontheasian"
       ]
     }
   },
@@ -1136,7 +1145,8 @@
     "featured": false,
     "extra": {
       "aliases": [
-        "eyeconic"
+        "eyeconic",
+        "o eyeconic o"
       ]
     }
   },
@@ -1176,7 +1186,8 @@
     "featured": false,
     "extra": {
       "aliases": [
-        "finessdan"
+        "finessdan",
+        "finessedan"
       ]
     }
   },
@@ -1593,16 +1604,6 @@
     }
   },
   {
-    "id": "senshi",
-    "handle": "Senshi",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "senshi"
-      ]
-    }
-  },
-  {
     "id": "froncois",
     "handle": "Froncois",
     "featured": false,
@@ -1619,16 +1620,6 @@
     "extra": {
       "aliases": [
         "kagami"
-      ]
-    }
-  },
-  {
-    "id": "fchamp",
-    "handle": "F. Champ",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "f. champ"
       ]
     }
   },
@@ -1728,6 +1719,7 @@
     "featured": false,
     "extra": {
       "aliases": [
+        "polkadot",
         "riot polkadot"
       ]
     }
@@ -1863,16 +1855,6 @@
     }
   },
   {
-    "id": "finessedan",
-    "handle": "FINESSEDAN",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "finessedan"
-      ]
-    }
-  },
-  {
     "id": "nsxc",
     "handle": "NSXC",
     "featured": false,
@@ -1898,7 +1880,8 @@
     "featured": false,
     "extra": {
       "aliases": [
-        "illa"
+        "illa",
+        "illa yt"
       ]
     }
   },
@@ -2131,16 +2114,6 @@
       "aliases": [
         "bold buffoon",
         "boldbuffoon"
-      ]
-    }
-  },
-  {
-    "id": "oeyeconico",
-    "handle": "o EyECoNiC o",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "o eyeconic o"
       ]
     }
   },
@@ -2506,16 +2479,6 @@
     }
   },
   {
-    "id": "justcapital",
-    "handle": "JUSTCAPITAL",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "justcapital"
-      ]
-    }
-  },
-  {
     "id": "rymo",
     "handle": "RYMO",
     "featured": false,
@@ -2592,16 +2555,6 @@
     "extra": {
       "aliases": [
         "zyngbett"
-      ]
-    }
-  },
-  {
-    "id": "polkadot",
-    "handle": "POLKADOT",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "polkadot"
       ]
     }
   },
@@ -2756,16 +2709,6 @@
     }
   },
   {
-    "id": "goombo",
-    "handle": "GOOMBO",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "goombo"
-      ]
-    }
-  },
-  {
     "id": "kiji",
     "handle": "KIJI",
     "featured": false,
@@ -2863,16 +2806,6 @@
     "extra": {
       "aliases": [
         "mystic smash"
-      ]
-    }
-  },
-  {
-    "id": "brandontheasian",
-    "handle": "BRANDONTHEASIAN",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "brandontheasian"
       ]
     }
   },
@@ -3023,16 +2956,6 @@
     "extra": {
       "aliases": [
         "yangheart"
-      ]
-    }
-  },
-  {
-    "id": "windzero",
-    "handle": "Windzero",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "windzero"
       ]
     }
   },
@@ -3363,16 +3286,6 @@
     "extra": {
       "aliases": [
         "darheal"
-      ]
-    }
-  },
-  {
-    "id": "fcchamp",
-    "handle": "FC CHAMP",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "fc champ"
       ]
     }
   },
@@ -5907,16 +5820,6 @@
     }
   },
   {
-    "id": "jtene3",
-    "handle": "JTENE #3",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "jtene #3"
-      ]
-    }
-  },
-  {
     "id": "foxfox",
     "handle": "FOXFOX",
     "featured": false,
@@ -6473,16 +6376,6 @@
     "extra": {
       "aliases": [
         "nastynuts"
-      ]
-    }
-  },
-  {
-    "id": "illayt",
-    "handle": "Illa YT",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "illa yt"
       ]
     }
   },
@@ -7203,16 +7096,6 @@
     "extra": {
       "aliases": [
         "cloud80thresh"
-      ]
-    }
-  },
-  {
-    "id": "oislame",
-    "handle": "O. is lame",
-    "featured": false,
-    "extra": {
-      "aliases": [
-        "o. is lame"
       ]
     }
   },
