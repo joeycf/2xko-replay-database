@@ -7285,5 +7285,15 @@
         "oath"
       ]
     }
+  },
+  {
+    "id": "larpgod",
+    "handle": "LARPGOD",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "larpgod"
+      ]
+    }
   }
 ]

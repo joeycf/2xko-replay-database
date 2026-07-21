@@ -32360,5 +32360,49 @@
   "status": "ok",
   "era": "s2",
   "detectedAt": "2026-07-20"
+ },
+ "q2TFWgUR8MA": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 70,
+   "right": 39
+  },
+  "status": "ok",
+  "era": "s2",
+  "detectedAt": "2026-07-21"
+ },
+ "XKtFygKOoa4": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 51,
+   "right": 5
+  },
+  "status": "ok",
+  "era": "s2",
+  "detectedAt": "2026-07-21"
+ },
+ "7xOA3bo2BII": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s2",
+  "detectedAt": "2026-07-21"
+ },
+ "FPeGkmJG95w": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 8,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s2",
+  "detectedAt": "2026-07-21"
  }
 }

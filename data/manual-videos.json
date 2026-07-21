@@ -373,6 +373,668 @@
           "fuse": "2x-assist"
         }
       ]
+    },
+    {
+      "id": "z4g0nXVPy6k",
+      "title": "2XKO Major Top 8 - Globo vs. Supernoon - Frosty Faustings 2026",
+      "publishedAt": "2026-02-01T23:57:42Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Winners Semifinal",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/z4g0nXVPy6k/maxresdefault.jpg",
+      "durationSec": 719,
+      "viewCount": 2488,
+      "teams": [
+        {
+          "players": [
+            "Globo"
+          ],
+          "characters": [
+            "teemo",
+            "yasuo"
+          ],
+          "fuse": "double-down"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "darius"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "yZ51w-wbW8s",
+      "title": "2XKO Major Top 8 - Zando vs. bleed - Frosty Faustings 2026",
+      "publishedAt": "2026-02-01T23:59:00Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Winners Semifinal",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/yZ51w-wbW8s/maxresdefault.jpg",
+      "durationSec": 917,
+      "viewCount": 3376,
+      "teams": [
+        {
+          "players": [
+            "Zando"
+          ],
+          "characters": [
+            "vi",
+            "warwick"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "4FypBAwMOV4",
+      "title": "2XKO Major Top 8 - SonicFox / INZEM vs. Hikari - Frosty Faustings 2026",
+      "publishedAt": "2026-02-01T23:59:48Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Round 1",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/4FypBAwMOV4/maxresdefault.jpg",
+      "durationSec": 420,
+      "viewCount": 4182,
+      "teams": [
+        {
+          "players": [
+            "SonicFox",
+            "INZEM"
+          ],
+          "characters": [
+            "teemo",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "yasuo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "qAEoWt1dCaY",
+      "title": "2XKO Major Top 8 - Senshii vs. Kayne - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:22:18Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Round 1",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/qAEoWt1dCaY/maxresdefault.jpg",
+      "durationSec": 674,
+      "viewCount": 1772,
+      "teams": [
+        {
+          "players": [
+            "Senshii"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Kayne"
+          ],
+          "characters": [
+            "warwick",
+            "jinx"
+          ],
+          "fuse": "2x-assist"
+        }
+      ]
+    },
+    {
+      "id": "fniPaEENBhA",
+      "title": "2XKO Major Top 8 - SonicFox / INZEM vs. Globo - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:32:45Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Quarterfinal",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/fniPaEENBhA/maxresdefault.jpg",
+      "durationSec": 732,
+      "viewCount": 15345,
+      "teams": [
+        {
+          "players": [
+            "SonicFox",
+            "INZEM"
+          ],
+          "characters": [
+            "teemo",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Globo"
+          ],
+          "characters": [
+            "teemo",
+            "yasuo"
+          ],
+          "fuse": "double-down"
+        }
+      ]
+    },
+    {
+      "id": "K7cdRBwsc98",
+      "title": "2XKO Major Top 8 - Zando vs. Kayne - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:33:18Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Quarterfinal",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/K7cdRBwsc98/maxresdefault.jpg",
+      "durationSec": 468,
+      "viewCount": 1643,
+      "teams": [
+        {
+          "players": [
+            "Zando"
+          ],
+          "characters": [
+            "vi",
+            "warwick"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Kayne"
+          ],
+          "characters": [
+            "jinx",
+            "warwick"
+          ],
+          "fuse": "2x-assist"
+        }
+      ]
+    },
+    {
+      "id": "h_z-gXJWlu8",
+      "title": "2XKO Major Top 8 - Zando vs. Globo - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:56:25Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Semifinal",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/h_z-gXJWlu8/maxresdefault.jpg",
+      "durationSec": 717,
+      "viewCount": 2451,
+      "teams": [
+        {
+          "players": [
+            "Zando"
+          ],
+          "characters": [
+            "vi",
+            "warwick"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Globo"
+          ],
+          "characters": [
+            "teemo",
+            "yasuo"
+          ],
+          "fuse": "double-down"
+        }
+      ]
+    },
+    {
+      "id": "c_QvODVM0pw",
+      "title": "2XKO Major Winners Final - Supernoon vs. bleed - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:44:54Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Winners Final",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/c_QvODVM0pw/maxresdefault.jpg",
+      "durationSec": 1029,
+      "viewCount": 4383,
+      "teams": [
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "darius"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "d075s3HPm_0",
+      "title": "2XKO Major Losers Final - Supernoon vs. Globo - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T00:57:49Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Losers Final",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/d075s3HPm_0/maxresdefault.jpg",
+      "durationSec": 999,
+      "viewCount": 3593,
+      "teams": [
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "darius"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Globo"
+          ],
+          "characters": [
+            "teemo",
+            "yasuo"
+          ],
+          "fuse": "double-down"
+        }
+      ]
+    },
+    {
+      "id": "bSJgmmHctq8",
+      "title": "2XKO Major Grand Final - Supernoon vs. bleed - Frosty Faustings 2026",
+      "publishedAt": "2026-02-02T01:18:37Z",
+      "tournament": "Frosty Faustings 2026",
+      "round": "Grand Final",
+      "channelName": "Tampa Never Sleeps",
+      "thumbnail": "https://i.ytimg.com/vi/bSJgmmHctq8/maxresdefault.jpg",
+      "durationSec": 2270,
+      "viewCount": 91317,
+      "teams": [
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "darius"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "QWjpY279YCs",
+      "title": "Evo Japan 2026: 2XKO | Hikari vs Supernoon | Grand Final",
+      "publishedAt": "2026-05-01T13:19:49Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Grand Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/QWjpY279YCs/maxresdefault.jpg",
+      "durationSec": 1020,
+      "viewCount": 14914,
+      "teams": [
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "teemo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "CfTSFVvZB7o",
+      "title": "Evo Japan 2026: 2XKO | Wawa vs Supernoon | Losers Final",
+      "publishedAt": "2026-05-01T13:18:58Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/CfTSFVvZB7o/maxresdefault.jpg",
+      "durationSec": 1076,
+      "viewCount": 1888,
+      "teams": [
+        {
+          "players": [
+            "Wawa"
+          ],
+          "characters": [
+            "caitlyn",
+            "vi"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "ekko",
+            "teemo"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "-iJUvL6df6A",
+      "title": "Evo Japan 2026: 2XKO | Wawa vs Bleed | Losers Semifinal",
+      "publishedAt": "2026-05-01T12:25:48Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Semifinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/-iJUvL6df6A/maxresdefault.jpg",
+      "durationSec": 721,
+      "viewCount": 4441,
+      "teams": [
+        {
+          "players": [
+            "Wawa"
+          ],
+          "characters": [
+            "caitlyn",
+            "vi"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "C4KQHZ0NwS0",
+      "title": "Evo Japan 2026: 2XKO | Hikari vs Supernoon | Winners Final",
+      "publishedAt": "2026-05-01T12:16:30Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Winners Final",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/C4KQHZ0NwS0/maxresdefault.jpg",
+      "durationSec": 1145,
+      "viewCount": 1557,
+      "teams": [
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "teemo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "LeLxCI1Dbmk",
+      "title": "Evo Japan 2026: 2XKO | Ikoan vs Wawa | Losers Quarterfinal",
+      "publishedAt": "2026-05-01T11:45:50Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Quarterfinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/LeLxCI1Dbmk/maxresdefault.jpg",
+      "durationSec": 388,
+      "viewCount": 755,
+      "teams": [
+        {
+          "players": [
+            "Ikoan"
+          ],
+          "characters": [
+            "yasuo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Wawa"
+          ],
+          "characters": [
+            "caitlyn",
+            "vi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "dvph1agxMzg",
+      "title": "Evo Japan 2026: 2XKO | Leffen vs Bleed | Losers Quarterfinal",
+      "publishedAt": "2026-05-01T11:31:46Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Quarterfinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/dvph1agxMzg/maxresdefault.jpg",
+      "durationSec": 361,
+      "viewCount": 3440,
+      "teams": [
+        {
+          "players": [
+            "Leffen"
+          ],
+          "characters": [
+            "teemo",
+            "akali"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "5wXvM4dsliM",
+      "title": "Evo Japan 2026: 2XKO | Ikoan vs Poka | Losers Round 1",
+      "publishedAt": "2026-05-01T11:25:16Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Round 1",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/5wXvM4dsliM/maxresdefault.jpg",
+      "durationSec": 733,
+      "viewCount": 704,
+      "teams": [
+        {
+          "players": [
+            "Ikoan"
+          ],
+          "characters": [
+            "yasuo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Poka"
+          ],
+          "characters": [
+            "ahri",
+            "akali"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "Yk9oBhqs4q8",
+      "title": "Evo Japan 2026: 2XKO | Kayne vs Bleed | Losers Round 1",
+      "publishedAt": "2026-05-01T11:24:24Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Losers Round 1",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/Yk9oBhqs4q8/maxresdefault.jpg",
+      "durationSec": 385,
+      "viewCount": 1172,
+      "teams": [
+        {
+          "players": [
+            "Kayne"
+          ],
+          "characters": [
+            "warwick",
+            "jinx"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Bleed"
+          ],
+          "characters": [
+            "ekko",
+            "illaoi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "zkcW8rDOV3w",
+      "title": "Evo Japan 2026: 2XKO | Leffen vs Supernoon | Winners Semifinal",
+      "publishedAt": "2026-05-01T11:15:09Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Winners Semifinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/zkcW8rDOV3w/maxresdefault.jpg",
+      "durationSec": 492,
+      "viewCount": 2604,
+      "teams": [
+        {
+          "players": [
+            "Leffen"
+          ],
+          "characters": [
+            "akali",
+            "teemo"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Supernoon"
+          ],
+          "characters": [
+            "teemo",
+            "ekko"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
+    },
+    {
+      "id": "7cO631mYBIU",
+      "title": "Evo Japan 2026: 2XKO | Hikari vs Wawa | Winners Semifinal",
+      "publishedAt": "2026-05-01T10:18:45Z",
+      "tournament": "Evo Japan 2026",
+      "round": "Winners Semifinal",
+      "channelName": "Evo Events",
+      "thumbnail": "https://i.ytimg.com/vi/7cO631mYBIU/maxresdefault.jpg",
+      "durationSec": 760,
+      "viewCount": 3108,
+      "teams": [
+        {
+          "players": [
+            "Hikari"
+          ],
+          "characters": [
+            "akali",
+            "ahri"
+          ],
+          "fuse": "freestyle"
+        },
+        {
+          "players": [
+            "Wawa"
+          ],
+          "characters": [
+            "caitlyn",
+            "vi"
+          ],
+          "fuse": "freestyle"
+        }
+      ]
     }
   ]
 }

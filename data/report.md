@@ -1,14 +1,14 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-20T15:02:25.485Z._
+_Generated 2026-07-21T03:39:03.481Z._
 
 ## Summary
-- Total videos: **2952**
-- High confidence: **2931**  ·  Low confidence: **11**  ·  Manual (hand-authored): **10**
+- Total videos: **2976**
+- High confidence: **2935**  ·  Low confidence: **11**  ·  Manual (hand-authored): **30**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **93.8%** · patch: **0.0%** · fuse: **100.0%**
 
-## Manual videos (10)
+## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
 
 | id | tournament | round | todo |
@@ -23,6 +23,26 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `fPU2yAfyziM` | Evo 2026 | Losers Round 1 |  |
 | `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals |  |
 | `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals |  |
+| `z4g0nXVPy6k` | Frosty Faustings 2026 | Winners Semifinal |  |
+| `yZ51w-wbW8s` | Frosty Faustings 2026 | Winners Semifinal |  |
+| `4FypBAwMOV4` | Frosty Faustings 2026 | Losers Round 1 |  |
+| `qAEoWt1dCaY` | Frosty Faustings 2026 | Losers Round 1 |  |
+| `fniPaEENBhA` | Frosty Faustings 2026 | Losers Quarterfinal |  |
+| `K7cdRBwsc98` | Frosty Faustings 2026 | Losers Quarterfinal |  |
+| `h_z-gXJWlu8` | Frosty Faustings 2026 | Losers Semifinal |  |
+| `c_QvODVM0pw` | Frosty Faustings 2026 | Winners Final |  |
+| `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
+| `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
+| `QWjpY279YCs` | Evo Japan 2026 | Grand Final |  |
+| `CfTSFVvZB7o` | Evo Japan 2026 | Losers Final |  |
+| `-iJUvL6df6A` | Evo Japan 2026 | Losers Semifinal |  |
+| `C4KQHZ0NwS0` | Evo Japan 2026 | Winners Final |  |
+| `LeLxCI1Dbmk` | Evo Japan 2026 | Losers Quarterfinal |  |
+| `dvph1agxMzg` | Evo Japan 2026 | Losers Quarterfinal |  |
+| `5wXvM4dsliM` | Evo Japan 2026 | Losers Round 1 |  |
+| `Yk9oBhqs4q8` | Evo Japan 2026 | Losers Round 1 |  |
+| `zkcW8rDOV3w` | Evo Japan 2026 | Winners Semifinal |  |
+| `7cO631mYBIU` | Evo Japan 2026 | Winners Semifinal |  |
 
 ## Low-confidence records (11)
 | id | channel | reason | raw title |
