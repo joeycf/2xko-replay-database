@@ -26,6 +26,31 @@ const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, '.vercel/output/static');
 
+// The base the build was generated under. DETECTED, not assumed: the committed
+// default is '/2xko/', but a root-based build (NUXT_APP_BASE_URL=/) is a
+// legitimate local preview and the suite must pass against either. nitro's
+// static presets nest the whole site under the base inside publicDir, so the
+// prerendered index.html marks the base directory.
+//
+// This suite assumed the root for the whole of Phase 5: every navigation and
+// artifact read was root-relative against a '/2xko/' build, and the prereq
+// guard below reported "no generated output" for a build that was in fact
+// present and correct.
+function detectBase(): string | null {
+  if (!existsSync(OUT)) return null;
+  if (existsSync(join(OUT, 'index.html'))) return '';
+  for (const name of readdirSync(OUT)) {
+    if (existsSync(join(OUT, name, 'index.html'))) return `/${name}`;
+  }
+  return null;
+}
+const detected = detectBase();
+if (detected === null) {
+  console.error('✖ no generated output — run `npm run generate` first');
+  process.exit(1);
+}
+const BASE: string = detected;
+
 // Node-side expectations use the SAME record set the site carries: the rich
 // substrate minus overrides.json exclusions (scripts/emit.ts applies the same
 // filter when emitting replays.json).
@@ -74,7 +99,7 @@ const MIME: Record<string, string> = {
   '.txt': 'text/plain',
   '.ico': 'image/x-icon',
 };
-function serve(): Promise<{ base: string; close: () => void }> {
+function serve(): Promise<{ at: (path: string) => string; close: () => void }> {
   const server = createServer((req, res) => {
     const path = decodeURIComponent((req.url ?? '/').split('?')[0]!);
     const candidates = [join(OUT, path), join(OUT, path, 'index.html'), join(OUT, '404.html')];
@@ -92,7 +117,11 @@ function serve(): Promise<{ base: string; close: () => void }> {
   return new Promise((resolve) => {
     server.listen(0, '127.0.0.1', () => {
       const addr = server.address() as { port: number };
-      resolve({ base: `http://127.0.0.1:${addr.port}`, close: () => server.close() });
+      const origin = `http://127.0.0.1:${addr.port}`;
+      // Serve the static ROOT (as Vercel does) and address pages under the
+      // base — re-rooting the server at the base dir would 404 the site's own
+      // absolute /<base>/_nuxt/… asset URLs.
+      resolve({ at: (path: string) => `${origin}${BASE}${path}`, close: () => server.close() });
     });
   });
 }
@@ -130,7 +159,7 @@ async function resultCount(page: Page): Promise<number> {
 }
 
 // ── suite ─────────────────────────────────────────────────────────────────────
-async function run(browser: Browser, base: string): Promise<void> {
+async function run(browser: Browser, at: (path: string) => string): Promise<void> {
   const ctx = await browser.newContext({ viewport: { width: 1360, height: 960 } });
   const page = await ctx.newPage();
 
@@ -141,7 +170,7 @@ async function run(browser: Browser, base: string): Promise<void> {
   // teal/Space Grotesk (dev masks this — only the built bundle can prove it).
   // Computed styles are the assertion, never source text.
   await test('theme presence: built output computes #ff2e88 / Chakra Petch, no raw @theme ships', async () => {
-    await page.goto(`${base}/`);
+    await page.goto(at(`/`));
     const t = (await page.evaluate(`(() => {
       const s = getComputedStyle(document.body);
       return {
@@ -157,7 +186,7 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(t.bodyFont.includes('Barlow'), `body font "${t.bodyFont}" — --font-ui not applied`);
     // mechanism tripwire: an UNCOMPILED @theme block in any built stylesheet
     // is exactly how the regression shipped
-    const cssDir = join(OUT, '_nuxt');
+    const cssDir = join(OUT, BASE, '_nuxt');
     const raw = readdirSync(cssDir)
       .filter((f) => f.endsWith('.css'))
       .filter((f) => /@theme[\s{]/.test(readFileSync(join(cssDir, f), 'utf8')));
@@ -175,14 +204,14 @@ async function run(browser: Browser, base: string): Promise<void> {
     );
     for (const id of excludedIds)
       expect(!emitted.some((r) => r.id === id), `excluded ${id} still present`);
-    await page.goto(`${base}/`);
+    await page.goto(at(`/`));
     expect((await resultCount(page)) === videos.length, 'Browse count includes an excluded record');
   });
 
   // (a) source facet counts match Node-side counts from videos.json
   const bySource = (id: string) => videos.filter((v) => v.channel === id).length;
   await test(`source filter: ?src=manual shows ${bySource('manual')} tournament VODs`, async () => {
-    await page.goto(`${base}/?src=manual`);
+    await page.goto(at(`/?src=manual`));
     const shown = await resultCount(page);
     expect(shown === bySource('manual'), `result-count ${shown} ≠ ${bySource('manual')}`);
   });
@@ -193,9 +222,9 @@ async function run(browser: Browser, base: string): Promise<void> {
   const freestyleN = videos.filter((v) => orMatch(v, ['freestyle'])).length;
   const fusePairN = videos.filter((v) => orMatch(v, ['juggernaut', '2x-assist'])).length;
   await test(`fuse filter: ?fuse=freestyle shows ${freestyleN}, juggernaut+2x-assist OR-match ${fusePairN}`, async () => {
-    await page.goto(`${base}/?fuse=freestyle`);
+    await page.goto(at(`/?fuse=freestyle`));
     expect((await resultCount(page)) === freestyleN, 'freestyle count');
-    await page.goto(`${base}/?fuse=juggernaut,2x-assist`);
+    await page.goto(at(`/?fuse=juggernaut,2x-assist`));
     expect((await resultCount(page)) === fusePairN, 'OR-pair count');
   });
 
@@ -204,14 +233,14 @@ async function run(browser: Browser, base: string): Promise<void> {
   // LEGACY deep-link gate: this exact URL predates the layer refactor.
   const jugN = videos.filter((v) => orMatch(v, ['juggernaut'])).length;
   await test(`legacy fuse deep link: /?fuse=juggernaut filters to ${jugN} (param survives, no strip)`, async () => {
-    await page.goto(`${base}/?fuse=juggernaut`);
+    await page.goto(at(`/?fuse=juggernaut`));
     await page.waitForFunction(`new URL(location.href).searchParams.get('fuse') === 'juggernaut'`);
     expect((await resultCount(page)) === jugN, 'juggernaut count');
   });
 
   // (f3) fuse chips round-trip (URL ⇄ chip state ⇄ URL) + active-chips/Clear
   await test('fuse deep-link round-trips (URL ⇄ chip state), Clear all clears fuse=', async () => {
-    await page.goto(`${base}/?fuse=juggernaut,2x-assist`);
+    await page.goto(at(`/?fuse=juggernaut,2x-assist`));
     await page.waitForSelector('[data-testid="fuse-chip-juggernaut"]');
     for (const [id, want] of [
       ['juggernaut', 'true'],
@@ -241,7 +270,7 @@ async function run(browser: Browser, base: string): Promise<void> {
     (v) => v.fusesUnordered && v.teams.length === 2 && (v.teams[0]!.fuse || v.teams[1]!.fuse),
   )!;
   await test(`modal: ordered ${ordered.id} shows per-side tags, unordered ${unordered.id} stays unbound`, async () => {
-    await page.goto(`${base}/?v=${ordered.id}`);
+    await page.goto(at(`/?v=${ordered.id}`));
     await page.waitForSelector('[data-testid="team-fuse-a"]', { timeout: 30_000 });
     const a = norm(await page.textContent('[data-testid="team-fuse-a"]'));
     const b = norm(await page.textContent('[data-testid="team-fuse-b"]'));
@@ -252,7 +281,7 @@ async function run(browser: Browser, base: string): Promise<void> {
       'unordered row must be absent',
     );
 
-    await page.goto(`${base}/?v=${unordered.id}`);
+    await page.goto(at(`/?v=${unordered.id}`));
     await page.waitForSelector('[data-testid="fuses-unordered"]', { timeout: 30_000 });
     const row = norm(await page.textContent('[data-testid="fuses-unordered"]'));
     for (const t of unordered.teams) {
@@ -266,7 +295,7 @@ async function run(browser: Browser, base: string): Promise<void> {
   const cardQuery = (v: VideoRecord) =>
     encodeURIComponent(v.teams.flatMap((t) => t.players.map((p) => p.displayName)).join(' '));
   await test(`card: ordered ${ordered.id} pins per-side, unordered ${unordered.id} stays unbound`, async () => {
-    await page.goto(`${base}/?q=${cardQuery(ordered)}`);
+    await page.goto(at(`/?q=${cardQuery(ordered)}`));
     const oCard = `[data-replay-id="${ordered.id}"]`;
     await page.waitForSelector(`${oCard} [data-testid="card-fuse-a"]`, { timeout: 30_000 });
     const a = norm(await page.textContent(`${oCard} [data-testid="card-fuse-a"]`));
@@ -278,7 +307,7 @@ async function run(browser: Browser, base: string): Promise<void> {
       'ordered card must not show the unbound row',
     );
 
-    await page.goto(`${base}/?q=${cardQuery(unordered)}`);
+    await page.goto(at(`/?q=${cardQuery(unordered)}`));
     const uCard = `[data-replay-id="${unordered.id}"]`;
     await page.waitForSelector(`${uCard} [data-testid="card-fuses-unordered"]`, {
       timeout: 30_000,
@@ -300,7 +329,7 @@ async function run(browser: Browser, base: string): Promise<void> {
 
   // (f4) the coverage-honesty line rides the facet note
   await test(`coverage line: ${videos.filter((v) => v.teams.some((t) => t.fuse)).length.toLocaleString('en-US')} of ${videos.length.toLocaleString('en-US')}`, async () => {
-    await page.goto(`${base}/`);
+    await page.goto(at(`/`));
     await page.waitForSelector('[data-testid="fuse-facet-note"]');
     const line = await page.textContent('[data-testid="fuse-facet-note"]');
     const withFuse = videos.filter((v) => v.teams.some((t) => t.fuse)).length;
@@ -311,9 +340,9 @@ async function run(browser: Browser, base: string): Promise<void> {
   // (a2) patch facet, single + OR
   const byPatch = (keys: string[]) => videos.filter((v) => keys.includes(eraKey(v.season))).length;
   await test(`patch filter: ?patch=S1 shows ${byPatch(['S1'])}, S1,S2 OR-match ${byPatch(['S1', 'S2'])}`, async () => {
-    await page.goto(`${base}/?patch=S1`);
+    await page.goto(at(`/?patch=S1`));
     expect((await resultCount(page)) === byPatch(['S1']), 'single-patch count');
-    await page.goto(`${base}/?patch=S1,S2`);
+    await page.goto(at(`/?patch=S1,S2`));
     expect((await resultCount(page)) === byPatch(['S1', 'S2']), 'OR-patch count');
   });
 
@@ -327,7 +356,7 @@ async function run(browser: Browser, base: string): Promise<void> {
     v.teams.some((t) => t.players.some((p) => p.id === partner.id)),
   ).length;
   await test(`duo sides: ?p=${partner.id} matches ${partnerN} replays incl. duo teams`, async () => {
-    await page.goto(`${base}/?p=${partner.id}`);
+    await page.goto(at(`/?p=${partner.id}`));
     const shown = await resultCount(page);
     expect(shown === partnerN, `result-count ${shown} ≠ ${partnerN}`);
     const card = `[data-replay-id="${duo.id}"]`;
@@ -346,7 +375,7 @@ async function run(browser: Browser, base: string): Promise<void> {
     v.teams.some((t) => [pa, pb].every((c) => t.characters.includes(c))),
   ).length;
   await test(`same-side chain: c=${pa},${pb} ${bothN} → side=1 narrows to ${sameSideN}`, async () => {
-    await page.goto(`${base}/?c=${pa},${pb}`);
+    await page.goto(at(`/?c=${pa},${pb}`));
     expect((await resultCount(page)) === bothN, 'AND count');
     await page.click('[data-testid="co-occurrence-toggle"]');
     await page.waitForFunction(`new URL(location.href).searchParams.get('side') === '1'`);
@@ -358,12 +387,12 @@ async function run(browser: Browser, base: string): Promise<void> {
     (v) => v.channel === 'proReplays' && eraKey(v.season) === 'S1',
   ).length;
   await test(`legacy params: ?ch=pro&s=1 → src=proReplays&patch=S1 (${proS1})`, async () => {
-    await page.goto(`${base}/?ch=pro&s=1`);
+    await page.goto(at(`/?ch=pro&s=1`));
     await page.waitForFunction(
       `new URL(location.href).searchParams.get('src') === 'proReplays' && new URL(location.href).searchParams.get('patch') === 'S1' && !new URL(location.href).searchParams.get('ch')`,
     );
     expect((await resultCount(page)) === proS1, 'translated count');
-    await page.goto(`${base}/?type=tournament`);
+    await page.goto(at(`/?type=tournament`));
     await page.waitForFunction(`new URL(location.href).searchParams.get('src') === 'manual'`);
   });
 
@@ -371,7 +400,7 @@ async function run(browser: Browser, base: string): Promise<void> {
   const usageRanked = Object.entries(stats.fuseUsage).sort((x, y) => y[1] - x[1]);
   const [topId, topN] = usageRanked[0]!;
   await test(`stats: fuse usage panel ranks ${topId} first at ${topN.toLocaleString('en-US')}`, async () => {
-    await page.goto(`${base}/stats`);
+    await page.goto(at(`/stats`));
     await page.waitForSelector('[data-testid="fuse-usage-bars"]');
     // counts animate up when the panel scrolls into view — jump there, then
     // wait for the count-up to land on the real value
@@ -406,7 +435,7 @@ async function run(browser: Browser, base: string): Promise<void> {
   // …the numbers are prerendered into the HTML (no-JS check on the file), and
   // the coverage-honesty line moved into the panel hint
   await test('stats: fuse numbers + coverage line prerendered in /stats/index.html', () => {
-    const html = readFileSync(join(OUT, 'stats/index.html'), 'utf8');
+    const html = readFileSync(join(OUT, BASE, 'stats/index.html'), 'utf8');
     expect(html.includes(topN.toLocaleString('en-US')), `static HTML missing ${topN}`);
     expect(html.includes(fuses[topId]!.name), `static HTML missing ${fuses[topId]!.name}`);
     expect(
@@ -431,7 +460,7 @@ async function run(browser: Browser, base: string): Promise<void> {
     return null;
   })();
   await test(`stats: synergy tooltip (${pairKey} = ${pairN} on both mirror cells, "same champion" diagonal)`, async () => {
-    await page.goto(`${base}/stats`);
+    await page.goto(at(`/stats`));
     await page.waitForSelector('[data-testid="synergy-matrix"]');
     const names = pairKey.split('|').map((id) => champById[id]!.name);
     const cells = await page.$$(`[data-testid="synergy-matrix"] [data-pair="${pairKey}"]`);
@@ -467,13 +496,15 @@ async function run(browser: Browser, base: string): Promise<void> {
   // (j) dev-only surfaces (authoring/diagnostic pages + their API routes) must
   // not exist in the generated output — the served route falls to 404.html
   await test('dev-only: /dev/* and /api/* absent from output, /dev/manual-entry 404s', async () => {
-    expect(!existsSync(join(OUT, 'dev')), 'OUT/dev/ must not be prerendered');
-    expect(!existsSync(join(OUT, 'api')), 'OUT/api/ must not exist in static output');
-    const res = await fetch(`${base}/dev/manual-entry`);
+    expect(!existsSync(join(OUT, BASE, 'dev')), 'OUT/<base>/dev/ must not be prerendered');
+    expect(!existsSync(join(OUT, BASE, 'api')), 'OUT/<base>/api/ must not exist in static output');
+    const res = await fetch(at(`/dev/manual-entry`));
     expect(res.status === 404, `/dev/manual-entry served ${res.status}, want 404`);
     // root-level /dev routes only — player slugs like /players/devillion are fine
     expect(
-      !/<loc>https?:\/\/[^/<]+\/dev(\/|<)/.test(readFileSync(join(OUT, 'sitemap.xml'), 'utf8')),
+      !/<loc>https?:\/\/[^/<]+\/dev(\/|<)/.test(
+        readFileSync(join(OUT, BASE, 'sitemap.xml'), 'utf8'),
+      ),
       'sitemap must not list /dev routes',
     );
   });
@@ -488,7 +519,10 @@ async function run(browser: Browser, base: string): Promise<void> {
   )
     .trim()
     .replace(/\/$/, '');
-  const html = (p: string) => readFileSync(join(OUT, p), 'utf8');
+  // Page URLs live under the base post-cutover (canonicals, OG, JSON-LD,
+  // sitemap <loc>s all carry it); `site` alone is the bare origin.
+  const siteBase = `${site}${BASE}`;
+  const html = (p: string) => readFileSync(join(OUT, BASE, p), 'utf8');
   const ld = (doc: string): Record<string, unknown>[] =>
     [...doc.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) =>
       JSON.parse(m[1]!),
@@ -497,19 +531,20 @@ async function run(browser: Browser, base: string): Promise<void> {
   const playerId = Object.keys(stats.playerCharacters ?? {})[0]!;
   await test(`SEO: canonicals/OG on ${site}, JSON-LD valid, /champions/* preserved, sitemap/robots`, () => {
     const home = html('index.html');
-    expect(home.includes(`<link rel="canonical" href="${site}/">`), 'home canonical');
-    expect(home.includes(`content="${site}/og-default.png"`), 'home og:image absolute');
+    expect(home.includes(`<link rel="canonical" href="${siteBase || '/'}"`), 'home canonical');
+    expect(home.includes(`content="${siteBase}/og-default.png"`), 'home og:image absolute');
     const homeLd = ld(home);
     const websiteNode = homeLd.find((n) => n['@type'] === 'WebSite') as
       { potentialAction?: { target?: { urlTemplate?: string } } } | undefined;
     expect(!!homeLd.find((n) => n['@type'] === 'Organization'), 'Organization node');
     expect(
-      websiteNode?.potentialAction?.target?.urlTemplate === `${site}/?q={search_term_string}`,
+      websiteNode?.potentialAction?.target?.urlTemplate ===
+        `${siteBase}${BASE ? '' : '/'}?q={search_term_string}`,
       'SearchAction target',
     );
     const champ = html(`champions/${champId}/index.html`);
     expect(
-      champ.includes(`<link rel="canonical" href="${site}/champions/${champId}">`),
+      champ.includes(`<link rel="canonical" href="${siteBase}/champions/${champId}"`),
       'champ canonical',
     );
     expect(champ.includes('/img/champions/'), 'champ og:image uses splash art');
@@ -519,18 +554,18 @@ async function run(browser: Browser, base: string): Promise<void> {
     expect(crumbs?.itemListElement?.length === 3, 'champ breadcrumb depth');
     expect(crumbs?.itemListElement?.[1]?.name === 'Champions', 'champ breadcrumb noun (terms)');
     expect(
-      crumbs?.itemListElement?.[2]?.item === `${site}/champions/${champId}`,
+      crumbs?.itemListElement?.[2]?.item === `${siteBase}/champions/${champId}`,
       'champ breadcrumb leaf',
     );
     expect(!!champLd.find((n) => n['@type'] === 'CollectionPage'), 'champ CollectionPage');
-    expect(champ.includes('<a href="/players/'), 'champ → player entity anchors (pilots)');
+    expect(champ.includes(`<a href="${BASE}/players/`), 'champ → player entity anchors (pilots)');
     const player = html(`players/${playerId}/index.html`);
     const pLd = ld(player);
     const pCrumbs = pLd.find((n) => n['@type'] === 'BreadcrumbList') as
       { itemListElement?: { item?: string }[] } | undefined;
-    expect(pCrumbs?.itemListElement?.[1]?.item === `${site}/players`, 'player breadcrumbs');
+    expect(pCrumbs?.itemListElement?.[1]?.item === `${siteBase}/players`, 'player breadcrumbs');
     expect(
-      player.includes('<a href="/champions/'),
+      player.includes(`<a href="${BASE}/champions/`),
       'player → champion entity anchor (main champion)',
     );
     for (const [route, doc] of [
@@ -543,17 +578,18 @@ async function run(browser: Browser, base: string): Promise<void> {
     }
     const sm = html('sitemap.xml');
     expect(
-      sm.includes(`<loc>${site}/</loc>`) &&
-        sm.includes(`<loc>${site}/champions/${champId}</loc>`) &&
-        sm.includes(`<loc>${site}/players/${playerId}</loc>`) &&
-        sm.includes(`<loc>${site}/stats</loc>`),
+      sm.includes(`<loc>${siteBase || `${site}/`}</loc>`) &&
+        sm.includes(`<loc>${siteBase}/champions/${champId}</loc>`) &&
+        sm.includes(`<loc>${siteBase}/players/${playerId}</loc>`) &&
+        sm.includes(`<loc>${siteBase}/stats</loc>`),
       'sitemap host + core/entity routes',
     );
     expect(!sm.includes('/characters'), 'sitemap must not leak /characters routes');
     expect(!sm.includes('/health'), 'sitemap excludes /health');
     const robots = html('robots.txt');
     expect(
-      robots.includes('Disallow: /health') && robots.includes(`Sitemap: ${site}/sitemap.xml`),
+      robots.includes(`Disallow: ${BASE}/health`) &&
+        robots.includes(`Sitemap: ${siteBase}/sitemap.xml`),
       'robots.txt',
     );
     expect(
@@ -635,19 +671,17 @@ function testCronGuard(): Promise<void> {
 }
 
 // ── main ──────────────────────────────────────────────────────────────────────
-if (!existsSync(join(OUT, 'index.html'))) {
-  console.error('✖ no generated output — run `npm run generate` first');
-  process.exit(1);
-}
-console.log('e2e suite (static output + cron guard):');
-const { base, close } = await serve();
+// (the generated-output guard runs at detectBase(), above — it has to, since
+// every path in this file is resolved against the detected base)
+console.log(`e2e suite (static output${BASE ? ` under ${BASE}` : ''} + cron guard):`);
+const { at, close } = await serve();
 const browser = await chromium.launch({
   executablePath: '/usr/bin/google-chrome',
   headless: true,
   args: ['--no-sandbox', '--disable-dev-shm-usage'],
 });
 try {
-  await run(browser, base);
+  await run(browser, at);
   await testCronGuard();
 } finally {
   await browser.close();
