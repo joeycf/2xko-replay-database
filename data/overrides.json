@@ -2563,7 +2563,7 @@
     "fusesUnordered": false
   },
   "ccgcjwxKpYc": {
-    "//": "stray non-2XKO upload (Donkey Kong Bananza stream) captured by a tracked channel \u2014 excluded from the site (Phase 3.5)",
+    "//": "stray non-2XKO upload (Donkey Kong Bananza stream) captured by a tracked channel — excluded from the site (Phase 3.5)",
     "exclude": true
   },
   "GFkB2fdE9Ds": {
@@ -4708,7 +4708,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -4722,7 +4722,7 @@
           "teemo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -4735,7 +4735,8 @@
       "inzem"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   "bSLaYRtsG-c": {
     "//": "bestReplays: uses the FIRE emoji instead of the U+25B0 sentinel",
@@ -4752,7 +4753,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -4766,7 +4767,7 @@
           "yasuo",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -4780,10 +4781,11 @@
       "k7showoff"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   "gqNlEkzOZzE": {
-    "//": "bestReplays: three U+25B0 segments ('... \u25b0 Rank 1 NA \u25b0 2XKO Pro Replays')",
+    "//": "bestReplays: three U+25B0 segments ('... ▰ Rank 1 NA ▰ 2XKO Pro Replays')",
     "teams": [
       {
         "side": "left",
@@ -4797,7 +4799,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -4811,7 +4813,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -4825,7 +4827,8 @@
       "zleeeek7"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   "FuFAzK7EomA": {
     "//": "bestReplays: dangling trailing 'vs' after the second team",
@@ -4842,7 +4845,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -4860,7 +4863,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -4875,406 +4878,2159 @@
     ],
     "parseConfidence": "high",
     "rawUnparsed": null,
-    "matchType": "duo"
+    "matchType": "duo",
+    "fusesUnordered": false
   },
   "brA96hoo2FQ": {
-    "//": "duplicate of jTsjY8Fyn_o (bestReplays) \u2014 \u0394dur 0s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of jTsjY8Fyn_o (bestReplays) — Δdur 0s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "jTsjY8Fyn_o",
     "exclude": true
   },
   "3mNstgV45ww": {
-    "//": "duplicate of 64zOSpwxW6Y (bestReplays) \u2014 \u0394dur 1s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 64zOSpwxW6Y (bestReplays) — Δdur 1s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "64zOSpwxW6Y",
     "exclude": true
   },
   "T-LY3TKoiMY": {
-    "//": "duplicate of gDatjxCFBcE (proReplays) \u2014 \u0394dur 1s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gDatjxCFBcE (proReplays) — Δdur 1s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "gDatjxCFBcE",
     "exclude": true
   },
   "cSvFCdaM_3o": {
-    "//": "duplicate of NBoyYjsgjcs (bestReplays) \u2014 \u0394dur 2s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of NBoyYjsgjcs (bestReplays) — Δdur 2s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "NBoyYjsgjcs",
     "exclude": true
   },
   "Jg2E9Anq9UU": {
-    "//": "duplicate of dJ58W1LsMXU (bestReplays) \u2014 \u0394dur 3s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of dJ58W1LsMXU (bestReplays) — Δdur 3s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "dJ58W1LsMXU",
     "exclude": true
   },
   "UORUpNz-BDk": {
-    "//": "duplicate of 3MKH3KsTvqs (proReplays) \u2014 \u0394dur 5s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 3MKH3KsTvqs (proReplays) — Δdur 5s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "3MKH3KsTvqs",
     "exclude": true
   },
   "wKCrazk-ujM": {
-    "//": "duplicate of C2RtHVzDHeU (proReplays) \u2014 \u0394dur 0s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of C2RtHVzDHeU (proReplays) — Δdur 0s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "C2RtHVzDHeU",
     "exclude": true
   },
   "JQ8Upyn4egA": {
-    "//": "duplicate of gu_dOXUlpi0 (proReplays) \u2014 \u0394dur 4s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gu_dOXUlpi0 (proReplays) — Δdur 4s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "gu_dOXUlpi0",
     "exclude": true
   },
   "3I_61M0m_bI": {
-    "//": "duplicate of CfJLgZs9IB8 (proReplays) \u2014 \u0394dur 5s, thumb hamming 3 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of CfJLgZs9IB8 (proReplays) — Δdur 5s, thumb hamming 3 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "CfJLgZs9IB8",
     "exclude": true
   },
   "_sXzbXlmr0s": {
-    "//": "duplicate of qs_MYsOqBqY (proReplays) \u2014 \u0394dur 1s, thumb hamming 6 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of qs_MYsOqBqY (proReplays) — Δdur 1s, thumb hamming 6 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "qs_MYsOqBqY",
     "exclude": true
   },
   "XF7a6QC4ANY": {
-    "//": "duplicate of WGmIizmwvyg (proReplays) \u2014 \u0394dur 1s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of WGmIizmwvyg (proReplays) — Δdur 1s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "WGmIizmwvyg",
     "exclude": true
   },
   "MUh04xAFMkY": {
-    "//": "duplicate of HneWcsxWto8 (bestReplays) \u2014 \u0394dur 5s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of HneWcsxWto8 (bestReplays) — Δdur 5s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "HneWcsxWto8",
     "exclude": true
   },
   "kVH-ovJh15E": {
-    "//": "duplicate of WGmIizmwvyg (proReplays) \u2014 \u0394dur 0s, thumb hamming 17 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of WGmIizmwvyg (proReplays) — Δdur 0s, thumb hamming 17 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "WGmIizmwvyg",
     "exclude": true
   },
   "hpEC7h2ewe0": {
-    "//": "duplicate of v73Sha8YqZM (proReplays) \u2014 \u0394dur 1s, thumb hamming 18 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of v73Sha8YqZM (proReplays) — Δdur 1s, thumb hamming 18 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "v73Sha8YqZM",
     "exclude": true
   },
   "2b5sWeZw3tY": {
-    "//": "duplicate of a3SYvunJS4c (proReplays) \u2014 \u0394dur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of a3SYvunJS4c (proReplays) — Δdur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "a3SYvunJS4c",
     "exclude": true
   },
   "vUb4nmEBRyI": {
-    "//": "duplicate of gBuXEn3l4bQ (proReplays) \u2014 \u0394dur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gBuXEn3l4bQ (proReplays) — Δdur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "gBuXEn3l4bQ",
     "exclude": true
   },
   "Z14fclFI168": {
-    "//": "duplicate of eDVqNckixek (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of eDVqNckixek (proReplays) — Δdur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "eDVqNckixek",
     "exclude": true
   },
   "fQzOS8hp4Rs": {
-    "//": "duplicate of nW9E4FN5rH8 (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of nW9E4FN5rH8 (proReplays) — Δdur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "nW9E4FN5rH8",
     "exclude": true
   },
   "ZsWmK5mxr0g": {
-    "//": "duplicate of WchhFlVGqiI (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of WchhFlVGqiI (proReplays) — Δdur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "WchhFlVGqiI",
     "exclude": true
   },
   "ekFp0yT7M2w": {
-    "//": "duplicate of OQAk2lg8S8Y (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of OQAk2lg8S8Y (proReplays) — Δdur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "OQAk2lg8S8Y",
     "exclude": true
   },
   "K_9k9i2sbC0": {
-    "//": "duplicate of 3bUi_3a_EeQ (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 3bUi_3a_EeQ (proReplays) — Δdur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "3bUi_3a_EeQ",
     "exclude": true
   },
   "U8705KfrOSk": {
-    "//": "duplicate of gnq-fVtfNoc (proReplays) \u2014 \u0394dur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gnq-fVtfNoc (proReplays) — Δdur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "gnq-fVtfNoc",
     "exclude": true
   },
   "i8VnspWeE6M": {
-    "//": "duplicate of ukE3xLncFog (highLevel) \u2014 \u0394dur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of ukE3xLncFog (highLevel) — Δdur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "ukE3xLncFog",
     "exclude": true
   },
   "_Dc9NP7bqlE": {
-    "//": "duplicate of RWKpgaeMdL4 (proReplays) \u2014 \u0394dur 1s, thumb hamming 28 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of RWKpgaeMdL4 (proReplays) — Δdur 1s, thumb hamming 28 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "RWKpgaeMdL4",
     "exclude": true
   },
   "wxrzjoW0kVM": {
-    "//": "duplicate of IA48tkMDJys (proReplays) \u2014 \u0394dur 0s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of IA48tkMDJys (proReplays) — Δdur 0s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "IA48tkMDJys",
     "exclude": true
   },
   "ihv3j5ixKQE": {
-    "//": "duplicate of BtL4tNq4qTU (proReplays) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of BtL4tNq4qTU (proReplays) — Δdur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "BtL4tNq4qTU",
     "exclude": true
   },
   "zlE7hfFoya4": {
-    "//": "duplicate of L8L7iBfB_04 (proReplays) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of L8L7iBfB_04 (proReplays) — Δdur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "L8L7iBfB_04",
     "exclude": true
   },
   "LrkS6j9B4ko": {
-    "//": "duplicate of gQSUfLSCcS8 (highLevel) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gQSUfLSCcS8 (highLevel) — Δdur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "gQSUfLSCcS8",
     "exclude": true
   },
   "3LpLDn0ocII": {
-    "//": "duplicate of KWDEKx5OMKU (highLevel) \u2014 \u0394dur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of KWDEKx5OMKU (highLevel) — Δdur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "KWDEKx5OMKU",
     "exclude": true
   },
   "jsGlFwRJj8g": {
-    "//": "duplicate of P_N9O5e-mFI (highLevel) \u2014 \u0394dur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of P_N9O5e-mFI (highLevel) — Δdur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "P_N9O5e-mFI",
     "exclude": true
   },
   "WQ6m-nAfbHM": {
-    "//": "duplicate of P8nPvpi-XQc (proReplays) \u2014 \u0394dur 0s, thumb hamming 33 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of P8nPvpi-XQc (proReplays) — Δdur 0s, thumb hamming 33 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "P8nPvpi-XQc",
     "exclude": true
   },
   "JjMrrLhOW1E": {
-    "//": "duplicate of bvkG0A6Mqaw (highLevel) \u2014 \u0394dur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of bvkG0A6Mqaw (highLevel) — Δdur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "bvkG0A6Mqaw",
     "exclude": true
   },
   "6aTj2fOqqEc": {
-    "//": "duplicate of 5k1fbyXR7BU (proReplays) \u2014 \u0394dur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 5k1fbyXR7BU (proReplays) — Δdur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "5k1fbyXR7BU",
     "exclude": true
   },
   "yGpOVK6Ss3g": {
-    "//": "duplicate of LcWLcPi8qZw (proReplays) \u2014 \u0394dur 1s, thumb hamming 38 [tier A, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of LcWLcPi8qZw (proReplays) — Δdur 1s, thumb hamming 38 [tier A, data:replay-dupes 2026-07-21]",
     "dupeOf": "LcWLcPi8qZw",
     "exclude": true
   },
   "WJi5g9PT8OY": {
-    "//": "duplicate of -mhePaolKU8 (bestReplays) \u2014 \u0394dur 7s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of -mhePaolKU8 (bestReplays) — Δdur 7s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "-mhePaolKU8",
     "exclude": true
   },
   "V5rrhstwjG4": {
-    "//": "duplicate of rQXnQu5nuew (bestReplays) \u2014 \u0394dur 9s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of rQXnQu5nuew (bestReplays) — Δdur 9s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "rQXnQu5nuew",
     "exclude": true
   },
   "e99BeFjOaHE": {
-    "//": "duplicate of P1y3IXTFjVw (bestReplays) \u2014 \u0394dur 12s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of P1y3IXTFjVw (bestReplays) — Δdur 12s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "P1y3IXTFjVw",
     "exclude": true
   },
   "YC10nhe6vGM": {
-    "//": "duplicate of LsoqZjtf1tk (bestReplays) \u2014 \u0394dur 13s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of LsoqZjtf1tk (bestReplays) — Δdur 13s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "LsoqZjtf1tk",
     "exclude": true
   },
   "msn8ZPHcbF8": {
-    "//": "duplicate of h9M4FxN6zus (bestReplays) \u2014 \u0394dur 15s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of h9M4FxN6zus (bestReplays) — Δdur 15s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "h9M4FxN6zus",
     "exclude": true
   },
   "mXS8hBMwalM": {
-    "//": "duplicate of ycoyxvZbLsc (bestReplays) \u2014 \u0394dur 17s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of ycoyxvZbLsc (bestReplays) — Δdur 17s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "ycoyxvZbLsc",
     "exclude": true
   },
   "VHCOkHko9Gc": {
-    "//": "duplicate of Z2iRerSQP1o (bestReplays) \u2014 \u0394dur 20s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of Z2iRerSQP1o (bestReplays) — Δdur 20s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "Z2iRerSQP1o",
     "exclude": true
   },
   "2MQ3y0Lv-zc": {
-    "//": "duplicate of 8kMa9sWF00M (bestReplays) \u2014 \u0394dur 29s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 8kMa9sWF00M (bestReplays) — Δdur 29s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "8kMa9sWF00M",
     "exclude": true
   },
   "NTHyE4CevJk": {
-    "//": "duplicate of obmCLL527fU (proReplays) \u2014 \u0394dur 18s, thumb hamming 1 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of obmCLL527fU (proReplays) — Δdur 18s, thumb hamming 1 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "obmCLL527fU",
     "exclude": true
   },
   "m8LbQDPBr24": {
-    "//": "duplicate of f9bqjWLJfEw (bestReplays) \u2014 \u0394dur 24s, thumb hamming 3 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of f9bqjWLJfEw (bestReplays) — Δdur 24s, thumb hamming 3 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "f9bqjWLJfEw",
     "exclude": true
   },
   "loR2l7OWBsU": {
-    "//": "duplicate of 5XPauPOD3gQ (bestReplays) \u2014 \u0394dur 8s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 5XPauPOD3gQ (bestReplays) — Δdur 8s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "5XPauPOD3gQ",
     "exclude": true
   },
   "1pi3JdE8VxY": {
-    "//": "duplicate of iHaH_fJ1klU (bestReplays) \u2014 \u0394dur 21s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of iHaH_fJ1klU (bestReplays) — Δdur 21s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "iHaH_fJ1klU",
     "exclude": true
   },
   "FYP4Ok5d9AY": {
-    "//": "duplicate of JDAic-QHNkA (bestReplays) \u2014 \u0394dur 25s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of JDAic-QHNkA (bestReplays) — Δdur 25s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "JDAic-QHNkA",
     "exclude": true
   },
   "tzoqhhQaUc0": {
-    "//": "duplicate of c41_x79_Uko (bestReplays) \u2014 \u0394dur 29s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of c41_x79_Uko (bestReplays) — Δdur 29s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "c41_x79_Uko",
     "exclude": true
   },
   "CxNryxqWcfc": {
-    "//": "duplicate of Qdkr7-tHvSE (bestReplays) \u2014 \u0394dur 16s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of Qdkr7-tHvSE (bestReplays) — Δdur 16s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "Qdkr7-tHvSE",
     "exclude": true
   },
   "4grufXBYoA8": {
-    "//": "duplicate of 3MKH3KsTvqs (proReplays) \u2014 \u0394dur 21s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 3MKH3KsTvqs (proReplays) — Δdur 21s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "3MKH3KsTvqs",
     "exclude": true
   },
   "Kl9_vIN1MQc": {
-    "//": "duplicate of f9bqjWLJfEw (bestReplays) \u2014 \u0394dur 22s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of f9bqjWLJfEw (bestReplays) — Δdur 22s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "f9bqjWLJfEw",
     "exclude": true
   },
   "wgEUF_hyEp8": {
-    "//": "duplicate of JsmNmS0EELo (proReplays) \u2014 \u0394dur 15s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of JsmNmS0EELo (proReplays) — Δdur 15s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "JsmNmS0EELo",
     "exclude": true
   },
   "nVauQloI4rU": {
-    "//": "duplicate of 6tX9jHfbW-E (bestReplays) \u2014 \u0394dur 25s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 6tX9jHfbW-E (bestReplays) — Δdur 25s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "6tX9jHfbW-E",
     "exclude": true
   },
   "TN5wGID7NvQ": {
-    "//": "duplicate of kpiTwMNctZc (proReplays) \u2014 \u0394dur 6s, thumb hamming 8 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of kpiTwMNctZc (proReplays) — Δdur 6s, thumb hamming 8 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "kpiTwMNctZc",
     "exclude": true
   },
   "xiZz5cbnHIU": {
-    "//": "duplicate of d_3ws1SFwfY (bestReplays) \u2014 \u0394dur 4s, thumb hamming 9 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of d_3ws1SFwfY (bestReplays) — Δdur 4s, thumb hamming 9 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "d_3ws1SFwfY",
     "exclude": true
   },
   "awC3mTNW1kg": {
-    "//": "duplicate of sTc9uzChz4k (proReplays) \u2014 \u0394dur 14s, thumb hamming 10 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of sTc9uzChz4k (proReplays) — Δdur 14s, thumb hamming 10 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "sTc9uzChz4k",
     "exclude": true
   },
   "Z384Fsn8jNY": {
-    "//": "duplicate of CGm8Sii0rm0 (highLevel) \u2014 \u0394dur 9s, thumb hamming 11 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of CGm8Sii0rm0 (highLevel) — Δdur 9s, thumb hamming 11 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "CGm8Sii0rm0",
     "exclude": true
   },
   "5ohcTnRdgLg": {
-    "//": "duplicate of 3cRCC8hrCPY (bestReplays) \u2014 \u0394dur 9s, thumb hamming 12 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 3cRCC8hrCPY (bestReplays) — Δdur 9s, thumb hamming 12 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "3cRCC8hrCPY",
     "exclude": true
   },
   "eXtTgmpd9io": {
-    "//": "duplicate of lur2F67Cpl0 (proReplays) \u2014 \u0394dur 2s, thumb hamming 21 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of lur2F67Cpl0 (proReplays) — Δdur 2s, thumb hamming 21 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "lur2F67Cpl0",
     "exclude": true
   },
   "zYLAN89cT1c": {
-    "//": "duplicate of kB-z026ZCac (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of kB-z026ZCac (proReplays) — Δdur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "kB-z026ZCac",
     "exclude": true
   },
   "Ur3aOx2dBik": {
-    "//": "duplicate of cqPbRkGueoM (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of cqPbRkGueoM (proReplays) — Δdur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "cqPbRkGueoM",
     "exclude": true
   },
   "9X3ODsdhMBA": {
-    "//": "duplicate of KbdmMSRW94c (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of KbdmMSRW94c (proReplays) — Δdur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "KbdmMSRW94c",
     "exclude": true
   },
   "-07QDvkY8lQ": {
-    "//": "duplicate of OkiPqzU82t0 (proReplays) \u2014 \u0394dur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of OkiPqzU82t0 (proReplays) — Δdur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "OkiPqzU82t0",
     "exclude": true
   },
   "eiCuKC2n3c0": {
-    "//": "duplicate of CRNSHxr6nSg (proReplays) \u2014 \u0394dur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of CRNSHxr6nSg (proReplays) — Δdur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "CRNSHxr6nSg",
     "exclude": true
   },
   "E7n980LAQgY": {
-    "//": "duplicate of na7cyyRHRnA (proReplays) \u2014 \u0394dur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of na7cyyRHRnA (proReplays) — Δdur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "na7cyyRHRnA",
     "exclude": true
   },
   "gFVU3YBjx7o": {
-    "//": "duplicate of sQLdbvj_g9E (proReplays) \u2014 \u0394dur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of sQLdbvj_g9E (proReplays) — Δdur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "sQLdbvj_g9E",
     "exclude": true
   },
   "9v7B-MzM2Dw": {
-    "//": "duplicate of bw1RIo1w8bc (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of bw1RIo1w8bc (proReplays) — Δdur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "bw1RIo1w8bc",
     "exclude": true
   },
   "0t3Hi4k13Ps": {
-    "//": "duplicate of CC72x8GUbjU (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of CC72x8GUbjU (proReplays) — Δdur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "CC72x8GUbjU",
     "exclude": true
   },
   "XYBUuJssNJM": {
-    "//": "duplicate of 20mYuprzh0U (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of 20mYuprzh0U (proReplays) — Δdur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "20mYuprzh0U",
     "exclude": true
   },
   "WW2pxvOqvmg": {
-    "//": "duplicate of gCDtZgLubqw (proReplays) \u2014 \u0394dur 2s, thumb hamming 27 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of gCDtZgLubqw (proReplays) — Δdur 2s, thumb hamming 27 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "gCDtZgLubqw",
     "exclude": true
   },
   "V8AtC8Bbt8Y": {
-    "//": "duplicate of doGpKvqLIxE (proReplays) \u2014 \u0394dur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of doGpKvqLIxE (proReplays) — Δdur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "doGpKvqLIxE",
     "exclude": true
   },
   "tJZgB5uk3xg": {
-    "//": "duplicate of u6UrQkc-JzM (proReplays) \u2014 \u0394dur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of u6UrQkc-JzM (proReplays) — Δdur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "u6UrQkc-JzM",
     "exclude": true
   },
   "glBMSa4A_MY": {
-    "//": "duplicate of ig58uIwBnIE (proReplays) \u2014 \u0394dur 2s, thumb hamming 29 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of ig58uIwBnIE (proReplays) — Δdur 2s, thumb hamming 29 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "ig58uIwBnIE",
     "exclude": true
   },
   "Ef-GpwIaQlE": {
-    "//": "duplicate of YxmkHBGQ4eo (proReplays) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of YxmkHBGQ4eo (proReplays) — Δdur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "YxmkHBGQ4eo",
     "exclude": true
   },
   "qJo4SroipVM": {
-    "//": "duplicate of w9TSYg7eHyI (proReplays) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of w9TSYg7eHyI (proReplays) — Δdur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "w9TSYg7eHyI",
     "exclude": true
   },
   "iTnhxKCf2Fg": {
-    "//": "duplicate of pgIl1EP0wAM (highLevel) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of pgIl1EP0wAM (highLevel) — Δdur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "pgIl1EP0wAM",
     "exclude": true
   },
   "16ipbNi-Ayk": {
-    "//": "duplicate of DcwMN-sgZPM (highLevel) \u2014 \u0394dur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of DcwMN-sgZPM (highLevel) — Δdur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "DcwMN-sgZPM",
     "exclude": true
   },
   "zOxF6d5Erg8": {
-    "//": "duplicate of m73o2loYPNE (proReplays) \u2014 \u0394dur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of m73o2loYPNE (proReplays) — Δdur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "m73o2loYPNE",
     "exclude": true
   },
   "E_GAxG6-SN8": {
-    "//": "duplicate of SefWg7J9Puc (proReplays) \u2014 \u0394dur 2s, thumb hamming 35 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of SefWg7J9Puc (proReplays) — Δdur 2s, thumb hamming 35 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "SefWg7J9Puc",
     "exclude": true
   },
   "-pwBcYYZgOs": {
-    "//": "duplicate of HAyvyFBBE0g (proReplays) \u2014 \u0394dur 2s, thumb hamming 37 [tier B, data:replay-dupes 2026-07-21]",
+    "//": "duplicate of HAyvyFBBE0g (proReplays) — Δdur 2s, thumb hamming 37 [tier B, data:replay-dupes 2026-07-21]",
     "dupeOf": "HAyvyFBBE0g",
     "exclude": true
+  },
+  "ZMBJ8mnkH9k": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "illonu13",
+            "displayName": "ILLONU13"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "bou",
+            "displayName": "BOU"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "darius"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "315uMxpVfdI": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          },
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "wuux",
+            "displayName": "WUUX"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "-WjeiBnwdgo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          },
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "shadowbeibei",
+            "displayName": "SHADOW BEIBEI"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "vi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "dRwe4wsn7_I": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "llonu13",
+            "displayName": "LLONU13"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "partyman",
+            "displayName": "PARTYMAN"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "darius"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "X5fxNbatNbE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "llonu13",
+            "displayName": "LLONU13"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ocha",
+            "displayName": "OCHA"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "XrPG3s9CiR4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "llonu13",
+            "displayName": "LLONU13"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "icyie",
+            "displayName": "ICYIE"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "oEUJylnp5Vk": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ascendant",
+            "displayName": "ASCENDANT"
+          }
+        ],
+        "characters": [
+          "darius",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "mp-D3FQWUUw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "dende",
+            "displayName": "DENDE"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "blitzcrank"
+        ],
+        "fuse": "sidekick"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "c6fischl",
+            "displayName": "C6 FISCHL"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "yasuo"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "ws3K4f4-uH4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "yzl",
+            "displayName": "YZL"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "darius"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "hotdog29",
+            "displayName": "HOTDOG29"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "darius"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "hHynfgtz44Q": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "wagbanyas",
+            "displayName": "WAG BAN YAS"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "darius"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "atya118",
+            "displayName": "ATYA118"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "1Bk2Gi23xzs": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          },
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "linlinhk",
+            "displayName": "LINLINHK"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "6P9ziD__K-Y": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          },
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "novatokun",
+            "displayName": "NOVATOKUN"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "braum"
+        ],
+        "fuse": "juggernaut"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "S2Hs9nsorjw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bleed",
+            "displayName": "Bleed"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "k7showoff",
+            "displayName": "K7 Showoff"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "warwick"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "jwWwYH5-Qpo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "habaduba",
+            "displayName": "Habaduba"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "vi"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "flirTBjDHOs": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ame",
+            "displayName": "AME"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "vFV6XetSwgI": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "kayrim",
+            "displayName": "Kayrim"
+          }
+        ],
+        "characters": [
+          "braum",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Qsdk4HAuwQU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "tsunodoriru",
+            "displayName": "TSUNODORIRU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ikoan",
+            "displayName": "IKOAN"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "8Kq8BTnfpKU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "lightwhisp",
+            "displayName": "LightWhisp"
+          }
+        ],
+        "characters": [
+          "braum",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "bleed",
+            "displayName": "Bleed"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "H_-xadBGKcY": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          },
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "poemeenprose",
+            "displayName": "POEME EN PROSE"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "ggqiVopwYOI": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "leffen",
+            "displayName": "LEFFEN"
+          },
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "unsafeonhit",
+            "displayName": "UnsafeonHit"
+          }
+        ],
+        "characters": [
+          "vi",
+          "jinx"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "duyDKvmbHyw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "chrisg",
+            "displayName": "CHRISG"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "smitty",
+            "displayName": "SMITTY"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "warwick"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": true
+  },
+  "PTpf4AZ1WhA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "kawamatsu",
+            "displayName": "KAWAMATSU"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zhifter",
+            "displayName": "ZHIFTER"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "vi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "1haXie-Stuw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "xk3io",
+            "displayName": "XK3IO"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "braum"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "-dz1oYz1mkk": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "broski",
+            "displayName": "BROSKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zaloshu",
+            "displayName": "ZALOSHU"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Ew_otjubpYw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bleed",
+            "displayName": "Bleed"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "strayerin",
+            "displayName": "STRAYERIN"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "vi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "4WE2nEoSsGE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "poka3",
+            "displayName": "POKA3"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "dzdog",
+            "displayName": "DZDOG"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "YlTe_XTRQRc": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "hikari",
+            "displayName": "Hikari"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "jordana",
+            "displayName": "JORDANA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "yasuo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "B0XUCDFDIiQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "eduardohook",
+            "displayName": "EDUARDOHOOK"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "yasuo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "jordana",
+            "displayName": "JORDANA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "yasuo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "b7y_0teVR_g": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "jaazzrap",
+            "displayName": "JAAZZRAP"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "warwick"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "illa",
+            "displayName": "ILLA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "3R8lKk3BTHo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "wawa",
+            "displayName": "Wawa"
+          },
+          {
+            "id": "harbaoquartier",
+            "displayName": "HARBA O QUARTIER"
+          }
+        ],
+        "characters": [
+          "vi",
+          "darius"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "lucifrax",
+            "displayName": "LUCIFRAX"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "UKgr4nIEmXo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "tsunodoriru",
+            "displayName": "TSUNODORIRU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "darius"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "geebot",
+            "displayName": "GEEBOT"
+          }
+        ],
+        "characters": [
+          "braum",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "6xnHCDgJ2Oc": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "llonu13",
+            "displayName": "LLONU13"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "invisk",
+            "displayName": "INVIS K"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "teemo"
+        ],
+        "fuse": "sidekick"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "qDVgxcWGZeU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "chrisg",
+            "displayName": "CHRISG"
+          },
+          {
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "uncivilninja",
+            "displayName": "Uncivil Ninja"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "sidekick"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "PjhrNKyTG9Q": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "zhifter",
+            "displayName": "ZHIFTER"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "vi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "dzdog",
+            "displayName": "DZDOG"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "StWlyKH5k0A": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "marcpq",
+            "displayName": "MARCPQ"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "stil",
+            "displayName": "STIL"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "b1welT8YKgs": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zane",
+            "displayName": "Zane"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "hWwQi2oIQvQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "remyr",
+            "displayName": "REMYR"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inahk",
+            "displayName": "INAHK"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "ciY2CtAeKFE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "invisk",
+            "displayName": "INVIS K"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "teemo"
+        ],
+        "fuse": "sidekick"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "dzdog",
+            "displayName": "DZDOG"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "TeNg6VQC0KE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "leffen",
+            "displayName": "LEFFEN"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "warwick"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "serudos",
+            "displayName": "SERUDOS"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "JQ_szqgmbSQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "leffen",
+            "displayName": "LEFFEN"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "warwick"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "yasha",
+            "displayName": "Yasha"
+          },
+          {
+            "id": "verso",
+            "displayName": "Verso"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "V9LRb6K7O2o": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "chrisg",
+            "displayName": "CHRISG"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zane",
+            "displayName": "Zane"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "4k6fsNQEo-k": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mehdijoestar",
+            "displayName": "MEHDI JOESTAR"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inahk",
+            "displayName": "INAHK"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "YEiMSXBeGFo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "opal",
+            "displayName": "Opal"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "petitparapluie",
+            "displayName": "PETIT PARAPLUIE"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "9EbyloN5lII": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "kawamatsu",
+            "displayName": "KAWAMATSU"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "bongobill",
+            "displayName": "BONGOBILL"
+          }
+        ],
+        "characters": [
+          "braum",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "zAZmgKDrziQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "kawamatsu",
+            "displayName": "KAWAMATSU"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "kktcat",
+            "displayName": "KKTCAT"
+          }
+        ],
+        "characters": [
+          "darius",
+          "jinx"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "uX4FNdtlHS8": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "kayrim",
+            "displayName": "Kayrim"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "vall3y",
+            "displayName": "VALL3Y"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Thriuypg9Ts": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "shine",
+            "displayName": "Shine"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "vall3y",
+            "displayName": "VALL3Y"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "ULLGsLod3pU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "jinx"
+        ],
+        "fuse": "juggernaut"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "semiij",
+            "displayName": "Semiij"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "AWnPXW_KkwE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "redditto",
+            "displayName": "RedDitto"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "finessdan",
+            "displayName": "FinessDan"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "7Oasj9hBTTU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "hiki",
+            "displayName": "HIKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "vall3y",
+            "displayName": "VALL3Y"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "E2rFp7lAMl4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "pikay",
+            "displayName": "PIKAY"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "nguyendeptrai",
+            "displayName": "NGUYEN DEP TRAI"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "arakVeEN8oU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "leffen",
+            "displayName": "LEFFEN"
+          }
+        ],
+        "characters": [
+          "caitlyn",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "vall3y",
+            "displayName": "VALL3Y"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "teemo"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
   }
 }
