@@ -7032,5 +7032,1518 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "HuTZ_QYS-LA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "nguyendeptrai",
+            "displayName": "NGUYEN DEP TRAI"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "dende",
+            "displayName": "DENDE"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "teemo"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "y3fxyM8SUEE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "sonicfox",
+            "displayName": "SonicFox"
+          },
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "souldemonxl",
+            "displayName": "SoulDemonXL"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "MpffgHOP5Rc": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mekasue",
+            "displayName": "MEKASUE"
+          }
+        ],
+        "characters": [
+          "darius",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "nguyendeptrai",
+            "displayName": "NGUYEN DEP TRAI"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "v1mse01T8XU": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "chrisg",
+            "displayName": "CHRISG"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "matt",
+            "displayName": "Matt"
+          }
+        ],
+        "characters": [
+          "darius",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "lzk3AdPz3hY": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bongobill",
+            "displayName": "BONGOBILL"
+          }
+        ],
+        "characters": [
+          "braum",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "tigerd",
+            "displayName": "TIGER D"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "hf_Yo8nNvy4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "luciensfl",
+            "displayName": "LucienSFL"
+          },
+          {
+            "id": "yata",
+            "displayName": "Yata"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zyngbett",
+            "displayName": "ZYNGBETT"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "darius"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "IT_YJMkBoSg": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "geekydave",
+            "displayName": "GEEKYDAVE"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "braum"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "n310AsWh0Vs": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "nguyendeptrai",
+            "displayName": "NGUYEN DEP TRAI"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "spiral",
+            "displayName": "SPIRAL"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "vNBIzYVIT7s": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "emmy",
+            "displayName": "Emmy"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "marcpq",
+            "displayName": "MARCPQ"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "ugMyMakb6Dw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "strayerin",
+            "displayName": "STRAYERIN"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "vi"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "illa",
+            "displayName": "ILLA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Rv3S-lyO5Xg": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "josch",
+            "displayName": "Josch"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "braum"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "jeanbackdash",
+            "displayName": "JEAN BACKDASH"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "vi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "P5CA00hH3RE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "chrisg",
+            "displayName": "CHRISG"
+          }
+        ],
+        "characters": [
+          "akali",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "jayoh",
+            "displayName": "JAYOH"
+          }
+        ],
+        "characters": [
+          "vi",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "72NzpHaIZrM": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "theredrito",
+            "displayName": "THEREDRITO"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "darius"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "mako",
+            "displayName": "Mako"
+          }
+        ],
+        "characters": [
+          "akali",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Ifaw66tmw40": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "hoodimin",
+            "displayName": "HOODIMIN"
+          }
+        ],
+        "characters": [
+          "darius",
+          "blitzcrank"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Gip_qxuc7bg": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "2gzleeeek7",
+            "displayName": "2G ZLEEEEK7"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "teemo"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zane",
+            "displayName": "Zane"
+          }
+        ],
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "HYkdebwjH44": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "freezesy34",
+            "displayName": "FREEZESY34"
+          }
+        ],
+        "characters": [
+          "caitlyn",
+          "warwick"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "illa",
+            "displayName": "ILLA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "_11l1Zsf_c0": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "sunmate",
+            "displayName": "SUNMATE"
+          }
+        ],
+        "characters": [
+          "darius",
+          "braum"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "samoel",
+            "displayName": "Samoel"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "caitlyn"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "obBTONzk7mI": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "galladiated",
+            "displayName": "Galladiated"
+          },
+          {
+            "id": "james06",
+            "displayName": "JAMES06"
+          }
+        ],
+        "characters": [
+          "darius",
+          "caitlyn"
+        ],
+        "fuse": "teamfight"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "lightwhisp",
+            "displayName": "LightWhisp"
+          },
+          {
+            "id": "obelisk",
+            "displayName": "OBELISK"
+          }
+        ],
+        "characters": [
+          "akali",
+          "darius"
+        ],
+        "fuse": "teamfight"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "3utcEw7ljN0": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bongobill",
+            "displayName": "BONGOBILL"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "braum"
+        ],
+        "fuse": "teamfight"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "bou",
+            "displayName": "BOU"
+          }
+        ],
+        "characters": [
+          "darius",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "xGNp43hGK9A": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mekasue",
+            "displayName": "MEKASUE"
+          },
+          {
+            "id": "alamode",
+            "displayName": "ALAMODE"
+          }
+        ],
+        "characters": [
+          "darius",
+          "teemo"
+        ],
+        "fuse": "teamfight"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "lestatfgc",
+            "displayName": "LESTATFGC"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "blitzcrank"
+        ],
+        "fuse": "sidekick"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "R7Fsi77L6c4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mekasue",
+            "displayName": "MEKASUE"
+          },
+          {
+            "id": "padmeatball",
+            "displayName": "PADMEATBALL"
+          }
+        ],
+        "characters": [
+          "darius",
+          "caitlyn"
+        ],
+        "fuse": "teamfight"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "runis",
+            "displayName": "RUNIS"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "jinx"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Arp-CYq1YdY": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bsluck",
+            "displayName": "BSLUCK"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "bocchifight",
+            "displayName": "BOCCHI FIGHT"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "ahri"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "IhgEhd2XuBA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "ikura",
+            "displayName": "IKURA"
+          }
+        ],
+        "characters": [
+          "darius",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "invisk",
+            "displayName": "INVIS K"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "caitlyn"
+        ],
+        "fuse": "sidekick"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "3QkaVRa5aPw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "llon",
+            "displayName": "LLON"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "quri",
+            "displayName": "QURI"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "warwick"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "PcXXqwiv-gQ": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mrchupy01",
+            "displayName": "MRCHUPY01"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "caitlyn"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "kamuisenketsu",
+            "displayName": "KAMUI SENKETSU"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "E-DVZcqu6Qw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "strayerin",
+            "displayName": "STRAYERIN"
+          }
+        ],
+        "characters": [
+          "senna",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "souldemonxl",
+            "displayName": "SoulDemonXL"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "BAj68NMB460": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "ronnichu",
+            "displayName": "Ronnichu"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "filipinochamp",
+            "displayName": "Filipino Champ"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "SlWwkce6pVY": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "mako",
+            "displayName": "Mako"
+          }
+        ],
+        "characters": [
+          "akali",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "windzero7",
+            "displayName": "Windzero7"
+          }
+        ],
+        "characters": [
+          "darius",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "cfg-T7FvULw": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "yosep",
+            "displayName": "YOSEP"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "illa",
+            "displayName": "ILLA"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "sf0hj2ZJ7yg": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "hiki",
+            "displayName": "HIKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "jeanbackdash",
+            "displayName": "JEAN BACKDASH"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "vi"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "FBegwKNOr1s": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "moyashi765p",
+            "displayName": "MOYASHI 765P"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "akali"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "aaaasan",
+            "displayName": "AAAA-SAN"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "senna"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "1oMNfGnXYX4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "lightwhisp",
+            "displayName": "LightWhisp"
+          }
+        ],
+        "characters": [
+          "braum",
+          "darius"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ken",
+            "displayName": "Ken"
+          }
+        ],
+        "characters": [
+          "caitlyn",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "mROssiYX3U8": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "thresh"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "8kxrfQmwYmA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "thresh"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "ken",
+            "displayName": "Ken"
+          }
+        ],
+        "characters": [
+          "caitlyn",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "8MrrDwVgsik": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "dylnyan",
+            "displayName": "Dylnyan"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "blitzcrank"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "pink",
+            "displayName": "Pink"
+          }
+        ],
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "cDjkDaOcEmI": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "dizzymx",
+            "displayName": "DizzyMX"
+          }
+        ],
+        "characters": [
+          "akali",
+          "vi"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "geesel",
+            "displayName": "Geese L"
+          }
+        ],
+        "characters": [
+          "darius",
+          "jinx"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Y43mWpa8Lw8": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "quainty",
+            "displayName": "Quainty"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "eWnEUk55kXo": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "nopro",
+            "displayName": "NoPro"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "vi"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zyngbett",
+            "displayName": "ZYNGBETT"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "darius"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "je7tzmYtGuE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          },
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "184cmyamamotian",
+            "displayName": "184CM YAMAMOTIAN"
+          }
+        ],
+        "characters": [
+          "darius",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "dsmk8SFBD8o": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "k7showoff",
+            "displayName": "K7 Showoff"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "thresh"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "maze",
+            "displayName": "Maze"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "woM014aJb_4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zealous5000",
+            "displayName": "ZEALOUS5000"
+          }
+        ],
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "zruW-z1N4ew": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "j2aXN3Ep1Fk": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "finessdan",
+            "displayName": "FinessDan"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "mako",
+            "displayName": "Mako"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "OsxC-ls7N9A": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "supernoon",
+            "displayName": "Supernoon"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "souldemonxl",
+            "displayName": "SoulDemonXL"
+          }
+        ],
+        "characters": [
+          "akali",
+          "ahri"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "Io8PsyxBwDk": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "james06",
+            "displayName": "JAMES06"
+          }
+        ],
+        "characters": [
+          "senna",
+          "yasuo"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "yosep",
+            "displayName": "YOSEP"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
   }
 }
