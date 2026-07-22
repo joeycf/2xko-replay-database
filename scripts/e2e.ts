@@ -224,6 +224,29 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     expect(shown === bySource('bestReplays'), `result-count ${shown} ≠ ${bySource('bestReplays')}`);
   });
 
+  // (a3) source filter is consolidated to Online + Tournament groups (v0.5.5). The
+  // 'Online' chip writes ?src=proReplays,highLevel,bestReplays as a set; assert both
+  // that the summed count is right AND that the per-channel chips are gone (the
+  // SourceBadge on cards still shows the real channel — spans, not buttons — so we
+  // scope the consolidation check to <button> text).
+  const onlineIds = ['proReplays', 'highLevel', 'bestReplays'];
+  const onlineCount = onlineIds.reduce((n, id) => n + bySource(id), 0);
+  await test(`source groups: Online chip filters to ${onlineCount}, per-channel chips gone`, async () => {
+    await page.goto(at(`/`));
+    await page.waitForSelector('[data-testid="result-count"]');
+    const btns: string[] = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('button')).map((b) => (b.textContent || '').trim()),
+    );
+    expect(btns.includes('Online') && btns.includes('Tournament'), 'Online + Tournament chips render');
+    expect(
+      !btns.includes('Pro Replays') && !btns.includes('High Level') && !btns.includes('Best Replays'),
+      'per-channel source chips are consolidated away',
+    );
+    await page.goto(at(`/?src=${onlineIds.join(',')}`));
+    const shown = await resultCount(page);
+    expect(shown === onlineCount, `Online set count ${shown} ≠ ${onlineCount}`);
+  });
+
   // (f1) fuse facet counts match Node-side counts (the shipped a/a2 tests)
   const orMatch = (v: VideoRecord, ids: string[]) =>
     v.teams.some((t) => t.fuse && ids.includes(t.fuse));

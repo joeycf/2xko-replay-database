@@ -53,16 +53,25 @@ export default defineAppConfig({
       { id: 'manual', name: 'Tournament' },
       { id: 'bestReplays', name: 'Best Replays' },
     ],
+    // Filter chips are consolidated to two groups (the per-video SourceBadge keeps
+    // the real channel name from sourceChannels above). Toggling a group filters its
+    // member ids as a set via the same ?src= param, so per-channel deep links still
+    // work. 'Online' spans the three YouTube channels; 'Tournament' is the manual VODs.
+    sourceGroups: [
+      { id: 'online', name: 'Online', sources: ['proReplays', 'highLevel', 'bestReplays'] },
+      { id: 'tournament', name: 'Tournament', sources: ['manual'] },
+    ],
     // 2XKO's vocabulary + the live site's indexed URL segment (v0.2.0):
-    // nav/headings/labels render champion/team/season/channel, and the
-    // characters section stays at /champions/*.
+    // nav/headings/labels render champion/team/season, and the characters section
+    // stays at /champions/*. 'source' uses the engine default (the filter now groups
+    // channels into Online/Tournament rather than naming the "channel" facet).
     terms: {
       character: 'champion',
       characters: 'champions',
       side: 'team',
       patch: 'season',
       patches: 'seasons',
-      source: 'channel',
+      source: 'source',
     },
     characterRouteSegment: 'champions',
     fonts: {
