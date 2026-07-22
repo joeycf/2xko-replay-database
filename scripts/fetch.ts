@@ -190,8 +190,16 @@ function parseIsoDuration(iso: string | undefined): number {
 // ── reconnaissance ────────────────────────────────────────────────────────────
 const SEASON_RE = /Season\s*(\d+)/i;
 const PATCH_RE = /Patch\s*:/i;
-// Expected title shape: 2XKO ▰ …(…) vs …(…) ▰ …
-const EXPECTED_SHAPE = /^2XKO\s*▰\s*.+\([^)]*\)\s+vs\s+.+\([^)]*\)\s*▰.+$/i;
+// Approximate structural heuristic for the recon console — NOT an exact mirror of
+// parse.ts (that would mean running the parser). It approximates the real failure
+// modes: parse strips the FIRST ▰ (prefix) and LAST ▰ (suffix), so a valid title has
+// a "(chars) vs (chars)" core that is itself ▰-free, with at most one leading and one
+// trailing ▰-segment. A third ▰ (a mid-title accolade like "▰ Rank 1 NA ▰"), or
+// trailing text after the second parens ("… vs B (x-y) 5 Matches ▰ …"), or a non-▰
+// separator (🔥) is a genuine failure and is flagged. 2XKO is intentionally NOT
+// required — a title parses on its structure, whether 2XKO sits in the lead or the
+// branding. Console-only; report.md is the authoritative low-confidence record.
+const EXPECTED_SHAPE = /^[^▰]*(?:▰\s*)?[^▰]*?\([^)]*\)\s+vs\s+[^▰]*?\([^)]*\)\s*(?:▰[^▰]*)?$/i;
 
 // Build one matcher for any fuse name/alias from data/fuses.json.
 async function loadFuseMatcher(): Promise<RegExp> {

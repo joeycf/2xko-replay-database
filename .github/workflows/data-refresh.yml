@@ -1,13 +1,9 @@
 name: Daily data refresh
 
 on:
-  # TEMPORARILY DISABLED while the bestReplays channel is being prepared locally.
-  # A scheduled run would refresh + commit the current 2-channel data on main,
-  # diverging it from the in-progress 3-channel work and forcing a merge/reconcile
-  # at push time. Restore this schedule in the commit that lands the new channel.
-  # schedule:
-  #   # 06:17 UTC daily (odd minute to dodge cron rush)
-  #   - cron: '17 6 * * *'
+  schedule:
+    # 06:17 UTC daily (odd minute to dodge cron rush)
+    - cron: '17 6 * * *'
   workflow_dispatch:
 
 permissions:

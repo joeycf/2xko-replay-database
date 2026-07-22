@@ -60,7 +60,7 @@ export interface ReplayFuseFields {
   fusesUnordered?: true;
 }
 
-export type ChannelKey = 'proReplays' | 'highLevel';
+export type ChannelKey = 'proReplays' | 'highLevel' | 'bestReplays';
 /** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
 export type VideoSource = ChannelKey | 'manual';
 export type MatchType = 'ranked' | 'tournament' | 'duo';

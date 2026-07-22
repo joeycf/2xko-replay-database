@@ -240,17 +240,28 @@ function spreadOf(list: FuseGapItem[]): Spread {
 function spreadTable(list: FuseGapItem[]): string {
   const s = spreadOf(list);
   const eras = Object.keys(s).sort((a, b) => eraRank(a) - eraRank(b));
+  // Columns are DERIVED from the items, never hardcoded: this table used to name
+  // proReplays/highLevel literally and compute total as pro+high, so a third channel
+  // both vanished from the diagnostic AND silently under-reported every row total.
+  // Deriving from `list` (not CHANNELS) also omits columns for channels with no gaps,
+  // which is the right behaviour for a per-bucket table.
+  const chans = [...new Set(list.map((i) => i.channel))].sort();
+  // Build every row from one [era, ...chans, total] array so the column count is
+  // identical across header/separator/rows even when chans is empty (an all-pending
+  // bucket) — the old `| era | ${chans.join} | total |` emitted a phantom empty cell
+  // for chans=[], desyncing header (3 cells) from separator (2) and breaking GFM.
+  const row = (cells: (string | number)[]): string => `| ${cells.join(' | ')} |`;
+  const header = ['era', ...chans, 'total'];
   const rows = eras.map((e) => {
-    const pro = s[e]!.proReplays ?? 0;
-    const high = s[e]!.highLevel ?? 0;
-    return `| ${e} | ${pro} | ${high} | ${pro + high} |`;
+    const nums = chans.map((c) => s[e]![c] ?? 0);
+    return row([e, ...nums, nums.reduce((a, b) => a + b, 0)]);
   });
-  const total = list.length;
+  const totals = chans.map((c) => list.filter((i) => i.channel === c).length);
   return [
-    '| era | proReplays | highLevel | total |',
-    '|---|---|---|---|',
+    row(header),
+    `|${'---|'.repeat(header.length)}`,
     ...rows,
-    `| **all** | **${list.filter((i) => i.channel === 'proReplays').length}** | **${list.filter((i) => i.channel === 'highLevel').length}** | **${total}** |`,
+    row(['**all**', ...totals.map((n) => `**${n}**`), `**${list.length}**`]),
   ].join('\n');
 }
 

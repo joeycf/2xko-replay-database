@@ -2563,7 +2563,7 @@
     "fusesUnordered": false
   },
   "ccgcjwxKpYc": {
-    "//": "stray non-2XKO upload (Donkey Kong Bananza stream) captured by a tracked channel — excluded from the site (Phase 3.5)",
+    "//": "stray non-2XKO upload (Donkey Kong Bananza stream) captured by a tracked channel \u2014 excluded from the site (Phase 3.5)",
     "exclude": true
   },
   "GFkB2fdE9Ds": {
@@ -4692,5 +4692,589 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "_OAtI61zZrI": {
+    "//": "bestReplays: trailing '5 Matches' after the closing paren breaks TEAM_SPLIT",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "sonicfox",
+            "displayName": "SonicFox"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": null
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "inzem",
+            "displayName": "INZEM"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "ekko"
+        ],
+        "fuse": null
+      }
+    ],
+    "allCharacters": [
+      "jinx",
+      "ekko",
+      "teemo"
+    ],
+    "allPlayers": [
+      "sonicfox",
+      "inzem"
+    ],
+    "parseConfidence": "high",
+    "rawUnparsed": null
+  },
+  "bSLaYRtsG-c": {
+    "//": "bestReplays: uses the FIRE emoji instead of the U+25B0 sentinel",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "souldemonxl",
+            "displayName": "SoulDemonXL"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": null
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "k7showoff",
+            "displayName": "K7 Showoff"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "warwick"
+        ],
+        "fuse": null
+      }
+    ],
+    "allCharacters": [
+      "ahri",
+      "ekko",
+      "yasuo",
+      "warwick"
+    ],
+    "allPlayers": [
+      "souldemonxl",
+      "k7showoff"
+    ],
+    "parseConfidence": "high",
+    "rawUnparsed": null
+  },
+  "gqNlEkzOZzE": {
+    "//": "bestReplays: three U+25B0 segments ('... \u25b0 Rank 1 NA \u25b0 2XKO Pro Replays')",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "yosep",
+            "displayName": "YOSEP"
+          }
+        ],
+        "characters": [
+          "teemo",
+          "illaoi"
+        ],
+        "fuse": null
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "zleeeek7",
+            "displayName": "ZLEEEEK7"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": null
+      }
+    ],
+    "allCharacters": [
+      "teemo",
+      "illaoi",
+      "ahri",
+      "ekko"
+    ],
+    "allPlayers": [
+      "yosep",
+      "zleeeek7"
+    ],
+    "parseConfidence": "high",
+    "rawUnparsed": null
+  },
+  "FuFAzK7EomA": {
+    "//": "bestReplays: dangling trailing 'vs' after the second team",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "tsunodoriru",
+            "displayName": "TSUNODORIRU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "darius"
+        ],
+        "fuse": null
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "toshi",
+            "displayName": "2WINZ TOSHI"
+          },
+          {
+            "id": "haru",
+            "displayName": "2WINZ HARU"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "yasuo"
+        ],
+        "fuse": null
+      }
+    ],
+    "allCharacters": [
+      "ekko",
+      "darius",
+      "yasuo"
+    ],
+    "allPlayers": [
+      "tsunodoriru",
+      "toshi",
+      "haru"
+    ],
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "matchType": "duo"
+  },
+  "brA96hoo2FQ": {
+    "//": "duplicate of jTsjY8Fyn_o (bestReplays) \u2014 \u0394dur 0s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "jTsjY8Fyn_o",
+    "exclude": true
+  },
+  "3mNstgV45ww": {
+    "//": "duplicate of 64zOSpwxW6Y (bestReplays) \u2014 \u0394dur 1s, thumb hamming 0 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "64zOSpwxW6Y",
+    "exclude": true
+  },
+  "T-LY3TKoiMY": {
+    "//": "duplicate of gDatjxCFBcE (proReplays) \u2014 \u0394dur 1s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gDatjxCFBcE",
+    "exclude": true
+  },
+  "cSvFCdaM_3o": {
+    "//": "duplicate of NBoyYjsgjcs (bestReplays) \u2014 \u0394dur 2s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "NBoyYjsgjcs",
+    "exclude": true
+  },
+  "Jg2E9Anq9UU": {
+    "//": "duplicate of dJ58W1LsMXU (bestReplays) \u2014 \u0394dur 3s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "dJ58W1LsMXU",
+    "exclude": true
+  },
+  "UORUpNz-BDk": {
+    "//": "duplicate of 3MKH3KsTvqs (proReplays) \u2014 \u0394dur 5s, thumb hamming 1 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "3MKH3KsTvqs",
+    "exclude": true
+  },
+  "wKCrazk-ujM": {
+    "//": "duplicate of C2RtHVzDHeU (proReplays) \u2014 \u0394dur 0s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "C2RtHVzDHeU",
+    "exclude": true
+  },
+  "JQ8Upyn4egA": {
+    "//": "duplicate of gu_dOXUlpi0 (proReplays) \u2014 \u0394dur 4s, thumb hamming 2 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gu_dOXUlpi0",
+    "exclude": true
+  },
+  "3I_61M0m_bI": {
+    "//": "duplicate of CfJLgZs9IB8 (proReplays) \u2014 \u0394dur 5s, thumb hamming 3 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "CfJLgZs9IB8",
+    "exclude": true
+  },
+  "_sXzbXlmr0s": {
+    "//": "duplicate of qs_MYsOqBqY (proReplays) \u2014 \u0394dur 1s, thumb hamming 6 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "qs_MYsOqBqY",
+    "exclude": true
+  },
+  "XF7a6QC4ANY": {
+    "//": "duplicate of WGmIizmwvyg (proReplays) \u2014 \u0394dur 1s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "WGmIizmwvyg",
+    "exclude": true
+  },
+  "MUh04xAFMkY": {
+    "//": "duplicate of HneWcsxWto8 (bestReplays) \u2014 \u0394dur 5s, thumb hamming 7 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "HneWcsxWto8",
+    "exclude": true
+  },
+  "kVH-ovJh15E": {
+    "//": "duplicate of WGmIizmwvyg (proReplays) \u2014 \u0394dur 0s, thumb hamming 17 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "WGmIizmwvyg",
+    "exclude": true
+  },
+  "hpEC7h2ewe0": {
+    "//": "duplicate of v73Sha8YqZM (proReplays) \u2014 \u0394dur 1s, thumb hamming 18 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "v73Sha8YqZM",
+    "exclude": true
+  },
+  "2b5sWeZw3tY": {
+    "//": "duplicate of a3SYvunJS4c (proReplays) \u2014 \u0394dur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "a3SYvunJS4c",
+    "exclude": true
+  },
+  "vUb4nmEBRyI": {
+    "//": "duplicate of gBuXEn3l4bQ (proReplays) \u2014 \u0394dur 1s, thumb hamming 22 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gBuXEn3l4bQ",
+    "exclude": true
+  },
+  "Z14fclFI168": {
+    "//": "duplicate of eDVqNckixek (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "eDVqNckixek",
+    "exclude": true
+  },
+  "fQzOS8hp4Rs": {
+    "//": "duplicate of nW9E4FN5rH8 (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "nW9E4FN5rH8",
+    "exclude": true
+  },
+  "ZsWmK5mxr0g": {
+    "//": "duplicate of WchhFlVGqiI (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "WchhFlVGqiI",
+    "exclude": true
+  },
+  "ekFp0yT7M2w": {
+    "//": "duplicate of OQAk2lg8S8Y (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "OQAk2lg8S8Y",
+    "exclude": true
+  },
+  "K_9k9i2sbC0": {
+    "//": "duplicate of 3bUi_3a_EeQ (proReplays) \u2014 \u0394dur 1s, thumb hamming 26 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "3bUi_3a_EeQ",
+    "exclude": true
+  },
+  "U8705KfrOSk": {
+    "//": "duplicate of gnq-fVtfNoc (proReplays) \u2014 \u0394dur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gnq-fVtfNoc",
+    "exclude": true
+  },
+  "i8VnspWeE6M": {
+    "//": "duplicate of ukE3xLncFog (highLevel) \u2014 \u0394dur 1s, thumb hamming 27 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "ukE3xLncFog",
+    "exclude": true
+  },
+  "_Dc9NP7bqlE": {
+    "//": "duplicate of RWKpgaeMdL4 (proReplays) \u2014 \u0394dur 1s, thumb hamming 28 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "RWKpgaeMdL4",
+    "exclude": true
+  },
+  "wxrzjoW0kVM": {
+    "//": "duplicate of IA48tkMDJys (proReplays) \u2014 \u0394dur 0s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "IA48tkMDJys",
+    "exclude": true
+  },
+  "ihv3j5ixKQE": {
+    "//": "duplicate of BtL4tNq4qTU (proReplays) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "BtL4tNq4qTU",
+    "exclude": true
+  },
+  "zlE7hfFoya4": {
+    "//": "duplicate of L8L7iBfB_04 (proReplays) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "L8L7iBfB_04",
+    "exclude": true
+  },
+  "LrkS6j9B4ko": {
+    "//": "duplicate of gQSUfLSCcS8 (highLevel) \u2014 \u0394dur 1s, thumb hamming 30 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gQSUfLSCcS8",
+    "exclude": true
+  },
+  "3LpLDn0ocII": {
+    "//": "duplicate of KWDEKx5OMKU (highLevel) \u2014 \u0394dur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "KWDEKx5OMKU",
+    "exclude": true
+  },
+  "jsGlFwRJj8g": {
+    "//": "duplicate of P_N9O5e-mFI (highLevel) \u2014 \u0394dur 0s, thumb hamming 31 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "P_N9O5e-mFI",
+    "exclude": true
+  },
+  "WQ6m-nAfbHM": {
+    "//": "duplicate of P8nPvpi-XQc (proReplays) \u2014 \u0394dur 0s, thumb hamming 33 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "P8nPvpi-XQc",
+    "exclude": true
+  },
+  "JjMrrLhOW1E": {
+    "//": "duplicate of bvkG0A6Mqaw (highLevel) \u2014 \u0394dur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "bvkG0A6Mqaw",
+    "exclude": true
+  },
+  "6aTj2fOqqEc": {
+    "//": "duplicate of 5k1fbyXR7BU (proReplays) \u2014 \u0394dur 1s, thumb hamming 34 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "5k1fbyXR7BU",
+    "exclude": true
+  },
+  "yGpOVK6Ss3g": {
+    "//": "duplicate of LcWLcPi8qZw (proReplays) \u2014 \u0394dur 1s, thumb hamming 38 [tier A, data:replay-dupes 2026-07-21]",
+    "dupeOf": "LcWLcPi8qZw",
+    "exclude": true
+  },
+  "WJi5g9PT8OY": {
+    "//": "duplicate of -mhePaolKU8 (bestReplays) \u2014 \u0394dur 7s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "-mhePaolKU8",
+    "exclude": true
+  },
+  "V5rrhstwjG4": {
+    "//": "duplicate of rQXnQu5nuew (bestReplays) \u2014 \u0394dur 9s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "rQXnQu5nuew",
+    "exclude": true
+  },
+  "e99BeFjOaHE": {
+    "//": "duplicate of P1y3IXTFjVw (bestReplays) \u2014 \u0394dur 12s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "P1y3IXTFjVw",
+    "exclude": true
+  },
+  "YC10nhe6vGM": {
+    "//": "duplicate of LsoqZjtf1tk (bestReplays) \u2014 \u0394dur 13s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "LsoqZjtf1tk",
+    "exclude": true
+  },
+  "msn8ZPHcbF8": {
+    "//": "duplicate of h9M4FxN6zus (bestReplays) \u2014 \u0394dur 15s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "h9M4FxN6zus",
+    "exclude": true
+  },
+  "mXS8hBMwalM": {
+    "//": "duplicate of ycoyxvZbLsc (bestReplays) \u2014 \u0394dur 17s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "ycoyxvZbLsc",
+    "exclude": true
+  },
+  "VHCOkHko9Gc": {
+    "//": "duplicate of Z2iRerSQP1o (bestReplays) \u2014 \u0394dur 20s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "Z2iRerSQP1o",
+    "exclude": true
+  },
+  "2MQ3y0Lv-zc": {
+    "//": "duplicate of 8kMa9sWF00M (bestReplays) \u2014 \u0394dur 29s, thumb hamming 0 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "8kMa9sWF00M",
+    "exclude": true
+  },
+  "NTHyE4CevJk": {
+    "//": "duplicate of obmCLL527fU (proReplays) \u2014 \u0394dur 18s, thumb hamming 1 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "obmCLL527fU",
+    "exclude": true
+  },
+  "m8LbQDPBr24": {
+    "//": "duplicate of f9bqjWLJfEw (bestReplays) \u2014 \u0394dur 24s, thumb hamming 3 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "f9bqjWLJfEw",
+    "exclude": true
+  },
+  "loR2l7OWBsU": {
+    "//": "duplicate of 5XPauPOD3gQ (bestReplays) \u2014 \u0394dur 8s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "5XPauPOD3gQ",
+    "exclude": true
+  },
+  "1pi3JdE8VxY": {
+    "//": "duplicate of iHaH_fJ1klU (bestReplays) \u2014 \u0394dur 21s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "iHaH_fJ1klU",
+    "exclude": true
+  },
+  "FYP4Ok5d9AY": {
+    "//": "duplicate of JDAic-QHNkA (bestReplays) \u2014 \u0394dur 25s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "JDAic-QHNkA",
+    "exclude": true
+  },
+  "tzoqhhQaUc0": {
+    "//": "duplicate of c41_x79_Uko (bestReplays) \u2014 \u0394dur 29s, thumb hamming 4 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "c41_x79_Uko",
+    "exclude": true
+  },
+  "CxNryxqWcfc": {
+    "//": "duplicate of Qdkr7-tHvSE (bestReplays) \u2014 \u0394dur 16s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "Qdkr7-tHvSE",
+    "exclude": true
+  },
+  "4grufXBYoA8": {
+    "//": "duplicate of 3MKH3KsTvqs (proReplays) \u2014 \u0394dur 21s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "3MKH3KsTvqs",
+    "exclude": true
+  },
+  "Kl9_vIN1MQc": {
+    "//": "duplicate of f9bqjWLJfEw (bestReplays) \u2014 \u0394dur 22s, thumb hamming 5 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "f9bqjWLJfEw",
+    "exclude": true
+  },
+  "wgEUF_hyEp8": {
+    "//": "duplicate of JsmNmS0EELo (proReplays) \u2014 \u0394dur 15s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "JsmNmS0EELo",
+    "exclude": true
+  },
+  "nVauQloI4rU": {
+    "//": "duplicate of 6tX9jHfbW-E (bestReplays) \u2014 \u0394dur 25s, thumb hamming 6 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "6tX9jHfbW-E",
+    "exclude": true
+  },
+  "TN5wGID7NvQ": {
+    "//": "duplicate of kpiTwMNctZc (proReplays) \u2014 \u0394dur 6s, thumb hamming 8 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "kpiTwMNctZc",
+    "exclude": true
+  },
+  "xiZz5cbnHIU": {
+    "//": "duplicate of d_3ws1SFwfY (bestReplays) \u2014 \u0394dur 4s, thumb hamming 9 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "d_3ws1SFwfY",
+    "exclude": true
+  },
+  "awC3mTNW1kg": {
+    "//": "duplicate of sTc9uzChz4k (proReplays) \u2014 \u0394dur 14s, thumb hamming 10 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "sTc9uzChz4k",
+    "exclude": true
+  },
+  "Z384Fsn8jNY": {
+    "//": "duplicate of CGm8Sii0rm0 (highLevel) \u2014 \u0394dur 9s, thumb hamming 11 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "CGm8Sii0rm0",
+    "exclude": true
+  },
+  "5ohcTnRdgLg": {
+    "//": "duplicate of 3cRCC8hrCPY (bestReplays) \u2014 \u0394dur 9s, thumb hamming 12 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "3cRCC8hrCPY",
+    "exclude": true
+  },
+  "eXtTgmpd9io": {
+    "//": "duplicate of lur2F67Cpl0 (proReplays) \u2014 \u0394dur 2s, thumb hamming 21 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "lur2F67Cpl0",
+    "exclude": true
+  },
+  "zYLAN89cT1c": {
+    "//": "duplicate of kB-z026ZCac (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "kB-z026ZCac",
+    "exclude": true
+  },
+  "Ur3aOx2dBik": {
+    "//": "duplicate of cqPbRkGueoM (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "cqPbRkGueoM",
+    "exclude": true
+  },
+  "9X3ODsdhMBA": {
+    "//": "duplicate of KbdmMSRW94c (proReplays) \u2014 \u0394dur 2s, thumb hamming 23 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "KbdmMSRW94c",
+    "exclude": true
+  },
+  "-07QDvkY8lQ": {
+    "//": "duplicate of OkiPqzU82t0 (proReplays) \u2014 \u0394dur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "OkiPqzU82t0",
+    "exclude": true
+  },
+  "eiCuKC2n3c0": {
+    "//": "duplicate of CRNSHxr6nSg (proReplays) \u2014 \u0394dur 2s, thumb hamming 24 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "CRNSHxr6nSg",
+    "exclude": true
+  },
+  "E7n980LAQgY": {
+    "//": "duplicate of na7cyyRHRnA (proReplays) \u2014 \u0394dur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "na7cyyRHRnA",
+    "exclude": true
+  },
+  "gFVU3YBjx7o": {
+    "//": "duplicate of sQLdbvj_g9E (proReplays) \u2014 \u0394dur 2s, thumb hamming 25 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "sQLdbvj_g9E",
+    "exclude": true
+  },
+  "9v7B-MzM2Dw": {
+    "//": "duplicate of bw1RIo1w8bc (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "bw1RIo1w8bc",
+    "exclude": true
+  },
+  "0t3Hi4k13Ps": {
+    "//": "duplicate of CC72x8GUbjU (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "CC72x8GUbjU",
+    "exclude": true
+  },
+  "XYBUuJssNJM": {
+    "//": "duplicate of 20mYuprzh0U (proReplays) \u2014 \u0394dur 2s, thumb hamming 26 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "20mYuprzh0U",
+    "exclude": true
+  },
+  "WW2pxvOqvmg": {
+    "//": "duplicate of gCDtZgLubqw (proReplays) \u2014 \u0394dur 2s, thumb hamming 27 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "gCDtZgLubqw",
+    "exclude": true
+  },
+  "V8AtC8Bbt8Y": {
+    "//": "duplicate of doGpKvqLIxE (proReplays) \u2014 \u0394dur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "doGpKvqLIxE",
+    "exclude": true
+  },
+  "tJZgB5uk3xg": {
+    "//": "duplicate of u6UrQkc-JzM (proReplays) \u2014 \u0394dur 2s, thumb hamming 28 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "u6UrQkc-JzM",
+    "exclude": true
+  },
+  "glBMSa4A_MY": {
+    "//": "duplicate of ig58uIwBnIE (proReplays) \u2014 \u0394dur 2s, thumb hamming 29 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "ig58uIwBnIE",
+    "exclude": true
+  },
+  "Ef-GpwIaQlE": {
+    "//": "duplicate of YxmkHBGQ4eo (proReplays) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "YxmkHBGQ4eo",
+    "exclude": true
+  },
+  "qJo4SroipVM": {
+    "//": "duplicate of w9TSYg7eHyI (proReplays) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "w9TSYg7eHyI",
+    "exclude": true
+  },
+  "iTnhxKCf2Fg": {
+    "//": "duplicate of pgIl1EP0wAM (highLevel) \u2014 \u0394dur 2s, thumb hamming 30 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "pgIl1EP0wAM",
+    "exclude": true
+  },
+  "16ipbNi-Ayk": {
+    "//": "duplicate of DcwMN-sgZPM (highLevel) \u2014 \u0394dur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "DcwMN-sgZPM",
+    "exclude": true
+  },
+  "zOxF6d5Erg8": {
+    "//": "duplicate of m73o2loYPNE (proReplays) \u2014 \u0394dur 2s, thumb hamming 32 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "m73o2loYPNE",
+    "exclude": true
+  },
+  "E_GAxG6-SN8": {
+    "//": "duplicate of SefWg7J9Puc (proReplays) \u2014 \u0394dur 2s, thumb hamming 35 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "SefWg7J9Puc",
+    "exclude": true
+  },
+  "-pwBcYYZgOs": {
+    "//": "duplicate of HAyvyFBBE0g (proReplays) \u2014 \u0394dur 2s, thumb hamming 37 [tier B, data:replay-dupes 2026-07-21]",
+    "dupeOf": "HAyvyFBBE0g",
+    "exclude": true
   }
 }

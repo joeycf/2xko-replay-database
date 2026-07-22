@@ -334,10 +334,48 @@ function roundTags(title: string): string[] {
 }
 
 // ── title parsing ─────────────────────────────────────────────────────────────
-const PREFIX = /^2XKO[^▰]*▰\s*/i; // widened (confirmed)
+// PREFIX is NOT anchored at "2XKO": bestReplays prefixes 215 titles with
+// "NEW PATCH 2XKO ▰ …". The leading segment is [^▰]*? so it can never cross a ▰ —
+// that guard is what keeps the one title whose only "2XKO" lives in the *suffix*
+// (VklFg7dEoSQ, "Justin Wong (…) vs … ▰ 2XKO Pro level replays") from having its
+// whole left side eaten: there is no ▰-free path from that "2XKO" to a ▰, so the
+// pattern correctly declines to match and the title parses as it always has.
+const PREFIX = /^[^▰]*?\b2XKO\b[^▰]*▰\s*/i;
 const SUFFIX = /\s*▰[^▰]*$/;
 const TEAM_SPLIT = /^(.+?\([^)]*\))\s+vs\s+(.+\([^)]*\))$/i;
 const TEAM_EXTRACT = /^(?<players>.*?)\s*\((?<chars>[^)]*)\)\s*$/;
+
+// bestReplays editorialises inside the player field: "RANK 1 NA EDUARDOHOOK",
+// "RANK 1 CHALLENGER LEFFEN", "Rank 1 Duo! HARU & TOSHI", "RANK 1 vs RANK 2 X".
+// Left in place, each variant mints its own auto-discovered player id (and a
+// prerendered, crawlable /players/<id> page). The accolade is a channel editorial
+// flourish, not a property of the match, so it is dropped rather than kept as a tag —
+// the tag facet is a closed vocabulary (ROUND_TAGS + balance notes) and free-text
+// accolades would pollute it. Zero pre-bestReplays titles match this, so stripping
+// cannot change how any existing record parses.
+const ACCOLADE =
+  /^\s*▰?\s*rank\s*\d+(?:\s*(?:&|vs\.?)\s*(?:rank\s*)?\d+)?(?:\s*(?:na|eu|asia|jp|kr|world|challenger|duo))*\s*[-!:,]*\s+/i;
+// bestReplays also writes rank as a TRAILING suffix: "INVIS K #6 Rank",
+// "XYZZY #4 Rank". Left in place these mint invisk6rank / xyzzy4rank instead of
+// merging into the established invisk / xyzzy — the same fragmentation ACCOLADE
+// prevents at the front. Require a space before the number so a legit handle ending
+// in a digit ("PLAYER6") is never touched.
+const TRAILING_RANK = /\s+(?:#\s*)?\d+\s+rank\s*$/i;
+
+/** Strip a stray leading ▰ and any stacked leading/trailing accolades
+ *  ("RANK 1 DUO ASIA! X", "X #6 Rank") from a team's player segment. Never returns
+ *  empty — a segment that is *only* an accolade is left alone so it still resolves to
+ *  some player rather than vanishing. */
+function normalizePlayerSegment(seg: string): string {
+  let s = seg.trim().replace(/^▰\s*/, '').trim();
+  for (;;) {
+    let next = s;
+    if (ACCOLADE.test(next)) next = next.replace(ACCOLADE, '').trim();
+    if (TRAILING_RANK.test(next)) next = next.replace(TRAILING_RANK, '').trim();
+    if (next === s || next === '') return s;
+    s = next;
+  }
+}
 
 interface ParsedTeam {
   playersRaw: string;
@@ -442,8 +480,8 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
       characters.push(r.id);
     }
 
-    // players (unified separator — both channels mix " + " and spaced "-")
-    const playerTokens = pt.playersRaw
+    // players (unified separator — the channels mix " & ", " + " and spaced "-")
+    const playerTokens = normalizePlayerSegment(pt.playersRaw)
       .split(PLAYER_SEP)
       .map((x) => x.trim())
       .filter(Boolean);
@@ -682,12 +720,18 @@ function buildReport(
     }
   }
 
-  lines.push(`## Low-confidence records (${low})`);
-  if (low === 0) {
+  // lowReports is populated in buildRecord BEFORE overrides apply, so a structural
+  // failure later repaired by an overrides.json entry (final parseConfidence 'high')
+  // is still in the list. Filter to records that are STILL low so the table matches
+  // the `low` header count instead of listing override-fixed rows uncounted.
+  const finalLow = new Set(records.filter((r) => r.parseConfidence === 'low').map((r) => r.id));
+  const lowRows = lowReports.filter((r) => finalLow.has(r.id));
+  lines.push(`## Low-confidence records (${lowRows.length})`);
+  if (lowRows.length === 0) {
     lines.push(`_None._`, ``);
   } else {
     lines.push(`| id | channel | reason | raw title |`, `|---|---|---|---|`);
-    for (const r of lowReports) {
+    for (const r of lowRows) {
       lines.push(
         `| \`${r.id}\` | ${r.channel} | ${cell(r.reasons.join('; '))} | ${cell(r.title)} |`,
       );

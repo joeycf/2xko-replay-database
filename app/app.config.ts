@@ -44,10 +44,14 @@ export default defineAppConfig({
     // 1 = secondary outline, 2+ = warning outline) — matching the shipped
     // Pro Replays (pink) / High Level (cyan) / Tournament (amber) badges.
     // 'manual' is the pipeline's source id for hand-authored tournament VODs.
+    // APPEND only: inserting would recolour the existing badges. 'bestReplays'
+    // lands at index 3 and shares the amber outline with 'manual' (only 3 styles
+    // exist) — the label distinguishes them.
     sourceChannels: [
       { id: 'proReplays', name: 'Pro Replays' },
       { id: 'highLevel', name: 'High Level' },
       { id: 'manual', name: 'Tournament' },
+      { id: 'bestReplays', name: 'Best Replays' },
     ],
     // 2XKO's vocabulary + the live site's indexed URL segment (v0.2.0):
     // nav/headings/labels render champion/team/season/channel, and the

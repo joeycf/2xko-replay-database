@@ -2,7 +2,7 @@
 
 This is my passion project first step to creating a competitive replay database
 for multiple games. Beginning with my current favorite fighting game **2XKO** replay footage of
-2,900+ pro and high-level replays, filterable by champion, team pairing, player,
+5,100+ pro and high-level replays, filterable by champion, team pairing, player,
 season, channel, and fuse, with a stats dashboard (champion usage, fuse usage,
 top pairings, synergy matrix, meta over time, fuse-era shift) and per-champion / per-player pages.
 
@@ -40,13 +40,13 @@ data/replays.json + stats.json   (GENERIC engine-contract files)
                                   │
                                   ├─ registries (champions/players/stats/fuses)
                                   │    → static imports, prerendered into HTML
-                                  └─ replays.json (~1.2 MB) → copied to
+                                  └─ replays.json (~2.1 MB) → copied to
                                        public/data/ at build, fetched
                                        client-side on Browse and entity pages
                                        only (never bundled)
 ```
 
-Two schemas, deliberately: `videos.json` (3.4 MB, rich — fuses per team, parse
+Two schemas, deliberately: `videos.json` (6.1 MB, rich — fuses per team, parse
 confidence, match type) never reaches the browser; `emit.ts` maps it onto the
 engine's generic `Replay[]` contract, with the 2XKO fuse fields riding along as
 extensions the engine ignores.
@@ -90,7 +90,7 @@ Two other env vars matter locally, neither of them secret:
 | script                                           | what it does                                                                                                                                                                                                                                                  |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                       |
-| `npm run data:fetch`                             | Pull every upload from both YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                                    |
+| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                               |
 | `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                     |
 | `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json` (+ the `public/data/` copy). Deterministic, no YouTube access — safe to re-run standalone                                                                             |
 | `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                 |
@@ -98,6 +98,7 @@ Two other env vars matter locally, neither of them secret:
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                     |
 | `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                            |
 | `npm run data:player-dupes`                      | Read-only registry audit — ranks `players.json` entries that likely describe the same human (sponsor tags, initials, leet, typos, numeric tails), corroborated by shared champion mains. Prints the merge recipe; edits nothing (`--json` for machine output) |
+| `npm run data:replay-dupes`                       | Read-only replay audit — finds the same match uploaded twice (re-uploaded across channels or duplicated within one) via a side-agnostic players+champions signature, adjudicated by exact duration + a thumbnail perceptual hash → `cache/dupes/`. Emits an `overrides.json` exclude fragment (`--emit-overrides`); edits nothing                                                            |
 | `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                                                                                    |
 | `npm run lint` / `lint:fix`                      | ESLint over the whole repo                                                                                                                                                                                                                                    |
 | `npm run format` / `format:check`                | Prettier                                                                                                                                                                                                                                                      |
@@ -173,10 +174,10 @@ the modal shows the pair unattributed).
   attribution. Genuinely ambiguous sides go to an `orient-queue.json` that the
   dev-only `/dev/fuse-orient` viewer hand-adjudicates back into `overrides.json`.
 - **Whatever the CV can't settle, a human settles in `/dev/fuse-review`** — see
-  [Dev curation tooling](#dev-curation-tooling-local-only). As of the
-  2026-07-20 refresh the automated and manual passes together have closed the
-  backlog: **100% coverage, 2,952 / 2,952**. Expect it to dip between a data
-  refresh and the next local `data:fuses` run.
+  [Dev curation tooling](#dev-curation-tooling-local-only). After the Best Replays
+  backfill (2026-07-22) coverage is **~98%, 5,104 / 5,206**, with ~102 videos in the
+  low/anomaly review backlog (the new channel's harder-to-read captures). Expect it to
+  dip between a data refresh and the next local `data:fuses` run.
 - Run it **locally, weekly-ish**, and commit the refreshed
   `fuses-detected.json`; the daily Action folds it in automatically. The
   Action itself **never** runs yt-dlp — datacenter IPs are routinely blocked.
@@ -260,10 +261,11 @@ order means those verdicts survive the daily cron like any other override.
 
 ## Post-v1 notes
 
-- **Slim videos index**: `videos.json` is ~3.4 MB raw (~250 KB compressed) and
-  grows ~3.5 MB/year at current upload rates. The growth path is a slim
-  browse index (id, teams, season, type, publishedAt, viewCount, duration)
-  fetched first, with full records hydrated per-video on modal open.
+- **Slim videos index**: `videos.json` is ~6.1 MB raw (~450 KB compressed; it
+  roughly doubled when the Best Replays channel was added) and grows a few MB/year
+  at current upload rates. The growth path is a slim browse index (id, teams,
+  season, type, publishedAt, viewCount, duration) fetched first, with full records
+  hydrated per-video on modal open. The client-fetched `replays.json` is ~2.1 MB.
 - **VideoObject structured data**: the site ships page-level JSON-LD
   (`WebSite`/`Organization`/`BreadcrumbList`/`CollectionPage`) but deliberately
   no `VideoObject` — video metadata is client-fetched, so crawlers wouldn't see
@@ -311,10 +313,10 @@ is the single source of pinned versions.
   `app/router.options.ts` suppresses scroll on query-only navigations so
   filtering never jumps the page.
 - **Two-tier data loading.** The small registries (champions/players/stats/
-  fuses) are static-imported and prerendered into the HTML; the ~1.3 MB
+  fuses) are static-imported and prerendered into the HTML; the ~2.1 MB
   `replays.json` is copied to `public/data/` and fetched client-side only on the
   pages that need it — **never bundled**, so the JS payload stays flat as the
-  catalog grows. The 3.4 MB rich `videos.json` stays pipeline-side and never
+  catalog grows. The 6.1 MB rich `videos.json` stays pipeline-side and never
   ships.
 - **The theme must stay in `:root`.** `app/assets/theme.css` declares the 2XKO
   palette as plain `:root` custom properties, never `@theme`. Under `@theme` the
@@ -327,13 +329,14 @@ is the single source of pinned versions.
 - **LiteYouTube facade.** `LiteYouTube.vue` renders a click-to-load thumbnail
   stand-in for the embed, so a grid of dozens of replays doesn't mount dozens
   of YouTube iframes.
-- **Channel-aware title parser.** The two source channels use different
-  delimiter conventions; `scripts/channels.ts` configures the parser per
+- **Channel-aware title parser.** The three source channels use different
+  delimiter conventions (Best Replays joins duos with `&` and prefixes some
+  titles `NEW PATCH`); `scripts/channels.ts` configures the parser per
   channel, with fuzzy champion matching + a confidence score. Low-confidence
   parses surface in `data/report.md` as a built-in alert (see the new-champion
   runbook).
-- **Fuses are recovered with computer vision, not scraped.** Neither channel
-  labels fuses in titles (0% across the catalog), so `scripts/fuses.ts` reads
+- **Fuses are recovered with computer vision, not scraped.** None of the channels
+  label fuses in titles (0% across the catalog), so `scripts/fuses.ts` reads
   them straight off the match-HUD pills — hue-vote + perceptual-hash
   classification with nameplate orientation for side attribution, 98.75%
   validated. It's the most involved corner of the codebase; the
@@ -376,16 +379,20 @@ my ability to complete them unless it is something outside my control (like Riot
   computer-vision pipeline (the same approach already used to read fuses off the
   in-game HUD) detecting VS/loading screens to find match starts and reading the
   nameplates and champions from those frames.
-- **Additional replay sources with duplicate prevention.** Bringing in more channels
-  and playlists, with reliable de-duplication so the same match appearing on multiple
-  channels isn't counted twice. Dedup would key on video identity first, with a fuzzy
-  match on (players + champions + approximate date) as a backstop for genuinely
-  re-uploaded footage.
-- ~~**Recovering the currently un-detected fuses.**~~ **Shipped — coverage is 100%.**
+- ~~**Additional replay sources with duplicate prevention.**~~ **Shipped — the 2XKO
+  Best Replays channel is ingested, and `scripts/replay-dupes.ts` (`npm run
+  data:replay-dupes`) is the read-only audit that catches the same match re-uploaded
+  across channels.** It keys on a side-agnostic (players + champions) signature, then
+  adjudicates with exact video duration (the only signal that survives cross-channel,
+  since each channel picks its own thumbnail) plus a thumbnail perceptual hash as an
+  intra-channel corroborator. Confirmed pairs become `exclude` entries in
+  `overrides.json`; nothing is deleted automatically. What stays ongoing is running the
+  audit after a fetch and approving new duplicates.
+- ~~**Recovering the currently un-detected fuses.**~~ **Shipped — coverage is ~98%.**
   The retry pass (`--promote-lows`) plus the manual-review path (`/dev/fuse-review`)
-  closed the last 63 gaps. What stays ongoing is _keeping_ it there: newly-ingested
-  videos arrive fuse-less until the next local `data:fuses` run, so the gap report is
-  now a maintenance check rather than a backlog.
+  keep the gap small. What stays ongoing is _keeping_ it there: newly-ingested videos
+  (e.g. the Best Replays backfill) arrive fuse-less until the next local `data:fuses`
+  run, so the gap report is a maintenance check rather than a backlog.
 
 ### Riot API integration
 

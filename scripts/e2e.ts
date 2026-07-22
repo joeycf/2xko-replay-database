@@ -216,6 +216,14 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     expect(shown === bySource('manual'), `result-count ${shown} ≠ ${bySource('manual')}`);
   });
 
+  // (a2) the bestReplays channel is filterable and its badge/chip render (added with
+  // the 3rd channel — the amber-badge collision with 'manual' ships otherwise untested)
+  await test(`source filter: ?src=bestReplays shows ${bySource('bestReplays')} replays`, async () => {
+    await page.goto(at(`/?src=bestReplays`));
+    const shown = await resultCount(page);
+    expect(shown === bySource('bestReplays'), `result-count ${shown} ≠ ${bySource('bestReplays')}`);
+  });
+
   // (f1) fuse facet counts match Node-side counts (the shipped a/a2 tests)
   const orMatch = (v: VideoRecord, ids: string[]) =>
     v.teams.some((t) => t.fuse && ids.includes(t.fuse));
@@ -335,6 +343,17 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     const withFuse = videos.filter((v) => v.teams.some((t) => t.fuse)).length;
     expect(line!.includes(withFuse.toLocaleString('en-US')), `line "${line}"`);
     expect(line!.includes(videos.length.toLocaleString('en-US')), `line "${line}"`);
+  });
+
+  // (f4b) coverage FLOOR — a data-quality guard the (f4) line-match cannot provide:
+  // (f4) passes at ANY coverage as long as the UI echoes the data, so it stays green
+  // through a silent cliff (e.g. a channel added before its fuses are backfilled).
+  // This asserts the underlying number, and fails until a new channel's CV backfill
+  // completes. If it is red, run data:fuses then data:parse — do not lower the floor.
+  await test('fuse coverage floor: ≥95% of records carry a detected fuse', async () => {
+    const withFuse = videos.filter((v) => v.teams.some((t) => t.fuse)).length;
+    const pct = withFuse / videos.length;
+    expect(pct >= 0.95, `fuse coverage ${(pct * 100).toFixed(1)}% < 95% — run data:fuses + data:parse`);
   });
 
   // (a2) patch facet, single + OR
