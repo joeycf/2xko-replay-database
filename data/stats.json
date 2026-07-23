@@ -8,7 +8,7 @@
       "S0": 1884,
       "S1": 3086
     },
-    "withFuse": 5221
+    "withFuse": 5231
   },
   "characterUsage": {
     "ahri": 2235,
@@ -12846,8 +12846,8 @@
   },
   "fuseUsage": {
     "2x-assist": 2099,
-    "double-down": 1901,
-    "freestyle": 6213,
+    "double-down": 1902,
+    "freestyle": 6232,
     "juggernaut": 60,
     "sidekick": 6,
     "teamfight": 107
@@ -12869,8 +12869,8 @@
     },
     "S1": {
       "2x-assist": 705,
-      "double-down": 587,
-      "freestyle": 4711,
+      "double-down": 588,
+      "freestyle": 4730,
       "juggernaut": 33,
       "sidekick": 2,
       "teamfight": 107

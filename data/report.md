@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-23T12:42:53.232Z._
+_Generated 2026-07-23T13:27:53.719Z._
 
 ## Summary
 - Total videos: **5231**
 - High confidence: **5190**  ·  Low confidence: **11**  ·  Manual (hand-authored): **30**
-- Newly discovered players (auto-added to `players.json`): **2**
-- Fill rates — season: **95.0%** · patchVersion: **94.7%** · patch label: **15.2%** · fuse: **99.8%**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.0%** · patchVersion: **94.7%** · patch label: **15.2%** · fuse: **100.0%**
 - Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **497**
 
 ## Manual videos (30)
@@ -60,10 +60,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `owoseven` | OWOSEVEN | 1 | owoseven |
-| `pinkpotatoes` | PINKPOTATOES | 1 | pinkpotatoes |
+_None._
