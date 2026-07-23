@@ -1,5 +1,7 @@
 import type { GameConfig } from '@engine/types';
 
+import patchGroups from '../data/patchGroups.json';
+
 /**
  * The 2XKO GameConfig — merged OVER the engine's neutral default (PLAN §4a).
  * Everything game-shaped the engine renders comes from here via useGame()/
@@ -61,6 +63,12 @@ export default defineAppConfig({
       { id: 'online', name: 'Online', sources: ['proReplays', 'highLevel', 'bestReplays'] },
       { id: 'tournament', name: 'Tournament', sources: ['manual'] },
     ],
+    // Season→patch hierarchy for the grouped patch facet (engine v0.6.0).
+    // PIPELINE-EMITTED (scripts/emit.ts → data/patchGroups.json) from the same
+    // boundary authority that derives every replay's patch token, so the UI
+    // hierarchy and the data can never drift. Legacy ?patch=S1 season links
+    // keep working: season tokens ARE the parent tokens.
+    patchGroups,
     // 2XKO's vocabulary + the live site's indexed URL segment (v0.2.0):
     // nav/headings/labels render champion/team/season, and the characters section
     // stays at /champions/*. 'source' uses the engine default (the filter now groups

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "Beta"
+  },
+  {
+    "id": "S0",
+    "children": [
+      {
+        "id": "1.0.1",
+        "note": "Early Access day one"
+      },
+      {
+        "id": "1.0.1.2"
+      },
+      {
+        "id": "1.0.3"
+      }
+    ]
+  },
+  {
+    "id": "S1",
+    "children": [
+      {
+        "id": "1.1.1",
+        "note": "Season 1"
+      },
+      {
+        "id": "1.1.2",
+        "note": "critical bugfixes"
+      },
+      {
+        "id": "1.1.3"
+      },
+      {
+        "id": "1.1.5",
+        "note": "Akali"
+      },
+      {
+        "id": "1.2.1",
+        "note": "new Fuse"
+      },
+      {
+        "id": "1.2.3",
+        "note": "Senna + Thresh"
+      },
+      {
+        "id": "1.2.5",
+        "note": "new meta"
+      }
+    ]
+  }
+]

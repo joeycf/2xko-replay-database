@@ -30,6 +30,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { buildStats, sort1, sort2 } from './stats';
+import { loadPatchTable } from './patches';
 import type { Champion, Player, VideoRecord } from '../types/index';
 
 // ── the emitted generic shapes (mirror @engine/types — the pipeline can't
@@ -99,7 +100,11 @@ function toReplay(v: VideoRecord): GenericReplay {
     id: v.id,
     sides,
     date: v.publishedAt,
-    patch: eraKey(v.season),
+    // fine patch token when the boundary derivation produced one; the bare era
+    // token means "season known, patch unknown" (Beta era, or an explicit
+    // season that contradicted the date) — the engine's patchGroups facet
+    // gives both the right semantics (v0.6.0)
+    patch: v.patchVersion ?? eraKey(v.season),
     source: v.channel,
     title: v.title,
     views: v.viewCount,
@@ -176,9 +181,32 @@ export async function emitGeneric(opts: {
     throw new Error('emit: a replay lost its two-sides invariant');
   if (genericStats.totals.replays !== records.length)
     throw new Error('emit: stats.totals.replays drifted from the record count');
+  // every emitted patch token must be an era key or a declared boundary
+  // version, and a fine token's release-date season must equal the record's —
+  // the invariant the grouped facet's counts depend on
+  const patchTable = loadPatchTable(DATA);
+  const knownVersions = new Set(patchTable.patches.map((p) => p.version));
+  for (let i = 0; i < replays.length; i++) {
+    const token = replays[i].patch!;
+    if (/^(Beta|S\d+)$/.test(token)) continue;
+    if (!knownVersions.has(token))
+      throw new Error(`emit: ${replays[i].id} carries unknown patch token "${token}"`);
+    if (patchTable.seasonOfPatch(token) !== records[i].season)
+      throw new Error(
+        `emit: ${replays[i].id} patch ${token} contradicts season ${records[i].season}`,
+      );
+  }
 
   await writeFile(join(DATA, 'replays.json'), JSON.stringify(replays) + '\n', 'utf8');
   await writeFile(join(DATA, 'stats.json'), JSON.stringify(genericStats, null, 2) + '\n', 'utf8');
+  // the UI's season→patch hierarchy, derived from the SAME authority as the
+  // tokens above so config and derivation can never drift (app.config imports
+  // this committed artifact — Vercel builds never run the pipeline)
+  await writeFile(
+    join(DATA, 'patchGroups.json'),
+    JSON.stringify(patchTable.buildPatchGroups(), null, 2) + '\n',
+    'utf8',
+  );
 
   // local-dev convenience copy (gitignored) — the build's build:before hook
   // performs the same copy on Vercel

@@ -3,9 +3,17 @@
 //
 // Run: npm run data:parse   (tsx scripts/parse.ts)
 //
-// Confirmed decisions (Stage-1 gate):
+// Confirmed decisions (Stage-1 gate, revised for patch-level filtering):
 //  • Prefix strip widened to /^2XKO[^▰]*▰\s*/i  (handles "2XKO Season 2 ▰", "2XKO 🇯🇵 ▰").
-//  • Season: description "(Season N)" primary, seasonBoundaries.json fallback.
+//  • Season AND patchVersion: derived from publishedAt against the boundary
+//    authority (scripts/patches.ts — see its header for the Riot replay-expiry
+//    accuracy basis). The description "(Season N)" label no longer derives:
+//    channels proved unreliable (they branded patch 1.2.1 "Season 2" a month
+//    early, and left "Season 1" boilerplate running well into S2). The label
+//    survives only as (a) a 2-day boundary grace — an explicit PRIOR-season
+//    label within 2 days after a season start is upload-lagged prior-season
+//    footage (Riot expires replays at every patch change, so it can't be
+//    anything else) — and (b) a report diagnostic counting stale labels.
 //  • Champions: exact alias → word-contains (tag balance notes) → Damerau/OSA ≤1 (low conf).
 
 import { execFileSync } from 'node:child_process';
@@ -16,6 +24,7 @@ import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, CHAR_SEP, PLAYER_SEP } from './channels';
 import { applyExclusions, emitGeneric } from './emit';
+import { loadPatchTable } from './patches';
 import type {
   Champion,
   ChannelKey,
@@ -27,7 +36,6 @@ import type {
   ParseConfidence,
   Player,
   RawVideoRecord,
-  SeasonBoundary,
   Team,
   TeamSide,
   VideoRecord,
@@ -77,7 +85,8 @@ const champions: Record<string, Champion> = Object.fromEntries(characterList.map
 const playerList = await readJson<Player[]>(join(DATA, 'players.json'));
 const players: Record<string, Player> = Object.fromEntries(playerList.map((p) => [p.id, p]));
 const fuses = await readJson<Record<string, Fuse>>(join(DATA, 'fuses.json'));
-const boundaries = await readJson<SeasonBoundary[]>(join(DATA, 'seasonBoundaries.json'));
+// season + patch boundary authority (validates both files; hard-exits on drift)
+const patchTable = loadPatchTable(DATA);
 // overrides may also EXCLUDE a record outright ({ "exclude": true } — e.g. a
 // stray non-2XKO upload a tracked channel published); applied after the manual
 // merge, before stats/writes/emit.
@@ -247,16 +256,39 @@ function resolvePlayer(rawName: string): { id: string; displayName: string } {
 }
 
 // ── metadata extraction ───────────────────────────────────────────────────────
-function extractSeason(description: string, publishedAt: string): number | null {
-  const paren = /\(Season\s*(\d+)\)/i.exec(description); // prefer explicit "(Season N)"
+/** The description's season label — DIAGNOSTIC + grace input only (see header). */
+function labeledSeason(description: string): number | null {
+  const paren = /\(Season\s*(\d+)\)/i.exec(description);
   if (paren) return Number(paren[1]);
   const bare = /Season\s*(\d+)/i.exec(description);
   if (bare) return Number(bare[1]);
-  const day = publishedAt.slice(0, 10); // fallback: publish date vs boundaries
-  for (const b of boundaries) {
-    if (day >= b.start && (b.end === null || day < b.end)) return b.season;
-  }
   return null;
+}
+
+/** Boundary grace: honor an explicit label exactly ONE season earlier than the
+ *  date's, within this many days after the season start — daily-upload lag. */
+const LABEL_GRACE_DAYS = 2;
+const addDays = (day: string, n: number): string =>
+  new Date(Date.parse(`${day}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
+
+let gracedCount = 0;
+const staleLabels: { id: string; labeled: number; used: number | null }[] = [];
+
+/** Season from publishedAt vs the boundary authority; the description label
+ *  only wins through the narrow boundary grace, and stale labels are counted. */
+function resolveSeason(id: string, description: string, publishedAt: string): number | null {
+  const day = publishedAt.slice(0, 10);
+  const dated = patchTable.seasonForDate(day);
+  const labeled = labeledSeason(description);
+  if (labeled !== null && dated !== null && labeled === dated - 1) {
+    const start = patchTable.seasons.find((s) => s.season === dated)?.start;
+    if (start && day < addDays(start, LABEL_GRACE_DAYS)) {
+      gracedCount++;
+      return labeled;
+    }
+  }
+  if (labeled !== null && labeled !== dated) staleLabels.push({ id, labeled, used: dated });
+  return dated;
 }
 
 const MONTHS: Record<string, number> = {
@@ -410,7 +442,7 @@ const lowReports: LowReason[] = [];
 
 function buildRecord(raw: RawVideoRecord): VideoRecord {
   const cfg = CHANNELS[raw.channel];
-  const season = extractSeason(raw.description, raw.publishedAt);
+  const season = resolveSeason(raw.id, raw.description, raw.publishedAt);
   const patch = extractPatch(raw.description);
   const tags = new Set<string>(roundTags(raw.title));
   const reasons: string[] = [];
@@ -426,6 +458,9 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
     viewCount: raw.viewCount,
     season,
     patch,
+    // same single authority as season; the post-override normalize below nulls
+    // it when an explicit season contradicts the date ("patch unknown")
+    patchVersion: patchTable.patchForDate(raw.publishedAt)?.version ?? null,
   };
 
   const parsed = parseTitle(raw.title);
@@ -638,8 +673,12 @@ function buildManualRecords(): VideoRecord[] {
       thumbnail: e.thumbnail ?? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
       durationSec: e.durationSec ?? 0,
       viewCount: e.viewCount ?? 0,
-      season: e.season !== undefined ? e.season : extractSeason('', e.publishedAt ?? ''),
+      season: e.season !== undefined ? e.season : patchTable.seasonForDate(e.publishedAt ?? ''),
       patch: e.patch ?? null,
+      patchVersion:
+        e.patchVersion !== undefined
+          ? e.patchVersion
+          : (patchTable.patchForDate(e.publishedAt ?? '')?.version ?? null),
       matchType: e.matchType ?? 'tournament',
       teams,
       allCharacters: uniq(teams.flatMap((t) => t.characters)),
@@ -673,7 +712,7 @@ const cell = (s: string) =>
 
 function buildReport(
   records: VideoRecord[],
-  counts: { seasonPct: string; patchPct: string; fusePct: string },
+  counts: { seasonPct: string; patchPct: string; patchVersionPct: string; fusePct: string },
 ): string {
   const total = records.length;
   const low = records.filter((r) => r.parseConfidence === 'low').length;
@@ -692,7 +731,10 @@ function buildReport(
     `- Newly discovered players (auto-added to \`players.json\`): **${newPlayers.length}**`,
   );
   lines.push(
-    `- Fill rates — season: **${counts.seasonPct}%** · patch: **${counts.patchPct}%** · fuse: **${counts.fusePct}%**`,
+    `- Fill rates — season: **${counts.seasonPct}%** · patchVersion: **${counts.patchVersionPct}%** · patch label: **${counts.patchPct}%** · fuse: **${counts.fusePct}%**`,
+  );
+  lines.push(
+    `- Season derivation (date-authoritative) — boundary-graced: **${gracedCount}** · stale description labels overridden: **${staleLabels.length}**`,
     ``,
   );
 
@@ -807,10 +849,20 @@ const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
 // included), so they build after the loop above; appended last — additive,
 // authoritative, and absent from the raw dumps by definition. Overrides-driven
 // exclusions apply to the final set (shared with the standalone emit).
+// Hierarchy consistency normalize (LAST, after grace/manual/overrides settled
+// season): a patchVersion whose release-date season contradicts the record's
+// season becomes null — the emit then carries the bare era token, "season
+// known, patch unknown", which matches whole-season selections but never a
+// specific patch. Graced boundary-lag records land here by construction.
+const normalizePatchVersion = (r: VideoRecord): VideoRecord =>
+  r.patchVersion !== null && patchTable.seasonOfPatch(r.patchVersion) !== r.season
+    ? { ...r, patchVersion: null }
+    : r;
+
 const records: VideoRecord[] = applyExclusions(
   [...parsedRecords, ...buildManualRecords()],
   overrides,
-);
+).map(normalizePatchVersion);
 
 // Drop discovered players no final record references — an override that rewrites
 // a bad parse (e.g. an unsplit duo team) would otherwise re-register the bogus
@@ -829,11 +881,13 @@ for (const [slug, d] of discovered) {
 const total = records.length;
 const seasonFilled = records.filter((r) => r.season !== null).length;
 const patchFilled = records.filter((r) => r.patch !== null).length;
+const patchVersionFilled = records.filter((r) => r.patchVersion !== null).length;
 const fuseFilled = records.filter((r) => r.teams.some((t) => t.fuse !== null)).length;
 const pctOf = (n: number) => (total === 0 ? '0.0' : ((n / total) * 100).toFixed(1));
 const counts = {
   seasonPct: pctOf(seasonFilled),
   patchPct: pctOf(patchFilled),
+  patchVersionPct: pctOf(patchVersionFilled),
   fusePct: pctOf(fuseFilled),
 };
 
@@ -870,5 +924,5 @@ if (manualNewPlayers.length > 0) {
 }
 for (const t of manualTodos) console.log(`  ⚠ manual ${t.id} — todo: ${t.todo}`);
 console.log(
-  `  fill rates → season ${counts.seasonPct}%  ·  patch ${counts.patchPct}%  ·  fuse ${counts.fusePct}%`,
+  `  fill rates → season ${counts.seasonPct}%  ·  patchVersion ${counts.patchVersionPct}%  ·  fuse ${counts.fusePct}%`,
 );

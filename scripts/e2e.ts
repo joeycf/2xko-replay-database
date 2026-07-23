@@ -12,6 +12,7 @@
 // Prereq: npm run generate       Run: npm run test:e2e
 
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
@@ -77,6 +78,7 @@ const stats = JSON.parse(readFileSync(join(ROOT, 'data/stats.json'), 'utf8')) as
   totals: { replays: number; withFuse: number; byPatch: Record<string, number> };
   pairingUsage: Record<string, number>;
   playerCharacters: Record<string, Record<string, number>>;
+  byPatchUsage: Record<string, Record<string, number>>;
   fuseUsage: Record<string, number>;
   fuseByPatch: Record<string, Record<string, number>>;
 };
@@ -234,12 +236,18 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   await test(`source groups: Online chip filters to ${onlineCount}, per-channel chips gone`, async () => {
     await page.goto(at(`/`));
     await page.waitForSelector('[data-testid="result-count"]');
-    const btns: string[] = await page.evaluate(() =>
-      Array.from(document.querySelectorAll('button')).map((b) => (b.textContent || '').trim()),
+    // string-form: the pipeline tsconfig deliberately has no DOM lib
+    const btns: string[] = await page.evaluate(
+      `Array.from(document.querySelectorAll('button')).map((b) => (b.textContent || '').trim())`,
     );
-    expect(btns.includes('Online') && btns.includes('Tournament'), 'Online + Tournament chips render');
     expect(
-      !btns.includes('Pro Replays') && !btns.includes('High Level') && !btns.includes('Best Replays'),
+      btns.includes('Online') && btns.includes('Tournament'),
+      'Online + Tournament chips render',
+    );
+    expect(
+      !btns.includes('Pro Replays') &&
+        !btns.includes('High Level') &&
+        !btns.includes('Best Replays'),
       'per-channel source chips are consolidated away',
     );
     await page.goto(at(`/?src=${onlineIds.join(',')}`));
@@ -376,16 +384,111 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   await test('fuse coverage floor: ≥95% of records carry a detected fuse', async () => {
     const withFuse = videos.filter((v) => v.teams.some((t) => t.fuse)).length;
     const pct = withFuse / videos.length;
-    expect(pct >= 0.95, `fuse coverage ${(pct * 100).toFixed(1)}% < 95% — run data:fuses + data:parse`);
+    expect(
+      pct >= 0.95,
+      `fuse coverage ${(pct * 100).toFixed(1)}% < 95% — run data:fuses + data:parse`,
+    );
   });
 
-  // (a2) patch facet, single + OR
+  // (a2) season (parent-token) facet, single + OR. With patchGroups (engine
+  // v0.6.0) these are WHOLE-SEASON selections over fine patch tokens — the
+  // counts must equal the old flat season filter's exactly (legacy parity).
   const byPatch = (keys: string[]) => videos.filter((v) => keys.includes(eraKey(v.season))).length;
   await test(`patch filter: ?patch=S1 shows ${byPatch(['S1'])}, S1,S2 OR-match ${byPatch(['S1', 'S2'])}`, async () => {
     await page.goto(at(`/?patch=S1`));
     expect((await resultCount(page)) === byPatch(['S1']), 'single-patch count');
     await page.goto(at(`/?patch=S1,S2`));
     expect((await resultCount(page)) === byPatch(['S1', 'S2']), 'OR-patch count');
+  });
+
+  // (a2b) grouped patch facet (engine v0.6.0): fine tokens on the same param
+  const byVersion = (ver: string) => videos.filter((v) => v.patchVersion === ver).length;
+  await test(`patch groups: single patch ?patch=1.1.5 shows ${byVersion('1.1.5')}`, async () => {
+    await page.goto(at(`/?patch=1.1.5`));
+    expect((await resultCount(page)) === byVersion('1.1.5'), 'fine-patch count');
+  });
+
+  const mixedN = byPatch(['S0']) + byVersion('1.1.5');
+  await test(`patch groups: mixed ?patch=S0,1.1.5 unions to ${mixedN}`, async () => {
+    await page.goto(at(`/?patch=S0,1.1.5`));
+    expect((await resultCount(page)) === mixedN, 'mixed parent+child count');
+  });
+
+  // date-not-prefix rule: the 1.2.1 window (2026-05-12 → 06-09) is S1 even
+  // though 1.2.x continues into S2 — the community's "Season 2 started with
+  // the new Fuse" mislabels must NOT survive derivation
+  await test('patch groups: mid-May videos bucket to S1/1.2.1 (date, never version prefix)', async () => {
+    const window = videos.filter((v) => {
+      const d = v.publishedAt.slice(0, 10);
+      return v.channel !== 'manual' && d >= '2026-05-12' && d < '2026-06-09';
+    });
+    expect(window.length > 0, 'no videos in the 1.2.1 window?');
+    expect(
+      window.every((v) => v.season === 1 && v.patchVersion === '1.2.1'),
+      'a 1.2.1-window video escaped S1/1.2.1',
+    );
+  });
+
+  // tri-state parent + child dropdown round-trip with canonical URL collapse
+  await test('patch groups: parent toggle-all / child partial / re-complete round-trip', async () => {
+    await page.goto(at('/'));
+    await page.click('[data-testid="patch-group-S0"]');
+    await page.waitForFunction(`new URL(location.href).searchParams.get('patch') === 'S0'`);
+    expect((await resultCount(page)) === byPatch(['S0']), 'parent-toggle count');
+    expect(
+      (await page.getAttribute('[data-testid="patch-group-S0"]', 'aria-pressed')) === 'true',
+      'parent aria-pressed true',
+    );
+    await page.click('[data-testid="patch-group-S0-expander"]');
+    await page.click('[data-testid="patch-child-1.0.1"]');
+    await page.waitForFunction(
+      `(new URL(location.href).searchParams.get('patch') || '').split(',').every((t) => t !== 'S0' && t !== '1.0.1')`,
+    );
+    expect(
+      (await page.getAttribute('[data-testid="patch-group-S0"]', 'aria-pressed')) === 'mixed',
+      'partial selection reads aria-pressed=mixed',
+    );
+    await page.click('[data-testid="patch-child-1.0.1"]');
+    await page.waitForFunction(`new URL(location.href).searchParams.get('patch') === 'S0'`);
+    expect((await resultCount(page)) === byPatch(['S0']), 're-completed era collapses + counts');
+  });
+
+  // stats stay ERA-keyed and every emitted token is era or declared version
+  await test('patch groups: era-keyed stats + declared-token emit invariant', async () => {
+    const eraRe = /^(Beta|S\d+)$/;
+    for (const key of [
+      ...Object.keys(stats.byPatchUsage),
+      ...Object.keys(stats.totals.byPatch),
+      ...Object.keys(stats.fuseByPatch),
+    ])
+      expect(eraRe.test(key), `stats key "${key}" is not era-level`);
+    const { patches } = JSON.parse(
+      readFileSync(join(ROOT, 'data/patchBoundaries.json'), 'utf8'),
+    ) as { patches: { version: string }[] };
+    const known = new Set(patches.map((p) => p.version));
+    const replays = JSON.parse(readFileSync(join(ROOT, 'data/replays.json'), 'utf8')) as {
+      id: string;
+      patch?: string;
+    }[];
+    for (const r of replays)
+      expect(
+        eraRe.test(r.patch ?? '') || known.has(r.patch ?? ''),
+        `${r.id} emitted undeclared token "${r.patch}"`,
+      );
+  });
+
+  // double-emit byte-identity: the standalone emitter must be deterministic
+  await test('double-emit: replays/stats/patchGroups byte-stable across runs', async () => {
+    const files = ['data/replays.json', 'data/stats.json', 'data/patchGroups.json'];
+    const hash = (p: string) =>
+      createHash('sha256')
+        .update(readFileSync(join(ROOT, p)))
+        .digest('hex');
+    const before = files.map(hash);
+    execSync('npm run data:emit', { cwd: ROOT, stdio: 'pipe' });
+    const after = files.map(hash);
+    for (let i = 0; i < files.length; i++)
+      expect(before[i] === after[i], `${files[i]} drifted between emit runs`);
   });
 
   // (a3) duo sides: filtering by the SECOND player of a duo team must match
@@ -436,6 +539,25 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     expect((await resultCount(page)) === proS1, 'translated count');
     await page.goto(at(`/?type=tournament`));
     await page.waitForFunction(`new URL(location.href).searchParams.get('src') === 'manual'`);
+  });
+
+  // (c2) the mislabeled "S2" era (2026-07-23 correction): versions are
+  // <season>.<act>.<patch> and 1.2.x is Season 1 act 2 — links minted while
+  // the site (and the community) called that era "Season 2" translate to the
+  // act's patch versions instead of matching nothing
+  const act2 = ['1.2.1', '1.2.3', '1.2.5'];
+  const act2N = videos.filter((v) => act2.includes(v.patchVersion ?? '')).length;
+  await test(`legacy S2 → the 1.2.x acts: ?s=2 and ?patch=S2 show ${act2N}`, async () => {
+    await page.goto(at(`/?s=2`));
+    await page.waitForFunction(
+      `(new URL(location.href).searchParams.get('patch') || '').split(',').includes('1.2.1') && !new URL(location.href).searchParams.get('s')`,
+    );
+    expect((await resultCount(page)) === act2N, 's=2 translated count');
+    await page.goto(at(`/?patch=S2`));
+    await page.waitForFunction(
+      `!(new URL(location.href).searchParams.get('patch') || '').split(',').includes('S2')`,
+    );
+    expect((await resultCount(page)) === act2N, 'patch=S2 translated count');
   });
 
   // (d) stats fuse panels (GameStatsPanels slot) render the real top values…

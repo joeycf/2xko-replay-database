@@ -19,6 +19,7 @@
     "data:parse": "tsx scripts/parse.ts",
     "data:build": "npm run data:fetch && npm run data:parse",
     "data:emit": "tsx scripts/emit.ts",
+    "data:migration-report": "tsx scripts/season-migration-report.ts",
     "data:champions": "tsx scripts/champions.ts",
     "data:fuses": "tsx scripts/fuses.ts",
     "data:fuse-gaps": "tsx scripts/fuse-gaps.ts",

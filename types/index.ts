@@ -48,6 +48,23 @@ export interface SeasonBoundary {
   season: number;
   start: string;
   end: string | null;
+  /** unconfirmed-boundary marker (e.g. an authored-ahead season opener) */
+  todo?: string;
+}
+
+/** One released patch (data/patchBoundaries.json — see its "//" header for the
+ *  authoring rules). Windows are computed by scripts/patches.ts, never authored. */
+export interface PatchBoundary {
+  /** the patch token as the community names it, e.g. "1.2.1" */
+  version: string;
+  /** release day (ISO date) */
+  start: string;
+  /** hotfixes folded into this patch (documentation only) */
+  includes?: string[];
+  /** short community-facing hint (new champion, headline change) */
+  note?: string;
+  /** unconfirmed-row marker — exempts the row from the opening-patch validation */
+  todo?: string;
 }
 
 /** 2XKO extension fields riding on emitted replays (scripts/emit.ts): the
@@ -93,7 +110,10 @@ export interface VideoRecord {
   durationSec: number;
   viewCount: number;
   season: number | null;
-  patch: string | null; // ISO date | raw label | null
+  patch: string | null; // description "Patch:" label (ISO date | raw) — diagnostic only
+  /** boundary-derived patch token ("1.2.1"); null = pre-S0 Beta era, or an
+   *  explicit season override that contradicts the date ("patch unknown") */
+  patchVersion: string | null;
   matchType: MatchType;
   teams: Team[];
   allCharacters: string[]; // flat, unique champion ids across both teams
@@ -142,9 +162,14 @@ export interface ManualVideoEntry {
   viewCount?: number;
   /** defaults to "tournament" */
   matchType?: MatchType;
-  /** defaults from publishedAt via seasonBoundaries.json */
+  /** explicit season wins over the date derivation (tournament footage can be
+   *  uploaded long after it was played); defaults from publishedAt */
   season?: number | null;
   patch?: string | null;
+  /** explicit patch token ("1.2.1") wins over the date derivation; defaults
+   *  from publishedAt via patchBoundaries.json (nulled if it contradicts an
+   *  explicit season — hierarchy consistency) */
+  patchVersion?: string | null;
   /** extra tags; round tags are still derived from the title */
   tags?: string[];
   /** free-text incompleteness marker — parse warns but proceeds */

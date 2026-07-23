@@ -10430,5 +10430,25 @@
         "zyngbett"
       ]
     }
+  },
+  {
+    "id": "owoseven",
+    "handle": "OWOSEVEN",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "owoseven"
+      ]
+    }
+  },
+  {
+    "id": "pinkpotatoes",
+    "handle": "PINKPOTATOES",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "pinkpotatoes"
+      ]
+    }
   }
 ]
