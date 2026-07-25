@@ -10480,5 +10480,15 @@
         "dragon"
       ]
     }
+  },
+  {
+    "id": "etsy",
+    "handle": "ETSY",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "etsy"
+      ]
+    }
   }
 ]
