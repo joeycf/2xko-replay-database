@@ -10490,5 +10490,15 @@
         "etsy"
       ]
     }
+  },
+  {
+    "id": "kingarena",
+    "handle": "KING ARENA",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "king arena"
+      ]
+    }
   }
 ]
