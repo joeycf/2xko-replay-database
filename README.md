@@ -33,17 +33,20 @@ data/videos.json                 (RICH records — the pipeline substrate;
       │                           input to the fuse CV + dev curation tools)
       │  scripts/emit.ts         (runs at the end of every parse)
       ▼
-data/replays.json + stats.json   (GENERIC engine-contract files)
+data/replays.json + stats.json + summary.json   (GENERIC engine-contract files)
       │
       └─ committed ──►  Nuxt 4 static site (nuxt generate, vercel-static)
                           extends replay-engine layer
                                   │
                                   ├─ registries (champions/players/stats/fuses)
                                   │    → static imports, prerendered into HTML
-                                  └─ replays.json (~2.1 MB) → copied to
-                                       public/data/ at build, fetched
-                                       client-side on Browse and entity pages
-                                       only (never bundled)
+                                  ├─ replays.json (~2.1 MB) → copied to
+                                  │    public/data/ at build, fetched
+                                  │    client-side on Browse and entity pages
+                                  │    only (never bundled)
+                                  └─ summary.json → copied to public/data/ at
+                                       build; the apex selector's card counts
+                                       (never read by this app)
 ```
 
 Two schemas, deliberately: `videos.json` (6.1 MB, rich — fuses per team, parse
@@ -87,23 +90,23 @@ Two other env vars matter locally, neither of them secret:
 
 ## Scripts
 
-| script                                           | what it does                                                                                                                                                                                                                                                  |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                       |
-| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                               |
-| `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                     |
-| `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json` (+ the `public/data/` copy). Deterministic, no YouTube access — safe to re-run standalone                                                                             |
-| `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                 |
-| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                      |
-| `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                     |
-| `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                            |
-| `npm run data:player-dupes`                      | Read-only registry audit — ranks `players.json` entries that likely describe the same human (sponsor tags, initials, leet, typos, numeric tails), corroborated by shared champion mains. Prints the merge recipe; edits nothing (`--json` for machine output) |
-| `npm run data:replay-dupes`                       | Read-only replay audit — finds the same match uploaded twice (re-uploaded across channels or duplicated within one) via a side-agnostic players+champions signature, adjudicated by exact duration + a thumbnail perceptual hash → `cache/dupes/`. Emits an `overrides.json` exclude fragment (`--emit-overrides`); edits nothing                                                            |
-| `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                                                                                    |
-| `npm run lint` / `lint:fix`                      | ESLint over the whole repo                                                                                                                                                                                                                                    |
-| `npm run format` / `format:check`                | Prettier                                                                                                                                                                                                                                                      |
-| `npm run test:e2e`                               | Playwright e2e suite against the generated output (run `npm run generate` first)                                                                                                                                                                              |
-| `npx tsx scripts/og.ts`                          | Regenerate the default OG card (`public/og-default.png`)                                                                                                                                                                                                      |
+| script                                           | what it does                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                                                                                           |
+| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                                                                                                   |
+| `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                                                                                         |
+| `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json`, `summary.json` (+ the `public/data/` copies). Deterministic, no YouTube access — safe to re-run standalone                                                                                                                               |
+| `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                                                                                     |
+| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                                                                                          |
+| `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                         |
+| `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                |
+| `npm run data:player-dupes`                      | Read-only registry audit — ranks `players.json` entries that likely describe the same human (sponsor tags, initials, leet, typos, numeric tails), corroborated by shared champion mains. Prints the merge recipe; edits nothing (`--json` for machine output)                                                                     |
+| `npm run data:replay-dupes`                      | Read-only replay audit — finds the same match uploaded twice (re-uploaded across channels or duplicated within one) via a side-agnostic players+champions signature, adjudicated by exact duration + a thumbnail perceptual hash → `cache/dupes/`. Emits an `overrides.json` exclude fragment (`--emit-overrides`); edits nothing |
+| `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                                                                                                                                                        |
+| `npm run lint` / `lint:fix`                      | ESLint over the whole repo                                                                                                                                                                                                                                                                                                        |
+| `npm run format` / `format:check`                | Prettier                                                                                                                                                                                                                                                                                                                          |
+| `npm run test:e2e`                               | Playwright e2e suite against the generated output (run `npm run generate` first)                                                                                                                                                                                                                                                  |
+| `npx tsx scripts/og.ts`                          | Regenerate the default OG card (`public/og-default.png`)                                                                                                                                                                                                                                                                          |
 
 Verification: `npm run typecheck` and `npm run lint` must pass, and
 `npm run test:e2e` must be green against a fresh `npm run generate`.
@@ -381,7 +384,7 @@ my ability to complete them unless it is something outside my control (like Riot
   nameplates and champions from those frames.
 - ~~**Additional replay sources with duplicate prevention.**~~ **Shipped — the 2XKO
   Best Replays channel is ingested, and `scripts/replay-dupes.ts` (`npm run
-  data:replay-dupes`) is the read-only audit that catches the same match re-uploaded
+data:replay-dupes`) is the read-only audit that catches the same match re-uploaded
   across channels.** It keys on a side-agnostic (players + champions) signature, then
   adjudicates with exact video duration (the only signal that survives cross-channel,
   since each channel picks its own thumbnail) plus a thumbnail perceptual hash as an

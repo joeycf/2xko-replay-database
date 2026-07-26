@@ -478,8 +478,15 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   });
 
   // double-emit byte-identity: the standalone emitter must be deterministic
-  await test('double-emit: replays/stats/patchGroups byte-stable across runs', async () => {
-    const files = ['data/replays.json', 'data/stats.json', 'data/patchGroups.json'];
+  await test('double-emit: replays/stats/patchGroups/summary byte-stable across runs', async () => {
+    const files = [
+      'data/replays.json',
+      'data/stats.json',
+      'data/patchGroups.json',
+      // content-derived, so it must NOT move between runs — a build timestamp
+      // here would commit (and deploy) on every zero-new-video day
+      'data/summary.json',
+    ];
     const hash = (p: string) =>
       createHash('sha256')
         .update(readFileSync(join(ROOT, p)))
@@ -762,6 +769,51 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     );
   });
 
+  // (h2) summary.json — the apex selector's payload (Phase 6). Three checks
+  // emit itself cannot make, because emit can only compare the payload against
+  // numbers it just derived:
+  //  1. it is IN THE BUILD — the nuxt.config build:before copy is otherwise
+  //     ungated (nothing in this app reads summary.json), so dropping it would
+  //     pass this whole suite and 404 the selector's fetch in production;
+  //  2. `updated` recomputed from the substrate HERE — the only assertion that
+  //     can distinguish the newest replay's date from a BUILD timestamp, which
+  //     would rewrite the file every day and defeat the cron's commit guard.
+  //     The double-emit hash gate can't: two runs on the same day agree;
+  //  3. identity matches the GameConfig this build actually rendered.
+  await test('summary.json: shipped in the build, content-derived, identity correct', () => {
+    const summaryPath = join(OUT, BASE, 'data/summary.json');
+    expect(existsSync(summaryPath), `missing ${summaryPath} — build:before copy dropped?`);
+    const summary = JSON.parse(readFileSync(summaryPath, 'utf8')) as {
+      game: string;
+      name: string;
+      replays: number;
+      players: number;
+      characters: number;
+      updated: string;
+    };
+    const players = JSON.parse(readFileSync(join(ROOT, 'data/players.json'), 'utf8')) as {
+      id: string;
+    }[];
+    const newestReplay = videos.reduce((max, v) => (v.publishedAt > max ? v.publishedAt : max), '');
+    expect(
+      summary.updated === newestReplay.slice(0, 10),
+      `summary.updated must be the NEWEST REPLAY's date, not a build stamp (${summary.updated} vs ${newestReplay.slice(0, 10)})`,
+    );
+    expect(
+      summary.replays === videos.length &&
+        summary.characters === characters.length &&
+        summary.players === players.length,
+      `summary counts vs substrate: ${summary.replays}/${summary.characters}/${summary.players} != ${videos.length}/${characters.length}/${players.length}`,
+    );
+    const manifest = JSON.parse(readFileSync(join(OUT, BASE, 'manifest.webmanifest'), 'utf8')) as {
+      name: string;
+    };
+    expect(
+      summary.game === '2xko' && manifest.name === `${summary.name} Replay Database`,
+      `summary identity vs rendered GameConfig: game=${summary.game}, name=${summary.name}, manifest=${manifest.name}`,
+    );
+  });
+
   // (i) footer support link: a real prerendered anchor (shared engine layout +
   // SiteFooter, so check every page type) with new-tab + nofollow
   await test(`footer: Buy Me a Coffee link → ${BMC_URL} on all page types`, () => {
@@ -815,6 +867,8 @@ function testCronGuard(): Promise<void> {
         );
         writeFileSync(join(dir, 'data/stats.json'), '{}');
         writeFileSync(join(dir, 'data/players.json'), '[]');
+        // the guard's `git add` names it, so the fixture must carry it too
+        writeFileSync(join(dir, 'data/summary.json'), `{"replays":${n}}\n`);
         writeFileSync(join(dir, 'data/report.md'), `# R\n\n_Generated ${ts}._\n\ntotal: ${n}\n`);
       };
       seed(1, '2026-07-03T01:00:00.000Z');
