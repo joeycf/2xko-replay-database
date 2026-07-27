@@ -10540,5 +10540,25 @@
         "kic"
       ]
     }
+  },
+  {
+    "id": "xyzzyshift",
+    "handle": "XYZZYSHIFT",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "xyzzyshift"
+      ]
+    }
+  },
+  {
+    "id": "xgenesis",
+    "handle": "XGENESIS",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "xgenesis"
+      ]
+    }
   }
 ]
