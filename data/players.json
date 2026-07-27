@@ -10500,5 +10500,45 @@
         "king arena"
       ]
     }
+  },
+  {
+    "id": "nyudu",
+    "handle": "Nyudu",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "nyudu"
+      ]
+    }
+  },
+  {
+    "id": "sayuswy",
+    "handle": "SayuSwy",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "sayuswy"
+      ]
+    }
+  },
+  {
+    "id": "3henjoyer",
+    "handle": "3H ENJOYER",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "3h enjoyer"
+      ]
+    }
+  },
+  {
+    "id": "kic",
+    "handle": "KIC",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "kic"
+      ]
+    }
   }
 ]
