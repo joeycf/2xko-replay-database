@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run generate",
+  "framework": "nuxtjs",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/2xko",
+      "permanent": false
+    }
+  ]
+}

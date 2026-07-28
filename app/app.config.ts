@@ -20,6 +20,14 @@ export default defineAppConfig({
     rightsHolder: 'Riot Games',
     baseURL: '/2xko', // behind the shell at replaydatabase.com/2xko (Phase 5)
     siteUrl: 'https://replaydatabase.com',
+    // Web Analytics beacons go to THIS project instead of pooling into the
+    // shell. Paired 1:1 with the shell vercel.json rewrite
+    //   /2xko-insights/:path* → https://2xko-replay-database.vercel.app/_vercel/insights/:path*
+    // — the two ship together or every beacon 404s. Same-origin on purpose:
+    // the child's endpoints send no CORS headers, so an absolute URL here
+    // would die at preflight. speedInsights is deliberately left at the engine
+    // default (single-project on Hobby — it must reach the enabled project).
+    observability: { insights: '/2xko-insights' },
     charactersPerSide: 2,
     filters: {
       coOccurrence: true, // the "same side" duo filter
