@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-07-27T16:21:58.172Z._
+_Generated 2026-07-28T09:06:31.979Z._
 
 ## Summary
-- Total videos: **5298**
-- High confidence: **5257**  ·  Low confidence: **11**  ·  Manual (hand-authored): **30**
-- Newly discovered players (auto-added to `players.json`): **2**
-- Fill rates — season: **95.1%** · patchVersion: **94.8%** · patch label: **15.7%** · fuse: **99.8%**
-- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **523**
+- Total videos: **5307**
+- High confidence: **5266**  ·  Low confidence: **11**  ·  Manual (hand-authored): **30**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.1%** · patchVersion: **94.8%** · patch label: **15.8%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **526**
 
 ## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -60,10 +60,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `xyzzyshift` | XYZZYSHIFT | 1 | xyzzyshift |
-| `xgenesis` | XGENESIS | 1 | xgenesis |
+_None._
