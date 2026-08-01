@@ -10570,5 +10570,15 @@
         "mellamocarlos"
       ]
     }
+  },
+  {
+    "id": "bubble",
+    "handle": "BUBBLE",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "bubble"
+      ]
+    }
   }
 ]
