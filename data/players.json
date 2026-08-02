@@ -10600,5 +10600,15 @@
         "nasty nuts"
       ]
     }
+  },
+  {
+    "id": "pinkpink-2",
+    "handle": "Pink Pink",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "pink pink"
+      ]
+    }
   }
 ]
