@@ -10580,5 +10580,25 @@
         "bubble"
       ]
     }
+  },
+  {
+    "id": "soul",
+    "handle": "Soul",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "soul"
+      ]
+    }
+  },
+  {
+    "id": "nastynuts-2",
+    "handle": "Nasty Nuts",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "nasty nuts"
+      ]
+    }
   }
 ]
