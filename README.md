@@ -90,23 +90,24 @@ Two other env vars matter locally, neither of them secret:
 
 ## Scripts
 
-| script                                           | what it does                                                                                                                                                                                                                                                                                                                      |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                                                                                           |
-| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                                                                                                   |
-| `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                                                                                         |
-| `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json`, `summary.json` (+ the `public/data/` copies). Deterministic, no YouTube access — safe to re-run standalone                                                                                                                               |
-| `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                                                                                     |
-| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                                                                                          |
-| `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                         |
-| `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                |
-| `npm run data:player-dupes`                      | Read-only registry audit — ranks `players.json` entries that likely describe the same human (sponsor tags, initials, leet, typos, numeric tails), corroborated by shared champion mains. Prints the merge recipe; edits nothing (`--json` for machine output)                                                                     |
-| `npm run data:replay-dupes`                      | Read-only replay audit — finds the same match uploaded twice (re-uploaded across channels or duplicated within one) via a side-agnostic players+champions signature, adjudicated by exact duration + a thumbnail perceptual hash → `cache/dupes/`. Emits an `overrides.json` exclude fragment (`--emit-overrides`); edits nothing |
-| `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                                                                                                                                                        |
-| `npm run lint` / `lint:fix`                      | ESLint over the whole repo                                                                                                                                                                                                                                                                                                        |
-| `npm run format` / `format:check`                | Prettier                                                                                                                                                                                                                                                                                                                          |
-| `npm run test:e2e`                               | Playwright e2e suite against the generated output (run `npm run generate` first)                                                                                                                                                                                                                                                  |
-| `npx tsx scripts/og.ts`                          | Regenerate the default OG card (`public/og-default.png`)                                                                                                                                                                                                                                                                          |
+| script                                           | what it does                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                                                                                                       |
+| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                                                                                                               |
+| `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                                                                                                     |
+| `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json`, `summary.json` (+ the `public/data/` copies). Deterministic, no YouTube access — safe to re-run standalone                                                                                                                                           |
+| `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                                                                                                 |
+| `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                                                                                                      |
+| `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                                     |
+| `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                            |
+| `npm run data:refresh-all`                       | **Local-only** one-shot full refresh: `data:build` → `data:fuses` → `data:parse` → `data:fuse-gaps`, then a single commit (**never pushes**). Enforces the stage order below and the cron's `report.md` guard. `--check` runs preflight only; `--skip-fuses`, `--limit N`, `--sleep MIN-MAX`, `--no-commit` also available (`--help` for all) |
+| `npm run data:player-dupes`                      | Read-only registry audit — ranks `players.json` entries that likely describe the same human (sponsor tags, initials, leet, typos, numeric tails), corroborated by shared champion mains. Prints the merge recipe; edits nothing (`--json` for machine output)                                                                                 |
+| `npm run data:replay-dupes`                      | Read-only replay audit — finds the same match uploaded twice (re-uploaded across channels or duplicated within one) via a side-agnostic players+champions signature, adjudicated by exact duration + a thumbnail perceptual hash → `cache/dupes/`. Emits an `overrides.json` exclude fragment (`--emit-overrides`); edits nothing             |
+| `npm run typecheck`                              | App (`nuxt typecheck`) **and** pipeline (`tsc -p tsconfig.pipeline.json`) — both must pass                                                                                                                                                                                                                                                    |
+| `npm run lint` / `lint:fix`                      | ESLint over the whole repo                                                                                                                                                                                                                                                                                                                    |
+| `npm run format` / `format:check`                | Prettier                                                                                                                                                                                                                                                                                                                                      |
+| `npm run test:e2e`                               | Playwright e2e suite against the generated output (run `npm run generate` first)                                                                                                                                                                                                                                                              |
+| `npx tsx scripts/og.ts`                          | Regenerate the default OG card (`public/og-default.png`)                                                                                                                                                                                                                                                                                      |
 
 Verification: `npm run typecheck` and `npm run lint` must pass, and
 `npm run test:e2e` must be green against a fresh `npm run generate`.
@@ -172,7 +173,7 @@ not misattributed. `npm run test:e2e` now gates the wiring, and the shell's
 `.github/workflows/data-refresh.yml` runs daily at 06:17 UTC (and via
 _Run workflow_) on Node 24: `npm run data:build` with `YT_API_KEY` from repo
 **Actions secrets**, then commits
-`data/{videos,replays,stats,players}.json` + `report.md` **only if changed**
+`data/{videos,replays,stats,players,summary}.json` + `report.md` **only if changed**
 ("data: refresh YYYY-MM-DD — N videos"). The push triggers the Vercel deploy.
 A run whose only diff is `report.md`'s `_Generated <timestamp>_` line counts
 as unchanged — no commit, no deploy — so a `report.md` diff in history always
@@ -209,8 +210,14 @@ the modal shows the pair unattributed).
 - Run it **locally, weekly-ish**, and commit the refreshed
   `fuses-detected.json`; the daily Action folds it in automatically. The
   Action itself **never** runs yt-dlp — datacenter IPs are routinely blocked.
-- If YouTube throws a bot-check locally, retry with
-  `yt-dlp --cookies-from-browser <browser>`.
+- **A YouTube bot-check locally is the normal case, not the exception** — this
+  host's IP is flagged, so every unauthenticated yt-dlp player client gets
+  "Sign in to confirm you're not a bot". Pass a signed-in cookie export:
+  `npm run data:fuses -- --cookies secrets/yt-cookies.txt`. See
+  [YouTube session cookies](#youtube-session-cookies-local-only) below.
+  (`--cookies-from-browser <spec>` is forwarded too, but on WSL2 it cannot
+  decrypt a Windows browser profile — the cookies.txt export is the reliable
+  path.)
 - Review artifacts land in `cache/fuse/review/`: `low-review.md` (every
   low/none with best guess + scores) and `unmatched-pills.png` (montage —
   how a new/rare fuse style gets spotted, templated from those very frames,
@@ -227,6 +234,63 @@ the modal shows the pair unattributed).
   the gap report on a stale parse reports confident, already-solved detections
   as `anomaly` gaps. If the anomaly bucket is non-empty, re-run `data:parse`
   before assuming there is anything to review.
+  `npm run data:refresh-all` encodes this order (plus a preceding
+  `data:build`, so the CV pass sees the day's new uploads) and commits the
+  result — use it instead of running the four by hand.
+
+## YouTube session cookies (local-only)
+
+`data:fuses` is the only stage that needs these. This machine's IP is
+bot-flagged by YouTube, so **without a signed-in cookie export every yt-dlp
+download fails instantly** with "Sign in to confirm you're not a bot" —
+`scripts/fuses.ts` exits `2` when it sees that.
+
+- **Location: `secrets/yt-cookies.txt`.** `secrets/` is in `.gitignore` **and**
+  `.vercelignore` (the latter matters: that file _replaces_ gitignore-based
+  exclusion for `vercel deploy` CLI uploads). The file is a **live Google
+  session** — treat it like a password. `chmod 600`, never commit it, never
+  paste it anywhere. `data:refresh-all` refuses to run if the cookie path is
+  inside the worktree and not ignored, or if it is group/world-readable.
+- Both `data:refresh-all` and `data:fuses` accept `--cookies <path>` if you
+  keep yours elsewhere (e.g. `~/yt-cookies.txt`, outside the repo entirely).
+
+### Creating one
+
+The export must come from a **signed-in incognito window**. Both halves matter,
+and the failure modes are silent:
+
+1. Sign in to YouTube in a normal window.
+2. Open an **incognito window and sign in to YouTube there too**. An incognito
+   export taken _without_ signing in first parses fine but carries no
+   `SID`/`SAPISID`/`LOGIN_INFO`, and fails exactly like having no cookies.
+3. With a cookies.txt browser extension, export **youtube.com** cookies in
+   **Netscape format** to `secrets/yt-cookies.txt`.
+4. **Close the incognito window immediately after exporting.** A
+   normal-browser export gets rotated out from under the run — one died at
+   30/210 videos. An incognito session closed right away stays valid; a good
+   one has survived 189 videos / ~65 min.
+5. `chmod 600 secrets/yt-cookies.txt`
+6. Verify the session cookies are actually present before relying on it (names
+   only — never print the values):
+   ```sh
+   awk -F'\t' 'NF>=7 {print $6}' secrets/yt-cookies.txt | sort -u | grep -E 'SAPISID|LOGIN_INFO'
+   ```
+   `npm run data:refresh-all -- --check` runs this and the rest of the
+   preflight without starting a download.
+
+### When it expires
+
+Sessions rotate every few weeks; `refresh-all` warns once the file is older
+than 14 days. If a run dies mid-way on a bot-check, **probe before burning a
+fresh export** — a transient throttle stop is common and often clears on its
+own:
+
+```sh
+npm run data:fuses -- --cookies secrets/yt-cookies.txt --limit 1
+```
+
+If that succeeds, just re-run; `data:fuses` is incremental and resumes where it
+stopped. Under sustained throttling, pace it with `--sleep 4-8`.
 
 ## Dev curation tooling (local-only)
 

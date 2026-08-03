@@ -13,3 +13,7 @@ cache/
 
 # Local agent config
 .claude/
+
+# Local credentials — yt-dlp YouTube session cookies (see README, "YouTube
+# session cookies"). A live Google session; must never be committed.
+secrets/
