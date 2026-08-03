@@ -10610,5 +10610,15 @@
         "pink pink"
       ]
     }
+  },
+  {
+    "id": "nyxxator",
+    "handle": "NYXXATOR",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "nyxxator"
+      ]
+    }
   }
 ]
