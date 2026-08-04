@@ -59299,5 +59299,192 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-03"
+ },
+ "koHFqyv5pRM": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 0,
+   "right": 15
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "_KOJhaYSmC8": {
+  "left": "juggernaut",
+  "right": "juggernaut",
+  "score": {
+   "left": 0,
+   "right": 1
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "4I-fzaLp9rU": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 7,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "XuSXtgkcT6Q": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 1,
+   "right": 6
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "AVmifqIRlyI": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 3
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "SKJg4vQszGI": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 9
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "ib_6_fG9jNA": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 17
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "mPivqg7UdFs": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 2
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "_f97Rj9pKIE": {
+  "left": "double-down",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "Ygpvxn0Ekgs": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 13
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "lwVfVbtJ3KQ": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 22
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "OtznSG9vICI": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 18,
+   "right": 4
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "mctWSrNnQYg": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "LoKqUeLo6wE": {
+  "left": "2x-assist",
+  "right": "double-down",
+  "score": {
+   "left": 12,
+   "right": 2
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "jqUESivlMq4": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 60,
+   "right": 22
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "5qt6e7kidQI": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 0,
+   "right": 40
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
+ },
+ "KmsBDauOuzM": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 11
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-04"
  }
 }

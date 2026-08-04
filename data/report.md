@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-04T09:10:32.353Z._
+_Generated 2026-08-04T22:08:14.520Z._
 
 ## Summary
-- Total videos: **5411**
-- High confidence: **5370**  ·  Low confidence: **11**  ·  Manual (hand-authored): **30**
+- Total videos: **5419**
+- High confidence: **5377**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.5%** · fuse: **99.6%**
-- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **574**
+- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.6%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **579**
 
 ## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -45,7 +45,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `zkcW8rDOV3w` | Evo Japan 2026 | Winners Semifinal |  |
 | `7cO631mYBIU` | Evo Japan 2026 | Winners Semifinal |  |
 
-## Low-confidence records (11)
+## Low-confidence records (12)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `OXAeNs7Ocg8` | proReplays | fuzzy character "Akalai" → akali on left | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
@@ -58,6 +58,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VjA1VOogCog` | proReplays | unresolved character "pj1" on right; unresolved character "pj2" on right | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
 | `8_JJkHTB-UA` | proReplays | unresolved character "pj1" on left; unresolved character "pj2" on left | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
+| `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 
 ## Newly discovered players (0)
