@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-05T09:07:25.614Z._
+_Generated 2026-08-05T13:49:36.953Z._
 
 ## Summary
-- Total videos: **5423**
-- High confidence: **5381**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.6%** · fuse: **99.7%**
-- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **580**
+- Total videos: **5426**
+- High confidence: **5384**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.6%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **582**
 
 ## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -61,9 +61,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `unbreakabledoof` | UNBREAKABLEDOOF | 1 | unbreakabledoof |
+_None._

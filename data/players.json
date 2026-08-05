@@ -10630,5 +10630,15 @@
         "unbreakabledoof"
       ]
     }
+  },
+  {
+    "id": "fjt",
+    "handle": "FJT",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "fjt"
+      ]
+    }
   }
 ]
