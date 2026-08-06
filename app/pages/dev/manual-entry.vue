@@ -281,7 +281,17 @@
                 >
                 <button
                   type="button"
-                  class="ml-auto cursor-pointer border px-4 py-1.5 font-mono text-[12px] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+                  class="ml-auto cursor-pointer border border-white/[0.12] bg-[#141722] px-3 py-1.5 font-mono text-[12px] uppercase text-text-secondary transition-colors hover:text-text"
+                  title="move both champion lists and both fuses to the other team"
+                  :aria-label="`swap the two sides of ${e.id}`"
+                  :data-testid="`swap-${e.id}`"
+                  @click="swapSides(e.id)"
+                >
+                  ⇄ swap sides
+                </button>
+                <button
+                  type="button"
+                  class="cursor-pointer border px-4 py-1.5 font-mono text-[12px] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
                   :class="
                     confirmEmpty[e.id]
                       ? 'border-warning text-warning hover:bg-warning/10'
@@ -431,6 +441,23 @@ const shown = computed(() =>
     ? entries.value.filter((e) => needsChampions(e) || savedThisSession.value[e.id])
     : entries.value,
 );
+
+/** Move both champion lists and both fuses to the other team.
+ *
+ *  The mirror image of the handle swap on SF6's and Tekken's source-review: there
+ *  the characters are read off the screen and the HANDLES slide across them;
+ *  here the teams are already parsed and rendered read-only, so the CHAMPIONS and
+ *  FUSES slide instead. Either way exactly one half moves — moving both halves
+ *  would leave every pairing unchanged and only reorder the array.
+ *
+ *  savedChars/savedFuse are deliberately untouched, so `dirty()` flips to true
+ *  and the card offers to save rather than silently diverging from disk. */
+function swapSides(id: string): void {
+  const chars = sel.value[id];
+  if (chars) sel.value[id] = [[...chars[1]], [...chars[0]]];
+  const fuses = selFuse.value[id];
+  if (fuses) selFuse.value[id] = [fuses[1], fuses[0]];
+}
 
 const dirty = (id: string) =>
   JSON.stringify(sel.value[id]) !== JSON.stringify(savedChars.value[id]) ||
