@@ -10640,5 +10640,15 @@
         "fjt"
       ]
     }
+  },
+  {
+    "id": "desktheory",
+    "handle": "DESK THEORY",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "desk theory"
+      ]
+    }
   }
 ]
