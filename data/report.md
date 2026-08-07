@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-06T09:07:59.219Z._
+_Generated 2026-08-07T07:43:12.273Z._
 
 ## Summary
-- Total videos: **5434**
-- High confidence: **5392**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.7%** · fuse: **99.7%**
-- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **586**
+- Total videos: **4130**
+- High confidence: **4095**  ·  Low confidence: **5**  ·  Manual (hand-authored): **30**
+- Newly discovered players (auto-added to `players.json`): **5**
+- Fill rates — season: **96.1%** · patchVersion: **95.9%** · patch label: **22.0%** · fuse: **99.2%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **527**
 
 ## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -45,25 +45,22 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `zkcW8rDOV3w` | Evo Japan 2026 | Winners Semifinal |  |
 | `7cO631mYBIU` | Evo Japan 2026 | Winners Semifinal |  |
 
-## Low-confidence records (12)
+## Low-confidence records (5)
 | id | channel | reason | raw title |
 |---|---|---|---|
-| `OXAeNs7Ocg8` | proReplays | fuzzy character "Akalai" → akali on left | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
-| `Gy1V3_ctj3Q` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
-| `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
-| `z_g1JJjLn7g` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ SUPERNOON (Teemo-Ekko) vs HUEBERT (Akalai-Ekko) ▰ 2XKO Pro level replays |
-| `SVGjJmhAGRQ` | proReplays | fuzzy character "Ysuo" → yasuo on right | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
-| `WeXMoFuuG_g` | proReplays | fuzzy character "Teeo" → teemo on left | 2XKO ▰ INZEM-SONICFOX (Teeo-Ahri) vs SEMIIJ (Vi-Ahri) ▰ 2XKO Pro level replays |
-| `hrTe0L43dlY` | proReplays | fuzzy character "Warwixk" → warwick on right | 2XKO ▰ GENISGOD (Yasuo-Teemo) vs L1NZ (Warwixk-Caitlyn) ▰ 2XKO Pro level replays |
-| `VjA1VOogCog` | proReplays | unresolved character "pj1" on right; unresolved character "pj2" on right | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
-| `8_JJkHTB-UA` | proReplays | unresolved character "pj1" on left; unresolved character "pj2" on left | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
-| `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
+| `ZK3fhR7aXNc` | proReplays | team left: 1 character(s) (expected 2); unresolved character "Doctor Doom" on left; team right: 1 character(s) (expected 2); unresolved character "Captain America" on right | Marvel Tokon ▰ PEOPLESCHAMP (Doctor Doom) vs KLONOA (Captain America) ▰ MARVEL TOKON Pro replays |
+| `DT95XDCTbtI` | proReplays | team left: 1 character(s) (expected 2); unresolved character "Black Panther" on left; unresolved character "Spider" on right; unresolved character "man" on right | Marvel Tokon ▰ ADRIAN RIVER (Black Panther) vs Zippy (Spider-man) ▰ MARVEL TOKON Pro level replays |
+| `_QWQ9PeiqTM` | proReplays | team left: 1 character(s) (expected 2); unresolved character "Ghost Rider" on left; team right: 1 character(s) (expected 2); unresolved character "Loki" on right | Marvel Tokon ▰ KYRMZON (Ghost Rider) vs DIAPHONE (Loki) ▰ MARVEL TOKON Pro level replays |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 
-## Newly discovered players (1)
+## Newly discovered players (5)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `desktheory` | DESK THEORY | 1 | desk theory |
+| `marveltokonpeopleschamp` | Marvel Tokon ▰ PEOPLESCHAMP | 1 | marvel tokon ▰ peopleschamp |
+| `klonoa` | KLONOA | 1 | klonoa |
+| `marveltokonadrianriver` | Marvel Tokon ▰ ADRIAN RIVER | 1 | marvel tokon ▰ adrian river |
+| `zippy` | Zippy | 1 | zippy |
+| `marveltokonkyrmzon` | Marvel Tokon ▰ KYRMZON | 1 | marvel tokon ▰ kyrmzon |

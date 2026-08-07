@@ -10650,5 +10650,55 @@
         "desk theory"
       ]
     }
+  },
+  {
+    "id": "marveltokonpeopleschamp",
+    "handle": "Marvel Tokon ▰ PEOPLESCHAMP",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "marvel tokon ▰ peopleschamp"
+      ]
+    }
+  },
+  {
+    "id": "klonoa",
+    "handle": "KLONOA",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "klonoa"
+      ]
+    }
+  },
+  {
+    "id": "marveltokonadrianriver",
+    "handle": "Marvel Tokon ▰ ADRIAN RIVER",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "marvel tokon ▰ adrian river"
+      ]
+    }
+  },
+  {
+    "id": "zippy",
+    "handle": "Zippy",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "zippy"
+      ]
+    }
+  },
+  {
+    "id": "marveltokonkyrmzon",
+    "handle": "Marvel Tokon ▰ KYRMZON",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "marvel tokon ▰ kyrmzon"
+      ]
+    }
   }
 ]
