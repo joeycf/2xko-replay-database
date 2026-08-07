@@ -32,6 +32,15 @@
             class="text-warning"
             >{{ dirtyCount }} unsaved</span
           >
+          <button
+            v-if="disputedCount"
+            type="button"
+            class="cursor-pointer text-warning underline decoration-warning/40 hover:decoration-warning"
+            title="jump to the next verdict that contradicts the detector"
+            @click="nextDisputed()"
+          >
+            {{ disputedCount }} disputed
+          </button>
           <span class="text-text-muted"
             >report {{ queue?.generatedAt.slice(0, 16).replace('T', ' ') }}</span
           >
@@ -50,7 +59,7 @@
             v-for="(it, i) in items"
             :key="it.id"
             type="button"
-            :title="`${i + 1}. ${it.id} — ${stateOf(it)}`"
+            :title="`${i + 1}. ${it.id} — ${stateOf(it)}${isDisputed(it) ? ' · detector disagrees' : ''}`"
             class="h-2.5 w-2.5 border transition-transform"
             :class="[
               stateOf(it) === 'saved'
@@ -58,6 +67,7 @@
                 : stateOf(it) === 'unsaved'
                   ? 'border-warning/40 bg-warning/70'
                   : 'border-white/15 bg-white/[0.06]',
+              isDisputed(it) ? '!border-warning scale-125' : '',
               i === cursor ? 'scale-150 !border-primary' : '',
             ]"
             @click="go(i)"
@@ -399,8 +409,35 @@ const isDirty = (it: FuseReviewItem): boolean => {
 const stateOf = (it: FuseReviewItem): 'saved' | 'unsaved' | 'open' =>
   isDirty(it) ? 'unsaved' : it.saved ? 'saved' : 'open';
 
+/** A saved verdict that contradicts what the detector read.
+ *
+ *  Every item in this queue is here BECAUSE the detector was not confident, so
+ *  a disagreement is not a defect report — it is a record of where the human
+ *  overruled a low-confidence machine read, which is exactly the population
+ *  worth revisiting when the detector changes. Compared side-agnostically,
+ *  because a verdict may be marked `unordered` and because screen side is not
+ *  title order (the note above the pills says so).
+ *
+ *  FILL already encodes save state on this strip, so this rides on the BORDER —
+ *  the two are independent facts and one colour cannot carry both. */
+const isDisputed = (it: FuseReviewItem): boolean => {
+  if (!it.saved || !it.detection) return false;
+  const pair = (a: string | null, b: string | null) => [a ?? '', b ?? ''].sort().join('|');
+  return pair(it.saved.fuses[0], it.saved.fuses[1]) !== pair(it.detection.left, it.detection.right);
+};
+
 const resolvedCount = computed(() => items.value.filter((it) => !!it.saved).length);
 const dirtyCount = computed(() => items.value.filter(isDirty).length);
+const disputedCount = computed(() => items.value.filter(isDisputed).length);
+
+/** Jump to the next item whose verdict contradicts the detector, wrapping. */
+function nextDisputed(): void {
+  const n = items.value.length;
+  for (let k = 1; k <= n; k++) {
+    const i = (cursor.value + k) % n;
+    if (items.value[i] && isDisputed(items.value[i]!)) return go(i);
+  }
+}
 // an unordered verdict is only meaningful with both sides filled (the server
 // rejects it otherwise) — mirror that here so the button can't lie
 const canSave = computed(
@@ -522,6 +559,7 @@ const onKey = (e: KeyboardEvent) => {
   else if (e.key === '[' || e.key === ',') go(cursor.value - 1);
   else if (e.key === ']' || e.key === '.') go(cursor.value + 1);
   else if (e.key === 'u') toggleUnordered();
+  else if (e.key === 'd') nextDisputed();
   else if (e.key === 'g') acceptGuess();
   else if (e.key === '?') showHelp.value = !showHelp.value;
   else return;
@@ -535,6 +573,7 @@ const keyHelp: [string, string][] = [
   ['← →', 'cycle frame'],
   ['g', 'accept detector guess'],
   ['u', 'toggle unordered'],
+  ['d', 'next disputed verdict'],
   ['⏎', 'save & next open'],
   ['s / ] / [', 'skip · next · prev'],
   ['?', 'toggle this help'],
