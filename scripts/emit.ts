@@ -190,6 +190,69 @@ export async function emitGeneric(opts: {
     throw new Error('emit: a replay lost its two-sides invariant');
   if (genericStats.totals.replays !== records.length)
     throw new Error('emit: stats.totals.replays drifted from the record count');
+
+  // ── per-side character gates ────────────────────────────────────────────
+  // There was no per-side gate here at all: toSide passed `characters` through
+  // at any length, so a side could reference a champion that is not on the
+  // roster, or name one twice, and nothing downstream would notice.
+  //
+  // ZERO IS A WARNING, NOT A THROW, and that is measured rather than timid.
+  // Two shipped records already have an empty side (VjA1VOogCog, 8_JJkHTB-UA —
+  // both low-confidence parses), and data/manual-videos.json documents `[]` as a
+  // legitimate authoring state paired with a `todo`. A hard fail would break the
+  // 06:17 UTC refresh on its first run to punish a state the pipeline already
+  // supports. Counting it keeps it visible; the review surface is where it gets
+  // fixed. This is deliberately NOT Tekken's `characters.length < 1` throw — that
+  // repo has no hand-authored records and no such state to protect.
+  const rosterIds = new Set(characters.map((c) => c.id));
+  const emptySides: string[] = [];
+  for (const r of replays) {
+    for (const s of r.sides) {
+      if (s.characters.length === 0) {
+        emptySides.push(r.id);
+        continue;
+      }
+      // a side is a set — a duo never fields the same champion twice, and a set
+      // union is deduped at build time. A repeat means a merge went wrong.
+      if (new Set(s.characters).size !== s.characters.length)
+        throw new Error(`emit: ${r.id} side repeats a character (${s.characters.join(',')})`);
+      for (const c of s.characters)
+        if (!rosterIds.has(c)) throw new Error(`emit: ${r.id} references unknown character '${c}'`);
+    }
+  }
+  if (emptySides.length > 0)
+    console.log(
+      `  ⚠ ${emptySides.length} side(s) with no champion (unresolved parses): ${[...new Set(emptySides)].join(', ')}`,
+    );
+
+  // The union's own arithmetic. characterUsage counts v.allCharacters — the
+  // PER-VIDEO DEDUPED union — so the expected total is the union over each
+  // record's sides, NOT the sum of side lengths. Those diverge exactly when both
+  // sides field the same champion, which is common here and rare in a 1v1 game:
+  // the sibling pipelines' `sum of side lengths` form gives 21,730 against an
+  // actual 19,563 and would throw on run one. Equality is what ties the usage
+  // bars, the per-patch timeline and the player tables to one denominator.
+  const usageTotal = Object.values(genericStats.characterUsage).reduce((a, b) => a + b, 0);
+  const expectedUsage = replays.reduce(
+    (n, r) => n + new Set(r.sides.flatMap((s) => s.characters)).size,
+    0,
+  );
+  if (usageTotal !== expectedUsage)
+    throw new Error(
+      `emit: characterUsage sums to ${usageTotal}, expected ${expectedUsage} per-video character appearances`,
+    );
+
+  // Pairing stats deliberately count a side only when its union is EXACTLY two
+  // (scripts/stats.ts) — a set VOD whose duo changed lists every champion it
+  // fielded, and naive C(n,2) over [a,b,c] would mint a pairing that never
+  // played. That exclusion has always been silent; this surfaces its size.
+  const oversized = records.flatMap((v) =>
+    v.teams.filter((t) => t.characters.length > 2).map(() => v.id),
+  );
+  if (oversized.length > 0)
+    console.log(
+      `  ℹ ${oversized.length} oversized side(s) counted in usage but excluded from pairing stats: ${[...new Set(oversized)].join(', ')}`,
+    );
   // every emitted patch token must be an era key or a declared boundary
   // version, and a fine token's release-date season must equal the record's —
   // the invariant the grouped facet's counts depend on

@@ -1,11 +1,11 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-08T03:08:13.393Z._
+_Generated 2026-08-08T04:05:03.356Z._
 
 ## Summary
-- Total videos: **5452**
-- High confidence: **5410**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
-- Newly discovered players (auto-added to `players.json`): **1**
+- Total videos: **5454**
+- High confidence: **5432**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.2%** · patchVersion: **95.0%** · patch label: **16.7%** · fuse: **99.3%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **533**
 
@@ -16,21 +16,11 @@ _Not fetched. Their committed records are carried forward and still receive fuse
 |---|---|---|---|
 | `proReplays` | 1317 | 2026-08-08 | channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue |
 
-## Manual videos (30)
+## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
 
 | id | tournament | round | todo |
 |---|---|---|---|
-| `zxRvkDeYL8w` | Evo 2026 | Grand Final |  |
-| `rZ_ZS28CYKw` | Evo 2026 | Losers Final |  |
-| `5WBq0DVF-SA` | Evo 2026 | Winners Final |  |
-| `GIeNm6oRUJk` | Evo 2026 | Losers Semifinal |  |
-| `f2KZcuecUe0` | Evo 2026 | Losers Quarterfinals |  |
-| `2klXAMVlhAc` | Evo 2026 | Losers Quarterfinals |  |
-| `VVGHdfYCYXU` | Evo 2026 | Losers Round 1 |  |
-| `fPU2yAfyziM` | Evo 2026 | Losers Round 1 |  |
-| `J5VoHVI5_Ls` | Evo 2026 | Winners Semifinals |  |
-| `ByDIZRY0NQE` | Evo 2026 | Winners Semifinals |  |
 | `z4g0nXVPy6k` | Frosty Faustings 2026 | Winners Semifinal |  |
 | `yZ51w-wbW8s` | Frosty Faustings 2026 | Winners Semifinal |  |
 | `4FypBAwMOV4` | Frosty Faustings 2026 | Losers Round 1 |  |
@@ -41,16 +31,6 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `c_QvODVM0pw` | Frosty Faustings 2026 | Winners Final |  |
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
-| `QWjpY279YCs` | Evo Japan 2026 | Grand Final |  |
-| `CfTSFVvZB7o` | Evo Japan 2026 | Losers Final |  |
-| `-iJUvL6df6A` | Evo Japan 2026 | Losers Semifinal |  |
-| `C4KQHZ0NwS0` | Evo Japan 2026 | Winners Final |  |
-| `LeLxCI1Dbmk` | Evo Japan 2026 | Losers Quarterfinal |  |
-| `dvph1agxMzg` | Evo Japan 2026 | Losers Quarterfinal |  |
-| `5wXvM4dsliM` | Evo Japan 2026 | Losers Round 1 |  |
-| `Yk9oBhqs4q8` | Evo Japan 2026 | Losers Round 1 |  |
-| `zkcW8rDOV3w` | Evo Japan 2026 | Winners Semifinal |  |
-| `7cO631mYBIU` | Evo Japan 2026 | Winners Semifinal |  |
 
 ## Low-confidence records (12)
 | id | channel | reason | raw title |
@@ -68,9 +48,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `luxannacrownguar` | Luxanna Crownguar | 1 | luxanna crownguar |
+_None._

@@ -62,6 +62,9 @@ export default defineAppConfig({
       { id: 'highLevel', name: 'High Level' },
       { id: 'manual', name: 'Tournament' },
       { id: 'bestReplays', name: 'Best Replays' },
+      // appended at index 4 — the badge palette has 3 styles, so this shares the
+      // amber outline with 'manual' and 'bestReplays' and the label distinguishes
+      { id: 'evoEvents', name: 'Evo' },
     ],
     // Filter chips are consolidated to two groups (the per-video SourceBadge keeps
     // the real channel name from sourceChannels above). Toggling a group filters its
@@ -69,7 +72,7 @@ export default defineAppConfig({
     // work. 'Online' spans the three YouTube channels; 'Tournament' is the manual VODs.
     sourceGroups: [
       { id: 'online', name: 'Online', sources: ['proReplays', 'highLevel', 'bestReplays'] },
-      { id: 'tournament', name: 'Tournament', sources: ['manual'] },
+      { id: 'tournament', name: 'Tournament', sources: ['manual', 'evoEvents'] },
     ],
     // Season→patch hierarchy for the grouped patch facet (engine v0.6.0).
     // PIPELINE-EMITTED (scripts/emit.ts → data/patchGroups.json) from the same

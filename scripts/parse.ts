@@ -1012,6 +1012,64 @@ const mergeCuration = (rec: VideoRecord): VideoRecord => {
 // carried record: the review page would write a file the pipeline ignores.
 const parsedRecords: VideoRecord[] = [...baseRecords, ...carriedRecords].map(mergeCuration);
 
+/** The fuse half of the merge above, for HAND-AUTHORED records.
+ *
+ *  Both merges above live inside the baseRecords.map, and manual records are
+ *  concatenated after it — so until this existed, a detection or a
+ *  /dev/fuse-review verdict keyed on a tournament id was silently discarded on
+ *  every run. The review page wrote a file the pipeline ignored.
+ *
+ *  It is deliberately NOT the full shallow merge the parsed branch takes. A
+ *  manual entry is "authoritative: never parsed, never overwritten" (see
+ *  buildManualRecords), so letting overrides.json rewrite its title, tournament
+ *  or characters would quietly outrank the file a human curates by hand. Fuses
+ *  are the exception: they are CV output rather than authorship, so a detection
+ *  may FILL a null side and a review verdict may correct one. Only the fuse
+ *  column and the unordered flag cross over.
+ *
+ *  Detection FILLS PER SIDE, never overwrites: a hand-authored fuse outranks
+ *  the detector, and a half-authored record must still get its null side
+ *  filled — a record-level "already has a fuse" test would skip exactly that.
+ */
+function applyFuseSources(rec: VideoRecord): VideoRecord {
+  if (rec.teams.length !== 2) return rec;
+  let out = rec;
+
+  const det = fusesDetected[rec.id];
+  if (det && (det.status === 'ok' || det.status === 'ok-unordered')) {
+    const pair = [det.left, det.right];
+    if (out.teams.some((t, i) => t.fuse === null && pair[i] !== null)) {
+      out = {
+        ...out,
+        teams: out.teams.map((t, i) => (t.fuse === null ? { ...t, fuse: pair[i]! } : t)),
+        ...(det.status === 'ok-unordered' ? { fusesUnordered: true as const } : {}),
+      };
+    }
+  }
+
+  // An override carries a whole teams array (that is the shape fuse-review
+  // writes); take ONLY the fuse column off it so a stale snapshot of the
+  // players or characters can never land back on the record.
+  const ov = overrides[rec.id];
+  if (ov && !ov.exclude) {
+    if (Array.isArray(ov.teams) && ov.teams.length === out.teams.length) {
+      const fuses = ov.teams.map((t) => t.fuse ?? null);
+      if (out.teams.some((t, i) => t.fuse !== fuses[i])) {
+        out = { ...out, teams: out.teams.map((t, i) => ({ ...t, fuse: fuses[i]! })) };
+      }
+    }
+    if (ov.fusesUnordered === true) {
+      out = { ...out, fusesUnordered: true };
+    } else if (ov.fusesUnordered === false && out.fusesUnordered) {
+      // an explicit clear — drop the key rather than emitting `false`, since
+      // VideoRecord types it `?: true`
+      const { fusesUnordered: _cleared, ...rest } = out;
+      out = rest;
+    }
+  }
+  return out;
+}
+
 // Manual records resolve players against the finalized registry (discovery
 // included), so they build after the loop above; appended last — additive,
 // authoritative, and absent from the raw dumps by definition. Overrides-driven
@@ -1026,8 +1084,29 @@ const normalizePatchVersion = (r: VideoRecord): VideoRecord =>
     ? { ...r, patchVersion: null }
     : r;
 
+/** Footage-completion channels publish only what a verdict has actually settled.
+ *
+ *  These titles name players, game and round and never a champion, so a title
+ *  parse produces a record with EMPTY sides. Publishing that is worse than
+ *  publishing nothing: a championless row in the catalogue, dragging the
+ *  low-confidence count, showing on the site as a match nobody played. The
+ *  verdict lives in overrides.json, so a record without one is simply not ready.
+ *  Held-out ids are reported rather than silently dropped. */
+const footageChannels = new Set(
+  Object.values(CHANNELS)
+    .filter((c) => c.charactersFromFootage)
+    .map((c) => c.key as string),
+);
+const heldForFootage: VideoRecord[] = [];
+const publishable = parsedRecords.filter((r) => {
+  if (!footageChannels.has(r.channel)) return true;
+  const complete = r.teams.length === 2 && r.teams.every((t) => t.characters.length > 0);
+  if (!complete) heldForFootage.push(r);
+  return complete;
+});
+
 const records: VideoRecord[] = applyExclusions(
-  [...parsedRecords, ...buildManualRecords()],
+  [...publishable, ...buildManualRecords().map(applyFuseSources)],
   overrides,
 ).map(normalizePatchVersion);
 
@@ -1090,6 +1169,14 @@ if (manualNewPlayers.length > 0) {
   );
 }
 for (const t of manualTodos) console.log(`  ⚠ manual ${t.id} — todo: ${t.todo}`);
+if (heldForFootage.length > 0) {
+  console.log(
+    `  ⚠ ${heldForFootage.length} footage record(s) held out of videos.json — awaiting a champion verdict:`,
+  );
+  for (const r of heldForFootage.slice(0, 10)) console.log(`      ${r.id}  ${r.title}`);
+  if (heldForFootage.length > 10) console.log(`      … ${heldForFootage.length - 10} more`);
+  console.log('    Resolve with: npm run data:extract  →  /dev/evo-review');
+}
 console.log(
   `  fill rates → season ${counts.seasonPct}%  ·  patchVersion ${counts.patchVersionPct}%  ·  fuse ${counts.fusePct}%`,
 );

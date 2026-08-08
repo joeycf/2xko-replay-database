@@ -77,7 +77,7 @@ export interface ReplayFuseFields {
   fusesUnordered?: true;
 }
 
-export type ChannelKey = 'proReplays' | 'highLevel' | 'bestReplays';
+export type ChannelKey = 'proReplays' | 'highLevel' | 'bestReplays' | 'evoEvents';
 /** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
 export type VideoSource = ChannelKey | 'manual';
 export type MatchType = 'ranked' | 'tournament' | 'duo';
@@ -280,6 +280,72 @@ export interface FuseGapReport {
   totals: { videos: number; withFuse: number; missing: number };
   counts: Record<FuseGapBucket, number>;
   items: FuseGapItem[];
+}
+
+/** What the footage extractor read for one SCREEN side (scripts/hud-read.ts). */
+export interface EvoSideProposal {
+  /** every champion this side fielded, first-appearance order; [] when unread */
+  characters: string[];
+  confidence: number;
+  /** reads too thin to admit, kept so a reviewer can see what was discarded */
+  dropped: { char: string; frames: number }[];
+  /** frames where BOTH slots read — the fold's coverage denominator */
+  read: number;
+  sampled: number;
+}
+
+/** One Evo VOD awaiting champion completion.
+ *
+ *  Joined server-side from cache/evo/extracted.json (the extractor's proposal),
+ *  data/manual-videos.json (the saved verdict) and the frame cache, so the page
+ *  ships one small payload instead of pulling videos.json.
+ *
+ *  The proposal is in SCREEN order and the saved verdict is in TITLE order; they
+ *  are only comparable once `leftIsFirst` says how the two line up, which is why
+ *  it travels with the item rather than being assumed. */
+export interface EvoReviewItem {
+  id: string;
+  title: string;
+  tournament: string;
+  round?: string;
+  durationSec: number;
+  /** cached frame stamps under cache/evo/frames/<id>/ — drives the frame cycler */
+  frames: string[];
+  /** which script the nameplates were in — the corpus splits, and a reviewer
+   *  needs to know whether a blank read is a hard case or a broken one */
+  script: 'latin' | 'katakana' | 'unknown';
+  /** the extractor's read, SCREEN order (left first); null when never run */
+  proposal: {
+    left: EvoSideProposal;
+    right: EvoSideProposal;
+    leftIsFirst: boolean;
+    decided: boolean;
+    confidence: number;
+  } | null;
+  /** what data/manual-videos.json holds now, TITLE order. [] = still unread. */
+  saved: [string[], string[]];
+  /** a fuse verdict a human already recorded for this video, TITLE order, from
+   *  data/fuse-validation-evo.json. `undefined` per side = never read. This is
+   *  what makes "confirmed freestyle" distinguishable from "defaulted to
+   *  freestyle" — the distinction the whole pass exists to draw. */
+  validatedFuses: [string | null | undefined, string | null | undefined];
+  /** the fuse column as it stands, TITLE order.
+   *
+   *  Carried for the diff after a save, NOT to seed the picker. 38 of 40 sides in
+   *  this corpus read `freestyle`, which against the detector-confident base rate
+   *  is p ~ 8e-7 — the fingerprint of a default that was never read off a pill.
+   *  Pre-filling from it would launder that default through a human. */
+  savedFuses: [string | null, string | null];
+  /** players per side, TITLE order — read-only context for the reviewer */
+  players: [string[], string[]];
+  /** the entry still carries a todo marker */
+  todo: string | null;
+}
+
+/** Payload of /api/dev/evo-review. */
+export interface EvoReviewQueue {
+  generatedAt: string;
+  items: EvoReviewItem[];
 }
 
 /** A raw video record as dumped by scripts/fetch.ts. Written to raw/<channel>.json. */

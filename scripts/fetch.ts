@@ -303,8 +303,19 @@ async function main(): Promise<void> {
     console.log(`  uploads playlist: ${uploads}`);
     const ids = await listAllUploadIds(uploads);
     console.log(`  enumerated ${ids.length} upload video id(s)`);
-    const records = await fetchVideoMetadata(ids, ch.key);
-    console.log(`  fetched metadata for ${records.length} video(s)`);
+    const all = await fetchVideoMetadata(ids, ch.key);
+    console.log(`  fetched metadata for ${all.length} video(s)`);
+    // A multi-game channel is gated HERE rather than at parse, so raw/<key>.json
+    // stays a dump of THIS GAME's uploads. Evo publishes every game it runs, and
+    // without the marker ~2,750 Street Fighter, Tekken and Guilty Gear records
+    // enter the 2XKO corpus and have to be rejected one at a time forever.
+    const records = ch.gameSignal
+      ? all.filter((r) => ch.gameSignal!.test(r.title) || ch.gameSignal!.test(r.description ?? ''))
+      : all;
+    if (ch.gameSignal)
+      console.log(
+        `  ${records.length} carry the ${ch.name} game marker (${all.length - records.length} other-game uploads dropped)`,
+      );
     const outPath = join(RAW_DIR, `${ch.key}.json`);
     await writeFile(outPath, JSON.stringify(records, null, 2) + '\n', 'utf8');
     console.log(`  → wrote raw/${ch.key}.json`);

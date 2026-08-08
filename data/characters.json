@@ -7,7 +7,8 @@
     "accent": "#FF5DA2",
     "extra": {
       "aliases": [
-        "ahri"
+        "ahri",
+        "アーリ"
       ]
     }
   },
@@ -19,7 +20,8 @@
     "accent": "#35D98A",
     "extra": {
       "aliases": [
-        "akali"
+        "akali",
+        "アカリ"
       ]
     }
   },
@@ -32,7 +34,8 @@
     "extra": {
       "aliases": [
         "blitzcrank",
-        "blitz"
+        "blitz",
+        "ブリッツクランク"
       ]
     }
   },
@@ -44,7 +47,8 @@
     "accent": "#58C7E8",
     "extra": {
       "aliases": [
-        "braum"
+        "braum",
+        "ブラウム"
       ]
     }
   },
@@ -57,7 +61,8 @@
     "extra": {
       "aliases": [
         "caitlyn",
-        "cait"
+        "cait",
+        "ケイトリン"
       ]
     }
   },
@@ -69,7 +74,8 @@
     "accent": "#F0463F",
     "extra": {
       "aliases": [
-        "darius"
+        "darius",
+        "ダリウス"
       ]
     }
   },
@@ -81,7 +87,8 @@
     "accent": "#1FE0D4",
     "extra": {
       "aliases": [
-        "ekko"
+        "ekko",
+        "エコー"
       ]
     }
   },
@@ -94,7 +101,8 @@
     "extra": {
       "aliases": [
         "illaoi",
-        "illoai"
+        "illoai",
+        "イラオイ"
       ]
     }
   },
@@ -106,7 +114,8 @@
     "accent": "#5B8CFF",
     "extra": {
       "aliases": [
-        "jinx"
+        "jinx",
+        "ジンクス"
       ]
     }
   },
@@ -118,7 +127,8 @@
     "accent": "#97DB4A",
     "extra": {
       "aliases": [
-        "senna"
+        "senna",
+        "セナ"
       ]
     }
   },
@@ -130,7 +140,8 @@
     "accent": "#E27E3C",
     "extra": {
       "aliases": [
-        "teemo"
+        "teemo",
+        "ティーモ"
       ]
     }
   },
@@ -142,7 +153,8 @@
     "accent": "#49E0A6",
     "extra": {
       "aliases": [
-        "thresh"
+        "thresh",
+        "スレッシュ"
       ]
     }
   },
@@ -154,7 +166,8 @@
     "accent": "#FF6F61",
     "extra": {
       "aliases": [
-        "vi"
+        "vi",
+        "ヴァイ"
       ]
     }
   },
@@ -167,7 +180,8 @@
     "extra": {
       "aliases": [
         "warwick",
-        "ww"
+        "ww",
+        "ワーウィック"
       ]
     }
   },
@@ -180,7 +194,8 @@
     "extra": {
       "aliases": [
         "yasuo",
-        "yas"
+        "yas",
+        "ヤスオ"
       ]
     }
   }

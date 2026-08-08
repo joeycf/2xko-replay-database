@@ -18,6 +18,16 @@ export interface ChannelConfig {
   playerSep: RegExp;
   /** trailing channel-branding suffix (for reference / stripping) */
   suffix: RegExp;
+  /** This channel publishes MORE THAN 2XKO, so an upload must carry a 2XKO marker
+   *  to be considered at all. Every other channel here is 2XKO-only by
+   *  construction and leaves this unset. */
+  gameSignal?: RegExp;
+  /** This channel's titles never name a champion, so its match-shaped uploads are
+   *  completed from the FOOTAGE (scripts/hud-read.ts) and published from an
+   *  overrides.json verdict rather than from a title parse. Without a verdict a
+   *  record is held out of videos.json entirely — an empty-champion record is
+   *  worse than no record. */
+  charactersFromFootage?: boolean;
   /** This channel no longer publishes this game. It is NOT fetched, requires no
    *  raw dump, and its committed records are carried forward by parse.ts — see
    *  the channel-collapse guard there for why deleting them was the alternative.
@@ -74,6 +84,30 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     // channels ("▰ 2XKO Pro Replays" / "▰ 2XKO High Level Replays"). Nothing reads
     // `suffix`, so that collision is inert — but do not wire it up without revisiting.
     suffix: /2XKO (Pro|High Level) Replays?/i,
+  },
+  evoEvents: {
+    key: 'evoEvents',
+    name: 'Evo',
+    // "Evo Events" — the event's own channel, ~2,750 uploads across every game it
+    // runs. 21 of them are single 2XKO sets (Evo 2026 and Evo Japan 2026), and not
+    // one names a champion.
+    //
+    // Tracked because the champions can now be READ off the broadcast HUD, which
+    // prints all four as text — romanized at Evo Las Vegas, KATAKANA at Evo Japan.
+    // Measured against 21 hand labels: zero fabrications, 100% precision at every
+    // confidence threshold, 18/18 on side resolution. See README.
+    resolve: { by: 'id', value: 'UCWI626ZNdqM5tOlctPUTW2g' },
+    // Reference only, like every entry here — the parser splits on the unified
+    // PLAYER_SEP below. Recorded because this channel's duo delimiter is "/"
+    // ("SonicFox/INZEM"), which is ALSO in CHAR_SEP: a title parse would split it
+    // in the wrong dimension. Inert only because charactersFromFootage holds these
+    // records for a footage verdict instead of parsing their titles.
+    playerSep: /\s*\/\s*|\s+and\s+/i,
+    suffix: /\|\s*2XKO\s*\|/i,
+    // The channel publishes Street Fighter, Tekken, Guilty Gear and the rest
+    // alongside; without the marker every upload enters the 2XKO corpus.
+    gameSignal: /\b2XKO\b/i,
+    charactersFromFootage: true,
   },
 };
 

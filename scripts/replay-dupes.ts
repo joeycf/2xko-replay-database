@@ -57,6 +57,8 @@ import { fileURLToPath } from 'node:url';
 
 import sharp from 'sharp';
 
+import { CHANNELS } from './channels';
+
 import type { VideoRecord } from '../types/index';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -173,7 +175,8 @@ async function hashAll(ids: string[], byId: Map<string, VideoRecord>): Promise<H
       : {};
   const todo = ids.filter((id) => !cache[id]);
   if (todo.length) {
-    if (!asJson) console.log(`  hashing ${todo.length} thumbnails (${ids.length - todo.length} cached)…`);
+    if (!asJson)
+      console.log(`  hashing ${todo.length} thumbnails (${ids.length - todo.length} cached)…`);
     let done = 0;
     const POOL = 8;
     await Promise.all(
@@ -209,8 +212,32 @@ const detected = await readJson<Record<string, unknown>>('fuses-detected.json');
 const byId = new Map(videos.map((v) => [v.id, v]));
 const hasFuse = (id: string): boolean => detected[id] != null;
 const hasOverride = (id: string): boolean => id !== '//' && overrides[id] != null;
+
+/** Channels whose records are BUILT from an override as the normal path.
+ *
+ *  The override protection below exists to save RECONSTRUCTION work — a
+ *  hand-authored correction whose loss would strand real curation. For a
+ *  charactersFromFootage channel every record is an override, because that is
+ *  simply how the record exists, and treating it as protected would make the
+ *  channel win every duplicate pair — silently outranking the precedence declared
+ *  in channels.ts. SF6 hit exactly this and fixed it with the same exclusion.
+ *
+ *  KEYED ON THE SOURCE, and that is safe here specifically. Tekken had to key its
+ *  version on the intake channel because Evo and Bandai Namco both publish under
+ *  one 'tournament' source token, so a source-keyed rule would have stripped
+ *  protection from both. 2XKO keeps channel == source 1:1 (VideoSource is
+ *  ChannelKey | 'manual'), so `v.channel` names exactly one channel and no
+ *  `intake` field is needed. That stops being true the moment two fetched
+ *  channels share a source — at which point this needs an intake key too. */
+const FOOTAGE_SOURCES = new Set<string>(
+  Object.values(CHANNELS)
+    .filter((c) => c.charactersFromFootage)
+    .map((c) => c.key as string),
+);
+
 /** Rules 1-2: this record carries work that would be orphaned by dropping it. */
-const protectedRec = (id: string): boolean => hasFuse(id) || hasOverride(id);
+const protectedRec = (id: string, channel?: string): boolean =>
+  hasFuse(id) || (hasOverride(id) && !(channel !== undefined && FOOTAGE_SOURCES.has(channel)));
 
 // ── candidate generation ──────────────────────────────────────────────────────
 
@@ -255,7 +282,10 @@ const scoped = pairs.filter((p) => {
 // ── adjudicate ────────────────────────────────────────────────────────────────
 
 const ids = [...new Set(scoped.flatMap((p) => [p.a.id, p.b.id]))];
-if (!asJson) console.log(`\n${videos.length} videos · ${scoped.length} candidate pairs · ${ids.length} thumbnails`);
+if (!asJson)
+  console.log(
+    `\n${videos.length} videos · ${scoped.length} candidate pairs · ${ids.length} thumbnails`,
+  );
 const hashes = await hashAll(ids, byId);
 
 const tierOf = (p: Pair, ham: number | null, intra: boolean): Tier | null => {
@@ -284,11 +314,15 @@ const tierOf = (p: Pair, ham: number | null, intra: boolean): Tier | null => {
 };
 
 /** Ordered precedence; first rule that fires picks the KEEP side. */
-function decide(a: VideoRecord, b: VideoRecord): { keep: VideoRecord; drop: VideoRecord; rule: string } {
+function decide(
+  a: VideoRecord,
+  b: VideoRecord,
+): { keep: VideoRecord; drop: VideoRecord; rule: string } {
   const mk = (keep: VideoRecord, drop: VideoRecord, rule: string) => ({ keep, drop, rule });
   const oa = hasOverride(a.id);
   const ob = hasOverride(b.id);
-  if (oa !== ob) return oa ? mk(a, b, 'hand-authored-override') : mk(b, a, 'hand-authored-override');
+  if (oa !== ob)
+    return oa ? mk(a, b, 'hand-authored-override') : mk(b, a, 'hand-authored-override');
   const fa = hasFuse(a.id);
   const fb = hasFuse(b.id);
   if (fa !== fb) return fa ? mk(a, b, 'fuse-detected') : mk(b, a, 'fuse-detected');
@@ -327,7 +361,11 @@ for (const p of scoped) {
   // for one that carries none. When BOTH sides are protected (an intra-catalog pair
   // where both have fuse — same footage, so the loser's fuse data is redundant),
   // dropping the duplicate orphans nothing, so it stays actionable.
-  if (preferExisting && protectedRec(drop.id) && !protectedRec(keep.id)) {
+  if (
+    preferExisting &&
+    protectedRec(drop.id, drop.channel) &&
+    !protectedRec(keep.id, keep.channel)
+  ) {
     flags.push('blocked-by-prefer-existing');
   }
   // The drop already has a hand-authored override entry, so a standalone exclude in the
@@ -413,15 +451,35 @@ mkdirSync(OUT, { recursive: true });
 
 const report = {
   generatedAt: new Date().toISOString(),
-  universe: { videos: videos.length, candidatePairs: scoped.length, thumbHashed: Object.keys(hashes).length },
+  universe: {
+    videos: videos.length,
+    candidatePairs: scoped.length,
+    thumbHashed: Object.keys(hashes).length,
+  },
   options: { scope, minTier, preferExisting },
   counts: Object.fromEntries(counts),
   actionable: actionable.length,
   pairs: visible.map((r) => ({
     tier: r.tier,
     scope: r.scope,
-    keep: { id: r.keep.id, channel: r.keep.channel, durationSec: r.keep.durationSec, publishedAt: r.keep.publishedAt, title: r.keep.title, hasFuse: hasFuse(r.keep.id), hasOverride: hasOverride(r.keep.id) },
-    drop: { id: r.drop.id, channel: r.drop.channel, durationSec: r.drop.durationSec, publishedAt: r.drop.publishedAt, title: r.drop.title, hasFuse: hasFuse(r.drop.id), hasOverride: hasOverride(r.drop.id) },
+    keep: {
+      id: r.keep.id,
+      channel: r.keep.channel,
+      durationSec: r.keep.durationSec,
+      publishedAt: r.keep.publishedAt,
+      title: r.keep.title,
+      hasFuse: hasFuse(r.keep.id),
+      hasOverride: hasOverride(r.keep.id),
+    },
+    drop: {
+      id: r.drop.id,
+      channel: r.drop.channel,
+      durationSec: r.drop.durationSec,
+      publishedAt: r.drop.publishedAt,
+      title: r.drop.title,
+      hasFuse: hasFuse(r.drop.id),
+      hasOverride: hasOverride(r.drop.id),
+    },
     evidence: { durationDeltaSec: r.durDelta, thumbHamming: r.ham },
     precedenceRule: r.rule,
     flags: r.flags,
@@ -454,7 +512,10 @@ const md: string[] = [
   '',
   '## Titles',
   '',
-  ...visible.flatMap((r) => [`- **${r.tier}** keep \`${r.keep.id}\` — ${r.keep.title}`, `  - drop \`${r.drop.id}\` — ${r.drop.title}`]),
+  ...visible.flatMap((r) => [
+    `- **${r.tier}** keep \`${r.keep.id}\` — ${r.keep.title}`,
+    `  - drop \`${r.drop.id}\` — ${r.drop.title}`,
+  ]),
   '',
   '## To apply',
   '',
@@ -488,6 +549,9 @@ if (asJson) {
         `        ${r.keep.title}\n`,
     );
   }
-  if (visible.length > 40) console.log(`… ${visible.length - 40} more in cache/dupes/replay-dupes.md\n`);
-  console.log('Full report: cache/dupes/replay-dupes.md · --emit-overrides for the paste-ready fragment\n');
+  if (visible.length > 40)
+    console.log(`… ${visible.length - 40} more in cache/dupes/replay-dupes.md\n`);
+  console.log(
+    'Full report: cache/dupes/replay-dupes.md · --emit-overrides for the paste-ready fragment\n',
+  );
 }

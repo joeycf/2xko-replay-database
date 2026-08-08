@@ -294,18 +294,19 @@ stopped. Under sustained throttling, pace it with `--sleep 4-8`.
 
 ## Dev curation tooling (local-only)
 
-Four pages under `/dev` do the hand-curation the automated pipeline can't.
+Five pages under `/dev` do the hand-curation the automated pipeline can't.
 All of them are **`nuxt dev` only**: the page and every `/api/dev/*` route it
 uses guard on `import.meta.dev` and 404 otherwise, `nitro.prerender.ignore`
 skips the whole `/dev` prefix, and nothing public links to them. They read and
 write the committed JSON directly — there is no database.
 
-| page                | what it's for                                                                                      |
-| ------------------- | -------------------------------------------------------------------------------------------------- |
-| `/dev/fuse-review`  | **The manual fuse workbench.** Adjudicate every gap the CV couldn't settle → `data/overrides.json` |
-| `/dev/fuse-gaps`    | Read-only dashboard over the gap report — bucket/era filters, pill crops, in-app playback          |
-| `/dev/fuse-orient`  | The narrow `--promote-lows` orientation queue: fuse is legible, only the owning team is unresolved |
-| `/dev/manual-entry` | Hand-author tournament/non-parseable records → `data/manual-videos.json`                           |
+| page                | what it's for                                                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------------- |
+| `/dev/fuse-review`  | **The manual fuse workbench.** Adjudicate every gap the CV couldn't settle → `data/overrides.json`   |
+| `/dev/fuse-gaps`    | Read-only dashboard over the gap report — bucket/era filters, pill crops, in-app playback            |
+| `/dev/fuse-orient`  | The narrow `--promote-lows` orientation queue: fuse is legible, only the owning team is unresolved   |
+| `/dev/manual-entry` | Hand-author tournament/non-parseable records → `data/manual-videos.json`                             |
+| `/dev/evo-review`   | Complete the champions on Evo broadcast VODs the extractor couldn't read → `data/manual-videos.json` |
 
 ### `/dev/fuse-review`
 
@@ -336,6 +337,126 @@ persisted — only real assignments touch the repo.
 The 63 gaps outstanding when this screen landed are now all resolved (63 new
 `overrides.json` entries, every one with both sides attributed). The fixed merge
 order means those verdicts survive the daily cron like any other override.
+
+### `/dev/evo-review`
+
+The champion-completion workbench for @EvoEvents footage, where the titles state
+players, game and round but never a character.
+
+`npm run data:extract` reads the four champions off the broadcast HUD
+(`scripts/hud-read.ts`) and leaves its proposal in `cache/evo/extracted.json`;
+this page shows that proposal beside what `data/manual-videos.json` already holds
+and lets you settle the difference. It is not optional polish — **half the corpus
+cannot be read automatically** (see below), so this is where those records
+actually get completed.
+
+| case                      | what you do                          | what lands in `manual-videos.json` |
+| ------------------------- | ------------------------------------ | ---------------------------------- |
+| extractor read both sides | check it, press `a` then `s`         | both sides' `characters`           |
+| extractor read one side   | accept it, click the other side      | both sides' `characters`           |
+| no read (the Latin half)  | read the HUD off the frame and click | both sides' `characters`           |
+| sides look swapped        | press `⇄ swap sides`, then save      | the two lists exchanged            |
+
+Keys: `←→` move between videos, `[`/`]` cycle frames, `a` accepts the proposal,
+`d` jumps to the next disputed verdict, `⏎` jumps to the next incomplete one, `s`
+saves. The cell strip tracks every video: **fill** is save state, **border** is
+whether the extractor disagrees with what's saved — two independent facts, so
+they get two channels.
+
+Champions are clicked as a **set-level union** — every champion that side fielded
+across the whole set, any length — matching the convention `manual-videos.json`
+documents. Ids are validated against `data/characters.json`, the id must already
+exist in the file, and a save clears the entry's `todo` marker.
+
+**Measured, 2026-08-08**, against 21 hand labels captured before scoring
+(`npm run data:snapshot-labels` → `cache/evo/ground-truth.json`, which the scorer
+reads instead of the live file so a completion pass cannot grade its own work):
+
+|                       | both sides exact | per side      | fabrications |
+| --------------------- | ---------------- | ------------- | ------------ |
+| katakana (Evo Japan)  | 9/10 · 90.0%     | 19/20 · 95.0% | 0            |
+| latin (Evo Las Vegas) | 4/11 · 36.4%     | 13/22 · 59.1% | 0            |
+| all                   | 13/21 · 61.9%    | 32/42 · 76.2% | **0**        |
+
+At n=21 the percentage is coarse, so the bar is qualitative and it is met: **zero
+fabrications**, and **100% precision at every confidence threshold** — everything
+the extractor auto-accepted was correct, 8 of 21 at the 0.90 gate. Every miss is
+an omission, and they concentrate in the Latin half exactly as the font wall
+predicts. Numbers are for the whole set; the blind subset (17 videos whose frames
+were never displayed during recon) scores 10/17, and that is the row to trust.
+
+**Side resolution: 18/18.** `resolveSide` reads which titled side sits on screen
+left off the broadcast banner, and agrees with the labels on every video that
+carries a signal, including both reversals. The ground-truth title-order defect
+rate here is **2/18 (11.1%)**, close to SF6's 12.8% and well below Tekken's 37.7%
+— but it is not zero, which is the whole reason the side is read rather than
+assumed. It also earned its keep: `f2KZcuecUe0` shipped with its two sides
+swapped in both the champion and fuse columns, and the extractor flagged it.
+
+**Fuse column, validated.** All 42 sides were read off the pill by hand into
+`data/fuse-validation-evo.json`: **38 confirmed as stored, 2 corrected** (both the
+`f2KZcuecUe0` swap). The near-uniform `freestyle` that looked statistically like an
+unvalidated default (p ~ 8e-7 against the _online_ detector-confident base rate)
+turned out to be real — top-level tournament play skews that hard, and the online
+population was the wrong null.
+
+**Why half the corpus is manual.** Evo Japan renders the nameplates in katakana
+and `tesseract`'s `jpn` model reads them at 75–100% of HUD-bearing frames. Evo Las
+Vegas renders them in 2XKO's Latin display face, and that face defeats OCR: a
+clean, human-legible `AHRI` returns `V-V.JI`, measured across four thresholds,
+four page-segmentation modes, whitelist on and off, ink-trim, glyph-height
+normalization, six shear angles and the VS screen at three times the size. `TEEMO`
+reads; `AHRI` never does. It is specific letterforms, not preprocessing.
+
+> **Documented follow-up, not built.** The roster is a closed set of ~15 champions
+> in a fixed nameplate font, which is the case template matching is best at —
+> auto-rendering each champion's name in that font and matching by dHash would
+> read what tesseract cannot, and would extend by itself when a DLC champion
+> lands. The shipped `assets/name-templates/*.png` are not that: they are raw HUD
+> crops with player handles baked in (`CAITLYN Humbleger`, `Opal AHRI`), one is
+> blank, and they score 12–20% top-1. The split ships as-is; this is the escape
+> hatch if the Latin half ever becomes worth automating.
+
+### Fuses on tournament footage
+
+Evo records carry a **null** fuse column, deliberately, and `npm run data:evo-fuses`
+is the thing that will eventually fill it.
+
+The pill itself transfers fine — `data/fuse-regions.json`'s rects land on it once
+they are pushed through the video's measured framing (the Evo overlay insets the
+game feed by a per-video amount; `normalizeFraming` recovers it from the health
+bar's outer edges). What does **not** transfer are the templates: the overlay
+_redraws_ the pill rather than scaling it, so a direct-feed template hashes
+against it at `struct` 26–30 with a ceiling of 30 — legible to a human,
+structurally unrecognised. Measured against the pixels, the direct-feed set read
+FREESTYLE/FREESTYLE as `2x-assist`/`2x-assist` and 2X ASSIST/2X ASSIST as
+`double-down`/`double-down`, one of them _confidently_.
+
+The fix is the same one this detector has always used for a new capture style:
+template it from its own frames, as `assets/fuse-templates/<fuse>-evo.png`. Two
+are cut (`freestyle`, `2x-assist`) and they work — the videos they came from went
+from wrong to right at `struct` 14.
+
+**The runner refuses to write until all six active fuses have an `-evo` template.**
+An absent class cannot abstain: every class competes, so a pill whose own template
+is missing is forced into the nearest one present. That is fabrication, not partial
+coverage. Cut the remaining four (`double-down`, `juggernaut`, `sidekick`,
+`teamfight`) opportunistically as future corpus frames show them confirmed by eye,
+and the gate permits writes as coverage grows.
+
+> **The `-evo` templates are opt-in (`loadPillTemplates(true)`), and stay that way.**
+> Folding them into the shared set measures _better_ on `data/fuse-validation.json`
+> — 14 disagreements down to 11, two `low` reads promoted — but it also introduces
+> one new error, a teamfight side reading as `2x-assist`. That trade is not taken
+> as a side effect of tournament work, for two reasons. The **98.75% is a published
+> property of a specific template configuration**, so widening the set does not
+> improve that number, it invalidates it. And the regression is fabrication-class —
+> a confident wrong id on validated ground truth — bought with promotions, which
+> are not commensurable: a promotion leaves a read a human can still fix from the
+> review queue, a fabrication ships a false fuse nothing flags. If the net win is
+> ever worth taking, it is taken deliberately: a re-validation session over the
+> full 5,415 with the widened set, every disagreement adjudicated, and a new
+> published figure.
 
 ## New-champion runbook
 
