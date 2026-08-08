@@ -1,13 +1,20 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-06T09:07:59.219Z._
+_Generated 2026-08-08T03:08:13.393Z._
 
 ## Summary
-- Total videos: **5434**
-- High confidence: **5392**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
+- Total videos: **5452**
+- High confidence: **5410**  ·  Low confidence: **12**  ·  Manual (hand-authored): **30**
 - Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.2%** · patchVersion: **94.9%** · patch label: **16.7%** · fuse: **99.7%**
-- Season derivation (date-authoritative) — boundary-graced: **14** · stale description labels overridden: **586**
+- Fill rates — season: **95.2%** · patchVersion: **95.0%** · patch label: **16.7%** · fuse: **99.3%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **533**
+
+## Frozen channels (1)
+_Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
+
+| channel | carried | frozen since | reason |
+|---|---|---|---|
+| `proReplays` | 1317 | 2026-08-08 | channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue |
 
 ## Manual videos (30)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -48,22 +55,22 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 ## Low-confidence records (12)
 | id | channel | reason | raw title |
 |---|---|---|---|
-| `OXAeNs7Ocg8` | proReplays | fuzzy character "Akalai" → akali on left | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
-| `Gy1V3_ctj3Q` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
-| `aY-ffoGazlY` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
-| `z_g1JJjLn7g` | proReplays | fuzzy character "Akalai" → akali on right | 2XKO ▰ SUPERNOON (Teemo-Ekko) vs HUEBERT (Akalai-Ekko) ▰ 2XKO Pro level replays |
-| `SVGjJmhAGRQ` | proReplays | fuzzy character "Ysuo" → yasuo on right | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
-| `WeXMoFuuG_g` | proReplays | fuzzy character "Teeo" → teemo on left | 2XKO ▰ INZEM-SONICFOX (Teeo-Ahri) vs SEMIIJ (Vi-Ahri) ▰ 2XKO Pro level replays |
-| `hrTe0L43dlY` | proReplays | fuzzy character "Warwixk" → warwick on right | 2XKO ▰ GENISGOD (Yasuo-Teemo) vs L1NZ (Warwixk-Caitlyn) ▰ 2XKO Pro level replays |
-| `VjA1VOogCog` | proReplays | unresolved character "pj1" on right; unresolved character "pj2" on right | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
-| `8_JJkHTB-UA` | proReplays | unresolved character "pj1" on left; unresolved character "pj2" on left | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
-| `VklFg7dEoSQ` | proReplays | fuzzy character "Blitzcranck" → blitzcrank on left | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
+| `Gy1V3_ctj3Q` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
+| `aY-ffoGazlY` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
+| `z_g1JJjLn7g` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SUPERNOON (Teemo-Ekko) vs HUEBERT (Akalai-Ekko) ▰ 2XKO Pro level replays |
+| `SVGjJmhAGRQ` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
+| `WeXMoFuuG_g` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INZEM-SONICFOX (Teeo-Ahri) vs SEMIIJ (Vi-Ahri) ▰ 2XKO Pro level replays |
+| `hrTe0L43dlY` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ GENISGOD (Yasuo-Teemo) vs L1NZ (Warwixk-Caitlyn) ▰ 2XKO Pro level replays |
+| `VjA1VOogCog` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
+| `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
+| `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
 ## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `desktheory` | DESK THEORY | 1 | desk theory |
+| `luxannacrownguar` | Luxanna Crownguar | 1 | luxanna crownguar |

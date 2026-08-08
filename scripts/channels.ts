@@ -18,6 +18,21 @@ export interface ChannelConfig {
   playerSep: RegExp;
   /** trailing channel-branding suffix (for reference / stripping) */
   suffix: RegExp;
+  /** This channel no longer publishes this game. It is NOT fetched, requires no
+   *  raw dump, and its committed records are carried forward by parse.ts — see
+   *  the channel-collapse guard there for why deleting them was the alternative.
+   *  `records` pins the expected carry count: data/videos.json is both the source
+   *  and the target of that carry, so a bad run would otherwise poison the next
+   *  run's reference permanently. A deliberate prune means editing the number,
+   *  which shows up in the diff. */
+  frozen?: {
+    /** ISO date fetching stopped */
+    since: string;
+    /** why — surfaced in data/report.md */
+    reason: string;
+    /** expected number of carried records; a mismatch is a hard failure */
+    records: number;
+  };
 }
 
 export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
@@ -25,6 +40,20 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     key: 'proReplays',
     name: '2XKO Pro Replays',
     resolve: { by: 'id', value: 'UCdppkT52RXi-pGvyibNIXNw' },
+    // FROZEN 2026-08-08. This channel rebranded to "MARVEL TOKON Pro Replays" and
+    // unlisted its entire 2XKO back catalogue. The 1,317 uploads still exist and
+    // still play at their URLs — unlisted videos merely leave the uploads
+    // playlist — so a fetch enumerated 7 where it had enumerated 1,317, and a bare
+    // data:build would have pruned a quarter of the archive for a rebrand.
+    //
+    // Its 6 current uploads are MARVEL Tokon pro replays and do not belong in this
+    // pipeline; they are preserved at raw/_tokon-sample.json as the first
+    // identified source for that game.
+    frozen: {
+      since: '2026-08-08',
+      reason: 'channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue',
+      records: 1317,
+    },
     playerSep: /\s+-\s+/, // duo players joined by " - " (spaces)
     suffix: /2XKO Pro level replays/i,
   },

@@ -106,6 +106,9 @@ const fusesDetected: Record<string, FuseDetection> = await readJson<Record<strin
 const rawRecords: RawVideoRecord[] = [];
 const rawPaths: string[] = [];
 for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
+  // A frozen channel is not fetched, so it has no dump to require. Its records
+  // are carried from the committed catalogue just below.
+  if (CHANNELS[key].frozen) continue;
   const p = join(RAW, `${key}.json`);
   if (!existsSync(p)) {
     console.error(
@@ -116,6 +119,56 @@ for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
   rawPaths.push(p);
   rawRecords.push(...(await readJson<RawVideoRecord[]>(p)));
 }
+
+// ── frozen channels: carry the committed records forward ──────────────────────
+// A frozen channel publishes this game no longer, but the matches it published
+// are real and its videos still play. Rather than let them be pruned, the last
+// good catalogue is the source: these records skip buildRecord (there is no raw
+// to build from) and rejoin the pipeline at the merge stage, so fuse detections
+// and overrides still reach them. See scripts/channels.ts for why proReplays is
+// frozen, and the channel-collapse guard below for what happens without this.
+const frozenKeys = (Object.keys(CHANNELS) as ChannelKey[]).filter((k) => CHANNELS[k].frozen);
+const committedAll =
+  frozenKeys.length > 0
+    ? await readJson<VideoRecord[]>(join(DATA, 'videos.json')).catch(() => [] as VideoRecord[])
+    : [];
+const carriedRecords: VideoRecord[] = committedAll.filter((v) =>
+  frozenKeys.includes(v.channel as ChannelKey),
+);
+for (const key of frozenKeys) {
+  const want = CHANNELS[key].frozen!.records;
+  const got = carriedRecords.filter((v) => v.channel === key).length;
+  // THE PIN. data/videos.json is both the source and the target of this carry, so
+  // a run that dropped records would poison the next run's reference permanently
+  // and silently. Any drift stops the pipeline; a deliberate prune means editing
+  // the number in channels.ts, which shows up in review.
+  if (got !== want) {
+    console.error(
+      [
+        `✖ Frozen channel "${key}" carried ${got} record(s), expected ${want}.`,
+        `  data/videos.json is both the source and the target of this carry, so drift here`,
+        `  compounds: the next run would treat ${got} as the new baseline.`,
+        `  If the change is deliberate, update frozen.records in scripts/channels.ts.`,
+      ].join('\n'),
+    );
+    process.exit(1);
+  }
+}
+
+// A carried record never passes through buildRecord, so it never lands in
+// lowReports — but the report's Summary counts low-confidence records from
+// `records`, which does include it. Without this the report reads "Low
+// confidence: 12" above a table headed "Low-confidence records (2)", the exact
+// desync the comment above that table exists to prevent. The original per-record
+// reasons are not retained in videos.json, so say so rather than invent them.
+const carriedLow = carriedRecords
+  .filter((v) => v.parseConfidence === 'low')
+  .map((v) => ({
+    id: v.id,
+    channel: v.channel as ChannelKey,
+    title: v.title,
+    reasons: ['carried from a frozen channel — original parse reasons not retained'],
+  }));
 
 // ── stale-raw guard ───────────────────────────────────────────────────────────
 // Daily refreshes are committed by the remote cron, so this machine's gitignored
@@ -131,7 +184,13 @@ if (!process.argv.includes('--allow-stale')) {
   const rawIds = new Set(rawRecords.map((r) => r.id));
   // manual-videos.json ids are never in the channel dumps — not a staleness signal
   const manualIds = new Set(manualEntries.map((e) => e.id));
-  const missing = existing.filter((v) => !rawIds.has(v.id) && !manualIds.has(v.id));
+  // Neither are a frozen channel's carried ids: they are deliberately absent from
+  // raw/, so without this every one of them reads as a staleness signal and this
+  // guard fires on every single run.
+  const carriedIds = new Set(carriedRecords.map((v) => v.id));
+  const missing = existing.filter(
+    (v) => !rawIds.has(v.id) && !manualIds.has(v.id) && !carriedIds.has(v.id),
+  );
   if (missing.length > 0) {
     let lastCommitMs: number | null = null;
     try {
@@ -155,6 +214,83 @@ if (!process.argv.includes('--allow-stale')) {
           `  missing from raw/*.json (fetched ${day(rawMtimeMs)}), e.g. ${missing[0].id}. The daily cron refreshes`,
           `  remotely, so local raw/ lags — parsing now would silently drop those videos.`,
           `  Run \`npm run data:fetch\` first (or \`npm run data:build\`); pass --allow-stale to override.`,
+        ].join('\n'),
+      );
+      process.exit(1);
+    }
+  }
+}
+
+// ── channel-collapse guard ────────────────────────────────────────────────────
+// The stale-raw guard above catches a raw/ that LAGS the catalogue. It cannot
+// catch a raw/ that is fresh and SMALLER, because its second condition
+// (rawMtimeMs < lastCommitMs) is false after any fetch — and its comment blesses
+// that path: "fresh dumps missing ids are legitimate (that's how deleted videos
+// get pruned)". True for a handful of deletions. Catastrophic for a channel that
+// walks away.
+//
+// Observed 2026-08-08: the "2XKO Pro Replays" channel rebranded to MARVEL TOKON
+// and unlisted its entire 2XKO back catalogue. The videos still exist and still
+// play, but unlisted uploads leave the uploads playlist, so a fetch enumerated 7
+// records where it had enumerated 1,317. A bare data:build would have rebuilt the
+// catalogue at ~4,124 instead of 5,434 — a 24% loss — and committed it.
+//
+// COMPARING RAW AGAINST THE COMMITTED CATALOGUE IS SOUND because videos <= raw
+// always holds for a fetched channel: videos.json is built FROM raw, minus
+// exclusions and parse failures. So raw falling BELOW the committed video count
+// is always real loss, never ordinary churn.
+//
+// TWO THRESHOLDS, BOTH REQUIRED. A percentage alone punishes a small channel for
+// ordinary churn; an absolute alone misses a large channel bleeding slowly.
+const COLLAPSE_PCT = 0.1; // >10% of the committed count
+const COLLAPSE_ABS = 20; // AND >20 records
+{
+  const allowIdx = process.argv.indexOf('--allow-collapse');
+  const allowed = new Set(
+    allowIdx === -1 ? [] : (process.argv[allowIdx + 1] ?? '').split(',').map((x) => x.trim()),
+  );
+  const committed =
+    committedAll.length > 0
+      ? committedAll
+      : await readJson<VideoRecord[]>(join(DATA, 'videos.json')).catch(() => [] as VideoRecord[]);
+  if (committed.length > 0) {
+    const countBy = (rs: { channel: string }[]): Map<string, number> => {
+      const m = new Map<string, number>();
+      for (const r of rs) m.set(r.channel, (m.get(r.channel) ?? 0) + 1);
+      return m;
+    };
+    const before = countBy(committed);
+    const now = countBy(rawRecords);
+    const collapsed: string[] = [];
+    for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
+      // A FROZEN channel has no raw to compare — that is the whole point of
+      // freezing one. A NEW channel has no committed history to fall from.
+      if (CHANNELS[key].frozen) continue;
+      const was = before.get(key) ?? 0;
+      if (was === 0) continue;
+      const is = now.get(key) ?? 0;
+      const lost = was - is;
+      if (lost > COLLAPSE_ABS && lost / was > COLLAPSE_PCT) {
+        collapsed.push(
+          `  ${key}: ${was} → ${is}  (lost ${lost}, ${((lost / was) * 100).toFixed(1)}%)` +
+            (allowed.has(key) ? '  [allowed]' : ''),
+        );
+      }
+    }
+    const blocking = collapsed.filter((l) => !l.endsWith('[allowed]'));
+    if (collapsed.length > 0) console.error('Channel collapse detected:\n' + collapsed.join('\n'));
+    if (blocking.length > 0) {
+      console.error(
+        [
+          ``,
+          `✖ Refusing to parse: a channel lost more than ${COLLAPSE_ABS} records AND more than`,
+          `  ${COLLAPSE_PCT * 100}% of its committed count. videos.json is built from raw/, so this`,
+          `  would publish the loss — silently, and the next run would treat it as the new normal.`,
+          `  A channel can collapse because it was deleted, renamed, made private, or REBRANDED`,
+          `  to another game and unlisted its back catalogue (observed 2026-08-08).`,
+          ``,
+          `  Retain the records:  mark the channel \`frozen\` in scripts/channels.ts`,
+          `  Accept the prune:    npm run data:parse -- --allow-collapse ${blocking.map((l) => l.trim().split(':')[0]).join(',')}`,
         ].join('\n'),
       );
       process.exit(1);
@@ -575,7 +711,10 @@ const manualTodos: { id: string; todo: string }[] = [];
 function buildManualRecords(): VideoRecord[] {
   const errors: string[] = [];
   const err = (id: string, msg: string) => errors.push(`manual-videos.json [${id || '?'}]: ${msg}`);
-  const rawIds = new Set(rawRecords.map((r) => r.id));
+  // Carried ids count as "already in the dumps" for the collision check: they are
+  // published records, and a manual entry duplicating one is the same error it
+  // has always been. Without the union this check silently stops covering them.
+  const rawIds = new Set([...rawRecords.map((r) => r.id), ...carriedRecords.map((v) => v.id)]);
   const seenIds = new Set<string>();
 
   // final registry lookup — includes this run's parser-discovered players
@@ -738,6 +877,26 @@ function buildReport(
     ``,
   );
 
+  // ── frozen channels ───────────────────────────────────────────────────────
+  // These records are not re-fetched and not re-parsed; they are carried from the
+  // last good catalogue. That is invisible everywhere else — the badge, the source
+  // chip and the filters all keep working — so this is the one place it stays
+  // visible instead of becoming folklore.
+  if (frozenKeys.length > 0) {
+    lines.push(`## Frozen channels (${frozenKeys.length})`);
+    lines.push(
+      `_Not fetched. Their committed records are carried forward and still receive fuse detections and \`overrides.json\` verdicts. Pruning one requires editing \`frozen.records\` in \`scripts/channels.ts\`._`,
+      ``,
+    );
+    lines.push(`| channel | carried | frozen since | reason |`, `|---|---|---|---|`);
+    for (const key of frozenKeys) {
+      const f = CHANNELS[key].frozen!;
+      const carried = records.filter((r) => r.channel === key).length;
+      lines.push(`| \`${key}\` | ${carried} | ${f.since} | ${cell(f.reason)} |`);
+    }
+    lines.push(``);
+  }
+
   if (manual > 0) {
     lines.push(`## Manual videos (${manual})`);
     lines.push(
@@ -802,6 +961,7 @@ function buildReport(
 
 // ── main ──────────────────────────────────────────────────────────────────────
 const baseRecords = rawRecords.map(buildRecord);
+lowReports.push(...carriedLow);
 
 // Finalize discovered players into the registry (existing seed entries preserved).
 for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
@@ -816,7 +976,7 @@ for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
 // Normalize embedded player displayNames to the final canonical value — discovery
 // merges casing variants as it goes, so records built early held stale snapshots —
 // then apply overrides.json LAST as a shallow merge.
-const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
+const mergeCuration = (rec: VideoRecord): VideoRecord => {
   const teams = rec.teams.map((t) => ({
     ...t,
     players: t.players.map((p) => ({
@@ -843,7 +1003,14 @@ const parsedRecords: VideoRecord[] = baseRecords.map((rec) => {
   // entries don't shallow-merge (the record is dropped wholesale below).
   const ov = overrides[rec.id];
   return ov && !ov.exclude ? { ...merged, ...ov } : merged;
-});
+};
+
+// Carried records take the SAME merge as parsed ones, deliberately. They skip
+// buildRecord — there is no raw to rebuild them from — but a frozen channel is
+// still a parser-derived one, so a corrected detection should land and a
+// /dev/fuse-review verdict must reach it. Skipping this would strand every
+// carried record: the review page would write a file the pipeline ignores.
+const parsedRecords: VideoRecord[] = [...baseRecords, ...carriedRecords].map(mergeCuration);
 
 // Manual records resolve players against the finalized registry (discovery
 // included), so they build after the loop above; appended last — additive,

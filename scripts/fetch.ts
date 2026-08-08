@@ -292,6 +292,12 @@ async function main(): Promise<void> {
   const byChannel = new Map<ChannelKey, RawVideoRecord[]>();
 
   for (const ch of Object.values(CHANNELS)) {
+    if (ch.frozen) {
+      // No enumeration, no raw dump. parse.ts carries this channel's committed
+      // records forward instead; re-fetching would only re-observe the collapse.
+      console.log(`\n⏸ Skipping "${ch.key}" — frozen ${ch.frozen.since}: ${ch.frozen.reason}`);
+      continue;
+    }
     console.log(`\n▶ Fetching "${ch.key}" (${ch.name})…`);
     const uploads = await resolveUploadsPlaylist(ch);
     console.log(`  uploads playlist: ${uploads}`);
@@ -308,7 +314,10 @@ async function main(): Promise<void> {
   console.log(`\n\n${'█'.repeat(72)}`);
   console.log(`  RECONNAISSANCE`);
   console.log('█'.repeat(72));
-  for (const ch of Object.values(CHANNELS)) runRecon(ch.key, byChannel.get(ch.key) ?? [], fuseRe);
+  for (const ch of Object.values(CHANNELS)) {
+    if (ch.frozen) continue; // no dump, so nothing to reconnoitre
+    runRecon(ch.key, byChannel.get(ch.key) ?? [], fuseRe);
+  }
 
   const grandTotal = [...byChannel.values()].reduce((n, r) => n + r.length, 0);
   console.log(
