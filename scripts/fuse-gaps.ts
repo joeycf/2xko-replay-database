@@ -151,12 +151,23 @@ const frameCount = (id: string) => {
   return existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.png')).length : 0;
 };
 
-const missing = videos.filter((v) => !v.teams.some((t) => t.fuse));
+// ANY side missing, not "no side has one". This used to read
+// `!v.teams.some((t) => t.fuse)` — no fuse on EITHER side — so a record with one
+// side attributed and one side blank was excluded from `missing` outright:
+// never bucketed, never montaged, never counted, and counted as fully attributed
+// in the summary line below. Measured when this was widened: 56 such records,
+// 24 on proReplays (frozen, so they will never be re-fetched) and 32 on
+// highLevel, against 38 with no fuse at all. Half the gap was invisible.
+const missing = videos.filter((v) => v.teams.some((t) => !t.fuse));
 const runTime = Date.parse(universe.runDate);
 const items: FuseGapItem[] = missing.map((v) => {
   const det = detected[v.id];
   let bucket: FuseGapBucket;
-  if (!det) bucket = universe.ids.has(v.id) ? 'unavailable' : 'pending';
+  // Half-attributed is its own state. The other four buckets all answer "why is
+  // there no fuse", and folding a one-sided record into `anomaly` would blunt a
+  // bucket that currently means something precise.
+  if (v.teams.some((t) => t.fuse)) bucket = 'partial';
+  else if (!det) bucket = universe.ids.has(v.id) ? 'unavailable' : 'pending';
   else if (det.status === 'low') bucket = 'low';
   else if (det.status === 'none') bucket = 'none';
   else bucket = 'anomaly'; // confident detection that parse.ts could not merge
@@ -192,7 +203,7 @@ const sortKey = (a: FuseGapItem, b: FuseGapItem) =>
 items.sort(sortKey);
 const inBucket = (b: FuseGapBucket) => items.filter((i) => i.bucket === b);
 const counts = Object.fromEntries(
-  (['unavailable', 'low', 'none', 'pending', 'anomaly'] as const).map((b) => [
+  (['unavailable', 'low', 'none', 'pending', 'anomaly', 'partial'] as const).map((b) => [
     b,
     inBucket(b).length,
   ]),
@@ -350,6 +361,8 @@ const esc = (s: string) => s.replace(/\|/g, '\\|');
 const short = (s: string, n = 64) => (s.length <= n ? s : s.slice(0, n - 1) + '…');
 const yt = (id: string) => `[▶](https://youtu.be/${id})`;
 const today = new Date().toISOString().slice(0, 10);
+// FULLY attributed — both sides. Before the any-side-missing widening this read
+// as "has a fuse" and silently counted half-attributed records as complete.
 const withFuse = videos.length - missing.length;
 
 md.push(`# Fuse gaps — ${today}`);
@@ -367,7 +380,8 @@ md.push('');
 md.push('## Summary');
 md.push('');
 md.push(
-  `${withFuse} of ${videos.length} videos have a fuse — **${missing.length} missing**, split:`,
+  `${withFuse} of ${videos.length} videos have a fuse on BOTH sides — ` +
+    `**${missing.length} with a gap**, split:`,
 );
 md.push('');
 md.push('| bucket | count | meaning | action |');
@@ -387,12 +401,15 @@ md.push(
 md.push(
   `| ⚠ ANOMALY | **${counts.anomaly}** | confident detection exists but could not merge | fix the underlying record (see below) |`,
 );
+md.push(
+  `| ◐ PARTIAL | **${counts.partial}** | one side has a fuse, the other does not | adjudicate the blank side — these were invisible to this report before 2026-08 |`,
+);
 md.push('');
 
 md.push('## Reconciliation facts');
 md.push('');
 md.push(
-  `- **ok-unordered vs truly absent:** all ${statusTally['ok-unordered'] ?? 0} ok-unordered detections merged into videos.json (they count as “has fuse”, shown unattributed). Among the ${missing.length} missing, **${unmergedConfident.length}** carr${unmergedConfident.length === 1 ? 'ies' : 'y'} a confident detection that could not merge${unmergedConfident.length ? `: ${unmergedConfident.map((i) => `\`${i.id}\` (status ${i.detection?.status}, video has ${byId.get(i.id)?.teams.length ?? 0} parsed teams — needs a title-parse override, not fuse work)`).join('; ')}` : ''}. Every other miss is genuinely fuse-less.`,
+  `- **ok-unordered vs truly absent:** all ${statusTally['ok-unordered'] ?? 0} ok-unordered detections merged into videos.json (they count as “has fuse”, shown unattributed). Among the ${missing.length} missing, **${unmergedConfident.length}** carr${unmergedConfident.length === 1 ? 'ies' : 'y'} a confident detection that could not merge${unmergedConfident.length ? `: ${unmergedConfident.map((i) => `\`${i.id}\` (status ${i.detection?.status}, video has ${byId.get(i.id)?.teams.length ?? 0} parsed teams — needs a title-parse override, not fuse work)`).join('; ')}` : ''}. Of the rest, ${counts.partial} ${counts.partial === 1 ? 'is' : 'are'} PARTIAL (one side attributed) and the remainder are genuinely fuse-less on both sides.`,
 );
 md.push(
   `- **UNAVAILABLE videos are still listed on YouTube.** \`data:fetch\` re-walks the full uploads playlists daily and drops ids the API stops returning (deleted/private), and videos.json is regenerated from that dump — so surviving today's refresh means YouTube still lists them. yt-dlp failing on 2026-07-02 while the API still serves them points at run-time throttling / age- or region-gating, **not** deletions. Orphan check agrees: ${orphanDetections.length} detected ids have dropped out of videos.json.`,
@@ -488,6 +505,28 @@ for (const i of inBucket('pending')) {
 }
 md.push('');
 
+md.push(`## ◐ PARTIAL (${counts.partial}) — one side attributed, one side blank`);
+md.push('');
+md.push(
+  'These carry a fuse on one team and nothing on the other. They were excluded ' +
+    'from this report entirely until 2026-08, because the gap filter asked for ' +
+    'records with no fuse on EITHER side — so they also counted as fully ' +
+    'attributed in the summary above. Adjudicate the blank side the same way as ' +
+    'LOW: pills, then an `overrides.json` entry.',
+);
+md.push('');
+md.push('| video | side missing | known fuse | published | era | channel | title |');
+md.push('|---|---|---|---|---|---|---|');
+for (const i of inBucket('partial')) {
+  const v = byId.get(i.id)!;
+  const blank = v.teams.findIndex((t) => !t.fuse);
+  const known = v.teams.find((t) => t.fuse)?.fuse ?? '?';
+  md.push(
+    `| \`${i.id}\` ${yt(i.id)} | team ${blank + 1} | \`${known}\` | ${i.publishedAt.slice(0, 10)} | ${i.era} | ${i.channel} | ${esc(short(v.title))} |`,
+  );
+}
+md.push('');
+
 const maybePending = inBucket('unavailable').filter((i) =>
   i.flags.includes('maybe-pending'),
 ).length;
@@ -524,7 +563,7 @@ const report: FuseGapReport = {
 writeFileSync(join(REVIEW, 'fuse-gaps.json'), JSON.stringify(report, null, 1) + '\n');
 
 // ── console summary ───────────────────────────────────────────────────────────
-console.log(`fuse gaps: ${missing.length} of ${videos.length} videos missing a fuse`);
+console.log(`fuse gaps: ${missing.length} of ${videos.length} videos missing a fuse on a side`);
 console.log(
   `  unavailable  ${String(counts.unavailable).padStart(4)}  (${maybePending} flagged maybe-pending)`,
 );
@@ -532,6 +571,7 @@ console.log(`  low          ${String(counts.low).padStart(4)}`);
 console.log(`  none         ${String(counts.none).padStart(4)}`);
 console.log(`  pending      ${String(counts.pending).padStart(4)}`);
 console.log(`  anomaly      ${String(counts.anomaly).padStart(4)}`);
+console.log(`  partial      ${String(counts.partial).padStart(4)}  (one side attributed)`);
 console.log(
   `✓ cache/fuse/review/fuse-gaps.md · fuse-gaps.json · gap-pills.png (${montageRows} rows)`,
 );

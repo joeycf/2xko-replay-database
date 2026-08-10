@@ -196,7 +196,17 @@ export interface FuseDetection {
 }
 
 /** Which kind of fuse gap a missing-fuse video is (scripts/fuse-gaps.ts). */
-export type FuseGapBucket = 'unavailable' | 'low' | 'none' | 'pending' | 'anomaly';
+export type FuseGapBucket =
+  | 'unavailable'
+  | 'low'
+  | 'none'
+  | 'pending'
+  | 'anomaly'
+  /** One side has a fuse and the other does not. Distinct from the four
+   *  no-fuse-at-all buckets, which answer "why is there no fuse"; this is
+   *  half-attributed data, invisible until 2026-08 because the gap report
+   *  bucketed only records with no fuse on EITHER side. */
+  | 'partial';
 
 /** One missing-fuse video in the gap diagnostic. */
 export interface FuseGapItem {

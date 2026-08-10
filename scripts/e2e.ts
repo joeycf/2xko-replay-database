@@ -892,7 +892,10 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     const stray = asked.filter(
       (p) => !p.startsWith('/2xko-insights/') && !p.startsWith('/_vercel/speed-insights/'),
     );
-    expect(stray.length === 0, `insights request outside the configured prefixes: ${JSON.stringify(stray)}`);
+    expect(
+      stray.length === 0,
+      `insights request outside the configured prefixes: ${JSON.stringify(stray)}`,
+    );
 
     // 2. the reported pageview must carry the base. The script 404s here, so
     //    the queue never drains and window.vaq still holds what WOULD be sent.
