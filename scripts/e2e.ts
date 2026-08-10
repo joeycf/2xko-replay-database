@@ -807,10 +807,35 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     );
     const manifest = JSON.parse(readFileSync(join(OUT, BASE, 'manifest.webmanifest'), 'utf8')) as {
       name: string;
+      icons: { src: string; sizes: string; type: string; purpose: string }[];
     };
     expect(
       summary.game === '2xko' && manifest.name === `${summary.name} Replay Database`,
       `summary identity vs rendered GameConfig: game=${summary.game}, name=${summary.name}, manifest=${manifest.name}`,
+    );
+
+    // The manifest icon set (engine v0.6.4). Nothing checked this before, and a
+    // manifest is only ever read by the OS at install time — so a typo'd src, an
+    // icon that was never committed, or a `maskable` declaration with no
+    // maskable asset behind it all shipped completely silently.
+    const maskable = manifest.icons.filter((i) => i.purpose === 'maskable');
+    expect(
+      maskable.length >= 1,
+      `manifest declares a maskable icon (${manifest.icons.length} icons, none maskable)`,
+    );
+    const escaped = manifest.icons.filter((i) => !i.src.startsWith(BASE));
+    expect(
+      escaped.length === 0,
+      `every manifest icon src sits under the base ${BASE} — escaping: ${escaped.map((i) => i.src).join(', ')}`,
+    );
+    // …and the file it names is really in the build. src is base-prefixed and
+    // OUT/BASE already carries that prefix, so strip it before joining.
+    const missingIcons = manifest.icons.filter(
+      (i) => !existsSync(join(OUT, BASE, i.src.slice(BASE.length))),
+    );
+    expect(
+      missingIcons.length === 0,
+      `every manifest icon file exists — missing: ${missingIcons.map((i) => i.src).join(', ')}`,
     );
   });
 
