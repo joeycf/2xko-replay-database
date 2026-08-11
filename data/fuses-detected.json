@@ -60421,5 +60421,60 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-11"
+ },
+ "zCF7cUrJFHk": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 13,
+   "right": 12
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-11"
+ },
+ "jYck_j7zCVU": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 11,
+   "right": 38
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-11"
+ },
+ "jUbj-8ef3RA": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 1,
+   "right": 18
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-11"
+ },
+ "5vRexvwiN8Y": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 2
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-11"
+ },
+ "S4ctRl1Xlt8": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 24
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-11"
  }
 }
