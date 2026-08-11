@@ -10660,5 +10660,35 @@
         "luxanna crownguar"
       ]
     }
+  },
+  {
+    "id": "luxannacrownguar-2",
+    "handle": "LuxannaCrownguar",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "luxannacrownguar"
+      ]
+    }
+  },
+  {
+    "id": "trojanpanda",
+    "handle": "TROJANPANDA",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "trojanpanda"
+      ]
+    }
+  },
+  {
+    "id": "ryujinx",
+    "handle": "RYUJINX",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "ryujinx"
+      ]
+    }
   }
 ]
