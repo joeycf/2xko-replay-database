@@ -60476,5 +60476,137 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-11"
+ },
+ "7GYrDxS_gwY": {
+  "left": "double-down",
+  "right": "2x-assist",
+  "score": {
+   "left": 7,
+   "right": 6
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "Off6hEaHxEA": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 9
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "mXGoVOrEu7Y": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 1
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "Ww7W25vpB80": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 0,
+   "right": 4
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "VlsCR9R4FYE": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "NAOVbWOpGpk": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "FQK5dvQEQkY": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 1,
+   "right": 31
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "9wCxnfIG-2E": {
+  "left": "2x-assist",
+  "right": "2x-assist",
+  "score": {
+   "left": 25,
+   "right": 30
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "lSZXEOu02T0": {
+  "left": "2x-assist",
+  "right": "2x-assist",
+  "score": {
+   "left": 13,
+   "right": 27
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "dROEt4XJBMI": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 5,
+   "right": 34
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "bS9DkSiyOKg": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 2,
+   "right": 18
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
+ },
+ "yZof1DfCZDM": {
+  "left": "double-down",
+  "right": "2x-assist",
+  "score": {
+   "left": 1,
+   "right": 4
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-12"
  }
 }
