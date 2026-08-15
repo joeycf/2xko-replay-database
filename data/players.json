@@ -10700,5 +10700,15 @@
         "etarrilla"
       ]
     }
+  },
+  {
+    "id": "nobutimnunu",
+    "handle": "NO BUT IM NUNU",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "no but im nunu"
+      ]
+    }
   }
 ]
