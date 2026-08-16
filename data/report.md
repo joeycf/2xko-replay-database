@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-15T07:01:45.041Z._
+_Generated 2026-08-16T07:03:33.231Z._
 
 ## Summary
-- Total videos: **5525**
-- High confidence: **5503**  ·  Low confidence: **12**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.3%** · patchVersion: **95.0%** · patch label: **17.1%** · fuse: **99.3%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **570**
+- Total videos: **5536**
+- High confidence: **5513**  ·  Low confidence: **13**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **3**
+- Fill rates — season: **95.3%** · patchVersion: **95.0%** · patch label: **17.2%** · fuse: **99.2%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **575**
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -32,9 +32,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (12)
+## Low-confidence records (13)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
@@ -48,9 +49,11 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
-## Newly discovered players (1)
+## Newly discovered players (3)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `nobutimnunu` | NO BUT IM NUNU | 1 | no but im nunu |
+| `cembers` | C. Embers | 1 | c. embers |
+| `bshmfwfm` | BSHMFWFM | 1 | bshmfwfm |
+| `sylvanos` | Sylvanos | 1 | sylvanos |
