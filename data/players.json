@@ -10760,5 +10760,15 @@
         "spork"
       ]
     }
+  },
+  {
+    "id": "doormat",
+    "handle": "DOORMAT",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "doormat"
+      ]
+    }
   }
 ]

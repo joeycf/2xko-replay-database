@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-17T01:55:53.128Z._
+_Generated 2026-08-17T07:20:09.210Z._
 
 ## Summary
-- Total videos: **5545**
-- High confidence: **5522**  ·  Low confidence: **13**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.3%** · patchVersion: **95.0%** · patch label: **17.2%** · fuse: **99.8%**
+- Total videos: **5547**
+- High confidence: **5524**  ·  Low confidence: **13**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **95.3%** · patchVersion: **95.0%** · patch label: **17.3%** · fuse: **99.7%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **580**
 
 ## Frozen channels (1)
@@ -49,7 +49,9 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `doormat` | DOORMAT | 1 | doormat |
