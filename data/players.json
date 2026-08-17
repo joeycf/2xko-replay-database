@@ -10740,5 +10740,25 @@
         "sylvanos"
       ]
     }
+  },
+  {
+    "id": "yaaaay",
+    "handle": "YAAAAY",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "yaaaay"
+      ]
+    }
+  },
+  {
+    "id": "spork",
+    "handle": "SPORK",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "spork"
+      ]
+    }
   }
 ]
