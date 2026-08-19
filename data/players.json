@@ -10770,5 +10770,15 @@
         "doormat"
       ]
     }
+  },
+  {
+    "id": "f0rsaken",
+    "handle": "F0RSAKEN",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "f0rsaken"
+      ]
+    }
   }
 ]
