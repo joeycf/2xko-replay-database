@@ -10780,5 +10780,15 @@
         "f0rsaken"
       ]
     }
+  },
+  {
+    "id": "turtlesbro",
+    "handle": "TURTLESBRO",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "turtlesbro"
+      ]
+    }
   }
 ]
