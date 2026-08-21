@@ -333,6 +333,19 @@
 // unlinked from public pages, noindex, absent from prerender output.
 import type { FuseReviewItem, FuseReviewQueue, FuseReviewVerdict } from '~~/types';
 
+// Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
+// value MUST stay a plain quoted literal — the build extracts them from the AST
+// and a variable or backtick string drops the key silently.
+definePageMeta({
+  devTool: {
+    title: 'Fuse review',
+    category: 'Diagnostic',
+    description:
+      'The manual fuse workbench — adjudicate every gap the CV could not settle, one video at a time.',
+    writes: 'data/overrides.json',
+  },
+});
+
 if (!import.meta.dev) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found' });
 }

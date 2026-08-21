@@ -312,6 +312,19 @@ import type { EvoReviewItem, EvoReviewQueue } from '~~/types';
 
 // Dev-only surface: never prerendered (nuxt.config nitro.prerender.ignore),
 // noindex, and nothing links to it.
+
+// Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
+// value MUST stay a plain quoted literal — the build extracts them from the AST
+// and a variable or backtick string drops the key silently.
+definePageMeta({
+  devTool: {
+    title: 'Evo champion completion',
+    category: 'Curation',
+    description: 'Complete the champions on Evo broadcast VODs the extractor could not read.',
+    writes: 'data/manual-videos.json',
+  },
+});
+
 if (!import.meta.dev) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found' });
 }

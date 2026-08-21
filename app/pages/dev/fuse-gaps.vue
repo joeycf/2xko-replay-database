@@ -199,6 +199,18 @@
 import type { Replay, Side } from '@engine/types';
 import type { FuseGapBucket, FuseGapItem, FuseGapReport, VideoRecord } from '~~/types';
 
+// Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
+// value MUST stay a plain quoted literal — the build extracts them from the AST
+// and a variable or backtick string drops the key silently.
+definePageMeta({
+  devTool: {
+    title: 'Fuse gaps',
+    category: 'Diagnostic',
+    description:
+      'Read-only dashboard over the gap report — bucket and era filters, pill crops, in-app playback.',
+  },
+});
+
 if (!import.meta.dev) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found' });
 }

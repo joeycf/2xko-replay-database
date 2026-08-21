@@ -170,6 +170,19 @@
 // unlinked from public pages, noindex, absent from prerender output.
 import type { FuseOrientItem, FuseOrientQueue, VideoRecord } from '~~/types';
 
+// Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
+// value MUST stay a plain quoted literal — the build extracts them from the AST
+// and a variable or backtick string drops the key silently.
+definePageMeta({
+  devTool: {
+    title: 'Fuse orientation',
+    category: 'Diagnostic',
+    description:
+      'The --promote-lows queue: the fuse is legible, only the team that owns it is unresolved.',
+    writes: 'data/overrides.json',
+  },
+});
+
 if (!import.meta.dev) {
   throw createError({ statusCode: 404, statusMessage: 'Not Found' });
 }

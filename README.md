@@ -294,11 +294,19 @@ stopped. Under sustained throttling, pace it with `--sleep 4-8`.
 
 ## Dev curation tooling (local-only)
 
+**Start at [`/dev`](http://localhost:3000/2xko/dev)** — it lists every tool below
+with its description, and there is a **Dev** entry in the site nav while the dev
+server is running. That index is the engine's (`app/pages/dev/index.vue`) and it
+builds itself from what each page declares in `definePageMeta({ devTool })`, so a
+new tool appears there the moment it exists. Keep the block on any page you add;
+the table here is a copy for readers who never start the server.
+
 Five pages under `/dev` do the hand-curation the automated pipeline can't.
 All of them are **`nuxt dev` only**: the page and every `/api/dev/*` route it
 uses guard on `import.meta.dev` and 404 otherwise, `nitro.prerender.ignore`
-skips the whole `/dev` prefix, and nothing public links to them. They read and
-write the committed JSON directly — there is no database.
+skips the whole `/dev` prefix, and nothing public links to them (the nav entry
+is compiled out of production builds). They read and write the committed JSON
+directly — there is no database.
 
 | page                | what it's for                                                                                        |
 | ------------------- | ---------------------------------------------------------------------------------------------------- |
