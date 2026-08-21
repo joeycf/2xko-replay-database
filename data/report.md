@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-21T03:37:41.665Z._
+_Generated 2026-08-21T07:11:33.534Z._
 
 ## Summary
-- Total videos: **5582**
-- High confidence: **5558**  ·  Low confidence: **14**  ·  Manual (hand-authored): **10**
+- Total videos: **5590**
+- High confidence: **5566**  ·  Low confidence: **14**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.5%** · fuse: **100.0%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **597**
+- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.5%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **600**
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
