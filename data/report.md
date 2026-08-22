@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-21T14:29:11.834Z._
+_Generated 2026-08-22T07:03:43.145Z._
 
 ## Summary
-- Total videos: **5593**
-- High confidence: **5569**  ·  Low confidence: **14**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.6%** · fuse: **99.9%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **602**
+- Total videos: **5599**
+- High confidence: **5574**  ·  Low confidence: **15**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.6%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **605**
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -32,9 +32,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (14)
+## Low-confidence records (15)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `BwYfw_m17Hk` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Lumen (Akali / Yasuo) ▰ High Level Gameplay |
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
@@ -50,7 +51,9 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `wasrusso` | Wasrusso | 1 | wasrusso |

@@ -10790,5 +10790,15 @@
         "turtlesbro"
       ]
     }
+  },
+  {
+    "id": "wasrusso",
+    "handle": "Wasrusso",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "wasrusso"
+      ]
+    }
   }
 ]
