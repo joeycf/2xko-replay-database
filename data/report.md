@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-22T07:03:43.145Z._
+_Generated 2026-08-23T01:01:07.967Z._
 
 ## Summary
-- Total videos: **5599**
-- High confidence: **5574**  ·  Low confidence: **15**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.6%** · fuse: **99.8%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **605**
+- Total videos: **5606**
+- High confidence: **5581**  ·  Low confidence: **15**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.6%** · fuse: **99.9%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **609**
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -51,9 +51,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `wasrusso` | Wasrusso | 1 | wasrusso |
+_None._

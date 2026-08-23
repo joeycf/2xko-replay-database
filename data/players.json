@@ -10800,5 +10800,15 @@
         "wasrusso"
       ]
     }
+  },
+  {
+    "id": "myoro",
+    "handle": "Myoro",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "myoro"
+      ]
+    }
   }
 ]
