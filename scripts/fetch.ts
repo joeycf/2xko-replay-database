@@ -309,13 +309,39 @@ async function main(): Promise<void> {
     // stays a dump of THIS GAME's uploads. Evo publishes every game it runs, and
     // without the marker ~2,750 Street Fighter, Tekken and Guilty Gear records
     // enter the 2XKO corpus and have to be rejected one at a time forever.
-    const records = ch.gameSignal
-      ? all.filter((r) => ch.gameSignal!.test(r.title) || ch.gameSignal!.test(r.description ?? ''))
-      : all;
-    if (ch.gameSignal)
+    //
+    // SCOPE IS PER CHANNEL because the two failure modes are opposite. A replay
+    // channel that rebrands keeps its 2XKO boilerplate in the description while
+    // the title switches game, so it can only be judged on the title; Evo's 2XKO
+    // clips are titled with bare commentary quotes and can only be identified
+    // from the description. scripts/channels.ts carries the measurement for each.
+    //
+    // Over-gating does not go quiet. The drop happens before raw/ is written and
+    // parse.ts's channel-collapse guard compares the committed videos.json
+    // against raw/, so a pattern that started rejecting real uploads at scale
+    // stops the next build instead of publishing the loss.
+    const signal = ch.gameSignal;
+    const carriesMarker = (r: RawVideoRecord): boolean =>
+      signal === undefined ||
+      signal.pattern.test(r.title) ||
+      (signal.scope === 'title-or-description' && signal.pattern.test(r.description));
+    const records = all.filter(carriesMarker);
+    if (signal) {
+      const dropped = all.filter((r) => !carriesMarker(r));
+      const where = signal.scope === 'title' ? 'the title' : 'title or description';
       console.log(
-        `  ${records.length} carry the ${ch.name} game marker (${all.length - records.length} other-game uploads dropped)`,
+        `  ${records.length}/${all.length} carry the ${ch.name} game marker in ${where} ` +
+          `(${dropped.length} other-game upload(s) dropped)`,
       );
+      // raw/ is gitignored and refetched daily, so a rejection leaves no trace in
+      // any tracked file — this log is the only record that a specific upload was
+      // refused, and the daily Action's log is where it will be read. Name them,
+      // capped: Evo drops ~2,700 a run and a wall of Tekken titles would bury the
+      // one that mattered.
+      for (const r of dropped.slice(0, 10))
+        console.log(`      ✗ [${r.id}] ${truncate(r.title, 96)}`);
+      if (dropped.length > 10) console.log(`      … ${dropped.length - 10} more`);
+    }
     const outPath = join(RAW_DIR, `${ch.key}.json`);
     await writeFile(outPath, JSON.stringify(records, null, 2) + '\n', 'utf8');
     console.log(`  → wrote raw/${ch.key}.json`);

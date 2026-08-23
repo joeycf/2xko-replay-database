@@ -20,8 +20,33 @@ export interface ChannelConfig {
   suffix: RegExp;
   /** This channel publishes MORE THAN 2XKO, so an upload must carry a 2XKO marker
    *  to be considered at all. Every other channel here is 2XKO-only by
-   *  construction and leaves this unset. */
-  gameSignal?: RegExp;
+   *  construction and leaves this unset.
+   *
+   *  `scope` is REQUIRED, not defaulted, because the right answer differs per
+   *  channel and a wrong one is silent either way. Measured with /\b2XKO\b/i
+   *  against the 2026-08-23 dumps:
+   *
+   *    channel      n     titles lacking 2XKO   title AND description lacking it
+   *    bestReplays  2516  1                     0
+   *    highLevel    1813  0                     0
+   *    evoEvents    42    9                     0
+   *
+   *  'title-or-description' cannot reject the one bestReplays upload that needs
+   *  rejecting — a Marvel Tokon replay whose description still names both games.
+   *  'title' deletes 9 legitimate Evo 2XKO clips, whose titles are bare
+   *  commentary quotes ("Hikari not gonna give it to him.") naming no game at
+   *  all. No default is right for both, so each channel states its own next to
+   *  the count that justifies it.
+   *
+   *  The pattern must carry neither /g nor /y: one RegExp is reused across every
+   *  record in a dump, and a stateful one would alternate true/false down the
+   *  rows. */
+  gameSignal?: {
+    /** the marker; no /g or /y flag (see above) */
+    pattern: RegExp;
+    /** where the marker must appear for the upload to count as this game */
+    scope: 'title' | 'title-or-description';
+  };
   /** This channel's titles never name a champion, so its match-shaped uploads are
    *  completed from the FOOTAGE (scripts/hud-read.ts) and published from an
    *  overrides.json verdict rather than from a title parse. Without a verdict a
@@ -73,6 +98,14 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     resolve: { by: 'handle', value: '@2xkoHighLevelReplay' },
     playerSep: /\s*\+\s*/, // duo players joined by " + "
     suffix: /High Level Gameplay/i,
+    // Not a multi-game channel today: 1,813 of 1,813 dumped titles carry the
+    // marker, so this rejects nothing. It is here because bestReplays looked
+    // exactly like this the day before it rebranded (2026-08-23), and proReplays
+    // looked exactly like this the day before it rebranded (2026-08-08). Two of
+    // the three tracked replay channels have now walked to another game. The
+    // price of assuming the third won't is a foreign-game record and a junk
+    // player page that outlives it; the price of the gate, measured, is zero.
+    gameSignal: { pattern: /\b2XKO\b/i, scope: 'title' },
   },
   bestReplays: {
     key: 'bestReplays',
@@ -84,6 +117,34 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     // channels ("▰ 2XKO Pro Replays" / "▰ 2XKO High Level Replays"). Nothing reads
     // `suffix`, so that collision is inert — but do not wire it up without revisiting.
     suffix: /2XKO (Pro|High Level) Replays?/i,
+    // GATED 2026-08-23. This channel rebranded to the multi-game "FGC Replays
+    // Hub" and began publishing Marvel Tokon alongside 2XKO — same title grammar,
+    // same "▰ High Level Gameplay" tail, different game. The first one shipped to
+    // the site: WryZaaMayl8, "Marvel Tokon ▰ EDUARDO HOOK (Blade) vs SUPERNOON
+    // (Magik)". Nothing stopped it. PREFIX (parse.ts) only strips a 2XKO-bearing
+    // lead segment and a no-match is a no-op by design, so "Marvel Tokon ▰
+    // EDUARDO HOOK" survived normalizePlayerSegment whole and minted the player
+    // `marveltokoneduardohook`, with a prerendered profile page.
+    //
+    // TITLE SCOPE, not title-or-description. That upload's description reads
+    // "featuring matches from 2XKO and Marvel Tokon" — the new multi-game
+    // boilerplate names BOTH games, so a description check passes every Tokon
+    // upload this channel will ever publish. The description stopped being
+    // evidence here; the title is the only field that still separates the games.
+    // Cost of the gate: 1 of 2,516 dumped titles, and it is that video.
+    //
+    // KNOWN HOLE, currently dormant. 2,470 of those 2,516 titles end in the
+    // 2XKO-bearing branding tail noted above, and a Tokon upload pasting one
+    // would pass this gate. The channel stopped using them: it moved to the
+    // game-neutral "▰ High Level Gameplay" on 2026-08-17 and has used nothing
+    // else since 2026-08-19 (newest 2XKO-bearing tail: 2026-08-18). Across that
+    // neutral-tail era, 29 of 30 uploads name the game in the LEAD segment and
+    // the one exception is the Tokon video — i.e. the convention now matches
+    // what this gate reads. If that reverts, the move is a title-only negative
+    // marker (/\bmarvel\s*tokon\b/i — 0 false positives across both replay
+    // channels today). It must NOT read the description: the new "2XKO and
+    // Marvel Tokon" boilerplate is on the 2XKO uploads too.
+    gameSignal: { pattern: /\b2XKO\b/i, scope: 'title' },
   },
   evoEvents: {
     key: 'evoEvents',
@@ -106,7 +167,14 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     suffix: /\|\s*2XKO\s*\|/i,
     // The channel publishes Street Fighter, Tekken, Guilty Gear and the rest
     // alongside; without the marker every upload enters the 2XKO corpus.
-    gameSignal: /\b2XKO\b/i,
+    //
+    // DESCRIPTION SCOPE IS LOAD-BEARING here, unlike the replay channels above.
+    // 9 of the 42 records that pass this gate have titles that name no game:
+    // bare commentary pulls ("Hikari not gonna give it to him.") and generic day
+    // labels ("Evo 2026 Day 1: Evo Showcase"). All 9 are real 2XKO clips and all
+    // 9 identify the game only in the description. Narrowing this to 'title'
+    // silently deletes every one of them.
+    gameSignal: { pattern: /\b2XKO\b/i, scope: 'title-or-description' },
     charactersFromFootage: true,
   },
 };

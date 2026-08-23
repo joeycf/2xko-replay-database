@@ -1,13 +1,13 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-23T13:36:18.362Z._
+_Generated 2026-08-23T21:30:59.689Z._
 
 ## Summary
-- Total videos: **5610**
-- High confidence: **5584**  ·  Low confidence: **16**  ·  Manual (hand-authored): **10**
+- Total videos: **5612**
+- High confidence: **5586**  ·  Low confidence: **16**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.6%** · fuse: **99.9%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **610**
+- Fill rates — season: **95.3%** · patchVersion: **95.1%** · patch label: **17.7%** · fuse: **99.9%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **612**
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -35,11 +35,11 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 ## Low-confidence records (16)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
 | `BwYfw_m17Hk` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Lumen (Akali / Yasuo) ▰ High Level Gameplay |
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
-| `WryZaaMayl8` | bestReplays | team left: 1 character(s) (expected 2); unresolved character "Blade" on left; team right: 1 character(s) (expected 2); unresolved character "Magik" on right | Marvel Tokon ▰ EDUARDO HOOK (Blade) vs SUPERNOON (Magik) ▰ High Level Gameplay |
 | `3-_bNAYEAfo` | bestReplays | structural failure (team-split) | 2XKO ▰ AKAONI & VLAD vs HIKI (Jinx-Ekko) ▰ 2XKO Pro Replays |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `Gy1V3_ctj3Q` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |

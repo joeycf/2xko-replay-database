@@ -10092,5 +10092,9 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "WryZaaMayl8": {
+    "//": "Marvel Tokon upload from the rebranded bestReplays channel (\"FGC Replays Hub\"), published + shipped 2026-08-23 before the title-scoped gameSignal gate existed. The gate in scripts/channels.ts is the primary defence and keeps future ones out of raw/ entirely; this entry is the tombstone for the one that got through, and covers a `data:parse` run against a pre-gate raw dump.",
+    "exclude": true
   }
 }
