@@ -1,24 +1,24 @@
 {
   "totals": {
-    "replays": 5606,
+    "replays": 5607,
     "characters": 15,
     "players": 1077,
     "byPatch": {
       "Beta": 261,
       "S0": 1884,
-      "S1": 3461
+      "S1": 3462
     },
     "withFuse": 5601
   },
   "characterUsage": {
-    "ahri": 2346,
+    "ahri": 2347,
     "akali": 848,
     "blitzcrank": 1154,
     "braum": 1036,
     "caitlyn": 701,
     "darius": 1398,
-    "ekko": 2941,
-    "illaoi": 1563,
+    "ekko": 2942,
+    "illaoi": 1564,
     "jinx": 1359,
     "senna": 205,
     "teemo": 1273,
@@ -53,14 +53,14 @@
       "yasuo": 935
     },
     "S1": {
-      "ahri": 1509,
+      "ahri": 1510,
       "akali": 848,
       "blitzcrank": 734,
       "braum": 615,
       "caitlyn": 701,
       "darius": 844,
-      "ekko": 1612,
-      "illaoi": 1046,
+      "ekko": 1613,
+      "illaoi": 1047,
       "jinx": 724,
       "senna": 205,
       "teemo": 609,
@@ -77,7 +77,7 @@
     "ahri|caitlyn": 209,
     "ahri|darius": 43,
     "ahri|ekko": 453,
-    "ahri|illaoi": 149,
+    "ahri|illaoi": 150,
     "ahri|jinx": 197,
     "ahri|senna": 37,
     "ahri|teemo": 318,
@@ -139,7 +139,7 @@
     "darius|vi": 88,
     "darius|warwick": 27,
     "darius|yasuo": 156,
-    "ekko|illaoi": 480,
+    "ekko|illaoi": 481,
     "ekko|jinx": 210,
     "ekko|senna": 55,
     "ekko|teemo": 314,
@@ -773,8 +773,8 @@
       "ekko": 2
     },
     "canix": {
-      "ahri": 26,
-      "illaoi": 24,
+      "ahri": 27,
+      "illaoi": 25,
       "jinx": 2
     },
     "carlosjager": {
@@ -4254,8 +4254,8 @@
     },
     "senshii": {
       "braum": 1,
-      "ekko": 55,
-      "illaoi": 21,
+      "ekko": 56,
+      "illaoi": 22,
       "senna": 32,
       "yasuo": 1
     },
@@ -5932,7 +5932,7 @@
       "ahri|ekko": 2
     },
     "canix": {
-      "ahri|illaoi": 24,
+      "ahri|illaoi": 25,
       "ahri|jinx": 2
     },
     "carlosjager": {
@@ -8791,7 +8791,7 @@
     },
     "senshii": {
       "braum|ekko": 1,
-      "ekko|illaoi": 21,
+      "ekko|illaoi": 22,
       "ekko|senna": 32,
       "ekko|yasuo": 1
     },
@@ -10173,7 +10173,7 @@
       "darius|jinx": 1,
       "darius|warwick": 2,
       "darius|yasuo": 2,
-      "ekko|illaoi": 5,
+      "ekko|illaoi": 6,
       "ekko|jinx": 2,
       "ekko|teemo": 2,
       "ekko|thresh": 3,
@@ -12107,7 +12107,7 @@
       "ahri|caitlyn": 5,
       "ahri|darius": 2,
       "ahri|ekko": 15,
-      "ahri|illaoi": 5,
+      "ahri|illaoi": 6,
       "ahri|jinx": 6,
       "ahri|teemo": 29,
       "ahri|thresh": 12,
