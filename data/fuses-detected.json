@@ -61763,5 +61763,49 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-23"
+ },
+ "yZFn-j9kFSw": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 1,
+   "right": 1
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-23"
+ },
+ "WryZaaMayl8": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 4,
+   "right": 4
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-23"
+ },
+ "p9ekDuA__SU": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 3
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-23"
+ },
+ "gRqVEzUVnAg": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 22,
+   "right": 5
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-23"
  }
 }

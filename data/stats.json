@@ -1,29 +1,29 @@
 {
   "totals": {
-    "replays": 5607,
+    "replays": 5610,
     "characters": 15,
-    "players": 1077,
+    "players": 1078,
     "byPatch": {
       "Beta": 261,
       "S0": 1884,
-      "S1": 3462
+      "S1": 3465
     },
-    "withFuse": 5601
+    "withFuse": 5605
   },
   "characterUsage": {
     "ahri": 2347,
-    "akali": 848,
-    "blitzcrank": 1154,
+    "akali": 849,
+    "blitzcrank": 1155,
     "braum": 1036,
-    "caitlyn": 701,
-    "darius": 1398,
+    "caitlyn": 702,
+    "darius": 1399,
     "ekko": 2942,
     "illaoi": 1564,
     "jinx": 1359,
     "senna": 205,
     "teemo": 1273,
-    "thresh": 514,
-    "vi": 1520,
+    "thresh": 515,
+    "vi": 1521,
     "warwick": 1000,
     "yasuo": 2333
   },
@@ -54,18 +54,18 @@
     },
     "S1": {
       "ahri": 1510,
-      "akali": 848,
-      "blitzcrank": 734,
+      "akali": 849,
+      "blitzcrank": 735,
       "braum": 615,
-      "caitlyn": 701,
-      "darius": 844,
+      "caitlyn": 702,
+      "darius": 845,
       "ekko": 1613,
       "illaoi": 1047,
       "jinx": 724,
       "senna": 205,
       "teemo": 609,
-      "thresh": 514,
-      "vi": 853,
+      "thresh": 515,
+      "vi": 854,
       "warwick": 483,
       "yasuo": 1245
     }
@@ -87,7 +87,7 @@
     "ahri|yasuo": 318,
     "akali|blitzcrank": 32,
     "akali|braum": 10,
-    "akali|caitlyn": 85,
+    "akali|caitlyn": 86,
     "akali|darius": 10,
     "akali|ekko": 126,
     "akali|illaoi": 35,
@@ -95,18 +95,18 @@
     "akali|senna": 23,
     "akali|teemo": 74,
     "akali|thresh": 19,
-    "akali|vi": 73,
+    "akali|vi": 74,
     "akali|warwick": 9,
     "akali|yasuo": 34,
     "blitzcrank|braum": 113,
     "blitzcrank|caitlyn": 13,
-    "blitzcrank|darius": 233,
+    "blitzcrank|darius": 234,
     "blitzcrank|ekko": 15,
     "blitzcrank|illaoi": 63,
     "blitzcrank|jinx": 45,
     "blitzcrank|senna": 1,
     "blitzcrank|teemo": 42,
-    "blitzcrank|thresh": 55,
+    "blitzcrank|thresh": 56,
     "blitzcrank|vi": 81,
     "blitzcrank|warwick": 41,
     "blitzcrank|yasuo": 246,
@@ -1193,10 +1193,10 @@
       "illaoi": 1
     },
     "doropon": {
-      "akali": 25,
+      "akali": 26,
       "blitzcrank": 1,
       "braum": 3,
-      "caitlyn": 26,
+      "caitlyn": 27,
       "darius": 4,
       "ekko": 9,
       "vi": 1,
@@ -3075,6 +3075,7 @@
       "thresh": 2,
       "warwick": 3
     },
+    "marveltokoneduardohook": {},
     "masao": {
       "ahri": 2,
       "teemo": 2
@@ -3794,14 +3795,14 @@
     },
     "poka": {
       "ahri": 9,
-      "akali": 9,
+      "akali": 10,
       "blitzcrank": 1,
       "braum": 1,
       "ekko": 1,
       "illaoi": 2,
       "senna": 1,
       "teemo": 7,
-      "vi": 7
+      "vi": 8
     },
     "poka3": {
       "ahri": 2,
@@ -4693,8 +4694,8 @@
       "yasuo": 2
     },
     "syrtic": {
-      "blitzcrank": 12,
-      "darius": 11
+      "blitzcrank": 13,
+      "darius": 12
     },
     "tako1": {
       "blitzcrank": 1,
@@ -5147,9 +5148,9 @@
       "jinx": 2
     },
     "windzero7": {
-      "blitzcrank": 169,
+      "blitzcrank": 170,
       "darius": 158,
-      "thresh": 11
+      "thresh": 12
     },
     "windzero7celestial": {
       "blitzcrank": 1,
@@ -6282,7 +6283,7 @@
     },
     "doropon": {
       "akali|blitzcrank": 1,
-      "akali|caitlyn": 24,
+      "akali|caitlyn": 25,
       "braum|caitlyn": 1,
       "braum|ekko": 1,
       "braum|vi": 1,
@@ -8429,7 +8430,7 @@
       "ahri|senna": 1,
       "ahri|teemo": 4,
       "akali|blitzcrank": 1,
-      "akali|vi": 4,
+      "akali|vi": 5,
       "braum|illaoi": 1,
       "ekko|illaoi": 1,
       "teemo|vi": 3
@@ -9167,7 +9168,7 @@
       "vi|yasuo": 1
     },
     "syrtic": {
-      "blitzcrank|darius": 11
+      "blitzcrank|darius": 12
     },
     "tako1": {
       "blitzcrank|yasuo": 1,
@@ -9566,7 +9567,7 @@
     },
     "windzero7": {
       "blitzcrank|darius": 158,
-      "blitzcrank|thresh": 11
+      "blitzcrank|thresh": 12
     },
     "windzero7celestial": {
       "blitzcrank|vi": 1
@@ -10562,6 +10563,7 @@
       "akali|braum": 1,
       "akali|ekko": 4,
       "akali|teemo": 1,
+      "akali|vi": 1,
       "akali|yasuo": 1,
       "blitzcrank|braum": 2,
       "blitzcrank|darius": 2,
@@ -10780,6 +10782,7 @@
       "ahri|teemo": 1,
       "ahri|vi": 2,
       "akali|blitzcrank": 1,
+      "akali|caitlyn": 1,
       "akali|ekko": 5,
       "akali|illaoi": 6,
       "akali|jinx": 1,
@@ -10916,7 +10919,7 @@
       "blitzcrank|illaoi": 3,
       "blitzcrank|jinx": 1,
       "blitzcrank|teemo": 1,
-      "blitzcrank|thresh": 6,
+      "blitzcrank|thresh": 7,
       "blitzcrank|vi": 1,
       "blitzcrank|warwick": 2,
       "blitzcrank|yasuo": 8,
@@ -11101,7 +11104,7 @@
       "ahri|yasuo": 2,
       "akali|senna": 1,
       "blitzcrank|braum": 1,
-      "blitzcrank|darius": 6,
+      "blitzcrank|darius": 7,
       "blitzcrank|thresh": 6,
       "blitzcrank|vi": 1,
       "blitzcrank|yasuo": 1,
@@ -13430,9 +13433,9 @@
     }
   },
   "fuseUsage": {
-    "2x-assist": 2265,
-    "double-down": 2019,
-    "freestyle": 6679,
+    "2x-assist": 2266,
+    "double-down": 2023,
+    "freestyle": 6682,
     "juggernaut": 69,
     "sidekick": 8,
     "teamfight": 107
@@ -13453,9 +13456,9 @@
       "sidekick": 3
     },
     "S1": {
-      "2x-assist": 870,
-      "double-down": 705,
-      "freestyle": 5177,
+      "2x-assist": 871,
+      "double-down": 709,
+      "freestyle": 5180,
       "juggernaut": 42,
       "sidekick": 4,
       "teamfight": 107
