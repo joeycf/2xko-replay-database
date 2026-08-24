@@ -1,24 +1,24 @@
 {
   "totals": {
-    "replays": 5613,
+    "replays": 5614,
     "characters": 15,
     "players": 1077,
     "byPatch": {
       "Beta": 261,
       "S0": 1884,
-      "S1": 3468
+      "S1": 3469
     },
     "withFuse": 5608
   },
   "characterUsage": {
-    "ahri": 2348,
+    "ahri": 2349,
     "akali": 850,
     "blitzcrank": 1155,
-    "braum": 1036,
-    "caitlyn": 703,
+    "braum": 1037,
+    "caitlyn": 704,
     "darius": 1399,
     "ekko": 2944,
-    "illaoi": 1565,
+    "illaoi": 1566,
     "jinx": 1360,
     "senna": 206,
     "teemo": 1273,
@@ -53,14 +53,14 @@
       "yasuo": 935
     },
     "S1": {
-      "ahri": 1511,
+      "ahri": 1512,
       "akali": 850,
       "blitzcrank": 735,
-      "braum": 615,
-      "caitlyn": 703,
+      "braum": 616,
+      "caitlyn": 704,
       "darius": 845,
       "ekko": 1615,
-      "illaoi": 1048,
+      "illaoi": 1049,
       "jinx": 725,
       "senna": 206,
       "teemo": 609,
@@ -74,7 +74,7 @@
     "ahri|akali": 347,
     "ahri|blitzcrank": 248,
     "ahri|braum": 66,
-    "ahri|caitlyn": 210,
+    "ahri|caitlyn": 211,
     "ahri|darius": 43,
     "ahri|ekko": 453,
     "ahri|illaoi": 150,
@@ -113,7 +113,7 @@
     "braum|caitlyn": 13,
     "braum|darius": 450,
     "braum|ekko": 83,
-    "braum|illaoi": 61,
+    "braum|illaoi": 62,
     "braum|jinx": 53,
     "braum|teemo": 17,
     "braum|thresh": 14,
@@ -645,9 +645,9 @@
       "vi": 1
     },
     "bongobill": {
-      "braum": 44,
+      "braum": 45,
       "darius": 1,
-      "illaoi": 44,
+      "illaoi": 45,
       "thresh": 1
     },
     "bontyu5": {
@@ -4490,8 +4490,8 @@
       "warwick": 1
     },
     "spiral": {
-      "ahri": 8,
-      "caitlyn": 3,
+      "ahri": 9,
+      "caitlyn": 4,
       "ekko": 2,
       "teemo": 3
     },
@@ -5833,7 +5833,7 @@
       "teemo|vi": 1
     },
     "bongobill": {
-      "braum|illaoi": 43,
+      "braum|illaoi": 44,
       "braum|thresh": 1,
       "darius|illaoi": 1
     },
@@ -8994,7 +8994,7 @@
       "ekko|warwick": 1
     },
     "spiral": {
-      "ahri|caitlyn": 3,
+      "ahri|caitlyn": 4,
       "ahri|ekko": 2,
       "ahri|teemo": 3
     },
@@ -10002,7 +10002,7 @@
       "blitzcrank|thresh": 2,
       "blitzcrank|vi": 3,
       "braum|darius": 7,
-      "braum|illaoi": 2,
+      "braum|illaoi": 3,
       "braum|vi": 4,
       "braum|warwick": 3,
       "caitlyn|vi": 1,
@@ -11387,7 +11387,7 @@
       "warwick|yasuo": 2
     },
     "braum|illaoi": {
-      "ahri|caitlyn": 2,
+      "ahri|caitlyn": 3,
       "ahri|ekko": 1,
       "ahri|illaoi": 1,
       "ahri|teemo": 1,
