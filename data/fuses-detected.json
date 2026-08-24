@@ -61796,5 +61796,49 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-23"
+ },
+ "Ezt0FRx73f4": {
+  "left": "juggernaut",
+  "right": "freestyle",
+  "score": {
+   "left": 1,
+   "right": 46
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-24"
+ },
+ "71zAPtpCQyk": {
+  "left": "2x-assist",
+  "right": "2x-assist",
+  "score": {
+   "left": 7,
+   "right": 27
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-24"
+ },
+ "5E-PqxcKKEI": {
+  "left": "double-down",
+  "right": "2x-assist",
+  "score": {
+   "left": 2,
+   "right": 3
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-24"
+ },
+ "mvBusUtMuAc": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 37
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-24"
  }
 }
