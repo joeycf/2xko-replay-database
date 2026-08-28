@@ -23,11 +23,14 @@ The footer links a [Buy Me a Coffee](https://buymeacoffee.com/whatdaflip) page
 ## Architecture
 
 ```
-YouTube Data API v3
-      │  scripts/fetch.ts        (raw dumps → raw/*.json, gitignored)
-      ▼
+YouTube Data API v3                    replaytheater.app  (index, LOCAL-FIRST)
+      │  scripts/fetch.ts                    │  scripts/fetch-theater.ts
+      │  (raw dumps → raw/*.json,            │  (+ YouTube metadata per VOD
+      │   gitignored)                        │   → raw/replayTheater.json)
+      ▼                                      ▼
 scripts/parse.ts                 (channel-aware title parser + aggregates)
-      │   merge order: title parse → CV fuses → manual-videos → overrides
+      │   merge order: title parse → CV fuses → manual-videos
+      │                → replayTheater segments → overrides
       ▼
 data/videos.json                 (RICH records — the pipeline substrate;
       │                           input to the fuse CV + dev curation tools)
@@ -93,9 +96,10 @@ Two other env vars matter locally, neither of them secret:
 | script                                           | what it does                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `npm run dev` / `build` / `generate` / `preview` | Nuxt app (generate = full static build)                                                                                                                                                                                                                                                                                                       |
-| `npm run data:fetch`                             | Pull every upload from all three YouTube channels → `raw/` (needs `YT_API_KEY`)                                                                                                                                                                                                                                                               |
+| `npm run data:fetch`                             | Pull every upload from the tracked YouTube channels → `raw/` (needs `YT_API_KEY`). Skips frozen channels and index sources                                                                                                                                                                                                                    |
 | `npm run data:parse`                             | Parse titles/descriptions → `data/videos.json`, `players.json`, `report.md`; calls `data:emit` at the end                                                                                                                                                                                                                                     |
 | `npm run data:emit`                              | Map the rich `videos.json` onto the engine contract → `data/replays.json`, `stats.json`, `summary.json` (+ the `public/data/` copies). Deterministic, no YouTube access — safe to re-run standalone                                                                                                                                           |
+| `npm run data:theater`                           | **Local-only** pull of the Replay Theater index (tagged 2XKO tournament matches) joined to each source VOD's YouTube metadata → `raw/replayTheater.json`. Resumable; `--fresh` discards the page cache. Deliberately outside the cron — see "Local-first sources"                                                                             |
 | `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                                                                                                 |
 | `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                                                                                                      |
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                                     |
@@ -291,6 +295,96 @@ npm run data:fuses -- --cookies secrets/yt-cookies.txt --limit 1
 
 If that succeeds, just re-run; `data:fuses` is incremental and resumes where it
 stopped. Under sustained throttling, pace it with `--sleep 4-8`.
+
+## Local-first sources
+
+`replayTheater` is the platform's first **index-type source**. It is not a
+YouTube channel: [replaytheater.app](https://replaytheater.app) is a
+fan-curated match index that points AT video with a start offset, and its 2XKO
+catalogue holds tournament sets cut out of longform event VODs. 888 records over
+74 videos, a median of 16 sets per video, September 2025 to July 2026.
+
+**A record is a SEGMENT, so its id is `${videoId}@${startSeconds}`.** That is the
+one structural difference from every other source, and it is why engine v0.10.0
+added `Replay.videoId` and `Replay.startSeconds`: every YouTube-shaped URL the
+site builds resolves `videoId ?? id`, so the embed opens at the right moment and
+the thumbnail comes off the video rather than off a composite id that would 404.
+
+### Why it is not in the cron
+
+`npm run data:theater` is run **by hand**. A third party's uptime and goodwill
+should not be a cron dependency on day one of an integration, and committed
+records survive source loss regardless — the same lesson the frozen channels
+taught. Folding it into the daily build is a later, separate decision.
+
+That posture has one consequence worth understanding, because it is the thing
+most likely to confuse:
+
+- `raw/` is gitignored and the cron fetches remotely, so **a cron run has no
+  `raw/replayTheater.json`**. Parse does not fail there and does not drop the
+  records: it **carries** them from the committed catalogue, exactly as it
+  carries a frozen channel's.
+- The carry is verified against a **count pin** in `data/source-pins.json`,
+  written by the local parse and asserted by every subsequent one. A frozen
+  channel pins its count as a constant in `channels.ts` because that number never
+  changes again; this source grows, so hand-editing a constant on every refresh
+  would be friction that teaches you to ignore it.
+- Carrying and rebuilding produce **byte-identical output**. That is asserted by
+  construction — both paths take the same narrow merge and land in the same slot
+  — and it is what lets the cron and a local refresh alternate without churning
+  the diff.
+
+### Guard posture, stated rather than assumed
+
+The channel-collapse guard is **asleep** for this source on a carrying run: it
+compares `raw/` against the catalogue and there is no `raw/` to compare. The
+count pin is what is awake, and it is strictly stronger — it demands an exact
+number where the collapse guard only demands "not much smaller". `data/report.md`
+says so on every run rather than leaving it to folklore.
+
+The stale-raw guard needs this source's ids in its exclusion set for the same
+reason it needs the frozen ones: they are deliberately absent from `raw/`, so
+without the exclusion every one of them reads as a staleness signal and the guard
+fires on every single run. A guard that fires every run is a flag you learn to
+pass.
+
+### Refresh cadence
+
+Run `npm run data:theater && npm run data:parse` when you want the new events —
+weekly is plenty; the index gains a tournament or two a week. The fetch is 71
+paced requests (~90 s) plus two YouTube metadata batches, and it is resumable:
+an interrupted pull re-reads its page cache and fetches only what it missed.
+
+### What it does not carry
+
+- **No fuse.** These records arrive fuse-less and need `data:fuses`, which for a
+  segment samples 12 s **at the offset** rather than at the top of a three-hour
+  stream. Until that backfill lands, the e2e fuse floor holds them to a
+  documented ratchet rather than the 95% floor (see `FUSE_BACKFILL` in
+  `scripts/e2e.ts`).
+- **No duration.** The index publishes none and there is nothing honest to derive
+  one from — the gap to the next set includes the downtime between them. The
+  duration chip and the "Longest" sort simply skip these records.
+- **No view count.** Views belong to the VOD, not to each of the sixteen sets cut
+  from it. Engine v0.10.0 hides an absent `views` rather than printing "0 views".
+- **A round only sometimes.** The index carries no round; it is harvested from the
+  source VOD's chapter titles when one names a bracket round (238 of 888).
+- **Two champions per side, always.** The index's schema caps 2XKO at two, so it
+  cannot express a within-set counter-pick the way `manual-videos.json` can. A
+  set where somebody switched is recorded as their primary duo.
+
+### Existing ids win, by ignoring
+
+If this repo has already ruled on a video **in any capacity** — an active record,
+the frozen carry, an `overrides.json` exclusion, a dedupe drop — the index entry
+for it is ignored, and the count is reported in `data/report.md` rather than
+being silent. The predicate is known-anywhere rather than merely in-records: an
+id excluded as wrong-game must not re-enter through a side door.
+
+On the first ingest that cost 10 entries of 898, and every one of them was a
+one-match VOD already hand-authored in `manual-videos.json` — so the rule forgoes
+no segmentation at all. That is a fact about the data on the day, not a
+guarantee, which is why the number is reported on every run.
 
 ## Dev curation tooling (local-only)
 
@@ -600,6 +694,16 @@ my ability to complete them unless it is something outside my control (like Riot
   computer-vision pipeline (the same approach already used to read fuses off the
   in-game HUD) detecting VS/loading screens to find match starts and reading the
   nameplates and champions from those frames.
+
+  **Partly answered from the other direction (2026-08-28), without solving it.**
+  The `replayTheater` source ingests 888 tournament sets that people had already
+  segmented by hand — 74 longform VODs, a median of 16 sets each — so the site
+  now carries segmented tournament footage. The CV problem is untouched: this is
+  someone else's segmentation, it only covers events they indexed, and every
+  timestamp traces back to a human. What it does prove is the schema half —
+  records keyed `${videoId}@${startSeconds}`, with playback that starts at the
+  right moment — so a future CV segmenter has somewhere to put its output.
+
 - ~~**Additional replay sources with duplicate prevention.**~~ **Shipped — the 2XKO
   Best Replays channel is ingested, and `scripts/replay-dupes.ts` (`npm run
 data:replay-dupes`) is the read-only audit that catches the same match re-uploaded

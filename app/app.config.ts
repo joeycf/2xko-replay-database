@@ -65,14 +65,25 @@ export default defineAppConfig({
       // appended at index 4 — the badge palette has 3 styles, so this shares the
       // amber outline with 'manual' and 'bestReplays' and the label distinguishes
       { id: 'evoEvents', name: 'Evo' },
+      // appended at index 5 — same amber outline again. Named for what the
+      // footage IS rather than for the index that catalogued it: these are
+      // tournament sets cut out of event organisers' own longform VOD uploads
+      // (ParagonFGC, Tampa Never Sleeps, Evo and eight others), and each record
+      // carries its uploader in channelName.
+      { id: 'replayTheater', name: 'Tournament VODs' },
     ],
     // Filter chips are consolidated to two groups (the per-video SourceBadge keeps
     // the real channel name from sourceChannels above). Toggling a group filters its
     // member ids as a set via the same ?src= param, so per-channel deep links still
-    // work. 'Online' spans the three YouTube channels; 'Tournament' is the manual VODs.
+    // work. 'Online' spans the three YouTube channels; 'Tournament' spans the hand-authored
+    // VODs, Evo's own uploads, and the Replay Theater segments.
     sourceGroups: [
       { id: 'online', name: 'Online', sources: ['proReplays', 'highLevel', 'bestReplays'] },
-      { id: 'tournament', name: 'Tournament', sources: ['manual', 'evoEvents'] },
+      {
+        id: 'tournament',
+        name: 'Tournament',
+        sources: ['manual', 'evoEvents', 'replayTheater'],
+      },
     ],
     // Season→patch hierarchy for the grouped patch facet (engine v0.6.0).
     // PIPELINE-EMITTED (scripts/emit.ts → data/patchGroups.json) from the same
