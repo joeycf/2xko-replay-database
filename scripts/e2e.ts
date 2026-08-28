@@ -476,18 +476,13 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   // ordinary floor. An exemption with no number is the thing this avoids: it
   // cannot fail, so it reads as coverage while providing none.
   const FUSE_FLOOR = 0.95;
-  const FUSE_BACKFILL: Record<string, number> = {
-    // replayTheater arrived fuse-less: its records are segments of longform VODs,
-    // so scripts/fuses.ts has to sample at each record's startSeconds rather than
-    // at 0-12s, and that pass is local-only and slow. Ratchet this up as it lands;
-    // delete the entry when it clears 0.95.
-    //
-    // 2026-08-28: first full backfill landed 779/888 = 87.7%. The remaining ~12%
-    // are dominated by broadcast VODs where the 12s window at the set's start is
-    // still the caster/player-cam intro, so the HUD is not up yet — a later
-    // sampling window is the lead worth pulling before hand-review.
-    replayTheater: 0.87,
-  };
+  // EMPTY, and that is the success state — not dead code. A source mid-backfill
+  // declares a ratchet here and is held to the floor it has actually reached;
+  // when it clears FUSE_FLOOR the entry is deleted and it rejoins the ordinary
+  // per-source assertion. replayTheater was the first entrant (0 → 0.87 → gone,
+  // 2026-08-28: CV backfill to 87.7%, then hand review closed the rest to 100%)
+  // and the check below is what told us the carve-out had outlived its purpose.
+  const FUSE_BACKFILL: Record<string, number> = {};
   const sourcesInPlay = [...new Set(videos.map((v) => v.channel))].sort();
   for (const src of sourcesInPlay) {
     const rows = videos.filter((v) => v.channel === src);
