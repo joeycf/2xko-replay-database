@@ -1,13 +1,26 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-28T02:32:16.325Z._
+_Generated 2026-08-28T13:33:41.045Z._
 
 ## Summary
-- Total videos: **5638**
-- High confidence: **5612**  ·  Low confidence: **16**  ·  Manual (hand-authored): **10**
+- Total videos: **6526**
+- High confidence: **6499**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.4%** · patchVersion: **95.1%** · patch label: **17.8%** · fuse: **99.7%**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.4%** · fuse: **86.2%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **623**
+- Replay Theater entries **skipped as already-known**: **10** of 898 (existing ids win, by ignoring)
+
+## Records by source
+
+| source | records | mode |
+|---|---|---|
+| `bestReplays` | 2470 | fetched |
+| `highLevel` | 1820 | fetched |
+| `proReplays` | 1317 | carried (frozen) |
+| `replayTheater` | 888 | rebuilt from a local dump |
+| `evoEvents` | 21 | fetched |
+| `manual` | 10 | hand-authored |
+| **Σ** | **6526** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -15,6 +28,17 @@ _Not fetched. Their committed records are carried forward and still receive fuse
 | channel | carried | frozen since | reason |
 |---|---|---|---|
 | `proReplays` | 1317 | 2026-08-08 | channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue |
+
+## Local-first sources (1)
+_Deliberately outside the daily cron: a third party's uptime is not a cron dependency. Refreshed by hand, and carried from the committed catalogue on every run without a dump — which is every cron run._
+
+**Guard posture, stated rather than assumed.** The channel-collapse guard is ASLEEP for these on a carrying run: it compares raw/ against the catalogue, and there is no raw/ to compare. The count pin in `data/source-pins.json` is what is awake, and it is strictly stronger — it demands an exact number where the collapse guard only demands "not much smaller".
+
+| source | records | pin now | this run | newest record |
+|---|---|---|---|---|
+| `replayTheater` | 888 | 888 | rebuilt from dump | 2026-07-31 |
+
+_Skipped as already-known (10): 10 in videos.json. Existing ids win, by ignoring — an id this repo has already ruled on, in any capacity, does not re-enter through a side door._
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -32,7 +56,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (16)
+## Low-confidence records (17)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
@@ -51,6 +75,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VjA1VOogCog` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
+| `KtljpBCtoko@4191` | replayTheater | unresolved champion(s): Juggernaut Illaoi | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
 ## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
