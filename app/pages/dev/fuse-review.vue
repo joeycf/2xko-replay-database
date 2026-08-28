@@ -105,7 +105,7 @@
             <span>{{ item.era }}</span>
             <span>{{ item.publishedAt.slice(0, 10) }}</span>
             <a
-              :href="`https://youtu.be/${item.id}`"
+              :href="watchUrl(item.id)"
               target="_blank"
               rel="noopener"
               class="ml-auto underline decoration-white/20 hover:text-text"
@@ -331,6 +331,11 @@
 // Verdicts POST to /api/dev/fuse-review on the same override contract as
 // --promote-lows. Same shipping guarantees as the sibling dev pages: dev-guarded,
 // unlinked from public pages, noindex, absent from prerender output.
+// A record id stops being a YouTube id once a source indexes matches INSIDE a
+// video (replayTheater segments are `${videoId}@${startSeconds}`), so the link
+// out to the footage is no longer a concatenation. Bare ids are unaffected —
+// watchUrl returns the same string it always did for them.
+import { watchUrl } from '~~/scripts/video-url';
 import type { FuseReviewItem, FuseReviewQueue, FuseReviewVerdict } from '~~/types';
 
 // Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every

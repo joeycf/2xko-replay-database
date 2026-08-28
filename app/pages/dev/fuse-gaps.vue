@@ -103,7 +103,7 @@
                   >tried {{ gap.attempts.length }}×</span
                 >
                 <a
-                  :href="`https://youtu.be/${gap.id}`"
+                  :href="watchUrl(gap.id)"
                   target="_blank"
                   rel="noopener"
                   class="ml-auto text-text-muted underline decoration-white/20 hover:text-text"
@@ -197,6 +197,11 @@
 // of the shipped site — not in publicRoutes/sitemap, nothing links here so the
 // prerender crawler can't reach it, and this guard 404s any production render.
 import type { Replay, Side } from '@engine/types';
+// A record id stops being a YouTube id once a source indexes matches INSIDE a
+// video (replayTheater segments are `${videoId}@${startSeconds}`), so the link
+// out to the footage is no longer a concatenation. Bare ids are unaffected —
+// watchUrl returns the same string it always did for them.
+import { watchUrl } from '~~/scripts/video-url';
 import type { FuseGapBucket, FuseGapItem, FuseGapReport, VideoRecord } from '~~/types';
 
 // Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every

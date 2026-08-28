@@ -183,7 +183,13 @@ const items: FuseGapItem[] = missing.map((v) => {
     runTime - Date.parse(v.publishedAt) < 48 * 3600 * 1000
   )
     flags.push('maybe-pending');
-  if (v.durationSec === 0) flags.push('premiere');
+  // durationSec 0 means UNKNOWN, and for a channel upload the reason is almost
+  // always a premiere/live item the API had no length for. A SEGMENT record
+  // (replayTheater) has 0 because a match inside a VOD has no length to publish
+  // — flagging all 888 of them 'premiere' would be a fabricated diagnosis, and
+  // 'premiere' is a hint about why a fuse read failed.
+  if (v.durationSec === 0 && !v.id.includes('@')) flags.push('premiere');
+  if (v.id.includes('@')) flags.push('segment');
 
   return {
     id: v.id,
@@ -225,7 +231,10 @@ const sheetPath = join(REVIEW, 'low-review.md');
 let sheetNote = 'low-review.md: not present';
 if (existsSync(sheetPath)) {
   const sheetIds = [
-    ...readFileSync(sheetPath, 'utf8').matchAll(/^\|\s*([A-Za-z0-9_-]{11})\s*\|/gm),
+    // the id column now also holds `${videoId}@${startSeconds}` — without the
+    // suffix every segment row reads as absent, so the staleness check silently
+    // stops covering the largest group in the sheet
+    ...readFileSync(sheetPath, 'utf8').matchAll(/^\|\s*([A-Za-z0-9_-]{11}(?:@\d+)?)\s*\|/gm),
   ].map((m) => m[1]!);
   const sheetSet = new Set(sheetIds);
   const stale = sheetIds.filter(

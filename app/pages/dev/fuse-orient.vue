@@ -40,7 +40,7 @@
               <span>{{ seasonLabel(video.season) }}</span>
               <span class="hidden min-w-0 flex-1 truncate sm:block">{{ video.title }}</span>
               <a
-                :href="`https://youtu.be/${item.id}`"
+                :href="watchUrl(item.id)"
                 target="_blank"
                 rel="noopener"
                 class="underline decoration-white/20 hover:text-text"
@@ -168,6 +168,11 @@
 // owns it. Assignments POST to /api/dev/fuse-orient which writes
 // overrides.json. Same shipping guarantees as /dev/fuse-gaps: dev-guarded,
 // unlinked from public pages, noindex, absent from prerender output.
+// A record id stops being a YouTube id once a source indexes matches INSIDE a
+// video (replayTheater segments are `${videoId}@${startSeconds}`), so the link
+// out to the footage is no longer a concatenation. Bare ids are unaffected —
+// watchUrl returns the same string it always did for them.
+import { watchUrl } from '~~/scripts/video-url';
 import type { FuseOrientItem, FuseOrientQueue, VideoRecord } from '~~/types';
 
 // Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every

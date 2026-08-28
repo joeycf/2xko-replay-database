@@ -481,7 +481,12 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     // so scripts/fuses.ts has to sample at each record's startSeconds rather than
     // at 0-12s, and that pass is local-only and slow. Ratchet this up as it lands;
     // delete the entry when it clears 0.95.
-    replayTheater: 0,
+    //
+    // 2026-08-28: first full backfill landed 779/888 = 87.7%. The remaining ~12%
+    // are dominated by broadcast VODs where the 12s window at the set's start is
+    // still the caster/player-cam intro, so the HUD is not up yet — a later
+    // sampling window is the lead worth pulling before hand-review.
+    replayTheater: 0.87,
   };
   const sourcesInPlay = [...new Set(videos.map((v) => v.channel))].sort();
   for (const src of sourcesInPlay) {

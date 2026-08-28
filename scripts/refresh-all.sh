@@ -109,6 +109,11 @@ STAGE_PATHS=(
   data/report.md
   data/fuses-detected.json
   data/patchGroups.json
+  # The carry pin for local-first sources. data:parse rewrites it whenever it
+  # builds one from a dump, and it MUST travel with videos.json: committing a new
+  # record count while leaving the pin behind makes the next carrying run — every
+  # cron run — hard-fail on pin drift.
+  data/source-pins.json
 )
 
 # ── argument parsing ──────────────────────────────────────────────────────────
