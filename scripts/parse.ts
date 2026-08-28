@@ -1124,6 +1124,38 @@ for (const [slug, d] of discovered) {
   }
 }
 
+/**
+ * REGISTER PLAYERS AN OVERRIDE INTRODUCED. The pruning above is one half of the
+ * job and this is the other.
+ *
+ * An override supplies whole `teams[]` arrays with hardcoded ids, so it bypasses
+ * resolvePlayer() — which is the only thing that registers a discovered name.
+ * A verdict naming somebody the parser never saw therefore produced a record
+ * referencing a player who is in no registry, and nothing noticed: the page
+ * links to /players/<id> and 404s.
+ *
+ * Live case, found by the new emit gate: jEWF1k9zyPk, an Evo 2026 duo duel
+ * hand-validated and migrated from manual-videos.json on 2026-08-08, names
+ * "Myth" — the other three (ApologyMan, Jake'n'bake, Yohosie) exist because
+ * ordinary records mention them, and Myth does not.
+ *
+ * Registered as a non-featured discovery, exactly as if the parser had met the
+ * name, so the next run's pruning treats it like any other.
+ */
+for (const r of records) {
+  for (const t of r.teams) {
+    for (const pl of t.players) {
+      if (!pl.id || players[pl.id]) continue;
+      players[pl.id] = {
+        id: pl.id,
+        handle: pl.displayName || pl.id,
+        featured: false,
+        extra: { aliases: [(pl.displayName || pl.id).toLowerCase()] },
+      };
+    }
+  }
+}
+
 const total = records.length;
 const seasonFilled = records.filter((r) => r.season !== null).length;
 const patchFilled = records.filter((r) => r.patch !== null).length;

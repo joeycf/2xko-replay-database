@@ -10810,5 +10810,35 @@
         "myoro"
       ]
     }
+  },
+  {
+    "id": "myth",
+    "handle": "Myth",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "myth"
+      ]
+    }
+  },
+  {
+    "id": "jakenbake",
+    "handle": "Jake'n'bake",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "jake'n'bake"
+      ]
+    }
+  },
+  {
+    "id": "yohosie",
+    "handle": "Yohosie",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "yohosie"
+      ]
+    }
   }
 ]

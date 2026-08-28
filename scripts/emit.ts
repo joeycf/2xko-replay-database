@@ -158,6 +158,45 @@ export async function emitGeneric(opts: {
   const stats = buildStats(records);
   const replays = records.map(toReplay);
 
+  /**
+   * THE REGISTRY'S INVARIANTS. This repo is the one where players.json is
+   * durable INPUT rather than a projection of the records — parse.ts round-trips
+   * it — so a bad entry survives every run instead of being rebuilt away, and
+   * the unknown-player check the other three games have was never added here at
+   * all.
+   *
+   * Empty ids are not theoretical: tokon-replay-database shipped
+   * {"id": "", "handle": "シルクちゃん"} because its slug strips to [a-z0-9] and a
+   * handle in another script reduced to nothing. Uniqueness has never been
+   * asserted for players in any of the four games.
+   */
+  for (const p of players) {
+    if (!p.id) throw new Error(`emit: player '${p.handle}' has an empty id`);
+  }
+  {
+    const ids = new Set(players.map((p) => p.id));
+    if (ids.size !== players.length) {
+      const seenIds = new Set<string>();
+      const dupe = players.find((p) => seenIds.size === seenIds.add(p.id).size);
+      throw new Error(`emit: duplicate player id '${dupe?.id}' in the registry`);
+    }
+    // NON-EMPTY ids only. An empty one is this repo's DELIBERATE placeholder for
+    // a structurally unparsed record — toReplay above keeps the slot with empty
+    // sides on purpose, "count parity beats prettiness" — and a gate that fought
+    // that documented choice would be wrong about the design rather than right
+    // about the data. What this catches is the real class: an id that once
+    // existed and no longer does.
+    for (const r of replays) {
+      for (const side of r.sides) {
+        for (const pid of side.players ?? [side.player]) {
+          if (pid && !ids.has(pid)) {
+            throw new Error(`emit: ${r.id} references unknown player '${pid}'`);
+          }
+        }
+      }
+    }
+  }
+
   // KnownStats + the 2XKO fuse extension keys (engine ignores unknown keys;
   // app-side useFuses consumes them).
   const genericStats = {
