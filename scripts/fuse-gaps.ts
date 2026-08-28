@@ -31,6 +31,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp, { type OverlayOptions } from 'sharp';
+import { watchUrl } from './video-url';
 import type {
   ChannelKey,
   FuseDetection,
@@ -359,7 +360,8 @@ const montageRows = await buildMontage(reviewables);
 const md: string[] = [];
 const esc = (s: string) => s.replace(/\|/g, '\\|');
 const short = (s: string, n = 64) => (s.length <= n ? s : s.slice(0, n - 1) + '…');
-const yt = (id: string) => `[▶](https://youtu.be/${id})`;
+// segment records key on `${videoId}@${start}`, so this cannot be a concatenation
+const yt = (id: string) => `[▶](${watchUrl(id)})`;
 const today = new Date().toISOString().slice(0, 10);
 // FULLY attributed — both sides. Before the any-side-missing widening this read
 // as "has a fuse" and silently counted half-attributed records as complete.

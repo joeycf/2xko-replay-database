@@ -10,10 +10,28 @@ export interface ChannelResolve {
   value: string;
 }
 
+/** How a non-YouTube-channel source is pulled. Replay Theater is an INDEX, not
+ *  a channel: it publishes a JSON catalogue of matches keyed by video id and
+ *  start offset, over videos hosted by eleven different event organisers. There
+ *  is no uploads playlist to walk, so `resolve` does not apply. */
+export interface ChannelIndex {
+  /** catalogue endpoint, paged with &page=N */
+  endpoint: string;
+  /** the index's own token for this game — checked PER ENTRY, not trusted as a
+   *  query filter; see the game gate in scripts/fetch-theater.ts */
+  game: string;
+  /** entries per page; the API ignores per_page/limit, so this is theirs, not ours */
+  pageSize: number;
+  /** ms between requests — politeness, not rate-limit avoidance */
+  pacingMs: number;
+}
+
 export interface ChannelConfig {
   key: ChannelKey;
+  /** How to reach a YouTube channel's uploads. Absent for an `index` source,
+   *  which has no channel to resolve. */
+  resolve?: ChannelResolve;
   name: string;
-  resolve: ChannelResolve;
   /** how duo player names are joined in a title, e.g. " - " or " + " */
   playerSep: RegExp;
   /** trailing channel-branding suffix (for reference / stripping) */
@@ -53,6 +71,24 @@ export interface ChannelConfig {
    *  record is held out of videos.json entirely — an empty-champion record is
    *  worse than no record. */
   charactersFromFootage?: boolean;
+  /** This source is an external INDEX rather than a YouTube channel — see
+   *  ChannelIndex. It is pulled by its own fetcher, not by data:fetch. */
+  index?: ChannelIndex;
+  /** LOCAL-FIRST: this source is deliberately NOT part of the daily cron.
+   *
+   *  raw/ is gitignored and the cron fetches remotely, in one process, so a cron
+   *  run has no dump for a source only ever fetched by hand. Without this flag
+   *  parse would exit 1 there (missing dump) or, worse, drop every one of its
+   *  records. So when the dump is ABSENT its committed records are CARRIED, the
+   *  same mechanism a frozen channel uses; when the dump is PRESENT (a local
+   *  refresh) they are rebuilt from it.
+   *
+   *  The carry needs a pin for the same reason frozen does — data/videos.json is
+   *  both source and target, so a bad run would poison the next one's baseline.
+   *  It cannot be a constant here the way frozen.records is, because this source
+   *  GROWS: it lives in data/source-pins.json, written by the local fetch and
+   *  asserted by every parse. */
+  localFirst?: boolean;
   /** This channel no longer publishes this game. It is NOT fetched, requires no
    *  raw dump, and its committed records are carried forward by parse.ts — see
    *  the channel-collapse guard there for why deleting them was the alternative.
@@ -177,7 +213,49 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
     gameSignal: { pattern: /\b2XKO\b/i, scope: 'title-or-description' },
     charactersFromFootage: true,
   },
+  replayTheater: {
+    key: 'replayTheater',
+    name: 'Tournament VODs',
+    // THE FIRST INDEX-TYPE SOURCE ON THE PLATFORM. replaytheater.app is a
+    // fan-curated match index: it does not host video, it points AT video with a
+    // start offset. Its 2XKO catalogue is 3,547 matches, of which the 899
+    // carrying an event tag are tournament sets cut from 75 longform VODs — a
+    // median of 16 records per video, which is why these records are keyed
+    // `${videoId}@${startSeconds}` and not by video id.
+    //
+    // WHY THIS IS WORTH A NEW SOURCE TYPE: segmenting longform tournament
+    // streams is the open hard problem in this repo's own roadmap (README,
+    // "Data & ingestion"). This is that segmentation, already done, by hand,
+    // and measured against the uploaders' chapter markers at 99.8% agreement on
+    // player names (606/607) with a median timestamp offset of 0s.
+    //
+    // NO `resolve`: there is no channel. The 75 source VODs belong to eleven
+    // different organisers (Tampa Never Sleeps, ParagonFGC, Evo, …), so
+    // `channelName` is per-record, read from each VOD's own uploader.
+    index: {
+      endpoint: 'https://replaytheater.app/api/matches',
+      game: '2xko',
+      pageSize: 50,
+      pacingMs: 1200,
+    },
+    localFirst: true,
+    // Reference only, like every entry here — but unlike the channels above, THIS
+    // one is actually used: the theater parser splits structured `p1_name` /
+    // `p2_name` fields, not a title, so "/" is unambiguous here in a way it can
+    // never be in a title (where CHAR_SEP owns it). Measured over the 899 tagged
+    // entries: "/" 38 distinct handles, "&" 8, " - " 1, "+" 1.
+    playerSep: /\s*[/&+]\s*|\s+-\s+/,
+    // No branding suffix: these titles are synthesized by the parser, not fetched.
+    suffix: /(?!)/,
+  },
 };
+
+/** Sponsor/team prefix on a Replay Theater handle: "OEG | Slate", "NP | Senshi",
+ *  "PFGG | Shatani" — 10 distinct across the tagged catalogue. STRIPPED, never
+ *  split: "|" is not a duo delimiter there, and treating it as one would mint a
+ *  player called "OEG" with a page of its own. One entry needs both rules in
+ *  order — "PFGG | Paul Le / Monokeros" is a sponsored duo. */
+export const THEATER_SPONSOR = /^[^|]{1,12}\s*\|\s*/;
 
 // Character separator is UNIFIED across channels: split on /\s*[\/-]\s*/
 // (handles High Level's " / " and Pro Replays' "-").

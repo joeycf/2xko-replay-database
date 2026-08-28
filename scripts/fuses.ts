@@ -266,6 +266,27 @@ async function loadNameTemplates(): Promise<Map<string, bigint>> {
 
 // ── fetch + frames ────────────────────────────────────────────────────────────
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** A SEGMENT record's id is `${videoId}@${startSeconds}` (replayTheater): the
+ *  record is one set inside a longform tournament VOD, not a whole video. Three
+ *  things follow, and getting any of them wrong is silent:
+ *
+ *    - the URL is the VIDEO's, not the record's;
+ *    - the 12s window is at the offset, not at 0 — sampling the top of a
+ *      three-hour stream reads the intro card, and the fuse pills are simply
+ *      absent there, so every segment would come back "unavailable" or, worse,
+ *      match noise;
+ *    - the cached file must be named by the RECORD, because ~16 records share
+ *      one videoId and yt-dlp's own %(id)s would give them all one filename —
+ *      the first download would then be reused as every other set's footage.
+ */
+function splitId(id: string): { videoId: string; start: number } {
+  const at = id.lastIndexOf('@');
+  if (at === -1) return { videoId: id, start: 0 };
+  const start = Number(id.slice(at + 1));
+  return Number.isFinite(start) ? { videoId: id.slice(0, at), start } : { videoId: id, start: 0 };
+}
+
 function rawPath(id: string): string | null {
   if (!existsSync(RAW)) return null;
   const f = readdirSync(RAW).find((f) => f.startsWith(`${id}.`));
@@ -282,6 +303,7 @@ async function ensureFrames(id: string): Promise<string[] | null> {
   let raw = rawPath(id);
   if (!raw) {
     mkdirSync(RAW, { recursive: true });
+    const { videoId, start } = splitId(id);
     const r = spawnSync(
       'yt-dlp',
       // --js-runtimes node: YouTube's n-challenge needs yt-dlp's EJS solver
@@ -294,12 +316,20 @@ async function ensureFrames(id: string): Promise<string[] | null> {
         '--quiet',
         '--no-warnings',
         '--download-sections',
-        '*0-12',
+        `*${start}-${start + 12}`,
+        // The ladder falls through to MUXED formats, which the video-only
+        // selectors alone do not cover. Measured over the 74 Replay Theater
+        // source VODs (2026-08-28): not one offers a DASH video-only stream —
+        // they are multi-hour uploads and livestream archives, so YouTube serves
+        // them as HLS plus progressive itag 18. `bv*` matches only the HLS
+        // entries there, and on a host whose ffmpeg cannot open the HLS manifest
+        // that is an outright failure rather than a lower-quality frame.
         '-f',
-        'bv*[height<=720]/bv*',
+        'bv*[height<=720]/b[height<=720]/bv*/b',
+        // Named by the RECORD id, not %(id)s — see splitId.
         '-o',
-        join(RAW, '%(id)s.%(ext)s'),
-        `https://www.youtube.com/watch?v=${id}`,
+        join(RAW, `${id}.%(ext)s`),
+        `https://www.youtube.com/watch?v=${videoId}`,
       ],
       { stdio: ['ignore', 'ignore', 'pipe'], env: process.env, timeout: 180_000 },
     );

@@ -1,4 +1,4 @@
-// FROZEN-CHANNEL LINK HEALTH — report-only, run it when curious.
+// UNFETCHED-SOURCE LINK HEALTH — report-only, run it when curious.
 //
 // WHY THIS EXISTS. Every other channel gets a liveness signal for free:
 // `data:fetch` re-walks the full uploads playlist daily and drops ids the API
@@ -7,6 +7,16 @@
 // freeze is protecting — proReplays is no longer fetched, so its 1,317 carried
 // records have had no liveness signal since 2026-08-08. This is the replacement
 // signal.
+//
+// A LOCAL-FIRST SOURCE HAS THE SAME HOLE, for a different reason: it is pulled
+// by hand rather than daily, and its records point at OTHER people's VODs —
+// event organisers' uploads, not a channel this pipeline tracks. One of Replay
+// Theater's 75 source VODs was already private on the day of first ingest. So
+// the population here is "records nothing re-fetches", which is both kinds.
+//
+// Segment records share a video: 888 of them cover 74 VODs, so the probe
+// de-duplicates by VIDEO id. Probing the same stream sixteen times would be
+// sixteen times the requests for one bit of information.
 //
 // The freeze rests on a specific claim: the videos still play at their URLs,
 // they merely left the uploads playlist when the channel rebranded and unlisted
@@ -28,13 +38,14 @@
 //
 //   npm run data:link-health              sample 50, spread across the archive
 //   npm run data:link-health -- --n 200   bigger sample
-//   npm run data:link-health -- --all     every frozen record (slow; paced)
+//   npm run data:link-health -- --all     every unfetched record (slow; paced)
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS } from './channels';
+import { refOf, watchUrl } from './video-url';
 import type { ChannelKey, VideoRecord } from '../types';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -62,7 +73,7 @@ type State = 'alive' | 'deleted' | 'private' | 'unknown';
  *  no report. Verified on a known-good id (50KB) against two dead ones (404). */
 async function thumbAlive(id: string): Promise<boolean | null> {
   try {
-    const r = await fetch(`https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+    const r = await fetch(`https://i.ytimg.com/vi/${refOf(id).videoId}/hqdefault.jpg`);
     if (!r.ok) return false;
     const buf = await r.arrayBuffer();
     return buf.byteLength > 2048;
@@ -72,9 +83,7 @@ async function thumbAlive(id: string): Promise<boolean | null> {
 }
 
 async function probe(id: string): Promise<{ state: State; detail: string }> {
-  const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(
-    `https://youtu.be/${id}`,
-  )}&format=json`;
+  const url = `https://www.youtube.com/oembed?url=${encodeURIComponent(watchUrl(id))}&format=json`;
   try {
     const res = await fetch(url, { redirect: 'follow' });
     await sleep((SLEEP_MIN + Math.random() * (SLEEP_MAX - SLEEP_MIN)) * 1000);
@@ -98,15 +107,27 @@ async function probe(id: string): Promise<{ state: State; detail: string }> {
 }
 
 const videos = JSON.parse(readFileSync(join(DATA, 'videos.json'), 'utf8')) as VideoRecord[];
-const frozenKeys = (Object.keys(CHANNELS) as ChannelKey[]).filter((k) => CHANNELS[k].frozen);
+// Every source nothing re-fetches: frozen channels and local-first sources.
+const unfetchedKeys = (Object.keys(CHANNELS) as ChannelKey[]).filter(
+  (k) => CHANNELS[k].frozen || CHANNELS[k].localFirst,
+);
 
-if (frozenKeys.length === 0) {
-  console.log('No frozen channels — nothing to check.');
+if (unfetchedKeys.length === 0) {
+  console.log('No frozen or local-first sources — nothing to check.');
   process.exit(0);
 }
 
+// One entry per distinct VIDEO. Segment records share a VOD, and its liveness is
+// a property of the video, not of each set cut out of it.
+const seenVideos = new Set<string>();
 const frozen = videos
-  .filter((v) => frozenKeys.includes(v.channel as ChannelKey))
+  .filter((v) => unfetchedKeys.includes(v.channel as ChannelKey))
+  .filter((v) => {
+    const vid = refOf(v.id).videoId;
+    if (seenVideos.has(vid)) return false;
+    seenVideos.add(vid);
+    return true;
+  })
   .sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
 
 // Deterministic, evenly-spread sample rather than a random one: re-running gives
@@ -115,10 +136,16 @@ const frozen = videos
 const stride = ALL ? 1 : Math.max(1, Math.floor(frozen.length / N));
 const sample = ALL ? frozen : frozen.filter((_, i) => i % stride === 0).slice(0, N);
 
-console.log(`Frozen-channel link health`);
-for (const k of frozenKeys) {
-  const f = CHANNELS[k].frozen!;
+console.log(`Unfetched-source link health`);
+for (const k of unfetchedKeys) {
+  const f = CHANNELS[k].frozen;
   const carried = frozen.filter((v) => v.channel === k).length;
+  if (!f) {
+    console.log(
+      `  ${k}: ${carried} distinct video(s) behind its records — local-first, no daily fetch signal`,
+    );
+    continue;
+  }
   console.log(`  ${k}: ${carried} carried · frozen ${f.since} · ${f.reason}`);
 }
 console.log(`  probing ${sample.length} of ${frozen.length} via oEmbed (pool ${POOL})\n`);
@@ -156,10 +183,13 @@ md.push(
     'count is the signal that a documented prune is now the honest move.',
 );
 md.push('');
-for (const k of frozenKeys) {
-  const f = CHANNELS[k].frozen!;
+for (const k of unfetchedKeys) {
+  const f = CHANNELS[k].frozen;
+  const n = frozen.filter((v) => v.channel === k).length;
   md.push(
-    `- \`${k}\` — ${frozen.filter((v) => v.channel === k).length} carried, frozen ${f.since}: ${f.reason}`,
+    f
+      ? `- \`${k}\` — ${n} carried, frozen ${f.since}: ${f.reason}`
+      : `- \`${k}\` — ${n} distinct video(s), local-first: pulled by hand, so no daily fetch proves these still resolve`,
   );
 }
 md.push('');
@@ -182,7 +212,7 @@ if (dead.length === 0) {
   md.push('|---|---|---|---|---|');
   for (const r of dead) {
     md.push(
-      `| \`${r.id}\` [▶](https://youtu.be/${r.id}) | ${r.publishedAt.slice(0, 10)} | ${r.state} | ${r.detail} | ${r.title.replace(/\|/g, '\\|').slice(0, 60)} |`,
+      `| \`${r.id}\` [▶](${watchUrl(r.id)}) | ${r.publishedAt.slice(0, 10)} | ${r.state} | ${r.detail} | ${r.title.replace(/\|/g, '\\|').slice(0, 60)} |`,
     );
   }
 }

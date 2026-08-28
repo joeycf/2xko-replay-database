@@ -60,6 +60,7 @@ import sharp from 'sharp';
 import { CHANNELS } from './channels';
 
 import type { VideoRecord } from '../types/index';
+import { watchUrl } from './video-url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = join(ROOT, 'data');
@@ -279,12 +280,46 @@ const scoped = pairs.filter((p) => {
   return scope === 'all' || (scope === 'cross' ? cross : !cross);
 });
 
+// ── records with no duration: reported, never adjudicated ────────────────────
+//
+// The skip above is correct — 0 is the unknown-duration sentinel, not a length,
+// and two of them must not collapse into a "Δ0s, certain" pair. But it used to
+// be SILENT, and a source arrived (replayTheater, 888 segment records, no
+// per-match duration to publish) where that silence covers a whole intake. A
+// report headed "6,526 videos" that adjudicated 5,638 of them read as full
+// coverage.
+//
+// So: their signature matches are surfaced, and NOTHING about them is proposed.
+// There is no evidence here to adjudicate on — the signature is a hypothesis and
+// the two corroborators this report relies on are both unavailable (no duration
+// to compare, and a shared VOD thumbnail across sixteen sets makes the perceptual
+// hash meaningless). This is a pointer for a human, at the weakest possible
+// strength, which is exactly what a same-match-different-id case is entitled to.
+const noDuration = videos.filter((v) => (v.durationSec ?? 0) <= 0 && signature(v));
+const sigIndex = new Map<string, VideoRecord[]>();
+for (const v of videos) {
+  const sig = signature(v);
+  if (!sig) continue;
+  (sigIndex.get(sig) ?? sigIndex.set(sig, []).get(sig)!).push(v);
+}
+const undated: { rec: VideoRecord; others: VideoRecord[] }[] = [];
+for (const v of noDuration) {
+  const others = (sigIndex.get(signature(v)!) ?? []).filter(
+    (o) => o.id !== v.id && o.channel !== v.channel,
+  );
+  if (others.length > 0) undated.push({ rec: v, others });
+}
+
 // ── adjudicate ────────────────────────────────────────────────────────────────
 
 const ids = [...new Set(scoped.flatMap((p) => [p.a.id, p.b.id]))];
 if (!asJson)
   console.log(
-    `\n${videos.length} videos · ${scoped.length} candidate pairs · ${ids.length} thumbnails`,
+    `\n${videos.length} videos · ${scoped.length} candidate pairs · ${ids.length} thumbnails` +
+      (noDuration.length > 0
+        ? `\n${noDuration.length} record(s) carry no duration and are NOT adjudicated` +
+          ` (${undated.length} of them share a signature with another source — listed, never proposed)`
+        : ''),
   );
 const hashes = await hashAll(ids, byId);
 
@@ -429,7 +464,8 @@ const survivorOf = (dropId: string): string => {
 };
 
 const counts = TIER_ORDER.map((t) => [t, rows.filter((r) => r.tier === t).length] as const);
-const yt = (id: string): string => `https://youtu.be/${id}`;
+// segment records key on `${videoId}@${start}`, so this cannot be a concatenation
+const yt = (id: string): string => watchUrl(id);
 
 const fragment = (): string =>
   actionable
@@ -517,6 +553,42 @@ const md: string[] = [
     `  - drop \`${r.drop.id}\` — ${r.drop.title}`,
   ]),
   '',
+  ...(noDuration.length === 0
+    ? []
+    : [
+        '## Records with no duration — NOT adjudicated',
+        '',
+        `${noDuration.length} record(s) publish no duration, so they never enter candidate`,
+        'generation: 0 is the unknown-duration sentinel, and two of them would otherwise',
+        'collapse into a "Δ0s, certain" pair. That skip is correct, but it used to be',
+        'silent — and a whole intake now lives inside it (`replayTheater`: segment records',
+        'of longform VODs, which have no per-match length to publish).',
+        '',
+        `Of those, ${undated.length} share a players+champions signature with a record from a`,
+        'DIFFERENT source. **Nothing here is proposed, and nothing should be actioned from',
+        "this table alone.** A signature is a hypothesis; both of this report's corroborators",
+        'are unavailable for these records (no duration to compare, and sixteen sets cut from',
+        'one VOD share its thumbnail, so the perceptual hash says nothing). Treat it as a',
+        'pointer for a human who wants to look at the footage.',
+        '',
+        ...(undated.length === 0
+          ? ['_None._', '']
+          : [
+              '| record | source | shares a signature with | its source |',
+              '|---|---|---|---|',
+              ...undated.slice(0, 60).map(
+                (u) =>
+                  `| [\`${u.rec.id}\`](${yt(u.rec.id)}) | ${u.rec.channel} | ${u.others
+                    .slice(0, 3)
+                    .map((o) => `[\`${o.id}\`](${yt(o.id)})`)
+                    .join(', ')}${u.others.length > 3 ? ` +${u.others.length - 3}` : ''} | ${[
+                    ...new Set(u.others.map((o) => o.channel)),
+                  ].join(', ')} |`,
+              ),
+              ...(undated.length > 60 ? [`| … ${undated.length - 60} more | | | |`] : []),
+              '',
+            ]),
+      ]),
   '## To apply',
   '',
   '1. Paste the fragment below into `data/overrides.json` (see `--emit-overrides`).',

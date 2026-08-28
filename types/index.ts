@@ -77,8 +77,17 @@ export interface ReplayFuseFields {
   fusesUnordered?: true;
 }
 
-export type ChannelKey = 'proReplays' | 'highLevel' | 'bestReplays' | 'evoEvents';
-/** Where a record came from: a tracked channel dump, or data/manual-videos.json. */
+export type ChannelKey = 'proReplays' | 'highLevel' | 'bestReplays' | 'evoEvents' | 'replayTheater';
+/** Where a record came from: a tracked channel dump, or data/manual-videos.json.
+ *
+ *  CHANNEL AND SOURCE ARE STILL 1:1, and that is what keeps dedupe honest here.
+ *  Tekken had to add a separate `intake` key because Evo and Bandai Namco both
+ *  publish under one 'tournament' source token, so a source-keyed precedence
+ *  rule could not tell them apart. In this repo `tournament` is a sourceGroup
+ *  (app/app.config.ts), never a source — `replayTheater` is its own token inside
+ *  that group — so `v.channel` still names exactly one intake and
+ *  scripts/replay-dupes.ts needs no intake field. The moment two FETCHED sources
+ *  share a token, that stops being true. */
 export type VideoSource = ChannelKey | 'manual';
 export type MatchType = 'ranked' | 'tournament' | 'duo';
 /** "manual" = human-authored (data/manual-videos.json) — never a parse failure. */
@@ -123,10 +132,24 @@ export interface VideoRecord {
   rawUnparsed: string | null;
   /** CV-detected fuses are confident as a pair but side attribution is ambiguous */
   fusesUnordered?: boolean;
-  /** manual tournament records only: event name, e.g. "Evo 2026" */
+  /** tournament records (manual, evoEvents, replayTheater): event name, e.g.
+   *  "Evo 2026" or "EU Saltmine Tournament #1" */
   tournament?: string;
-  /** manual tournament records only: bracket round label, e.g. "Grand Final" */
+  /** tournament records: bracket round label, e.g. "Grand Final". Often absent
+   *  for replayTheater — Replay Theater carries no round, so it is harvested
+   *  from the source VOD's chapter title only when one names a round. */
   round?: string;
+  /** SEGMENT RECORDS (replayTheater). The YouTube video id, when `id` is not it.
+   *  `id` is `${videoId}@${startSeconds}` for a source that indexes matches
+   *  inside a longform VOD, because ~16 records share one video. Emitted to
+   *  replays.json as Replay.videoId (engine v0.10.0); every YouTube-shaped URL
+   *  resolves `videoId ?? id`. Absent ⇒ `id` IS the video id. */
+  videoId?: string;
+  /** Where this record's footage starts inside `videoId`, in seconds. Absent ⇒
+   *  the record is the whole video. Drives the embed's ?start= (engine
+   *  v0.10.0) — and scripts/fuses.ts, which must sample frames HERE and not at
+   *  the top of a three-hour stream. */
+  startSeconds?: number;
 }
 
 /**
@@ -368,6 +391,40 @@ export interface RawVideoRecord {
   thumbnail: string;
   durationSec: number;
   viewCount: number;
+}
+
+/**
+ * One tagged tournament match as Replay Theater publishes it, joined to the
+ * YouTube metadata of the VOD it points into. Written to raw/replayTheater.json
+ * by scripts/fetch-theater.ts (gitignored, like every raw dump).
+ *
+ * It EXTENDS RawVideoRecord rather than replacing it so the parts of the
+ * pipeline that only care about video metadata (season/patch derivation from
+ * publishedAt, the collapse guard's counting) need no special case. The extra
+ * fields are what makes it a match rather than a video.
+ */
+export interface TheaterRawRecord extends RawVideoRecord {
+  /** Replay Theater's own integer id — kept for provenance and for de-duping a
+   *  resumed pull; nothing downstream keys on it. */
+  theaterId: number;
+  /** the YouTube video this match lives inside (RawVideoRecord.id is the
+   *  composite `${videoId}@${startSeconds}`) */
+  videoId: string;
+  /** seconds into `videoId` where the set starts */
+  startSeconds: number;
+  /** the event tag, verbatim, e.g. "EU Saltmine Tournament #1" */
+  tag: string;
+  /** bracket round, harvested from the VOD's chapter title when one names a
+   *  round — absent for most entries; Replay Theater carries no round field */
+  round?: string;
+  /** the uploading channel's title, e.g. "Tampa Never Sleeps" — these VODs come
+   *  from eleven different organisers, so channelName is per-record */
+  uploader: string;
+  /** raw, unresolved player strings as published (sponsor prefixes and duo
+   *  separators intact) — the parser owns splitting them */
+  players: [string, string];
+  /** raw, unresolved champion strings as published, per side */
+  characters: [string[], string[]];
 }
 
 /** Aggregate stats. Written to data/stats.json (Stage 2). */

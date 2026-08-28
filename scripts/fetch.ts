@@ -8,105 +8,38 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, type ChannelConfig } from './channels';
+import {
+  apiGet,
+  fetchVideoMetadata,
+  listAllUploadIds,
+  requireApiKey,
+  type ChannelsResponse,
+} from './youtube';
 import type { ChannelKey, Fuse, RawVideoRecord } from '../types/index';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const RAW_DIR = join(ROOT, 'raw');
-const API_BASE = 'https://www.googleapis.com/youtube/v3';
 
 // ── API key (never hardcode; read from env, fail loudly if missing) ──────────
-const rawKey = process.env.YT_API_KEY;
-if (!rawKey) {
-  console.error(
-    [
-      '✖ Missing YT_API_KEY.',
-      '  Create a .env file in the project root containing:',
-      '    YT_API_KEY=your_key_here',
-      '  (see .env.example). data:fetch loads it via `tsx --env-file=.env`.',
-    ].join('\n'),
-  );
-  process.exit(1);
-}
-const API_KEY: string = rawKey;
+// The client itself lives in ./youtube — scripts/fetch-theater.ts needs the same
+// one, and this file cannot be imported (it calls main() at module load).
+requireApiKey('data:fetch');
 
 // ── small utils ──────────────────────────────────────────────────────────────
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const truncate = (s: string, n: number) => (s.length <= n ? s : s.slice(0, n - 1) + '…');
 const pct = (n: number, total: number) => (total === 0 ? '0.0' : ((n / total) * 100).toFixed(1));
 
-// ── YouTube API GET with retry on 5xx / 429, fail loudly on other 4xx ────────
-async function apiGet<T>(
-  endpoint: string,
-  params: Record<string, string>,
-  retries = 5,
-): Promise<T> {
-  const url = new URL(`${API_BASE}/${endpoint}`);
-  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
-  url.searchParams.set('key', API_KEY);
-
-  for (let attempt = 1; attempt <= retries; attempt++) {
-    let res: Response;
-    try {
-      res = await fetch(url);
-    } catch (err) {
-      if (attempt >= retries) throw err;
-      const wait = Math.min(1000 * 2 ** (attempt - 1), 8000);
-      console.warn(
-        `  ⚠ network error on ${endpoint} (attempt ${attempt}/${retries}); retrying in ${wait}ms`,
-      );
-      await sleep(wait);
-      continue;
-    }
-
-    if (res.ok) return (await res.json()) as T;
-
-    const body = await res.text().catch(() => '');
-    const retryable = res.status === 429 || res.status >= 500;
-    if (retryable && attempt < retries) {
-      const wait = Math.min(1000 * 2 ** (attempt - 1), 8000);
-      console.warn(
-        `  ⚠ HTTP ${res.status} on ${endpoint} ${JSON.stringify(params)} (attempt ${attempt}/${retries}); retrying in ${wait}ms`,
-      );
-      await sleep(wait);
-      continue;
-    }
-    // Non-retryable 4xx or out of retries → fail loudly with the API's error body.
-    // (The key is never included: it is only ever set on the URL, not in `params`.)
-    throw new Error(
-      `YouTube API error: HTTP ${res.status} on ${endpoint} ${JSON.stringify(params)}\n${body}`,
-    );
-  }
-  throw new Error(`Exhausted retries for ${endpoint}`);
-}
-
-// ── minimal shapes of the API responses we consume ───────────────────────────
-type Thumbnails = Record<string, { url?: string } | undefined>;
-interface ChannelsResponse {
-  items?: Array<{ contentDetails?: { relatedPlaylists?: { uploads?: string } } }>;
-}
-interface PlaylistItemsResponse {
-  items?: Array<{ contentDetails?: { videoId?: string } }>;
-  nextPageToken?: string;
-}
-interface VideoItem {
-  id: string;
-  snippet?: {
-    title?: string;
-    description?: string;
-    publishedAt?: string;
-    thumbnails?: Thumbnails;
-  };
-  contentDetails?: { duration?: string };
-  statistics?: { viewCount?: string };
-}
-interface VideosResponse {
-  items?: VideoItem[];
-}
-
 // 1. Resolve a channel's uploads playlist id.
 async function resolveUploadsPlaylist(ch: ChannelConfig): Promise<string> {
+  // Only a YouTube channel has one. An index source is skipped before this is
+  // reached (see main), so arriving here without `resolve` is a config bug.
+  if (!ch.resolve) {
+    throw new Error(
+      `Channel "${ch.key}" has no \`resolve\` — an index source must be fetched by its own script, not data:fetch.`,
+    );
+  }
   const params: Record<string, string> = { part: 'contentDetails' };
   if (ch.resolve.by === 'id') params.id = ch.resolve.value;
   else params.forHandle = ch.resolve.value;
@@ -120,71 +53,6 @@ async function resolveUploadsPlaylist(ch: ChannelConfig): Promise<string> {
     );
   }
   return uploads;
-}
-
-// 2. Page through the uploads playlist collecting every videoId.
-async function listAllUploadIds(playlistId: string): Promise<string[]> {
-  const ids: string[] = [];
-  let pageToken: string | undefined;
-  do {
-    const params: Record<string, string> = { part: 'contentDetails', maxResults: '50', playlistId };
-    if (pageToken) params.pageToken = pageToken;
-    const data = await apiGet<PlaylistItemsResponse>('playlistItems', params);
-    for (const item of data.items ?? []) {
-      const vid = item.contentDetails?.videoId;
-      if (vid) ids.push(vid);
-    }
-    pageToken = data.nextPageToken;
-  } while (pageToken);
-  return ids;
-}
-
-// 3. Fetch full metadata in batches of 50, preserving uploads order.
-async function fetchVideoMetadata(ids: string[], channel: ChannelKey): Promise<RawVideoRecord[]> {
-  const byId = new Map<string, RawVideoRecord>();
-  for (let i = 0; i < ids.length; i += 50) {
-    const batch = ids.slice(i, i + 50);
-    const data = await apiGet<VideosResponse>('videos', {
-      part: 'snippet,contentDetails,statistics',
-      id: batch.join(','),
-    });
-    for (const item of data.items ?? []) byId.set(item.id, toRawRecord(item, channel));
-  }
-  // Keep uploads-playlist order; silently drop any ids the API didn't return
-  // (e.g. deleted / private videos).
-  return ids.map((id) => byId.get(id)).filter((r): r is RawVideoRecord => r != null);
-}
-
-function toRawRecord(item: VideoItem, channel: ChannelKey): RawVideoRecord {
-  const sn = item.snippet ?? {};
-  return {
-    id: item.id,
-    channel,
-    title: sn.title ?? '',
-    description: sn.description ?? '',
-    publishedAt: sn.publishedAt ?? '',
-    thumbnail: pickThumbnail(sn.thumbnails, item.id),
-    durationSec: parseIsoDuration(item.contentDetails?.duration),
-    viewCount: Number(item.statistics?.viewCount ?? 0),
-  };
-}
-
-// Highest-res thumbnail: maxres → standard → high → medium → default → fallback.
-function pickThumbnail(thumbs: Thumbnails | undefined, videoId: string): string {
-  for (const key of ['maxres', 'standard', 'high', 'medium', 'default'] as const) {
-    const url = thumbs?.[key]?.url;
-    if (url) return url;
-  }
-  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-}
-
-// ISO-8601 duration (e.g. "PT7M1S") → seconds.
-function parseIsoDuration(iso: string | undefined): number {
-  if (!iso) return 0;
-  const m = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(iso);
-  if (!m) return 0;
-  const [, h, min, s] = m;
-  return Number(h ?? 0) * 3600 + Number(min ?? 0) * 60 + Number(s ?? 0);
 }
 
 // ── reconnaissance ────────────────────────────────────────────────────────────
@@ -298,6 +166,15 @@ async function main(): Promise<void> {
       console.log(`\n⏸ Skipping "${ch.key}" — frozen ${ch.frozen.since}: ${ch.frozen.reason}`);
       continue;
     }
+    if (ch.index) {
+      // An index source has no uploads playlist and is deliberately LOCAL-FIRST:
+      // this command runs in the daily cron, and a third party's uptime and
+      // goodwill should not be a cron dependency on day one. `npm run
+      // data:theater` pulls it by hand; parse.ts carries its committed records
+      // on every run that has no dump, which is every cron run.
+      console.log(`\n⏸ Skipping "${ch.key}" — index source, pulled by \`npm run data:theater\``);
+      continue;
+    }
     console.log(`\n▶ Fetching "${ch.key}" (${ch.name})…`);
     const uploads = await resolveUploadsPlaylist(ch);
     console.log(`  uploads playlist: ${uploads}`);
@@ -352,7 +229,7 @@ async function main(): Promise<void> {
   console.log(`  RECONNAISSANCE`);
   console.log('█'.repeat(72));
   for (const ch of Object.values(CHANNELS)) {
-    if (ch.frozen) continue; // no dump, so nothing to reconnoitre
+    if (ch.frozen || ch.index) continue; // no dump here, so nothing to reconnoitre
     runRecon(ch.key, byChannel.get(ch.key) ?? [], fuseRe);
   }
 

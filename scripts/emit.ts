@@ -51,6 +51,13 @@ export interface GenericReplay {
   views?: number;
   thumb?: string;
   durationSec?: number;
+  /** SEGMENT RECORDS (engine v0.10.0): the YouTube id when `id` is not it, and
+   *  where this record's footage starts inside it. Emitted only for a source
+   *  that indexes matches inside a longform VOD (replayTheater) — every other
+   *  record's `id` IS its video id and both fields stay absent, which is what
+   *  keeps replays.json byte-identical for them. */
+  videoId?: string;
+  startSeconds?: number;
   /** 2XKO EXTENSION fields (the engine never reads them; the app's fuse facet
    *  + badge overrides do): per-side fuse ids in sides order, and the
    *  detection-confidence flag for pairs whose side attribution is unknown.
@@ -116,9 +123,20 @@ function toReplay(v: VideoRecord): GenericReplay {
     patch: v.patchVersion ?? eraKey(v.season),
     source: v.channel,
     title: v.title,
-    views: v.viewCount,
+    // Omitted when there is none, the same treatment durationSec gets below.
+    // A segment record inherits no view count: the VOD's belongs to the VOD, and
+    // stamping it on all sixteen sets cut from it would multiply one number by
+    // sixteen. The engine hides an absent `views` rather than printing "0 views"
+    // (v0.10.0).
+    ...(v.viewCount > 0 ? { views: v.viewCount } : {}),
     thumb: v.thumbnail,
     ...(v.durationSec > 0 ? { durationSec: v.durationSec } : {}),
+    // Only when the record is a segment. `videoId` rides along whenever
+    // `startSeconds` does, because the engine resolves `videoId ?? id` for every
+    // YouTube-shaped URL and a composite id would otherwise build a 404ing
+    // thumbnail that @error hides.
+    ...(v.videoId ? { videoId: v.videoId } : {}),
+    ...(v.startSeconds ? { startSeconds: v.startSeconds } : {}),
     ...(fuseA || fuseB ? { fuses: [fuseA, fuseB] as [string | null, string | null] } : {}),
     ...(v.fusesUnordered ? { fusesUnordered: true as const } : {}),
   };
