@@ -114,5 +114,9 @@ export default defineAppConfig({
       backgroundColor: '#0A0B0F',
     },
     ogImage: '/og-default.png',
+    // ComboForge cross-link on champion pages (engine v0.11.0). Every champion
+    // id maps 1:1 to theirs, so no map is needed. Gated with the engine's
+    // `npm run verify:comboforge`.
+    comboforge: { gameId: '2xko' },
   } satisfies GameConfig,
 });

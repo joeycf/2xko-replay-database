@@ -855,6 +855,12 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
       'champ breadcrumb leaf',
     );
     expect(!!champLd.find((n) => n['@type'] === 'CollectionPage'), 'champ CollectionPage');
+    // ComboForge cross-link (engine v0.11.0). Every champion id maps 1:1 to
+    // theirs, so this pins the derived shape as well as the champions segment.
+    expect(
+      champ.includes(`comboforge.gg/browse?gameId=2xko&amp;characterId=2xko-${champId}`),
+      'ComboForge band deep-links the champion',
+    );
     expect(champ.includes(`<a href="${BASE}/players/`), 'champ → player entity anchors (pilots)');
     const player = html(`players/${playerId}/index.html`);
     const pLd = ld(player);
