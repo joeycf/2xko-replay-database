@@ -16156,33 +16156,33 @@
     }
   },
   "fuseUsage": {
-    "2x-assist": 2510,
-    "double-down": 2329,
-    "freestyle": 7943,
+    "2x-assist": 2523,
+    "double-down": 2345,
+    "freestyle": 7957,
     "juggernaut": 94,
-    "sidekick": 11,
+    "sidekick": 12,
     "teamfight": 129
   },
   "fuseByPatch": {
     "Beta": {
-      "2x-assist": 159,
-      "double-down": 249,
-      "freestyle": 161,
+      "2x-assist": 165,
+      "double-down": 252,
+      "freestyle": 171,
       "juggernaut": 12,
-      "sidekick": 1,
+      "sidekick": 2,
       "teamfight": 2
     },
     "S0": {
-      "2x-assist": 1303,
-      "double-down": 1137,
-      "freestyle": 1400,
+      "2x-assist": 1309,
+      "double-down": 1148,
+      "freestyle": 1403,
       "juggernaut": 21,
       "sidekick": 3
     },
     "S1": {
-      "2x-assist": 1048,
-      "double-down": 943,
-      "freestyle": 6382,
+      "2x-assist": 1049,
+      "double-down": 945,
+      "freestyle": 6383,
       "juggernaut": 61,
       "sidekick": 7,
       "teamfight": 127

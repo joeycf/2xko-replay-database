@@ -24880,7 +24880,7 @@
           "thresh",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -30427,7 +30427,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -34081,7 +34081,7 @@
           "blitzcrank",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -79566,7 +79566,7 @@
           "blitzcrank",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -81704,7 +81704,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -87878,7 +87878,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -88950,7 +88950,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -90292,7 +90292,7 @@
           "darius",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -90416,7 +90416,7 @@
           "yasuo",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -90903,7 +90903,7 @@
           "yasuo",
           "braum"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -92880,7 +92880,7 @@
           "darius",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -94612,7 +94612,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -95455,7 +95455,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -100273,7 +100273,7 @@
           "blitzcrank",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -100559,7 +100559,7 @@
           "jinx",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -100617,7 +100617,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -100958,7 +100958,7 @@
           "ahri",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -102993,7 +102993,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -103350,7 +103350,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -103393,7 +103393,7 @@
           "blitzcrank",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "sidekick"
       },
       {
         "side": "right",
@@ -103961,7 +103961,7 @@
           "blitzcrank",
           "darius"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -104246,7 +104246,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -104318,7 +104318,7 @@
           "darius",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -104419,7 +104419,7 @@
           "ekko",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -104491,7 +104491,7 @@
           "ekko",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -104947,7 +104947,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -253622,7 +253622,7 @@
           "teemo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -295543,7 +295543,7 @@
           "illaoi",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -302903,7 +302903,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -303019,7 +303019,7 @@
           "yasuo",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -304533,7 +304533,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -304812,7 +304812,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -305405,7 +305405,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -309319,7 +309319,7 @@
           "braum",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -314755,7 +314755,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -315211,7 +315211,7 @@
           "ekko",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -315497,7 +315497,7 @@
           "jinx",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -320921,7 +320921,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -320979,7 +320979,7 @@
           "yasuo",
           "darius"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -321320,7 +321320,7 @@
           "vi",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -321391,7 +321391,7 @@
           "vi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -321837,7 +321837,7 @@
           "yasuo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -321951,7 +321951,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -322180,7 +322180,7 @@
           "yasuo",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
