@@ -71960,5 +71960,60 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-29"
+ },
+ "hmuuuaKA5J4": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 8
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
+ },
+ "KoXD8KaJYZQ": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 1,
+   "right": 29
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
+ },
+ "Ml2Jr01kuko": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 2
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
+ },
+ "PbIACMmK7h8": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 20
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
+ },
+ "eEvOOWq7AL0": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 30,
+   "right": 5
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
  }
 }

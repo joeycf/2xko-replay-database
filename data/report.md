@@ -1,25 +1,26 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-29T12:44:40.797Z._
+_Generated 2026-08-29T22:32:24.885Z._
 
 ## Summary
-- Total videos: **6535**
-- High confidence: **6508**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
+- Total videos: **6538**
+- High confidence: **6511**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.5%** · fuse: **100.0%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **627**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **628**
+- Replay Theater entries **skipped as already-known**: **10** of 898 (existing ids win, by ignoring)
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2475 | fetched |
-| `highLevel` | 1824 | fetched |
+| `bestReplays` | 2477 | fetched |
+| `highLevel` | 1825 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
-| `replayTheater` | 888 | carried (local-first, no dump this run) |
+| `replayTheater` | 888 | rebuilt from a local dump |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6535** | |
+| **Σ** | **6538** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -35,7 +36,9 @@ _Deliberately outside the daily cron: a third party's uptime is not a cron depen
 
 | source | records | pin now | this run | newest record |
 |---|---|---|---|---|
-| `replayTheater` | 888 | 888 | carried (no dump) | 2026-07-31 |
+| `replayTheater` | 888 | 888 | rebuilt from dump | 2026-07-31 |
+
+_Skipped as already-known (10): 10 in videos.json. Existing ids win, by ignoring — an id this repo has already ruled on, in any capacity, does not re-enter through a side door._
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -72,7 +75,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VjA1VOogCog` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
-| `KtljpBCtoko@4191` | replayTheater | carried from a local-first source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
+| `KtljpBCtoko@4191` | replayTheater | unresolved champion(s): Juggernaut Illaoi | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
 ## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
