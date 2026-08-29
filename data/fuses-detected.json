@@ -71938,5 +71938,27 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-08-28"
+ },
+ "rpG0f6WwdHw": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 1,
+   "right": 11
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
+ },
+ "10vRD-sdSpw": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 4,
+   "right": 11
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-08-29"
  }
 }
