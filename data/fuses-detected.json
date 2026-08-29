@@ -536,7 +536,7 @@
   },
   "status": "low",
   "era": "s1",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "BtL4tNq4qTU": {
   "left": "freestyle",
@@ -5396,9 +5396,9 @@
    "left": 1,
    "right": 19
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s1",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "4vuAQ4MikRk": {
   "left": "freestyle",
@@ -5812,11 +5812,11 @@
   "right": "2x-assist",
   "score": {
    "left": 3,
-   "right": 33
+   "right": 62
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s1",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "X7rbQ13uJhc": {
   "left": "freestyle",
@@ -8599,7 +8599,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "zZ1BRorxCSY": {
   "left": "double-down",
@@ -8691,14 +8691,14 @@
  },
  "RVurMl2BjF4": {
   "left": "freestyle",
-  "right": "double-down",
+  "right": "2x-assist-evo",
   "score": {
    "left": 0,
-   "right": 22
+   "right": 65
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "XJm0JJZxcWs": {
   "left": "double-down",
@@ -9651,11 +9651,11 @@
   "right": "2x-assist",
   "score": {
    "left": 6,
-   "right": 28
+   "right": 37
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "Z34_Kh6vtbw": {
   "left": "freestyle",
@@ -9912,25 +9912,25 @@
  },
  "0piuJWyYBtg": {
   "left": "double-down",
-  "right": "double-down",
+  "right": "juggernaut",
   "score": {
-   "left": 0,
-   "right": 60
+   "left": 2,
+   "right": 51
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "tNuXq9CZUNI": {
   "left": "double-down",
   "right": "juggernaut",
   "score": {
-   "left": 0,
+   "left": 7,
    "right": 47
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "XrpSv6VAQPc": {
   "left": "double-down",
@@ -10205,7 +10205,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "AaJLyQSSbRE": {
   "left": "freestyle",
@@ -10260,7 +10260,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "nY-0xIHhazQ": {
   "left": "freestyle",
@@ -10363,14 +10363,14 @@
  },
  "j_MuLmyPjts": {
   "left": "double-down",
-  "right": "double-down",
+  "right": "2x-assist-evo",
   "score": {
    "left": 1,
-   "right": 35
+   "right": 61
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "0ybPU3fjYC4": {
   "left": "juggernaut",
@@ -11059,11 +11059,11 @@
   "right": "double-down",
   "score": {
    "left": 47,
-   "right": 2
+   "right": 5
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "mCM_8LUO2y0": {
   "left": "freestyle",
@@ -11532,11 +11532,11 @@
   "right": "double-down",
   "score": {
    "left": 2,
-   "right": 46
+   "right": 50
   },
-  "status": "low",
+  "status": "ok",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "z-GIqmUzw3s": {
   "left": "double-down",
@@ -12031,7 +12031,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "19H_eTidN0c": {
   "left": "double-down",
@@ -12108,7 +12108,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "5yZu_iiL4Ko": {
   "left": "double-down",
@@ -12163,7 +12163,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "aT8VCI1yTk4": {
   "left": "double-down",
@@ -13120,7 +13120,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "wg37brcrtRw": {
   "left": "freestyle",
@@ -13131,7 +13131,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "q_NkO1rwUy0": {
   "left": "double-down",
@@ -13197,7 +13197,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "7d7VkfX_pi4": {
   "left": "double-down",
@@ -13259,11 +13259,11 @@
   "right": "double-down",
   "score": {
    "left": 999,
-   "right": 0
+   "right": 1
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "ysaCYgwwL4U": {
   "left": "freestyle",
@@ -13285,7 +13285,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "co5JZ4tnCb4": {
   "left": "double-down",
@@ -14934,8 +14934,8 @@
    "right": 28
   },
   "status": "low",
-  "era": "s2",
-  "detectedAt": "2026-07-03"
+  "era": "s1",
+  "detectedAt": "2026-08-29"
  },
  "mbDc_e_NrKY": {
   "left": "freestyle",
@@ -15935,8 +15935,8 @@
    "right": 46
   },
   "status": "low",
-  "era": "s2",
-  "detectedAt": "2026-07-03"
+  "era": "s1",
+  "detectedAt": "2026-08-29"
  },
  "nwgCfreTbho": {
   "left": "2x-assist",
@@ -16603,11 +16603,11 @@
   "right": "double-down",
   "score": {
    "left": 0,
-   "right": 46
+   "right": 39
   },
   "status": "low",
-  "era": "s2",
-  "detectedAt": "2026-07-03"
+  "era": "s1",
+  "detectedAt": "2026-08-29"
  },
  "OdQuKYoHWqc": {
   "left": "juggernaut",
@@ -17777,14 +17777,14 @@
  },
  "TuKpWJEuYKo": {
   "left": "freestyle",
-  "right": "2x-assist",
+  "right": "2x-assist-evo",
   "score": {
    "left": 4,
-   "right": 22
+   "right": 60
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s1",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "CHMrhQBTLkg": {
   "left": "double-down",
@@ -24655,11 +24655,11 @@
   "right": "double-down",
   "score": {
    "left": 1,
-   "right": 25
+   "right": 31
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "Yea7eQ5QP58": {
   "left": "freestyle",
@@ -24960,14 +24960,14 @@
  },
  "3us28ySdOwo": {
   "left": "double-down",
-  "right": "double-down",
+  "right": "2x-assist",
   "score": {
    "left": 0,
-   "right": 19
+   "right": 34
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "kvCEU_NZTaQ": {
   "left": "double-down",
@@ -25044,7 +25044,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "GpZSII3pPq4": {
   "left": "double-down",
@@ -25818,14 +25818,14 @@
  },
  "7fCEb4twy40": {
   "left": "double-down",
-  "right": "double-down",
+  "right": "2x-assist-evo",
   "score": {
    "left": 0,
-   "right": 37
+   "right": 58
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "Pc_BAE5s9Mw": {
   "left": "freestyle",
@@ -26118,11 +26118,11 @@
   "right": "double-down",
   "score": {
    "left": 0,
-   "right": 16
+   "right": 21
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "IyzJ6k7jFvo": {
   "left": "2x-assist",
@@ -26304,12 +26304,12 @@
   "left": "double-down",
   "right": "double-down",
   "score": {
-   "left": 5,
-   "right": 48
+   "left": 7,
+   "right": 38
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "VcUoM9aZ5ug": {
   "left": "2x-assist",
@@ -26536,11 +26536,11 @@
   "right": "2x-assist",
   "score": {
    "left": 0,
-   "right": 58
+   "right": 59
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "WrCDyQd2saQ": {
   "left": "freestyle",
@@ -26562,7 +26562,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "03H0WLrnMNw": {
   "left": "double-down",
@@ -26969,7 +26969,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "Xhr81RAbtMg": {
   "left": "freestyle",
@@ -27185,11 +27185,11 @@
   "right": "double-down",
   "score": {
    "left": 0,
-   "right": 19
+   "right": 24
   },
-  "status": "low",
+  "status": "ok",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "Io5P6NRXUXc": {
   "left": "freestyle",
@@ -27284,11 +27284,11 @@
   "right": "double-down",
   "score": {
    "left": 5,
-   "right": 41
+   "right": 46
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "u8Ex32rSdLI": {
   "left": "double-down",
@@ -27453,7 +27453,7 @@
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "0gISYAuZxiw": {
   "left": "double-down",
@@ -28322,7 +28322,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "eaLgLPNEs6w": {
   "left": "double-down",
@@ -28377,7 +28377,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "BkKCOhW7aUs": {
   "left": "double-down",
@@ -28388,7 +28388,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "SOSbt_pWe7s": {
   "left": "double-down",
@@ -28872,7 +28872,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "2wu-jg7eQF0": {
   "left": "double-down",
@@ -29022,11 +29022,11 @@
   "right": "2x-assist",
   "score": {
    "left": 6,
-   "right": 27
+   "right": 28
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "1BK3Gx4n-uA": {
   "left": "double-down",
@@ -29037,7 +29037,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "JHlIY0uHIYE": {
   "left": "2x-assist",
@@ -29051,15 +29051,15 @@
   "detectedAt": "2026-07-03"
  },
  "0w19G3S3oUg": {
-  "left": "double-down",
+  "left": "2x-assist",
   "right": "double-down",
   "score": {
-   "left": 71,
-   "right": 6
+   "left": 16,
+   "right": 10
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "j7wHqxSHArk": {
   "left": "freestyle",
@@ -29143,11 +29143,11 @@
   "right": "2x-assist",
   "score": {
    "left": 0,
-   "right": 26
+   "right": 27
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-03"
+  "detectedAt": "2026-08-29"
  },
  "AG1H4BrGvVI": {
   "left": "double-down",
@@ -29719,7 +29719,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "Zc3h_Lf-xW0": {
   "left": "freestyle",
@@ -29748,11 +29748,11 @@
   "right": "double-down",
   "score": {
    "left": 49,
-   "right": 2
+   "right": 5
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "T0ccaF7x-HU": {
   "left": "freestyle",
@@ -31153,14 +31153,14 @@
  },
  "i72d1AXCiCY": {
   "left": "double-down",
-  "right": "double-down",
+  "right": "2x-assist-evo",
   "score": {
    "left": 0,
-   "right": 28
+   "right": 65
   },
-  "status": "low",
+  "status": "ok-unordered",
   "era": "s0",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "N4daE4sIew4": {
   "left": "freestyle",
@@ -31208,14 +31208,14 @@
  },
  "eEAjeaAqsq8": {
   "left": "double-down",
-  "right": "2x-assist",
+  "right": "double-down",
   "score": {
    "left": 1,
-   "right": 26
+   "right": 3
   },
-  "status": "low",
+  "status": "ok",
   "era": "s0",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "ZBkxtEK154E": {
   "left": "2x-assist",
@@ -31353,12 +31353,12 @@
   "left": "2x-assist",
   "right": "2x-assist",
   "score": {
-   "left": 2,
+   "left": 3,
    "right": 68
   },
   "status": "low",
   "era": "s0",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "0vgC7ybi9EE": {
   "left": "double-down",
@@ -31497,11 +31497,11 @@
   "right": "double-down",
   "score": {
    "left": 0,
-   "right": 34
+   "right": 18
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "Yy-9AQBGm48": {
   "left": "2x-assist",
@@ -31512,7 +31512,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "lI9psAW5W1c": {
   "left": "2x-assist",
@@ -31534,7 +31534,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "hsP7lO_yz7Q": {
   "left": "2x-assist",
@@ -31545,7 +31545,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "ILEf8XkaaDg": {
   "left": "double-down",
@@ -31556,7 +31556,7 @@
   },
   "status": "low",
   "era": "beta",
-  "detectedAt": "2026-07-10"
+  "detectedAt": "2026-08-29"
  },
  "BU4gA-VkeHI": {
   "left": "double-down",

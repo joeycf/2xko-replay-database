@@ -40749,7 +40749,7 @@
           "jinx",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -76978,7 +76978,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -81018,7 +81018,7 @@
           "jinx",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -81300,7 +81300,7 @@
           "ahri",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -86193,7 +86193,7 @@
           "jinx",
           "braum"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -94098,7 +94098,7 @@
           "braum",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -280648,7 +280648,7 @@
           "ahri",
           "illaoi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -282917,7 +282917,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -296058,7 +296058,7 @@
           "jinx",
           "warwick"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -301472,7 +301472,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -312014,7 +312014,7 @@
           "jinx",
           "teemo"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -332765,7 +332765,7 @@
           "braum",
           "blitzcrank"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -332886,7 +332886,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -332904,7 +332904,7 @@
           "braum",
           "caitlyn"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -333568,7 +333568,7 @@
           "braum",
           "ahri"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -334289,7 +334289,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -334768,7 +334768,7 @@
           "ahri",
           "caitlyn"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -335312,7 +335312,7 @@
           "yasuo",
           "blitzcrank"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -335372,7 +335372,7 @@
           "caitlyn",
           "vi"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -335612,7 +335612,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -336468,7 +336468,7 @@
           "yasuo",
           "ekko"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -336482,7 +336482,7 @@
           "ekko",
           "yasuo"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -336648,7 +336648,7 @@
           "warwick",
           "yasuo"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -336666,7 +336666,7 @@
           "teemo",
           "ahri"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -336833,7 +336833,7 @@
           "ekko",
           "darius"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -336847,7 +336847,7 @@
           "jinx",
           "warwick"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -340680,7 +340680,7 @@
           "yasuo",
           "warwick"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -346752,7 +346752,7 @@
           "warwick",
           "ahri"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -366994,7 +366994,7 @@
           "ekko",
           "thresh"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -370607,7 +370607,7 @@
           "thresh",
           "jinx"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -370673,7 +370673,7 @@
           "thresh",
           "jinx"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -370808,7 +370808,7 @@
           "thresh",
           "jinx"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -375116,7 +375116,7 @@
           "darius",
           "blitzcrank"
         ],
-        "fuse": "2x-assist-evo"
+        "fuse": "2x-assist"
       },
       {
         "side": "right",

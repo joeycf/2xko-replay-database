@@ -282,6 +282,30 @@ export async function emitGeneric(opts: {
       `  ⚠ ${emptySides.length} side(s) with no champion (unresolved parses): ${[...new Set(emptySides)].join(', ')}`,
     );
 
+  // ── fuse gate ───────────────────────────────────────────────────────────
+  // The same class of check as the roster gate above, and its absence cost
+  // something real. The CV pill templates are named `<fuseId>-<variant>` for the
+  // era and stream skins a fuse wears (2x-assist-evo, double-down-broadcast),
+  // nothing normalised them on the way onto a record, and 22 records SHIPPED
+  // carrying `2x-assist-evo` — 15 of them unreachable by their own
+  // `?fuse=2x-assist` chip, because the filter keys on data/fuses.json.
+  //
+  // It failed silently in both directions: the record renders, the badge draws,
+  // the count looks plausible, and the only symptom is a filter that quietly
+  // returns fewer rows than it should. parse.ts canonicalises now; this is what
+  // makes the next variant a build failure instead of a slow leak.
+  const fuseIds = new Set(
+    Object.keys(JSON.parse(await readFile(join(DATA, 'fuses.json'), 'utf8')) as object),
+  );
+  for (const r of replays) {
+    for (const f of r.fuses ?? []) {
+      if (f !== null && !fuseIds.has(f))
+        throw new Error(
+          `emit: ${r.id} references unknown fuse '${f}' (valid: ${[...fuseIds].sort().join(', ')})`,
+        );
+    }
+  }
+
   // The union's own arithmetic. characterUsage counts v.allCharacters — the
   // PER-VIDEO DEDUPED union — so the expected total is the union over each
   // record's sides, NOT the sum of side lengths. Those diverge exactly when both

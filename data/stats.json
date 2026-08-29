@@ -16156,9 +16156,8 @@
     }
   },
   "fuseUsage": {
-    "2x-assist": 2480,
-    "2x-assist-evo": 22,
-    "double-down": 2326,
+    "2x-assist": 2510,
+    "double-down": 2329,
     "freestyle": 7943,
     "juggernaut": 94,
     "sidekick": 11,
@@ -16174,15 +16173,14 @@
       "teamfight": 2
     },
     "S0": {
-      "2x-assist": 1298,
-      "double-down": 1134,
+      "2x-assist": 1303,
+      "double-down": 1137,
       "freestyle": 1400,
       "juggernaut": 21,
       "sidekick": 3
     },
     "S1": {
-      "2x-assist": 1023,
-      "2x-assist-evo": 22,
+      "2x-assist": 1048,
       "double-down": 943,
       "freestyle": 6382,
       "juggernaut": 61,

@@ -1333,6 +1333,75 @@ for (const d of [...discovered.values()].sort((a, b) => b.count - a.count)) {
 // Normalize embedded player displayNames to the final canonical value — discovery
 // merges casing variants as it goes, so records built early held stale snapshots —
 // then apply overrides.json LAST as a shallow merge.
+/** Detection reports WHICH TEMPLATE matched; a record must carry the REGISTRY id.
+ *
+ *  The pill templates in assets/fuse-templates are named `<fuseId>-<variant>`
+ *  for the era and stream skins the same fuse wears — 2x-assist-evo,
+ *  freestyle-restream, double-down-broadcast. That distinction is real and worth
+ *  keeping in data/fuses-detected.json, because it says which artwork matched.
+ *  It is NOT what belongs on a record: the filter chip, the badge and the stats
+ *  all key on data/fuses.json, so a record wearing `2x-assist-evo` is simply
+ *  unreachable by the `2x-assist` chip.
+ *
+ *  22 records shipped that way before this existed, 15 of them invisible to
+ *  their own fuse filter. Strips trailing `-<variant>` segments until the
+ *  registry recognises the base; an id that never resolves is passed through
+ *  untouched so the emit gate refuses it loudly rather than being papered over
+ *  here. */
+const canonicalFuse = (id: string | null): string | null => {
+  if (!id || fuses[id]) return id;
+  let base = id;
+  while (base.includes('-')) {
+    base = base.slice(0, base.lastIndexOf('-'));
+    if (fuses[base]) return base;
+  }
+  return id;
+};
+
+/** A NULL FUSE IN AN OVERRIDE IS AN ABSENCE, NOT A VERDICT — so a confident
+ *  detection may fill it. A hand-authored fuse still outranks the detector;
+ *  a hand-authored *null* never asserted anything to outrank.
+ *
+ *  Both writers agree on that reading. /api/dev/fuse-orient only ever asked
+ *  which title team owns an already-settled pill and documents that "the other
+ *  team stays null"; FuseReviewVerdict types its own field "null = this side is
+ *  unread". Neither can express "this side has no fuse".
+ *
+ *  applyFuseSources (the hand-authored path) has always filled a null side for
+ *  exactly this reason — "a record-level 'already has a fuse' test would skip
+ *  exactly that". mergeCuration did not, so on the parsed path an override
+ *  ended the conversation: `{ ...merged, ...ov }` puts the null back over any
+ *  detection. 55 records sat half-attributed since 2026-07-07 because of it,
+ *  and no amount of re-detection could ever have moved them.
+ *
+ *  ON UNORDERED PAIRS this deduces rather than guesses. `ok-unordered` means the
+ *  PAIR is settled and the owner is not — but here one owner is already known by
+ *  hand, so if that fuse is in the pair the remaining member belongs to the other
+ *  side. When both members are the same fuse the ordering was never in question.
+ *  Anything else is left null for review. */
+const fillNullFuseSides = (rec: VideoRecord, det: FuseDetection | undefined): VideoRecord => {
+  if (!det || rec.teams.length !== 2) return rec;
+  if (det.status !== 'ok' && det.status !== 'ok-unordered') return rec;
+  const cur = rec.teams.map((t) => t.fuse);
+  // exactly one side known: nothing to fill, or nothing to deduce from
+  if (cur.every(Boolean) || cur.every((f) => !f)) return rec;
+
+  const missing = cur[0] ? 1 : 0;
+  const known = cur[missing === 0 ? 1 : 0]!;
+  const pair = [canonicalFuse(det.left), canonicalFuse(det.right)];
+
+  let fill: string | null = null;
+  if (det.status === 'ok') fill = pair[missing];
+  else if (pair[0] && pair[0] === pair[1]) fill = pair[0];
+  else if (pair.includes(known)) fill = pair.find((f) => f !== known) ?? null;
+
+  if (!fill) return rec;
+  return {
+    ...rec,
+    teams: rec.teams.map((t, i) => (i === missing ? { ...t, fuse: fill } : t)),
+  };
+};
+
 const mergeCuration = (rec: VideoRecord): VideoRecord => {
   const teams = rec.teams.map((t) => ({
     ...t,
@@ -1350,8 +1419,8 @@ const mergeCuration = (rec: VideoRecord): VideoRecord => {
     merged = {
       ...merged,
       teams: [
-        { ...merged.teams[0], fuse: det.left },
-        { ...merged.teams[1], fuse: det.right },
+        { ...merged.teams[0], fuse: canonicalFuse(det.left) },
+        { ...merged.teams[1], fuse: canonicalFuse(det.right) },
       ],
       ...(det.status === 'ok-unordered' ? { fusesUnordered: true } : {}),
     };
@@ -1359,7 +1428,8 @@ const mergeCuration = (rec: VideoRecord): VideoRecord => {
   // overrides.json last — a manual fuse override beats detection. Exclusion
   // entries don't shallow-merge (the record is dropped wholesale below).
   const ov = overrides[rec.id];
-  return ov && !ov.exclude ? { ...merged, ...ov } : merged;
+  const withOverride = ov && !ov.exclude ? { ...merged, ...ov } : merged;
+  return fillNullFuseSides(withOverride, det);
 };
 
 // Carried records take the SAME merge as parsed ones, deliberately. They skip
@@ -1398,7 +1468,9 @@ function applyFuseSources(rec: VideoRecord): VideoRecord {
     if (out.teams.some((t, i) => t.fuse === null && pair[i] !== null)) {
       out = {
         ...out,
-        teams: out.teams.map((t, i) => (t.fuse === null ? { ...t, fuse: pair[i]! } : t)),
+        teams: out.teams.map((t, i) =>
+          t.fuse === null ? { ...t, fuse: canonicalFuse(pair[i])! } : t,
+        ),
         ...(det.status === 'ok-unordered' ? { fusesUnordered: true as const } : {}),
       };
     }
