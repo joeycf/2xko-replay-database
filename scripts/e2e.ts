@@ -171,6 +171,34 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   // browser uncompiled and be dropped, silently shipping the umbrella
   // teal/Space Grotesk (dev masks this — only the built bundle can prove it).
   // Computed styles are the assertion, never source text.
+  // ComboForge nav item + leaving-site dialog (engine v0.12.0). The nav link is
+  // a REAL <a href> — the interstitial is a click handler, not a replacement.
+  await test('nav: Combos opens the leaving-site dialog instead of navigating', async () => {
+    await page.goto(at('/'));
+    const navCombos = page.locator('[data-testid="nav-combos"]').first();
+    expect((await navCombos.count()) > 0, 'nav carries the Combos item');
+    expect(
+      (await navCombos.getAttribute('href')) === 'https://comboforge.gg/browse?gameId=2xko',
+      'nav Combos points at 2XKO on ComboForge',
+    );
+    const before = page.url();
+    await navCombos.click();
+    await page.waitForSelector('[data-testid="leaving-site-dialog"]', { timeout: 5000 });
+    expect(page.url() === before, 'shows the dialog instead of navigating');
+    expect(
+      ((await page.textContent('[data-testid="leaving-site-dialog"]')) ?? '').includes(
+        'ComboForge',
+      ),
+      'the dialog names the partner',
+    );
+    await page.click('text=Stay here');
+    await page.waitForSelector('[data-testid="leaving-site-dialog"]', {
+      state: 'detached',
+      timeout: 5000,
+    });
+    expect(page.url() === before, '"Stay here" closes it and stays put');
+  });
+
   await test('theme presence: built output computes #ff2e88 / Chakra Petch, no raw @theme ships', async () => {
     await page.goto(at(`/`));
     const t = (await page.evaluate(`(() => {
