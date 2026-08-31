@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-30T12:00:11.123Z._
+_Generated 2026-08-31T14:01:24.213Z._
 
 ## Summary
-- Total videos: **6542**
-- High confidence: **6515**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
+- Total videos: **6549**
+- High confidence: **6522**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.5%** · fuse: **99.9%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **629**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.6%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **631**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2480 | fetched |
-| `highLevel` | 1826 | fetched |
+| `bestReplays` | 2485 | fetched |
+| `highLevel` | 1828 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (local-first, no dump this run) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6542** | |
+| **Σ** | **6549** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -79,4 +79,4 @@ _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing /
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `wahibo2mars` | WAHIBO2MARS | 1 | wahibo2mars |
+| `ddinosaur` | D.Dinosaur | 1 | d.dinosaur |

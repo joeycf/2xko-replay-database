@@ -13870,5 +13870,15 @@
         "wahibo2mars"
       ]
     }
+  },
+  {
+    "id": "ddinosaur",
+    "handle": "D.Dinosaur",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "d.dinosaur"
+      ]
+    }
   }
 ]
