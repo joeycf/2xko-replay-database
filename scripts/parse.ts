@@ -16,14 +16,14 @@
 //    anything else) — and (b) a report diagnostic counting stale labels.
 //  • Champions: exact alias → word-contains (tag balance notes) → Damerau/OSA ≤1 (low conf).
 
-import { execFileSync } from 'node:child_process';
-import { existsSync, statSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, CHAR_SEP, PLAYER_SEP, THEATER_SPONSOR } from './channels';
 import { applyExclusions, emitGeneric } from './emit';
+import { formatStaleRefusal, staleEvidence } from './freshness';
 import { loadPatchTable } from './patches';
 import type {
   Champion,
@@ -105,7 +105,10 @@ const fusesDetected: Record<string, FuseDetection> = await readJson<Record<strin
 ).catch(() => ({}));
 
 const rawRecords: RawVideoRecord[] = [];
-const rawPaths: string[] = [];
+/** Each channel's OWN dump, kept beside the pooled `rawRecords` for the
+ *  stale-raw guard. The guard is scoped per channel — a stale bestReplays dump
+ *  says nothing about highLevel — so pooling alone cannot drive it. */
+const dumps = new Map<ChannelKey, RawVideoRecord[]>();
 /** The index source's dump, when present. Kept OUT of `rawRecords` because its
  *  records are not built by a title parse — see buildTheaterRecords. */
 let theaterRaw: TheaterRawRecord[] = [];
@@ -134,14 +137,23 @@ for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
     );
     process.exit(1);
   }
-  rawPaths.push(p);
   if (ch.index) {
     // Structured at source: players, champions, event tag and a start offset are
     // separate fields, so there is no title to parse. Built by its own function.
+    //
+    // AND EXEMPT FROM THE STALE-RAW GUARD, which is load-bearing rather than a
+    // concession — the same call SF6 makes. That guard asks whether a dump could
+    // have produced the committed catalogue; for an index source the answer is
+    // governed by a third party's catalogue, not by when we last fetched. An
+    // event withdrawn upstream would read as staleness and refuse every run
+    // thereafter, which is how a guard becomes a flag you learn to pass. Its
+    // protection is the count pin instead, which is strictly stronger.
     theaterRaw = await readJson<TheaterRawRecord[]>(p);
     continue;
   }
-  rawRecords.push(...(await readJson<RawVideoRecord[]>(p)));
+  const dump = await readJson<RawVideoRecord[]>(p);
+  dumps.set(key, dump);
+  rawRecords.push(...dump);
 }
 
 // ── source pins (data/source-pins.json) ───────────────────────────────────────
@@ -252,54 +264,23 @@ const carriedLow: { id: string; channel: ChannelKey; title: string; reasons: str
     }));
 
 // ── stale-raw guard ───────────────────────────────────────────────────────────
-// Daily refreshes are committed by the remote cron, so this machine's gitignored
-// raw/ can lag the committed videos.json — a bare parse would then silently
-// regress it (observed 2026-07-06: 2,847 → 2,825). Refuse when the existing
-// videos.json holds ids the dumps lack AND the dumps predate its last commit.
-// Fresh dumps missing ids are legitimate (that's how deleted videos get pruned),
-// and equal id sets (re-parse after an overrides/detections change) always pass.
+// DATA-ONLY, per channel. The predicate and its refusal text live in
+// scripts/freshness.ts so scripts/e2e.ts can drive them directly; the whole
+// argument for the shape — and for why the old mtime arm had to go before the
+// Replay Theater intake could join the cron — is in that file's header.
+//
+// The three exclusions the old id-set arm carried by hand (manual entries,
+// frozen channels, the local-first carry) are gone because they are no longer
+// needed: a record is judged only against the dump of the channel it names, and
+// 'manual', 'proReplays' and 'replayTheater' have no dump in `dumps` at all.
 if (!process.argv.includes('--allow-stale')) {
   const existing = await readJson<VideoRecord[]>(join(DATA, 'videos.json')).catch(
     () => [] as VideoRecord[],
   );
-  // The index source's dump is read separately, so its ids must be unioned in
-  // here or all 898 of them read as missing on a local run that DID fetch them.
-  const rawIds = new Set([...rawRecords.map((r) => r.id), ...theaterRaw.map((r) => r.id)]);
-  // manual-videos.json ids are never in the channel dumps — not a staleness signal
-  const manualIds = new Set(manualEntries.map((e) => e.id));
-  // Neither are a carried source's ids — frozen or local-first. They are
-  // deliberately absent from raw/, so without this every one of them reads as a
-  // staleness signal and this guard fires on every single run. That is how a
-  // guard becomes a flag you learn to pass; the exclusion is load-bearing.
-  const carriedIds = new Set(carriedRecords.map((v) => v.id));
-  const missing = existing.filter(
-    (v) => !rawIds.has(v.id) && !manualIds.has(v.id) && !carriedIds.has(v.id),
-  );
-  if (missing.length > 0) {
-    let lastCommitMs: number | null = null;
-    try {
-      const out = execFileSync('git', ['log', '-1', '--format=%ct', '--', 'data/videos.json'], {
-        cwd: ROOT,
-        stdio: ['ignore', 'pipe', 'ignore'],
-      })
-        .toString()
-        .trim();
-      if (out) lastCommitMs = Number(out) * 1000;
-    } catch {
-      // no usable git history (CI shallow clone, tarball) — staleness can't be
-      // proven, and those environments fetch first anyway; fall through
-    }
-    const rawMtimeMs = Math.max(...rawPaths.map((p) => statSync(p).mtimeMs));
-    if (lastCommitMs !== null && rawMtimeMs < lastCommitMs) {
-      const day = (ms: number) => new Date(ms).toISOString().slice(0, 10);
-      console.error(
-        [
-          `✖ Stale raw/ dumps: data/videos.json (last committed ${day(lastCommitMs)}) contains ${missing.length} video(s)`,
-          `  missing from raw/*.json (fetched ${day(rawMtimeMs)}), e.g. ${missing[0].id}. The daily cron refreshes`,
-          `  remotely, so local raw/ lags — parsing now would silently drop those videos.`,
-          `  Run \`npm run data:fetch\` first (or \`npm run data:build\`); pass --allow-stale to override.`,
-        ].join('\n'),
-      );
+  for (const [key, dump] of dumps) {
+    const ev = staleEvidence(key, dump, existing);
+    if (ev) {
+      console.error(formatStaleRefusal(key, ev));
       process.exit(1);
     }
   }

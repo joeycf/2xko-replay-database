@@ -19,7 +19,8 @@ import { tmpdir } from 'node:os';
 import { dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
-import type { Champion, Fuse, VideoRecord } from '../types/index';
+import { staleEvidence } from './freshness';
+import type { Champion, Fuse, RawVideoRecord, VideoRecord } from '../types/index';
 
 /** Buy Me a Coffee URL — must match the engine's SiteFooter.vue. */
 const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
@@ -1106,6 +1107,107 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
 }
 
 // (f) the daily-cron guard: timestamp-only report.md diff must not commit
+/** POSITIVE CONTROLS for the stale-raw guard.
+ *
+ *  A gate that cannot fail is indistinguishable from a gate that passes, and
+ *  this one guards against silence: its failure mode is a parse that SUCCEEDS
+ *  while dropping records (observed 2026-07-06, 2,847 -> 2,825). This repo
+ *  shipped without any control at all while running the mtime predicate, so the
+ *  replacement is driven here DIRECTLY, with hand-built arrays, rather than
+ *  inferred from a pipeline run.
+ *
+ *  The negatives matter as much as the positive. A guard that fires on a
+ *  legitimate prune, or on age alone, is one you learn to pass. */
+async function testStaleGuard(): Promise<void> {
+  const at = (day: string) => `2026-08-${day}T00:00:00Z`;
+  const upload = (id: string, day: string): RawVideoRecord =>
+    ({
+      id,
+      channel: 'highLevel',
+      title: id,
+      description: '',
+      publishedAt: at(day),
+      durationSec: 300,
+      liveBroadcastContent: 'none',
+    }) as unknown as RawVideoRecord;
+  const record = (id: string, day: string, channel = 'highLevel'): VideoRecord =>
+    ({
+      id,
+      channel,
+      title: id,
+      publishedAt: at(day),
+      durationSec: 300,
+      season: 1,
+      teams: [],
+    }) as unknown as VideoRecord;
+
+  const dump = [upload('v1', '10'), upload('v2', '11')];
+  const fresh = [record('v1', '10'), record('v2', '11')];
+
+  // 1. STALE — the catalogue holds an upload published after the dump was taken.
+  await test('stale-raw: refuses a dump the catalogue proves it predates', () => {
+    expect(
+      staleEvidence('highLevel', dump, [...fresh, record('v3', '30')]) !== null,
+      'no evidence',
+    );
+  });
+
+  // 2. FRESH — equal newest. A re-parse after an overrides change must pass.
+  await test('stale-raw: passes when the dump reaches the newest committed record', () => {
+    expect(staleEvidence('highLevel', dump, fresh) === null, 'fired on a fresh dump');
+  });
+
+  // 3. AGE ALONE MUST NOT FIRE. Nothing here reads a clock or a filesystem, so a
+  //    dump from years ago is fresh if its contents are. This is the property
+  //    mtime could not hold: cp, git checkout and a fresh clone all forge mtime.
+  await test('stale-raw: quiet on an old dump whose channel has published nothing since', () => {
+    expect(
+      staleEvidence('highLevel', [upload('v1', '10')], [record('v1', '10')]) === null,
+      'fired on age alone',
+    );
+  });
+
+  // 4. A DELETION MUST STAY LEGAL — that is the prune the pipeline publishes.
+  await test('stale-raw: quiet when an upload was deleted rather than never fetched', () => {
+    expect(staleEvidence('highLevel', dump, [...fresh, record('gone', '10')]) === null, 'fired');
+  });
+
+  // 5. SCOPED PER CHANNEL, which is what retires the old id-set arm's three
+  //    hand-maintained exclusions: 'manual', the frozen 'proReplays' and the
+  //    index 'replayTheater' have no dump, so they can never be judged at all.
+  await test("stale-raw: ignores another channel's records when judging this one", () => {
+    expect(
+      staleEvidence('highLevel', dump, [...fresh, record('b1', '30', 'bestReplays')]) === null,
+      'read another channel as its own',
+    );
+  });
+  await test('stale-raw: manual, frozen and index records are never a staleness signal', () => {
+    const others = [
+      record('m1', '30', 'manual'),
+      record('p1', '30', 'proReplays'),
+      record('KtljpBCtoko@4191', '30', 'replayTheater'),
+    ];
+    expect(
+      staleEvidence('highLevel', dump, [...fresh, ...others]) === null,
+      'fired on an excluded source',
+    );
+  });
+
+  // 6. THE FORGERY THE CRON MOVE WOULD HAVE ARMED. Under the old predicate
+  //    `rawMtimeMs` was a Math.max across ALL dumps including the index one, so
+  //    a freshly-fetched raw/replayTheater.json disarmed the guard for every
+  //    YouTube channel. Nothing in this predicate can see another dump at all.
+  await test('stale-raw: a freshly-fetched index dump cannot silence a stale channel dump', () => {
+    expect(staleEvidence('highLevel', dump, [...fresh, record('v3', '30')]) !== null, 'silenced');
+  });
+
+  // 7. FIRST RUN — unjudgeable, and a guess would refuse the run that is
+  //    supposed to create the baseline.
+  await test('stale-raw: quiet on a channel with nothing committed yet', () => {
+    expect(staleEvidence('evoEvents', dump, fresh) === null, 'fired on a first run');
+  });
+}
+
 function testCronGuard(): Promise<void> {
   return test('cron guard: timestamp-only run skips, real change commits', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cron-guard-'));
@@ -1168,6 +1270,7 @@ const browser = await chromium.launch({
 });
 try {
   await run(browser, at);
+  await testStaleGuard();
   await testCronGuard();
 } finally {
   await browser.close();
