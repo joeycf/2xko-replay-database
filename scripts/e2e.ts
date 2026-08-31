@@ -1224,22 +1224,63 @@ function testCronGuard(): Promise<void> {
       guard.includes('git restore --staged --worktree data/report.md'),
       'workflow guard missing',
     );
+    // THE SEED LIST IS READ OUT OF THE WORKFLOW, not restated here — Tokon's
+    // form (its e2e.ts:531-562), adopted after this repo was found to be an
+    // unrepaired instance of the same 436ae9f scar. `git add` fails on a path
+    // that does not exist, which aborts the guard under `set -e` and produces no
+    // commit — so a hand-maintained copy of the list turns "someone staged a new
+    // artifact" into "case B: real change commits" going red, with nothing in
+    // the failure naming the actual cause. Adding source-pins.json and
+    // patchGroups.json to the workflow is exactly how that was found here.
+    //
+    // .md as well as .json: report.md is a pipeline output like any other, and a
+    // .json-only filter silently exempts it from the staging check below.
+    const staged = (guard.match(/git add ((?:data\/\S+\s*)+)/)?.[1] ?? '')
+      .split(/\s+/)
+      .filter((f) => f.startsWith('data/') && (f.endsWith('.json') || f.endsWith('.md')));
+    expect(staged.length > 0, `workflow's git add names data files (${staged.length})`);
+    // Every file the pipeline WRITES must be staged, or the cron regenerates it
+    // and throws it away. Checked BY NAME rather than by count, so adding a
+    // pipeline output and forgetting the workflow fails here rather than
+    // becoming a mystery three weeks later. The full write set is
+    // scripts/parse.ts (videos, players, report.md, source-pins) plus
+    // scripts/emit.ts (replays, stats, summary, patchGroups).
+    for (const f of [
+      'videos.json',
+      'replays.json',
+      'stats.json',
+      'players.json',
+      'summary.json',
+      'patchGroups.json',
+      'source-pins.json',
+      'report.md',
+    ]) {
+      expect(
+        staged.some((pth) => pth.endsWith(f)),
+        `workflow stages data/${f}`,
+      );
+    }
     try {
       sh('git init -q . && git config user.email t@t && git config user.name t && mkdir data');
       const seed = (n: number, ts: string) => {
-        writeFileSync(
-          join(dir, 'data/videos.json'),
-          JSON.stringify(Array.from({ length: n }, (_, i) => ({ id: i }))),
-        );
-        writeFileSync(
-          join(dir, 'data/replays.json'),
-          JSON.stringify(Array.from({ length: n }, (_, i) => ({ id: i }))),
-        );
-        writeFileSync(join(dir, 'data/stats.json'), '{}');
-        writeFileSync(join(dir, 'data/players.json'), '[]');
-        // the guard's `git add` names it, so the fixture must carry it too
-        writeFileSync(join(dir, 'data/summary.json'), `{"replays":${n}}\n`);
-        writeFileSync(join(dir, 'data/report.md'), `# R\n\n_Generated ${ts}._\n\ntotal: ${n}\n`);
+        // Driven by the parsed list, so the fixture can never fall behind the
+        // workflow. videos/replays carry the record count the guard diffs on;
+        // report.md carries the timestamp line; everything else just has to
+        // exist and stay byte-identical between the two seeds.
+        for (const f of staged) {
+          if (f.endsWith('videos.json') || f.endsWith('replays.json')) {
+            writeFileSync(
+              join(dir, f),
+              JSON.stringify(Array.from({ length: n }, (_, i) => ({ id: i }))),
+            );
+          } else if (f.endsWith('report.md')) {
+            writeFileSync(join(dir, f), `# R\n\n_Generated ${ts}._\n\ntotal: ${n}\n`);
+          } else if (f.endsWith('summary.json')) {
+            writeFileSync(join(dir, f), `{"replays":${n}}\n`);
+          } else {
+            writeFileSync(join(dir, f), '[]\n');
+          }
+        }
       };
       seed(1, '2026-07-03T01:00:00.000Z');
       sh('git add -A && git commit -qm seed');

@@ -44,7 +44,17 @@ jobs:
           # apex selector's card payload (Phase 6); it is content-derived
           # (newest replay date, not build time), so a no-new-video day leaves
           # it byte-identical and the guard below still skips the commit.
-          git add data/videos.json data/replays.json data/stats.json data/players.json data/summary.json data/report.md
+          # source-pins.json is the local-first carry's pin, and patchGroups.json is
+          # the UI's season->patch hierarchy. BOTH are written by the pipeline on
+          # every run and NEITHER was staged, so a run that did rewrite them threw
+          # the change away silently. This is Tokon's 436ae9f scar, unrepaired
+          # here: "the cron only ever carries, so it only ever reads the pin — but
+          # 'only ever' is what the staging list is for." scripts/refresh-all.sh
+          # has warned about exactly this since it was written: the pin "MUST
+          # travel with videos.json: committing a new record count while leaving
+          # the pin behind makes the next carrying run — every cron run —
+          # hard-fail on pin drift."
+          git add data/videos.json data/replays.json data/stats.json data/players.json data/summary.json data/patchGroups.json data/source-pins.json data/report.md
           # report.md's "_Generated <timestamp>_" line changes every run; a diff
           # that is ONLY that line is not a data change — drop it so a no-change
           # day produces no commit (and no deploy). report.md still ships
