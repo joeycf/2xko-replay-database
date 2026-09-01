@@ -709,7 +709,14 @@ async function main(): Promise<void> {
   console.log(
     `\n  → wrote raw/replayTheater.json (${records.length} record(s)${CURSOR_MODE ? ', a delta' : ''})`,
   );
-  console.log(`  → wrote raw/replayTheater.witness.json (${catalogue.length} catalogue entr(ies))`);
+  // REPORTS WHAT WAS WRITTEN, not what was pulled. The witness is written from
+  // `rightGame` — the per-entry game gate is upstream of it, deliberately — so
+  // logging `catalogue.length` here overstated it by every wrong-game row, which
+  // is precisely the number the gate exists to keep out and precisely the number
+  // the tokon incident above would have needed this line to show.
+  console.log(
+    `  → wrote raw/replayTheater.witness.json (${rightGame.length} ${WANT_GAME} entr(ies) of ${catalogue.length} pulled)`,
+  );
 
   // ── reconnaissance ──────────────────────────────────────────────────────────
   // A cursor run that found nothing tagged is the ORDINARY case now — tagged rows

@@ -351,7 +351,13 @@ the goodwill does not:
   dump, parse **carries** the committed records exactly as before, and the run
   stays green. An empty dump is a carry too — `readJson` succeeds on an empty
   file, and without that branch the empty case would rebuild to 0 and trip the
-  collapse guard for a reason nothing in the failure names.
+  collapse guard for a reason nothing in the failure names. So is an UNREADABLE
+  one: `readJson` is a bare `JSON.parse`, so a truncated or malformed dump threw
+  inside the PARSE step, which is not the step wearing `continue-on-error` — a red
+  cron over a pull that was only ever optional. It is caught, carried, and named
+  in `data/report.md` and the parse log instead. The channel dumps keep throwing:
+  those are our own fetcher's output over sources we parse, and swallowing one
+  would publish a channel short in silence.
 
 **The cursor** is what makes it affordable. A full sweep is 71 paced requests;
 that is not something to send a fellow fan project every morning. The API honours
@@ -436,9 +442,17 @@ records:
 | players (both handles) | 2423       | 2413 (99.59%) | 10      | 0         | —              |
 | champions (per side)   | 4846       | 4840 (99.88%) | 0       | 6 (0.12%) | 0              |
 
-`data/report.md` recomputes the whole block from each run's own witness; nothing
-is carried between runs, and a carrying run emits no block at all rather than a
-table of zeros.
+`data/report.md` renders the whole block from `data/theater-disagreements.json`,
+which **only a full sweep writes**. A cursor morning reads a few hundred rows off
+the front of the feed — a different WINDOW, not a different corpus — so
+recomputing the block from it moved every number in it whether or not a record
+had changed: `report.md` then had a real diff every single morning, which retires
+the cron's no-change-no-commit rule from the other side and deploys the site daily
+forever, and a delta that found nothing overwrote the sweep's rows with an empty
+list. The block names its sweep by the catalogue's own high-water entry id rather
+than a date, because a timestamp is precisely the churn being avoided. A cursor
+run prints its own reading to the console, where it is useful and costs nothing;
+a run with no sweep behind it emits no block at all rather than a table of zeros.
 
 Three things make the number mean something:
 

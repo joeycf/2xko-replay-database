@@ -1,11 +1,11 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-01T18:40:26.856Z._
+_Generated 2026-09-01T23:23:12.688Z._
 
 ## Summary
 - Total videos: **6556**
 - High confidence: **6528**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **2**
+- Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.6%** · fuse: **99.7%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **634**
 - Replay Theater entries **skipped as already-known**: **10** of 898 (existing ids win, by ignoring)
@@ -50,9 +50,9 @@ recorded in `data/theater-disagreements.json` with both claims, never written in
 a record. The catalogue does not outrank a confident parse and never outranks a
 human override.
 
-_Measured this run against a full pull. 300 catalogue entr(ies) point at videos_
-_we do not hold; 0 are VODs the catalogue segments, which the intake owns;_
-_0 point at a record of ours with no two sides to align._
+_Measured on the last full sweep, at catalogue entry 488405. 300 distinct video(s)_
+_the catalogue links are ones we do not hold; 0 are VODs it segments, which the_
+_intake owns; 0 point at a record of ours with no two sides to align._
 
 | field | population | agree | partial | disagree | cannot witness |
 |---|---|---|---|---|---|
@@ -115,10 +115,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | unresolved champion(s): Juggernaut Illaoi | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `ddinosaur` | D.Dinosaur | 1 | d.dinosaur |
-| `mebebonk` | MEBEBONK | 1 | mebebonk |
+_None._

@@ -22,7 +22,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, CHAR_SEP, PLAYER_SEP, THEATER_SPONSOR } from './channels';
-import { crossCheck, formatCrossCheck, type WitnessFile } from './crosscheck';
+import { crossCheck, formatCrossCheck, type WitnessArtifact, type WitnessFile } from './crosscheck';
 import { applyExclusions, emitGeneric } from './emit';
 import { formatStaleRefusal, staleEvidence } from './freshness';
 import { loadPatchTable } from './patches';
@@ -113,6 +113,10 @@ const dumps = new Map<ChannelKey, RawVideoRecord[]>();
 /** The index source's dump, when present. Kept OUT of `rawRecords` because its
  *  records are not built by a title parse — see buildTheaterRecords. */
 let theaterRaw: TheaterRawRecord[] = [];
+/** The index dump was there and could not be read. Reported rather than
+ *  absorbed: a carry the reader cannot tell apart from a quiet catalogue is a
+ *  carry that hides a broken fetcher for as long as nobody looks. */
+let theaterUnreadable = false;
 /** Cron-fetched sources with no usable dump on this run, so their committed
  *  records are carried instead of rebuilt. This USED to be every cron run, every
  *  time — raw/ is gitignored and the cron fetched nothing. Since 2026-08-31 it is
@@ -156,7 +160,25 @@ for (const key of Object.keys(CHANNELS) as ChannelKey[]) {
     // thereafter, which is how a guard becomes a flag you learn to pass. Its
     // protection is the add-only merge and the only-grows pin instead, both
     // further down this file.
-    theaterRaw = await readJson<TheaterRawRecord[]>(p);
+    // AND AN UNREADABLE DUMP IS AN ABSENT ONE. `readJson` is a bare JSON.parse,
+    // so a truncated or malformed dump — this is a third party's output landing
+    // in a directory we do not control, and a write cut off midway is a shape we
+    // did not anticipate — would THROW here and take the whole parse down. The
+    // workflow's `continue-on-error` covers the FETCH step, not this one, so that
+    // is a red cron and the end of "the cron never depends on the index pull
+    // succeeding". Treated exactly the way a missing dump is treated one branch
+    // up: carry the committed records, and say so in report.md.
+    //
+    // Deliberately NOT extended to the channel dumps below. Those are our own
+    // fetcher's output over a source we do parse, an unreadable one means the
+    // parse would silently publish a channel short, and it must still fail loudly.
+    theaterRaw = await readJson<TheaterRawRecord[]>(p).catch((err: unknown) => {
+      theaterUnreadable = true;
+      console.warn(
+        `  ⚠ raw/${key}.json is present but unreadable (${err instanceof Error ? err.message : String(err)}) — carrying the committed catalogue.`,
+      );
+      return [];
+    });
     // AN EMPTY DUMP IS A CARRY, NOT A REBUILD TO ZERO. `readJson` succeeds on a
     // present-but-empty file, so without this the empty case falls through as a
     // rebuild: `carriedWithFallback` never learns about the source, the pin is
@@ -1247,9 +1269,11 @@ function buildReport(
         ? 'carried (frozen)'
         : ch.cronFetchedWithCarry
           ? carriedWithFallback.includes(src as ChannelKey)
-            ? theaterStats
-              ? 'carried (pull found no new tournament entries)'
-              : 'carried (no pull this run)'
+            ? theaterUnreadable
+              ? 'carried (the dump was unreadable)'
+              : theaterStats
+                ? 'carried (pull found no new tournament entries)'
+                : 'carried (no pull this run)'
             : theaterStats?.mode === 'cursor'
               ? 'rebuilt add-only from a cursor delta'
               : 'rebuilt add-only from a full sweep'
@@ -1303,12 +1327,18 @@ function buildReport(
       // value now in force rather than the one this run happened to check
       // against — the file and the report must not disagree.
       const pin = carried ? (sourcePins[key] ?? '—') : n;
+      // THE MODE NAMES THE MODE AND NOTHING ELSE. `hitBound` used to ride along
+      // in this cell, which made a per-run event part of a string that is
+      // otherwise identical between two cursor mornings. It has its own
+      // conditional line under the table now — see below.
       const mode = carried
-        ? theaterStats
-          ? 'carried (pull found nothing tagged)'
-          : 'carried (no pull this run)'
+        ? theaterUnreadable
+          ? 'carried (the dump was unreadable)'
+          : theaterStats
+            ? 'carried (pull found nothing tagged)'
+            : 'carried (no pull this run)'
         : theaterStats?.mode === 'cursor'
-          ? `cursor delta${theaterStats.hitBound ? ' (hit page bound)' : ''}`
+          ? 'cursor delta'
           : 'rebuilt from a full sweep';
       const survivors = theaterSurvivors.get(key) ?? [];
       const built = n - survivors.length;
@@ -1320,19 +1350,41 @@ function buildReport(
       // it means nothing. So the full number is reported and the cursor number is
       // withheld rather than dressed up.
       const gone = carried || theaterStats?.mode !== 'full' ? '—' : String(survivors.length);
+      // AND THE PER-RUN COLUMNS ARE WITHHELD ON A CURSOR MORNING, for the same
+      // reason the cross-check block is now rendered from the committed artifact:
+      // `pages` and `new` describe this morning's WINDOW, not the corpus. The
+      // catalogue takes entries daily, so the window moves daily, so printing
+      // them made report.md differ every morning whether or not a record had —
+      // which retires the cron's no-change-no-commit rule from the other side and
+      // deploys the site every day forever. `gone` was already withheld, one
+      // column over, for the neighbouring reason.
+      const full = !carried && theaterStats?.mode === 'full';
       lines.push(
-        `| \`${key}\` | ${n} | ${pin} | ${mode} | ${carried ? '—' : (theaterStats?.pagesRead ?? '—')} | ${carried ? '—' : built} | ${gone} | ${newest} |`,
+        `| \`${key}\` | ${n} | ${pin} | ${mode} | ${full ? (theaterStats?.pagesRead ?? '—') : '—'} | ${full ? built : '—'} | ${gone} | ${newest} |`,
       );
     }
     lines.push(``);
+    // NOT PER-RUN NOISE: normally absent, and present only on a morning the
+    // cursor could not go quiet inside its page bound. That is a real event and
+    // deserves to reach the commit, the same way the collapsed-tag note below
+    // does — the guard's rule is that a diff which is ONLY the timestamp is not a
+    // change, not that report.md may never change.
+    if (theaterStats?.hitBound) {
+      lines.push(
+        `_⚠ The cursor hit its page bound this run — entries may be unreached. Nothing is lost (the merge is add-only); \`npm run data:theater -- --full\` reconciles._`,
+        ``,
+      );
+    }
     // A CARRY measures none of the intake counts — the dump they would be
     // measured from is absent. Saying so beats printing 0, which reads as
     // "checked, found nothing" when the truth is "not checked this run".
     if (carriedWithFallback.includes('replayTheater')) {
       lines.push(
-        theaterStats
-          ? `_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._`
-          : `_No pull produced a dump this run, so the committed catalogue was carried and the intake counts were not measured. That is the designed fallback, not a failure of this run: \`npm run data:theater\` refreshes them._`,
+        theaterUnreadable
+          ? `_\`raw/replayTheater.json\` was present but could not be read, so the committed catalogue was carried and the intake counts were not measured. An unreadable dump is treated as an absent one rather than as a parse failure — the cron does not depend on the index pull succeeding — but unlike a quiet catalogue it is worth looking at: the parse log names the error._`
+          : theaterStats
+            ? `_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._`
+            : `_No pull produced a dump this run, so the committed catalogue was carried and the intake counts were not measured. That is the designed fallback, not a failure of this run: \`npm run data:theater\` refreshes them._`,
         ``,
       );
     } else if (theaterStats && (theaterStats.collapsed ?? 0) > 0) {
@@ -1363,12 +1415,17 @@ function buildReport(
   }
 
   // ── the second witness ────────────────────────────────────────────────────
-  // Emits NOTHING on a carrying run — no witness file, no block — rather than
-  // printing a table of zeros, which is the same posture the carry note above
-  // takes: "not measured this run" is a different statement from "measured, found
-  // nothing". Every number in it is computed from THIS run's witness against THIS
-  // run's records; nothing is carried between runs.
-  if (witnessResult) lines.push(...formatCrossCheck(witnessResult, witness?.mode));
+  // RENDERED FROM THE COMMITTED ARTIFACT, not from this run. A full sweep
+  // measures and writes data/theater-disagreements.json; every run — cursor,
+  // carrying, or sweeping — renders this block out of it, so it is byte-identical
+  // between sweeps and a quiet morning stays quiet. See WitnessArtifact in
+  // scripts/crosscheck.ts for the failure that came of rendering the window.
+  //
+  // Still emits NOTHING until a sweep has measured something (the block is empty
+  // with no `measured`), which keeps the old posture: "not measured this run" is
+  // a different statement from "measured, found nothing", and neither is a table
+  // of zeros.
+  lines.push(...formatCrossCheck(witnessArtifact));
 
   if (manual > 0) {
     lines.push(`## Manual videos (${manual})`);
@@ -1974,11 +2031,51 @@ const witnessResult = witness
       2,
     )
   : null;
-if (witnessResult) {
-  await writeFile(
-    join(DATA, 'theater-disagreements.json'),
-    JSON.stringify(witnessResult.disagreements, null, 2) + '\n',
-    'utf8',
+const witnessPath = join(DATA, 'theater-disagreements.json');
+let witnessArtifact = await readJson<WitnessArtifact>(witnessPath).catch(
+  () => ({ disagreements: [] }) as WitnessArtifact,
+);
+// ONLY A FULL SWEEP WRITES HERE. A cursor pull sees a few hundred catalogue rows
+// — whatever is at the front of the feed this morning — so its reading is a
+// different WINDOW, not a different corpus. Letting it write threw away the full
+// sweep's rows on the first quiet morning (a delta that compared a few dozen
+// records and found nothing overwrote them with []) and flapped them back the
+// next time a delta happened to contain one. A CARRYING run never reached this
+// write at all — there is no witness file to measure, so `witnessResult` is null
+// and the rows survive by accident of that. A cursor run does reach it, and took
+// the same erasure through the front door.
+if (witnessResult && witness?.mode === 'full') {
+  witnessArtifact = {
+    measured: {
+      // The catalogue's own high-water entry id names the sweep. A timestamp
+      // would name it too, and would be the exact churn this is fixing. Both
+      // files are written by the same pull with the same value; the stats file is
+      // the one report.md already reads.
+      atEntryId: theaterStats?.maxEntryId ?? witness.maxEntryId ?? 0,
+      compared: witnessResult.compared,
+      unmatched: witnessResult.unmatched,
+      segmented: witnessResult.segmented,
+      unalignable: witnessResult.unalignable,
+      players: witnessResult.players,
+      characters: witnessResult.characters,
+    },
+    disagreements: witnessResult.disagreements,
+  };
+  await writeFile(witnessPath, JSON.stringify(witnessArtifact, null, 2) + '\n', 'utf8');
+} else if (!existsSync(witnessPath)) {
+  // The cron NAMES this path in its `git add`, and `git add` on a path that does
+  // not exist fails under `set -e` and aborts the whole commit step. Seeded when
+  // absent, never rewritten when present.
+  await writeFile(witnessPath, JSON.stringify({ disagreements: [] }, null, 2) + '\n', 'utf8');
+}
+// The cursor window's reading still gets said out loud, where it is useful and
+// costs nothing — it just does not reach a committed file.
+if (witnessResult && witness?.mode !== 'full') {
+  const cc = witnessResult.characters;
+  console.log(
+    `  cross-check (cursor window, not committed): ${witnessResult.compared} record(s), ` +
+      `${witnessResult.players.both} both-handles, ${cc.agree}/${cc.sides} champion sides agree, ` +
+      `${witnessResult.disagreements.length} disagreement(s)`,
   );
 }
 

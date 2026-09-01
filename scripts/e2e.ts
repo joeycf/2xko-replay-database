@@ -254,10 +254,64 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   // is OUR deliberate verdict on a record and takes it off the site legitimately,
   // and parse re-derives this file after exclusions apply anyway — so an excluded
   // id can never appear here, and using `videos` would only hide that if it did.
+  //
+  // THE FILE IS AN OBJECT, NOT A BARE LIST: alongside the rows it carries the
+  // MEASUREMENT, so report.md's cross-check block is rendered from what is
+  // committed rather than from this morning's cursor window. That window is a few
+  // hundred catalogue rows and moves every day, so rendering it made report.md
+  // change on every run whether or not a record had — which retires the cron's
+  // no-change-no-commit rule from the other side. Only a full sweep writes here.
   await test('every cross-check disagreement is still published', async () => {
-    const contested = JSON.parse(
+    const witnessFile = JSON.parse(
       readFileSync(join(ROOT, 'data/theater-disagreements.json'), 'utf8'),
-    ) as { videoId: string; field: string; ours: string[]; theirs: string[]; title: string }[];
+    ) as {
+      measured?: {
+        atEntryId: number;
+        compared: number;
+        unmatched: number;
+        segmented: number;
+        unalignable: number;
+        players: { both: number; one: number; neither: number; flipped: number };
+        characters: {
+          sides: number;
+          agree: number;
+          subset: number;
+          disagree: number;
+          cannotWitness: number;
+        };
+      };
+      disagreements: {
+        videoId: string;
+        field: string;
+        ours: string[];
+        theirs: string[];
+        title: string;
+      }[];
+    };
+    const contested = witnessFile.disagreements ?? [];
+    const m = witnessFile.measured;
+    // THE MEASUREMENT HAS TO ADD UP, or the block above it is decorative. Every
+    // champion side is exactly one of agree / partial / disagree / cannot-witness,
+    // every compared record is exactly one of both / one / neither handles, and a
+    // 2XKO record has two sides — so `sides` is `compared` doubled. A cross-check
+    // whose columns do not sum to its population is reporting a bug in itself.
+    expect(
+      !m ||
+        (m.characters.agree +
+          m.characters.subset +
+          m.characters.disagree +
+          m.characters.cannotWitness ===
+          m.characters.sides &&
+          m.players.both + m.players.one + m.players.neither === m.compared &&
+          m.characters.sides === m.compared * 2),
+      `cross-check measurement is internally consistent${m ? ` (${m.compared} compared)` : ' (none yet)'}`,
+    );
+    // Every contested row is one the measurement actually counted: a champion
+    // disagreement or a whole-record player miss, and nothing else.
+    expect(
+      !m || contested.length <= m.characters.disagree + m.players.neither,
+      'contested rows are a subset of what was measured',
+    );
     const ids = new Set(allVideos.map((v) => v.id));
     for (const d of contested) {
       expect(ids.has(d.videoId), `contested ${d.videoId} is no longer in videos.json`);
@@ -1408,6 +1462,22 @@ function testCronGuard(): Promise<void> {
       expect(
         sh('git status --porcelain -- data/theater-cursor.json').trim() === '',
         'case C restores the cursor in the worktree',
+      );
+      // CASE D — THE OTHER HALF OF C, and the reason C cannot be written as
+      // "never stage the cursor". A morning that changes a record must carry the
+      // cursor into the same commit: raw/ is gitignored and CI starts from a
+      // fresh checkout, so a cursor left behind resets to 0 and the next run is a
+      // bounded sweep again. C drops it only when it is the ONLY thing left.
+      seed(3, '2026-07-03T04:00:00.000Z'); // a real change …
+      writeFileSync(join(dir, 'data/theater-cursor.json'), '{"replayTheater":4343}\n'); // … and the cursor
+      sh('bash guard.sh');
+      expect(
+        sh('git rev-list --count HEAD').trim() === '3',
+        'case D: real change + cursor commits',
+      );
+      expect(
+        sh('git show --stat --format= HEAD').includes('theater-cursor.json'),
+        'case D: the cursor rides along with a real change',
       );
     } finally {
       rmSync(dir, { recursive: true, force: true });
