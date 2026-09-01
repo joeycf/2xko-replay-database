@@ -167,11 +167,12 @@ async function main(): Promise<void> {
       continue;
     }
     if (ch.index) {
-      // An index source has no uploads playlist and is deliberately LOCAL-FIRST:
-      // this command runs in the daily cron, and a third party's uptime and
-      // goodwill should not be a cron dependency on day one. `npm run
-      // data:theater` pulls it by hand; parse.ts carries its committed records
-      // on every run that has no dump, which is every cron run.
+      // An index source has no uploads playlist, so there is nothing for this
+      // command to walk. It is fetched daily too, since 2026-08-31 — by
+      // `data:theater`, in its OWN cron step, placed after this one and allowed
+      // to fail so a bad morning upstream cannot cost the channel dumps already
+      // in hand. parse.ts carries its committed records on any run that has no
+      // dump.
       console.log(`\n⏸ Skipping "${ch.key}" — index source, pulled by \`npm run data:theater\``);
       continue;
     }

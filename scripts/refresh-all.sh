@@ -94,7 +94,11 @@ DETECTIONS="data/fuses-detected.json"
 LOCK_FILE="cache/refresh-all.lock"
 LOG_DIR="cache/refresh-all"
 
-# Files the commit may touch. The first six mirror data-refresh.yml exactly.
+# Files the commit may touch. Everything data-refresh.yml stages is here too —
+# the workflow's list is the contract and this one must not fall behind it, which
+# is the 436ae9f scar the workflow comment spends nine lines on. `data:theater`
+# runs locally as well, so its cursor and its cross-check output belong here for
+# exactly the reason source-pins.json does.
 #   fuses-detected.json — the whole point of running locally.
 #   patchGroups.json    — scripts/emit.ts writes it and it IS tracked, but the
 #                         workflow's `git add` list omits it. Harmless in CI
@@ -109,11 +113,20 @@ STAGE_PATHS=(
   data/report.md
   data/fuses-detected.json
   data/patchGroups.json
-  # The carry pin for local-first sources. data:parse rewrites it whenever it
+  # The carry pin for the index source. data:parse rewrites it whenever it
   # builds one from a dump, and it MUST travel with videos.json: committing a new
   # record count while leaving the pin behind makes the next carrying run — every
   # cron run — hard-fail on pin drift.
   data/source-pins.json
+  # How far the index pull has read. A local `data:theater` + `refresh-all`
+  # advances it exactly as the cron does, and leaving it out here left it
+  # modified-but-uncommitted after a "commit everything" run — the same shape as
+  # the pin above, and testCronGuard could not catch it because that test only
+  # parses the workflow.
+  data/theater-cursor.json
+  # The cross-check's output (scripts/crosscheck.ts). Rewritten by every parse
+  # that finds a witness file, which a local `data:theater` always produces.
+  data/theater-disagreements.json
 )
 
 # ── argument parsing ──────────────────────────────────────────────────────────
@@ -467,6 +480,22 @@ REPORT_REAL_LINES=$(
 )
 if [ "$REPORT_REAL_LINES" -eq 0 ]; then
   git restore --staged --worktree -- data/report.md
+fi
+
+# AND THE SAME FOR THE CURSOR, for the same reason. The catalogue takes new
+# entries every day whether or not any of OURS change, so maxEntryId rises on
+# essentially every pull and theater-cursor.json changes on essentially every
+# run. Staged unconditionally that retires the no-change-no-commit rule outright.
+# Dropped when it is the only thing left, the cursor simply does not advance on a
+# quiet day and the next run re-reads a page or two, bounded at ten.
+#
+# Written as an EMPTINESS TEST on the remaining staged names rather than a
+# `git diff --quiet -- <paths>`: with the cursor filtered out that path list can
+# be EMPTY, and an empty pathspec means "everything", which would silently invert
+# the check.
+OTHERS=$(git diff --cached --name-only | grep -v '^data/theater-cursor.json$' || true)
+if [ -z "$OTHERS" ]; then
+  git restore --staged --worktree -- data/theater-cursor.json
 fi
 
 if git diff --cached --quiet; then

@@ -8,15 +8,22 @@
 // records have had no liveness signal since 2026-08-08. This is the replacement
 // signal.
 //
-// A LOCAL-FIRST SOURCE HAS THE SAME HOLE, for a different reason: it is pulled
-// by hand rather than daily, and its records point at OTHER people's VODs —
-// event organisers' uploads, not a channel this pipeline tracks. One of Replay
-// Theater's 75 source VODs was already private on the day of first ingest. So
-// the population here is "records nothing re-fetches", which is both kinds.
+// THE INDEX SOURCE HAS THE SAME HOLE, for a different reason, and joining the
+// daily cron on 2026-08-31 did not close it: `data:theater` re-reads the
+// CATALOGUE, not the videos. Its records point at OTHER people's VODs — event
+// organisers' uploads, not a channel this pipeline tracks — so nothing in the
+// daily run ever asks YouTube whether they still resolve. One of Replay
+// Theater's 75 source VODs was already private on the day of first ingest, and
+// the intake is add-only now, so a VOD going dark removes nothing and announces
+// nothing. This is still the only signal. The population here is "records
+// nothing re-fetches", which is both kinds.
 //
-// Segment records share a video: 888 of them cover 74 VODs, so the probe
-// de-duplicates by VIDEO id. Probing the same stream sixteen times would be
-// sixteen times the requests for one bit of information.
+// Segment records share a video: the 888 PUBLISHED ones cover 64 VODs, so the
+// probe de-duplicates by VIDEO id. Probing the same stream seventeen times would
+// be seventeen times the requests for one bit of information. (64 rather than the
+// dump's 74 because this reads data/videos.json, which is what the site serves:
+// the intake declines 10 entries whose videos this repo had already ruled on, and
+// each of those was the only entry from its own VOD.)
 //
 // The freeze rests on a specific claim: the videos still play at their URLs,
 // they merely left the uploads playlist when the channel rebranded and unlisted
@@ -107,13 +114,14 @@ async function probe(id: string): Promise<{ state: State; detail: string }> {
 }
 
 const videos = JSON.parse(readFileSync(join(DATA, 'videos.json'), 'utf8')) as VideoRecord[];
-// Every source nothing re-fetches: frozen channels and local-first sources.
+// Every source whose VIDEOS nothing re-fetches: frozen channels and the index
+// source (whose daily pull re-reads a catalogue, never the videos behind it).
 const unfetchedKeys = (Object.keys(CHANNELS) as ChannelKey[]).filter(
-  (k) => CHANNELS[k].frozen || CHANNELS[k].localFirst,
+  (k) => CHANNELS[k].frozen || CHANNELS[k].cronFetchedWithCarry,
 );
 
 if (unfetchedKeys.length === 0) {
-  console.log('No frozen or local-first sources — nothing to check.');
+  console.log('No frozen or index sources — nothing to check.');
   process.exit(0);
 }
 
@@ -142,7 +150,7 @@ for (const k of unfetchedKeys) {
   const carried = frozen.filter((v) => v.channel === k).length;
   if (!f) {
     console.log(
-      `  ${k}: ${carried} distinct video(s) behind its records — local-first, no daily fetch signal`,
+      `  ${k}: ${carried} distinct video(s) behind its records — index source, no daily fetch signal`,
     );
     continue;
   }
@@ -189,7 +197,7 @@ for (const k of unfetchedKeys) {
   md.push(
     f
       ? `- \`${k}\` — ${n} carried, frozen ${f.since}: ${f.reason}`
-      : `- \`${k}\` — ${n} distinct video(s), local-first: pulled by hand, so no daily fetch proves these still resolve`,
+      : `- \`${k}\` — ${n} distinct video(s), index source: the daily pull re-reads the catalogue, not the videos, so nothing proves these still resolve`,
   );
 }
 md.push('');

@@ -19,8 +19,9 @@ import { tmpdir } from 'node:os';
 import { dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
+import { CHANNELS } from './channels';
 import { staleEvidence } from './freshness';
-import type { Champion, Fuse, RawVideoRecord, VideoRecord } from '../types/index';
+import type { Champion, ChannelKey, Fuse, RawVideoRecord, VideoRecord } from '../types/index';
 
 /** Buy Me a Coffee URL — must match the engine's SiteFooter.vue. */
 const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
@@ -237,6 +238,41 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
       expect(!emitted.some((r) => r.id === id), `excluded ${id} still present`);
     await page.goto(at(`/`));
     expect((await resultCount(page)) === videos.length, 'Browse count includes an excluded record');
+  });
+
+  // (a0b) THE CROSS-CHECK'S MIRROR RULE. data/theater-disagreements.json is not a
+  // holding pen — it is the opposite of one. This repo's withholding gate is
+  // `heldForFootage` in scripts/parse.ts, which keeps a record OUT of videos.json
+  // until a champion verdict arrives; a cross-check disagreement is a record we
+  // have ALREADY published from a tracked channel and are not proposing to
+  // unpublish because a third party's catalogue read the title differently. So
+  // the assertion runs the other way: every contested row MUST still be
+  // published. A row leaving would mean the catalogue had been allowed to remove
+  // a record, which is the one thing this intake must never do.
+  //
+  // Checked against `allVideos` rather than `videos`: an overrides.json exclusion
+  // is OUR deliberate verdict on a record and takes it off the site legitimately,
+  // and parse re-derives this file after exclusions apply anyway — so an excluded
+  // id can never appear here, and using `videos` would only hide that if it did.
+  await test('every cross-check disagreement is still published', async () => {
+    const contested = JSON.parse(
+      readFileSync(join(ROOT, 'data/theater-disagreements.json'), 'utf8'),
+    ) as { videoId: string; field: string; ours: string[]; theirs: string[]; title: string }[];
+    const ids = new Set(allVideos.map((v) => v.id));
+    for (const d of contested) {
+      expect(ids.has(d.videoId), `contested ${d.videoId} is no longer in videos.json`);
+    }
+    expect(
+      contested.every(
+        (d) =>
+          typeof d.videoId === 'string' &&
+          ['players', 'characters'].includes(d.field) &&
+          Array.isArray(d.ours) &&
+          Array.isArray(d.theirs) &&
+          typeof d.title === 'string',
+      ),
+      `theater-disagreements.json schema validates (${contested.length} row(s))`,
+    );
   });
 
   // (a) source facet counts match Node-side counts from videos.json
@@ -497,21 +533,50 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   // while every established source stayed above 99%, and a single number cannot
   // say which of those two things happened. Per source it can.
   //
-  // A source mid-backfill declares a RATCHET rather than an exemption. The pin is
-  // the floor it has actually reached; the assertion is that it never goes below,
-  // so progress is one-way and a regression still fails. Raising the pin is a
-  // deliberate edit that shows up in review — the same shape as frozen.records —
-  // and when a pin reaches 0.95 its entry is deleted and the source rejoins the
-  // ordinary floor. An exemption with no number is the thing this avoids: it
-  // cannot fail, so it reads as coverage while providing none.
+  // A source that cannot meet the floor declares a RATCHET rather than an
+  // exemption. For a source mid-backfill the pin is the coverage it has actually
+  // reached; for a source the cron keeps adding fuse-less records to, it is the
+  // coverage that must hold BETWEEN local `data:fuses` passes — stated with the
+  // arithmetic that produced it, not guessed. Either way the assertion is that
+  // coverage never goes below the pin, so a regression still fails, and raising
+  // the pin is a deliberate edit that shows up in review, the same shape as
+  // frozen.records. A backfilling source's entry is deleted once it clears 0.95;
+  // a cron-fed one's is deleted when the cron stops feeding it. An exemption with
+  // no number is the thing this avoids: it cannot fail, so it reads as coverage
+  // while providing none.
   const FUSE_FLOOR = 0.95;
-  // EMPTY, and that is the success state — not dead code. A source mid-backfill
-  // declares a ratchet here and is held to the floor it has actually reached;
-  // when it clears FUSE_FLOOR the entry is deleted and it rejoins the ordinary
-  // per-source assertion. replayTheater was the first entrant (0 → 0.87 → gone,
-  // 2026-08-28: CV backfill to 87.7%, then hand review closed the rest to 100%)
-  // and the check below is what told us the carve-out had outlived its purpose.
-  const FUSE_BACKFILL: Record<string, number> = {};
+  // A source that cannot be held to the floor declares a ratchet here and is held
+  // to a number instead; empty is the success state. replayTheater was the first
+  // entrant and left cleanly (0 → 0.87 → gone, 2026-08-28: CV backfill to 87.7%,
+  // then hand review closed the rest to 100%), and the check below is what told
+  // us that carve-out had outlived its purpose.
+  //
+  // RE-OPENED 2026-08-31 FOR replayTheater, and the reason is structural rather
+  // than a backlog: `data:theater` joined the daily cron that day, and a Replay
+  // Theater record arrives with `fuse: null` because the catalogue publishes no
+  // fuse. The only thing that can fill it is `npm run data:fuses`, which is
+  // LOCAL-ONLY (yt-dlp + ffmpeg + a cookie file) and never runs in CI. So every
+  // cron-added record lands under the floor by construction.
+  //
+  // THE ARITHMETIC, from this repo's own data. replayTheater sits at 888/888 =
+  // 100.0% today. The 0.95 floor therefore breaks at the 47th cron-added record
+  // (888/935 = 94.97%) — at the 4.5 records/day the newest 30 days of the
+  // committed intake ran at, about ten mornings.
+  //
+  // 0.93 is chosen, not 1.0 and not "exempt". At 0.93 the gate passes today,
+  // tolerates 66 un-fused arrivals (888/954 = 93.1%; the 67th, 888/955 = 92.98%,
+  // fails) — roughly a fortnight, comfortably longer than the gap between local
+  // refresh-all runs — and still fires if 63 of the 888 committed detections
+  // vanish (825/888 = 92.9%). A scalar cannot tell a new null from a lost
+  // detection, and that is the trade being made explicitly: a fortnight of cron
+  // headroom bought against blindness to a loss of up to 62 existing fuses. What
+  // it is NOT is an exemption — an unnumbered carve-out cannot fail, so it reads
+  // as coverage while providing none.
+  //
+  // RAISE IT, don't nurse it: after a local `data:fuses` this source returns to
+  // ~100%, and the honest move is to raise the pin toward the floor rather than
+  // let a fortnight of slack become permanent.
+  const FUSE_BACKFILL: Record<string, number> = { replayTheater: 0.93 };
   const sourcesInPlay = [...new Set(videos.map((v) => v.channel))].sort();
   for (const src of sourcesInPlay) {
     const rows = videos.filter((v) => v.channel === src);
@@ -522,7 +587,7 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     const label =
       pin === undefined
         ? `fuse coverage floor [${src}]: ≥95% of ${rows.length} records carry a detected fuse`
-        : `fuse coverage ratchet [${src}]: ≥${(pin * 100).toFixed(1)}% of ${rows.length} records (backfill in progress)`;
+        : `fuse coverage ratchet [${src}]: ≥${(pin * 100).toFixed(1)}% of ${rows.length} records (a pinned number, not the ${FUSE_FLOOR * 100}% floor)`;
     await test(label, async () => {
       expect(
         pct >= floor,
@@ -533,8 +598,20 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
   }
   // A ratchet that has quietly reached the real floor is a stale carve-out, and a
   // stale carve-out is how a guard rots. Say so rather than waiting to be noticed.
+  //
+  // SCOPED TO SOURCES A LOCAL PASS CAN FINISH, since 2026-08-31. For a
+  // backfilling source, clearing the floor is TERMINAL: nothing new arrives
+  // without someone running a fetch, so the ratchet really has outlived its
+  // purpose and deleting it is right. For a CRON-FED source, clearing the floor
+  // is a MOMENT rather than a state — the morning after a local `data:fuses` it
+  // reads 100%, and the next cron run adds fuse-less records and pushes it back
+  // down. Firing here would demand deleting a ratchet that tomorrow needs, which
+  // is how a guard teaches you to ignore it. Its retirement condition is "the
+  // cron stopped adding to it", which is an edit in channels.ts, not a data
+  // state — and the ratchet is still a NUMBER that still fails while it stands.
   await test('no fuse backfill ratchet has outlived its purpose', async () => {
     const done = Object.keys(FUSE_BACKFILL).filter((src) => {
+      if (CHANNELS[src as ChannelKey]?.cronFetchedWithCarry) return false;
       const rows = videos.filter((v) => v.channel === src);
       if (rows.length === 0) return false;
       return rows.filter((v) => v.teams.some((t) => t.fuse)).length / rows.length >= FUSE_FLOOR;
@@ -1243,8 +1320,9 @@ function testCronGuard(): Promise<void> {
     // and throws it away. Checked BY NAME rather than by count, so adding a
     // pipeline output and forgetting the workflow fails here rather than
     // becoming a mystery three weeks later. The full write set is
-    // scripts/parse.ts (videos, players, report.md, source-pins) plus
-    // scripts/emit.ts (replays, stats, summary, patchGroups).
+    // scripts/parse.ts (videos, players, report.md, source-pins,
+    // theater-cursor, theater-disagreements) plus scripts/emit.ts (replays,
+    // stats, summary, patchGroups).
     for (const f of [
       'videos.json',
       'replays.json',
@@ -1253,6 +1331,14 @@ function testCronGuard(): Promise<void> {
       'summary.json',
       'patchGroups.json',
       'source-pins.json',
+      // the index cursor. raw/ is gitignored and CI starts from a fresh
+      // checkout, so an unstaged cursor resets to 0 every morning and turns
+      // every cron run into a bounded sweep that never goes quiet.
+      'theater-cursor.json',
+      // the cross-check's output. Unlike a withheld record these rows ARE
+      // published — see the mirror gate above — so the file is history, not a
+      // holding pen, and it has to travel with the videos.json it describes.
+      'theater-disagreements.json',
       'report.md',
     ]) {
       expect(
@@ -1260,6 +1346,22 @@ function testCronGuard(): Promise<void> {
         `workflow stages data/${f}`,
       );
     }
+    // THE SECOND STAGING LIST. scripts/refresh-all.sh makes the same one commit
+    // locally, from its own STAGE_PATHS array, and the two lists drifting apart
+    // is the same 436ae9f scar as the workflow forgetting a file — it just fails
+    // on a laptop instead of in CI, where nothing watches. Checked as a SUPERSET,
+    // not equality: the local wrapper legitimately stages more (fuses-detected,
+    // the whole point of running locally), it just may not stage less.
+    const wrapper = readFileSync(join(ROOT, 'scripts/refresh-all.sh'), 'utf8');
+    const localPaths = (wrapper.match(/STAGE_PATHS=\(([\s\S]*?)\n\)/)?.[1] ?? '')
+      .split('\n')
+      .map((l) => l.replace(/#.*$/, '').trim())
+      .filter((l) => l.startsWith('data/'));
+    expect(localPaths.length > 0, `refresh-all.sh STAGE_PATHS parsed (${localPaths.length})`);
+    for (const f of staged) {
+      expect(localPaths.includes(f), `refresh-all.sh also stages ${f}`);
+    }
+
     try {
       sh('git init -q . && git config user.email t@t && git config user.name t && mkdir data');
       const seed = (n: number, ts: string) => {
@@ -1293,6 +1395,20 @@ function testCronGuard(): Promise<void> {
       sh('bash guard.sh');
       expect(sh('git rev-list --count HEAD').trim() === '2', 'case B must commit');
       expect(sh('git show --stat --format= HEAD').includes('report.md'), 'case B ships report.md');
+      // CASE C — THE CURSOR MOVED AND NOTHING ELSE DID, which is the ordinary
+      // morning: the catalogue takes new entries every day whether or not any of
+      // OURS change, so maxEntryId rises on essentially every pull. Without the
+      // suppression this alone would commit, and a commit is a deploy — the
+      // no-change-no-commit rule retired outright. The worktree file must also be
+      // restored, or the next run's diff starts dirty.
+      writeFileSync(join(dir, 'data/theater-cursor.json'), '{"replayTheater":4242}\n');
+      const c = sh('bash guard.sh');
+      expect(c.includes('No data changes'), `case C output: ${c.trim()}`);
+      expect(sh('git rev-list --count HEAD').trim() === '2', 'case C must not commit');
+      expect(
+        sh('git status --porcelain -- data/theater-cursor.json').trim() === '',
+        'case C restores the cursor in the worktree',
+      );
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

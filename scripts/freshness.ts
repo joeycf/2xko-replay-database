@@ -24,11 +24,12 @@
 // AND THE CRON MOVE MADE IT WORSE THAN MERELY FORGEABLE. The index dump's path
 // was pushed into `rawPaths` before the `if (ch.index)` early-continue, so
 // `rawMtimeMs` was a Math.max ACROSS ALL DUMPS INCLUDING raw/replayTheater.json.
-// The moment `data:theater` joins the daily cron that file carries a now-stamped
-// mtime, `rawMtimeMs < lastCommitMs` goes false, and the guard is disarmed for
-// every OTHER channel however old its dump is. Freshening one third-party index
-// file would silence the guard protecting the three YouTube channels. That is
-// why this port is a prerequisite of the cron move, not a tidy-up after it.
+// `data:theater` joined the daily cron on 2026-08-31, so that file now carries a
+// now-stamped mtime on every run, `rawMtimeMs < lastCommitMs` would go false, and
+// the guard would be disarmed for every OTHER channel however old its dump is.
+// Freshening one third-party index file would silence the guard protecting the
+// three YouTube channels. That is why this port landed as a prerequisite of the
+// cron move rather than a tidy-up after it.
 //
 // THE TEST READS ONLY DATA. A dump cannot contain an upload published after it
 // was taken. If the committed catalogue holds a record for this channel NEWER
@@ -50,7 +51,7 @@
 //
 // SCOPED PER CHANNEL, because a stale bestReplays dump says nothing about
 // highLevel. The three exclusions the old id-set arm had to carry by hand —
-// manual entries, frozen channels, local-first carries — all fall out for free:
+// manual entries, frozen channels, the index source — all fall out for free:
 // a record is judged only against the dump of the channel it names, and
 // 'manual', 'proReplays' (frozen) and 'replayTheater' (index) have no dump to be
 // judged against.

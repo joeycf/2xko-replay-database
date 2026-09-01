@@ -1,0 +1,80 @@
+[
+  {
+    "videoId": "mvKlmuoEJ8c",
+    "field": "characters",
+    "side": 1,
+    "ours": [
+      "thresh",
+      "caitlyn"
+    ],
+    "theirs": [
+      "blitzcrank",
+      "vi"
+    ],
+    "title": "2XKO ▰ Panunu (Braum / Blitzcrank) vs Romerulez + C. Embers (Thresh / Caitlyn) ▰ High Level Gameplay"
+  },
+  {
+    "videoId": "TPGD4QiJOa0",
+    "field": "characters",
+    "side": 1,
+    "ours": [
+      "akali",
+      "vi"
+    ],
+    "theirs": [
+      "yasuo",
+      "vi"
+    ],
+    "title": "2XKO ▰ SoulDemonXL (Thresh / Ekko) vs DizzyMX (Akali / Vi) ▰ High Level Gameplay"
+  },
+  {
+    "videoId": "AdQJJn0O17M",
+    "field": "characters",
+    "side": 1,
+    "ours": [
+      "vi",
+      "ahri"
+    ],
+    "theirs": [
+      "teemo",
+      "ahri"
+    ],
+    "title": "2XKO ▰ Bleed (Illaoi / Ekko) vs Hikari (Vi / Ahri) ▰ High Level Gameplay"
+  },
+  {
+    "videoId": "aFWFnakjcMM",
+    "field": "characters",
+    "side": 0,
+    "ours": [
+      "teemo",
+      "darius"
+    ],
+    "theirs": [
+      "yasuo",
+      "teemo"
+    ],
+    "title": "2XKO ▰ GENISGOD (Teemo-Darius) vs MRZEIM (Caitlyn-Vi) ▰ 2XKO Pro level replays"
+  },
+  {
+    "videoId": "VjA1VOogCog",
+    "field": "characters",
+    "side": 1,
+    "ours": [],
+    "theirs": [
+      "braum",
+      "blitzcrank"
+    ],
+    "title": "2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays"
+  },
+  {
+    "videoId": "8_JJkHTB-UA",
+    "field": "characters",
+    "side": 0,
+    "ours": [],
+    "theirs": [
+      "yasuo",
+      "darius"
+    ],
+    "title": "2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays"
+  }
+]

@@ -1,31 +1,31 @@
 {
   "totals": {
-    "replays": 6549,
+    "replays": 6556,
     "characters": 15,
-    "players": 1384,
+    "players": 1385,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4305
+      "S1": 4312
     },
     "withFuse": 6537
   },
   "characterUsage": {
-    "ahri": 2761,
-    "akali": 1002,
-    "blitzcrank": 1368,
-    "braum": 1175,
-    "caitlyn": 849,
-    "darius": 1620,
-    "ekko": 3398,
-    "illaoi": 1916,
+    "ahri": 2763,
+    "akali": 1004,
+    "blitzcrank": 1371,
+    "braum": 1176,
+    "caitlyn": 851,
+    "darius": 1622,
+    "ekko": 3403,
+    "illaoi": 1918,
     "jinx": 1508,
     "senna": 239,
-    "teemo": 1350,
+    "teemo": 1352,
     "thresh": 644,
-    "vi": 1764,
-    "warwick": 1257,
-    "yasuo": 2735
+    "vi": 1765,
+    "warwick": 1258,
+    "yasuo": 2738
   },
   "byPatchUsage": {
     "Beta": {
@@ -53,28 +53,28 @@
       "yasuo": 972
     },
     "S1": {
-      "ahri": 1898,
-      "akali": 1002,
-      "blitzcrank": 928,
-      "braum": 748,
-      "caitlyn": 849,
-      "darius": 1033,
-      "ekko": 2015,
-      "illaoi": 1364,
+      "ahri": 1900,
+      "akali": 1004,
+      "blitzcrank": 931,
+      "braum": 749,
+      "caitlyn": 851,
+      "darius": 1035,
+      "ekko": 2020,
+      "illaoi": 1366,
       "jinx": 847,
       "senna": 239,
-      "teemo": 669,
+      "teemo": 671,
       "thresh": 644,
-      "vi": 1058,
-      "warwick": 717,
-      "yasuo": 1586
+      "vi": 1059,
+      "warwick": 718,
+      "yasuo": 1589
     }
   },
   "pairingUsage": {
     "ahri|akali": 425,
     "ahri|blitzcrank": 271,
     "ahri|braum": 72,
-    "ahri|caitlyn": 229,
+    "ahri|caitlyn": 230,
     "ahri|darius": 47,
     "ahri|ekko": 524,
     "ahri|illaoi": 258,
@@ -84,23 +84,23 @@
     "ahri|thresh": 88,
     "ahri|vi": 244,
     "ahri|warwick": 41,
-    "ahri|yasuo": 375,
+    "ahri|yasuo": 376,
     "akali|blitzcrank": 40,
     "akali|braum": 10,
     "akali|caitlyn": 121,
     "akali|darius": 11,
-    "akali|ekko": 130,
+    "akali|ekko": 131,
     "akali|illaoi": 40,
     "akali|jinx": 123,
     "akali|senna": 25,
-    "akali|teemo": 74,
+    "akali|teemo": 75,
     "akali|thresh": 25,
     "akali|vi": 77,
     "akali|warwick": 9,
     "akali|yasuo": 43,
     "blitzcrank|braum": 133,
-    "blitzcrank|caitlyn": 14,
-    "blitzcrank|darius": 262,
+    "blitzcrank|caitlyn": 15,
+    "blitzcrank|darius": 264,
     "blitzcrank|ekko": 23,
     "blitzcrank|illaoi": 68,
     "blitzcrank|jinx": 51,
@@ -113,7 +113,7 @@
     "braum|caitlyn": 28,
     "braum|darius": 479,
     "braum|ekko": 111,
-    "braum|illaoi": 65,
+    "braum|illaoi": 66,
     "braum|jinx": 55,
     "braum|senna": 2,
     "braum|teemo": 18,
@@ -122,7 +122,7 @@
     "braum|warwick": 58,
     "braum|yasuo": 33,
     "caitlyn|darius": 68,
-    "caitlyn|ekko": 53,
+    "caitlyn|ekko": 54,
     "caitlyn|illaoi": 9,
     "caitlyn|jinx": 19,
     "caitlyn|senna": 11,
@@ -140,14 +140,14 @@
     "darius|vi": 99,
     "darius|warwick": 56,
     "darius|yasuo": 167,
-    "ekko|illaoi": 616,
+    "ekko|illaoi": 617,
     "ekko|jinx": 222,
     "ekko|senna": 60,
     "ekko|teemo": 320,
     "ekko|thresh": 156,
-    "ekko|vi": 416,
-    "ekko|warwick": 190,
-    "ekko|yasuo": 1017,
+    "ekko|vi": 417,
+    "ekko|warwick": 191,
+    "ekko|yasuo": 1018,
     "illaoi|jinx": 233,
     "illaoi|senna": 1,
     "illaoi|teemo": 115,
@@ -168,7 +168,7 @@
     "teemo|thresh": 39,
     "teemo|vi": 28,
     "teemo|warwick": 12,
-    "teemo|yasuo": 345,
+    "teemo|yasuo": 346,
     "thresh|vi": 19,
     "thresh|warwick": 47,
     "thresh|yasuo": 86,
@@ -732,9 +732,9 @@
       "vi": 1
     },
     "bongobill": {
-      "braum": 46,
+      "braum": 47,
       "darius": 1,
-      "illaoi": 46,
+      "illaoi": 47,
       "thresh": 1
     },
     "bontyu5": {
@@ -1262,8 +1262,8 @@
       "illaoi": 3
     },
     "desktheory": {
-      "ahri": 2,
-      "caitlyn": 2
+      "ahri": 3,
+      "caitlyn": 3
     },
     "detz": {
       "darius": 1,
@@ -1401,9 +1401,9 @@
     },
     "doropon": {
       "akali": 30,
-      "blitzcrank": 1,
+      "blitzcrank": 2,
       "braum": 3,
-      "caitlyn": 31,
+      "caitlyn": 32,
       "darius": 4,
       "ekko": 9,
       "vi": 1,
@@ -2839,9 +2839,9 @@
     "jordana": {
       "akali": 1,
       "illaoi": 1,
-      "teemo": 33,
+      "teemo": 34,
       "vi": 1,
-      "yasuo": 32
+      "yasuo": 33
     },
     "josch": {
       "braum": 5,
@@ -3335,14 +3335,14 @@
     },
     "leffen": {
       "ahri": 36,
-      "akali": 61,
+      "akali": 63,
       "blitzcrank": 2,
       "braum": 3,
       "caitlyn": 24,
-      "ekko": 148,
+      "ekko": 149,
       "jinx": 11,
       "senna": 3,
-      "teemo": 166,
+      "teemo": 167,
       "thresh": 25,
       "vi": 8,
       "warwick": 28,
@@ -3783,6 +3783,10 @@
       "senna": 1,
       "yasuo": 1
     },
+    "mebebonk": {
+      "ekko": 1,
+      "warwick": 1
+    },
     "mega20xx": {
       "ekko": 1,
       "vi": 1
@@ -3920,8 +3924,8 @@
       "teemo": 1
     },
     "monyman": {
-      "ekko": 11,
-      "yasuo": 11
+      "ekko": 12,
+      "yasuo": 12
     },
     "morning": {
       "thresh": 1,
@@ -4405,8 +4409,8 @@
       "yasuo": 6
     },
     "otanick": {
-      "blitzcrank": 27,
-      "darius": 22,
+      "blitzcrank": 28,
+      "darius": 23,
       "ekko": 2,
       "illaoi": 6,
       "teemo": 1,
@@ -5254,8 +5258,8 @@
     },
     "senshii": {
       "braum": 1,
-      "ekko": 71,
-      "illaoi": 37,
+      "ekko": 72,
+      "illaoi": 38,
       "senna": 32,
       "yasuo": 1
     },
@@ -5312,8 +5316,8 @@
       "ekko": 1
     },
     "shibaisdry": {
-      "ekko": 3,
-      "vi": 3
+      "ekko": 4,
+      "vi": 4
     },
     "shiftedfn": {
       "ahri": 13,
@@ -5402,14 +5406,14 @@
       "yasuo": 4
     },
     "slauw": {
-      "ahri": 6,
+      "ahri": 7,
       "blitzcrank": 2,
       "ekko": 3,
       "illaoi": 1,
       "jinx": 6,
       "vi": 3,
       "warwick": 1,
-      "yasuo": 4
+      "yasuo": 5
     },
     "sleepygoose": {
       "ekko": 1,
@@ -5540,9 +5544,9 @@
       "ahri": 123,
       "akali": 16,
       "blitzcrank": 2,
-      "caitlyn": 10,
+      "caitlyn": 11,
       "darius": 1,
-      "ekko": 139,
+      "ekko": 140,
       "illaoi": 1,
       "senna": 1,
       "teemo": 1,
@@ -6392,8 +6396,8 @@
       "jinx": 2
     },
     "windzero7": {
-      "blitzcrank": 171,
-      "darius": 158,
+      "blitzcrank": 172,
+      "darius": 159,
       "thresh": 13
     },
     "windzero7celestial": {
@@ -7231,7 +7235,7 @@
       "teemo|vi": 1
     },
     "bongobill": {
-      "braum|illaoi": 45,
+      "braum|illaoi": 46,
       "braum|thresh": 1,
       "darius|illaoi": 1
     },
@@ -7652,7 +7656,7 @@
       "darius|illaoi": 3
     },
     "desktheory": {
-      "ahri|caitlyn": 2
+      "ahri|caitlyn": 3
     },
     "detz": {
       "darius|warwick": 1
@@ -7770,6 +7774,7 @@
     "doropon": {
       "akali|blitzcrank": 1,
       "akali|caitlyn": 29,
+      "blitzcrank|caitlyn": 1,
       "braum|caitlyn": 1,
       "braum|ekko": 1,
       "braum|vi": 1,
@@ -8956,7 +8961,7 @@
     "jordana": {
       "akali|teemo": 1,
       "illaoi|vi": 1,
-      "teemo|yasuo": 32
+      "teemo|yasuo": 33
     },
     "josch": {
       "braum|ekko": 5,
@@ -9357,8 +9362,8 @@
       "ahri|thresh": 4,
       "ahri|vi": 1,
       "ahri|yasuo": 2,
-      "akali|ekko": 4,
-      "akali|teemo": 56,
+      "akali|ekko": 5,
+      "akali|teemo": 57,
       "blitzcrank|ekko": 1,
       "blitzcrank|yasuo": 1,
       "braum|vi": 1,
@@ -9725,6 +9730,9 @@
       "caitlyn|senna": 1,
       "ekko|yasuo": 1
     },
+    "mebebonk": {
+      "ekko|warwick": 1
+    },
     "mega20xx": {
       "ekko|vi": 1
     },
@@ -9831,7 +9839,7 @@
       "braum|teemo": 1
     },
     "monyman": {
-      "ekko|yasuo": 11
+      "ekko|yasuo": 12
     },
     "morning": {
       "thresh|vi": 1
@@ -10219,7 +10227,7 @@
       "ekko|yasuo": 6
     },
     "otanick": {
-      "blitzcrank|darius": 19,
+      "blitzcrank|darius": 20,
       "blitzcrank|ekko": 1,
       "blitzcrank|illaoi": 5,
       "blitzcrank|thresh": 2,
@@ -10886,7 +10894,7 @@
     },
     "senshii": {
       "braum|ekko": 1,
-      "ekko|illaoi": 37,
+      "ekko|illaoi": 38,
       "ekko|senna": 32,
       "ekko|yasuo": 1
     },
@@ -10930,7 +10938,7 @@
       "blitzcrank|ekko": 1
     },
     "shibaisdry": {
-      "ekko|vi": 3
+      "ekko|vi": 4
     },
     "shiftedfn": {
       "ahri|caitlyn": 12,
@@ -11001,7 +11009,7 @@
       "ahri|illaoi": 1,
       "ahri|jinx": 1,
       "ahri|vi": 1,
-      "ahri|yasuo": 3,
+      "ahri|yasuo": 4,
       "blitzcrank|ekko": 1,
       "blitzcrank|jinx": 1,
       "ekko|jinx": 1,
@@ -11128,7 +11136,7 @@
       "akali|ekko": 5,
       "akali|illaoi": 1,
       "blitzcrank|thresh": 1,
-      "caitlyn|ekko": 7,
+      "caitlyn|ekko": 8,
       "caitlyn|teemo": 1,
       "caitlyn|yasuo": 2,
       "ekko|thresh": 12,
@@ -11850,7 +11858,7 @@
       "blitzcrank|jinx": 2
     },
     "windzero7": {
-      "blitzcrank|darius": 158,
+      "blitzcrank|darius": 159,
       "blitzcrank|thresh": 13
     },
     "windzero7celestial": {
@@ -12361,6 +12369,7 @@
       "akali|teemo": 5,
       "akali|vi": 1,
       "blitzcrank|braum": 1,
+      "blitzcrank|caitlyn": 1,
       "blitzcrank|darius": 11,
       "blitzcrank|illaoi": 1,
       "blitzcrank|jinx": 1,
@@ -12898,7 +12907,7 @@
       "darius|teemo": 1,
       "darius|vi": 3,
       "darius|yasuo": 4,
-      "ekko|illaoi": 18,
+      "ekko|illaoi": 19,
       "ekko|jinx": 4,
       "ekko|senna": 2,
       "ekko|teemo": 5,
@@ -13046,7 +13055,7 @@
       "akali|vi": 5,
       "akali|warwick": 1,
       "akali|yasuo": 3,
-      "blitzcrank|darius": 2,
+      "blitzcrank|darius": 3,
       "braum|darius": 5,
       "braum|illaoi": 2,
       "braum|vi": 1,
@@ -13189,7 +13198,7 @@
       "ekko|teemo": 4,
       "ekko|thresh": 1,
       "ekko|vi": 3,
-      "ekko|warwick": 1,
+      "ekko|warwick": 2,
       "ekko|yasuo": 1,
       "illaoi|jinx": 1,
       "illaoi|teemo": 2,
@@ -13339,6 +13348,7 @@
     },
     "blitzcrank|caitlyn": {
       "ahri|blitzcrank": 3,
+      "ahri|caitlyn": 1,
       "ahri|ekko": 1,
       "ahri|senna": 1,
       "ekko|jinx": 1,
@@ -13364,7 +13374,7 @@
       "ahri|yasuo": 5,
       "akali|braum": 1,
       "akali|caitlyn": 2,
-      "akali|ekko": 2,
+      "akali|ekko": 3,
       "akali|jinx": 1,
       "akali|teemo": 2,
       "akali|vi": 3,
@@ -13418,7 +13428,7 @@
       "jinx|yasuo": 4,
       "senna|yasuo": 3,
       "teemo|vi": 3,
-      "teemo|yasuo": 3,
+      "teemo|yasuo": 4,
       "thresh|vi": 1,
       "thresh|yasuo": 4,
       "vi|warwick": 1,
@@ -13922,7 +13932,7 @@
       "ekko|jinx": 1,
       "ekko|senna": 1,
       "ekko|teemo": 2,
-      "ekko|vi": 1,
+      "ekko|vi": 2,
       "ekko|yasuo": 3,
       "illaoi|thresh": 1,
       "illaoi|yasuo": 2,
@@ -14174,7 +14184,7 @@
       "ekko|illaoi": 2,
       "ekko|vi": 4,
       "ekko|warwick": 1,
-      "ekko|yasuo": 7,
+      "ekko|yasuo": 8,
       "illaoi|vi": 3,
       "illaoi|warwick": 1,
       "jinx|yasuo": 1,
@@ -14732,7 +14742,7 @@
       "ahri|thresh": 14,
       "ahri|vi": 25,
       "ahri|warwick": 2,
-      "ahri|yasuo": 18,
+      "ahri|yasuo": 19,
       "akali|blitzcrank": 3,
       "akali|caitlyn": 8,
       "akali|ekko": 1,
@@ -15036,7 +15046,7 @@
       "braum|caitlyn": 2,
       "braum|darius": 11,
       "braum|ekko": 7,
-      "braum|illaoi": 1,
+      "braum|illaoi": 2,
       "braum|teemo": 1,
       "braum|vi": 3,
       "braum|warwick": 4,
@@ -15091,7 +15101,7 @@
       "akali|caitlyn": 2,
       "akali|darius": 1,
       "akali|jinx": 1,
-      "akali|teemo": 1,
+      "akali|teemo": 2,
       "blitzcrank|braum": 4,
       "blitzcrank|darius": 3,
       "blitzcrank|ekko": 1,
@@ -15175,7 +15185,7 @@
       "braum|vi": 8,
       "braum|warwick": 7,
       "caitlyn|darius": 4,
-      "caitlyn|ekko": 7,
+      "caitlyn|ekko": 8,
       "caitlyn|illaoi": 2,
       "caitlyn|jinx": 2,
       "caitlyn|teemo": 6,
@@ -15884,7 +15894,7 @@
       "akali|senna": 2,
       "akali|teemo": 1,
       "blitzcrank|braum": 3,
-      "blitzcrank|darius": 3,
+      "blitzcrank|darius": 4,
       "blitzcrank|ekko": 1,
       "blitzcrank|illaoi": 3,
       "blitzcrank|teemo": 1,

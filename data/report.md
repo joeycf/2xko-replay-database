@@ -1,25 +1,26 @@
 # 2XKO replay parse report
 
-_Generated 2026-08-31T14:01:24.213Z._
+_Generated 2026-09-01T18:40:26.856Z._
 
 ## Summary
-- Total videos: **6549**
-- High confidence: **6522**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.6%** · fuse: **99.8%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **631**
+- Total videos: **6556**
+- High confidence: **6528**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **2**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.6%** · fuse: **99.7%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **634**
+- Replay Theater entries **skipped as already-known**: **10** of 898 (existing ids win, by ignoring)
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2485 | fetched |
-| `highLevel` | 1828 | fetched |
+| `bestReplays` | 2489 | fetched |
+| `highLevel` | 1831 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
-| `replayTheater` | 888 | carried (local-first, no dump this run) |
+| `replayTheater` | 888 | rebuilt add-only from a full sweep |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6549** | |
+| **Σ** | **6556** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -28,14 +29,53 @@ _Not fetched. Their committed records are carried forward and still receive fuse
 |---|---|---|---|
 | `proReplays` | 1317 | 2026-08-08 | channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue |
 
-## Local-first sources (1)
-_Deliberately outside the daily cron: a third party's uptime is not a cron dependency. Refreshed by hand, and carried from the committed catalogue on every run without a dump — which is every cron run._
+## Index intakes (1)
+_Fetched by the daily cron since 2026-08-31, and **add-only**: a committed record is carried whether or not the catalogue still lists it, so this count can only rise. The cron does not depend on the pull succeeding — on any failure there is no dump, the committed records are carried, and the run stays green._
 
-**Guard posture, stated rather than assumed.** The channel-collapse guard is ASLEEP for these on a carrying run: it compares raw/ against the catalogue, and there is no raw/ to compare. The count pin in `data/source-pins.json` is what is awake, and it is strictly stronger — it demands an exact number where the collapse guard only demands "not much smaller".
+**Guard posture, stated rather than assumed.** The channel-collapse guard is ASLEEP for these: its dump is a cursor DELTA, so comparing it against the committed catalogue would fire every morning. What is awake instead is the add-only merge, which makes the published count non-decreasing by construction, and the pin in `data/source-pins.json`, which now refuses to move DOWNWARD without `--allow-shrink`.
 
-| source | records | pin now | this run | newest record |
-|---|---|---|---|---|
-| `replayTheater` | 888 | 888 | carried (no dump) | 2026-07-31 |
+| source | records | pin now | this run | pages | new | not in this pull | newest record |
+|---|---|---|---|---|---|---|---|
+| `replayTheater` | 888 | 888 | rebuilt from a full sweep | 2 | 888 | 0 | 2026-07-31 |
+
+_Skipped as already-known (10): 10 in videos.json. Existing ids win, by ignoring — an id this repo has already ruled on, in any capacity, does not re-enter through a side door._
+
+## Replay Theater cross-check
+
+An independent reading of **2433** of our own records, from the catalogue's
+UNTAGGED entries — online replays it indexes that we also parse from a tracked
+channel. Neither side saw the other, so this is the only accuracy number here the
+pipeline did not produce about itself. It changes nothing: a disagreement is
+recorded in `data/theater-disagreements.json` with both claims, never written into
+a record. The catalogue does not outrank a confident parse and never outranks a
+human override.
+
+_Measured this run against a full pull. 300 catalogue entr(ies) point at videos_
+_we do not hold; 0 are VODs the catalogue segments, which the intake owns;_
+_0 point at a record of ours with no two sides to align._
+
+| field | population | agree | partial | disagree | cannot witness |
+|---|---|---|---|---|---|
+| players (both handles) | 2433 | 2423 (99.59%) | 10 | 0 | — |
+| champions (per side) | 4866 | 4860 (99.88%) | 0 | 6 (0.12%) | 0 |
+
+Side order differed on **2** record(s); the comparison realigns on the
+handles before reading champions, so a swapped pair is not counted twice as a
+champion disagreement.
+
+**Cannot witness** is not disagreement: the index caps a 2XKO side at two champions
+and cannot express a within-set counter-pick, and a champion string its vocabulary
+spells differently from ours resolves to nothing. Neither is the catalogue
+contradicting us — it is the catalogue being unable to say what we said.
+
+**6 disagreement(s)** — both claims, ours first:
+
+- `mvKlmuoEJ8c` side 1 characters: **thresh, caitlyn** vs catalogue **blitzcrank, vi** — 2XKO ▰ Panunu (Braum / Blitzcrank) vs Romerulez + C. Embers (Thresh / 
+- `TPGD4QiJOa0` side 1 characters: **akali, vi** vs catalogue **yasuo, vi** — 2XKO ▰ SoulDemonXL (Thresh / Ekko) vs DizzyMX (Akali / Vi) ▰ High Leve
+- `AdQJJn0O17M` side 1 characters: **vi, ahri** vs catalogue **teemo, ahri** — 2XKO ▰ Bleed (Illaoi / Ekko) vs Hikari (Vi / Ahri) ▰ High Level Gamepl
+- `aFWFnakjcMM` side 0 characters: **teemo, darius** vs catalogue **yasuo, teemo** — 2XKO ▰ GENISGOD (Teemo-Darius) vs MRZEIM (Caitlyn-Vi) ▰ 2XKO Pro level
+- `VjA1VOogCog` side 1 characters: **(none)** vs catalogue **braum, blitzcrank** — 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro l
+- `8_JJkHTB-UA` side 0 characters: **(none)** vs catalogue **yasuo, darius** — 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level r
 
 ## Manual videos (10)
 _Hand-authored in `data/manual-videos.json` — never parse failures. Entries with an open `todo` need data filled in._
@@ -53,9 +93,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (17)
+## Low-confidence records (18)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `KGURPriuuoE` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ D.Dinosaur ( Warwick ) vs pMoney+pMoneyjr (Thresh / Blitzcrank) ▰ High Level Gameplay |
 | `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
 | `BwYfw_m17Hk` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Lumen (Akali / Yasuo) ▰ High Level Gameplay |
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
@@ -72,11 +113,12 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VjA1VOogCog` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
 | `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
-| `KtljpBCtoko@4191` | replayTheater | carried from a local-first source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
+| `KtljpBCtoko@4191` | replayTheater | unresolved champion(s): Juggernaut Illaoi | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (1)
+## Newly discovered players (2)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
 | `ddinosaur` | D.Dinosaur | 1 | d.dinosaur |
+| `mebebonk` | MEBEBONK | 1 | mebebonk |

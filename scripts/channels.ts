@@ -74,21 +74,31 @@ export interface ChannelConfig {
   /** This source is an external INDEX rather than a YouTube channel — see
    *  ChannelIndex. It is pulled by its own fetcher, not by data:fetch. */
   index?: ChannelIndex;
-  /** LOCAL-FIRST: this source is deliberately NOT part of the daily cron.
+  /** CRON-FETCHED, WITH A CARRY FALLBACK.
    *
-   *  raw/ is gitignored and the cron fetches remotely, in one process, so a cron
-   *  run has no dump for a source only ever fetched by hand. Without this flag
-   *  parse would exit 1 there (missing dump) or, worse, drop every one of its
-   *  records. So when the dump is ABSENT its committed records are CARRIED, the
-   *  same mechanism a frozen channel uses; when the dump is PRESENT (a local
-   *  refresh) they are rebuilt from it.
+   *  This flag was called `localFirst` until 2026-08-31 and meant the opposite:
+   *  the source was deliberately kept OUT of the daily cron, because a third
+   *  party's uptime and goodwill should not become a cron dependency on day one
+   *  of an integration. It is in the cron now, so the name was changed rather
+   *  than left to lie — a flag whose name states a policy the code no longer
+   *  follows is worse than no flag.
+   *
+   *  raw/ is gitignored and the cron fetches remotely, in one process, so a run
+   *  whose fetch failed has no dump. Without this flag parse would exit 1 there
+   *  (missing dump) or, worse, drop every one of its records. So when the dump
+   *  is ABSENT — or present and EMPTY — its committed records are CARRIED, the
+   *  same mechanism a frozen channel uses; when the dump has content they are
+   *  rebuilt from it and merged ADD-ONLY over the committed set. That carry is
+   *  no longer the ordinary state, but it is the designed failure state, and it
+   *  is the whole of "the cron never depends on this pull succeeding".
    *
    *  The carry needs a pin for the same reason frozen does — data/videos.json is
    *  both source and target, so a bad run would poison the next one's baseline.
    *  It cannot be a constant here the way frozen.records is, because this source
-   *  GROWS: it lives in data/source-pins.json, written by the local fetch and
-   *  asserted by every parse. */
-  localFirst?: boolean;
+   *  GROWS: it lives in data/source-pins.json, rewritten by every rebuilding run
+   *  and asserted by every carrying one. Since most runs now rebuild, the pin
+   *  also refuses to move DOWNWARD without --allow-shrink — see parse.ts. */
+  cronFetchedWithCarry?: boolean;
   /** This channel no longer publishes this game. It is NOT fetched, requires no
    *  raw dump, and its committed records are carried forward by parse.ts — see
    *  the channel-collapse guard there for why deleting them was the alternative.
@@ -238,7 +248,7 @@ export const CHANNELS: Record<ChannelKey, ChannelConfig> = {
       pageSize: 50,
       pacingMs: 1200,
     },
-    localFirst: true,
+    cronFetchedWithCarry: true,
     // Reference only, like every entry here — but unlike the channels above, THIS
     // one is actually used: the theater parser splits structured `p1_name` /
     // `p2_name` fields, not a title, so "/" is unambiguous here in a way it can

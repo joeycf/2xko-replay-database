@@ -13880,5 +13880,15 @@
         "d.dinosaur"
       ]
     }
+  },
+  {
+    "id": "mebebonk",
+    "handle": "MEBEBONK",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "mebebonk"
+      ]
+    }
   }
 ]
