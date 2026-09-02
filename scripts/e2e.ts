@@ -21,7 +21,15 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { CHANNELS } from './channels';
 import { staleEvidence } from './freshness';
-import type { Champion, ChannelKey, Fuse, RawVideoRecord, VideoRecord } from '../types/index';
+import { diffTwoXko, fatal, type Finding, type RiotItem } from './patch-check';
+import type {
+  Champion,
+  ChannelKey,
+  Fuse,
+  PatchBoundary,
+  RawVideoRecord,
+  VideoRecord,
+} from '../types/index';
 
 /** Buy Me a Coffee URL — must match the engine's SiteFooter.vue. */
 const BMC_URL = 'https://buymeacoffee.com/whatdaflip';
@@ -1339,6 +1347,221 @@ async function testStaleGuard(): Promise<void> {
   });
 }
 
+// (g) the patch-table checker: its rules, driven offline on a synthetic listing
+/** POSITIVE CONTROLS for scripts/patch-check.ts.
+ *
+ *  The checker is network, manual, never in the cron, so nothing else in the
+ *  repo exercises it — and its failure mode is a "current" it did not earn.
+ *  These drive the exported diff directly with a hand-built listing, never the
+ *  live page (a fixture asserted equal to the committed table would break on
+ *  every legitimate patch), and assert the RULES one control each: the body's
+ *  release phrase beats publishedAt; publishedAt tolerates a day either side; a
+ *  hotfix matches its parent row's includes by month/day or by version token;
+ *  a blurb folds only its own sub-versions; every drift direction fires; an
+ *  unreadable title throws.
+ *
+ *  Base-vs-hotfix is decided by publication order, never by the table's start,
+ *  which is what keeps a typo'd date diagnosed as a date (control 7). */
+async function testPatchCheck(): Promise<void> {
+  const post = (
+    title: string,
+    publishedAt: string,
+    body = '',
+    tags: string[] = ['patch_notes'],
+    url = `/en-us/news/game-updates/${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`,
+  ): RiotItem => ({ title, publishedAt, url, tags, body });
+
+  // the listing as the page model carries it. Riot posts the evening before,
+  // so publishedAt runs a day early throughout.
+  const items: RiotItem[] = [
+    post('2XKO Patch Notes 1.0.3 (Nov 18, 2025)', '2025-11-17T23:00:00Z', 'Balance changes.'),
+    post('2XKO Patch 1.0.3 Hotfix (Dec 1, 2025)', '2025-12-01T21:00:00Z', 'Fixes a crash.'),
+    // untagged: the title alone must make it a patch post (1.1.5 Apr 28, 1.0.1.2 Nov 4)
+    post('2XKO 1.0.3 Hotfix (Dec 9, 2025)', '2025-12-09T22:30:00Z', '', []),
+    // the title's parenthetical is the announcement day; only the body is right
+    post(
+      '2XKO Patch Notes 1.2.1 (May 11, 2026)',
+      '2026-05-10T23:30:00Z',
+      'Patch 1.2.1 drops May 12 with the new Fuse.',
+    ),
+    post(
+      '2XKO Patch Notes 1.2.3 (Jun 9, 2026)',
+      '2026-06-08T23:00:00Z',
+      'Senna and Thresh arrive.',
+    ),
+    post(
+      '2XKO Patch Notes 1.2.3b (Jul 8, 2026)',
+      '2026-07-07T23:00:00Z',
+      'Targeted balance changes.',
+    ),
+    post(
+      '2XKO Patch Notes 1.2.5 (Jul 22, 2026)',
+      '2026-07-22T22:00:00Z',
+      'Patch 1.2.5 drops July 23.',
+    ),
+    // a YouTube card with a patch-shaped title and no version: the url filter
+    // must drop it (the title would otherwise throw), and it is the newest
+    // item, so it dates the feed
+    post(
+      '2XKO Patch Notes Breakdown',
+      '2026-08-15T18:00:00Z',
+      'Video.',
+      [],
+      'https://www.youtube.com/watch?v=abc123',
+    ),
+  ];
+  const table: PatchBoundary[] = [
+    { version: '1.0.3', start: '2025-11-18', includes: ['Dec 1 hotfix', 'Dec 9 hotfix'] },
+    { version: '1.2.1', start: '2026-05-12' },
+    { version: '1.2.3', start: '2026-06-09', includes: ['1.2.3b (Jul 8)'] },
+    { version: '1.2.5', start: '2026-07-23' },
+  ];
+  // eight items is far under the real floors, which exist to catch a truncated page
+  const opts = { floors: { items: 1, patchItems: 1 }, now: new Date('2026-09-01T00:00:00Z') };
+  const drift = (t: PatchBoundary[], i: RiotItem[] = items): Finding[] =>
+    diffTwoXko(t, i, opts).findings.filter(fatal);
+  /** exactly one fatal finding, of this glyph, about this version */
+  const only = (
+    t: PatchBoundary[],
+    glyph: Finding['glyph'],
+    about: string,
+    i: RiotItem[] = items,
+  ): Finding => {
+    const d = drift(t, i);
+    expect(
+      d.length === 1 && d[0]!.glyph === glyph && d[0]!.about === about,
+      `expected exactly "${glyph} ${about}", got ${JSON.stringify(d.map((f) => `${f.glyph} ${f.about}`))}`,
+    );
+    return d[0]!;
+  };
+  const without = (version: string) => table.filter((r) => r.version !== version);
+  const edit = (version: string, patch: Partial<PatchBoundary>) =>
+    table.map((r) => (r.version === version ? { ...r, ...patch } : r));
+
+  // 1. CLEAN — every rule on its happy path at once: 1.2.1 and 1.2.5 by the
+  //    body's phrase, 1.0.3 and 1.2.3 by publishedAt tolerance, both hotfixes
+  //    by month/day, 1.2.3b folded by the includes token, the YouTube card
+  //    filtered, the feed dated by it.
+  await test('patch-check: a listing the table records is current', () => {
+    const { findings, summary } = diffTwoXko(table, items, opts);
+    const fatals = findings.filter(fatal);
+    expect(fatals.length === 0, `drift on a clean fixture: ${JSON.stringify(fatals)}`);
+    expect(
+      findings.every((f) => f.about === 'feed'),
+      `an includes string went unmatched: ${JSON.stringify(findings.map((f) => f.text))}`,
+    );
+    expect(
+      summary.patchItems === 7 && summary.versions === 5,
+      `census must be 7 patch posts over 5 versions, got ${JSON.stringify(summary)}`,
+    );
+    expect(
+      summary.newestPost.startsWith('2026-08-15'),
+      `feed age must come from every item, not just patch posts — got ${summary.newestPost}`,
+    );
+  });
+
+  // 2. THE PHRASE WINS. 1.2.1's title says May 11, publishedAt is May 10, the
+  //    body says May 12. A table saying May 11 sits inside the ±1 tolerance
+  //    and is still wrong; only the phrase can say so.
+  await test("patch-check: the body's release phrase beats publishedAt (~)", () => {
+    const f = only(edit('1.2.1', { start: '2026-05-11' }), '~', '1.2.1');
+    expect(f.text.includes('2026-05-12'), `must name the post's date: ${f.text}`);
+  });
+
+  // 3. UNRECORDED HOTFIX — the table's own rule is "record them in includes".
+  await test('patch-check: a hotfix missing from the parent row is ⚠, with the string to add', () => {
+    const f = only(edit('1.0.3', { includes: ['Dec 1 hotfix'] }), '⚠', '1.0.3');
+    expect(f.text.includes('add "Dec 9 hotfix"'), `must print the includes string: ${f.text}`);
+  });
+
+  // 4. THE TOKEN FOLD. 1.2.3b has no row and matches the token in "1.2.3b (Jul
+  //    8)"; take that away and it is a new version, with the row-or-includes
+  //    call handed to the human.
+  await test('patch-check: a letter-suffixed post folds by token, else + with the fold hint', () => {
+    const f = only(edit('1.2.3', { includes: undefined }), '+', '1.2.3b');
+    expect(f.text.includes("fold into 1.2.3's includes"), `must name the parent: ${f.text}`);
+  });
+
+  // 4b. A SECOND POST ON A FOLDED VERSION. 1.2.3b's own token is not evidence
+  //     (every later 1.2.3b post carries it), so a later 1.2.3b hotfix the row
+  //     does not list is ⚠ like any other.
+  await test('patch-check: a later post on a folded version is ⚠ when unrecorded', () => {
+    const later = post(
+      '2XKO Hotfix: 1.2.3b (Jul 15, 2026)',
+      '2026-07-15T21:00:00Z',
+      'Another fix.',
+      [],
+    );
+    const f = only(table, '⚠', '1.2.3', [...items, later]);
+    expect(f.text.includes('add "Jul 15 hotfix"'), `must print the includes string: ${f.text}`);
+  });
+
+  // 4c. THE BODY FOLD IS FOR SUB-VERSIONS ONLY. A blurb naming its own 1.2.5.1
+  //     folds it (1.0.1's names 1.0.1.1); the same blurb naming the next patch
+  //     must not swallow that patch's row.
+  await test('patch-check: a blurb folds its own sub-version, never the next patch', () => {
+    const blurb =
+      'Patch 1.2.5 drops July 23. Read about 1.2.5 and 1.2.5.1; act 3 arrives with 1.3.1.';
+    const listing = [
+      ...items.map((it) => (it.title.includes('1.2.5') ? { ...it, body: blurb } : it)),
+      post('2XKO Hotfix: 1.2.5.1 (Jul 30, 2026)', '2026-07-30T21:00:00Z', 'A fix.', []),
+      post(
+        '2XKO Patch Notes 1.3.1 (Aug 12, 2026)',
+        '2026-08-11T22:00:00Z',
+        'Patch 1.3.1 drops August 12.',
+      ),
+    ];
+    only(table, '+', '1.3.1', listing);
+  });
+
+  // 5. MISSING ROW — the paste-ready row carries the phrase date, not publishedAt.
+  await test('patch-check: a post with no row is + with a paste-ready row', () => {
+    const f = only(without('1.2.5'), '+', '1.2.5');
+    expect(
+      f.text.includes('{ "version": "1.2.5", "start": "2026-07-23" }'),
+      `must print the row with the body's date: ${f.text}`,
+    );
+  });
+
+  // 6. INVENTED ROW. Riot skips numbers, so a row with no post is the finding;
+  //    a todo row is authored ahead and is not.
+  await test('patch-check: a row with no post is -, unless it carries todo', () => {
+    const row: PatchBoundary = { version: '1.2.4', start: '2026-07-01' };
+    only([...table, row], '-', '1.2.4');
+    expect(
+      drift([...table, { ...row, todo: 'unconfirmed' }]).length === 0,
+      'a todo row was read as invented',
+    );
+  });
+
+  // 7. A TYPO'D START. A wrong 1.0.3 date is a wrong date — not its base
+  //    article misread as an unrecorded Nov 18 hotfix, and not a + for a row
+  //    that exists.
+  await test("patch-check: a typo'd start is ~, not a phantom hotfix", () => {
+    only(edit('1.0.3', { start: '2025-11-08' }), '~', '1.0.3');
+  });
+
+  // 8. UNREADABLE. A patch-titled post with no version is a hard failure, and
+  //    so is a listing under the floors: neither may print a tick.
+  await test('patch-check: an unreadable patch title throws; so does a feed under the floors', () => {
+    const bad = post('2XKO Patch Notes: (no version)', '2026-08-20T00:00:00Z');
+    let threw = '';
+    try {
+      diffTwoXko(table, [...items, bad], opts);
+    } catch (err) {
+      threw = (err as Error).message;
+    }
+    expect(threw.includes('no version'), `expected a throw naming the title, got "${threw}"`);
+    let floor = '';
+    try {
+      diffTwoXko(table, items); // the real floors
+    } catch (err) {
+      floor = (err as Error).message;
+    }
+    expect(floor.includes('floor'), `expected the floor to throw, got "${floor}"`);
+  });
+}
+
 function testCronGuard(): Promise<void> {
   return test('cron guard: timestamp-only run skips, real change commits', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cron-guard-'));
@@ -1498,6 +1721,7 @@ const browser = await chromium.launch({
 try {
   await run(browser, at);
   await testStaleGuard();
+  await testPatchCheck();
   await testCronGuard();
 } finally {
   await browser.close();

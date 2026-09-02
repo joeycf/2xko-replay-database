@@ -13,6 +13,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import type { Champion } from '../types/index';
+import { UA, blades, fetchText, nextData } from './riot-site';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -20,8 +21,6 @@ const DATA = join(ROOT, 'data');
 const IMG_DIR = join(ROOT, 'public', 'img', 'champions');
 const TOKENS = join(ROOT, 'design', 'handoff', 'tokens.css');
 const SITE = 'https://2xko.riotgames.com/en-us/champions';
-const UA =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36';
 const FORCE = process.argv.includes('--force') || process.env.FORCE === '1';
 const PORTRAIT_W = 780;
 const SPLASH_W = 1600;
@@ -31,29 +30,6 @@ const exists = (p: string) =>
   access(p)
     .then(() => true)
     .catch(() => false);
-
-async function fetchText(url: string, tries = 4): Promise<string> {
-  for (let i = 1; i <= tries; i++) {
-    try {
-      const res = await fetch(url, { headers: { 'user-agent': UA } });
-      if (res.ok) return await res.text();
-      if (res.status < 500 && res.status !== 429) throw new Error(`HTTP ${res.status} for ${url}`);
-    } catch (err) {
-      if (i === tries) throw err;
-    }
-    await sleep(400 * i);
-  }
-  throw new Error(`unreachable: ${url}`);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function nextData(html: string): any {
-  const m = html.match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
-  if (!m) throw new Error('no __NEXT_DATA__ block');
-  return JSON.parse(m[1]);
-}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const blades = (data: any): any[] => data?.props?.pageProps?.page?.blades ?? [];
 
 // Strip any existing query, cap width via the Sanity CDN; sharp re-encodes to webp.
 const sized = (url: string, w: number) => `${url.split('?')[0]}?w=${w}`;

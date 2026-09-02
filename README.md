@@ -105,6 +105,7 @@ Two other env vars matter locally, neither of them secret:
 | `npm run data:theater`                           | Pull the Replay Theater index (tagged 2XKO tournament matches) joined to each source VOD's YouTube metadata → `raw/replayTheater.json`. Runs in the daily cron on a **cursor** (a few pages); `--full` sweeps the whole 71-page catalogue, `--fresh` also discards the resume cache. See "The index source"                                   |
 | `npm run data:build`                             | fetch + parse                                                                                                                                                                                                                                                                                                                                 |
 | `npm run data:champions`                         | Champion art + accents (portraits, splash 1600w + 800w, token accents) → `public/img/champions/`, `data/characters.json`                                                                                                                                                                                                                      |
+| `npm run data:patch-check`                       | **Network, manual, never in the cron** — diffs `data/patchBoundaries.json` against Riot's game-updates page (the page model, every post). `+ ~ - ⚠` lines exit 1; a Riot outage prints `⚠ NOT verified` and exits 0; the last line is always `patch-check: CURRENT / DRIFT / UNVERIFIED / UNREADABLE`. See "Patch-table runbook"              |
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                                     |
 | `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                            |
 | `npm run data:refresh-all`                       | **Local-only** one-shot full refresh: `data:build` → `data:fuses` → `data:parse` → `data:fuse-gaps`, then a single commit (**never pushes**). Enforces the stage order below and the cron's `report.md` guard. `--check` runs preflight only; `--skip-fuses`, `--limit N`, `--sleep MIN-MAX`, `--no-commit` also available (`--help` for all) |
@@ -676,6 +677,36 @@ and the gate permits writes as coverage grows.
 > ever worth taking, it is taken deliberately: a re-validation session over the
 > full 5,415 with the widened set, every disagreement adjudicated, and a new
 > published figure.
+
+## Patch-table runbook
+
+Fires when `npm run data:patch-check` reports drift, or when a patch ships.
+The check is network, manual, never in the cron: it reads Riot's game-updates
+page (`scripts/patch-check.ts` says why the embedded page model and never the
+DOM) and diffs it against `data/patchBoundaries.json`. `⚠ NOT verified` on a
+Riot outage is not drift and exits 0; every `+ ~ - ⚠` line exits 1; `ⓘ` lines
+are for reading, not fixing.
+
+1. Add the row to `patches` in `data/patchBoundaries.json`, in release order,
+   with the version as Riot's post titles it and `start` as the release day the
+   post's body states ("Patch 1.2.5 drops July 23"). The title's parenthetical
+   and the post's timestamp are often the evening before; the body is the one
+   to trust. A short `note` for a new champion or the headline change; a
+   maintenance patch legitimately has none.
+2. A hotfix never gets a row of its own. Add it to the parent row's `includes`
+   as `"<Mon> <D> hotfix"` or, when Riot gives it a token, the token
+   (`"1.2.3b (Jul 8)"`) — the check prints the string to add. Whether a
+   `1.0.1.x`-style post is a row or an `includes` entry is your call (the table
+   gave 1.0.1.2 a row and folded 1.0.1.1); the check offers both.
+3. A season opener also needs its `data/seasonBoundaries.json` row, opening on
+   the same date — `scripts/patches.ts` validates that, and refuses any row
+   dated in the future unless it carries `todo`.
+4. `npm run data:parse`, then commit. `patchVersion` is stored on each record at
+   parse time, so `data:emit` alone leaves every replay filed as before.
+
+The window is never authored: each patch runs until the next one starts, then
+to the season boundary. Riot skips version numbers (no 1.0.2, 1.1.4, 1.2.2,
+1.2.4) — never add a row to fill a gap.
 
 ## New-champion runbook
 
