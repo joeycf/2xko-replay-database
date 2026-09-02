@@ -48,6 +48,8 @@ export function buildPatchTable(
   boundaries: PatchBoundary[],
 ): PatchTable {
   const errors: string[] = [];
+  // read per call, not at module load: a long data:parse outlives midnight
+  const today = new Date().toISOString().slice(0, 10);
 
   const seasonForDate = (day: string): number | null => {
     for (const b of seasons) {
@@ -60,6 +62,14 @@ export function buildPatchTable(
   const seen = new Set<string>();
   for (const p of boundaries) {
     if (!ISO_DAY.test(p.start)) errors.push(`${p.version}: start "${p.start}" is not YYYY-MM-DD`);
+    // A typo'd year mints an empty future window: nothing files into it, every
+    // real replay folds into the row above, and the table builds clean. Riot
+    // announces the evening before, so a row added from the announcement can
+    // be refused for a few hours (UTC "today") — a short wait against an error
+    // nothing else can see. `todo` is the authored-ahead marker (types/index.ts)
+    // and an authored-ahead opener is future-dated by definition, so it is exempt.
+    if (p.start > today && !p.todo)
+      errors.push(`${p.version}: starts ${p.start}, which is in the future (today ${today})`);
     if (ERA_TOKEN.test(p.version)) errors.push(`${p.version}: version collides with an era token`);
     if (seen.has(p.version)) errors.push(`${p.version}: duplicate version`);
     seen.add(p.version);
