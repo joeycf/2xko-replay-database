@@ -1,10 +1,10 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-02T19:46:03.670Z._
+_Generated 2026-09-03T01:54:19.018Z._
 
 ## Summary
-- Total videos: **6563**
-- High confidence: **6535**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Total videos: **6564**
+- High confidence: **6536**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.7%** · fuse: **100.0%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **636**
@@ -13,13 +13,13 @@ _Generated 2026-09-02T19:46:03.670Z._
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2494 | fetched |
+| `bestReplays` | 2495 | fetched |
 | `highLevel` | 1833 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6563** | |
+| **Σ** | **6564** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -29,7 +29,7 @@ _Not fetched. Their committed records are carried forward and still receive fuse
 | `proReplays` | 1317 | 2026-08-08 | channel rebranded to MARVEL TOKON and unlisted its 2XKO catalogue |
 
 ## Index intakes (1)
-_Fetched by the daily cron since 2026-08-31, and **add-only**: a committed record is carried whether or not the catalogue still lists it, so this count can only rise. The cron does not depend on the pull succeeding — on any failure there is no dump, the committed records are carried, and the run stays green._
+_Fetched by the daily cron since 2026-09-02, and **add-only**: a committed record is carried whether or not the catalogue still lists it, so this count can only rise. The cron does not depend on the pull succeeding — on any failure there is no dump, the committed records are carried, and the run stays green._
 
 **Guard posture, stated rather than assumed.** The channel-collapse guard is ASLEEP for these: its dump is a cursor DELTA, so comparing it against the committed catalogue would fire every morning. What is awake instead is the add-only merge, which makes the published count non-decreasing by construction, and the pin in `data/source-pins.json`, which now refuses to move DOWNWARD without `--allow-shrink`.
 

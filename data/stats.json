@@ -1,26 +1,26 @@
 {
   "totals": {
-    "replays": 6563,
+    "replays": 6564,
     "characters": 15,
     "players": 1385,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4319
+      "S1": 4320
     },
     "withFuse": 6562
   },
   "characterUsage": {
     "ahri": 2767,
-    "akali": 1006,
+    "akali": 1007,
     "blitzcrank": 1373,
     "braum": 1176,
-    "caitlyn": 851,
+    "caitlyn": 852,
     "darius": 1623,
-    "ekko": 3407,
+    "ekko": 3408,
     "illaoi": 1923,
     "jinx": 1508,
-    "senna": 239,
+    "senna": 240,
     "teemo": 1352,
     "thresh": 648,
     "vi": 1767,
@@ -54,15 +54,15 @@
     },
     "S1": {
       "ahri": 1904,
-      "akali": 1006,
+      "akali": 1007,
       "blitzcrank": 933,
       "braum": 749,
-      "caitlyn": 851,
+      "caitlyn": 852,
       "darius": 1036,
-      "ekko": 2024,
+      "ekko": 2025,
       "illaoi": 1371,
       "jinx": 847,
-      "senna": 239,
+      "senna": 240,
       "teemo": 671,
       "thresh": 648,
       "vi": 1061,
@@ -92,7 +92,7 @@
     "akali|ekko": 131,
     "akali|illaoi": 40,
     "akali|jinx": 123,
-    "akali|senna": 25,
+    "akali|senna": 26,
     "akali|teemo": 75,
     "akali|thresh": 25,
     "akali|vi": 78,
@@ -122,7 +122,7 @@
     "braum|warwick": 58,
     "braum|yasuo": 33,
     "caitlyn|darius": 68,
-    "caitlyn|ekko": 54,
+    "caitlyn|ekko": 55,
     "caitlyn|illaoi": 9,
     "caitlyn|jinx": 19,
     "caitlyn|senna": 11,
@@ -2362,9 +2362,9 @@
       "yasuo": 1
     },
     "huhz": {
-      "akali": 7,
+      "akali": 8,
       "illaoi": 6,
-      "senna": 6,
+      "senna": 7,
       "warwick": 5
     },
     "humanhunt3rr": {
@@ -5545,9 +5545,9 @@
       "ahri": 123,
       "akali": 16,
       "blitzcrank": 2,
-      "caitlyn": 11,
+      "caitlyn": 12,
       "darius": 1,
-      "ekko": 140,
+      "ekko": 141,
       "illaoi": 1,
       "senna": 1,
       "teemo": 1,
@@ -8568,7 +8568,7 @@
     },
     "huhz": {
       "akali|illaoi": 1,
-      "akali|senna": 6,
+      "akali|senna": 7,
       "illaoi|warwick": 5
     },
     "humanhunt3rr": {
@@ -11138,7 +11138,7 @@
       "akali|ekko": 5,
       "akali|illaoi": 1,
       "blitzcrank|thresh": 1,
-      "caitlyn|ekko": 8,
+      "caitlyn|ekko": 9,
       "caitlyn|teemo": 1,
       "caitlyn|yasuo": 2,
       "ekko|thresh": 12,
@@ -13167,6 +13167,7 @@
       "blitzcrank|yasuo": 2,
       "braum|darius": 2,
       "braum|vi": 1,
+      "caitlyn|ekko": 1,
       "caitlyn|senna": 1,
       "darius|warwick": 1,
       "ekko|senna": 1,
@@ -14170,6 +14171,7 @@
       "ahri|braum": 2,
       "ahri|jinx": 2,
       "ahri|vi": 1,
+      "akali|senna": 1,
       "blitzcrank|braum": 1,
       "blitzcrank|darius": 3,
       "blitzcrank|teemo": 1,
