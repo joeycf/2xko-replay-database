@@ -72290,5 +72290,27 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-09-02"
+ },
+ "H5RFWVlsZ4M": {
+  "left": "2x-assist",
+  "right": "double-down",
+  "score": {
+   "left": 1,
+   "right": 7
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-03"
+ },
+ "QHVHcbZrwuA": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 49,
+   "right": 2
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-03"
  }
 }
