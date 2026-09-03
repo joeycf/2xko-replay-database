@@ -21,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { CHANNELS } from './channels';
 import { staleEvidence } from './freshness';
+import { newerThanCursor } from './theater-delta';
 import { diffTwoXko, fatal, type Finding, type RiotItem } from './patch-check';
 import type {
   Champion,
@@ -1294,6 +1295,29 @@ async function testStaleGuard(): Promise<void> {
   // 2. FRESH — equal newest. A re-parse after an overrides change must pass.
   await test('stale-raw: passes when the dump reaches the newest committed record', () => {
     expect(staleEvidence('highLevel', dump, fresh) === null, 'fired on a fresh dump');
+  });
+
+  // ── the cursor delta ──────────────────────────────────────────────────────
+  // `newerThanCursor` is what keeps a quiet morning a CARRY: the tagged dump is
+  // cut from the entries above the committed cursor, not from the whole window
+  // the walk read. Controlled both ways, plus the id-less and full-sweep arms.
+  await test('cursor delta: only entries above the cursor, id-less kept, full sweep untouched', () => {
+    const window: Array<{ id?: number; tag: string }> = [
+      { id: 12, tag: 'evo' },
+      { id: 11, tag: '' },
+      { id: 10, tag: 'evo' },
+      { id: 9, tag: 'evo' },
+      { tag: 'evo' },
+    ];
+    const delta = newerThanCursor(window, true, 10);
+    expect(delta.map((e) => e.id).join(',') === '12,11,', 'kept 12, 11 and the id-less entry');
+    expect(!delta.some((e) => e.id === 10 || e.id === 9), 'dropped the cursor entry and older');
+    expect(newerThanCursor(window, true, 0).length === window.length, 'zero cursor keeps all');
+    expect(newerThanCursor(window, false, 10).length === window.length, 'full sweep keeps all');
+    expect(
+      newerThanCursor(window, true, 12).filter((e) => typeof e.id === 'number').length === 0,
+      'cursor at the newest id yields no numbered entry',
+    );
   });
 
   // 3. AGE ALONE MUST NOT FIRE. Nothing here reads a clock or a filesystem, so a
