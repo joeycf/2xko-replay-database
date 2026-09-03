@@ -1309,7 +1309,7 @@ function buildReport(
   if (indexIntakeKeys.length > 0) {
     lines.push(`## Index intakes (${indexIntakeKeys.length})`);
     lines.push(
-      `_Fetched by the daily cron since 2026-08-31, and **add-only**: a committed record is carried whether or not the catalogue still lists it, so this count can only rise. The cron does not depend on the pull succeeding — on any failure there is no dump, the committed records are carried, and the run stays green._`,
+      `_Fetched by the daily cron since 2026-09-02, and **add-only**: a committed record is carried whether or not the catalogue still lists it, so this count can only rise. The cron does not depend on the pull succeeding — on any failure there is no dump, the committed records are carried, and the run stays green._`,
       ``,
       `**Guard posture, stated rather than assumed.** The channel-collapse guard is ASLEEP for these: its dump is a cursor DELTA, so comparing it against the committed catalogue would fire every morning. What is awake instead is the add-only merge, which makes the published count non-decreasing by construction, and the pin in \`data/source-pins.json\`, which now refuses to move DOWNWARD without \`--allow-shrink\`.`,
       ``,
@@ -1383,7 +1383,7 @@ function buildReport(
         theaterUnreadable
           ? `_\`raw/replayTheater.json\` was present but could not be read, so the committed catalogue was carried and the intake counts were not measured. An unreadable dump is treated as an absent one rather than as a parse failure — the cron does not depend on the index pull succeeding — but unlike a quiet catalogue it is worth looking at: the parse log names the error._`
           : theaterStats
-            ? `_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._`
+            ? `_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. ${cursorMoved ? 'The cursor still advanced — a quiet day is the ordinary case here, not a failed one.' : 'The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary.'}_`
             : `_No pull produced a dump this run, so the committed catalogue was carried and the intake counts were not measured. That is the designed fallback, not a failure of this run: \`npm run data:theater\` refreshes them._`,
         ``,
       );
@@ -1962,6 +1962,13 @@ if (rebuiltThisRun.length > 0) {
 // forever and the cursor only ever moves on the days a tournament happens to be
 // added. The pull happening is what moves the cursor; whether it produced records
 // is a different question.
+// WHETHER THE CURSOR MOVED is a fact the report states, so it is measured
+// rather than assumed: on 2026-09-02 2XKO's cursor stayed at 488405 while its
+// report said it "still advanced".
+const cursorMoved =
+  !!theaterStats &&
+  typeof theaterStats.maxEntryId === 'number' &&
+  theaterStats.maxEntryId > (theaterCursor.replayTheater ?? 0);
 if (theaterStats && typeof theaterStats.maxEntryId === 'number') {
   const nextCursor: Record<string, number> = { ...theaterCursor };
   for (const key of indexKeys) {

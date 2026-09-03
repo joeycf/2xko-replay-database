@@ -316,7 +316,7 @@ added `Replay.videoId` and `Replay.startSeconds`: every YouTube-shaped URL the
 site builds resolves `videoId ?? id`, so the embed opens at the right moment and
 the thumbnail comes off the video rather than off a composite id that would 404.
 
-### In the cron since 2026-08-31, add-only, on a cursor
+### In the cron since 2026-09-02, add-only, on a cursor
 
 This source was deliberately kept **out** of the daily cron at first: a third
 party's uptime and goodwill should not become a cron dependency on day one of an
@@ -385,9 +385,9 @@ the guard daily. What is awake instead is stronger:
   construction.
 - The **count pin** in `data/source-pins.json`, which now refuses to move
   **downward** without `--allow-shrink`. That refusal replaces a guarantee the
-  cron move removed: until 2026-08-31 every cron run was a carry and asserted the
-  pin at exact equality daily; now most runs rebuild, and a rebuilding run never
-  asserted it.
+  cron move removed: until 2026-09-02 every cron run was a carry and asserted the
+  pin at exact equality daily; now a run that finds new tagged entries rebuilds,
+  and a rebuilding run never asserted it.
 - On a `--full` sweep, a **floor in the fetcher**: fewer than 90% of the pin
   refuses to write, and names the per-entry game gate as the likeliest cause,
   because a renamed game label upstream zeroes every row.
@@ -435,13 +435,13 @@ same match out of the uploader's title. Neither saw the other.
 
 `scripts/crosscheck.ts` compares the two. It is a pure module — `parse.ts` reads
 the files and calls it — it produces no field, it gates nothing, and a
-disagreement never edits a record. First measurement, 2,423 of our own whole-video
-records:
+disagreement never edits a record. Measured on the 2026-09-01 full sweep, at
+catalogue entry 488405, 2,433 of our own whole-video records:
 
 | field                  | population | agree         | partial | disagree  | cannot witness |
 | ---------------------- | ---------- | ------------- | ------- | --------- | -------------- |
-| players (both handles) | 2423       | 2413 (99.59%) | 10      | 0         | —              |
-| champions (per side)   | 4846       | 4840 (99.88%) | 0       | 6 (0.12%) | 0              |
+| players (both handles) | 2433       | 2423 (99.59%) | 10      | 0         | —              |
+| champions (per side)   | 4866       | 4860 (99.88%) | 0       | 6 (0.12%) | 0              |
 
 `data/report.md` renders the whole block from `data/theater-disagreements.json`,
 which **only a full sweep writes**. A cursor morning reads a few hundred rows off

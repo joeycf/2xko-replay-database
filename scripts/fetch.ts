@@ -168,7 +168,7 @@ async function main(): Promise<void> {
     }
     if (ch.index) {
       // An index source has no uploads playlist, so there is nothing for this
-      // command to walk. It is fetched daily too, since 2026-08-31 — by
+      // command to walk. It is fetched daily too, since 2026-09-02 — by
       // `data:theater`, in its OWN cron step, placed after this one and allowed
       // to fail so a bad morning upstream cannot cost the channel dumps already
       // in hand. parse.ts carries its committed records on any run that has no
