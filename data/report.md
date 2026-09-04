@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-03T12:45:16.789Z._
+_Generated 2026-09-04T11:28:15.097Z._
 
 ## Summary
-- Total videos: **6565**
-- High confidence: **6537**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Total videos: **6566**
+- High confidence: **6538**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.7%** · fuse: **100.0%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **637**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **638**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
 | `bestReplays` | 2495 | fetched |
-| `highLevel` | 1834 | fetched |
+| `highLevel` | 1835 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6565** | |
+| **Σ** | **6566** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
 
 ## Replay Theater cross-check
 

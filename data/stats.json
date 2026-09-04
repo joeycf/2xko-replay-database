@@ -1,12 +1,12 @@
 {
   "totals": {
-    "replays": 6565,
+    "replays": 6566,
     "characters": 15,
     "players": 1385,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4321
+      "S1": 4322
     },
     "withFuse": 6564
   },
@@ -14,17 +14,17 @@
     "ahri": 2767,
     "akali": 1008,
     "blitzcrank": 1373,
-    "braum": 1177,
+    "braum": 1178,
     "caitlyn": 852,
-    "darius": 1623,
+    "darius": 1624,
     "ekko": 3408,
     "illaoi": 1923,
-    "jinx": 1508,
+    "jinx": 1509,
     "senna": 241,
     "teemo": 1352,
     "thresh": 648,
     "vi": 1768,
-    "warwick": 1260,
+    "warwick": 1261,
     "yasuo": 2738
   },
   "byPatchUsage": {
@@ -56,17 +56,17 @@
       "ahri": 1904,
       "akali": 1008,
       "blitzcrank": 933,
-      "braum": 750,
+      "braum": 751,
       "caitlyn": 852,
-      "darius": 1036,
+      "darius": 1037,
       "ekko": 2025,
       "illaoi": 1371,
-      "jinx": 847,
+      "jinx": 848,
       "senna": 241,
       "teemo": 671,
       "thresh": 648,
       "vi": 1062,
-      "warwick": 720,
+      "warwick": 721,
       "yasuo": 1589
     }
   },
@@ -111,7 +111,7 @@
     "blitzcrank|warwick": 60,
     "blitzcrank|yasuo": 321,
     "braum|caitlyn": 28,
-    "braum|darius": 479,
+    "braum|darius": 480,
     "braum|ekko": 111,
     "braum|illaoi": 66,
     "braum|jinx": 55,
@@ -159,7 +159,7 @@
     "jinx|teemo": 93,
     "jinx|thresh": 48,
     "jinx|vi": 129,
-    "jinx|warwick": 179,
+    "jinx|warwick": 180,
     "jinx|yasuo": 156,
     "senna|teemo": 2,
     "senna|thresh": 39,
@@ -1275,9 +1275,9 @@
     },
     "devillion": {
       "ekko": 2,
-      "jinx": 21,
+      "jinx": 22,
       "thresh": 2,
-      "warwick": 21
+      "warwick": 22
     },
     "devoid": {
       "blitzcrank": 1,
@@ -4401,8 +4401,8 @@
     },
     "opressorislame": {
       "ahri": 1,
-      "braum": 34,
-      "darius": 34,
+      "braum": 35,
+      "darius": 35,
       "thresh": 1
     },
     "osiderich": {
@@ -7667,7 +7667,7 @@
     },
     "devillion": {
       "ekko|thresh": 2,
-      "jinx|warwick": 21
+      "jinx|warwick": 22
     },
     "devoid": {
       "blitzcrank|yasuo": 1
@@ -10223,7 +10223,7 @@
     },
     "opressorislame": {
       "ahri|thresh": 1,
-      "braum|darius": 34
+      "braum|darius": 35
     },
     "osiderich": {
       "ekko|yasuo": 6
@@ -13851,7 +13851,7 @@
       "illaoi|yasuo": 2,
       "jinx|teemo": 2,
       "jinx|vi": 7,
-      "jinx|warwick": 3,
+      "jinx|warwick": 4,
       "jinx|yasuo": 1,
       "senna|yasuo": 5,
       "teemo|thresh": 2,
@@ -15663,7 +15663,7 @@
       "blitzcrank|jinx": 1,
       "blitzcrank|warwick": 1,
       "blitzcrank|yasuo": 1,
-      "braum|darius": 3,
+      "braum|darius": 4,
       "braum|ekko": 3,
       "braum|jinx": 1,
       "braum|teemo": 1,
