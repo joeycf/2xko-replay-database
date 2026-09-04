@@ -72312,5 +72312,16 @@
   "status": "ok-unordered",
   "era": "s1",
   "detectedAt": "2026-09-03"
+ },
+ "LsiLadq9zi4": {
+  "left": "2x-assist",
+  "right": "2x-assist",
+  "score": {
+   "left": 23,
+   "right": 16
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-04"
  }
 }
