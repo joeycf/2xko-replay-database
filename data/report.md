@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-05T10:38:08.425Z._
+_Generated 2026-09-06T10:59:55.282Z._
 
 ## Summary
-- Total videos: **6571**
-- High confidence: **6543**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.7%** · fuse: **99.9%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **640**
+- Total videos: **6581**
+- High confidence: **6553**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **4**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.8%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **642**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2498 | fetched |
-| `highLevel` | 1837 | fetched |
+| `bestReplays` | 2506 | fetched |
+| `highLevel` | 1839 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6571** | |
+| **Σ** | **6581** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -114,9 +114,12 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (1)
+## Newly discovered players (4)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `mio` | MIO | 1 | mio |
+| `kiura` | KIURA | 1 | kiura |
+| `theh` | THE H | 1 | the h |
+| `chess404` | CHESS404 | 1 | chess404 |
+| `diabolo9` | DIABOLO9 | 1 | diabolo9 |

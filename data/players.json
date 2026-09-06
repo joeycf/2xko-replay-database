@@ -13900,5 +13900,45 @@
         "mio"
       ]
     }
+  },
+  {
+    "id": "kiura",
+    "handle": "KIURA",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "kiura"
+      ]
+    }
+  },
+  {
+    "id": "theh",
+    "handle": "THE H",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "the h"
+      ]
+    }
+  },
+  {
+    "id": "chess404",
+    "handle": "CHESS404",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "chess404"
+      ]
+    }
+  },
+  {
+    "id": "diabolo9",
+    "handle": "DIABOLO9",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "diabolo9"
+      ]
+    }
   }
 ]
