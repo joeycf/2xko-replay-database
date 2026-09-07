@@ -1,11 +1,11 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-07T01:45:09.755Z._
+_Generated 2026-09-07T12:36:01.196Z._
 
 ## Summary
-- Total videos: **6588**
-- High confidence: **6559**  ·  Low confidence: **19**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
+- Total videos: **6590**
+- High confidence: **6561**  ·  Low confidence: **19**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.9%** · fuse: **99.8%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **644**
 
@@ -13,13 +13,13 @@ _Generated 2026-09-07T01:45:09.755Z._
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2511 | fetched |
+| `bestReplays` | 2513 | fetched |
 | `highLevel` | 1841 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6588** | |
+| **Σ** | **6590** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
 
 ## Replay Theater cross-check
 
@@ -115,7 +115,9 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `criiiivyse` | CRIIIIVYSE | 1 | criiiivyse |
