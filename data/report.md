@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-06T10:59:55.282Z._
+_Generated 2026-09-07T01:45:09.755Z._
 
 ## Summary
-- Total videos: **6581**
-- High confidence: **6553**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **4**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.8%** · fuse: **99.8%**
-- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **642**
+- Total videos: **6588**
+- High confidence: **6559**  ·  Low confidence: **19**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **15.9%** · fuse: **99.8%**
+- Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **644**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2506 | fetched |
-| `highLevel` | 1839 | fetched |
+| `bestReplays` | 2511 | fetched |
+| `highLevel` | 1841 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6581** | |
+| **Σ** | **6588** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
 
 ## Replay Theater cross-check
 
@@ -92,7 +92,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (18)
+## Low-confidence records (19)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `KGURPriuuoE` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ D.Dinosaur ( Warwick ) vs pMoney+pMoneyjr (Thresh / Blitzcrank) ▰ High Level Gameplay |
@@ -101,6 +101,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `0XSqt3kQYGc` | bestReplays | structural failure (team-split) | 2XKO ▰ QUAINTY (Yasuo-Blitzcrank) vs DARIUS ILLAOI 3H ENJOYER ▰ High Level Gameplay |
 | `3-_bNAYEAfo` | bestReplays | structural failure (team-split) | 2XKO ▰ AKAONI & VLAD vs HIKI (Jinx-Ekko) ▰ 2XKO Pro Replays |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `Gy1V3_ctj3Q` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
@@ -114,12 +115,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (4)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `kiura` | KIURA | 1 | kiura |
-| `theh` | THE H | 1 | the h |
-| `chess404` | CHESS404 | 1 | chess404 |
-| `diabolo9` | DIABOLO9 | 1 | diabolo9 |
+_None._
