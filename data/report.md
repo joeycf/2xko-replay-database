@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-10T02:59:15.531Z._
+_Generated 2026-09-10T03:24:42.811Z._
 
 ## Summary
 - Total videos: **6615**
 - High confidence: **6585**  ·  Low confidence: **20**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **16.1%** · fuse: **99.4%**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **16.1%** · fuse: **99.9%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
