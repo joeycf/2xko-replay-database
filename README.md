@@ -721,6 +721,17 @@ to the season boundary. Riot skips version numbers (no 1.0.2, 1.1.4, 1.2.2,
    low-confidence records is the built-in alert that titles mention a champion
    the registry doesn't know yet.
 5. Commit + push (redeploys).
+6. Crop `assets/name-templates/<id>-left.png` and `<id>-right.png` once there is
+   footage, in a later commit. Nothing downloads these — they are raw HUD
+   nameplate crops, so `data:champions` cannot make them and the official site
+   does not carry them. Take one per side out of `cache/fuse/frames/<video id>/`
+   after a fuse pass has run over a match featuring the champion.
+
+   Skipping this corrupts nothing. With no template `nameScore()` returns null,
+   `orient()` returns null with it, and the record goes to `orient-queue.json`
+   for `/dev/fuse-orient` rather than being guessed at. It only bites when the
+   new champion is the **only** champion unique to their side — a Lux/Yasuo side
+   still orients off Yasuo.
 
 ## Post-v1 notes
 
