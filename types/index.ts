@@ -448,3 +448,15 @@ export interface Stats {
   /** optional: "a|b" (champion ids sorted) -> "c|d" -> count */
   matchupMatrix?: Record<string, Record<string, number>>;
 }
+
+/** A time-bomb that has gone off: something the data can tell us is due, rather
+ *  than something a human has to remember. See scripts/expiries.ts. */
+export interface Expiry {
+  kind: 'unreleased-champion';
+  /** champion id */
+  id: string;
+  /** the ISO date that has now passed */
+  date: string;
+  /** what a human must do to clear it */
+  action: string;
+}

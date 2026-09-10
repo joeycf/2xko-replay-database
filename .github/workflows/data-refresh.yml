@@ -130,5 +130,25 @@ jobs:
       # serves yesterday's payload, a handful of records behind); a served count
       # outside the collapse guard's own band is a FAILURE. The guard in
       # parse.ts protects the repository; this protects what visitors get.
+      # Deliberately BEFORE "Flag due expiries": that step is designed to go
+      # red, and a red step stops the ones after it.
       - name: Post-deploy smoke check
         run: npm run verify:deployed
+
+      - name: Flag due expiries
+        # Deliberately LAST and deliberately failing (scripts/expiries.ts).
+        # The data has already been committed, pushed and smoke-checked above, so
+        # a red run never costs a refresh — it only makes the pending work
+        # impossible to miss.
+        #
+        # This repo had NO such gate until 2026-09-09, which is why it is worth
+        # spelling out what it protects: champions.ts only enriches ids already in
+        # data/characters.json, so it cannot discover a new champion, and this
+        # repo has no residue gate either. A champion could ship and every match
+        # they appeared in would quietly file with one side missing.
+        #
+        # One thing can trip it today: Samira's October window closing
+        # (2026-10-31). She is 2XKO's final champion — active development ends
+        # December 2026 — so when she ships this gate has no more work to do.
+        # Clear it by doing the work, NOT by deleting this step.
+        run: npx tsx scripts/expiries.ts --check
