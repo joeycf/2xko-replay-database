@@ -1,11 +1,11 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-10T02:54:22.159Z._
+_Generated 2026-09-10T02:59:15.531Z._
 
 ## Summary
 - Total videos: **6615**
 - High confidence: **6585**  ·  Low confidence: **20**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **2**
+- Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **16.1%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
@@ -116,10 +116,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `goombao` | GOOMBAO | 1 | goombao |
-| `raymondvrc` | RAYMONDVRC | 1 | raymondvrc |
+_None._
