@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-09T11:26:10.536Z._
+_Generated 2026-09-10T02:54:22.159Z._
 
 ## Summary
-- Total videos: **6608**
-- High confidence: **6569**  ·  Low confidence: **29**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **16.1%** · fuse: **99.5%**
+- Total videos: **6615**
+- High confidence: **6585**  ·  Low confidence: **20**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **2**
+- Fill rates — season: **95.4%** · patchVersion: **95.2%** · patch label: **16.1%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2525 | fetched |
-| `highLevel` | 1847 | fetched |
+| `bestReplays` | 2529 | fetched |
+| `highLevel` | 1850 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6608** | |
+| **Σ** | **6615** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
 
 ## Replay Theater cross-check
 
@@ -92,25 +92,16 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (29)
+## Low-confidence records (20)
 | id | channel | reason | raw title |
 |---|---|---|---|
-| `aLuYrvge8Ho` | highLevel | unresolved character "Lux" on left | 2XKO ▰ James06 (Lux / Yasuo) vs JustCapitalB (Senna / Vi) ▰ High Level Gameplay |
-| `NSIcRoytVPk` | highLevel | unresolved character "Lux" on left; unresolved character "Lux" on right | 2XKO ▰ Tate (Lux / Yasuo) vs SoulDemonXL (Lux / Thresh) ▰ 2XKO DLC - LUX DAY 1 |
-| `P-nVSJK-LXs` | highLevel | unresolved character "Lux" on left | 2XKO ▰ Zane (Lux / Ahri) vs Syrtic (Darius / Blitzcrank) ▰ 2XKO DLC - LUX DAY 1 |
-| `sgx3GDNv_-4` | highLevel | unresolved character "Lux" on left | 2XKO ▰ Yasha (Lux / Yasuo) vs WADE (Akali / Illaoi) ▰ 2XKO DLC - LUX DAY 1 |
 | `KGURPriuuoE` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ D.Dinosaur ( Warwick ) vs pMoney+pMoneyjr (Thresh / Blitzcrank) ▰ High Level Gameplay |
 | `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
 | `BwYfw_m17Hk` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Lumen (Akali / Yasuo) ▰ High Level Gameplay |
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
-| `5O6p1f5CzLw` | bestReplays | unresolved character "Lux" on left; unresolved character "Lux" on right | LUX PATCH 2XKO ▰ JAMES06 (Lux-Yasuo) vs QUAINTY (Lux-Blitzcrank) ▰ High Level Gameplay |
-| `CfY0UP2tIhs` | bestReplays | unresolved character "Lux" on right | LUX PATCH 2XKO ▰ GALLADIATED (Vi-Braum) vs PRISM22 (Yasuo-Lux) ▰ High Level Gameplay |
-| `ipQcN8Blu7g` | bestReplays | unresolved character "Lux" on right | LUX PATCH 2XKO ▰ ZYNGBETT (Illaoi-Darius) vs KAMUI SENKETSU (Lux-Ahri) ▰ High Level Gameplay |
-| `x3JaFaCeJDU` | bestReplays | unresolved character "Lux" on left; unresolved character "Lux" on right | LUX PATCH 2XKO ▰ BASICALLY JINX (Jinx-Lux) vs TATE (Lux-Yasuo) ▰ High Level Gameplay |
-| `VleKPHDmML8` | bestReplays | unresolved character "Lux" on left; team right: 1 character(s) (expected 2) | LUX PATCH 2XKO ▰ QUAINTY (Lux-Blitzcrank) vs PRISM22 (Yasuo) ▰ High Level Gameplay |
-| `T-pWDOvNrbk` | bestReplays | unresolved character "Lux" on left; unresolved character "Lux" on right | LUX PATCH 2XKO ▰ SOULDEMONXL (Lux-Ekko) vs TATE (Lux-Yasuo) ▰ High Level Gameplay |
+| `VleKPHDmML8` | bestReplays | team right: 1 character(s) (expected 2) | LUX PATCH 2XKO ▰ QUAINTY (Lux-Blitzcrank) vs PRISM22 (Yasuo) ▰ High Level Gameplay |
 | `0XSqt3kQYGc` | bestReplays | structural failure (team-split) | 2XKO ▰ QUAINTY (Yasuo-Blitzcrank) vs DARIUS ILLAOI 3H ENJOYER ▰ High Level Gameplay |
 | `3-_bNAYEAfo` | bestReplays | structural failure (team-split) | 2XKO ▰ AKAONI & VLAD vs HIKI (Jinx-Ekko) ▰ 2XKO Pro Replays |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
@@ -125,9 +116,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (1)
+## Newly discovered players (2)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `basicallyjinx` | BASICALLY JINX | 1 | basically jinx |
+| `goombao` | GOOMBAO | 1 | goombao |
+| `raymondvrc` | RAYMONDVRC | 1 | raymondvrc |

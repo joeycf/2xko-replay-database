@@ -120,6 +120,19 @@
     }
   },
   {
+    "id": "lux",
+    "name": "Lux",
+    "imgPortrait": "/img/champions/lux-portrait.webp",
+    "imgSplash": "/img/champions/lux-splash.webp",
+    "accent": "#FFE45E",
+    "extra": {
+      "aliases": [
+        "lux",
+        "ラックス"
+      ]
+    }
+  },
+  {
     "id": "senna",
     "name": "Senna",
     "imgPortrait": "/img/champions/senna-portrait.webp",

@@ -40,8 +40,9 @@ export default {
           ahri: '#FF5DA2', akali: '#35D98A', blitzcrank: '#FFC24B',
           braum: '#58C7E8', caitlyn: '#B98AE0', darius: '#F0463F',
           ekko: '#1FE0D4', illaoi: '#CE9138', jinx: '#5B8CFF',
-          senna: '#97DB4A', teemo: '#E27E3C', thresh: '#49E0A6',
-          vi: '#FF6F61', warwick: '#7A6BE8', yasuo: '#52C4C4',
+          lux: '#FFE45E', senna: '#97DB4A', teemo: '#E27E3C',
+          thresh: '#49E0A6', vi: '#FF6F61', warwick: '#7A6BE8',
+          yasuo: '#52C4C4',
         },
       },
       fontFamily: {

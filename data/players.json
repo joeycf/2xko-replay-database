@@ -13970,5 +13970,25 @@
         "basically jinx"
       ]
     }
+  },
+  {
+    "id": "goombao",
+    "handle": "GOOMBAO",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "goombao"
+      ]
+    }
+  },
+  {
+    "id": "raymondvrc",
+    "handle": "RAYMONDVRC",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "raymondvrc"
+      ]
+    }
   }
 ]

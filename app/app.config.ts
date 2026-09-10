@@ -43,6 +43,7 @@ export default defineAppConfig({
       ekko: '#1FE0D4',
       illaoi: '#CE9138',
       jinx: '#5B8CFF',
+      lux: '#FFE45E',
       senna: '#97DB4A',
       teemo: '#E27E3C',
       thresh: '#49E0A6',
