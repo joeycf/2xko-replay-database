@@ -1,17 +1,17 @@
 {
   "totals": {
-    "replays": 6615,
+    "replays": 6616,
     "characters": 16,
     "players": 1395,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4371
+      "S1": 4372
     },
     "withFuse": 6609
   },
   "characterUsage": {
-    "ahri": 2780,
+    "ahri": 2781,
     "akali": 1018,
     "blitzcrank": 1387,
     "braum": 1183,
@@ -20,10 +20,10 @@
     "ekko": 3430,
     "illaoi": 1936,
     "jinx": 1519,
-    "lux": 17,
+    "lux": 18,
     "senna": 246,
     "teemo": 1354,
-    "thresh": 658,
+    "thresh": 659,
     "vi": 1781,
     "warwick": 1271,
     "yasuo": 2756
@@ -54,7 +54,7 @@
       "yasuo": 972
     },
     "S1": {
-      "ahri": 1917,
+      "ahri": 1918,
       "akali": 1018,
       "blitzcrank": 947,
       "braum": 756,
@@ -63,10 +63,10 @@
       "ekko": 2047,
       "illaoi": 1384,
       "jinx": 858,
-      "lux": 17,
+      "lux": 18,
       "senna": 246,
       "teemo": 673,
-      "thresh": 658,
+      "thresh": 659,
       "vi": 1075,
       "warwick": 731,
       "yasuo": 1607
@@ -81,7 +81,7 @@
     "ahri|ekko": 526,
     "ahri|illaoi": 262,
     "ahri|jinx": 215,
-    "ahri|lux": 2,
+    "ahri|lux": 3,
     "ahri|senna": 38,
     "ahri|teemo": 341,
     "ahri|thresh": 89,
@@ -170,7 +170,7 @@
     "jinx|yasuo": 160,
     "lux|senna": 1,
     "lux|teemo": 1,
-    "lux|thresh": 2,
+    "lux|thresh": 3,
     "lux|warwick": 1,
     "lux|yasuo": 10,
     "senna|teemo": 2,
@@ -3534,7 +3534,8 @@
     "logan109": {
       "darius": 3,
       "ekko": 5,
-      "thresh": 4
+      "lux": 1,
+      "thresh": 5
     },
     "logic": {
       "ahri": 1,
@@ -5764,11 +5765,12 @@
       "warwick": 1
     },
     "strayerin": {
-      "ahri": 86,
+      "ahri": 87,
       "akali": 17,
       "caitlyn": 5,
       "ekko": 3,
       "illaoi": 1,
+      "lux": 1,
       "senna": 1,
       "vi": 62,
       "yasuo": 1
@@ -9598,7 +9600,8 @@
     "logan109": {
       "darius|ekko": 2,
       "darius|thresh": 1,
-      "ekko|thresh": 3
+      "ekko|thresh": 3,
+      "lux|thresh": 1
     },
     "logic": {
       "ahri|jinx": 1,
@@ -11381,6 +11384,7 @@
       "ahri|caitlyn": 3,
       "ahri|ekko": 3,
       "ahri|illaoi": 1,
+      "ahri|lux": 1,
       "ahri|senna": 1,
       "ahri|vi": 62,
       "ahri|yasuo": 1,
@@ -12787,7 +12791,8 @@
     },
     "ahri|lux": {
       "blitzcrank|darius": 1,
-      "darius|illaoi": 1
+      "darius|illaoi": 1,
+      "lux|thresh": 1
     },
     "ahri|senna": {
       "ahri|akali": 1,
@@ -15917,6 +15922,7 @@
       "akali|yasuo": 1
     },
     "lux|thresh": {
+      "ahri|lux": 1,
       "lux|senna": 1,
       "lux|yasuo": 1
     },
