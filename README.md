@@ -522,13 +522,13 @@ skips the whole `/dev` prefix, and nothing public links to them (the nav entry
 is compiled out of production builds). They read and write the committed JSON
 directly — there is no database.
 
-| page                | what it's for                                                                                        |
-| ------------------- | ---------------------------------------------------------------------------------------------------- |
-| `/dev/fuse-review`  | **The manual fuse workbench.** Adjudicate every gap the CV couldn't settle → `data/overrides.json`   |
-| `/dev/fuse-gaps`    | Read-only dashboard over the gap report — bucket/era filters, pill crops, in-app playback            |
-| `/dev/fuse-orient`  | The narrow `--promote-lows` orientation queue: fuse is legible, only the owning team is unresolved   |
-| `/dev/manual-entry` | Hand-author tournament/non-parseable records → `data/manual-videos.json`                             |
-| `/dev/evo-review`   | Complete the champions on Evo broadcast VODs the extractor couldn't read → `data/manual-videos.json` |
+| page                | what it's for                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| `/dev/fuse-review`  | **The manual fuse workbench.** Adjudicate every gap the CV couldn't settle → `data/overrides.json` |
+| `/dev/fuse-gaps`    | Read-only dashboard over the gap report — bucket/era filters, pill crops, in-app playback          |
+| `/dev/fuse-orient`  | The narrow `--promote-lows` orientation queue: fuse is legible, only the owning team is unresolved |
+| `/dev/manual-entry` | Hand-author tournament/non-parseable records → `data/manual-videos.json`                           |
+| `/dev/evo-review`   | Complete the champions on Evo broadcast VODs the extractor couldn't read → `data/overrides.json`   |
 
 ### `/dev/fuse-review`
 
@@ -565,19 +565,29 @@ order means those verdicts survive the daily cron like any other override.
 The champion-completion workbench for @EvoEvents footage, where the titles state
 players, game and round but never a character.
 
+Both this page and the extractor work the **footage queue**,
+`cache/evo/footage-queue.json` — every unexcluded record on a
+`charactersFromFootage` channel, written by `data:parse`. That is the only stage
+that knows which records are still missing champions, since a record without a
+verdict is held OUT of `videos.json` entirely. **Run `npm run data:parse` first**,
+the same way the fuse workbench needs a current gap report. (Until 2026-09-11 both
+keyed on Evo entries in `manual-videos.json`; the corpus moved onto a tracked
+channel in `4a0a591` and neither had matched a row since.)
+
 `npm run data:extract` reads the four champions off the broadcast HUD
 (`scripts/hud-read.ts`) and leaves its proposal in `cache/evo/extracted.json`;
-this page shows that proposal beside what `data/manual-videos.json` already holds
-and lets you settle the difference. It is not optional polish — **half the corpus
-cannot be read automatically** (see below), so this is where those records
-actually get completed.
+this page shows that proposal beside the verdict in `data/overrides.json` and lets
+you settle the difference. It is not optional polish — **half the corpus cannot be
+read automatically** (see below), so this is where those records actually get
+completed. Extract works the records still awaiting a verdict; `--all` re-reads
+settled ones for a scoring or re-check pass.
 
-| case                      | what you do                          | what lands in `manual-videos.json` |
-| ------------------------- | ------------------------------------ | ---------------------------------- |
-| extractor read both sides | check it, press `a` then `s`         | both sides' `characters`           |
-| extractor read one side   | accept it, click the other side      | both sides' `characters`           |
-| no read (the Latin half)  | read the HUD off the frame and click | both sides' `characters`           |
-| sides look swapped        | press `⇄ swap sides`, then save      | the two lists exchanged            |
+| case                      | what you do                          | what lands in `overrides.json` |
+| ------------------------- | ------------------------------------ | ------------------------------ |
+| extractor read both sides | check it, press `a` then `s`         | both sides' `characters`       |
+| extractor read one side   | accept it, click the other side      | both sides' `characters`       |
+| no read (the Latin half)  | read the HUD off the frame and click | both sides' `characters`       |
+| sides look swapped        | press `⇄ swap sides`, then save      | the two lists exchanged        |
 
 Keys: `←→` move between videos, `[`/`]` cycle frames, `a` accepts the proposal,
 `d` jumps to the next disputed verdict, `⏎` jumps to the next incomplete one, `s`
@@ -586,9 +596,18 @@ whether the extractor disagrees with what's saved — two independent facts, so
 they get two channels.
 
 Champions are clicked as a **set-level union** — every champion that side fielded
-across the whole set, any length — matching the convention `manual-videos.json`
-documents. Ids are validated against `data/characters.json`, the id must already
-exist in the file, and a save clears the entry's `todo` marker.
+across the whole set, any length. Ids are validated against
+`data/characters.json`, the id must already be in the footage queue, and the save
+carries `allCharacters` with the teams because the override merge is shallow and
+last — teams alone would publish a record the champion index does not list. The
+verdict reaches the site only through the next `data:parse`.
+
+**A record whose title parse produced no teams cannot be completed here.**
+`TEAM_SPLIT` requires champions in parentheses and no Evo title has any, so these
+records arrive with no sides and no players at all; the 21 published sets carry
+skeletons the migration hand-authored. This tool reads champions off the HUD and
+cannot invent who was playing, so it refuses the save and says what is missing —
+author the skeleton in `overrides.json` first, then re-run `data:parse`.
 
 **Measured, 2026-08-08**, against 21 hand labels captured before scoring
 (`npm run data:snapshot-labels` → `cache/evo/ground-truth.json`, which the scorer
