@@ -22,8 +22,11 @@
 //
 // 2XKO extension data NEVER enters the generic schema: fuse analytics ride as
 // extra stats keys (fuseUsage / fuseByPatch / totals.withFuse) consumed by the
-// app-side useFuses; per-video fuse tags, matchType, tournament/round remain
-// rich-only fields (videos.json).
+// app-side useFuses; per-video fuse tags, matchType and `round` remain rich-only
+// fields (videos.json). `tournament` LEFT that set in engine v0.13.0 — it maps
+// to the generic `event`, which the badge prints instead of the source's
+// configured name. `round` did not: "Grand Final" is not an attribution, and if
+// 2XKO ever wants "Evo 2026 · Grand Final" it already owns GameReplayBadges.
 
 import { existsSync, mkdirSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
@@ -58,6 +61,15 @@ export interface GenericReplay {
    *  keeps replays.json byte-identical for them. */
   videoId?: string;
   startSeconds?: number;
+  /** THE BADGE LABEL (engine v0.13.0): what the chip prints instead of the
+   *  source's configured name. `event` is the tournament — every tournament
+   *  source has one, whether it came from the catalogue's tag or from a
+   *  hand-authored overrides.json entry. `channelName` is the VOD's uploader,
+   *  emitted ONLY for replayTheater, where one token covers eleven organisers;
+   *  on every other source it is just the configured name repeated, which would
+   *  add a string per record that says nothing. */
+  event?: string;
+  channelName?: string;
   /** 2XKO EXTENSION fields (the engine never reads them; the app's fuse facet
    *  + badge overrides do): per-side fuse ids in sides order, and the
    *  detection-confidence flag for pairs whose side attribution is unknown.
@@ -139,6 +151,15 @@ function toReplay(v: VideoRecord): GenericReplay {
     ...(v.startSeconds ? { startSeconds: v.startSeconds } : {}),
     ...(fuseA || fuseB ? { fuses: [fuseA, fuseB] as [string | null, string | null] } : {}),
     ...(v.fusesUnordered ? { fusesUnordered: true as const } : {}),
+    // EXACTLY ONE label, most specific first. `channelName` is per-record only
+    // for replayTheater (on every other source it repeats the configured name),
+    // and there it is the fallback for an entry with no event — which this
+    // intake admits none of today, so it is a guard rather than a live path.
+    ...(v.tournament
+      ? { event: v.tournament }
+      : v.channel === 'replayTheater' && v.channelName
+        ? { channelName: v.channelName }
+        : {}),
   };
 }
 

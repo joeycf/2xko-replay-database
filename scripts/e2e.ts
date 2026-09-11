@@ -398,6 +398,42 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     );
   });
 
+  // (a3d) the label actually reaches a card. Two facts in one read: the badge
+  // prints the record's own `event`, and it is still a <span> — the tag name
+  // the (a3) consolidation check above depends on to tell a card badge from a
+  // filter chip. Promote it to a <button> and (a3) starts reading card badges
+  // as source chips and fails on every page.
+  await test('badge label: a Tournament VOD card prints its event, from a <span>', async () => {
+    const emitted = JSON.parse(readFileSync(join(ROOT, 'data/replays.json'), 'utf8')) as {
+      id: string;
+      source: string;
+      event?: string;
+    }[];
+    const byId = new Map(emitted.map((r) => [r.id, r]));
+    await page.goto(at(`/?src=replayTheater`));
+    await page.waitForSelector('[data-replay-id]');
+    const badges: { id: string; tag: string; text: string }[] = await page.evaluate(
+      `Array.from(document.querySelectorAll('[data-replay-id]')).slice(0, 12).map((c) => {
+        const b = c.querySelector('span.cut-bl-md');
+        return { id: c.getAttribute('data-replay-id'), tag: b ? b.tagName : 'NONE', text: b ? (b.textContent || '').trim() : '' };
+      })`,
+    );
+    expect(badges.length > 0, 'the Tournament VODs filter rendered cards');
+    expect(
+      badges.every((b) => b.tag === 'SPAN'),
+      `every card badge is a <span> (saw ${[...new Set(badges.map((b) => b.tag))].join(', ')})`,
+    );
+    const wrong = badges.filter((b) => b.text !== (byId.get(b.id)?.event ?? ''));
+    expect(
+      wrong.length === 0,
+      `every card badge prints its record's event${wrong.length ? ` — ${wrong[0]!.id} showed "${wrong[0]!.text}"` : ''}`,
+    );
+    expect(
+      !badges.some((b) => b.text === 'Tournament VODs'),
+      'no card falls back to the source name',
+    );
+  });
+
   // (a4) SEGMENT RECORDS (engine v0.10.0). replayTheater indexes matches INSIDE
   // longform VODs, so its ids are `${videoId}@${startSeconds}` and many records
   // share a video. Three things have to hold, and each fails silently otherwise:
@@ -770,6 +806,47 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
         eraRe.test(r.patch ?? '') || known.has(r.patch ?? ''),
         `${r.id} emitted undeclared token "${r.patch}"`,
       );
+  });
+
+  // (a3c) THE BADGE LABEL (engine v0.13.0). The chip prints `event` when a
+  // record has one, `channelName` when it does not, and only then the
+  // configured source name. Asserted over the emitted file rather than the DOM
+  // because that is where the contract lives — the browser case below is the
+  // one that proves it reaches a card.
+  await test('badge label: every tournament record carries an event, uploaders only where they differ', async () => {
+    const emitted = JSON.parse(readFileSync(join(ROOT, 'data/replays.json'), 'utf8')) as {
+      id: string;
+      source: string;
+      event?: string;
+      channelName?: string;
+    }[];
+    const labelled = emitted.filter((r) => r.event);
+    const EVENT_SOURCES = ['manual', 'evoEvents', 'replayTheater'];
+    expect(
+      labelled.length === EVENT_SOURCES.reduce((n, id) => n + bySource(id), 0),
+      `${labelled.length} records carry an event; every record on ${EVENT_SOURCES.join('/')} must`,
+    );
+    expect(
+      labelled.every((r) => EVENT_SOURCES.includes(r.source)),
+      'no online-channel record carries an event',
+    );
+    // An empty string would render a bordered, filled chip with no text — the
+    // engine folds it back to the source name, but emitting one is still a bug.
+    expect(
+      emitted.every((r) => (r.event ?? 'x').trim() !== '' && (r.channelName ?? 'x').trim() !== ''),
+      'no emitted label is empty or blank',
+    );
+    // channelName is per-record ONLY for the index source; on a real channel it
+    // would just repeat the configured name once per record.
+    expect(
+      emitted.every((r) => !r.channelName || r.source === 'replayTheater'),
+      'channelName is emitted only for the index source',
+    );
+    // The card caps the chip at 70% of the thumbnail and ellipsizes past it, so
+    // a catalogue row with a runaway tag should fail HERE, not render as a
+    // three-word fragment nobody reports.
+    const longest = labelled.reduce((a, r) => Math.max(a, r.event!.length), 0);
+    expect(longest <= 60, `longest event label is ${longest} chars (cap 60)`);
   });
 
   // double-emit byte-identity: the standalone emitter must be deterministic

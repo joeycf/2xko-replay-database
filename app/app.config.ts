@@ -66,11 +66,12 @@ export default defineAppConfig({
       // appended at index 4 — the badge palette has 3 styles, so this shares the
       // amber outline with 'manual' and 'bestReplays' and the label distinguishes
       { id: 'evoEvents', name: 'Evo' },
-      // appended at index 5 — same amber outline again. Named for what the
-      // footage IS rather than for the index that catalogued it: these are
-      // tournament sets cut out of event organisers' own longform VOD uploads
-      // (ParagonFGC, Tampa Never Sleeps, Evo and eight others), and each record
-      // carries its uploader in channelName.
+      // appended at index 5 — same amber outline again. This name is now a
+      // FALLBACK that renders on nothing: as of engine v0.13.0 every record
+      // here publishes its own `event` (the catalogue's tag) and the badge
+      // prints that instead — "ParagOnline #1", not the name of the index that
+      // catalogued it. Kept, and kept distinct from 'manual' above, because a
+      // future untagged entry would land on it.
       { id: 'replayTheater', name: 'Tournament VODs' },
     ],
     // Filter chips are consolidated to two groups (the per-video SourceBadge keeps
