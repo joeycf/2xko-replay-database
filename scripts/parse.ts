@@ -1693,7 +1693,14 @@ const normalizePatchVersion = (r: VideoRecord): VideoRecord =>
  *  publishing nothing: a championless row in the catalogue, dragging the
  *  low-confidence count, showing on the site as a match nobody played. The
  *  verdict lives in overrides.json, so a record without one is simply not ready.
- *  Held-out ids are reported rather than silently dropped. */
+ *  Held-out ids are reported rather than silently dropped.
+ *
+ *  AN EXCLUSION IS A VERDICT. `{ "exclude": true }` means this repo ruled on the
+ *  id and the answer was "not a match" — a bracket broadcast, a montage, a
+ *  commentary clip. Those clear the channel's game signal (it reads descriptions,
+ *  deliberately) but have no two teams to attribute, so reporting them as
+ *  awaiting a verdict queues work nobody can ever do. 21 of the 42 evoEvents
+ *  uploads are that population. */
 const footageChannels = new Set(
   Object.values(CHANNELS)
     .filter((c) => c.charactersFromFootage)
@@ -1703,7 +1710,7 @@ const heldForFootage: VideoRecord[] = [];
 const publishable = parsedRecords.filter((r) => {
   if (!footageChannels.has(r.channel)) return true;
   const complete = r.teams.length === 2 && r.teams.every((t) => t.characters.length > 0);
-  if (!complete) heldForFootage.push(r);
+  if (!complete && overrides[r.id]?.exclude !== true) heldForFootage.push(r);
   return complete;
 });
 
@@ -2124,7 +2131,14 @@ if (heldForFootage.length > 0) {
   );
   for (const r of heldForFootage.slice(0, 10)) console.log(`      ${r.id}  ${r.title}`);
   if (heldForFootage.length > 10) console.log(`      … ${heldForFootage.length - 10} more`);
-  console.log('    Resolve with: npm run data:extract  →  /dev/evo-review');
+  console.log(
+    '    Settle each in overrides.json — a champion verdict read off the HUD (scripts/hud-read.ts),',
+  );
+  console.log('    or { "exclude": true } when the upload is not a single set.');
+  console.log(
+    '    NOT data:extract / /dev/evo-review: both still key their worklist on Evo entries in',
+  );
+  console.log('    manual-videos.json, which the move to a tracked channel emptied.');
 }
 console.log(
   `  fill rates → season ${counts.seasonPct}%  ·  patchVersion ${counts.patchVersionPct}%  ·  fuse ${counts.fusePct}%`,
