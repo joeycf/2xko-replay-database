@@ -39,7 +39,6 @@ import {
 } from './hud-read';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DATA = join(ROOT, 'data');
 const OUT = join(CACHE, 'extracted.json');
 
 const argv = process.argv.slice(2);
@@ -83,32 +82,64 @@ export interface Extraction {
 }
 
 // ── work list ────────────────────────────────────────────────────────────────
-// The corpus is every Evo entry in manual-videos.json — including the ones whose
-// `characters` are still [] behind a todo marker, which is the documented state
-// for "authored but unread" and exactly what this script exists to fill in.
-const manual = JSON.parse(readFileSync(join(DATA, 'manual-videos.json'), 'utf8')) as {
-  videos: {
-    id: string;
-    title: string;
-    tournament?: string;
-    durationSec?: number;
-    teams: { players: string[] }[];
-  }[];
+// The corpus is the pipeline's footage queue — every record on a
+// charactersFromFootage channel that no exclusion has ruled out, settled or not.
+//
+// IT USED TO READ THE EVO ENTRIES IN manual-videos.json, and that is worth a
+// warning rather than a silent correction. When those records migrated onto a
+// tracked channel (4a0a591), the file kept its shape and simply stopped holding
+// any Evo row, so the filter went on matching nothing and this script printed
+// "nothing to do" — a phrase that reads like an answer. It was a dead lookup for
+// a month. The queue is written by data:parse, which is the only thing that
+// knows which records are still missing champions, so a stale one is a stale
+// parse rather than a wrong query.
+const QUEUE = join(ROOT, 'cache/evo/footage-queue.json');
+if (!existsSync(QUEUE)) {
+  console.error(`${QUEUE} not found — run \`npm run data:parse\` first`);
+  process.exit(1);
+}
+interface QueueItem {
+  id: string;
+  title: string;
+  durationSec: number;
+  settled: boolean;
+  teams: { players: { id: string; displayName: string }[] }[];
+}
+const queue = JSON.parse(readFileSync(QUEUE, 'utf8')) as {
+  generatedAt: string;
+  items: QueueItem[];
 };
 
-let work = manual.videos
-  .filter((v) => /Evo/i.test(v.tournament ?? ''))
+const all = argv.includes('--all');
+let work = queue.items
+  // A settled record already carries a verdict; re-reading it is a scoring or
+  // re-check pass, not completion work, so it takes an explicit --all (or --ids).
+  .filter((v) => all || onlyIds?.includes(v.id) || !v.settled)
   .map((v) => ({
     id: v.id,
     title: v.title,
-    durationSec: v.durationSec ?? 0,
-    handles: [v.teams[0]!.players, v.teams[1]!.players] as [string[], string[]],
+    durationSec: v.durationSec,
+    // Both spellings per side: the nameplate prints the DISPLAY name, while the
+    // id is what the registry calls them. resolveSide takes the best-matching
+    // member of each side, so offering both can only sharpen the vote.
+    handles: [
+      [...new Set(v.teams[0]?.players.flatMap((pl) => [pl.displayName, pl.id]) ?? [])],
+      [...new Set(v.teams[1]?.players.flatMap((pl) => [pl.displayName, pl.id]) ?? [])],
+    ] as [string[], string[]],
   }));
 if (onlyIds) work = work.filter((w) => onlyIds.includes(w.id));
 if (limit > 0) work = work.slice(0, limit);
 
 if (!work.length) {
-  console.log('nothing to do');
+  // Say WHICH nothing this is. An empty queue and a fully settled one are the
+  // same word and completely different facts, and telling them apart by hand is
+  // what cost a month last time.
+  const settled = queue.items.filter((v) => v.settled).length;
+  console.log(
+    queue.items.length === 0
+      ? 'nothing to do — the footage queue is empty (no unexcluded records on a charactersFromFootage channel)'
+      : `nothing to do — all ${settled} queued record(s) already carry a verdict; pass --all to re-read them`,
+  );
   process.exit(0);
 }
 

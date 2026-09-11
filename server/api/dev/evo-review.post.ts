@@ -1,18 +1,25 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Champion, Fuse, ManualVideosFile } from '~~/types';
+import type { Champion, FootageQueue, Fuse, VideoRecord } from '~~/types';
 
-// Dev-only: persists champion verdicts for Evo VODs back into
-// data/manual-videos.json — the only file this endpoint touches.
+// Dev-only: persists champion verdicts for footage-channel records into
+// data/overrides.json.
 //
-// SAME WRITE TARGET AND SAME RULES AS /api/dev/manual-entry, deliberately. Every
-// record in this corpus is hand-authored today, and a champion verdict written to
-// overrides.json would be silently discarded for one: parse.ts merges overrides
-// over the PARSED records only, and the fuse-only bridge added for manual entries
-// carries the fuse column and nothing else. Two writers for one file would also
-// be two places for the validation to drift, so this reuses the rules rather than
-// restating them: ids checked against data/characters.json, sides deduped, the id
-// required to exist already, and the todo marker cleared on save.
+// IT USED TO WRITE data/manual-videos.json, and the reason it no longer does is
+// the same migration that emptied this tool's worklist. While every record here
+// was hand-authored, overrides.json was the wrong target — parse.ts merges
+// overrides over PARSED records only, so a verdict written there would have been
+// silently discarded. Since 4a0a591 the corpus IS parsed records, on a channel
+// whose whole contract is that the champion verdict lives in overrides.json
+// (`charactersFromFootage`), and manual-videos.json is the file that would now
+// discard the write. The target followed the corpus.
+//
+// THE MERGE IS SHALLOW AND LAST, which is why `allCharacters` is written out
+// rather than left to the pipeline. parse.ts computes it at build time from the
+// parsed teams and never recomputes it after `{ ...merged, ...ov }`, so an
+// override that carries teams and not allCharacters publishes a record whose
+// champions and whose champion INDEX disagree — visible on the site as a match
+// that no champion page lists. The 21 migrated Evo verdicts all carry it.
 //
 // Accepts BATCHES because a labelling pass is a sitting, not a click — but
 // reports per-entry outcomes instead of throwing, so one bad row cannot discard
@@ -38,16 +45,32 @@ export default defineEventHandler(async (event) => {
     Fuse
   >;
 
-  const path = join(root, 'data/manual-videos.json');
-  const file = JSON.parse(readFileSync(path, 'utf8')) as ManualVideosFile;
+  // Only ids the pipeline is actually holding a slot for are writable, mirroring
+  // /dev/fuse-review's rule that the gap report defines the editable set. An id
+  // outside it is either excluded, on another channel, or gone from the dump —
+  // all cases where a verdict would sit in overrides.json attached to nothing.
+  const queuePath = join(root, 'cache/evo/footage-queue.json');
+  if (!existsSync(queuePath)) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'footage-queue.json not found — run `npm run data:parse` first',
+    });
+  }
+  const queue = JSON.parse(readFileSync(queuePath, 'utf8')) as FootageQueue;
+  const queued = new Map(queue.items.map((v) => [v.id, v]));
+
+  const ovPath = join(root, 'data/overrides.json');
+  const overrides = JSON.parse(readFileSync(ovPath, 'utf8')) as Record<
+    string,
+    Partial<VideoRecord> & { '//'?: string; exclude?: boolean }
+  >;
 
   // The broadcast fuse ground truth, mirroring data/fuse-validation.json's shape.
   // TITLE order, like the record it sits beside — the reviewer assigns to team 1
   // / team 2, and the detector's screen-order read is mapped through the side
   // resolution when scored. Every verdict lands here, INCLUDING one that merely
   // confirms the stored value: that confirmation is the only thing separating a
-  // read fuse from the 38-of-40 `freestyle` default, and manual-videos.json has
-  // no way to express it.
+  // read fuse from the 38-of-40 `freestyle` default.
   const vePath = join(root, 'data/fuse-validation-evo.json');
   const validated = existsSync(vePath)
     ? (JSON.parse(readFileSync(vePath, 'utf8')) as Record<
@@ -76,20 +99,41 @@ export default defineEventHandler(async (event) => {
       continue;
     }
     const sides = chars as [string[], string[]];
-    const unknown = [...new Set(sides.flat().filter((c) => !known.has(c)))];
-    if (unknown.length) {
-      rejected.push({ id, reason: `unknown champion id(s): ${unknown.join(', ')}` });
+    const unknownIds = [...new Set(sides.flat().filter((c) => !known.has(c)))];
+    if (unknownIds.length) {
+      rejected.push({ id, reason: `unknown champion id(s): ${unknownIds.join(', ')}` });
       continue;
     }
-    const entry = (file.videos ?? []).find((v) => v.id === id);
-    if (!entry) {
-      rejected.push({ id, reason: 'not in manual-videos.json — this tool only edits entries' });
+    // Exclusion is checked BEFORE the queue lookup, because the queue omits
+    // excluded ids — asking about one there would answer "re-run data:parse",
+    // which is both wrong and the kind of advice that gets followed.
+    if (overrides[id]?.exclude) {
+      rejected.push({
+        id,
+        reason: 'ruled out by an exclusion in overrides.json — clear that first',
+      });
       continue;
     }
-    if (!Array.isArray(entry.teams) || entry.teams.length !== 2) {
-      rejected.push({ id, reason: 'entry is malformed (expected 2 teams)' });
+    const item = queued.get(id);
+    if (!item) {
+      rejected.push({ id, reason: 'not in the footage queue — re-run `npm run data:parse`' });
       continue;
     }
+    // NOT malformation — the expected state for a record nobody has authored yet.
+    // These titles carry no champions in parentheses, so TEAM_SPLIT rejects them
+    // and the parsed record has NO teams at all: not even players or sides. A
+    // footage verdict therefore has to supply the whole skeleton, which is what
+    // the 21 migrated Evo entries carry and what this tool cannot invent — the
+    // reviewer reads champions off the HUD, not who was playing.
+    if (item.teams.length !== 2) {
+      rejected.push({
+        id,
+        reason:
+          'the title parse produced no teams — author the skeleton (sides + players) in overrides.json first, then re-run `npm run data:parse`',
+      });
+      continue;
+    }
+
     // FUSES ARE THREE-STATE, and collapsing them to two is how the column got
     // into its current shape. `undefined` means the reviewer has not looked at
     // this side yet and the stored value is left alone; `null` means they looked
@@ -130,7 +174,7 @@ export default defineEventHandler(async (event) => {
     // means to clear one passes allowClear.
     const allowClear = (raw as { allowClear?: unknown }).allowClear === true;
     const wiped = ([0, 1] as const).filter(
-      (i) => (entry.teams[i]!.characters ?? []).length > 0 && sides[i]!.length === 0,
+      (i) => item.teams[i]!.characters.length > 0 && sides[i]!.length === 0,
     );
     if (wiped.length && !allowClear) {
       rejected.push({
@@ -141,24 +185,40 @@ export default defineEventHandler(async (event) => {
     }
 
     const dedupe = (xs: string[]): string[] => [...new Set(xs)];
-    entry.teams[0]!.characters = dedupe(sides[0]!);
-    entry.teams[1]!.characters = dedupe(sides[1]!);
+    const base = overrides[id];
+    // Teams come from the QUEUE, which is the merged record: side and players as
+    // the pipeline resolved them, plus whatever verdict already stands. Rebuilding
+    // them from the request would let a stale page overwrite a corrected roster.
+    const teams = item.teams.map((t, i) => ({
+      ...t,
+      characters: dedupe(sides[i]!),
+      fuse: fusePair && fusePair[i] !== undefined ? (fusePair[i] as string | null) : t.fuse,
+    }));
+
+    overrides[id] = {
+      // A hand-read verdict is the highest-confidence source this repo has, and
+      // the parse that produced the record could not see a single champion. The
+      // 21 migrated verdicts all record it this way.
+      '//': base?.['//'] ?? `champion verdict read off the broadcast HUD [/dev/evo-review]`,
+      ...base,
+      teams,
+      allCharacters: dedupe(teams.flatMap((t) => t.characters)),
+      parseConfidence: 'high',
+    };
+
     if (fusePair) {
       for (const i of [0, 1] as const) {
         if (fusePair[i] === undefined) continue;
-        entry.teams[i]!.fuse = fusePair[i] as string | null;
         validated[id] ??= {};
         validated[id]![i === 0 ? 'left' : 'right'] = fusePair[i] as string | null;
         validatedWritten++;
       }
     }
-    // the marker exists to say "unread"; a save is the moment that stops being true
-    if (sides[0]!.length > 0 && sides[1]!.length > 0) delete entry.todo;
     written++;
 
     // Advisory only — a set-level union is legitimately any length, and a side
     // that changed its duo mid-set is the case this whole pipeline exists for.
-    entry.teams.forEach((t, i) => {
+    teams.forEach((t, i) => {
       const side = i === 0 ? 'left' : 'right';
       if (t.characters.length === 0) warnings.push(`${id} ${side}: saved with 0 champions`);
       else if (t.characters.length % 2 !== 0)
@@ -168,7 +228,16 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (written > 0) writeFileSync(path, JSON.stringify(file, null, 2) + '\n');
+  if (written > 0) writeFileSync(ovPath, JSON.stringify(overrides, null, 2) + '\n');
   if (validatedWritten > 0) writeFileSync(vePath, JSON.stringify(validated, null, 2) + '\n');
-  return { ok: true, written, rejected, warnings, fuseVerdicts: validatedWritten };
+  // The verdict only reaches videos.json through a parse, exactly like a fuse
+  // verdict — say so rather than letting a green toast imply the site changed.
+  return {
+    ok: true,
+    written,
+    rejected,
+    warnings,
+    fuseVerdicts: validatedWritten,
+    ...(written > 0 ? { next: 'run `npm run data:parse` to publish' } : {}),
+  };
 });

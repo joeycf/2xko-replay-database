@@ -8,8 +8,9 @@
         <strong class="text-text">across the whole set</strong> (set-level union — any length). The
         extractor's proposal is shown where it read one;
         <span class="text-warning">amber border</span> means it disagrees with what is saved. Saves
-        write <span class="text-text">data/manual-videos.json</span> only — run
-        <span class="text-text">npm run data:parse</span> yourself afterwards.
+        write <span class="text-text">data/overrides.json</span> only — run
+        <span class="text-text">npm run data:parse</span> yourself afterwards, which is also what
+        refreshes this queue.
       </p>
 
       <p
@@ -95,10 +96,21 @@
           </header>
 
           <p
-            v-if="item.todo"
+            v-if="item.held"
             class="mt-1 font-mono text-[11px] text-warning"
           >
-            todo: {{ item.todo }}
+            held out of videos.json — no champions yet
+          </p>
+          <!-- These titles carry no champions in parentheses, so the title parse
+               yields NO teams for them: a verdict has to supply sides and players
+               too, and this tool only reads champions off the HUD. Saving such a
+               row is refused, so say why before the click rather than after. -->
+          <p
+            v-if="!item.players[0].length && !item.players[1].length"
+            class="mt-1 font-mono text-[11px] text-danger"
+          >
+            no team skeleton — author sides + players in data/overrides.json first, then re-run npm
+            run data:parse
           </p>
 
           <!-- evidence -->
@@ -301,7 +313,9 @@
         v-else
         class="mt-6 font-mono text-[12px] text-text-muted"
       >
-        No Evo entries in data/manual-videos.json.
+        The footage queue is empty. Run <span class="text-text">npm run data:parse</span> to rebuild
+        it — if it stays empty, no unexcluded record on a
+        <span class="text-text">charactersFromFootage</span> channel is missing champions.
       </p>
     </ClientOnly>
   </section>
@@ -321,7 +335,7 @@ definePageMeta({
     title: 'Evo champion completion',
     category: 'Curation',
     description: 'Complete the champions on Evo broadcast VODs the extractor could not read.',
-    writes: 'data/manual-videos.json',
+    writes: 'data/overrides.json',
   },
 });
 

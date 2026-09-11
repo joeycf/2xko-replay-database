@@ -327,11 +327,11 @@ export interface EvoSideProposal {
   sampled: number;
 }
 
-/** One Evo VOD awaiting champion completion.
+/** One footage-channel VOD awaiting champion completion.
  *
  *  Joined server-side from cache/evo/extracted.json (the extractor's proposal),
- *  data/manual-videos.json (the saved verdict) and the frame cache, so the page
- *  ships one small payload instead of pulling videos.json.
+ *  cache/evo/footage-queue.json (the record and the saved verdict) and the frame
+ *  cache, so the page ships one small payload instead of pulling videos.json.
  *
  *  The proposal is in SCREEN order and the saved verdict is in TITLE order; they
  *  are only comparable once `leftIsFirst` says how the two line up, which is why
@@ -355,7 +355,8 @@ export interface EvoReviewItem {
     decided: boolean;
     confidence: number;
   } | null;
-  /** what data/manual-videos.json holds now, TITLE order. [] = still unread. */
+  /** the champions the merged record carries now, TITLE order — an
+   *  overrides.json verdict where one exists. [] = still unread. */
   saved: [string[], string[]];
   /** a fuse verdict a human already recorded for this video, TITLE order, from
    *  data/fuse-validation-evo.json. `undefined` per side = never read. This is
@@ -371,8 +372,44 @@ export interface EvoReviewItem {
   savedFuses: [string | null, string | null];
   /** players per side, TITLE order — read-only context for the reviewer */
   players: [string[], string[]];
-  /** the entry still carries a todo marker */
-  todo: string | null;
+  /** the pipeline is still withholding this record from videos.json for want of
+   *  champions — the page's actual open work */
+  held: boolean;
+  /** an overrides.json entry already exists for this id (a verdict, or curation
+   *  carried over from the hand-authored era) */
+  curated: boolean;
+}
+
+/** One record on a `charactersFromFootage` channel, as data:parse leaves it in
+ *  cache/evo/footage-queue.json.
+ *
+ *  The completion tools cannot rebuild this list themselves: a record still
+ *  missing champions is held OUT of videos.json, and re-deriving it from the raw
+ *  dump would mean re-implementing the channel's title parse. Excluded ids never
+ *  appear — ruled out is not pending. */
+export interface FootageQueueItem {
+  id: string;
+  title: string;
+  channel: string;
+  channelName: string;
+  publishedAt: string;
+  durationSec: number;
+  /** the record parsed into two complete sides and is published */
+  settled: boolean;
+  tournament?: string;
+  round?: string;
+  teams: {
+    side: 'left' | 'right';
+    players: { id: string; displayName: string }[];
+    characters: string[];
+    fuse: string | null;
+  }[];
+}
+
+/** Shape of cache/evo/footage-queue.json (written by scripts/parse.ts). */
+export interface FootageQueue {
+  generatedAt: string;
+  items: FootageQueueItem[];
 }
 
 /** Payload of /api/dev/evo-review. */

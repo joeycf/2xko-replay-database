@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { EvoReviewItem, EvoReviewQueue, ManualVideosFile } from '~~/types';
+import type { EvoReviewItem, EvoReviewQueue, FootageQueue, VideoRecord } from '~~/types';
 
 interface Extraction {
   id: string;
@@ -23,26 +23,46 @@ interface Extraction {
   confidence: number;
 }
 
-// Dev-only worklist for /dev/evo-review: every Evo VOD, with the extractor's
-// proposal beside the verdict already in data/manual-videos.json.
+// Dev-only worklist for /dev/evo-review: every footage-channel record, with the
+// extractor's proposal beside the verdict already in data/overrides.json.
 //
-// THE WORKLIST IS THE MANUAL FILE, NOT THE EXTRACTION. A video whose extraction
-// failed outright is precisely the one a human most needs to see — half this
-// corpus is Evo Las Vegas, whose Latin display face defeats OCR — so keying the
-// queue on extracted.json would hide exactly the work. The extraction is a join,
-// and its absence is a state the page renders rather than a reason to drop a row.
+// THE WORKLIST IS THE PIPELINE'S QUEUE, NOT THE EXTRACTION. A video whose
+// extraction failed outright is precisely the one a human most needs to see —
+// half this corpus is Evo Las Vegas, whose Latin display face defeats OCR — so
+// keying the queue on extracted.json would hide exactly the work. The extraction
+// is a join, and its absence is a state the page renders rather than a reason to
+// drop a row.
+//
+// IT USED TO READ THE EVO ENTRIES IN data/manual-videos.json. Those records moved
+// onto a tracked channel in 4a0a591 and the file has held no Evo row since, so
+// this page rendered an empty queue for a month while looking perfectly healthy —
+// the failure mode of a lookup that is wrong rather than broken. cache/evo/
+// footage-queue.json is written by data:parse, the only stage that knows which
+// records are still missing champions.
 export default defineEventHandler((): EvoReviewQueue => {
   if (!import.meta.dev) throw createError({ statusCode: 404 });
   const root = process.cwd();
 
-  const file = JSON.parse(
-    readFileSync(join(root, 'data/manual-videos.json'), 'utf8'),
-  ) as ManualVideosFile;
-  const evo = (file.videos ?? []).filter((v) => /Evo/i.test(v.tournament ?? ''));
+  const queuePath = join(root, 'cache/evo/footage-queue.json');
+  if (!existsSync(queuePath)) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'footage-queue.json not found — run `npm run data:parse` first',
+    });
+  }
+  const queue = JSON.parse(readFileSync(queuePath, 'utf8')) as FootageQueue;
+
+  // The verdict itself. Champions on a footage channel are published from an
+  // override, so this is where a saved answer lives — the same file the fuse
+  // workbench writes, and the same one parse.ts merges last.
+  const overrides = JSON.parse(readFileSync(join(root, 'data/overrides.json'), 'utf8')) as Record<
+    string,
+    Partial<VideoRecord>
+  >;
 
   // Human fuse verdicts live in their own committed artifact, mirroring
   // data/fuse-validation.json — a CONFIRMATION is a datum even when it changes
-  // no record, and manual-videos.json has nowhere to put one.
+  // no record, and the record itself has nowhere to put one.
   const vePath = join(root, 'data/fuse-validation-evo.json');
   const validated = existsSync(vePath)
     ? (JSON.parse(readFileSync(vePath, 'utf8')) as Record<
@@ -67,20 +87,25 @@ export default defineEventHandler((): EvoReviewQueue => {
       .sort();
   };
 
-  const items: EvoReviewItem[] = evo.map((v) => {
+  const items: EvoReviewItem[] = queue.items.map((v) => {
     const e = extractions.get(v.id);
-    const sides = (v.teams ?? []).map((t) => [...(t.characters ?? [])]) as [string[], string[]];
+    // The queue's teams are already the merged record — override applied — so the
+    // saved verdict reads off them rather than off overrides.json a second time.
+    const sides = v.teams.map((t) => [...t.characters]) as [string[], string[]];
+    const label = v.tournament ?? v.title;
     return {
       id: v.id,
-      title: v.title ?? v.id,
-      tournament: v.tournament ?? '',
+      title: v.title,
+      tournament: v.tournament ?? v.channelName,
       ...(v.round ? { round: v.round } : {}),
-      durationSec: v.durationSec ?? 0,
+      durationSec: v.durationSec,
       frames: framesOf(v.id),
       // Evo Japan renders katakana and Las Vegas renders Latin; a reviewer facing
       // a blank proposal needs to know which, because on the Latin half a blank
       // is the known reader limit and on the katakana half it is a real anomaly.
-      script: /Japan/i.test(v.tournament ?? '') ? 'katakana' : 'latin',
+      // Read off the event label when there is one and the title otherwise —
+      // this channel names the event in both.
+      script: /Japan/i.test(label) ? 'katakana' : 'latin',
       proposal: e
         ? {
             left: e.left,
@@ -91,7 +116,7 @@ export default defineEventHandler((): EvoReviewQueue => {
           }
         : null,
       saved: [sides[0] ?? [], sides[1] ?? []],
-      savedFuses: [v.teams?.[0]?.fuse ?? null, v.teams?.[1]?.fuse ?? null] as [
+      savedFuses: [v.teams[0]?.fuse ?? null, v.teams[1]?.fuse ?? null] as [
         string | null,
         string | null,
       ],
@@ -100,12 +125,15 @@ export default defineEventHandler((): EvoReviewQueue => {
         string | null | undefined,
       ],
       players: [
-        (v.teams?.[0]?.players ?? []).map(String),
-        (v.teams?.[1]?.players ?? []).map(String),
+        (v.teams[0]?.players ?? []).map((p) => p.displayName),
+        (v.teams[1]?.players ?? []).map((p) => p.displayName),
       ] as [string[], string[]],
-      todo: v.todo ?? null,
+      // A record the gate is still withholding — the page's open work. Carries
+      // the reason so an empty queue and a settled one never read alike.
+      held: !v.settled,
+      curated: !!overrides[v.id],
     };
   });
 
-  return { generatedAt: new Date().toISOString(), items };
+  return { generatedAt: queue.generatedAt, items };
 });

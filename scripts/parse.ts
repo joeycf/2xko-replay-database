@@ -17,7 +17,7 @@
 //  • Champions: exact alias → word-contains (tag balance notes) → Damerau/OSA ≤1 (low conf).
 
 import { existsSync } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -1713,6 +1713,48 @@ const publishable = parsedRecords.filter((r) => {
   if (!complete && overrides[r.id]?.exclude !== true) heldForFootage.push(r);
   return complete;
 });
+
+// ── the footage queue (cache/evo/footage-queue.json) ─────────────────────────
+// The completion tools cannot rebuild this population for themselves. A held
+// record is BY DEFINITION absent from videos.json, and re-deriving it from the
+// raw dump would mean re-implementing this channel's title parse — the players,
+// the duo delimiter, the round tags — in two more places, free to drift from the
+// one here. So the pipeline publishes what it already computed, the way
+// data:fuse-gaps does for the fuse workbench, and the tools join against it.
+//
+// SETTLED ROWS TRAVEL TOO. A verdict that is already in is exactly what a
+// reviewer re-checks, and the extractor scores itself against it; dropping them
+// would leave both tools unable to see their own past work. `settled` carries
+// the distinction the gate just drew. Excluded ids are absent altogether —
+// ruled out is not pending.
+const footageQueue = {
+  generatedAt: new Date().toISOString(),
+  items: parsedRecords
+    .filter((r) => footageChannels.has(r.channel) && overrides[r.id]?.exclude !== true)
+    .map((r) => ({
+      id: r.id,
+      title: r.title,
+      channel: r.channel,
+      channelName: r.channelName,
+      publishedAt: r.publishedAt,
+      durationSec: r.durationSec,
+      settled: r.teams.length === 2 && r.teams.every((t) => t.characters.length > 0),
+      ...(r.tournament ? { tournament: r.tournament } : {}),
+      ...(r.round ? { round: r.round } : {}),
+      teams: r.teams.map((t) => ({
+        side: t.side,
+        players: t.players.map((pl) => ({ id: pl.id, displayName: pl.displayName })),
+        characters: [...t.characters],
+        fuse: t.fuse ?? null,
+      })),
+    })),
+};
+await mkdir(join(ROOT, 'cache/evo'), { recursive: true });
+await writeFile(
+  join(ROOT, 'cache/evo/footage-queue.json'),
+  JSON.stringify(footageQueue, null, 2) + '\n',
+  'utf8',
+);
 
 // ── the index source, merged ADD-ONLY ────────────────────────────────────────
 // This is where that rule stops being aspirational.
