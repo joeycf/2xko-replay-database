@@ -1,6 +1,9 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { EvoReviewItem, EvoReviewQueue, FootageQueue, VideoRecord } from '~~/types';
+import { partitionReviewQueue } from '@engine/server/utils/reviewQueue';
+import type { ReviewState } from '@engine/types';
+import type { EvoReviewItem, FootageQueue, UnreadableVerdict, VideoRecord } from '~~/types';
+import type { EvoReviewQueue } from '~~/types/review';
 
 interface Extraction {
   id: string;
@@ -57,7 +60,7 @@ export default defineEventHandler((): EvoReviewQueue => {
   // workbench writes, and the same one parse.ts merges last.
   const overrides = JSON.parse(readFileSync(join(root, 'data/overrides.json'), 'utf8')) as Record<
     string,
-    Partial<VideoRecord>
+    Partial<VideoRecord> & { unreadable?: UnreadableVerdict }
   >;
 
   // Human fuse verdicts live in their own committed artifact, mirroring
@@ -135,5 +138,25 @@ export default defineEventHandler((): EvoReviewQueue => {
     };
   });
 
-  return { generatedAt: queue.generatedAt, items };
+  // Settled rows leave the open list. They are still CARRIED — re-checking your
+  // own verdict is real work and the extractor scores itself against them — but
+  // they stop being the thing the page hands you first. Before this, all 21 rows
+  // were complete and the page opened on a queue that was 100% finished.
+  //
+  // The predicate reads the verdict store (overrides.json), not videos.json, so
+  // a save clears its row on the next request rather than after a pipeline run.
+  const resolutionOf = (item: EvoReviewItem): ReviewState => {
+    const unreadable = overrides[item.id]?.unreadable?.characters ?? [];
+    if (item.saved[0].length > 0 && item.saved[1].length > 0) return { resolution: 'resolved' };
+    // Both sides declared unreadable off the broadcast: a verdict, not a blank.
+    if (unreadable.length === 2)
+      return {
+        resolution: 'negative',
+        reason: overrides[item.id]?.unreadable?.['//'],
+        at: overrides[item.id]?.unreadable?.at,
+      };
+    return { resolution: 'pending' };
+  };
+
+  return partitionReviewQueue(items, resolutionOf, { generatedAt: queue.generatedAt });
 });

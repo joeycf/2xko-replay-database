@@ -228,8 +228,10 @@ the modal shows the pair unattributed).
   (`--cookies-from-browser <spec>` is forwarded too, but on WSL2 it cannot
   decrypt a Windows browser profile — the cookies.txt export is the reliable
   path.)
-- Review artifacts land in `cache/fuse/review/`: `low-review.md` (every
-  low/none with best guess + scores) and `unmatched-pills.png` (montage —
+- Review artifacts land in `cache/fuse/review/`: `low-review.md` (every **open**
+  low/none with best guess + scores — a row whose record already publishes both
+  fuses, or carries an unreadable verdict, is not listed; the sheet is rewritten
+  every run, including when it is empty) and `unmatched-pills.png` (montage —
   how a new/rare fuse style gets spotted, templated from those very frames,
   and re-run incrementally).
 - `npm run data:fuse-gaps` reconciles `videos.json` against the detections,
@@ -538,23 +540,41 @@ frame cycler, plus zoomed crops of each pill, then a fuse picker per
 **title-ordered team** — labeled with player names and champions, because screen
 side is _not_ title order, which is the whole reason orientation is hard.
 
-| case                     | what you do                  | what lands in `overrides.json`          |
-| ------------------------ | ---------------------------- | --------------------------------------- |
-| missing / low-confidence | pick a fuse per team         | `teams[i].fuse`, `fusesUnordered:false` |
-| one side unreadable      | pick one, mark the other `0` | the other side stays `null`             |
-| can't tell which side    | set both, press `u`          | both set + `fusesUnordered:true`        |
+| case                     | what you do            | what lands in `overrides.json`              |
+| ------------------------ | ---------------------- | ------------------------------------------- |
+| missing / low-confidence | pick a fuse per team   | `teams[i].fuse`, `fusesUnordered:false`     |
+| no answer yet            | leave it, or press `0` | the side stays `null` — still open work     |
+| **genuinely unreadable** | press `x` on that row  | `unreadable.fuse: ["left"]` — **a verdict** |
+| can't tell which side    | set both, press `u`    | both set + `fusesUnordered:true`            |
+
+**`0` AND `x` ARE DIFFERENT ANSWERS, and the difference is why records used to
+come back forever.** `0` is "no answer": the side stays null, the pipeline treats
+it as an absence, and a later confident detection fills it (all 11 human nulls on
+disk had been overwritten this way). `x` is "I looked and this pill cannot be
+read": it writes `unreadable`, which `fillNullFuseSides` refuses to overwrite and
+`data:fuse-gaps` counts on its own line instead of re-queueing. Clearing a side
+that was marked `x` retracts the verdict.
 
 That's the same contract `--promote-lows` writes, so hand verdicts and promoted
 ones are indistinguishable downstream. Keys: `1`–`8` set the focused row's fuse,
-`0` marks it unreadable, `↑↓`/tab switch rows, `←→` cycle frames, `g` accepts the
-detector's rejected guess, `u` toggles unordered, `⏎` saves and jumps to the next
-open item, `s`/`[`/`]` navigate, `?` shows the legend. A cell strip at the top
-tracks every item's state and jumps on click.
+`0` clears it, `x` marks it unreadable, `↑↓`/tab switch rows, `←→` cycle frames,
+`g` accepts the detector's rejected guess, `u` toggles unordered, `⏎` saves and
+jumps to the next open item, `s`/`[`/`]` navigate, `?` shows the legend. A cell
+strip at the top tracks every item's state — four states now, since a row settled
+by `x` must not wear the same colour as one that was read.
 
 Only ids in the current gap report are writable, fuse ids are validated against
 the registry, and clearing both sides removes the entry (or nulls the fuses when
-it also carries a title-parse correction). Skips are deliberately **not**
-persisted — only real assignments touch the repo.
+it also carries a title-parse correction) — **unless a side is marked `x`**, in
+which case the entry persists carrying the verdict, because deleting it is
+precisely what put the record back in the queue looking untouched. Skips are
+deliberately **not** persisted — only real assignments touch the repo.
+
+**The page shows the OPEN work.** The route speaks the engine's review-queue
+contract (`counts` / `items` / `resolved`, engine v0.14.0): a saved row leaves
+the list on the next refresh rather than after `data:parse` + `data:fuse-gaps`,
+and the settled rows are one click away under "show settled". The `/dev` index
+prints each tool's `N pending / M done` from the same payload.
 
 The 63 gaps outstanding when this screen landed are now all resolved (63 new
 `overrides.json` entries, every one with both sides attributed). The fixed merge

@@ -113,6 +113,25 @@
                   {{ t.players.map((p) => p.displayName).join(' + ') || '?' }}
                   <span class="text-text-muted">({{ t.characters.join('-') || '?' }})</span>
                 </button>
+                <!-- The third answer. "Which team owns this pill" has always had
+                     one the form could not express — nothing in frame attributes
+                     it — so the row came back on every run. It records a verdict
+                     and leaves the pair itself alone, because the pair is a good
+                     read. -->
+                <button
+                  type="button"
+                  class="border px-3 py-1.5 text-left font-mono text-[12px] transition-colors"
+                  :class="
+                    choice[item.id] === 'unreadable'
+                      ? 'border-warning bg-warning/10 text-warning'
+                      : 'border-white/10 text-text-muted hover:border-warning/40'
+                  "
+                  title="nothing in frame attributes this pill to a team"
+                  @click="choice[item.id] = choice[item.id] === 'unreadable' ? null : 'unreadable'"
+                >
+                  <span class="block text-[10px] uppercase text-text-muted">verdict</span>
+                  can't tell
+                </button>
                 <span
                   v-if="saved[item.id] !== undefined && saved[item.id] === choice[item.id]"
                   class="font-mono text-[11px] text-success"
@@ -173,7 +192,8 @@
 // out to the footage is no longer a concatenation. Bare ids are unaffected —
 // watchUrl returns the same string it always did for them.
 import { watchUrl } from '~~/scripts/video-url';
-import type { FuseOrientItem, FuseOrientQueue, VideoRecord } from '~~/types';
+import type { FuseOrientItem, VideoRecord } from '~~/types';
+import type { FuseOrientReviewQueue } from '~~/types/review';
 
 // Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
 // value MUST stay a plain quoted literal — the build extracts them from the AST
@@ -185,6 +205,7 @@ definePageMeta({
     description:
       'The --promote-lows queue: the fuse is legible, only the team that owns it is unresolved.',
     writes: 'data/overrides.json',
+    queue: '/api/dev/fuse-orient',
   },
 });
 
@@ -201,13 +222,13 @@ const {
   data: queue,
   error: queueError,
   refresh,
-} = useAsyncData(
-  'fuse-orient',
-  () => $fetch<FuseOrientQueue & { assigned: Record<string, number> }>('/api/dev/fuse-orient'),
-  { server: false },
-);
+} = useAsyncData('fuse-orient', () => $fetch<FuseOrientReviewQueue>('/api/dev/fuse-orient'), {
+  server: false,
+});
 
-const choice = ref<Record<string, 0 | 1 | null>>({});
+type Choice = 0 | 1 | 'unreadable' | null;
+const choice = ref<Record<string, Choice>>({});
+const showResolved = ref(false);
 const saved = ref<Record<string, number>>({});
 const frameN = ref<Record<string, number>>({});
 const saving = ref(false);
@@ -218,7 +239,7 @@ watch(
   (q) => {
     if (!q) return;
     saved.value = { ...q.assigned };
-    for (const item of q.items) {
+    for (const item of [...q.items, ...q.resolved]) {
       if (choice.value[item.id] === undefined) {
         choice.value[item.id] = (q.assigned[item.id] as 0 | 1 | undefined) ?? null;
       }
@@ -228,8 +249,10 @@ watch(
 );
 
 const byId = computed(() => new Map(videos.value.map((v) => [v.id, v])));
+// The OPEN rows by default. All ten in this queue were adjudicated months ago and
+// the page listed every one of them as work.
 const rows = computed(() =>
-  (queue.value?.items ?? [])
+  (showResolved.value ? (queue.value?.resolved ?? []) : (queue.value?.items ?? []))
     .map((item) => ({ item, video: byId.value.get(item.id) }))
     .filter(
       (x): x is { item: FuseOrientItem; video: VideoRecord } =>
@@ -268,11 +291,13 @@ const save = async () => {
         return c !== null && c !== undefined && saved.value[item.id] !== c;
       })
       .map(({ item }) => ({ id: item.id, owner: choice.value[item.id] }));
-    const res = await $fetch<{ written: number; rejected: string[] }>('/api/dev/fuse-orient', {
-      method: 'POST',
-      body: { assignments },
-    });
-    saveNote.value = `wrote ${res.written} to overrides.json${res.rejected.length ? ` (${res.rejected.length} rejected)` : ''}`;
+    const res = await $fetch<{ written: number; negative: number; rejected: string[] }>(
+      '/api/dev/fuse-orient',
+      { method: 'POST', body: { assignments } },
+    );
+    saveNote.value =
+      `wrote ${res.written}${res.negative ? ` · ${res.negative} unreadable` : ''} to overrides.json` +
+      `${res.rejected.length ? ` (${res.rejected.length} rejected)` : ''}`;
     await refresh();
   } finally {
     saving.value = false;

@@ -21,7 +21,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { CHANNELS, CHAR_SEP, PLAYER_SEP, THEATER_SPONSOR } from './channels';
+import { CHANNELS, CHAR_SEP, PLAYER_SEP, THEATER_SPONSOR, type ChannelConfig } from './channels';
 import { crossCheck, formatCrossCheck, type WitnessArtifact, type WitnessFile } from './crosscheck';
 import { applyExclusions, emitGeneric } from './emit';
 import { formatStaleRefusal, staleEvidence } from './freshness';
@@ -40,6 +40,7 @@ import type {
   Team,
   TeamSide,
   TheaterRawRecord,
+  UnreadableVerdict,
   VideoRecord,
 } from '../types/index';
 
@@ -92,9 +93,12 @@ const patchTable = loadPatchTable(DATA);
 // overrides may also EXCLUDE a record outright ({ "exclude": true } — e.g. a
 // stray non-2XKO upload a tracked channel published); applied after the manual
 // merge, before stats/writes/emit.
-const overrides = await readJson<Record<string, Partial<VideoRecord> & { exclude?: boolean }>>(
-  join(DATA, 'overrides.json'),
-);
+// `unreadable` is a NEGATIVE verdict — "a human looked and it cannot be read" —
+// and is metadata about the review rather than a field of the record, so it is
+// stripped before the merge rather than shipped to the site.
+const overrides = await readJson<
+  Record<string, Partial<VideoRecord> & { exclude?: boolean; unreadable?: UnreadableVerdict }>
+>(join(DATA, 'overrides.json'));
 // Hand-authored records (tournament VODs etc.) — validated + merged in below.
 // A malformed file must fail the run loudly, so no .catch here.
 const manualEntries: ManualVideoEntry[] =
@@ -746,6 +750,107 @@ function parseTitle(
   return { ok: true, teams: teams as [ParsedTeam, ParsedTeam] };
 }
 
+/** A TEAM SKELETON — sides and players, no champions — for a footage channel.
+ *
+ *  These titles name the event, the players and the round, and never a champion,
+ *  so TEAM_SPLIT (anchored on parentheses) rejects every one of them and the
+ *  record parses to `teams: []`. That is not merely incomplete, it is
+ *  UNCOMPLETABLE: /dev/evo-review reads champions off the broadcast HUD and has
+ *  no sides to attach them to, and scripts/complete-characters.ts feeds the same
+ *  empty list to resolveSide, so even side attribution has nothing to vote on.
+ *  The 21 published Evo sets work only because a migration hand-carried their
+ *  skeletons into overrides.json. This is the half that reads them.
+ *
+ *  ONE RULE SET, NOT ONE PER SHAPE. The corpus has three layouts — players
+ *  before the game token, players after it, and one Duo Duel with no pipes at
+ *  all — and shape detection would be three rules to keep in sync with a channel
+ *  nobody watches. Instead: find the `vs`, take the segment it lives in, and read
+ *  outwards. Measured against all 42 evoEvents records: tournament 21/21, round
+ *  21/21, sides 21/21, and zero false positives on the 21 non-set uploads.
+ *
+ *  The `vs` count is also the set/non-set gate: every one of the 21 real sets
+ *  carries exactly one, and every bracket stream, montage and commentary clip
+ *  carries none. */
+interface FootageSkeleton {
+  tournament: string;
+  round: string | null;
+  /** TITLE order — left is the side named before `vs`, which is not screen order */
+  sides: [string[], string[]];
+}
+
+function parseFootageTitle(rawTitle: string, cfg: ChannelConfig): FootageSkeleton | null {
+  const title = rawTitle.replace(/\s+/g, ' ').trim();
+
+  // Exactly one. Two would make the split ambiguous and zero means this is not a
+  // set — a day-long bracket stream, a "Best of" montage, a commentary pull.
+  if ((title.match(/\bvs\b/gi) ?? []).length !== 1) return null;
+
+  // The event label is everything before the first colon (21/21). Required: it
+  // is what justifies calling these tournament matches at all, and a title
+  // without one is a shape this parser has not seen.
+  const colon = title.indexOf(':');
+  if (colon < 0) return null;
+  const tournament = title.slice(0, colon).trim();
+  if (!tournament) return null;
+
+  const segments = title.split('|').map((seg) => seg.trim());
+  const matchAt = segments.findIndex((seg) => /\bvs\b/i.test(seg));
+  if (matchAt < 0) return null;
+
+  // Within its segment the match is the LAST colon-part: at Vegas the segment is
+  // "Evo 2026: A vs B" and at Evo Japan it is bare "A vs B", while the Duo Duel
+  // carries two colons ahead of it.
+  const parts = segments[matchAt]!.split(':').map((part) => part.trim());
+  const matchText = parts[parts.length - 1]!;
+
+  // The game token is a CHANNEL-level marker — the same pattern that decided this
+  // upload was 2XKO at all — never a round. Read it from the config rather than
+  // hardcoding, so the second footage channel works without touching this.
+  const stripGame = (text: string): string =>
+    (cfg.gameSignal ? text.replace(cfg.gameSignal.pattern, '') : text).replace(/\s+/g, ' ').trim();
+
+  // The round is whatever pipe-segments follow the match. When there are none —
+  // the Duo Duel, which has no pipes — it is the colon-context that preceded it,
+  // minus the event label. Either way it stays VERBATIM title text: roundTags()
+  // is a closed vocabulary that returns nothing for 9 of these 21 and collapses
+  // "Losers Semifinal" and "Winners Semifinals" into one token, so it is right
+  // for the tags facet and useless as the label a bracket page prints.
+  const trailing = segments
+    .slice(matchAt + 1)
+    .map(stripGame)
+    .filter(Boolean);
+  const round =
+    trailing.join(' ') ||
+    parts
+      .slice(0, -1)
+      .map((part) => part.trim())
+      .filter((part) => part && part !== tournament)
+      .map(stripGame)
+      .filter(Boolean)
+      .join(' ') ||
+    null;
+
+  const halves = matchText.split(/\s+vs\s+/i);
+  if (halves.length !== 2) return null;
+
+  // THE CHANNEL'S OWN SEPARATOR, NOT THE UNIFIED ONE. PLAYER_SEP carries "&", "+"
+  // and spaced hyphens but not "/", so it would leave "SonicFox/INZEM" as a
+  // single token — one bogus `sonicfoxinzem` player, registered, counted, and
+  // given a prerendered profile page. channels.ts states this trap next to the
+  // field; this parser is what makes that field load-bearing rather than
+  // reference-only.
+  const split = (half: string): string[] =>
+    half
+      .split(cfg.playerSep)
+      .map((name) => name.trim())
+      .filter(Boolean);
+
+  const sides: [string[], string[]] = [split(halves[0]!), split(halves[1]!)];
+  if (!sides[0].length || !sides[1].length) return null;
+
+  return { tournament, round, sides };
+}
+
 // ── build one VideoRecord ─────────────────────────────────────────────────────
 interface LowReason {
   id: string;
@@ -780,6 +885,46 @@ function buildRecord(raw: RawVideoRecord): VideoRecord {
 
   const parsed = parseTitle(raw.title);
   if (!parsed.ok) {
+    // A footage channel gets a second look before it is written off. The normal
+    // parse runs FIRST and stays authoritative — a footage title that does carry
+    // parentheses should take the ordinary path — so this is a fallback, never a
+    // fork.
+    const skeleton = cfg.charactersFromFootage ? parseFootageTitle(raw.title, cfg) : null;
+    if (skeleton) {
+      const sides: TeamSide[] = ['left', 'right'];
+      const teams: Team[] = skeleton.sides.map((names, i) => ({
+        side: sides[i]!,
+        players: names.map(resolvePlayer),
+        characters: [],
+        fuse: null,
+      }));
+      // Still `low`: the record genuinely has no champions, and the verdict that
+      // supplies them raises it. What changes is the REASON — "structural
+      // failure" described a parser that could not read the title, and this one
+      // read everything the title had.
+      reasons.push('footage channel: skeleton only — champions awaited from the broadcast');
+      lowReports.push({ id: raw.id, channel: raw.channel, title: raw.title, reasons });
+      return {
+        ...base,
+        // NOT the maxPlayers >= 2 rule. That reads a two-player side as a `duo`
+        // lobby, which would label the three Vegas duo sets and the Duo Duel as
+        // casual play; all 21 hand verdicts say `tournament`, and side size is
+        // already visible in teams[].players.length. An event label plus a round
+        // read off the title is a stronger tournament signal than roundTags ever
+        // gave us.
+        matchType: 'tournament',
+        teams,
+        allCharacters: [],
+        allPlayers: uniq(teams.flatMap((t) => t.players.map((pl) => pl.id))),
+        tags: [...tags].sort(),
+        parseConfidence: 'low',
+        tournament: skeleton.tournament,
+        ...(skeleton.round ? { round: skeleton.round } : {}),
+        // The title WAS parsed — everything in it that is not a champion is on
+        // the record. Carrying it as unparsed residue would be false.
+        rawUnparsed: null,
+      };
+    }
     reasons.push(`structural failure (${parsed.stage})`);
     lowReports.push({ id: raw.id, channel: raw.channel, title: raw.title, reasons });
     return {
@@ -1535,6 +1680,14 @@ const canonicalFuse = (id: string | null): string | null => {
  *  detection may fill it. A hand-authored fuse still outranks the detector;
  *  a hand-authored *null* never asserted anything to outrank.
  *
+ *  UNLESS THE OVERRIDE SAYS THE SIDE IS UNREADABLE. That is the one null that IS
+ *  a verdict: a human looked at the pill and could not read it, and
+ *  `unreadable.fuse` is where they said so. Filling it from a detection would
+ *  overrule the person who looked — and would also recycle the record through
+ *  the review queue forever, since a filled side and a never-reviewed side are
+ *  indistinguishable downstream. Before this existed, all 11 override entries
+ *  carrying a human null had been overwritten exactly this way.
+ *
  *  Both writers agree on that reading. /api/dev/fuse-orient only ever asked
  *  which title team owns an already-settled pill and documents that "the other
  *  team stays null"; FuseReviewVerdict types its own field "null = this side is
@@ -1552,7 +1705,11 @@ const canonicalFuse = (id: string | null): string | null => {
  *  hand, so if that fuse is in the pair the remaining member belongs to the other
  *  side. When both members are the same fuse the ordering was never in question.
  *  Anything else is left null for review. */
-const fillNullFuseSides = (rec: VideoRecord, det: FuseDetection | undefined): VideoRecord => {
+const fillNullFuseSides = (
+  rec: VideoRecord,
+  det: FuseDetection | undefined,
+  unreadable: ReadonlySet<TeamSide> = new Set(),
+): VideoRecord => {
   if (!det || rec.teams.length !== 2) return rec;
   if (det.status !== 'ok' && det.status !== 'ok-unordered') return rec;
   const cur = rec.teams.map((t) => t.fuse);
@@ -1560,6 +1717,8 @@ const fillNullFuseSides = (rec: VideoRecord, det: FuseDetection | undefined): Vi
   if (cur.every(Boolean) || cur.every((f) => !f)) return rec;
 
   const missing = cur[0] ? 1 : 0;
+  // The null on this side is a verdict, not a gap. Leave it.
+  if (unreadable.has(rec.teams[missing]!.side)) return rec;
   const known = cur[missing === 0 ? 1 : 0]!;
   const pair = [canonicalFuse(det.left), canonicalFuse(det.right)];
 
@@ -1601,8 +1760,40 @@ const mergeCuration = (rec: VideoRecord): VideoRecord => {
   // overrides.json last — a manual fuse override beats detection. Exclusion
   // entries don't shallow-merge (the record is dropped wholesale below).
   const ov = overrides[rec.id];
-  const withOverride = ov && !ov.exclude ? { ...merged, ...ov } : merged;
-  return fillNullFuseSides(withOverride, det);
+  // `unreadable` is curation metadata ABOUT THE REVIEW, not a property of the
+  // match, so it is stripped here rather than shallow-merged onto the record and
+  // shipped to the site. (`//` does leak that way on 25 records today. That is a
+  // wart to fix, not a precedent to follow.)
+  const { unreadable: unreadableVerdict, ...verdict } = ov ?? {};
+  let withOverride = ov && !ov.exclude ? { ...merged, ...verdict } : merged;
+  // ON A FOOTAGE CHANNEL THE OVERRIDE IS THE VERDICT, INCLUDING WHICH SIDE.
+  // The detection above may have flagged the pair unordered, which the modal
+  // renders as two fuses belonging to nobody in particular — but these records
+  // are published FROM a verdict by contract (`charactersFromFootage`), and that
+  // verdict names a fuse per title-ordered team. The detector's shrug does not
+  // survive it, unless the override sets the flag itself.
+  //
+  // Scoped to footage channels on purpose, and the scope is load-bearing: an
+  // override elsewhere is often a title-parse CORRECTION whose teams[].fuse was
+  // inherited rather than attributed, and treating that as a human side-call
+  // stripped the flag off four records nobody had adjudicated.
+  //
+  // Unreachable until footage records grew skeletons: with `teams: []` the
+  // detection branch never ran for them, so the day they parsed into two sides,
+  // two hand-validated Evo sets silently picked up a detector's shrug.
+  if (
+    // `manual` and the index sources are VideoSources with no channel config —
+    // look up defensively rather than index a Record<ChannelKey, …> with one.
+    (CHANNELS as Partial<Record<string, ChannelConfig>>)[rec.channel]?.charactersFromFootage &&
+    ov?.teams &&
+    !ov.exclude &&
+    ov.fusesUnordered === undefined &&
+    withOverride.fusesUnordered
+  ) {
+    const { fusesUnordered: _dropped, ...rest } = withOverride;
+    withOverride = rest as VideoRecord;
+  }
+  return fillNullFuseSides(withOverride, det, new Set(unreadableVerdict?.fuse ?? []));
 };
 
 // Carried records take the SAME merge as parsed ones, deliberately. They skip
@@ -1635,14 +1826,21 @@ function applyFuseSources(rec: VideoRecord): VideoRecord {
   if (rec.teams.length !== 2) return rec;
   let out = rec;
 
+  // The same exception the parsed path takes: a side a human marked unreadable
+  // is a verdict, and the detector does not get to fill it. Needed here too, or
+  // every manual and replayTheater record would strand its own negative verdicts.
+  const unreadable = new Set(overrides[rec.id]?.unreadable?.fuse ?? []);
+
   const det = fusesDetected[rec.id];
   if (det && (det.status === 'ok' || det.status === 'ok-unordered')) {
     const pair = [det.left, det.right];
-    if (out.teams.some((t, i) => t.fuse === null && pair[i] !== null)) {
+    const fillable = (t: Team, i: number) =>
+      t.fuse === null && pair[i] !== null && !unreadable.has(t.side);
+    if (out.teams.some(fillable)) {
       out = {
         ...out,
         teams: out.teams.map((t, i) =>
-          t.fuse === null ? { ...t, fuse: canonicalFuse(pair[i])! } : t,
+          fillable(t, i) ? { ...t, fuse: canonicalFuse(pair[i])! } : t,
         ),
         ...(det.status === 'ok-unordered' ? { fusesUnordered: true as const } : {}),
       };

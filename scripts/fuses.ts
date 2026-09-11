@@ -23,7 +23,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp, { type OverlayOptions } from 'sharp';
-import type { FuseOrientItem, VideoRecord } from '../types/index';
+import type { FuseDetection, FuseOrientItem, UnreadableVerdict, VideoRecord } from '../types/index';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = join(ROOT, 'cache/fuse');
@@ -95,6 +95,35 @@ const regions = JSON.parse(readFileSync(join(ROOT, 'data/fuse-regions.json'), 'u
   default: { left: number[]; right: number[] };
 };
 const byId = new Map(videos.map((v) => [v.id, v]));
+
+// Read-only view of the verdict store, for deciding what is still REVIEW WORK.
+// (runPromoteLows loads its own mutable copy — it writes.)
+const reviewOverrides = JSON.parse(
+  readFileSync(join(ROOT, 'data/overrides.json'), 'utf8'),
+) as Record<string, (Partial<VideoRecord> & { unreadable?: UnreadableVerdict }) | undefined>;
+
+/** A low/none detection nobody has ruled on yet.
+ *
+ *  The review sheet and `--promote-lows` ask the same question and used to answer
+ *  it differently: promote-lows subtracted records that already carried a verdict
+ *  and the sheet did not, so low-review.md regenerated at 353 rows of which 353
+ *  already had an overrides entry AND already published both fuses. The sheet was
+ *  a to-do list that had been finished for months, and the gap report graded it
+ *  "in sync" because it only ever asked whether the DETECTOR still called them
+ *  low — never whether a human had already answered.
+ *
+ *  The question that actually matters is the published one, and it is the same
+ *  one scripts/fuse-gaps.ts asks: does a side still lack a fuse that no human has
+ *  declared unreadable? */
+const isOpenLow = (id: string, d: FuseDetection): boolean => {
+  if (d.status !== 'low' && d.status !== 'none') return false;
+  const rec = byId.get(id);
+  // Not in the published set: excluded, or a footage record still awaiting
+  // champions. Either way it is not fuse-review work today.
+  if (!rec || rec.teams.length !== 2) return false;
+  const unreadable = new Set(reviewOverrides[id]?.unreadable?.fuse ?? []);
+  return rec.teams.some((t) => !t.fuse && !unreadable.has(t.side));
+};
 const eraOf = (v: VideoRecord) => (v.season === null ? 'beta' : `s${v.season}`);
 
 // name rows are searched vertically — base rects, y is the search anchor
@@ -904,9 +933,7 @@ async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Pr
   console.log(`\n✓ wrote data/fuses-detected.json (${Object.keys(detected).length} records)`);
 
   // review sheet for low/none + unmatched-pill montage (Sidekick/Teamfight hunt)
-  const lows = Object.entries(detected).filter(
-    ([, d]) => d.status === 'low' || d.status === 'none',
-  );
+  const lows = Object.entries(detected).filter(([id, d]) => isOpenLow(id, d));
   if (lows.length) {
     const lines = lows.map(
       ([id, d]) =>
@@ -918,6 +945,17 @@ async function runBacklog(pills: PillTemplate[], names: Map<string, bigint>): Pr
       `# Fuse review sheet — ${lows.length} low/none\n\n| video | status | left guess (dist) | right guess (dist) | era | frames |\n|---|---|---|---|---|---|\n${lines.join('\n')}\n`,
     );
     console.log(`review sheet: cache/fuse/review/low-review.md (${lows.length} records)`);
+  } else {
+    // An empty sheet must still be WRITTEN. Skipping the write left the last
+    // stale copy on disk, which is how a finished backlog went on advertising
+    // 353 rows of work — the file said what was true months ago and nothing ever
+    // corrected it.
+    mkdirSync(REVIEW, { recursive: true });
+    writeFileSync(
+      join(REVIEW, 'low-review.md'),
+      `# Fuse review sheet — ${new Date().toISOString().slice(0, 10)}\n\nNo open low/none detections: every one either carries a verdict or is marked unreadable.\n`,
+    );
+    console.log('review sheet: cache/fuse/review/low-review.md (0 open)');
   }
   if (unmatched.length) {
     mkdirSync(REVIEW, { recursive: true });

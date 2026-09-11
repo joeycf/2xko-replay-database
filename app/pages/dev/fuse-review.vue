@@ -26,7 +26,32 @@
           <span class="text-text-secondary">
             <span class="text-text">{{ cursor + 1 }}</span> / {{ items.length }}
           </span>
-          <span class="text-success">{{ resolvedCount }} resolved</span>
+          <span
+            v-if="counts"
+            class="text-text-secondary"
+          >
+            <span :class="counts.pending ? 'text-primary' : 'text-text-faint'"
+              >{{ counts.pending }} open</span
+            >
+            · {{ counts.done }} done<span
+              v-if="counts.unreadable"
+              class="text-warning"
+            >
+              · {{ counts.unreadable }} unreadable</span
+            >
+          </span>
+          <button
+            type="button"
+            class="cursor-pointer underline decoration-white/25 hover:decoration-white"
+            :class="showResolved ? 'text-primary' : 'text-text-muted'"
+            title="settled rows are carried, they are just not the default view"
+            @click="
+              showResolved = !showResolved;
+              cursor = 0;
+            "
+          >
+            {{ showResolved ? 'showing settled' : 'show settled' }}
+          </button>
           <span
             v-if="dirtyCount"
             class="text-warning"
@@ -53,7 +78,10 @@
           </button>
         </div>
 
-        <!-- jump strip: one cell per item, colour = state -->
+        <!-- Jump strip: one cell per item, colour = state. `unreadable` gets its
+             own colour rather than sharing green with `saved`: a strip that is
+             mostly unreadable is a detector problem, and mostly-green would hide
+             exactly that. -->
         <div class="mt-3 flex flex-wrap gap-[3px]">
           <button
             v-for="(it, i) in items"
@@ -66,7 +94,9 @@
                 ? 'border-success/40 bg-success/70'
                 : stateOf(it) === 'unsaved'
                   ? 'border-warning/40 bg-warning/70'
-                  : 'border-white/15 bg-white/[0.06]',
+                  : stateOf(it) === 'unreadable'
+                    ? 'border-text-muted/50 bg-text-muted/40'
+                    : 'border-white/15 bg-white/[0.06]',
               isDisputed(it) ? '!border-warning scale-125' : '',
               i === cursor ? 'scale-150 !border-primary' : '',
             ]"
@@ -230,14 +260,31 @@
                   type="button"
                   class="border px-2.5 py-1 font-mono text-[11px] uppercase transition-colors"
                   :class="
-                    verdict.fuses[i] === null
+                    verdict.fuses[i] === null && !isUnreadable(i as 0 | 1)
                       ? 'border-white/40 text-text'
                       : 'border-white/10 text-text-muted hover:border-white/25'
                   "
+                  title="no answer yet — leaves the side open for review"
                   @click.stop="pick(i as 0 | 1, null)"
                 >
                   <span class="mr-1 text-[9px] text-text-muted">0</span>
-                  unreadable
+                  no answer
+                </button>
+                <!-- The verdict, as opposed to the blank above it. "No answer"
+                     hands the row back to the queue; this one settles it. -->
+                <button
+                  type="button"
+                  class="border px-2.5 py-1 font-mono text-[11px] uppercase transition-colors"
+                  :class="
+                    isUnreadable(i as 0 | 1)
+                      ? 'border-warning bg-warning/10 text-warning'
+                      : 'border-white/10 text-text-muted hover:border-warning/40'
+                  "
+                  title="I looked: this pill cannot be read. Records a verdict, so the record stops coming back."
+                  @click.stop="toggleUnreadable(i as 0 | 1)"
+                >
+                  <span class="mr-1 text-[9px] text-text-muted">x</span>
+                  can't read
                 </button>
               </div>
             </div>
@@ -336,7 +383,8 @@
 // out to the footage is no longer a concatenation. Bare ids are unaffected —
 // watchUrl returns the same string it always did for them.
 import { watchUrl } from '~~/scripts/video-url';
-import type { FuseReviewItem, FuseReviewQueue, FuseReviewVerdict } from '~~/types';
+import type { FuseReviewItem, FuseReviewVerdict, TeamSide } from '~~/types';
+import type { FuseReviewQueue } from '~~/types/review';
 
 // Declares this tool on the /dev index (engine app/pages/dev/index.vue). Every
 // value MUST stay a plain quoted literal — the build extracts them from the AST
@@ -348,6 +396,7 @@ definePageMeta({
     description:
       'The manual fuse workbench — adjudicate every gap the CV could not settle, one video at a time.',
     writes: 'data/overrides.json',
+    queue: '/api/dev/fuse-review',
   },
 });
 
@@ -368,20 +417,33 @@ const {
   server: false,
 });
 
-const blank = (): FuseReviewVerdict => ({ fuses: [null, null], unordered: false });
+/** The draft a reviewer is building. `unreadable` is the third state the file
+ *  gained: `fuses[i] === null` means "not answered", this means "answered: it
+ *  cannot be read". */
+type Draft = FuseReviewVerdict & { unreadable: TeamSide[] };
+const blank = (): Draft => ({ fuses: [null, null], unordered: false, unreadable: [] });
 
 const cursor = ref(0);
 const row = ref<0 | 1>(0);
 const frameN = ref<Record<string, number>>({});
-const draft = ref<Record<string, FuseReviewVerdict>>({});
+const draft = ref<Record<string, Draft>>({});
+/** show the settled rows instead of the open ones */
+const showResolved = ref(false);
 const showHelp = ref(false);
 const saving = ref(false);
 const note = ref('');
 const noteTone = ref('text-success');
 
-const items = computed(() => queue.value?.items ?? []);
+// `items` is the OPEN work now — the queue partitions server-side, so a row you
+// just settled is gone on the next refresh instead of sitting here looking
+// untouched. The settled rows are still one click away: re-checking a verdict is
+// real work, it is just not what the page should open on.
+const items = computed(() =>
+  showResolved.value ? (queue.value?.resolved ?? []) : (queue.value?.items ?? []),
+);
+const counts = computed(() => queue.value?.counts);
 const item = computed<FuseReviewItem | null>(() => items.value[cursor.value] ?? null);
-const verdict = computed<FuseReviewVerdict>(
+const verdict = computed<Draft>(
   () => (item.value ? draft.value[item.value.id] : undefined) ?? blank(),
 );
 
@@ -392,14 +454,15 @@ watch(
   (q) => {
     if (!q) return;
     draft.value = Object.fromEntries(
-      q.items.map((it) => [
+      [...q.items, ...q.resolved].map((it) => [
         it.id,
         it.saved
           ? {
               fuses: [...it.saved.fuses] as [string | null, string | null],
               unordered: it.saved.unordered,
+              unreadable: [...it.unreadable],
             }
-          : blank(),
+          : { ...blank(), unreadable: [...it.unreadable] },
       ]),
     );
   },
@@ -414,9 +477,13 @@ const guess = computed<[string | null, string | null]>(() => [
 const guessScore = (i: number) =>
   i === 0 ? (item.value?.detection?.score.left ?? 0) : (item.value?.detection?.score.right ?? 0);
 
+const sameSides = (a: TeamSide[], b: TeamSide[]) =>
+  a.length === b.length && [...a].sort().join() === [...b].sort().join();
+
 const isDirty = (it: FuseReviewItem): boolean => {
   const d = draft.value[it.id];
   if (!d) return false;
+  if (!sameSides(d.unreadable, it.unreadable)) return true;
   if (!it.saved) return !!(d.fuses[0] || d.fuses[1]);
   return (
     d.fuses[0] !== it.saved.fuses[0] ||
@@ -424,8 +491,11 @@ const isDirty = (it: FuseReviewItem): boolean => {
     d.unordered !== it.saved.unordered
   );
 };
-const stateOf = (it: FuseReviewItem): 'saved' | 'unsaved' | 'open' =>
-  isDirty(it) ? 'unsaved' : it.saved ? 'saved' : 'open';
+/** FOUR states, not three. A queue of 40 unreadable and 2 read must not look
+ *  like 42 done — that is a detector problem hiding inside a finished-looking
+ *  backlog, and one colour for both is how it stays hidden. */
+const stateOf = (it: FuseReviewItem): 'saved' | 'unsaved' | 'open' | 'unreadable' =>
+  isDirty(it) ? 'unsaved' : it.unreadable.length ? 'unreadable' : it.saved ? 'saved' : 'open';
 
 /** A saved verdict that contradicts what the detector read.
  *
@@ -444,7 +514,6 @@ const isDisputed = (it: FuseReviewItem): boolean => {
   return pair(it.saved.fuses[0], it.saved.fuses[1]) !== pair(it.detection.left, it.detection.right);
 };
 
-const resolvedCount = computed(() => items.value.filter((it) => !!it.saved).length);
 const dirtyCount = computed(() => items.value.filter(isDirty).length);
 const disputedCount = computed(() => items.value.filter(isDisputed).length);
 
@@ -493,12 +562,42 @@ const advance = () => {
   go(cursor.value + 1);
 };
 
+const sideOf = (i: 0 | 1): TeamSide | null => item.value?.teams[i]?.side ?? null;
+
 const pick = (i: 0 | 1, fuse: string | null) => {
   if (!item.value) return;
   const d = draft.value[item.value.id];
   if (!d) return;
   d.fuses[i] = d.fuses[i] === fuse && fuse !== null ? null : fuse;
+  // Reading a fuse retracts "I cannot read it" for that side — the two claims
+  // cannot both stand, and the one just made is the specific one.
+  const side = sideOf(i);
+  if (fuse && side) d.unreadable = d.unreadable.filter((x) => x !== side);
   row.value = i;
+};
+
+/** Mark the focused side as genuinely unreadable — a verdict, not a blank.
+ *
+ *  Without this the only way to say "I looked and there is nothing to read" was
+ *  to leave the side null, which the pipeline treats as an absence and a later
+ *  detection happily fills. The record then came back in the next gap report
+ *  wearing the same face as one nobody had ever opened. */
+const toggleUnreadable = (i: 0 | 1) => {
+  if (!item.value) return;
+  const d = draft.value[item.value.id];
+  const side = sideOf(i);
+  if (!d || !side) return;
+  if (d.unreadable.includes(side)) {
+    d.unreadable = d.unreadable.filter((x) => x !== side);
+  } else {
+    d.unreadable = [...d.unreadable, side];
+    d.fuses[i] = null; // the two claims are exclusive
+  }
+  row.value = i;
+};
+const isUnreadable = (i: 0 | 1): boolean => {
+  const side = sideOf(i);
+  return !!side && verdict.value.unreadable.includes(side);
 };
 const toggleUnordered = () => {
   if (!item.value) return;
@@ -512,7 +611,12 @@ const acceptGuess = () => {
 };
 
 const post = async (
-  entries: { id: string; fuses: [string | null, string | null]; unordered: boolean }[],
+  entries: {
+    id: string;
+    fuses: [string | null, string | null];
+    unordered: boolean;
+    unreadable: TeamSide[];
+  }[],
 ) => {
   saving.value = true;
   note.value = '';
@@ -520,6 +624,7 @@ const post = async (
     const res = await $fetch<{
       written: number;
       cleared: number;
+      negative: number;
       rejected: { id: string; reason: string }[];
     }>('/api/dev/fuse-review', { method: 'POST', body: { entries } });
     const at = cursor.value;
@@ -528,7 +633,8 @@ const post = async (
     noteTone.value = res.rejected.length ? 'text-warning' : 'text-success';
     note.value = res.rejected.length
       ? `wrote ${res.written} · rejected ${res.rejected.map((r) => `${r.id} (${r.reason})`).join(', ')}`
-      : `wrote ${res.written}${res.cleared ? ` · cleared ${res.cleared}` : ''} to overrides.json`;
+      : `wrote ${res.written}${res.negative ? ` · ${res.negative} unreadable` : ''}` +
+        `${res.cleared ? ` · cleared ${res.cleared}` : ''} to overrides.json`;
     return res.rejected.length === 0;
   } catch (err) {
     noteTone.value = 'text-warning';
@@ -543,7 +649,14 @@ const saveCurrent = async () => {
   if (!item.value || !canSave.value) return;
   const d = draft.value[item.value.id];
   if (!d) return;
-  const ok = await post([{ id: item.value.id, fuses: [...d.fuses], unordered: d.unordered }]);
+  const ok = await post([
+    {
+      id: item.value.id,
+      fuses: [...d.fuses],
+      unordered: d.unordered,
+      unreadable: [...d.unreadable],
+    },
+  ]);
   if (ok) advance();
 };
 const saveAll = async () => {
@@ -553,6 +666,7 @@ const saveAll = async () => {
       id: it.id,
       fuses: [...d.fuses] as [string | null, string | null],
       unordered: d.unordered,
+      unreadable: [...d.unreadable],
     };
   });
   if (entries.length) await post(entries);
@@ -577,6 +691,7 @@ const onKey = (e: KeyboardEvent) => {
   else if (e.key === '[' || e.key === ',') go(cursor.value - 1);
   else if (e.key === ']' || e.key === '.') go(cursor.value + 1);
   else if (e.key === 'u') toggleUnordered();
+  else if (e.key === 'x' || e.key === 'X') toggleUnreadable(row.value);
   else if (e.key === 'd') nextDisputed();
   else if (e.key === 'g') acceptGuess();
   else if (e.key === '?') showHelp.value = !showHelp.value;
@@ -586,7 +701,8 @@ const onKey = (e: KeyboardEvent) => {
 
 const keyHelp: [string, string][] = [
   ['1 – 8', 'set the focused row’s fuse'],
-  ['0', 'mark the row unreadable'],
+  ['0', 'clear the row (no answer yet)'],
+  ['x', 'the row’s pill CANNOT be read — a verdict'],
   ['↑ ↓ / tab', 'switch team row'],
   ['← →', 'cycle frame'],
   ['g', 'accept detector guess'],

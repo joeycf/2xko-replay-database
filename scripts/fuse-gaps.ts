@@ -38,6 +38,8 @@ import type {
   FuseGapBucket,
   FuseGapItem,
   FuseGapReport,
+  TeamSide,
+  UnreadableVerdict,
   VideoRecord,
 } from '../types/index';
 
@@ -62,8 +64,18 @@ const detected = JSON.parse(readFileSync(join(ROOT, 'data/fuses-detected.json'),
 >;
 const overrides = JSON.parse(readFileSync(join(ROOT, 'data/overrides.json'), 'utf8')) as Record<
   string,
-  Partial<VideoRecord>
+  Partial<VideoRecord> & { unreadable?: UnreadableVerdict }
 >;
+
+/** Sides a human looked at and could not read, per video.
+ *
+ *  This file was loaded for its KEY COUNT alone until now — the header line
+ *  printed `overrides.json (N)` and nothing else consulted it. That is the whole
+ *  reason a settled record could come back: the gap predicate below asks only
+ *  whether videos.json carries a fuse, and a side nobody can ever read carries
+ *  none, so it reappeared in every report forever. */
+const unreadableSides = (id: string): ReadonlySet<TeamSide> =>
+  new Set(overrides[id]?.unreadable?.fuse ?? []);
 const regions = JSON.parse(readFileSync(join(ROOT, 'data/fuse-regions.json'), 'utf8')) as {
   default: { left: number[]; right: number[] };
 };
@@ -159,7 +171,18 @@ const frameCount = (id: string) => {
 // in the summary line below. Measured when this was widened: 56 such records,
 // 24 on proReplays (frozen, so they will never be re-fetched) and 32 on
 // highLevel, against 38 with no fuse at all. Half the gap was invisible.
-const missing = videos.filter((v) => v.teams.some((t) => !t.fuse));
+// A side marked unreadable is SETTLED, not missing: a human looked, and the
+// answer was "this cannot be read". Counting it as a gap re-queues finished work
+// on every run and, worse, makes it indistinguishable from a record nobody has
+// opened. It is reported on its own line below rather than silently dropped —
+// a `missing` number that shrinks for unexamined reasons is how detector rot
+// stops being visible.
+const unreadableRecords = videos.filter((v) =>
+  v.teams.some((t) => !t.fuse && unreadableSides(v.id).has(t.side)),
+);
+const missing = videos.filter((v) =>
+  v.teams.some((t) => !t.fuse && !unreadableSides(v.id).has(t.side)),
+);
 const runTime = Date.parse(universe.runDate);
 const items: FuseGapItem[] = missing.map((v) => {
   const det = detected[v.id];
@@ -237,15 +260,26 @@ if (existsSync(sheetPath)) {
     ...readFileSync(sheetPath, 'utf8').matchAll(/^\|\s*([A-Za-z0-9_-]{11}(?:@\d+)?)\s*\|/gm),
   ].map((m) => m[1]!);
   const sheetSet = new Set(sheetIds);
+  // A ROW IS STALE IF THE WORK IS DONE, not merely if the detector changed its
+  // mind. This used to ask only whether the id was still low/none, so a sheet of
+  // 353 rows — every one of them already carrying a verdict and already
+  // publishing both fuses — was graded "in sync" for months. The detector's
+  // opinion is not the question; whether a human still has something to do is.
+  const settled = (id: string): boolean => {
+    const rec = byId.get(id);
+    if (!rec || rec.teams.length !== 2) return true;
+    const unreadable = unreadableSides(id);
+    return rec.teams.every((t) => !!t.fuse || unreadable.has(t.side));
+  };
   const stale = sheetIds.filter(
-    (id) => detected[id]?.status !== 'low' && detected[id]?.status !== 'none',
+    (id) => (detected[id]?.status !== 'low' && detected[id]?.status !== 'none') || settled(id),
   );
-  const absent = lowIds.filter((id) => !sheetSet.has(id));
+  const absent = lowIds.filter((id) => !sheetSet.has(id) && !settled(id));
   sheetNote =
     stale.length === 0 && absent.length === 0
-      ? `low-review.md (${sheetIds.length} ids) is in sync with fuses-detected.json — this report adds the bucketing, era spread, and montage on top`
-      : `low-review.md lists ${sheetIds.length} ids — ${stale.length} no longer low/none, ` +
-        `${absent.length} current lows missing from it (sheet predates the last re-detect; this report supersedes it)`;
+      ? `low-review.md (${sheetIds.length} ids) is in sync — every row is still open work`
+      : `low-review.md lists ${sheetIds.length} ids — ${stale.length} already settled or no longer low/none, ` +
+        `${absent.length} open lows missing from it (re-run \`npm run data:fuses\` to regenerate it; this report supersedes it)`;
 }
 
 // ── era/channel spread ────────────────────────────────────────────────────────
@@ -392,7 +426,11 @@ md.push('## Summary');
 md.push('');
 md.push(
   `${withFuse} of ${videos.length} videos have a fuse on BOTH sides — ` +
-    `**${missing.length} with a gap**, split:`,
+    `**${missing.length} with a gap**, split:` +
+    (unreadableRecords.length
+      ? `\n\n${unreadableRecords.length} more carry a human **unreadable** verdict on a side — ` +
+        'looked at, settled, and deliberately not queued again.'
+      : ''),
 );
 md.push('');
 md.push('| bucket | count | meaning | action |');
@@ -567,7 +605,12 @@ writeFileSync(join(REVIEW, 'fuse-gaps.md'), md.join('\n'));
 const report: FuseGapReport = {
   generatedAt: new Date().toISOString(),
   universe: { commit: universe.commit, videos: universe.ids.size, runDate: universe.runDate },
-  totals: { videos: videos.length, withFuse, missing: missing.length },
+  totals: {
+    videos: videos.length,
+    withFuse,
+    missing: missing.length,
+    unreadable: unreadableRecords.length,
+  },
   counts,
   items,
 };

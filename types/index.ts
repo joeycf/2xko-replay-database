@@ -1,6 +1,12 @@
 // Shared types for the 2XKO replay data pipeline.
 // Registries (champions/players/fuses) are read from data/*.json at runtime —
 // never hardcode the rosters in code.
+//
+// APP-ONLY TYPES DO NOT BELONG HERE. This barrel is compiled by the pipeline's
+// plain tsc project (tsconfig.pipeline.json), which knows nothing of Nuxt's
+// `@engine` alias and must not be taught it — the data pipeline runs in CI where
+// the engine layer is not necessarily on disk. The dev review-queue payloads
+// therefore live in ./review.ts, which only the app ever imports.
 
 /** A playable champion — data/characters.json, the ENGINE-GENERIC Character
  *  shape (Phase 3): the app plugin imports this file verbatim, and the
@@ -269,6 +275,32 @@ export interface FuseOrientQueue {
   items: FuseOrientItem[];
 }
 
+/** A NEGATIVE VERDICT: a human looked and the thing cannot be read.
+ *
+ *  Three states are now distinguishable where there were only two. `null` on a
+ *  side means NOBODY HAS LOOKED; `exclude: true` on the entry means THIS IS NOT
+ *  A MATCH; this means A MATCH I CANNOT READ. The middle one had no
+ *  representation at all, which is exactly why those items kept coming back:
+ *  clearing both sides in /dev/fuse-review deleted the override outright, and
+ *  the record re-entered the gap report wearing the same face as one nobody had
+ *  ever opened. Measured before this existed: all 11 override entries carrying a
+ *  human null had been overwritten by a later detection.
+ *
+ *  Sides are TITLE-ordered lists rather than a [boolean, boolean] pair, so the
+ *  file reads as what it means and an absent/empty value is unambiguously "no
+ *  negative verdict" where [false, false] would be noise. */
+export interface UnreadableVerdict {
+  /** the fuse PILL cannot be read on these title-ordered sides */
+  fuse?: TeamSide[];
+  /** the pair is legible, but nothing in frame attributes it to a team */
+  fuseOwner?: true;
+  /** champions cannot be read off the HUD on these title-ordered sides */
+  characters?: TeamSide[];
+  /** why — shown in the resolved view, and the thing a later reader needs */
+  '//'?: string;
+  at?: string;
+}
+
 /** What overrides.json currently says about one video's fuses, in title order. */
 export interface FuseReviewVerdict {
   /** per-title-team fuse ids; null = this side is unread */
@@ -296,21 +328,27 @@ export interface FuseReviewItem {
   detection: Pick<FuseDetection, 'left' | 'right' | 'score' | 'status'> | null;
   /** current overrides.json state, or null when this id is unresolved */
   saved: FuseReviewVerdict | null;
+  /** TITLE-ordered sides a human has declared unreadable — a VERDICT, distinct
+   *  from `saved.fuses[i] === null`, which only means nobody has looked yet */
+  unreadable: TeamSide[];
 }
 
-/** Payload of /api/dev/fuse-review — the manual worklist for /dev/fuse-review. */
-export interface FuseReviewQueue {
-  /** generatedAt of the underlying gap report (staleness signal for the UI) */
-  generatedAt: string;
-  items: FuseReviewItem[];
-}
+// The /api/dev/fuse-review payload is `ReviewQueue<FuseReviewItem>` — see
+// types/review.ts.
 
 /** cache/fuse/review/fuse-gaps.json — written by scripts/fuse-gaps.ts, served by /api/dev/fuse-gaps. */
 export interface FuseGapReport {
   generatedAt: string;
   /** the videos.json snapshot treated as "was attempted by the last download run" */
   universe: { commit: string; videos: number; runDate: string };
-  totals: { videos: number; withFuse: number; missing: number };
+  totals: {
+    videos: number;
+    withFuse: number;
+    missing: number;
+    /** records whose remaining gap is a human "cannot be read" verdict — settled
+     *  work, counted apart from `missing` so neither number lies about the other */
+    unreadable: number;
+  };
   counts: Record<FuseGapBucket, number>;
   items: FuseGapItem[];
 }
@@ -412,11 +450,8 @@ export interface FootageQueue {
   items: FootageQueueItem[];
 }
 
-/** Payload of /api/dev/evo-review. */
-export interface EvoReviewQueue {
-  generatedAt: string;
-  items: EvoReviewItem[];
-}
+// The /api/dev/evo-review payload is `ReviewQueue<EvoReviewItem>` — see
+// types/review.ts.
 
 /** A raw video record as dumped by scripts/fetch.ts. Written to raw/<channel>.json. */
 export interface RawVideoRecord {

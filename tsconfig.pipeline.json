@@ -12,5 +12,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["scripts/**/*.ts", "types/**/*.ts"]
+  // types/review.ts is excluded deliberately: it is an APP-ONLY module that
+  // imports the engine layer through Nuxt's `@engine` alias, which this plain
+  // tsc project does not resolve and must not have to — the pipeline runs in CI
+  // where the layer is not on disk. The Nuxt half of `npm run typecheck` covers
+  // it.
+  "include": ["scripts/**/*.ts", "types/**/*.ts"],
+  "exclude": ["types/review.ts"]
 }

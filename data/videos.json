@@ -253128,10 +253128,10 @@
       "grand-finals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: SonicFox/INZEM vs Hikari | 2XKO | Grand Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Grand Final"
+    "round": "Grand Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "rZ_ZS28CYKw",
@@ -253190,10 +253190,10 @@
       "losers-final"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Supernoon vs Hikari | 2XKO | Losers Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Final"
+    "round": "Losers Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "5WBq0DVF-SA",
@@ -253256,10 +253256,10 @@
       "winners-final"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: SonicFox/INZEM vs Supernoon | 2XKO | Winners Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Winners Final"
+    "round": "Winners Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "GIeNm6oRUJk",
@@ -253316,10 +253316,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Poka vs Hikari | 2XKO | Losers Semifinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Semifinal"
+    "round": "Losers Semifinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "f2KZcuecUe0",
@@ -253381,10 +253381,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Hikari vs Toshi/Haru | 2XKO | Losers Quarterfinals",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Quarterfinals"
+    "round": "Losers Quarterfinals",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "2klXAMVlhAc",
@@ -253441,10 +253441,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Bleed vs Poka | 2XKO | Losers Quarterfinals",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Quarterfinals"
+    "round": "Losers Quarterfinals",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "VVGHdfYCYXU",
@@ -253501,10 +253501,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Globo vs Hikari | 2XKO | Losers Round 1",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Round 1"
+    "round": "Losers Round 1",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "fPU2yAfyziM",
@@ -253561,10 +253561,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Noka vs Poka | 2XKO | Losers Round 1",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Losers Round 1"
+    "round": "Losers Round 1",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "J5VoHVI5_Ls",
@@ -253622,10 +253622,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: Supernoon vs Bleed | 2XKO | Winners Semifinals",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Winners Semifinals"
+    "round": "Winners Semifinals",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "ByDIZRY0NQE",
@@ -253693,10 +253693,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: SonicFox/INZEM vs Toshi/Haru | 2XKO | Winners Semifinals",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Winners Semifinals"
+    "round": "Winners Semifinals",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "jEWF1k9zyPk",
@@ -253765,10 +253765,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo 2026: 2XKO Duo Duel: Myth and Apologyman vs Jake'n'bake and Yohosie",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo 2026",
-    "round": "Duo Duel"
+    "round": "Duo Duel",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "QWjpY279YCs",
@@ -253827,10 +253827,10 @@
       "grand-finals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Hikari vs Supernoon | Grand Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Grand Final"
+    "round": "Grand Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "CfTSFVvZB7o",
@@ -253889,10 +253889,10 @@
       "losers-final"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Wawa vs Supernoon | Losers Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Final"
+    "round": "Losers Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "-iJUvL6df6A",
@@ -253951,10 +253951,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Wawa vs Bleed | Losers Semifinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Semifinal"
+    "round": "Losers Semifinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "C4KQHZ0NwS0",
@@ -254013,10 +254013,10 @@
       "winners-final"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Hikari vs Supernoon | Winners Final",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Winners Final"
+    "round": "Winners Final",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "LeLxCI1Dbmk",
@@ -254073,10 +254073,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Ikoan vs Wawa | Losers Quarterfinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Quarterfinal"
+    "round": "Losers Quarterfinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "dvph1agxMzg",
@@ -254133,10 +254133,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Leffen vs Bleed | Losers Quarterfinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Quarterfinal"
+    "round": "Losers Quarterfinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "5wXvM4dsliM",
@@ -254193,10 +254193,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Ikoan vs Poka | Losers Round 1",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Round 1"
+    "round": "Losers Round 1",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "Yk9oBhqs4q8",
@@ -254253,10 +254253,10 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Kayne vs Bleed | Losers Round 1",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Losers Round 1"
+    "round": "Losers Round 1",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "zkcW8rDOV3w",
@@ -254314,10 +254314,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Leffen vs Supernoon | Winners Semifinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Winners Semifinal"
+    "round": "Winners Semifinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "7cO631mYBIU",
@@ -254376,10 +254376,10 @@
       "semifinals"
     ],
     "parseConfidence": "high",
-    "rawUnparsed": "Evo Japan 2026: 2XKO | Hikari vs Wawa | Winners Semifinal",
-    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]",
     "tournament": "Evo Japan 2026",
-    "round": "Winners Semifinal"
+    "round": "Winners Semifinal",
+    "rawUnparsed": null,
+    "//": "evo migration: hand-validated verdict carried from manual-videos.json [2026-08-08]"
   },
   {
     "id": "koHFqyv5pRM",
@@ -256326,7 +256326,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "//": "test: human says the left pill is unreadable"
   },
   {
     "id": "mD2NrcQpDqg",

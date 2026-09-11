@@ -24,7 +24,18 @@
         <!-- counters + jumps -->
         <div class="mt-5 flex flex-wrap items-center gap-2">
           <span class="font-mono text-[12px] text-text-secondary">
-            {{ completeCount }} / {{ items.length }} complete
+            {{ completeCount }} / {{ items.length }} {{ showResolved ? 'settled' : 'complete' }}
+            <button
+              type="button"
+              class="ml-2 cursor-pointer underline decoration-white/25 hover:decoration-white"
+              :class="showResolved ? 'text-primary' : 'text-text-muted'"
+              @click="
+                showResolved = !showResolved;
+                cursor = 0;
+              "
+            >
+              {{ showResolved ? 'back to open' : `show settled (${counts?.done ?? 0})` }}
+            </button>
             <span
               v-if="dirtyCount"
               class="text-warning"
@@ -309,6 +320,27 @@
         </article>
       </template>
 
+      <!-- "Nothing left to do" and "nothing here" are different facts and used to
+           render as the same sentence. -->
+      <p
+        v-else-if="counts && counts.total > 0"
+        class="mt-6 font-mono text-[12px] text-text-muted"
+      >
+        Nothing open — all {{ counts.done }} queued record(s) carry a verdict<span
+          v-if="counts.unreadable"
+          >, {{ counts.unreadable }} of them unreadable</span
+        >.
+        <button
+          type="button"
+          class="cursor-pointer text-primary underline"
+          @click="
+            showResolved = true;
+            cursor = 0;
+          "
+        >
+          Review the settled ones
+        </button>
+      </p>
       <p
         v-else
         class="mt-6 font-mono text-[12px] text-text-muted"
@@ -322,7 +354,8 @@
 </template>
 
 <script setup lang="ts">
-import type { EvoReviewItem, EvoReviewQueue } from '~~/types';
+import type { EvoReviewItem } from '~~/types';
+import type { EvoReviewQueue } from '~~/types/review';
 
 // Dev-only surface: never prerendered (nuxt.config nitro.prerender.ignore),
 // noindex, and nothing links to it.
@@ -336,6 +369,7 @@ definePageMeta({
     category: 'Curation',
     description: 'Complete the champions on Evo broadcast VODs the extractor could not read.',
     writes: 'data/overrides.json',
+    queue: '/api/dev/evo-review',
   },
 });
 
@@ -353,7 +387,14 @@ const {
 } = useAsyncData('evo-review', () => $fetch<EvoReviewQueue>('/api/dev/evo-review'), {
   server: false,
 });
-const items = computed<EvoReviewItem[]>(() => data.value?.items ?? []);
+// `items` is the OPEN work: the route partitions, so a record whose champions
+// are already settled is not what this page hands you first. Every one of the 21
+// Evo sets is settled today, and the page used to open on all 21 of them.
+const showResolved = ref(false);
+const items = computed<EvoReviewItem[]>(() =>
+  showResolved.value ? (data.value?.resolved ?? []) : (data.value?.items ?? []),
+);
+const counts = computed(() => data.value?.counts);
 
 const cursor = ref(0);
 const frameIdx = ref(0);
@@ -371,9 +412,13 @@ const draft = ref<Record<string, [string[], string[]]>>({});
 // and unreadable; a string = read off the pill. Two states would force every
 // unfinished side into either a guess or a silent overwrite.
 const draftFuse = ref<Record<string, [string | null | undefined, string | null | undefined]>>({});
+// Seeded from the WHOLE payload, not the visible half. Watching `items` would
+// re-seed on every open/settled toggle and throw away anything unsaved in the
+// half being left behind.
 watch(
-  items,
-  (list) => {
+  data,
+  (q) => {
+    const list = [...(q?.items ?? []), ...(q?.resolved ?? [])];
     const next: Record<string, [string[], string[]]> = {};
     for (const it of list) next[it.id] = [[...it.saved[0]], [...it.saved[1]]];
     draft.value = next;
