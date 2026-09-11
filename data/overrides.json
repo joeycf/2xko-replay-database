@@ -14119,5 +14119,137 @@
       }
     ],
     "fusesUnordered": false
+  },
+  "nx1HYGoJce4": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "kamuisenketsu",
+            "displayName": "KAMUI SENKETSU"
+          }
+        ],
+        "characters": [
+          "ahri",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "theh",
+            "displayName": "THE H"
+          }
+        ],
+        "characters": [
+          "blitzcrank",
+          "vi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "2lYpoHjUNSE": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "noka",
+            "displayName": "NOKA"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "senshii",
+            "displayName": "Senshii"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "ekko"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "MUmd9KNR6VA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "zyngbett",
+            "displayName": "ZYNGBETT"
+          }
+        ],
+        "characters": [
+          "illaoi",
+          "darius"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "criiiivyse",
+            "displayName": "CRIIIIVYSE"
+          }
+        ],
+        "characters": [
+          "warwick",
+          "senna"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "fusesUnordered": false
+  },
+  "urjo8Y5YhaA": {
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "bsluck",
+            "displayName": "BSLUCK"
+          }
+        ],
+        "characters": [
+          "lux",
+          "blitzcrank"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "goombao",
+            "displayName": "GOOMBAO"
+          }
+        ],
+        "characters": [
+          "lux",
+          "caitlyn"
+        ],
+        "fuse": "double-down"
+      }
+    ],
+    "fusesUnordered": false
   }
 }

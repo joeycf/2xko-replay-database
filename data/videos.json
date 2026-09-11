@@ -789,7 +789,7 @@
           "thresh",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -803,7 +803,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -817,7 +817,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "w8z3U6Z2CSQ",
@@ -107421,7 +107422,7 @@
           "lux",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -107435,7 +107436,7 @@
           "lux",
           "caitlyn"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -107449,7 +107450,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "1Rmwxkz_NHY",
@@ -108331,7 +108333,7 @@
           "illaoi",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -108345,7 +108347,7 @@
           "warwick",
           "senna"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -108360,7 +108362,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "WAsTagGiS74",
@@ -108867,7 +108870,7 @@
           "ahri",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -108881,7 +108884,7 @@
           "blitzcrank",
           "vi"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -108896,7 +108899,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": false
   },
   {
     "id": "ijNyU1d2BMg",
