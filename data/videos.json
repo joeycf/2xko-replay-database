@@ -7,7 +7,7 @@
     "publishedAt": "2026-09-15T10:23:35Z",
     "thumbnail": "https://i.ytimg.com/vi/RGd3kVIU3Cw/maxresdefault.jpg",
     "durationSec": 737,
-    "viewCount": 41,
+    "viewCount": 64,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -29,7 +29,7 @@
           "senna",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -43,7 +43,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -59,7 +59,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "dXNb5hRNxrQ",
@@ -69,7 +70,7 @@
     "publishedAt": "2026-09-14T16:00:16Z",
     "thumbnail": "https://i.ytimg.com/vi/dXNb5hRNxrQ/maxresdefault.jpg",
     "durationSec": 950,
-    "viewCount": 2095,
+    "viewCount": 2152,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -87,7 +88,7 @@
           "lux",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -101,7 +102,7 @@
           "teemo",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -125,7 +126,7 @@
     "publishedAt": "2026-09-14T13:00:31Z",
     "thumbnail": "https://i.ytimg.com/vi/rdfWxsefDUM/maxresdefault.jpg",
     "durationSec": 801,
-    "viewCount": 1122,
+    "viewCount": 1146,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -143,7 +144,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -157,7 +158,7 @@
           "senna",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -182,7 +183,7 @@
     "publishedAt": "2026-09-14T10:09:09Z",
     "thumbnail": "https://i.ytimg.com/vi/oZJDOp0taJ8/maxresdefault.jpg",
     "durationSec": 766,
-    "viewCount": 1140,
+    "viewCount": 1209,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -200,7 +201,7 @@
           "illaoi",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -214,7 +215,7 @@
           "jinx",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -294,7 +295,7 @@
     "publishedAt": "2026-09-13T13:00:24Z",
     "thumbnail": "https://i.ytimg.com/vi/IGV0Dt3N5Mo/maxresdefault.jpg",
     "durationSec": 653,
-    "viewCount": 2190,
+    "viewCount": 2183,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -312,7 +313,7 @@
           "lux",
           "darius"
         ],
-        "fuse": null
+        "fuse": "double-down"
       },
       {
         "side": "right",
@@ -326,7 +327,7 @@
           "lux",
           "akali"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -407,7 +408,7 @@
     "publishedAt": "2026-09-12T18:52:57Z",
     "thumbnail": "https://i.ytimg.com/vi/H2vel6H2vhU/maxresdefault.jpg",
     "durationSec": 752,
-    "viewCount": 4696,
+    "viewCount": 4748,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -429,7 +430,7 @@
           "lux",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -443,7 +444,7 @@
           "vi",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -469,7 +470,7 @@
     "publishedAt": "2026-09-12T13:30:35Z",
     "thumbnail": "https://i.ytimg.com/vi/J09ZPcdoBxc/maxresdefault.jpg",
     "durationSec": 702,
-    "viewCount": 3128,
+    "viewCount": 3144,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -487,7 +488,7 @@
           "lux",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -501,7 +502,7 @@
           "senna",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -516,7 +517,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "p_0v31W_k14",
@@ -544,7 +546,7 @@
           "senna",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -558,7 +560,7 @@
           "akali",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -573,7 +575,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "F3Z7--xqHsk",
@@ -583,7 +586,7 @@
     "publishedAt": "2026-09-11T21:00:34Z",
     "thumbnail": "https://i.ytimg.com/vi/F3Z7--xqHsk/maxresdefault.jpg",
     "durationSec": 845,
-    "viewCount": 3376,
+    "viewCount": 3395,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -601,7 +604,7 @@
           "lux",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -619,7 +622,7 @@
           "thresh",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -702,7 +705,7 @@
     "publishedAt": "2026-09-11T12:14:29Z",
     "thumbnail": "https://i.ytimg.com/vi/BH6Yyf7VSao/maxresdefault.jpg",
     "durationSec": 542,
-    "viewCount": 2714,
+    "viewCount": 2722,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -765,7 +768,7 @@
     "publishedAt": "2026-09-10T15:30:12Z",
     "thumbnail": "https://i.ytimg.com/vi/ocAqZ77H6q8/maxresdefault.jpg",
     "durationSec": 514,
-    "viewCount": 4506,
+    "viewCount": 4510,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -821,7 +824,7 @@
     "publishedAt": "2026-09-10T12:23:01Z",
     "thumbnail": "https://i.ytimg.com/vi/DQ_cXG6K_x4/maxresdefault.jpg",
     "durationSec": 566,
-    "viewCount": 3657,
+    "viewCount": 3655,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -888,7 +891,7 @@
     "publishedAt": "2026-09-09T20:30:22Z",
     "thumbnail": "https://i.ytimg.com/vi/IfMTdoB9Cy0/maxresdefault.jpg",
     "durationSec": 930,
-    "viewCount": 2274,
+    "viewCount": 2282,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -945,7 +948,7 @@
     "publishedAt": "2026-09-09T17:30:36Z",
     "thumbnail": "https://i.ytimg.com/vi/f50nw339FaU/maxresdefault.jpg",
     "durationSec": 699,
-    "viewCount": 8694,
+    "viewCount": 8700,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -1059,7 +1062,7 @@
     "publishedAt": "2026-09-09T11:12:16Z",
     "thumbnail": "https://i.ytimg.com/vi/aLuYrvge8Ho/maxresdefault.jpg",
     "durationSec": 857,
-    "viewCount": 7633,
+    "viewCount": 7634,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -1116,7 +1119,7 @@
     "publishedAt": "2026-09-09T04:00:30Z",
     "thumbnail": "https://i.ytimg.com/vi/NSIcRoytVPk/maxresdefault.jpg",
     "durationSec": 1041,
-    "viewCount": 10432,
+    "viewCount": 10440,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -1172,7 +1175,7 @@
     "publishedAt": "2026-09-09T01:30:01Z",
     "thumbnail": "https://i.ytimg.com/vi/P-nVSJK-LXs/maxresdefault.jpg",
     "durationSec": 638,
-    "viewCount": 16506,
+    "viewCount": 16483,
     "season": 1,
     "patch": null,
     "patchVersion": "1.3.1",
@@ -1342,7 +1345,7 @@
     "publishedAt": "2026-09-07T13:07:41Z",
     "thumbnail": "https://i.ytimg.com/vi/rZpTnqtRwow/maxresdefault.jpg",
     "durationSec": 718,
-    "viewCount": 1621,
+    "viewCount": 1623,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -1466,7 +1469,7 @@
     "publishedAt": "2026-09-06T14:04:42Z",
     "thumbnail": "https://i.ytimg.com/vi/w8z3U6Z2CSQ/maxresdefault.jpg",
     "durationSec": 823,
-    "viewCount": 2368,
+    "viewCount": 2369,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -2096,7 +2099,7 @@
     "publishedAt": "2026-08-31T15:00:20Z",
     "thumbnail": "https://i.ytimg.com/vi/EMIxQsQJY_Q/maxresdefault.jpg",
     "durationSec": 831,
-    "viewCount": 971,
+    "viewCount": 972,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -2154,7 +2157,7 @@
     "publishedAt": "2026-08-31T12:11:47Z",
     "thumbnail": "https://i.ytimg.com/vi/KGURPriuuoE/maxresdefault.jpg",
     "durationSec": 454,
-    "viewCount": 1061,
+    "viewCount": 1062,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -2391,7 +2394,7 @@
     "publishedAt": "2026-08-29T12:40:23Z",
     "thumbnail": "https://i.ytimg.com/vi/KoXD8KaJYZQ/maxresdefault.jpg",
     "durationSec": 680,
-    "viewCount": 2442,
+    "viewCount": 2443,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -2739,7 +2742,7 @@
     "publishedAt": "2026-08-26T21:18:08Z",
     "thumbnail": "https://i.ytimg.com/vi/w0BROqRCcKA/maxresdefault.jpg",
     "durationSec": 728,
-    "viewCount": 2261,
+    "viewCount": 2262,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -2852,7 +2855,7 @@
     "publishedAt": "2026-08-26T10:52:23Z",
     "thumbnail": "https://i.ytimg.com/vi/I8HP6BUbVew/maxresdefault.jpg",
     "durationSec": 625,
-    "viewCount": 468,
+    "viewCount": 469,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -3079,7 +3082,7 @@
     "publishedAt": "2026-08-24T15:30:17Z",
     "thumbnail": "https://i.ytimg.com/vi/XhIy8PKNhDY/maxresdefault.jpg",
     "durationSec": 537,
-    "viewCount": 407,
+    "viewCount": 408,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -3418,7 +3421,7 @@
     "publishedAt": "2026-08-22T19:05:19Z",
     "thumbnail": "https://i.ytimg.com/vi/JC-vGGRc9JM/maxresdefault.jpg",
     "durationSec": 603,
-    "viewCount": 687,
+    "viewCount": 688,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -4794,7 +4797,7 @@
     "publishedAt": "2026-08-17T21:00:15Z",
     "thumbnail": "https://i.ytimg.com/vi/cO6sh7pvj2k/maxresdefault.jpg",
     "durationSec": 808,
-    "viewCount": 1672,
+    "viewCount": 1669,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -6119,7 +6122,7 @@
     "publishedAt": "2026-08-13T12:30:30Z",
     "thumbnail": "https://i.ytimg.com/vi/YyHThTLOySg/maxresdefault.jpg",
     "durationSec": 884,
-    "viewCount": 2287,
+    "viewCount": 2288,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -9280,7 +9283,7 @@
     "publishedAt": "2026-08-03T17:30:35Z",
     "thumbnail": "https://i.ytimg.com/vi/_f97Rj9pKIE/maxresdefault.jpg",
     "durationSec": 707,
-    "viewCount": 1289,
+    "viewCount": 1290,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -9919,7 +9922,7 @@
     "publishedAt": "2026-08-01T19:30:18Z",
     "thumbnail": "https://i.ytimg.com/vi/2HExqO641zY/maxresdefault.jpg",
     "durationSec": 637,
-    "viewCount": 746,
+    "viewCount": 747,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -10373,7 +10376,7 @@
     "publishedAt": "2026-07-31T15:00:05Z",
     "thumbnail": "https://i.ytimg.com/vi/rBl0m447lgI/maxresdefault.jpg",
     "durationSec": 484,
-    "viewCount": 469,
+    "viewCount": 470,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -10543,7 +10546,7 @@
     "publishedAt": "2026-07-30T22:30:33Z",
     "thumbnail": "https://i.ytimg.com/vi/gEHFb5uygI4/maxresdefault.jpg",
     "durationSec": 636,
-    "viewCount": 849,
+    "viewCount": 850,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -10658,7 +10661,7 @@
     "publishedAt": "2026-07-30T17:30:07Z",
     "thumbnail": "https://i.ytimg.com/vi/errdQ3vGJK0/maxresdefault.jpg",
     "durationSec": 756,
-    "viewCount": 663,
+    "viewCount": 664,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.5",
@@ -19530,7 +19533,7 @@
     "publishedAt": "2026-07-04T20:30:11Z",
     "thumbnail": "https://i.ytimg.com/vi/nd-YnIqGBOs/maxresdefault.jpg",
     "durationSec": 831,
-    "viewCount": 2582,
+    "viewCount": 2583,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.3",
@@ -20847,7 +20850,7 @@
     "publishedAt": "2026-06-30T12:30:25Z",
     "thumbnail": "https://i.ytimg.com/vi/fQMgE9Q6_5U/maxresdefault.jpg",
     "durationSec": 907,
-    "viewCount": 2603,
+    "viewCount": 2604,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.3",
@@ -60033,7 +60036,7 @@
     "publishedAt": "2026-03-10T16:00:00Z",
     "thumbnail": "https://i.ytimg.com/vi/ycZjs9f5-zM/maxresdefault.jpg",
     "durationSec": 688,
-    "viewCount": 1251,
+    "viewCount": 1253,
     "season": 1,
     "patch": null,
     "patchVersion": "1.1.3",
@@ -71380,7 +71383,7 @@
     "publishedAt": "2026-01-31T10:17:08Z",
     "thumbnail": "https://i.ytimg.com/vi/G4LTp5xkk5A/maxresdefault.jpg",
     "durationSec": 712,
-    "viewCount": 6349,
+    "viewCount": 6348,
     "season": 1,
     "patch": null,
     "patchVersion": "1.1.1",
@@ -74349,7 +74352,7 @@
     "publishedAt": "2026-01-22T15:27:08Z",
     "thumbnail": "https://i.ytimg.com/vi/mMEbKpyTKWw/maxresdefault.jpg",
     "durationSec": 776,
-    "viewCount": 5145,
+    "viewCount": 5144,
     "season": 1,
     "patch": null,
     "patchVersion": "1.1.1",
@@ -76774,7 +76777,7 @@
     "publishedAt": "2026-01-15T14:30:51Z",
     "thumbnail": "https://i.ytimg.com/vi/yza31UVGuXY/maxresdefault.jpg",
     "durationSec": 542,
-    "viewCount": 1040,
+    "viewCount": 1041,
     "season": 0,
     "patch": null,
     "patchVersion": "1.0.3",
@@ -103366,7 +103369,7 @@
     "publishedAt": "2025-10-04T21:30:05Z",
     "thumbnail": "https://i.ytimg.com/vi/e9f3hn66ZL0/maxresdefault.jpg",
     "durationSec": 732,
-    "viewCount": 2538,
+    "viewCount": 2539,
     "season": null,
     "patch": null,
     "patchVersion": null,
@@ -107013,7 +107016,7 @@
     "publishedAt": "2025-09-22T11:45:06Z",
     "thumbnail": "https://i.ytimg.com/vi/WGoZRC11L3M/maxresdefault.jpg",
     "durationSec": 837,
-    "viewCount": 2476,
+    "viewCount": 2475,
     "season": null,
     "patch": null,
     "patchVersion": null,
@@ -107639,7 +107642,7 @@
     "publishedAt": "2026-09-15T05:30:02Z",
     "thumbnail": "https://i.ytimg.com/vi/jUt6x5tjKZY/maxresdefault.jpg",
     "durationSec": 770,
-    "viewCount": 41,
+    "viewCount": 39,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -107717,7 +107720,7 @@
           "lux",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -107731,7 +107734,7 @@
           "lux",
           "vi"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -107746,7 +107749,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "FdInLIT2hH4",
@@ -107756,7 +107760,7 @@
     "publishedAt": "2026-09-14T05:00:06Z",
     "thumbnail": "https://i.ytimg.com/vi/FdInLIT2hH4/maxresdefault.jpg",
     "durationSec": 855,
-    "viewCount": 77,
+    "viewCount": 74,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -107774,7 +107778,7 @@
           "lux",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -107788,7 +107792,7 @@
           "yasuo",
           "lux"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -107830,7 +107834,7 @@
           "lux",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -107844,7 +107848,7 @@
           "yasuo",
           "lux"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -107858,7 +107862,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "EAcgIfyuaX0",
@@ -107868,7 +107873,7 @@
     "publishedAt": "2026-09-13T04:00:13Z",
     "thumbnail": "https://i.ytimg.com/vi/EAcgIfyuaX0/maxresdefault.jpg",
     "durationSec": 707,
-    "viewCount": 135,
+    "viewCount": 138,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -107886,7 +107891,7 @@
           "yasuo",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -107900,7 +107905,7 @@
           "lux",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -107943,7 +107948,7 @@
           "ekko",
           "thresh"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       },
       {
         "side": "right",
@@ -107957,7 +107962,7 @@
           "akali",
           "senna"
         ],
-        "fuse": null
+        "fuse": "2x-assist"
       }
     ],
     "allCharacters": [
@@ -107982,7 +107987,7 @@
     "publishedAt": "2026-09-12T16:03:11Z",
     "thumbnail": "https://i.ytimg.com/vi/HPs1M-KIbDo/maxresdefault.jpg",
     "durationSec": 700,
-    "viewCount": 86,
+    "viewCount": 87,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -108000,7 +108005,7 @@
           "senna",
           "ekko"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -108014,7 +108019,7 @@
           "lux",
           "blitzcrank"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -108057,7 +108062,7 @@
           "jinx",
           "lux"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -108071,7 +108076,7 @@
           "lux",
           "yasuo"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -108113,7 +108118,7 @@
           "lux",
           "jinx"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -108127,7 +108132,7 @@
           "ahri",
           "lux"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       }
     ],
     "allCharacters": [
@@ -108169,7 +108174,7 @@
           "lux",
           "ahri"
         ],
-        "fuse": null
+        "fuse": "freestyle"
       },
       {
         "side": "right",
@@ -108183,7 +108188,7 @@
           "lux",
           "akali"
         ],
-        "fuse": null
+        "fuse": "double-down"
       }
     ],
     "allCharacters": [
@@ -108197,7 +108202,8 @@
     ],
     "tags": [],
     "parseConfidence": "high",
-    "rawUnparsed": null
+    "rawUnparsed": null,
+    "fusesUnordered": true
   },
   {
     "id": "ylHNzbfT6DM",
@@ -109065,7 +109071,7 @@
     "publishedAt": "2026-09-09T05:15:35Z",
     "thumbnail": "https://i.ytimg.com/vi/x3JaFaCeJDU/maxresdefault.jpg",
     "durationSec": 542,
-    "viewCount": 117,
+    "viewCount": 118,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -109122,7 +109128,7 @@
     "publishedAt": "2026-09-09T03:15:09Z",
     "thumbnail": "https://i.ytimg.com/vi/VleKPHDmML8/maxresdefault.jpg",
     "durationSec": 678,
-    "viewCount": 115,
+    "viewCount": 116,
     "season": 1,
     "patch": "2026-09-08",
     "patchVersion": "1.3.1",
@@ -113626,7 +113632,7 @@
     "publishedAt": "2026-08-20T19:00:06Z",
     "thumbnail": "https://i.ytimg.com/vi/CjMUK_122ZQ/maxresdefault.jpg",
     "durationSec": 778,
-    "viewCount": 55,
+    "viewCount": 56,
     "season": 1,
     "patch": "2026-07-23",
     "patchVersion": "1.2.5",
@@ -254335,7 +254341,7 @@
     "publishedAt": "2026-06-28T21:50:00Z",
     "thumbnail": "https://i.ytimg.com/vi/zxRvkDeYL8w/maxresdefault.jpg",
     "durationSec": 2526,
-    "viewCount": 43679,
+    "viewCount": 43680,
     "season": 1,
     "patch": null,
     "patchVersion": "1.2.3",

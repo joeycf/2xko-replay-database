@@ -1,12 +1,12 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-15T11:46:43.209Z._
+_Generated 2026-09-15T12:36:43.095Z._
 
 ## Summary
 - Total videos: **6649**
 - High confidence: **6618**  ·  Low confidence: **21**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.5%** · patchVersion: **95.2%** · patch label: **16.3%** · fuse: **99.6%**
+- Fill rates — season: **95.5%** · patchVersion: **95.2%** · patch label: **16.3%** · fuse: **99.9%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
 
 ## Replay Theater cross-check
 

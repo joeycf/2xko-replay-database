@@ -72994,5 +72994,247 @@
   "status": "ok-unordered",
   "era": "s1",
   "detectedAt": "2026-09-11"
+ },
+ "RGd3kVIU3Cw": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 39
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "dXNb5hRNxrQ": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 3
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "rdfWxsefDUM": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 3
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "oZJDOp0taJ8": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 5
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "_ZiLJoh3KMA": {
+  "left": "juggernaut",
+  "right": "freestyle",
+  "score": {
+   "left": 36,
+   "right": 7
+  },
+  "status": "low",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "IGV0Dt3N5Mo": {
+  "left": "double-down",
+  "right": "freestyle",
+  "score": {
+   "left": 17,
+   "right": 9
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "7Y0mjeJyq18": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 39
+  },
+  "status": "low",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "H2vel6H2vhU": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 42
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "J09ZPcdoBxc": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 1,
+   "right": 5
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "p_0v31W_k14": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "F3Z7--xqHsk": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 2
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "-jbWluDx4G8": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 2,
+   "right": 31
+  },
+  "status": "low",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "jUt6x5tjKZY": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 10,
+   "right": 65
+  },
+  "status": "low",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "QtMhMdJXNes": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 11,
+   "right": 4
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "FdInLIT2hH4": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 1
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "bkqlN99OR2Q": {
+  "left": "2x-assist",
+  "right": "double-down",
+  "score": {
+   "left": 19,
+   "right": 7
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "EAcgIfyuaX0": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 6,
+   "right": 13
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "7onU6QiKxHQ": {
+  "left": "2x-assist",
+  "right": "2x-assist",
+  "score": {
+   "left": 9,
+   "right": 16
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "HPs1M-KIbDo": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 7,
+   "right": 2
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "eAm7EGj4-84": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 1,
+   "right": 17
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "OA1kEr1v2lo": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 2,
+   "right": 8
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
+ },
+ "Y63qtWcljQw": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 1,
+   "right": 7
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-09-15"
  }
 }
