@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-09-15T12:36:43.095Z._
+_Generated 2026-09-16T11:37:37.737Z._
 
 ## Summary
-- Total videos: **6649**
-- High confidence: **6618**  ·  Low confidence: **21**  ·  Manual (hand-authored): **10**
+- Total videos: **6655**
+- High confidence: **6624**  ·  Low confidence: **21**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.5%** · patchVersion: **95.2%** · patch label: **16.3%** · fuse: **99.9%**
+- Fill rates — season: **95.5%** · patchVersion: **95.3%** · patch label: **16.3%** · fuse: **99.8%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2548 | fetched |
-| `highLevel` | 1865 | fetched |
+| `bestReplays` | 2551 | fetched |
+| `highLevel` | 1868 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6649** | |
+| **Σ** | **6655** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
 
 ## Replay Theater cross-check
 
