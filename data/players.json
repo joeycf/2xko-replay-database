@@ -14010,5 +14010,15 @@
         "huh z"
       ]
     }
+  },
+  {
+    "id": "darkakali",
+    "handle": "DARK AKALI",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "dark akali"
+      ]
+    }
   }
 ]
