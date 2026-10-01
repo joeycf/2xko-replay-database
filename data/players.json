@@ -900,6 +900,20 @@
     "extra": {
       "aliases": [
         "bleed"
+      ],
+      "titles": [
+        {
+          "event": "Texas Showdown 2026",
+          "place": 2,
+          "date": "2026-03-26",
+          "url": "https://liquipedia.net/fighters/Texas_Showdown/2026/2XKO"
+        },
+        {
+          "event": "Frosty Faustings XVIII",
+          "place": 1,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/Frosty_Faustings/2026/2XKO"
+        }
       ]
     }
   },
@@ -1882,11 +1896,20 @@
   {
     "id": "devillion",
     "handle": "DEVILLION",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "devillion"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Ultimate Montreal Airdashers 2026",
+          "place": 2,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Ultimate_Montreal_Airdashers/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -2082,11 +2105,32 @@
   {
     "id": "doropon",
     "handle": "DOROPON",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "doropon"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "2XKO Japan Series 2026 Cup #4",
+          "place": 1,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/4"
+        },
+        {
+          "event": "SOOP Super Tournament 2026",
+          "place": 2,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Super_Tournament/2026/2XKO"
+        },
+        {
+          "event": "2XKO Japan Series 2026 Cup #3",
+          "place": 2,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/3"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -2897,11 +2941,20 @@
   {
     "id": "galladiated",
     "handle": "Galladiated",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "galladiated"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "CEO 2026",
+          "place": 1,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Community_Effort_Orlando/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -3087,11 +3140,20 @@
   {
     "id": "gish",
     "handle": "Gish",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "gish"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Blink Respawn 2026",
+          "place": 2,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Blink_Respawn/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -3344,6 +3406,20 @@
       "aliases": [
         "2winz haru",
         "haru"
+      ],
+      "titles": [
+        {
+          "event": "2XKO Japan Series 2026 Cup #2",
+          "place": 2,
+          "date": "2026-04-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/2"
+        },
+        {
+          "event": "2XKO Japan Series 2026 Cup #1",
+          "place": 1,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/1"
+        }
       ]
     }
   },
@@ -3504,6 +3580,32 @@
     "extra": {
       "aliases": [
         "hikari"
+      ],
+      "titles": [
+        {
+          "event": "Evolution Championship Series 2026",
+          "place": 1,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/2XKO"
+        },
+        {
+          "event": "Evolution Championship Series: Japan 2026",
+          "place": 1,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/Japan/2XKO"
+        },
+        {
+          "event": "Combo Breaker 2026",
+          "place": 2,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/Combo_Breaker/2026/2XKO"
+        },
+        {
+          "event": "LVL UP EXPO 2026",
+          "place": 1,
+          "date": "2026-04-26",
+          "url": "https://liquipedia.net/fighters/LVL_UP_EXPO/2026/2XKO"
+        }
       ]
     }
   },
@@ -3810,21 +3912,51 @@
   {
     "id": "ikoan",
     "handle": "IKOAN",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "ikoan"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "2XKO Japan Series 2026 Summer Finals",
+          "place": 2,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Summer/Finals"
+        },
+        {
+          "event": "2XKO Japan Series 2026 Cup #4",
+          "place": 2,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/4"
+        },
+        {
+          "event": "2XKO Japan Series 2026 Cup #2",
+          "place": 1,
+          "date": "2026-04-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/2"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
     "id": "ikura",
     "handle": "IKURA",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "ikura"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "2XKO Japan Series 2026 Cup #1",
+          "place": 2,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/1"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -3976,6 +4108,14 @@
     "extra": {
       "aliases": [
         "inzem"
+      ],
+      "titles": [
+        {
+          "event": "Boston Blue Beat: Beach Episode 2026",
+          "place": 1,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/Boston_Blue_Beat/Beach_Episode/2026/2XKO"
+        }
       ]
     }
   },
@@ -4102,11 +4242,20 @@
   {
     "id": "jakeythesnakey",
     "handle": "JakeyTheSnakey",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "jakeythesnakey"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "CEO 2026",
+          "place": 2,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Community_Effort_Orlando/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -4515,12 +4664,21 @@
   {
     "id": "k7showoff",
     "handle": "K7 Showoff",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "k7 showoff",
         "k7showoff"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Boston Blue Beat: Beach Episode 2026",
+          "place": 2,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/Boston_Blue_Beat/Beach_Episode/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -4636,11 +4794,26 @@
   {
     "id": "kayne",
     "handle": "Kayne",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "kayne"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "VSFighting XIV",
+          "place": 2,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/VSFighting/2026/2XKO"
+        },
+        {
+          "event": "The MIXUP 2026",
+          "place": 1,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/The_MIXUP/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -5201,6 +5374,20 @@
     "extra": {
       "aliases": [
         "leffen"
+      ],
+      "titles": [
+        {
+          "event": "Ultimate Fighting Arena 2026",
+          "place": 1,
+          "date": "2026-09-26",
+          "url": "https://liquipedia.net/fighters/Ultimate_Fighting_Arena/2026/2XKO"
+        },
+        {
+          "event": "DreamHack Atlanta 2025",
+          "place": 1,
+          "date": "2025-11-25",
+          "url": "https://liquipedia.net/fighters/DreamHack/2025/Atlanta/2XKO"
+        }
       ]
     }
   },
@@ -5338,11 +5525,20 @@
   {
     "id": "lightwhisp",
     "handle": "LightWhisp",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "lightwhisp"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "GENESIS X3",
+          "place": 2,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/GENESIS/X3/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -5358,11 +5554,20 @@
   {
     "id": "linj",
     "handle": "Linj",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "linj"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Battle Coliseum 2025",
+          "place": 2,
+          "date": "2025-11-25",
+          "url": "https://liquipedia.net/fighters/Battle_Coliseum/2025/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -6550,11 +6755,20 @@
   {
     "id": "noka",
     "handle": "NOKA",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "noka"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "VSFighting XIV",
+          "place": 1,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/VSFighting/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -6640,11 +6854,20 @@
   {
     "id": "novix",
     "handle": "NOVIX",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "novix"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Battle Arena Melbourne 16",
+          "place": 1,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/Battle_Arena_Melbourne/16/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -6834,6 +7057,14 @@
     "extra": {
       "aliases": [
         "opal"
+      ],
+      "titles": [
+        {
+          "event": "The MIXUP 2026",
+          "place": 2,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/The_MIXUP/2026/2XKO"
+        }
       ]
     }
   },
@@ -7202,11 +7433,32 @@
   {
     "id": "poka",
     "handle": "Poka",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "poka"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "2XKO Japan Series 2026 Summer Finals",
+          "place": 1,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Summer/Finals"
+        },
+        {
+          "event": "SOOP Super Tournament 2026",
+          "place": 1,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Super_Tournament/2026/2XKO"
+        },
+        {
+          "event": "2XKO Japan Series 2026 Cup #3",
+          "place": 1,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/3"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -7352,11 +7604,20 @@
   {
     "id": "psixou",
     "handle": "Psixou",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "psixou"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Komitê Arena 2026",
+          "place": 1,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Komit%C3%AA_Arena/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -8216,11 +8477,21 @@
   {
     "id": "shibaisdry",
     "handle": "SHIBAISDRY",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
-        "shibaisdry"
-      ]
+        "shibaisdry",
+        "shiba_is_dry"
+      ],
+      "titles": [
+        {
+          "event": "Battle Arena Melbourne 16",
+          "place": 2,
+          "date": "2026-07-26",
+          "url": "https://liquipedia.net/fighters/Battle_Arena_Melbourne/16/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -8491,6 +8762,38 @@
       "aliases": [
         "sonicfox",
         "sonic fox"
+      ],
+      "titles": [
+        {
+          "event": "Evolution Championship Series 2026",
+          "place": 2,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/2XKO"
+        },
+        {
+          "event": "Combo Breaker 2026",
+          "place": 1,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/Combo_Breaker/2026/2XKO"
+        },
+        {
+          "event": "LVL UP EXPO 2026",
+          "place": 2,
+          "date": "2026-04-26",
+          "url": "https://liquipedia.net/fighters/LVL_UP_EXPO/2026/2XKO"
+        },
+        {
+          "event": "Texas Showdown 2026",
+          "place": 1,
+          "date": "2026-03-26",
+          "url": "https://liquipedia.net/fighters/Texas_Showdown/2026/2XKO"
+        },
+        {
+          "event": "DreamHack Atlanta 2025",
+          "place": 2,
+          "date": "2025-11-25",
+          "url": "https://liquipedia.net/fighters/DreamHack/2025/Atlanta/2XKO"
+        }
       ]
     }
   },
@@ -8843,6 +9146,32 @@
     "extra": {
       "aliases": [
         "supernoon"
+      ],
+      "titles": [
+        {
+          "event": "Evolution Championship Series: Japan 2026",
+          "place": 2,
+          "date": "2026-05-26",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/Japan/2XKO"
+        },
+        {
+          "event": "GENESIS X3",
+          "place": 1,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/GENESIS/X3/2XKO"
+        },
+        {
+          "event": "Frosty Faustings XVIII",
+          "place": 2,
+          "date": "2026-02-26",
+          "url": "https://liquipedia.net/fighters/Frosty_Faustings/2026/2XKO"
+        },
+        {
+          "event": "2 NICE KO",
+          "place": 2,
+          "date": "2025-10-25",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2025/France/2XKO"
+        }
       ]
     }
   },
@@ -9776,6 +10105,26 @@
     "extra": {
       "aliases": [
         "wawa"
+      ],
+      "titles": [
+        {
+          "event": "Ultimate Montreal Airdashers 2026",
+          "place": 1,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Ultimate_Montreal_Airdashers/2026/2XKO"
+        },
+        {
+          "event": "viennality XL",
+          "place": 2,
+          "date": "2026-03-26",
+          "url": "https://liquipedia.net/fighters/Viennality/2026/2XKO"
+        },
+        {
+          "event": "2 NICE KO",
+          "place": 1,
+          "date": "2025-10-25",
+          "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2025/France/2XKO"
+        }
       ]
     }
   },
@@ -10128,6 +10477,20 @@
     "extra": {
       "aliases": [
         "yasha"
+      ],
+      "titles": [
+        {
+          "event": "Ultimate Fighting Arena 2026",
+          "place": 2,
+          "date": "2026-09-26",
+          "url": "https://liquipedia.net/fighters/Ultimate_Fighting_Arena/2026/2XKO"
+        },
+        {
+          "event": "viennality XL",
+          "place": 1,
+          "date": "2026-03-26",
+          "url": "https://liquipedia.net/fighters/Viennality/2026/2XKO"
+        }
       ]
     }
   },
@@ -10414,11 +10777,27 @@
   {
     "id": "zleeeek7",
     "handle": "ZLEEEEK7",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
-        "zleeeek7"
-      ]
+        "zleeeek7",
+        "zleek7"
+      ],
+      "titles": [
+        {
+          "event": "Komitê Arena 2026",
+          "place": 2,
+          "date": "2026-08-26",
+          "url": "https://liquipedia.net/fighters/Komit%C3%AA_Arena/2026/2XKO"
+        },
+        {
+          "event": "Battle Coliseum 2025",
+          "place": 1,
+          "date": "2025-11-25",
+          "url": "https://liquipedia.net/fighters/Battle_Coliseum/2025/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {
@@ -12984,11 +13363,20 @@
   {
     "id": "nychrisg",
     "handle": "NYChrisG",
-    "featured": false,
+    "featured": true,
     "extra": {
       "aliases": [
         "nychrisg"
-      ]
+      ],
+      "titles": [
+        {
+          "event": "Blink Respawn 2026",
+          "place": 1,
+          "date": "2026-06-26",
+          "url": "https://liquipedia.net/fighters/Blink_Respawn/2026/2XKO"
+        }
+      ],
+      "featuredBy": "tournament"
     }
   },
   {

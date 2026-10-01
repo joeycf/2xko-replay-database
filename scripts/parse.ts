@@ -26,6 +26,14 @@ import { crossCheck, formatCrossCheck, type WitnessArtifact, type WitnessFile } 
 import { applyExclusions, emitGeneric } from './emit';
 import { formatStaleRefusal, staleEvidence } from './freshness';
 import { loadPatchTable } from './patches';
+import {
+  applyTournamentTitles,
+  describeOutcome,
+  matchTournaments,
+  playerKey,
+  readAliases,
+  readTournaments,
+} from './tournaments';
 import type {
   Champion,
   ChannelKey,
@@ -1631,6 +1639,19 @@ function buildReport(
     }
     lines.push(``);
   }
+
+  // ── tournament placements (Liquipedia, CC BY-SA 3.0) ──────────────────────
+  lines.push(
+    `## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0`,
+    ``,
+    ...(tournaments.events
+      ? describeOutcome(tournaments, Object.keys(players).length)
+      : [
+          'No data/tournaments.json — run `npm run data:tournaments` (manual, network) to pull ' +
+            "Liquipedia's winner and runner-up tables.",
+          ``,
+        ]),
+  );
   return lines.join('\n');
 }
 
@@ -2114,6 +2135,32 @@ for (const r of records) {
   }
 }
 
+// ── tournament placements → featured + extra.titles ──────────────────────────
+// data/tournaments.json is Liquipedia's Tier 1–2 winners and runners-up,
+// fetched by hand (scripts/tournaments.ts — NETWORK, MANUAL, NEVER IN THE
+// CRON). The match runs HERE — after the seed was read back, the discoveries
+// finalised, the manual registrations and override-introduced names added, and
+// the unreferenced discoveries pruned — so it sees the registry exactly as it
+// is about to be written, and a champion with no replay yet costs nothing today
+// and is featured the morning their first video is ingested. Keys compare in
+// playerKey space — the id slug, the same transform `slugify` above mints ids
+// with — on both sides, so `AAAA San` on Liquipedia reaches `aaaasan` here even
+// though the handle is `AAAA-SAN`. Names the matcher will not decide on its own
+// (a champion's name, under three alphanumerics, two candidates) are reported
+// for data/tournament-aliases.json, never guessed: a wrong person featured is
+// worse than a right one missed. Because this registry PERSISTS,
+// applyTournamentTitles first strips every row's titles and un-features every
+// row an earlier parse featured this way — seed and manual flags are never
+// touched.
+const tournaments = matchTournaments(
+  Object.values(players),
+  readTournaments(),
+  readAliases().aliases,
+  playerKey,
+  (h) => champByAlias.has(h.trim().toLowerCase()),
+);
+const titled = applyTournamentTitles(players, tournaments);
+
 const total = records.length;
 const seasonFilled = records.filter((r) => r.season !== null).length;
 const patchFilled = records.filter((r) => r.patch !== null).length;
@@ -2357,7 +2404,7 @@ console.log(
   `  high-confidence: ${total - low - manualN}   low-confidence: ${low}   manual: ${manualN}`,
 );
 console.log(
-  `  newly discovered players: ${discovered.size}  (players.json now ${Object.keys(players).length} total)`,
+  `  newly discovered players: ${discovered.size}  (players.json now ${Object.keys(players).length} total · ${titled} titled)`,
 );
 if (manualNewPlayers.length > 0) {
   console.log(

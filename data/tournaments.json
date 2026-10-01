@@ -1,0 +1,660 @@
+{
+  "source": {
+    "name": "Liquipedia Fighting Games Wiki",
+    "url": "https://liquipedia.net/fighters/2XKO/Tournaments",
+    "licence": "CC BY-SA 3.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "game": "2xko",
+    "tiers": [
+      1,
+      2
+    ]
+  },
+  "generatedAt": "2026-10-01",
+  "events": [
+    {
+      "name": "Battle Coliseum 2026",
+      "page": "Battle_Coliseum/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Battle_Coliseum/2026/2XKO",
+      "date": "2026-11-26",
+      "tier": 1,
+      "entrants": null,
+      "prize": null,
+      "location": "São Paulo, SP",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "MINDSET 2026",
+      "page": "MINDSET/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/MINDSET/2026/2XKO",
+      "date": "2026-11-26",
+      "tier": 2,
+      "entrants": null,
+      "prize": null,
+      "location": "France",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "Evolution Championship Series: France 2026",
+      "page": "Evolution_Championship_Series/2026/France/2XKO",
+      "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/France/2XKO",
+      "date": "2026-10-26",
+      "tier": 1,
+      "entrants": 311,
+      "prize": "$107,679.42",
+      "location": "Nice",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "First Attack 2026",
+      "page": "First_Attack/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/First_Attack/2026/2XKO",
+      "date": "2026-10-26",
+      "tier": 2,
+      "entrants": 30,
+      "prize": "$6,300",
+      "location": "San Juan",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "Ultimate Fighting Arena 2026",
+      "page": "Ultimate_Fighting_Arena/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Ultimate_Fighting_Arena/2026/2XKO",
+      "date": "2026-09-26",
+      "tier": 2,
+      "entrants": 114,
+      "prize": "$1,740.53",
+      "location": "Paris",
+      "winner": {
+        "name": "Leffen",
+        "page": "Leffen",
+        "flag": "Sweden",
+        "character": "Teemo"
+      },
+      "runnerUp": {
+        "name": "Yasha",
+        "page": "Yasha",
+        "flag": "France",
+        "character": "Yasuo"
+      }
+    },
+    {
+      "name": "CEO 2026",
+      "page": "Community_Effort_Orlando/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Community_Effort_Orlando/2026/2XKO",
+      "date": "2026-08-26",
+      "tier": 2,
+      "entrants": 409,
+      "prize": "$10,090",
+      "location": "Orlando, FL",
+      "winner": {
+        "name": "Galladiated",
+        "page": null,
+        "flag": "United States",
+        "character": "Braum"
+      },
+      "runnerUp": {
+        "name": "JakeyTheSnakey",
+        "page": "JakeyTheSnakey",
+        "flag": "United States",
+        "character": "Yasuo"
+      }
+    },
+    {
+      "name": "Komitê Arena 2026",
+      "page": "Komitê_Arena/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Komit%C3%AA_Arena/2026/2XKO",
+      "date": "2026-08-26",
+      "tier": 2,
+      "entrants": 59,
+      "prize": null,
+      "location": "São Paulo, SP",
+      "winner": {
+        "name": "psixou",
+        "page": null,
+        "flag": "Brazil",
+        "character": "Illaoi"
+      },
+      "runnerUp": {
+        "name": "zLeek7",
+        "page": "ZLeeeek7",
+        "flag": "Brazil",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "Ultimate Montreal Airdashers 2026",
+      "page": "Ultimate_Montreal_Airdashers/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Ultimate_Montreal_Airdashers/2026/2XKO",
+      "date": "2026-08-26",
+      "tier": 2,
+      "entrants": 57,
+      "prize": "$6,295.15",
+      "location": "Montreal, QC",
+      "winner": {
+        "name": "Wawa",
+        "page": "Wawa",
+        "flag": "France",
+        "character": "Yasuo"
+      },
+      "runnerUp": {
+        "name": "Devillion",
+        "page": null,
+        "flag": "Canada",
+        "character": "Jinx"
+      }
+    },
+    {
+      "name": "2XKO Japan Series 2026 Summer Finals",
+      "page": "2XKO_Japan_Series/2026/Summer/Finals",
+      "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Summer/Finals",
+      "date": "2026-07-26",
+      "tier": 1,
+      "entrants": 16,
+      "prize": "$25,000",
+      "location": "Tokyo",
+      "winner": {
+        "name": "Poka",
+        "page": "Poka",
+        "flag": "Japan",
+        "character": "Akali"
+      },
+      "runnerUp": {
+        "name": "ikoan",
+        "page": "Ikoan",
+        "flag": "Japan",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "Battle Arena Melbourne 16",
+      "page": "Battle_Arena_Melbourne/16/2XKO",
+      "url": "https://liquipedia.net/fighters/Battle_Arena_Melbourne/16/2XKO",
+      "date": "2026-07-26",
+      "tier": 2,
+      "entrants": 45,
+      "prize": "$6,313.43",
+      "location": "Melbourne",
+      "winner": {
+        "name": "Novix",
+        "page": "Novix",
+        "flag": "Australia",
+        "character": "Akali"
+      },
+      "runnerUp": {
+        "name": "Shiba_is_dry",
+        "page": null,
+        "flag": "Australia",
+        "character": "Ekko"
+      }
+    },
+    {
+      "name": "Boston Blue Beat: Beach Episode 2026",
+      "page": "Boston_Blue_Beat/Beach_Episode/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Boston_Blue_Beat/Beach_Episode/2026/2XKO",
+      "date": "2026-07-26",
+      "tier": 2,
+      "entrants": 71,
+      "prize": "$6,710",
+      "location": "Waltham, MA",
+      "winner": {
+        "name": "INZEM",
+        "page": "INZEM",
+        "flag": "United States",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "K7 Showoff",
+        "page": "K7_Showoff",
+        "flag": "United States",
+        "character": "Yasuo"
+      }
+    },
+    {
+      "name": "VSFighting XIV",
+      "page": "VSFighting/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/VSFighting/2026/2XKO",
+      "date": "2026-07-26",
+      "tier": 2,
+      "entrants": 100,
+      "prize": "$7,332.78",
+      "location": "Birmingham",
+      "winner": {
+        "name": "Noka",
+        "page": "Noka",
+        "flag": "France",
+        "character": "Thresh"
+      },
+      "runnerUp": {
+        "name": "Kayne",
+        "page": "Kayne",
+        "flag": "France",
+        "character": "Warwick"
+      }
+    },
+    {
+      "name": "2XKO Japan Series 2026 Cup #4",
+      "page": "2XKO_Japan_Series/2026/Cup/4",
+      "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/4",
+      "date": "2026-06-26",
+      "tier": 2,
+      "entrants": 58,
+      "prize": "$10,000",
+      "location": "Japan",
+      "winner": {
+        "name": "doropon",
+        "page": "Doropon",
+        "flag": "Japan",
+        "character": "Caitlyn"
+      },
+      "runnerUp": {
+        "name": "ikoan",
+        "page": "Ikoan",
+        "flag": "Japan",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "Blink Respawn 2026",
+      "page": "Blink_Respawn/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Blink_Respawn/2026/2XKO",
+      "date": "2026-06-26",
+      "tier": 2,
+      "entrants": 52,
+      "prize": "$5,910",
+      "location": "Santo Domingo",
+      "winner": {
+        "name": "NYChrisG",
+        "page": "NYChrisG",
+        "flag": "United States",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "Gish",
+        "page": "Gish",
+        "flag": "Mexico",
+        "character": "Caitlyn"
+      }
+    },
+    {
+      "name": "Evolution Championship Series 2026",
+      "page": "Evolution_Championship_Series/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/2XKO",
+      "date": "2026-06-26",
+      "tier": 1,
+      "entrants": 1081,
+      "prize": "$135,000",
+      "location": "Las Vegas, NV",
+      "winner": {
+        "name": "Hikari",
+        "page": "Hikari_(American_Player)",
+        "flag": "United States",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "SonicFox",
+        "page": "SonicFox",
+        "flag": "United States",
+        "character": "Jinx"
+      }
+    },
+    {
+      "name": "SOOP Super Tournament 2026",
+      "page": "Super_Tournament/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Super_Tournament/2026/2XKO",
+      "date": "2026-06-26",
+      "tier": 2,
+      "entrants": 22,
+      "prize": "$5,770.82",
+      "location": "Seoul",
+      "winner": {
+        "name": "Poka",
+        "page": "Poka",
+        "flag": "Japan",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "doropon",
+        "page": "Doropon",
+        "flag": "Japan",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "The MIXUP 2026",
+      "page": "The_MIXUP/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/The_MIXUP/2026/2XKO",
+      "date": "2026-06-26",
+      "tier": 2,
+      "entrants": 89,
+      "prize": "$7,030.21",
+      "location": "Lyon",
+      "winner": {
+        "name": "Kayne",
+        "page": "Kayne",
+        "flag": "France",
+        "character": "Jinx"
+      },
+      "runnerUp": {
+        "name": "Opal",
+        "page": "Opal",
+        "flag": "France",
+        "character": "Caitlyn"
+      }
+    },
+    {
+      "name": "2XKO Japan Series 2026 Cup #3",
+      "page": "2XKO_Japan_Series/2026/Cup/3",
+      "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/3",
+      "date": "2026-05-26",
+      "tier": 2,
+      "entrants": 59,
+      "prize": "$10,000",
+      "location": "Japan",
+      "winner": {
+        "name": "Poka",
+        "page": "Poka",
+        "flag": "Japan",
+        "character": "Akali"
+      },
+      "runnerUp": {
+        "name": "doropon",
+        "page": "Doropon",
+        "flag": "Japan",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "Combo Breaker 2026",
+      "page": "Combo_Breaker/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Combo_Breaker/2026/2XKO",
+      "date": "2026-05-26",
+      "tier": 1,
+      "entrants": 674,
+      "prize": "$6,740",
+      "location": "Schaumburg, IL",
+      "winner": {
+        "name": "SonicFox",
+        "page": "SonicFox",
+        "flag": "United States",
+        "character": "Jinx"
+      },
+      "runnerUp": {
+        "name": "Hikari",
+        "page": "Hikari_(American_Player)",
+        "flag": "United States",
+        "character": "Akali"
+      }
+    },
+    {
+      "name": "Evolution Championship Series: Japan 2026",
+      "page": "Evolution_Championship_Series/2026/Japan/2XKO",
+      "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2026/Japan/2XKO",
+      "date": "2026-05-26",
+      "tier": 1,
+      "entrants": 427,
+      "prize": "$88,748.34",
+      "location": "Tokyo",
+      "winner": {
+        "name": "Hikari",
+        "page": "Hikari_(American_Player)",
+        "flag": "United States",
+        "character": "Akali"
+      },
+      "runnerUp": {
+        "name": "Supernoon",
+        "page": "Supernoon",
+        "flag": "United States",
+        "character": "Teemo"
+      }
+    },
+    {
+      "name": "Red Bull Knockout",
+      "page": "Red_Bull_Knockout/2026",
+      "url": "https://liquipedia.net/fighters/Red_Bull_Knockout/2026",
+      "date": "2026-05-26",
+      "tier": 1,
+      "entrants": 16,
+      "prize": "$23,244.89",
+      "location": "Paris",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "Red Bull Knockout Last Chance Qualifier",
+      "page": "Red_Bull_Knockout/2026/Last_Chance_Qualifier",
+      "url": "https://liquipedia.net/fighters/Red_Bull_Knockout/2026/Last_Chance_Qualifier",
+      "date": "2026-05-26",
+      "tier": 2,
+      "entrants": 40,
+      "prize": null,
+      "location": "Paris",
+      "winner": null,
+      "runnerUp": null
+    },
+    {
+      "name": "2XKO Japan Series 2026 Cup #2",
+      "page": "2XKO_Japan_Series/2026/Cup/2",
+      "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/2",
+      "date": "2026-04-26",
+      "tier": 2,
+      "entrants": 51,
+      "prize": "$10,000",
+      "location": "Japan",
+      "winner": {
+        "name": "ikoan",
+        "page": "Ikoan",
+        "flag": "Japan",
+        "character": "Yasuo"
+      },
+      "runnerUp": {
+        "name": "Haru",
+        "page": "Haru",
+        "flag": "Japan",
+        "character": "Illaoi"
+      }
+    },
+    {
+      "name": "LVL UP EXPO 2026",
+      "page": "LVL_UP_EXPO/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/LVL_UP_EXPO/2026/2XKO",
+      "date": "2026-04-26",
+      "tier": 2,
+      "entrants": 70,
+      "prize": "$10,000",
+      "location": "Las Vegas, NV",
+      "winner": {
+        "name": "Hikari",
+        "page": "Hikari_(American_Player)",
+        "flag": "United States",
+        "character": "Akali"
+      },
+      "runnerUp": {
+        "name": "SonicFox",
+        "page": "SonicFox",
+        "flag": "United States",
+        "character": "Ahri"
+      }
+    },
+    {
+      "name": "Texas Showdown 2026",
+      "page": "Texas_Showdown/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Texas_Showdown/2026/2XKO",
+      "date": "2026-03-26",
+      "tier": 2,
+      "entrants": 153,
+      "prize": "$7,295",
+      "location": "Houston, TX",
+      "winner": {
+        "name": "SonicFox",
+        "page": "SonicFox",
+        "flag": "United States",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "bleed",
+        "page": "Bleed_(American_Player)",
+        "flag": "United States",
+        "character": "Ekko"
+      }
+    },
+    {
+      "name": "viennality XL",
+      "page": "Viennality/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Viennality/2026/2XKO",
+      "date": "2026-03-26",
+      "tier": 2,
+      "entrants": 61,
+      "prize": "$5,704.30",
+      "location": "Wien",
+      "winner": {
+        "name": "Yasha",
+        "page": "Yasha",
+        "flag": "France",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "Wawa",
+        "page": "Wawa",
+        "flag": "France",
+        "character": "Caitlyn"
+      }
+    },
+    {
+      "name": "2XKO Japan Series 2026 Cup #1",
+      "page": "2XKO_Japan_Series/2026/Cup/1",
+      "url": "https://liquipedia.net/fighters/2XKO_Japan_Series/2026/Cup/1",
+      "date": "2026-02-26",
+      "tier": 2,
+      "entrants": 67,
+      "prize": "$10,000",
+      "location": "Japan",
+      "winner": {
+        "name": "Haru",
+        "page": "Haru",
+        "flag": "Japan",
+        "character": "Ekko"
+      },
+      "runnerUp": {
+        "name": "ikura",
+        "page": "Ikura",
+        "flag": "Japan",
+        "character": "Darius"
+      }
+    },
+    {
+      "name": "Frosty Faustings XVIII",
+      "page": "Frosty_Faustings/2026/2XKO",
+      "url": "https://liquipedia.net/fighters/Frosty_Faustings/2026/2XKO",
+      "date": "2026-02-26",
+      "tier": 1,
+      "entrants": 962,
+      "prize": "$50,027",
+      "location": "Lombard, IL",
+      "winner": {
+        "name": "bleed",
+        "page": "Bleed_(American_Player)",
+        "flag": "United States",
+        "character": "Illaoi"
+      },
+      "runnerUp": {
+        "name": "Supernoon",
+        "page": "Supernoon",
+        "flag": "United States",
+        "character": "Darius"
+      }
+    },
+    {
+      "name": "GENESIS X3",
+      "page": "GENESIS/X3/2XKO",
+      "url": "https://liquipedia.net/fighters/GENESIS/X3/2XKO",
+      "date": "2026-02-26",
+      "tier": 2,
+      "entrants": 165,
+      "prize": "$6,650",
+      "location": "San Jose, CA",
+      "winner": {
+        "name": "Supernoon",
+        "page": "Supernoon",
+        "flag": "United States",
+        "character": "Yasuo"
+      },
+      "runnerUp": {
+        "name": "LightWhisp",
+        "page": null,
+        "flag": "United States",
+        "character": "Darius"
+      }
+    },
+    {
+      "name": "Battle Coliseum 2025",
+      "page": "Battle_Coliseum/2025/2XKO",
+      "url": "https://liquipedia.net/fighters/Battle_Coliseum/2025/2XKO",
+      "date": "2025-11-25",
+      "tier": 2,
+      "entrants": 161,
+      "prize": "$5,097.12",
+      "location": "São Paulo, SP",
+      "winner": {
+        "name": "zLeeeek7",
+        "page": "ZLeeeek7",
+        "flag": "Brazil",
+        "character": "Ahri"
+      },
+      "runnerUp": {
+        "name": "Linj",
+        "page": "Linj",
+        "flag": "Brazil",
+        "character": "Ekko"
+      }
+    },
+    {
+      "name": "DreamHack Atlanta 2025",
+      "page": "DreamHack/2025/Atlanta/2XKO",
+      "url": "https://liquipedia.net/fighters/DreamHack/2025/Atlanta/2XKO",
+      "date": "2025-11-25",
+      "tier": 2,
+      "entrants": 160,
+      "prize": "$5,000",
+      "location": "Atlanta, GA",
+      "winner": {
+        "name": "Leffen",
+        "page": "Leffen",
+        "flag": "Sweden",
+        "character": "Teemo"
+      },
+      "runnerUp": {
+        "name": "SonicFox",
+        "page": "SonicFox",
+        "flag": "United States",
+        "character": "Ekko"
+      }
+    },
+    {
+      "name": "2 NICE KO",
+      "page": "Evolution_Championship_Series/2025/France/2XKO",
+      "url": "https://liquipedia.net/fighters/Evolution_Championship_Series/2025/France/2XKO",
+      "date": "2025-10-25",
+      "tier": 2,
+      "entrants": 294,
+      "prize": "$5,000",
+      "location": "Nice",
+      "winner": {
+        "name": "Wawa",
+        "page": "Wawa",
+        "flag": "France",
+        "character": "Yasuo"
+      },
+      "runnerUp": {
+        "name": "Supernoon",
+        "page": "Supernoon",
+        "flag": "United States",
+        "character": "Darius"
+      }
+    }
+  ]
+}

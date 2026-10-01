@@ -24,11 +24,24 @@ export interface Champion {
   };
 }
 
+/** One tournament placement (mirrors the engine's PlayerTitle, v0.17.0).
+ *  Set by scripts/parse.ts from data/tournaments.json — Liquipedia, CC BY-SA
+ *  3.0 — onto `Player.extra.titles`; carrying one makes the player `featured`. */
+export interface PlayerTitle {
+  event: string;
+  /** 1 = winner, 2 = runner-up. */
+  place: 1 | 2;
+  /** ISO end date of the event. */
+  date: string;
+  url?: string;
+}
+
 /** A known player — data/players.json, the ENGINE-GENERIC Player shape
  *  (Phase 3). Seeded hand-curated; the parser auto-appends discovered names.
  *  `featured` carries the old `verified` semantics: true for the curated
- *  seed roster + manual-entry registrations, false for parser discoveries —
- *  it drives the VerifiedMark diamond and the featured filter rail. */
+ *  seed roster + manual-entry registrations + tournament placings, false for
+ *  parser discoveries — it drives the VerifiedMark diamond and the featured
+ *  filter rail. */
 export interface Player {
   id: string;
   handle: string;
@@ -36,6 +49,14 @@ export interface Player {
   extra: {
     /** lowercased match variants (also the engine's search well-known key) */
     aliases: string[];
+    /** tournament placements (scripts/tournaments.ts), most recent first */
+    titles?: PlayerTitle[];
+    /** Marker for a flag the tournament matcher set — the registry persists
+     *  across parses, so such a flag must be distinguishable from the curated
+     *  seed and from a manual-video registration, which carry NO marker: only
+     *  `tournament` flags are reset before each re-match, so a name that stops
+     *  matching is un-featured. (`titles` is recomputed on every row.) */
+    featuredBy?: 'tournament';
   };
 }
 

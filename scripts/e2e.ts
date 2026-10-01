@@ -1217,6 +1217,38 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     );
   });
 
+  // ── tournament placements (engine v0.17.0; scripts/tournaments.ts) ──────────
+  // A title makes a player featured, and the page that shows it must carry the
+  // Liquipedia credit — CC BY-SA 3.0 is a condition of using the table at all.
+  // Skipped visibly, never silently, while there is no data/tournaments.json or
+  // nobody in the registry has matched a placing yet.
+  {
+    const registry = JSON.parse(readFileSync(join(ROOT, 'data/players.json'), 'utf8')) as {
+      id: string;
+      featured?: boolean;
+      extra?: { titles?: { event: string }[] };
+    }[];
+    const titled = registry.filter((x) => (x.extra?.titles?.length ?? 0) > 0);
+    if (existsSync(join(ROOT, 'data/tournaments.json')) && titled.length) {
+      await test(`tournaments: every placed player is featured (${titled.length})`, () => {
+        const unflagged = titled.filter((x) => x.featured !== true).map((x) => x.id);
+        expect(unflagged.length === 0, `titled but not featured: ${unflagged.join(', ')}`);
+      });
+      const t = titled[0]!;
+      await test(`tournaments: /players/${t.id} renders its placements with the Liquipedia credit`, () => {
+        const file = join(OUT, BASE, `players/${t.id}/index.html`);
+        expect(existsSync(file), `/players/${t.id} missing from the build`);
+        const doc = readFileSync(file, 'utf8');
+        expect(doc.includes('data-testid="player-titles"'), 'no player-titles block');
+        expect(doc.includes('Liquipedia'), 'no Liquipedia credit beside the titles');
+      });
+    } else {
+      console.log(
+        '  ○ tournaments: placement assertions skipped — no data/tournaments.json or nobody titled yet',
+      );
+    }
+  }
+
   // (i) footer support link: a real prerendered anchor (shared engine layout +
   // SiteFooter, so check every page type) with new-tab + nofollow
   await test(`footer: Buy Me a Coffee link → ${BMC_URL} on all page types`, () => {
