@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /health
-
-Sitemap: https://replaydatabase.com/sitemap.xml
