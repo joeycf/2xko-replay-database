@@ -487,6 +487,35 @@ export interface RawVideoRecord {
 }
 
 /**
+ * raw/<channel>.departed.json — written by scripts/fetch.ts beside every dump
+ * it writes, read by the stale-raw guard (scripts/freshness.ts).
+ *
+ * The guard proves a dump stale by finding a committed record NEWER than
+ * anything in it. A record that LEFT YouTube looks exactly like that when it
+ * was the channel's newest upload and nothing has been posted since, and data
+ * alone cannot tell the two apart. So the fetch, which has the network, asks
+ * YouTube about every such record and writes down the ones that are gone.
+ *
+ * BOUND TO ITS DUMP. `newestInDump` is the newest publishedAt in the dump this
+ * file was written beside, and the guard honours the file only while that still
+ * matches. A dump copied without its file, or replaced by a later fetch,
+ * leaves the guard as strict as it ever was.
+ */
+export interface DepartedEvidence {
+  channel: ChannelKey;
+  newestInDump: string;
+  /** When the fetch asked YouTube. */
+  checkedAt: string;
+  /** Committed ids newer than the dump that can no longer reach it: deleted,
+   *  private or unlisted (unlisted uploads leave the uploads playlist), or
+   *  public but retitled out of the channel's game marker, which fetch.ts drops
+   *  before raw/ is written. A newer record that is public AND still marked is
+   *  never listed — a live upload missing from the walk is a stale view, and
+   *  the guard should fire. */
+  ids: string[];
+}
+
+/**
  * One tagged tournament match as Replay Theater publishes it, joined to the
  * YouTube metadata of the VOD it points into. Written to raw/replayTheater.json
  * by scripts/fetch-theater.ts (gitignored, like every raw dump).

@@ -24,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 import { CHANNELS, CHAR_SEP, PLAYER_SEP, THEATER_SPONSOR, type ChannelConfig } from './channels';
 import { crossCheck, formatCrossCheck, type WitnessArtifact, type WitnessFile } from './crosscheck';
 import { applyExclusions, emitGeneric } from './emit';
-import { formatStaleRefusal, staleEvidence } from './freshness';
+import { boundDepartures, formatStaleRefusal, staleEvidence } from './freshness';
 import { loadPatchTable } from './patches';
 import {
   applyTournamentTitles,
@@ -37,6 +37,7 @@ import {
 import type {
   Champion,
   ChannelKey,
+  DepartedEvidence,
   Fuse,
   FuseDetection,
   ManualVideoEntry,
@@ -374,12 +375,32 @@ const carriedLow: { id: string; channel: ChannelKey; title: string; reasons: str
 // That last one still holds now the index source is fetched daily — its dump is
 // read into `theaterRaw` at the `ch.index` branch above and never enters
 // `dumps`, which is what keeps a cursor delta from reading as a stale channel.
+//
+// The fetch's departure evidence rides in beside each dump (scripts/freshness.ts
+// boundDepartures). Unreadable is treated as absent, which leaves the guard strict.
 if (!process.argv.includes('--allow-stale')) {
   const existing = await readJson<VideoRecord[]>(join(DATA, 'videos.json')).catch(
     () => [] as VideoRecord[],
   );
   for (const [key, dump] of dumps) {
-    const ev = staleEvidence(key, dump, existing);
+    const departed = await readJson<DepartedEvidence>(
+      join(ROOT, 'raw', `${key}.departed.json`),
+    ).catch((e: NodeJS.ErrnoException) => {
+      if (e.code !== 'ENOENT')
+        console.warn(
+          `  ⚠ raw/${key}.departed.json will not parse; ignored, so the stale-raw guard stays strict`,
+        );
+      return null;
+    });
+    const gone = boundDepartures(key, dump, departed);
+    if (departed && gone.size) {
+      console.log(
+        `  ↘ raw/${key}.json: ${gone.size} committed upload(s) newer than the dump left YouTube ` +
+          `(confirmed by data:fetch at ${departed.checkedAt}). Pruned, not read as staleness: ` +
+          [...gone].join(', '),
+      );
+    }
+    const ev = staleEvidence(key, dump, existing, departed);
     if (ev) {
       console.error(formatStaleRefusal(key, ev));
       process.exit(1);

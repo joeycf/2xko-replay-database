@@ -3,11 +3,12 @@
 //
 // Run: npm run data:fetch   (tsx --env-file=.env scripts/fetch.ts)
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { CHANNELS, type ChannelConfig } from './channels';
+import { aheadOfDump, newestUpload } from './freshness';
 import {
   apiGet,
   fetchVideoMetadata,
@@ -15,7 +16,13 @@ import {
   requireApiKey,
   type ChannelsResponse,
 } from './youtube';
-import type { ChannelKey, Fuse, RawVideoRecord } from '../types/index';
+import type {
+  ChannelKey,
+  DepartedEvidence,
+  Fuse,
+  RawVideoRecord,
+  VideoRecord,
+} from '../types/index';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -152,10 +159,74 @@ function runRecon(channelKey: ChannelKey, records: RawVideoRecord[], fuseRe: Reg
   }
 }
 
+// ── departures: the one case the stale-raw guard cannot judge from data ──────
+// A channel that deletes its NEWEST upload and posts nothing after it leaves a
+// fresh dump looking exactly like a stale one (scripts/freshness.ts). So this
+// asks YouTube about the committed records newer than the dump — aheadOfDump,
+// the guard's own selection — and records the ones that can no longer reach
+// the dump. On an ordinary morning there are none, so it makes no call. One
+// videos.list call covers 50 ids.
+//
+// "Can no longer reach the dump" is wider than "no longer public" here, because
+// the channel's game-marker gate runs before raw/ is written: a public upload
+// retitled out of the marker is dropped exactly as a deleted one is. So the
+// check takes that channel's own marker test, and only a record that is public
+// AND still carries the marker counts as live (and keeps the guard firing).
+interface StatusResponse {
+  items: {
+    id: string;
+    status: { privacyStatus: string };
+    snippet: { title: string; description: string };
+  }[];
+}
+
+async function confirmDepartures(
+  key: ChannelKey,
+  dump: RawVideoRecord[],
+  committed: VideoRecord[],
+  carriesMarker: (r: Pick<RawVideoRecord, 'title' | 'description'>) => boolean,
+): Promise<DepartedEvidence> {
+  const ahead = aheadOfDump(key, dump, committed).map((v) => v.id);
+  const ids: string[] = [];
+  for (let i = 0; i < ahead.length; i += 50) {
+    const batch = ahead.slice(i, i + 50);
+    const res = await apiGet<StatusResponse>('videos', {
+      part: 'snippet,status',
+      id: batch.join(','),
+      maxResults: '50',
+    });
+    const live = new Set(
+      res.items
+        .filter((v) => v.status.privacyStatus === 'public' && carriesMarker(v.snippet))
+        .map((v) => v.id),
+    );
+    ids.push(...batch.filter((x) => !live.has(x)));
+  }
+  return {
+    channel: key,
+    newestInDump: newestUpload(dump),
+    checkedAt: new Date().toISOString(),
+    ids,
+  };
+}
+
+/** The committed catalogue, for the departure check only. Absent or unreadable
+ *  is treated as empty: no check runs, no departure is recorded, and the guard
+ *  stays strict. */
+async function readCommitted(): Promise<VideoRecord[]> {
+  try {
+    const v = JSON.parse(await readFile(join(ROOT, 'data', 'videos.json'), 'utf8')) as unknown;
+    return Array.isArray(v) ? (v as VideoRecord[]) : [];
+  } catch {
+    return [];
+  }
+}
+
 // ── main ──────────────────────────────────────────────────────────────────────
 async function main(): Promise<void> {
   await mkdir(RAW_DIR, { recursive: true });
   const fuseRe = await loadFuseMatcher();
+  const committed = await readCommitted();
 
   const byChannel = new Map<ChannelKey, RawVideoRecord[]>();
 
@@ -199,7 +270,7 @@ async function main(): Promise<void> {
     // against raw/, so a pattern that started rejecting real uploads at scale
     // stops the next build instead of publishing the loss.
     const signal = ch.gameSignal;
-    const carriesMarker = (r: RawVideoRecord): boolean =>
+    const carriesMarker = (r: Pick<RawVideoRecord, 'title' | 'description'>): boolean =>
       signal === undefined ||
       signal.pattern.test(r.title) ||
       (signal.scope === 'title-or-description' && signal.pattern.test(r.description));
@@ -221,8 +292,21 @@ async function main(): Promise<void> {
       if (dropped.length > 10) console.log(`      … ${dropped.length - 10} more`);
     }
     const outPath = join(RAW_DIR, `${ch.key}.json`);
+    // Asked BEFORE anything is written, so a check that throws leaves the
+    // previous dump and its departure file together, untouched. The old file
+    // still goes before the new dump lands, so the two are never from different
+    // fetches; parse.ts checks the binding as well.
+    const departed = await confirmDepartures(ch.key, records, committed, carriesMarker);
+    const departedPath = join(RAW_DIR, `${ch.key}.departed.json`);
+    await rm(departedPath, { force: true });
     await writeFile(outPath, JSON.stringify(records, null, 2) + '\n', 'utf8');
     console.log(`  → wrote raw/${ch.key}.json`);
+    await writeFile(departedPath, JSON.stringify(departed, null, 2) + '\n', 'utf8');
+    if (departed.ids.length)
+      console.log(
+        `  ↘ ${departed.ids.length} committed upload(s) newer than this dump are gone from ` +
+          `YouTube or lost the game marker: ${departed.ids.join(', ')}. parse prunes them.`,
+      );
     byChannel.set(ch.key, records);
   }
 

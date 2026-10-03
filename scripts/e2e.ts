@@ -20,12 +20,13 @@ import { dirname, extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { CHANNELS } from './channels';
-import { staleEvidence } from './freshness';
+import { aheadOfDump, staleEvidence } from './freshness';
 import { newerThanCursor } from './theater-delta';
 import { diffTwoXko, fatal, type Finding, type RiotItem } from './patch-check';
 import type {
   Champion,
   ChannelKey,
+  DepartedEvidence,
   Fuse,
   PatchBoundary,
   RawVideoRecord,
@@ -1442,6 +1443,41 @@ async function testStaleGuard(): Promise<void> {
   // 4. A DELETION MUST STAY LEGAL — that is the prune the pipeline publishes.
   await test('stale-raw: quiet when an upload was deleted rather than never fetched', () => {
     expect(staleEvidence('highLevel', dump, [...fresh, record('gone', '10')]) === null, 'fired');
+  });
+
+  // 4b. …BUT ONLY WHILE SOMETHING NEWER IS STILL IN THE DUMP. Delete the
+  //     channel's NEWEST upload and post nothing after it, and a fresh dump
+  //     fails case 1's test (Strive, 2026-10-02). The fetch confirms that
+  //     departure with YouTube and writes it beside the dump; bound to THIS
+  //     dump it is a prune, and bound to anything else it is ignored.
+  const ahead = [...fresh, record('v3', '30')];
+  const departed = (newestInDump: string, channel: ChannelKey = 'highLevel'): DepartedEvidence => ({
+    channel,
+    newestInDump,
+    checkedAt: at('31'),
+    ids: ['v3'],
+  });
+  await test('stale-raw: prunes a newest upload the fetch confirmed gone (file bound to this dump)', () => {
+    expect(staleEvidence('highLevel', dump, ahead, departed(at('11'))) === null, 'refused');
+  });
+  await test('stale-raw: a departure file bound to a different dump is ignored', () => {
+    expect(staleEvidence('highLevel', dump, ahead, departed(at('10'))) !== null, 'honoured');
+  });
+  await test('stale-raw: a departure file written for another channel is ignored', () => {
+    expect(
+      staleEvidence('highLevel', dump, ahead, departed(at('11'), 'bestReplays')) !== null,
+      'honoured',
+    );
+  });
+  await test('stale-raw: still refuses when a newer record is not in the departure ids', () => {
+    expect(
+      staleEvidence('highLevel', dump, [...ahead, record('v4', '30')], departed(at('11'))) !== null,
+      'a still-public record was pruned',
+    );
+  });
+  await test('stale-raw: the fetch asks YouTube about exactly what the guard judges', () => {
+    const asked = aheadOfDump('highLevel', dump, [...ahead, record('b1', '30', 'bestReplays')]);
+    expect(asked.map((v) => v.id).join() === 'v3', `asked about ${asked.map((v) => v.id).join()}`);
   });
 
   // 5. SCOPED PER CHANNEL, which is what retires the old id-set arm's three
