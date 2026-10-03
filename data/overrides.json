@@ -14335,5 +14335,197 @@
   "cemqgguyA5U": {
     "//": "Evo bracket broadcast, not a single set (11h54m) — reaching the sets inside needs segmentation, not champion completion; held out of videos.json by charactersFromFootage with no verdict it could ever earn [held-out triage 2026-09-11]",
     "exclude": true
+  },
+  "0XSqt3kQYGc": {
+    "//": "bestReplays: right side has no parens ('DARIUS ILLAOI 3H ENJOYER' runs the champions into the handle); champions + fuses read off the in-game HUD [2026-10-02]",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "quainty",
+            "displayName": "Quainty"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "3henjoyer",
+            "displayName": "3H ENJOYER"
+          }
+        ],
+        "characters": [
+          "darius",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "yasuo",
+      "blitzcrank",
+      "darius",
+      "illaoi"
+    ],
+    "allPlayers": [
+      "quainty",
+      "3henjoyer"
+    ],
+    "matchType": "ranked",
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "fusesUnordered": false
+  },
+  "3-_bNAYEAfo": {
+    "//": "bestReplays: duo side written without champions ('AKAONI & VLAD vs ...') and the description's 'featuring Jinx, Ekko' omits Thresh; HUD shows AkaOni=Thresh, Vlad=Jinx and 2X ASSIST on BOTH sides in all 12 frames, so the CV 'juggernaut' read on this id is a false positive [2026-10-02]",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "akaoni",
+            "displayName": "AKAONI"
+          },
+          {
+            "id": "vlad",
+            "displayName": "VLAD"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "hiki",
+            "displayName": "HIKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "thresh",
+      "jinx",
+      "ekko"
+    ],
+    "allPlayers": [
+      "akaoni",
+      "vlad",
+      "hiki"
+    ],
+    "matchType": "duo",
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "fusesUnordered": false
+  },
+  "VjA1VOogCog": {
+    "//": "proReplays: uploader left the '(pj1-pj2)' placeholder for PANUNU; HUD reads Panunu BLITZCRANK / BRAUM [2026-10-02]",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "interestinglamp",
+            "displayName": "INTERESTINGLAMP"
+          }
+        ],
+        "characters": [
+          "darius",
+          "yasuo"
+        ],
+        "fuse": "double-down"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "panunu",
+            "displayName": "PANUNU"
+          }
+        ],
+        "characters": [
+          "braum",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "allCharacters": [
+      "darius",
+      "yasuo",
+      "braum",
+      "blitzcrank"
+    ],
+    "allPlayers": [
+      "interestinglamp",
+      "panunu"
+    ],
+    "matchType": "ranked",
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "fusesUnordered": false
+  },
+  "8_JJkHTB-UA": {
+    "//": "proReplays: uploader left the '(pj1-pj2)' placeholder for K7 SHOWOFF; HUD reads K7 Showoff DARIUS / YASUO [2026-10-02]",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "k7showoff",
+            "displayName": "K7 Showoff"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "darius"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "senshii",
+            "displayName": "Senshii"
+          }
+        ],
+        "characters": [
+          "ekko",
+          "illaoi"
+        ],
+        "fuse": "freestyle"
+      }
+    ],
+    "allCharacters": [
+      "yasuo",
+      "darius",
+      "ekko",
+      "illaoi"
+    ],
+    "allPlayers": [
+      "k7showoff",
+      "senshii"
+    ],
+    "matchType": "ranked",
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "fusesUnordered": false
   }
 }

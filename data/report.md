@@ -1,10 +1,10 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-02T18:31:46.719Z._
+_Generated 2026-10-02T20:43:27.425Z._
 
 ## Summary
 - Total videos: **6771**
-- High confidence: **6740**  ·  Low confidence: **21**  ·  Manual (hand-authored): **10**
+- High confidence: **6744**  ·  Low confidence: **17**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.5%** · patchVersion: **95.3%** · patch label: **17.1%** · fuse: **99.9%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
@@ -92,7 +92,7 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (21)
+## Low-confidence records (17)
 | id | channel | reason | raw title |
 |---|---|---|---|
 | `_ZiLJoh3KMA` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Romerulez ( Warwick ) vs Poog (Lux / Jinx) ▰ High Level Gameplay |
@@ -103,8 +103,6 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
 | `VleKPHDmML8` | bestReplays | team right: 1 character(s) (expected 2) | LUX PATCH 2XKO ▰ QUAINTY (Lux-Blitzcrank) vs PRISM22 (Yasuo) ▰ High Level Gameplay |
-| `0XSqt3kQYGc` | bestReplays | structural failure (team-split) | 2XKO ▰ QUAINTY (Yasuo-Blitzcrank) vs DARIUS ILLAOI 3H ENJOYER ▰ High Level Gameplay |
-| `3-_bNAYEAfo` | bestReplays | structural failure (team-split) | 2XKO ▰ AKAONI & VLAD vs HIKI (Jinx-Ekko) ▰ 2XKO Pro Replays |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `Gy1V3_ctj3Q` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ RONNICHU (Thresh-Ahri) vs SOULDEMONXL (Akalai-Ahri) ▰ 2XKO Pro level replays |
 | `aY-ffoGazlY` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (Thresh-Yasuo) vs EDGERUNNER (Akalai-Ekko) ▰ 2XKO Pro level replays |
@@ -112,8 +110,6 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `SVGjJmhAGRQ` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ PINKPINK (Akali-Ahri) vs CLOUD805 (Akali-Ysuo) ▰ 2XKO Pro level replays |
 | `WeXMoFuuG_g` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INZEM-SONICFOX (Teeo-Ahri) vs SEMIIJ (Vi-Ahri) ▰ 2XKO Pro level replays |
 | `hrTe0L43dlY` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ GENISGOD (Yasuo-Teemo) vs L1NZ (Warwixk-Caitlyn) ▰ 2XKO Pro level replays |
-| `VjA1VOogCog` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ INTERESTINGLAMP (Darius-Yasuo) vs PANUNU (pj1-pj2) ▰ 2XKO Pro level replays |
-| `8_JJkHTB-UA` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ K7 SHOWOFF (pj1-pj2) vs SENSHI (Ekko-Illaoi) ▰ 2XKO Pro level replays |
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 

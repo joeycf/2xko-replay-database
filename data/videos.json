@@ -116741,12 +116741,51 @@
     "patch": "2026-07-23",
     "patchVersion": "1.2.5",
     "matchType": "ranked",
-    "teams": [],
-    "allCharacters": [],
-    "allPlayers": [],
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "quainty",
+            "displayName": "Quainty"
+          }
+        ],
+        "characters": [
+          "yasuo",
+          "blitzcrank"
+        ],
+        "fuse": "freestyle"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "3henjoyer",
+            "displayName": "3H ENJOYER"
+          }
+        ],
+        "characters": [
+          "darius",
+          "illaoi"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "yasuo",
+      "blitzcrank",
+      "darius",
+      "illaoi"
+    ],
+    "allPlayers": [
+      "quainty",
+      "3henjoyer"
+    ],
     "tags": [],
-    "parseConfidence": "low",
-    "rawUnparsed": "2XKO ▰ QUAINTY (Yasuo-Blitzcrank) vs DARIUS ILLAOI 3H ENJOYER ▰ High Level Gameplay"
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "//": "bestReplays: right side has no parens ('DARIUS ILLAOI 3H ENJOYER' runs the champions into the handle); champions + fuses read off the in-game HUD [2026-10-02]",
+    "fusesUnordered": false
   },
   {
     "id": "2ZbCmmnGAZw",
@@ -121532,13 +121571,56 @@
     "season": 1,
     "patch": "2026-07-23",
     "patchVersion": "1.2.5",
-    "matchType": "ranked",
-    "teams": [],
-    "allCharacters": [],
-    "allPlayers": [],
+    "matchType": "duo",
+    "teams": [
+      {
+        "side": "left",
+        "players": [
+          {
+            "id": "akaoni",
+            "displayName": "AKAONI"
+          },
+          {
+            "id": "vlad",
+            "displayName": "VLAD"
+          }
+        ],
+        "characters": [
+          "thresh",
+          "jinx"
+        ],
+        "fuse": "2x-assist"
+      },
+      {
+        "side": "right",
+        "players": [
+          {
+            "id": "hiki",
+            "displayName": "HIKI"
+          }
+        ],
+        "characters": [
+          "jinx",
+          "ekko"
+        ],
+        "fuse": "2x-assist"
+      }
+    ],
+    "allCharacters": [
+      "thresh",
+      "jinx",
+      "ekko"
+    ],
+    "allPlayers": [
+      "akaoni",
+      "vlad",
+      "hiki"
+    ],
     "tags": [],
-    "parseConfidence": "low",
-    "rawUnparsed": "2XKO ▰ AKAONI & VLAD vs HIKI (Jinx-Ekko) ▰ 2XKO Pro Replays"
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "//": "bestReplays: duo side written without champions ('AKAONI & VLAD vs ...') and the description's 'featuring Jinx, Ekko' omits Thresh; HUD shows AkaOni=Thresh, Vlad=Jinx and 2X ASSIST on BOTH sides in all 12 frames, so the CV 'juggernaut' read on this id is a false positive [2026-10-02]",
+    "fusesUnordered": false
   },
   {
     "id": "DApDy4edX5Q",
@@ -299319,22 +299401,28 @@
             "displayName": "PANUNU"
           }
         ],
-        "characters": [],
+        "characters": [
+          "braum",
+          "blitzcrank"
+        ],
         "fuse": "freestyle"
       }
     ],
     "allCharacters": [
       "darius",
-      "yasuo"
+      "yasuo",
+      "braum",
+      "blitzcrank"
     ],
     "allPlayers": [
       "interestinglamp",
       "panunu"
     ],
     "tags": [],
-    "parseConfidence": "low",
+    "parseConfidence": "high",
     "rawUnparsed": null,
-    "fusesUnordered": true
+    "fusesUnordered": false,
+    "//": "proReplays: uploader left the '(pj1-pj2)' placeholder for PANUNU; HUD reads Panunu BLITZCRANK / BRAUM [2026-10-02]"
   },
   {
     "id": "WLWeKUukxo0",
@@ -310409,7 +310497,10 @@
             "displayName": "K7 Showoff"
           }
         ],
-        "characters": [],
+        "characters": [
+          "yasuo",
+          "darius"
+        ],
         "fuse": "freestyle"
       },
       {
@@ -310428,6 +310519,8 @@
       }
     ],
     "allCharacters": [
+      "yasuo",
+      "darius",
       "ekko",
       "illaoi"
     ],
@@ -310436,8 +310529,10 @@
       "senshii"
     ],
     "tags": [],
-    "parseConfidence": "low",
-    "rawUnparsed": null
+    "parseConfidence": "high",
+    "rawUnparsed": null,
+    "//": "proReplays: uploader left the '(pj1-pj2)' placeholder for K7 SHOWOFF; HUD reads K7 Showoff DARIUS / YASUO [2026-10-02]",
+    "fusesUnordered": false
   },
   {
     "id": "DkhVTA8Epdw",
