@@ -14408,5 +14408,15 @@
         "dark akali"
       ]
     }
+  },
+  {
+    "id": "lifeisunko",
+    "handle": "LIFE IS UNKO",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "life is unko"
+      ]
+    }
   }
 ]
