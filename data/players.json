@@ -14418,5 +14418,15 @@
         "life is unko"
       ]
     }
+  },
+  {
+    "id": "wahibo",
+    "handle": "WAHIBO",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "wahibo"
+      ]
+    }
   }
 ]
