@@ -1,10 +1,10 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-11T12:53:22.329Z._
+_Generated 2026-10-12T15:29:35.240Z._
 
 ## Summary
-- Total videos: **6821**
-- High confidence: **6793**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Total videos: **6825**
+- High confidence: **6797**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
 - Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **17.5%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
@@ -13,13 +13,13 @@ _Generated 2026-10-11T12:53:22.329Z._
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2655 | fetched |
+| `bestReplays` | 2659 | fetched |
 | `highLevel` | 1930 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6821** | |
+| **Σ** | **6825** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
 
 ## Replay Theater cross-check
 
