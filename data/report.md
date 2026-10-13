@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-12T15:29:35.240Z._
+_Generated 2026-10-13T14:14:59.039Z._
 
 ## Summary
-- Total videos: **6825**
-- High confidence: **6797**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **17.5%** · fuse: **99.4%**
+- Total videos: **6830**
+- High confidence: **6802**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **17.6%** · fuse: **99.3%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2659 | fetched |
-| `highLevel` | 1930 | fetched |
+| `bestReplays` | 2663 | fetched |
+| `highLevel` | 1931 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6825** | |
+| **Σ** | **6830** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
 
 ## Replay Theater cross-check
 
@@ -114,14 +114,16 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `voidlash` | VOIDLASH | 1 | voidlash |
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
-26 events with placements read; 28 of 1400 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
+26 events with placements read; 28 of 1401 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
 
 **Titled:** `sonicfox` 2W/3R · `hikari` 3W/1R · `supernoon` 1W/3R · `doropon` 1W/2R · `ikoan` 1W/2R · `poka` 3W/0R · `wawa` 2W/1R · `bleed` 1W/1R · `haru` 1W/1R · `kayne` 1W/1R · `leffen` 2W/0R · `yasha` 1W/1R · `zleeeek7` 1W/1R · `devillion` 0W/1R · `galladiated` 1W/0R · `gish` 0W/1R · `ikura` 0W/1R · `inzem` 1W/0R · `jakeythesnakey` 0W/1R · `k7showoff` 0W/1R · `lightwhisp` 0W/1R · `linj` 0W/1R · `noka` 1W/0R · `novix` 1W/0R · `nychrisg` 1W/0R · `opal` 0W/1R · `psixou` 1W/0R · `shibaisdry` 0W/1R
 
