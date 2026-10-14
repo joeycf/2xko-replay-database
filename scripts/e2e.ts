@@ -1072,7 +1072,27 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
       JSON.parse(m[1]!),
     );
   const champId = champIds[0]!;
-  const playerId = Object.keys(stats.playerCharacters ?? {})[0]!;
+  // The player these assertions run on must be one the build OFFERS for
+  // indexing. Since engine v0.18.0 a profile below GameConfig.seo.indexMinReplays
+  // is prerendered noindex,follow and left out of the sitemap on purpose, and the
+  // old pick, Object.keys(stats.playerCharacters)[0], was "126", a two-replay
+  // profile: integer-like keys enumerate ahead of every other string, so "first"
+  // was an accident of key order (red since the v0.18.0 pin, 1bffeae,
+  // 2026-10-02). Rank by appearances instead: the busiest profile carries the
+  // player-page assertions (here and in the footer test) and sitemap inclusion,
+  // and its indexability is READ BACK from the build (the page's own robots
+  // meta, the signal modules/static-artifacts filters the sitemap on), not
+  // re-derived from a threshold copied in here. The thinnest profile WITH stats
+  // carries exclusion. A profile with none (a replay that parsed with no
+  // characters) is noindexed under any rule, so it can't witness the threshold.
+  // `?.` keeps a degenerate corpus failing inside named tests rather than
+  // aborting the run before the stale-raw and cron tests.
+  const byAppearances = Object.entries(stats.playerCharacters ?? {})
+    .map(([id, chars]) => ({ id, n: Object.values(chars).reduce((a, b) => a + b, 0) }))
+    .sort((a, b) => b.n - a.n || a.id.localeCompare(b.id));
+  const playerId = byAppearances[0]?.id;
+  const thinId = byAppearances.filter((p) => p.n > 0).at(-1)?.id;
+  const robotsMeta = (doc: string) => doc.match(/<meta\b[^>]*\bname="robots"[^>]*>/)?.[0] ?? '';
   await test(`SEO: canonicals/OG on ${site}, JSON-LD valid, /champions/* preserved, sitemap/robots`, () => {
     const home = html('index.html');
     expect(home.includes(`<link rel="canonical" href="${siteBase || '/'}"`), 'home canonical');
@@ -1110,6 +1130,10 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     );
     expect(champ.includes(`<a href="${BASE}/players/`), 'champ → player entity anchors (pilots)');
     const player = html(`players/${playerId}/index.html`);
+    expect(
+      !/noindex/.test(robotsMeta(player)),
+      `/players/${playerId}, the busiest profile, must be indexable — it carries ${robotsMeta(player)}`,
+    );
     const pLd = ld(player);
     const pCrumbs = pLd.find((n) => n['@type'] === 'BreadcrumbList') as
       { itemListElement?: { item?: string }[] } | undefined;
@@ -1134,6 +1158,25 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
         sm.includes(`<loc>${siteBase}/stats</loc>`),
       'sitemap host + core/entity routes',
     );
+    // …and the other half of the v0.18.0 contract, which nothing else in this
+    // suite holds (the engine's verify-indexing.mjs walks every page, but by hand
+    // before a pin push): the thinnest profile with stats declares noindex,follow
+    // and the sitemap omits it under any host, hence no siteBase in the match.
+    // The same pair as /health below. Its noindex is ASSERTED, not read back, so
+    // lowering seo.indexMinReplays to 1 trips this on purpose.
+    if (thinId && thinId !== playerId) {
+      const thin = robotsMeta(html(`players/${thinId}/index.html`));
+      expect(
+        /noindex,\s*follow/.test(thin),
+        `/players/${thinId}, the thinnest profile with stats, must be noindex,follow — got ${thin || 'no robots meta'}`,
+      );
+      expect(
+        !sm.includes(`/players/${thinId}</loc>`),
+        `sitemap must omit the noindexed /players/${thinId}`,
+      );
+    } else {
+      console.log('  ○ sitemap exclusion skipped — fewer than two profiles with stats');
+    }
     expect(!sm.includes('/characters'), 'sitemap must not leak /characters routes');
     expect(!sm.includes('/health'), 'sitemap excludes /health');
     const robots = html('robots.txt');
