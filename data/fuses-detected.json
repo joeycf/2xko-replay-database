@@ -75282,5 +75282,38 @@
   "status": "ok-unordered",
   "era": "s1",
   "detectedAt": "2026-10-15"
+ },
+ "hRX25jv8khw": {
+  "left": "double-down",
+  "right": "double-down",
+  "score": {
+   "left": 3,
+   "right": 1
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-10-15"
+ },
+ "X_vF32wgO-k": {
+  "left": "double-down",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-10-15"
+ },
+ "p8SH8hi0WcE": {
+  "left": "2x-assist",
+  "right": "freestyle",
+  "score": {
+   "left": 9,
+   "right": 0
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-10-15"
  }
 }
