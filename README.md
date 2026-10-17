@@ -108,7 +108,7 @@ Two other env vars matter locally, neither of them secret:
 | `npm run data:patch-check`                       | **Network, manual, never in the cron** — diffs `data/patchBoundaries.json` against Riot's game-updates page (the page model, every post). `+ ~ - ⚠` lines exit 1; a Riot outage prints `⚠ NOT verified` and exits 0; the last line is always `patch-check: CURRENT / DRIFT / UNVERIFIED / UNREADABLE`. See "Patch-table runbook"                                             |
 | `npm run data:roster-check`                      | **Network, manual, never in the cron** — diffs `data/characters.json` against the `characterCardGrid` blade on Riot's champion index. Same trailer contract: `roster-check: CURRENT / DRIFT / UNVERIFIED / UNREADABLE`. This repo cannot discover a champion any other way — `data:champions` only enriches ids that already exist                                           |
 | `npm run data:tournaments`                       | **Network, manual, never in the cron** — Liquipedia's Tier 1–2 winners and runners-up → `data/tournaments.json` (MediaWiki API, CC BY-SA 3.0). Same trailer contract: `tournaments: CURRENT / UPDATED / UNVERIFIED / UNREADABLE`. `--match` is the offline worklist, `--check` the validator inside `npm run typecheck`. See "Featured players come from tournament results" |
-| `npm run data:expiries`                          | `--check` the self-expiring gates (announced champions coming due — currently just Samira). Runs last in the cron and is **designed to go red**                                                                                                                                                                                                                              |
+| `npm run data:expiries`                          | `--check` the self-expiring gates (announced champions coming due — currently just Samira). Runs in the "Pending work" workflow after every data run and is **designed to go red**                                                                                                                                                                                           |
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                                                                    |
 | `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                                                           |
 | `npm run data:refresh-all`                       | **Local-only** one-shot full refresh: `data:build` → `data:fuses` → `data:parse` → `data:fuse-gaps`, then a single commit (**never pushes**). Enforces the stage order below and the cron's `report.md` guard. `--check` runs preflight only; `--skip-fuses`, `--limit N`, `--sleep MIN-MAX`, `--no-commit` also available (`--help` for all)                                |
@@ -217,13 +217,26 @@ not misattributed. `npm run test:e2e` now gates the wiring, and the shell's
 ## Daily data refresh
 
 `.github/workflows/data-refresh.yml` runs daily at 06:17 UTC (and via
-_Run workflow_) on Node 24: `npm run data:build` with `YT_API_KEY` from repo
-**Actions secrets**, then commits
-`data/{videos,replays,stats,players,summary}.json` + `report.md` **only if changed**
-("data: refresh YYYY-MM-DD — N videos"). The push triggers the Vercel deploy.
-A run whose only diff is `report.md`'s `_Generated <timestamp>_` line counts
-as unchanged — no commit, no deploy — so a `report.md` diff in history always
-means real data changed. Champion art is deliberately not part of the daily run.
+_Run workflow_) on Node 24, in three steps: `npm run data:fetch` (the channel
+uploads), then `npm run data:theater` (the tournament index, `continue-on-error`
+— a bad morning upstream cannot cost the channel dumps already fetched), then
+`npm run data:parse`, which emits. Both fetches take `YT_API_KEY` from repo
+**Actions secrets**. The commit stages the pipeline's outputs **by name** (the
+workflow's `git add` list, which the e2e reads rather than restates) **only if
+changed** ("data: refresh YYYY-MM-DD — N videos"); a run whose only diff is
+`report.md`'s `_Generated <timestamp>_` line counts as unchanged — no commit, no
+deploy. The push triggers the Vercel deploy, and the last step polls production
+until it serves the committed count on the pinned engine
+(`npm run verify:deployed`). Champion art is deliberately not part of the daily
+run.
+
+**A red "Daily data refresh" means one thing: the live archive is stale or
+wrong.** The steps that mean "a person has work" — the due expiries — live in
+`.github/workflows/pending-work.yml` ("Pending work"), which runs on
+`workflow_run` after every completed data run, whatever it concluded, checks
+out `main` fresh, and exits 1 when a gate is due. It also asserts that the
+platform-wide freshness schedule in `replay-engine` is still enabled. Clear a
+red Pending work run by doing the work, pushing, and re-running it.
 
 ## Fuse detection (local CV pipeline)
 
