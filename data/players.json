@@ -14438,5 +14438,15 @@
         "voidlash"
       ]
     }
+  },
+  {
+    "id": "zucchini",
+    "handle": "Zucchini",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "zucchini"
+      ]
+    }
   }
 ]
