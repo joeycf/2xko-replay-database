@@ -18,7 +18,13 @@ The footer links a [Buy Me a Coffee](https://buymeacoffee.com/whatdaflip) page
 > Part of the **Replay Database** platform — [replaydatabase.com](https://replaydatabase.com) ·
 > [engine](https://github.com/joeycf/replay-engine) ·
 > [shell](https://github.com/joeycf/replay-database-shell) ·
-> [Tekken](https://github.com/joeycf/tekken-replay-database)
+> [Tekken](https://github.com/joeycf/tekken-replay-database) ·
+> [SF6](https://github.com/joeycf/sf6-replay-database) ·
+> [Tōkon](https://github.com/joeycf/tokon-replay-database) ·
+> [CotW](https://github.com/joeycf/ffcotw-replay-database) ·
+> [Strive](https://github.com/joeycf/ggst-replay-database) ·
+> [Granblue Rising](https://github.com/joeycf/gbvsr-replay-database) ·
+> [Avatar](https://github.com/joeycf/avatar-replay-database)
 
 ## Architecture
 
