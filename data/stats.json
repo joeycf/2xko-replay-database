@@ -1,31 +1,31 @@
 {
   "totals": {
-    "replays": 6915,
+    "replays": 6924,
     "characters": 16,
-    "players": 1402,
+    "players": 1403,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4671
+      "S1": 4680
     },
     "withFuse": 6880
   },
   "characterUsage": {
-    "ahri": 2865,
-    "akali": 1148,
-    "blitzcrank": 1460,
+    "ahri": 2866,
+    "akali": 1149,
+    "blitzcrank": 1462,
     "braum": 1214,
     "caitlyn": 876,
-    "darius": 1684,
-    "ekko": 3564,
-    "illaoi": 1994,
-    "jinx": 1584,
-    "lux": 126,
-    "senna": 346,
-    "teemo": 1392,
+    "darius": 1685,
+    "ekko": 3567,
+    "illaoi": 1996,
+    "jinx": 1588,
+    "lux": 128,
+    "senna": 347,
+    "teemo": 1394,
     "thresh": 701,
     "vi": 1824,
-    "warwick": 1290,
+    "warwick": 1291,
     "yasuo": 2852
   },
   "byPatchUsage": {
@@ -54,21 +54,21 @@
       "yasuo": 973
     },
     "S1": {
-      "ahri": 2002,
-      "akali": 1148,
-      "blitzcrank": 1019,
+      "ahri": 2003,
+      "akali": 1149,
+      "blitzcrank": 1021,
       "braum": 786,
       "caitlyn": 876,
-      "darius": 1096,
-      "ekko": 2181,
-      "illaoi": 1442,
-      "jinx": 923,
-      "lux": 126,
-      "senna": 346,
-      "teemo": 711,
+      "darius": 1097,
+      "ekko": 2184,
+      "illaoi": 1444,
+      "jinx": 927,
+      "lux": 128,
+      "senna": 347,
+      "teemo": 713,
       "thresh": 701,
       "vi": 1118,
-      "warwick": 750,
+      "warwick": 751,
       "yasuo": 1702
     }
   },
@@ -95,7 +95,7 @@
     "akali|ekko": 175,
     "akali|illaoi": 42,
     "akali|jinx": 125,
-    "akali|lux": 10,
+    "akali|lux": 11,
     "akali|senna": 59,
     "akali|teemo": 77,
     "akali|thresh": 29,
@@ -107,7 +107,7 @@
     "blitzcrank|darius": 281,
     "blitzcrank|ekko": 24,
     "blitzcrank|illaoi": 72,
-    "blitzcrank|jinx": 54,
+    "blitzcrank|jinx": 55,
     "blitzcrank|lux": 22,
     "blitzcrank|senna": 1,
     "blitzcrank|teemo": 45,
@@ -148,7 +148,7 @@
     "darius|vi": 101,
     "darius|warwick": 59,
     "darius|yasuo": 168,
-    "ekko|illaoi": 666,
+    "ekko|illaoi": 667,
     "ekko|jinx": 225,
     "ekko|lux": 13,
     "ekko|senna": 69,
@@ -683,6 +683,7 @@
       "ekko": 10,
       "illaoi": 3,
       "jinx": 12,
+      "lux": 1,
       "senna": 1,
       "teemo": 3,
       "vi": 78,
@@ -1317,8 +1318,9 @@
       "warwick": 3
     },
     "devillion": {
+      "blitzcrank": 1,
       "ekko": 2,
-      "jinx": 28,
+      "jinx": 29,
       "thresh": 2,
       "warwick": 28
     },
@@ -2626,7 +2628,7 @@
       "caitlyn": 12,
       "ekko": 75,
       "illaoi": 2,
-      "jinx": 88,
+      "jinx": 90,
       "senna": 40,
       "teemo": 216,
       "thresh": 39
@@ -2723,7 +2725,7 @@
       "caitlyn": 11,
       "ekko": 15,
       "illaoi": 7,
-      "jinx": 104,
+      "jinx": 105,
       "lux": 1,
       "senna": 8,
       "teemo": 1,
@@ -2747,14 +2749,14 @@
       "blitzcrank": 1,
       "caitlyn": 5,
       "darius": 5,
-      "ekko": 6,
-      "illaoi": 2,
+      "ekko": 7,
+      "illaoi": 3,
       "lux": 8,
       "senna": 36,
       "teemo": 1,
       "thresh": 1,
       "vi": 2,
-      "warwick": 4,
+      "warwick": 5,
       "yasuo": 53
     },
     "james060606": {
@@ -3645,7 +3647,7 @@
       "yasuo": 1
     },
     "luciensfl": {
-      "ahri": 9,
+      "ahri": 10,
       "akali": 11,
       "braum": 1,
       "ekko": 67,
@@ -3863,8 +3865,8 @@
       "ahri": 31,
       "akali": 20,
       "blitzcrank": 1,
-      "ekko": 69,
-      "illaoi": 32,
+      "ekko": 70,
+      "illaoi": 33,
       "jinx": 8,
       "senna": 3,
       "teemo": 10,
@@ -4072,7 +4074,7 @@
       "blitzcrank": 1,
       "braum": 14,
       "caitlyn": 115,
-      "darius": 57,
+      "darius": 58,
       "lux": 3,
       "senna": 1,
       "teemo": 1,
@@ -4225,7 +4227,7 @@
     },
     "neonoexe": {
       "darius": 3,
-      "illaoi": 3
+      "illaoi": 4
     },
     "nephew": {
       "illaoi": 1,
@@ -4321,7 +4323,7 @@
     "noka": {
       "akali": 18,
       "darius": 2,
-      "ekko": 138,
+      "ekko": 139,
       "illaoi": 2,
       "jinx": 13,
       "senna": 1,
@@ -4721,7 +4723,7 @@
       "illaoi": 20
     },
     "pinkpotatoes": {
-      "teemo": 1,
+      "teemo": 2,
       "warwick": 1
     },
     "pirudeasadelta": {
@@ -5635,8 +5637,8 @@
       "caitlyn": 12,
       "ekko": 48,
       "illaoi": 4,
-      "jinx": 84,
-      "senna": 45,
+      "jinx": 85,
+      "senna": 46,
       "teemo": 130,
       "thresh": 20,
       "warwick": 6,
@@ -5686,7 +5688,7 @@
       "blitzcrank": 2,
       "caitlyn": 16,
       "darius": 1,
-      "ekko": 149,
+      "ekko": 150,
       "illaoi": 1,
       "lux": 3,
       "senna": 1,
@@ -5983,7 +5985,7 @@
     "tate": {
       "ahri": 2,
       "akali": 5,
-      "blitzcrank": 150,
+      "blitzcrank": 151,
       "ekko": 3,
       "illaoi": 2,
       "lux": 3,
@@ -6464,7 +6466,7 @@
       "akali": 64,
       "braum": 1,
       "caitlyn": 1,
-      "ekko": 149,
+      "ekko": 150,
       "illaoi": 62,
       "jinx": 6,
       "senna": 5,
@@ -6792,7 +6794,7 @@
       "ekko": 3,
       "illaoi": 67,
       "lux": 1,
-      "teemo": 76,
+      "teemo": 77,
       "thresh": 4,
       "warwick": 2
     },
@@ -6935,6 +6937,10 @@
     "zleeek7": {
       "ahri": 1,
       "ekko": 1
+    },
+    "zleek": {
+      "akali": 1,
+      "lux": 1
     },
     "zombietaker99": {
       "darius": 3,
@@ -7862,6 +7868,7 @@
       "darius|warwick": 3
     },
     "devillion": {
+      "blitzcrank|jinx": 1,
       "ekko|thresh": 2,
       "jinx|warwick": 28
     },
@@ -9068,6 +9075,7 @@
       "caitlyn|yasuo": 1,
       "darius|senna": 2,
       "darius|warwick": 2,
+      "ekko|illaoi": 1,
       "ekko|teemo": 1,
       "ekko|yasuo": 5,
       "illaoi|warwick": 1,
@@ -9971,7 +9979,7 @@
       "ahri|thresh": 1,
       "ahri|vi": 1,
       "akali|ekko": 3,
-      "ekko|illaoi": 30,
+      "ekko|illaoi": 31,
       "ekko|jinx": 3,
       "ekko|teemo": 4,
       "ekko|yasuo": 25,
@@ -12478,6 +12486,9 @@
     },
     "zleeek7": {
       "ahri|ekko": 1
+    },
+    "zleek": {
+      "akali|lux": 1
     },
     "zombietaker99": {
       "darius|vi": 3

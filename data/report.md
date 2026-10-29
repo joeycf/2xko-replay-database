@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-28T12:57:55.927Z._
+_Generated 2026-10-29T13:04:52.232Z._
 
 ## Summary
-- Total videos: **6915**
-- High confidence: **6878**  ·  Low confidence: **27**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **18.2%** · fuse: **99.5%**
+- Total videos: **6924**
+- High confidence: **6878**  ·  Low confidence: **36**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **18.3%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2724 | fetched |
-| `highLevel` | 1955 | fetched |
+| `bestReplays` | 2728 | fetched |
+| `highLevel` | 1960 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6915** | |
+| **Σ** | **6924** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -92,9 +92,14 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (27)
+## Low-confidence records (36)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `wuCOWNhC69c` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ Blaizzy (Samira / Lux) vs JakeyTheSnakey (Samira / Jinx) ▰ High Level Gameplay |
+| `6D33L4q32tI` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox + Inzem (Samira / Jinx) vs James06 + Maze (Illaoi / Ekko) ▰ High Level Gameplay |
+| `zDpE_8IA0fM` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Yosep (Sett / Teemo) vs Zleek (Lux / Akali) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
+| `n7GsKCsTB28` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Wade (Sett / Ekko) vs Noka (Sett / Ekko) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
+| `NLotMV0taRI` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ James06 (Samira / Warwick) vs LucienSFL (Samira / Ahri) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
 | `fb9xlL-kGk8` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ SonicFox (Samira / Jinx) vs Inzem (Sett / Jinx) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
 | `NhIxWPVD_QI` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Wawa (Sett / Lux) vs Verso (Samira / Jinx) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
 | `MGp2DqCZ6e4` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Blaizzy (Sett / Vi) vs James06 (Samira / Yasuo) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
@@ -108,6 +113,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `85raptcDXKc` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ PINKPOTATOES (Teemo-Sett) vs NEONOEXE (Sett-Illaoi) ▰ High Level Gameplay |
+| `JegZ5RE_zHY` | bestReplays | unresolved character "Sett" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ TATE (Sett-Blitzcrank) vs SOULDEMONXL (Ekko-Samira) ▰ High Level Gameplay |
+| `4V03XTUNDc4` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SONICFOX (Samira-Senna) vs INZEM (Jinx-Sett) ▰ High Level Gameplay |
+| `uhPB6VlBsn0` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ DEVILLION (Jinx-Blitzcrank) vs MRCHUPY01 (Samira-Darius) ▰ High Level Gameplay |
 | `wHTbamTx_L8` | bestReplays | unresolved character "Sett" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLAIZZY (Vi-Sett) vs JAMES06 (Samira-Yasuo) ▰ High Level Gameplay |
 | `CNU-2LDhsjY` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SONICFOX (Jinx-Samira) vs INZEM (Jinx-Sett) ▰ High Level Gameplay |
 | `C4vGP-KgAsU` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ PRISM22 (Teemo-Sett) vs GALLADIATED (Sett-Caitlyn) ▰ High Level Gameplay |
@@ -123,14 +132,16 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `zleek` | Zleek | 1 | zleek |
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
-26 events with placements read; 28 of 1402 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
+26 events with placements read; 28 of 1403 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
 
 **Titled:** `sonicfox` 2W/3R · `hikari` 3W/1R · `supernoon` 1W/3R · `doropon` 1W/2R · `ikoan` 1W/2R · `poka` 3W/0R · `wawa` 2W/1R · `bleed` 1W/1R · `haru` 1W/1R · `kayne` 1W/1R · `leffen` 2W/0R · `yasha` 1W/1R · `zleeeek7` 1W/1R · `devillion` 0W/1R · `galladiated` 1W/0R · `gish` 0W/1R · `ikura` 0W/1R · `inzem` 1W/0R · `jakeythesnakey` 0W/1R · `k7showoff` 0W/1R · `lightwhisp` 0W/1R · `linj` 0W/1R · `noka` 1W/0R · `novix` 1W/0R · `nychrisg` 1W/0R · `opal` 0W/1R · `psixou` 1W/0R · `shibaisdry` 0W/1R
 
