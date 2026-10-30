@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-29T13:04:52.232Z._
+_Generated 2026-10-30T12:58:53.482Z._
 
 ## Summary
-- Total videos: **6924**
-- High confidence: **6878**  ·  Low confidence: **36**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **18.3%** · fuse: **99.4%**
+- Total videos: **6931**
+- High confidence: **6878**  ·  Low confidence: **43**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.6%** · patchVersion: **95.4%** · patch label: **18.3%** · fuse: **99.3%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2728 | fetched |
-| `highLevel` | 1960 | fetched |
+| `bestReplays` | 2732 | fetched |
+| `highLevel` | 1963 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6924** | |
+| **Σ** | **6931** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -92,9 +92,12 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (36)
+## Low-confidence records (43)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `H3JiKLT5Sao` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Wawa (Sett / Caitlyn) vs Verso (Samira / Jinx) ▰ High Level Gameplay |
+| `Jfshei6oDWE` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Tate (Sett / Blitzcrank) vs Quainty (Sett / Braum) ▰ High Level Gameplay |
+| `rwT6-yDxYKU` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ Yata (Samira / Ekko) vs Zucchini (Sett / Teemo) ▰ High Level Gameplay |
 | `wuCOWNhC69c` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ Blaizzy (Samira / Lux) vs JakeyTheSnakey (Samira / Jinx) ▰ High Level Gameplay |
 | `6D33L4q32tI` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox + Inzem (Samira / Jinx) vs James06 + Maze (Illaoi / Ekko) ▰ High Level Gameplay |
 | `zDpE_8IA0fM` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Yosep (Sett / Teemo) vs Zleek (Lux / Akali) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
@@ -113,6 +116,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `9YZqjCLUouE` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ TURTLESBRO (Samira-Ekko) vs GALLADIATED (Caitlyn-Sett) ▰ High Level Gameplay |
+| `JasO2hnOE2A` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ HAZEN (Samira-Ahri) vs DOROPON (Sett-Caitlyn) ▰ High Level Gameplay |
+| `p40hhrI40jI` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLEED (Samira-Illaoi) vs TURTLESBRO (Samira-Ekko) ▰ High Level Gameplay |
+| `8WysTpMow-o` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ OBELISK (Sett-Ahri) vs TATE (Sett-Blitzcrank) ▰ High Level Gameplay |
 | `85raptcDXKc` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ PINKPOTATOES (Teemo-Sett) vs NEONOEXE (Sett-Illaoi) ▰ High Level Gameplay |
 | `JegZ5RE_zHY` | bestReplays | unresolved character "Sett" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ TATE (Sett-Blitzcrank) vs SOULDEMONXL (Ekko-Samira) ▰ High Level Gameplay |
 | `4V03XTUNDc4` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SONICFOX (Samira-Senna) vs INZEM (Jinx-Sett) ▰ High Level Gameplay |
@@ -132,12 +139,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `zleek` | Zleek | 1 | zleek |
+_None._
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
