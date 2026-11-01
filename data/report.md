@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-10-31T20:05:00.087Z._
+_Generated 2026-11-01T13:28:16.739Z._
 
 ## Summary
-- Total videos: **6944**
-- High confidence: **6878**  ·  Low confidence: **56**  ·  Manual (hand-authored): **10**
+- Total videos: **6949**
+- High confidence: **6878**  ·  Low confidence: **61**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.7%** · patchVersion: **95.4%** · patch label: **18.3%** · fuse: **99.8%**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.4%** · fuse: **99.7%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2737 | fetched |
-| `highLevel` | 1971 | fetched |
+| `bestReplays` | 2740 | fetched |
+| `highLevel` | 1973 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6944** | |
+| **Σ** | **6949** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
 
 ## Replay Theater cross-check
 
@@ -92,9 +92,11 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (56)
+## Low-confidence records (61)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `ziCxTXnAa_o` | highLevel | unresolved character "Samira" on left | 2XKO ▰ JakeyTheSnakey + Bleed (Samira / Akali) vs Inzem + maze (Jinx / Teemo) ▰ High Level Gameplay |
+| `aYN5Ju3BAO4` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Wawa (Sett / Caitlyn) vs Wade (Akali / Ekko) ▰ High Level Gameplay |
 | `ic6m2_Q86aY` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Tate (Sett / Blitzcrank) vs Devillion (Sett / Jinx) ▰ High Level Gameplay |
 | `338FrjfyK0M` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Pdpiu (Samira / Yasuo) vs Trinki (Senna / Vi) ▰ High Level Gameplay |
 | `vFIS1zBnsEw` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Bleed (Samira / Illaoi) vs Supernoon (Akali / Ekko) ▰ High Level Gameplay |
@@ -124,6 +126,9 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `qua9rNHOSDs` | bestReplays | unresolved character "Sett" on left | NEW PATCH 2XKO ▰ SOUKUR (Vi-Sett) vs IKOAN (Yasuo-Ekko) ▰ High Level Gameplay |
+| `U2I_k-G6cNg` | bestReplays | unresolved character "Sett" on right | NEW PATCH 2XKO ▰ POKA (Ahri-Akali) vs DOROPON (Sett-Caitlyn) ▰ High Level Gameplay |
+| `klSygpkzpX4` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SLAUW (Yasuo-Blitzcrank) vs WAWA (Samira-Akali) ▰ High Level Gameplay |
 | `cey0heiy5Yc` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SUPERNOON (Akali-Ekko) vs BLEED (Samira-Illaoi) ▰ High Level Gameplay |
 | `4FwKLHCT04A` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ HAZEN (Samira-Ahri) vs LIFE IS UNKO (Sett-Blitzcrank) ▰ High Level Gameplay |
 | `pOJtX_63nHw` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ MRCHUPY01 (Samira-Darius) vs QUAINTY (Blitzcrank-Braum) ▰ High Level Gameplay |
