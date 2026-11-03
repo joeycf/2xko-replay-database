@@ -40,12 +40,14 @@ import type { Expiry } from '../types/index';
  * A row here is what turns a future release into a due expiry instead of
  * something someone has to diary. `releases` is the date the row FIRES.
  *
- * THIS LIST HAS A KNOWN END, WHICH IS UNUSUAL AND WORTH SAYING OUT LOUD. Riot
- * announced that active development of 2XKO ends in December 2026, and named
- * Samira as the game's FINAL champion. So unlike every sibling repo — where the
- * roster is open-ended and the gate is permanent — this file has exactly one
- * job, once. When Samira ships and this array empties, 2XKO's roster is closed
- * for good and the array stays empty forever.
+ * THIS LIST WAS EXPECTED TO HAVE A KNOWN END, AND THE END WAS WRONG BY ONE.
+ * Riot announced that active development of 2XKO ends in December 2026 and named
+ * Samira as the game's final champion, so this file was written to do one job,
+ * once. Patch 1.3.3 (2026-10-27) then shipped Samira AND Sett ("Sett and Samira
+ * join the fight") — Sett with no announcement this file ever saw, so no row
+ * here fired for him and only `data:roster-check` caught him (MISSING sett).
+ * Both were promoted 2026-11-02 and the array is empty. Keep it, and keep the
+ * roster check: an unannounced champion is exactly what a date row cannot see.
  *
  * FOR A MONTH-GRANULARITY ANNOUNCEMENT THE DATE IS THE LAST DAY OF THE WINDOW.
  * Riot gave a month and a patch number, not a day. Firing at window OPEN would
@@ -59,26 +61,12 @@ import type { Expiry } from '../types/index';
  * it cannot be early or late. This date row is the backstop for the opposite
  * case: Riot ships her and the grid or the checker is unreachable.
  *
- * PROVENANCE. riotgames.com/en/news/2xko-active-development-ends-december-2026:
- * "October - Patch 1.3.3 … Launching in October, 2XKO's final champion is
- * Samira, the Desert Rose." Corroborated on the live 1.3.1 patch notes, which
- * refer forward to "Samira's launch skin" in patch 1.3.3. Verified NOT playable
- * on 2026-09-09: she is absent from the characterCardGrid blade on
- * 2xko.riotgames.com/en-us/champions/, and /en-us/champions/samira/ returns 404
- * where /en-us/champions/yasuo/ returns 200.
+ * PROVENANCE OF THE LAST ROW (samira, 2026-10-31, removed on promotion):
+ * riotgames.com/en/news/2xko-active-development-ends-december-2026, "October -
+ * Patch 1.3.3 … Launching in October, 2XKO's final champion is Samira, the
+ * Desert Rose." She shipped in 1.3.3 on 2026-10-27, four days inside her window.
  */
-export const UNRELEASED: { id: string; releases: string; accent?: string; note?: string }[] = [
-  {
-    id: 'samira',
-    releases: '2026-10-31',
-    note:
-      'Patch 1.3.3, announced for OCTOBER 2026 with no day; this row fires at window CLOSE. ' +
-      "2XKO's FINAL champion — active development ends December 2026, so nothing follows her. " +
-      'No accent has been derived: it comes from a Claude Design session, never invented here, ' +
-      'and it must clear 4.5:1 on the page background and sit a hue away from its chip ' +
-      'neighbours (Senna and Teemo, alphabetically).',
-  },
-];
+export const UNRELEASED: { id: string; releases: string; accent?: string; note?: string }[] = [];
 
 const today = (): string => new Date().toISOString().slice(0, 10);
 
@@ -98,14 +86,21 @@ export function dueExpiries(asOf: string = today()): Expiry[] {
           `design/handoff/tokens.css (${
             u.accent
               ? `the handoff already derived ${u.accent}`
-              : 'accent from a Claude Design session — never invent one'
+              : 'accent DERIVED in-session by engine checklist 14c: sample the anchor hue from ' +
+                "the champion's own splash, place it in a free OKLCH hue window ≥ 8–12° from " +
+                'every roster accent, clear 4.5:1 on --bg-base, present 3–4 candidates and let ' +
+                'a person pick; mark it DERIVED in tokens.css'
           }), MIRROR the same hex into BOTH design/handoff/tailwind.config.js and ` +
           `accents in app/app.config.ts — this repo has three copies of every accent and ` +
           `nothing cross-checks them — then hand-add the champion object to ` +
           `data/characters.json (2XKO is the one repo where that file is the INPUT, not a ` +
-          `build output), add the release patch to data/patchBoundaries.json and ` +
-          `data/patchGroups.json with the champion as its note, drop this entry from ` +
-          `UNRELEASED, and run \`npm run data:champions\` then \`npm run data:parse\` then ` +
+          `build output; fields imgPortrait/imgSplash/accent null, extra.aliases required, ` +
+          `alphabetical — the chip order follows it), add the release patch to ` +
+          `data/patchBoundaries.json with the champion as its note (start = the date in the ` +
+          `post's title and URL, never data:patch-check's publish-time fallback; patchGroups ` +
+          `regenerates on parse), drop this entry from UNRELEASED, and run ` +
+          `\`npm run data:champions\` then \`npm run data:build\` (a stale raw/ refuses a plain ` +
+          `parse) then ` +
           `\`npx tsx scripts/og.ts\`. Two things no gate will catch: the OG card is rebuilt ` +
           `from characters.json and goes stale silently, and ` +
           `assets/name-templates/${u.id}-left.png / -right.png cannot be scraped — they come ` +

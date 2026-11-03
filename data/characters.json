@@ -133,6 +133,19 @@
     }
   },
   {
+    "id": "samira",
+    "name": "Samira",
+    "imgPortrait": "/img/champions/samira-portrait.webp",
+    "imgSplash": "/img/champions/samira-splash.webp",
+    "accent": "#EB506C",
+    "extra": {
+      "aliases": [
+        "samira",
+        "サミーラ"
+      ]
+    }
+  },
+  {
     "id": "senna",
     "name": "Senna",
     "imgPortrait": "/img/champions/senna-portrait.webp",
@@ -142,6 +155,19 @@
       "aliases": [
         "senna",
         "セナ"
+      ]
+    }
+  },
+  {
+    "id": "sett",
+    "name": "Sett",
+    "imgPortrait": "/img/champions/sett-portrait.webp",
+    "imgSplash": "/img/champions/sett-splash.webp",
+    "accent": "#D26A47",
+    "extra": {
+      "aliases": [
+        "sett",
+        "セト"
       ]
     }
   },

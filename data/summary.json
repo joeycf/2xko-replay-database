@@ -1,9 +1,9 @@
 {
   "game": "2xko",
   "name": "2XKO",
-  "replays": 6974,
+  "replays": 6977,
   "players": 1405,
-  "characters": 16,
+  "characters": 18,
   "updated": "2026-11-04",
   "engine": "v0.18.1"
 }

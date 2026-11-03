@@ -11,7 +11,7 @@ const engineDir = fileURLToPath(
   new URL(process.env.ENGINE_PATH || '../replay-engine', new URL('.', import.meta.url)),
 );
 
-// Prerender EVERYTHING entity-shaped: all 15 champions + every player profile
+// Prerender EVERYTHING entity-shaped: all 18 champions + every player profile
 // (featured-but-unverified players must not 404 on static hosting), plus the
 // core routes. The engine seeds '/', '/health', '/not-found' itself and emits
 // sitemap/robots/manifest/404.html from the REAL prerendered list

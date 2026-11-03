@@ -49,7 +49,9 @@
   --champ-illaoi:     #CE9138;
   --champ-jinx:       #5B8CFF;
   --champ-lux:        #FFE45E;
+  --champ-samira:     #EB506C; /* DERIVED 2026-11-02 (checklist 14c): her splash's crimson, OKLCH L.65 C.19 h13.6, centred between ahri 357° and darius 27° (Δh 16.2 / 13.6) · 5.52:1 on --bg-base · picked by the owner. A design session may replace it. */
   --champ-senna:      #97DB4A;
+  --champ-sett:       #D26A47; /* DERIVED 2026-11-02 (checklist 14c): his splash's red-brown and copper, moved to the free window between vi 28° and teemo 51° (his red would collide with samira, his gold with illaoi/blitzcrank) · OKLCH L.64 C.14 h39.1 · 5.52:1 on --bg-base · picked by the owner. */
   --champ-teemo:      #E27E3C;
   --champ-thresh:     #49E0A6;
   --champ-vi:         #FF6F61;

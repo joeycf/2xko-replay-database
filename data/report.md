@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-04T14:35:38.696Z._
+_Generated 2026-11-04T20:44:18.376Z._
 
 ## Summary
-- Total videos: **6974**
-- High confidence: **6881**  ·  Low confidence: **83**  ·  Manual (hand-authored): **10**
+- Total videos: **6977**
+- High confidence: **6949**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.5%** · fuse: **99.3%**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.5%** · fuse: **99.6%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2753 | fetched |
-| `highLevel` | 1985 | fetched |
+| `bestReplays` | 2754 | fetched |
+| `highLevel` | 1987 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6974** | |
+| **Σ** | **6977** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -37,7 +37,7 @@ _Fetched by the daily cron since 2026-09-02, and **add-only**: a committed recor
 |---|---|---|---|---|---|---|---|
 | `replayTheater` | 888 | 888 | carried (pull found nothing tagged) | — | — | — | 2026-07-31 |
 
-_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor still advanced — a quiet day is the ordinary case here, not a failed one._
+_The pull ran and found no new tournament entries, so the committed catalogue was carried unchanged. The cursor did not move: the catalogue has taken no new 2XKO entry since the last pull — quieter still, and equally ordinary._
 
 ## Replay Theater cross-check
 
@@ -92,45 +92,9 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (83)
+## Low-confidence records (18)
 | id | channel | reason | raw title |
 |---|---|---|---|
-| `SEV4_edvD50` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox + Inzem (Samira / Teemo) vs Supernoon (Akali / Ekko) ▰ High Level Gameplay |
-| `CQL4fcTtOMw` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ SonicFox + Inzem (Samira / Teemo) vs JakeyTheSnakey (Samira / Jinx) ▰ High Level Gameplay |
-| `sAInSF2WML4` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Yata (Samira / Akali) vs Kamui Senketsu (Lux / Ahri) ▰ High Level Gameplay |
-| `Nemch2YfE0k` | highLevel | unresolved character "Samira" on left | 2XKO ▰ JakeyTheSnakey (Samira / Jinx) vs Illa YT (Illaoi / Teemo) ▰ High Level Gameplay |
-| `_JLjh2AUhx4` | highLevel | unresolved character "Samira" on right | 2XKO ▰ Quainty (Yasuo / Blitzcrank) vs James06 (Samira / Ekko) ▰ High Level Gameplay |
-| `NnoZAojGHNo` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ SonicFox + inzem (Samira / Teemo) vs NastyNuts (Sett / Darius) ▰ High Level Gameplay |
-| `R_IPM7Xm7tc` | highLevel | unresolved character "Samira" on left | 2XKO ▰ JakeyTheSnakey (Samira / Jinx) vs James06 (Senna / Yasuo) ▰ High Level Gameplay |
-| `jzpnl9I2h2I` | highLevel | unresolved character "Samira" on right | 2XKO ▰ Galladiated (Vi / Braum) vs MrChupy (Samira / Blitzcrank) ▰ High Level Gameplay |
-| `BswCYhjZ5H4` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ Bleed (Samira / Illaoi) vs Sun (Sett / Ekko) ▰ High Level Gameplay |
-| `Nlnia_ym9Tk` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Wawa (Samira / Caitlyn) vs Wade (Akali / Ekko) ▰ High Level Gameplay |
-| `Cc6BtNxN-_A` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox (Samira / Ahri) vs Inzem (Jinx / Teemo) ▰ High Level Gameplay |
-| `idflI1b7pHc` | highLevel | unresolved character "Samira" on left | 2XKO ▰ MrChupy (Samira / Darius) vs Dylnyan (Ahri / Blitzcrank) ▰ High Level Gameplay |
-| `ziCxTXnAa_o` | highLevel | unresolved character "Samira" on left | 2XKO ▰ JakeyTheSnakey + Bleed (Samira / Akali) vs Inzem + maze (Jinx / Teemo) ▰ High Level Gameplay |
-| `aYN5Ju3BAO4` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Wawa (Sett / Caitlyn) vs Wade (Akali / Ekko) ▰ High Level Gameplay |
-| `ic6m2_Q86aY` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Tate (Sett / Blitzcrank) vs Devillion (Sett / Jinx) ▰ High Level Gameplay |
-| `338FrjfyK0M` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Pdpiu (Samira / Yasuo) vs Trinki (Senna / Vi) ▰ High Level Gameplay |
-| `vFIS1zBnsEw` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Bleed (Samira / Illaoi) vs Supernoon (Akali / Ekko) ▰ High Level Gameplay |
-| `y9Jc2Wz8DwM` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Wawa (Samira / Akali) vs Senshi (Illaoi / Ekko) ▰ High Level Gameplay |
-| `zm97va6W8T4` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Galladiated (Sett / Caitlyn) vs StrayErin (Akali / Caitlyn) ▰ High Level Gameplay |
-| `igeU2tRE1Tg` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ Wawa (Samira / Akali) vs Verso (Samira / Jinx) ▰ High Level Gameplay |
-| `EaaJOdlzi_M` | highLevel | unresolved character "Samira" on left | 2XKO ▰ MrChupy (Samira / Darius) vs Quainty (Braum / Blitzcrank) ▰ High Level Gameplay |
-| `uM2zwRZUGdU` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Galladiated (Sett / Caitlyn) vs JakeyTheSnakey (Samira / Jinx) ▰ High Level Gameplay |
-| `H3JiKLT5Sao` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Wawa (Sett / Caitlyn) vs Verso (Samira / Jinx) ▰ High Level Gameplay |
-| `Jfshei6oDWE` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Tate (Sett / Blitzcrank) vs Quainty (Sett / Braum) ▰ High Level Gameplay |
-| `rwT6-yDxYKU` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ Yata (Samira / Ekko) vs Zucchini (Sett / Teemo) ▰ High Level Gameplay |
-| `wuCOWNhC69c` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ Blaizzy (Samira / Lux) vs JakeyTheSnakey (Samira / Jinx) ▰ High Level Gameplay |
-| `6D33L4q32tI` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox + Inzem (Samira / Jinx) vs James06 + Maze (Illaoi / Ekko) ▰ High Level Gameplay |
-| `zDpE_8IA0fM` | highLevel | unresolved character "Sett" on left | 2XKO ▰ Yosep (Sett / Teemo) vs Zleek (Lux / Akali) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `n7GsKCsTB28` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Wade (Sett / Ekko) vs Noka (Sett / Ekko) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `NLotMV0taRI` | highLevel | unresolved character "Samira" on left; unresolved character "Samira" on right | 2XKO ▰ James06 (Samira / Warwick) vs LucienSFL (Samira / Ahri) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `fb9xlL-kGk8` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ SonicFox (Samira / Jinx) vs Inzem (Sett / Jinx) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `NhIxWPVD_QI` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Wawa (Sett / Lux) vs Verso (Samira / Jinx) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `MGp2DqCZ6e4` | highLevel | unresolved character "Sett" on left; unresolved character "Samira" on right | 2XKO ▰ Blaizzy (Sett / Vi) vs James06 (Samira / Yasuo) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `H1iPbdMwCkc` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ MrChupy (Samira / Darius) vs Tate (Sett / Blitzcrank) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `SP0PLfZm71E` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ SonicFox (Samira / Senna) vs Inzem (Sett / Jinx) ▰ 2XKO DLC - SETT and SAMIRA DAY 1 |
-| `hinuAxrg2KY` | highLevel | unresolved character "Sett" on left; unresolved character "Sett" on right | 2XKO ▰ Galladiated (Sett / Caitlyn) vs PRISM22 (Sett / Teemo) ▰ 2XKO DLC - SETT DAY 1 |
 | `_ZiLJoh3KMA` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Romerulez ( Warwick ) vs Poog (Lux / Jinx) ▰ High Level Gameplay |
 | `KGURPriuuoE` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ D.Dinosaur ( Warwick ) vs pMoney+pMoneyjr (Thresh / Blitzcrank) ▰ High Level Gameplay |
 | `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
@@ -138,35 +102,6 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
-| `LOEuh-NsoxE` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ VERSO (Samira-Jinx) vs WAWA (Samira-Akali) ▰ High Level Gameplay |
-| `ZLBXZowLAyo` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ HAZEN (Samira-Ahri) vs SOUKUR (Sett-Vi) ▰ High Level Gameplay |
-| `AajXIpdypJo` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SOULDEMONXL (Sett-Ekko) vs TATE (Sett-Blitzcrank) ▰ High Level Gameplay |
-| `K4fAbAk2hS0` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SUN (Samira-Ekko) vs BLEED (Samira-Illaoi) ▰ High Level Gameplay |
-| `DfdyiJ8gTg8` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ LLON (Sett-Jinx) vs BEDLIKE (Sett-Ekko) ▰ High Level Gameplay |
-| `BLjvPeSXFCA` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ ERNIA (Samira-Lux) vs AASAN (Samira-Ekko) ▰ High Level Gameplay |
-| `GHrNp-eBrpY` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ SONICFOX & INZEM (Jinx-Samira) vs 2XKO (Ekko-Illaoi) ▰ High Level Gameplay |
-| `H-2MJz7q534` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SENSHII (Ekko-Illaoi) vs WAWA (Samira-Akali) ▰ High Level Gameplay |
-| `ZKtHLqQkz_8` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLEED (Samira-Illaoi) vs TURTLESBRO (Samira-Ekko) ▰ High Level Gameplay |
-| `IbB9IC0Vgyc` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SHIBAISDRY (Sett-Ekko) vs BSLUCK (Sett-Blitzcrank) ▰ High Level Gameplay |
-| `qua9rNHOSDs` | bestReplays | unresolved character "Sett" on left | NEW PATCH 2XKO ▰ SOUKUR (Vi-Sett) vs IKOAN (Yasuo-Ekko) ▰ High Level Gameplay |
-| `U2I_k-G6cNg` | bestReplays | unresolved character "Sett" on right | NEW PATCH 2XKO ▰ POKA (Ahri-Akali) vs DOROPON (Sett-Caitlyn) ▰ High Level Gameplay |
-| `klSygpkzpX4` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SLAUW (Yasuo-Blitzcrank) vs WAWA (Samira-Akali) ▰ High Level Gameplay |
-| `cey0heiy5Yc` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SUPERNOON (Akali-Ekko) vs BLEED (Samira-Illaoi) ▰ High Level Gameplay |
-| `4FwKLHCT04A` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ HAZEN (Samira-Ahri) vs LIFE IS UNKO (Sett-Blitzcrank) ▰ High Level Gameplay |
-| `pOJtX_63nHw` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ MRCHUPY01 (Samira-Darius) vs QUAINTY (Blitzcrank-Braum) ▰ High Level Gameplay |
-| `v7Tr7b5dPL0` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ JAKEYTHESNAKEY (Samira-Jinx) vs INZEM (Jinx-Senna) ▰ High Level Gameplay |
-| `YUoVQQGvDec` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ SONICFOX & INZEM (Jinx-Samira) vs MAZE & JAMES06 (Ekko-Illaoi) ▰ High Level Match |
-| `9YZqjCLUouE` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ TURTLESBRO (Samira-Ekko) vs GALLADIATED (Caitlyn-Sett) ▰ High Level Gameplay |
-| `JasO2hnOE2A` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ HAZEN (Samira-Ahri) vs DOROPON (Sett-Caitlyn) ▰ High Level Gameplay |
-| `p40hhrI40jI` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLEED (Samira-Illaoi) vs TURTLESBRO (Samira-Ekko) ▰ High Level Gameplay |
-| `8WysTpMow-o` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ OBELISK (Sett-Ahri) vs TATE (Sett-Blitzcrank) ▰ High Level Gameplay |
-| `85raptcDXKc` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ PINKPOTATOES (Teemo-Sett) vs NEONOEXE (Sett-Illaoi) ▰ High Level Gameplay |
-| `JegZ5RE_zHY` | bestReplays | unresolved character "Sett" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ TATE (Sett-Blitzcrank) vs SOULDEMONXL (Ekko-Samira) ▰ High Level Gameplay |
-| `4V03XTUNDc4` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SONICFOX (Samira-Senna) vs INZEM (Jinx-Sett) ▰ High Level Gameplay |
-| `uhPB6VlBsn0` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ DEVILLION (Jinx-Blitzcrank) vs MRCHUPY01 (Samira-Darius) ▰ High Level Gameplay |
-| `wHTbamTx_L8` | bestReplays | unresolved character "Sett" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLAIZZY (Vi-Sett) vs JAMES06 (Samira-Yasuo) ▰ High Level Gameplay |
-| `CNU-2LDhsjY` | bestReplays | unresolved character "Samira" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SONICFOX (Jinx-Samira) vs INZEM (Jinx-Sett) ▰ High Level Gameplay |
-| `C4vGP-KgAsU` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ PRISM22 (Teemo-Sett) vs GALLADIATED (Sett-Caitlyn) ▰ High Level Gameplay |
 | `duKUFjNEjSE` | bestReplays | structural failure (team-split) | 2XKO ▰ GALLADIATED (Jinx-Braum) vs QUAINTY ▰ High Level Gameplay |
 | `VleKPHDmML8` | bestReplays | team right: 1 character(s) (expected 2) | LUX PATCH 2XKO ▰ QUAINTY (Lux-Blitzcrank) vs PRISM22 (Yasuo) ▰ High Level Gameplay |
 | `OXAeNs7Ocg8` | proReplays | carried from a frozen channel — original parse reasons not retained | 2XKO ▰ SENDO (Akalai-Ahri) vs BLEED (Ekko-Illaoi) ▰ 2XKO Pro level replays |

@@ -70,9 +70,11 @@ jobs:
         # repo has no residue gate either. A champion could ship and every match
         # they appeared in would quietly file with one side missing.
         #
-        # One thing can trip it today: Samira's October window closing
-        # (2026-10-31). She is 2XKO's final champion — active development ends
-        # December 2026 — so when she ships this gate has no more work to do.
+        # Nothing is gated today: Samira's row fired on 2026-10-31 and she was
+        # promoted 2026-11-02 together with Sett, who shipped beside her in 1.3.3
+        # with no row at all (only data:roster-check saw him). Active development
+        # ends December 2026, but keep the step: an unannounced champion is the
+        # case a date row cannot see.
         # Clear it by doing the work, NOT by deleting this step.
         run: npx tsx scripts/expiries.ts --check
 

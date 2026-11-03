@@ -322,7 +322,8 @@ export interface Roster {
  *  (Ahri) and アカリ (Akali) sit at distance ONE, so a single OCR slip turns one
  *  into the other, and those two champions appear on the same side in the corpus
  *  (Hikari played both in QWjpY279YCs). The radius drives both to exact-only.
- *  9 of 35 aliases end up exact-match-only. */
+ *  13 of 41 aliases end up exact-match-only (2026-11-02: Sett's セト joins セナ at
+ *  distance one, so both are exact-only). */
 export async function loadRoster(): Promise<Roster> {
   const chars = JSON.parse(readFileSync(join(DATA, 'characters.json'), 'utf8')) as {
     id: string;
@@ -566,7 +567,7 @@ export async function makeWorkers(): Promise<Workers> {
     return w;
   };
   return {
-    // no digits: 0 of 15 champion ids and 0 of 35 aliases contain one
+    // no digits: 0 of 18 champion ids and 0 of 41 aliases contain one
     eng: await mk('eng', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.- '),
     jpn: await mk('jpn'),
     banner: await mk('eng'),

@@ -67,7 +67,7 @@ engine's generic `Replay[]` contract, with the 2XKO fuse fields riding along as
 extensions the engine ignores.
 
 - **~750 routes prerendered**: Browse shell, Stats, champions and players
-  indexes, 15 champion pages, all 715 player pages, plus `404.html`.
+  indexes, 18 champion pages, all 715 player pages, plus `404.html`.
 - The engine's `modules/static-artifacts` emits **`sitemap.xml`**, **`robots.txt`**,
   the web manifest and `404.html` from the _real_ prerendered route list (the
   old `build:before` sitemap hook and `postgenerate.mjs` are retired). Per-page
@@ -114,7 +114,7 @@ Two other env vars matter locally, neither of them secret:
 | `npm run data:patch-check`                       | **Network, manual, never in the cron** — diffs `data/patchBoundaries.json` against Riot's game-updates page (the page model, every post). `+ ~ - ⚠` lines exit 1; a Riot outage prints `⚠ NOT verified` and exits 0; the last line is always `patch-check: CURRENT / DRIFT / UNVERIFIED / UNREADABLE`. See "Patch-table runbook"                                             |
 | `npm run data:roster-check`                      | **Network, manual, never in the cron** — diffs `data/characters.json` against the `characterCardGrid` blade on Riot's champion index. Same trailer contract: `roster-check: CURRENT / DRIFT / UNVERIFIED / UNREADABLE`. This repo cannot discover a champion any other way — `data:champions` only enriches ids that already exist                                           |
 | `npm run data:tournaments`                       | **Network, manual, never in the cron** — Liquipedia's Tier 1–2 winners and runners-up → `data/tournaments.json` (MediaWiki API, CC BY-SA 3.0). Same trailer contract: `tournaments: CURRENT / UPDATED / UNVERIFIED / UNREADABLE`. `--match` is the offline worklist, `--check` the validator inside `npm run typecheck`. See "Featured players come from tournament results" |
-| `npm run data:expiries`                          | `--check` the self-expiring gates (announced champions coming due — currently just Samira). Runs in the "Pending work" workflow after every data run and is **designed to go red**                                                                                                                                                                                           |
+| `npm run data:expiries`                          | `--check` the self-expiring gates (announced champions coming due — none since Samira and Sett shipped in 1.3.3). Runs in the "Pending work" workflow after every data run and is **designed to go red**                                                                                                                                                                     |
 | `npm run data:fuses`                             | **Local-only** CV fuse detection (see below) → `data/fuses-detected.json`                                                                                                                                                                                                                                                                                                    |
 | `npm run data:fuse-gaps`                         | **Local-only** read-only gap diagnostic — buckets every still-fuse-less video (unavailable/low/none/pending/anomaly) → `cache/fuse/review/fuse-gaps.{md,json}` (feeds the `/dev/fuse-gaps` viewer)                                                                                                                                                                           |
 | `npm run data:refresh-all`                       | **Local-only** one-shot full refresh: `data:build` → `data:fuses` → `data:parse` → `data:fuse-gaps`, then a single commit (**never pushes**). Enforces the stage order below and the cron's `report.md` guard. `--check` runs preflight only; `--skip-fuses`, `--limit N`, `--sleep MIN-MAX`, `--no-commit` also available (`--help` for all)                                |
@@ -724,7 +724,7 @@ four page-segmentation modes, whitelist on and off, ink-trim, glyph-height
 normalization, six shear angles and the VS screen at three times the size. `TEEMO`
 reads; `AHRI` never does. It is specific letterforms, not preprocessing.
 
-> **Documented follow-up, not built.** The roster is a closed set of ~15 champions
+> **Documented follow-up, not built.** The roster is a closed set of ~18 champions
 > in a fixed nameplate font, which is the case template matching is best at —
 > auto-rendering each champion's name in that font and matching by dHash would
 > read what tesseract cannot, and would extend by itself when a DLC champion
@@ -806,28 +806,48 @@ to the season boundary. Riot skips version numbers (no 1.0.2, 1.1.4, 1.2.2,
 
 ## New-champion runbook
 
-1. Add the champion to `data/characters.json` (id, name, aliases; leave
-   `portrait`/`splash`/`accent` null).
-2. Add the accent token `--champ-<id>` to `design/handoff/tokens.css` (the design
-   source of truth) **and** the matching entry to `accents` in
-   `app/app.config.ts`, which is what the engine actually reads.
-3. Run `npm run data:champions` — downloads portrait + splash (1600w/800w)
-   from the official site and reconciles the accent.
-4. Re-run `npm run data:parse` and check `data/report.md`: a spike in
-   low-confidence records is the built-in alert that titles mention a champion
-   the registry doesn't know yet.
-5. Commit + push (redeploys).
-6. Crop `assets/name-templates/<id>-left.png` and `<id>-right.png` once there is
-   footage, in a later commit. Nothing downloads these — they are raw HUD
-   nameplate crops, so `data:champions` cannot make them and the official site
-   does not carry them. Take one per side out of `cache/fuse/frames/<video id>/`
-   after a fuse pass has run over a match featuring the champion.
+A champion can ship with no `UNRELEASED` row at all: Sett arrived in 1.3.3
+beside Samira with no announcement this repo ever saw, and only
+`npm run data:roster-check` (MISSING sett) noticed. Run it whenever a patch
+lands.
 
-   Skipping this corrupts nothing. With no template `nameScore()` returns null,
-   `orient()` returns null with it, and the record goes to `orient-queue.json`
-   for `/dev/fuse-orient` rather than being guessed at. It only bites when the
-   new champion is the **only** champion unique to their side — a Lux/Yasuo side
-   still orients off Yasuo.
+1. Add the champion to `data/characters.json` in alphabetical position (the
+   filter chips follow the file's order): `id`, `name`, `imgPortrait`,
+   `imgSplash` and `accent` null, and `extra.aliases` (required — parse.ts reads
+   it unguarded; the house pattern is the lowercase name plus the katakana).
+2. Add the accent to all three copies — `--champ-<id>` in
+   `design/handoff/tokens.css`, the `champ` block of
+   `design/handoff/tailwind.config.js`, and `accents` in `app/app.config.ts`
+   (what the engine reads). Nothing cross-checks them. The hex is DERIVED by
+   engine checklist 14c: sample the champion's own splash, place it in a free
+   OKLCH hue window ≥ 8–12° from every roster accent, clear 4.5:1 on
+   `--bg-base`, and let a person pick from 3–4 candidates.
+3. Add the release patch to `data/patchBoundaries.json` (see the patch runbook:
+   the start is the date in the post's title and URL, not patch-check's
+   publish-time fallback) and drop the champion's row from `UNRELEASED` in
+   `scripts/expiries.ts`.
+4. Run `npm run data:champions` — downloads portrait + splash (1600w/800w)
+   from the official site and reconciles the accent.
+5. Run `npm run data:build`, not `data:parse` alone: the stale-raw guard refuses
+   a `raw/` older than the committed data. Check `data/report.md` — the
+   `unresolved character` lines and the low-confidence count are the built-in
+   alert that titles mention a champion the registry doesn't know yet.
+6. Crop `assets/name-templates/<id>-left.png` and `<id>-right.png` (147×20 at
+   1280×720, the `NAME_*` rect in `scripts/fuses.ts`) out of
+   `cache/fuse/frames/<video id>/` from a match with the champion on BOTH sides,
+   so neither crop depends on knowing the orientation first. Mind the row swap
+   mid-video. Then `npm run data:fuses -- --ids <the champion's records>`
+   (`--cookies secrets/yt-cookies.txt` for any without cached frames) and
+   `npm run data:parse` to merge.
+
+   Skipping this corrupts nothing, but it costs orientation: `nameScore()` needs
+   a template for EVERY discriminating champion (`scripts/fuses.ts`), so without
+   one the record's sides stay `ok-unordered` — a Lux/Yasuo side does NOT fall
+   back to orienting off Yasuo.
+
+7. `npx tsx scripts/og.ts` — the OG card's stripe has one segment per champion
+   and nothing gates it going stale.
+8. Commit + push (redeploys).
 
 ## Post-v1 notes
 
