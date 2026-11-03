@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-02T15:57:46.821Z._
+_Generated 2026-11-03T14:18:51.710Z._
 
 ## Summary
-- Total videos: **6957**
-- High confidence: **6880**  ·  Low confidence: **67**  ·  Manual (hand-authored): **10**
+- Total videos: **6966**
+- High confidence: **6880**  ·  Low confidence: **76**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.4%** · fuse: **99.6%**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.4%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2745 | fetched |
-| `highLevel` | 1976 | fetched |
+| `bestReplays` | 2749 | fetched |
+| `highLevel` | 1981 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6957** | |
+| **Σ** | **6966** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -92,9 +92,14 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (67)
+## Low-confidence records (76)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `_JLjh2AUhx4` | highLevel | unresolved character "Samira" on right | 2XKO ▰ Quainty (Yasuo / Blitzcrank) vs James06 (Samira / Ekko) ▰ High Level Gameplay |
+| `NnoZAojGHNo` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ SonicFox + inzem (Samira / Teemo) vs NastyNuts (Sett / Darius) ▰ High Level Gameplay |
+| `R_IPM7Xm7tc` | highLevel | unresolved character "Samira" on left | 2XKO ▰ JakeyTheSnakey (Samira / Jinx) vs James06 (Senna / Yasuo) ▰ High Level Gameplay |
+| `jzpnl9I2h2I` | highLevel | unresolved character "Samira" on right | 2XKO ▰ Galladiated (Vi / Braum) vs MrChupy (Samira / Blitzcrank) ▰ High Level Gameplay |
+| `BswCYhjZ5H4` | highLevel | unresolved character "Samira" on left; unresolved character "Sett" on right | 2XKO ▰ Bleed (Samira / Illaoi) vs Sun (Sett / Ekko) ▰ High Level Gameplay |
 | `Nlnia_ym9Tk` | highLevel | unresolved character "Samira" on left | 2XKO ▰ Wawa (Samira / Caitlyn) vs Wade (Akali / Ekko) ▰ High Level Gameplay |
 | `Cc6BtNxN-_A` | highLevel | unresolved character "Samira" on left | 2XKO ▰ SonicFox (Samira / Ahri) vs Inzem (Jinx / Teemo) ▰ High Level Gameplay |
 | `idflI1b7pHc` | highLevel | unresolved character "Samira" on left | 2XKO ▰ MrChupy (Samira / Darius) vs Dylnyan (Ahri / Blitzcrank) ▰ High Level Gameplay |
@@ -129,6 +134,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `p23gtPNc5d0` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Syrtic ( Blitzcrank ) vs Dapper Dinosaur + Sylvanos (Warwick / Vi) ▰ High Level Gameplay |
 | `_KOJhaYSmC8` | highLevel | team left: 1 character(s) (expected 2); team right: 1 character(s) (expected 2) | 2XKO ▰ Galladiated ( Darius ) vs BrandonThe4sian ( Darius ) ▰ High Level Gameplay |
 | `5ehHxiFOESc` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Wawa (Yasuo) vs Slauw (Jinx / Blitzcrank) ▰ High Level Gameplay |
+| `K4fAbAk2hS0` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SUN (Samira-Ekko) vs BLEED (Samira-Illaoi) ▰ High Level Gameplay |
+| `DfdyiJ8gTg8` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ LLON (Sett-Jinx) vs BEDLIKE (Sett-Ekko) ▰ High Level Gameplay |
+| `BLjvPeSXFCA` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ ERNIA (Samira-Lux) vs AASAN (Samira-Ekko) ▰ High Level Gameplay |
+| `GHrNp-eBrpY` | bestReplays | unresolved character "Samira" on left | NEW PATCH 2XKO ▰ SONICFOX & INZEM (Jinx-Samira) vs 2XKO (Ekko-Illaoi) ▰ High Level Gameplay |
 | `H-2MJz7q534` | bestReplays | unresolved character "Samira" on right | NEW PATCH 2XKO ▰ SENSHII (Ekko-Illaoi) vs WAWA (Samira-Akali) ▰ High Level Gameplay |
 | `ZKtHLqQkz_8` | bestReplays | unresolved character "Samira" on left; unresolved character "Samira" on right | NEW PATCH 2XKO ▰ BLEED (Samira-Illaoi) vs TURTLESBRO (Samira-Ekko) ▰ High Level Gameplay |
 | `IbB9IC0Vgyc` | bestReplays | unresolved character "Sett" on left; unresolved character "Sett" on right | NEW PATCH 2XKO ▰ SHIBAISDRY (Sett-Ekko) vs BSLUCK (Sett-Blitzcrank) ▰ High Level Gameplay |
@@ -168,11 +177,11 @@ _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing /
 
 | slug | displayName | occurrences | aliases seen |
 |---|---|---|---|
-| `wongkarwai` | WONGKARWAI | 1 | wongkarwai |
+| `2xko` | 2XKO | 1 | 2xko |
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
-26 events with placements read; 28 of 1404 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
+26 events with placements read; 28 of 1405 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
 
 **Titled:** `sonicfox` 2W/3R · `hikari` 3W/1R · `supernoon` 1W/3R · `doropon` 1W/2R · `ikoan` 1W/2R · `poka` 3W/0R · `wawa` 2W/1R · `bleed` 1W/1R · `haru` 1W/1R · `kayne` 1W/1R · `leffen` 2W/0R · `yasha` 1W/1R · `zleeeek7` 1W/1R · `devillion` 0W/1R · `galladiated` 1W/0R · `gish` 0W/1R · `ikura` 0W/1R · `inzem` 1W/0R · `jakeythesnakey` 0W/1R · `k7showoff` 0W/1R · `lightwhisp` 0W/1R · `linj` 0W/1R · `noka` 1W/0R · `novix` 1W/0R · `nychrisg` 1W/0R · `opal` 0W/1R · `psixou` 1W/0R · `shibaisdry` 0W/1R
 
