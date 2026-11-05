@@ -14478,5 +14478,25 @@
         "2xko"
       ]
     }
+  },
+  {
+    "id": "derexes",
+    "handle": "Derexes",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "derexes"
+      ]
+    }
+  },
+  {
+    "id": "apologyman-2",
+    "handle": "Apology Man",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "apology man"
+      ]
+    }
   }
 ]
