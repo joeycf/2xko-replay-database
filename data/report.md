@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-05T14:42:22.745Z._
+_Generated 2026-11-06T14:19:29.153Z._
 
 ## Summary
-- Total videos: **6982**
-- High confidence: **6954**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **2**
-- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.5%** · fuse: **99.6%**
+- Total videos: **6990**
+- High confidence: **6962**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.6%** · fuse: **99.4%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2757 | fetched |
-| `highLevel` | 1989 | fetched |
+| `bestReplays` | 2761 | fetched |
+| `highLevel` | 1993 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **6982** | |
+| **Σ** | **6990** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -114,13 +114,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (2)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `derexes` | Derexes | 1 | derexes |
-| `apologyman-2` | Apology Man | 1 | apology man |
+_None._
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
