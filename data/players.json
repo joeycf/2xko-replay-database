@@ -14498,5 +14498,25 @@
         "apology man"
       ]
     }
+  },
+  {
+    "id": "zenitsu",
+    "handle": "Zenitsu",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "zenitsu"
+      ]
+    }
+  },
+  {
+    "id": "hyoken",
+    "handle": "HyOken",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "hyoken"
+      ]
+    }
   }
 ]
