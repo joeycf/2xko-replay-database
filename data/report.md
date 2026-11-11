@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-10T14:56:37.002Z._
+_Generated 2026-11-11T14:26:29.812Z._
 
 ## Summary
-- Total videos: **7022**
-- High confidence: **6994**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Total videos: **7028**
+- High confidence: **7000**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
 - Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.7%** · fuse: **99.4%**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.8%** · fuse: **99.3%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2779 | fetched |
-| `highLevel` | 2007 | fetched |
+| `bestReplays` | 2783 | fetched |
+| `highLevel` | 2009 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **7022** | |
+| **Σ** | **7028** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
