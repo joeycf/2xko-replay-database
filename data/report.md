@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-11T14:26:29.812Z._
+_Generated 2026-11-12T15:18:11.642Z._
 
 ## Summary
-- Total videos: **7028**
-- High confidence: **7000**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **0**
-- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.8%** · fuse: **99.3%**
+- Total videos: **7036**
+- High confidence: **7008**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **1**
+- Fill rates — season: **95.7%** · patchVersion: **95.5%** · patch label: **18.8%** · fuse: **99.2%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2783 | fetched |
-| `highLevel` | 2009 | fetched |
+| `bestReplays` | 2787 | fetched |
+| `highLevel` | 2013 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **7028** | |
+| **Σ** | **7036** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -114,14 +114,16 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (0)
+## Newly discovered players (1)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-_None._
+| slug | displayName | occurrences | aliases seen |
+|---|---|---|---|
+| `cobra` | Cobra | 1 | cobra |
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
-26 events with placements read; 28 of 1409 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
+26 events with placements read; 28 of 1410 registry players carry a title (26 wins). 0 placed names are not in the registry yet — they are featured the day a replay of theirs is ingested, unless listed below as needing a human.
 
 **Titled:** `sonicfox` 2W/3R · `hikari` 3W/1R · `supernoon` 1W/3R · `doropon` 1W/2R · `ikoan` 1W/2R · `poka` 3W/0R · `wawa` 2W/1R · `bleed` 1W/1R · `haru` 1W/1R · `kayne` 1W/1R · `leffen` 2W/0R · `yasha` 1W/1R · `zleeeek7` 1W/1R · `devillion` 0W/1R · `galladiated` 1W/0R · `gish` 0W/1R · `ikura` 0W/1R · `inzem` 1W/0R · `jakeythesnakey` 0W/1R · `k7showoff` 0W/1R · `lightwhisp` 0W/1R · `linj` 0W/1R · `noka` 1W/0R · `novix` 1W/0R · `nychrisg` 1W/0R · `opal` 0W/1R · `psixou` 1W/0R · `shibaisdry` 0W/1R
 
