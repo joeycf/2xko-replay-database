@@ -77977,5 +77977,126 @@
   "status": "ok",
   "era": "s1",
   "detectedAt": "2026-11-19"
+ },
+ "lA9Q0qTPRgg": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 10,
+   "right": 41
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "1YXs5xnPwBE": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 10
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "2S3FoTylVqo": {
+  "left": "double-down",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 11
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "n7iKKDBIloM": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 20,
+   "right": 47
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "jE09N6aqNyM": {
+  "left": "freestyle",
+  "right": "double-down",
+  "score": {
+   "left": 0,
+   "right": 0
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "BkWe_2WPsiQ": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 10,
+   "right": 20
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "lFKsyO3aMuw": {
+  "left": "double-down",
+  "right": "2x-assist",
+  "score": {
+   "left": 0,
+   "right": 57
+  },
+  "status": "ok-unordered",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "sMYrWcvlAq4": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 9,
+   "right": 0
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "lXWN5oTisGA": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 6
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "J30CUD4YGRc": {
+  "left": "freestyle",
+  "right": "freestyle",
+  "score": {
+   "left": 0,
+   "right": 6
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
+ },
+ "fYkAg9EBivE": {
+  "left": "freestyle",
+  "right": "2x-assist",
+  "score": {
+   "left": 2,
+   "right": 8
+  },
+  "status": "ok",
+  "era": "s1",
+  "detectedAt": "2026-11-20"
  }
 }
