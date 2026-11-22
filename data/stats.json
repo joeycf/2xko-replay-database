@@ -1,29 +1,29 @@
 {
   "totals": {
-    "replays": 7100,
+    "replays": 7101,
     "characters": 18,
-    "players": 1411,
+    "players": 1412,
     "byPatch": {
       "Beta": 302,
       "S0": 1942,
-      "S1": 4856
+      "S1": 4857
     },
-    "withFuse": 7059
+    "withFuse": 7069
   },
   "characterUsage": {
     "ahri": 2904,
     "akali": 1206,
     "blitzcrank": 1497,
-    "braum": 1247,
+    "braum": 1248,
     "caitlyn": 902,
     "darius": 1714,
-    "ekko": 3634,
+    "ekko": 3635,
     "illaoi": 2034,
     "jinx": 1637,
-    "lux": 152,
+    "lux": 153,
     "samira": 98,
     "senna": 381,
-    "sett": 64,
+    "sett": 65,
     "teemo": 1416,
     "thresh": 718,
     "vi": 1852,
@@ -59,16 +59,16 @@
       "ahri": 2041,
       "akali": 1206,
       "blitzcrank": 1056,
-      "braum": 819,
+      "braum": 820,
       "caitlyn": 902,
       "darius": 1126,
-      "ekko": 2251,
+      "ekko": 2252,
       "illaoi": 1482,
       "jinx": 976,
-      "lux": 152,
+      "lux": 153,
       "samira": 98,
       "senna": 381,
-      "sett": 64,
+      "sett": 65,
       "teemo": 735,
       "thresh": 718,
       "vi": 1146,
@@ -132,7 +132,7 @@
     "braum|jinx": 58,
     "braum|lux": 3,
     "braum|senna": 3,
-    "braum|sett": 3,
+    "braum|sett": 4,
     "braum|teemo": 19,
     "braum|thresh": 18,
     "braum|vi": 193,
@@ -165,7 +165,7 @@
     "darius|yasuo": 168,
     "ekko|illaoi": 682,
     "ekko|jinx": 225,
-    "ekko|lux": 14,
+    "ekko|lux": 15,
     "ekko|samira": 9,
     "ekko|senna": 70,
     "ekko|sett": 10,
@@ -3113,8 +3113,8 @@
     "kamuisenketsu": {
       "ahri": 40,
       "caitlyn": 2,
-      "ekko": 25,
-      "lux": 15
+      "ekko": 26,
+      "lux": 16
     },
     "kaneblueriver": {
       "illaoi": 3,
@@ -6202,6 +6202,10 @@
     "theperfectname": {
       "blitzcrank": 1,
       "vi": 1
+    },
+    "thepieman": {
+      "braum": 1,
+      "sett": 1
     },
     "theredrito": {
       "darius": 27,
@@ -9499,7 +9503,7 @@
       "ahri|caitlyn": 2,
       "ahri|ekko": 24,
       "ahri|lux": 14,
-      "ekko|lux": 1
+      "ekko|lux": 2
     },
     "kaneblueriver": {
       "illaoi|teemo": 3
@@ -12011,6 +12015,9 @@
     },
     "theperfectname": {
       "blitzcrank|vi": 1
+    },
+    "thepieman": {
+      "braum|sett": 1
     },
     "theredrito": {
       "darius|jinx": 27
@@ -14824,6 +14831,7 @@
     "braum|sett": {
       "ahri|sett": 1,
       "blitzcrank|sett": 1,
+      "ekko|lux": 1,
       "ekko|sett": 1
     },
     "braum|teemo": {
@@ -15820,6 +15828,7 @@
       "blitzcrank|darius": 1,
       "blitzcrank|lux": 1,
       "blitzcrank|yasuo": 1,
+      "braum|sett": 1,
       "ekko|vi": 1,
       "illaoi|yasuo": 1,
       "lux|senna": 1,
@@ -17411,10 +17420,10 @@
     }
   },
   "fuseUsage": {
-    "2x-assist": 2641,
-    "double-down": 2554,
-    "freestyle": 8681,
-    "juggernaut": 99,
+    "2x-assist": 2645,
+    "double-down": 2562,
+    "freestyle": 8688,
+    "juggernaut": 100,
     "sidekick": 12,
     "teamfight": 131
   },
@@ -17435,10 +17444,10 @@
       "sidekick": 3
     },
     "S1": {
-      "2x-assist": 1167,
-      "double-down": 1154,
-      "freestyle": 7107,
-      "juggernaut": 66,
+      "2x-assist": 1171,
+      "double-down": 1162,
+      "freestyle": 7114,
+      "juggernaut": 67,
       "sidekick": 7,
       "teamfight": 129
     }
