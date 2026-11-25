@@ -25,8 +25,8 @@ export default defineAppConfig({
     //   /2xko-insights/:path* → https://2xko-replay-database.vercel.app/_vercel/insights/:path*
     // — the two ship together or every beacon 404s. Same-origin on purpose:
     // the child's endpoints send no CORS headers, so an absolute URL here
-    // would die at preflight. speedInsights is deliberately left at the engine
-    // default (single-project on Hobby — it must reach the enabled project).
+    // would die at preflight. speedInsights is unset, so Speed
+    // Insights is off (opt-in since engine v0.19.0).
     observability: { insights: '/2xko-insights' },
     charactersPerSide: 2,
     filters: {

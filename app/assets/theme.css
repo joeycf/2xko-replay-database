@@ -14,8 +14,10 @@
 
 /* ---- Self-hosted faces via @fontsource (Vite-processed, hashed, base-path-
    safe — never public/ url()s). Exact weights of the shipped googleFonts
-   config: Chakra Petch + Barlow 400/500/600/700, JetBrains Mono 400/500/700.
-   font-display: swap ships inside the fontsource CSS. ---------------------- */
+   config: Chakra Petch + Barlow 400/500/600/700. font-display: swap ships
+   inside the fontsource CSS. JetBrains Mono comes from the engine's variable face (tailwind/theme-default.css,
+   weights 100-800); importing @fontsource's static copies as well made browsers
+   download both (removed for engine v0.19.0). ---------------------- */
 @import '@fontsource/chakra-petch/400.css';
 @import '@fontsource/chakra-petch/500.css';
 @import '@fontsource/chakra-petch/600.css';
@@ -24,9 +26,6 @@
 @import '@fontsource/barlow/500.css';
 @import '@fontsource/barlow/600.css';
 @import '@fontsource/barlow/700.css';
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/700.css';
 
 /* :root, NOT @theme — deliberately. This file is a plain app stylesheet: it
    never enters the engine's Tailwind root compile, so an `@theme` block here

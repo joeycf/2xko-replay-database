@@ -1375,11 +1375,12 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
       observability.includes('/2xko-insights/script.js'),
       `web analytics script src must be /2xko-insights/script.js — got ${JSON.stringify(observability)}`,
     );
-    // 1b. Speed Insights stays on the stable path on purpose: single-project on
-    //     Hobby, so its beacons must reach whichever project has it enabled.
+    // 1b. Speed Insights is opt-in since engine v0.19.0 and this game sets no
+    //     observability.speedInsights, so no vitals script may load (its
+    //     beacons were billed requests to a shell project with it disabled).
     expect(
-      observability.includes('/_vercel/speed-insights/script.js'),
-      `speed insights script src must be /_vercel/speed-insights/script.js — got ${JSON.stringify(observability)}`,
+      !observability.some((s) => s.includes('speed-insights')),
+      `no speed insights script — got ${JSON.stringify(observability)}`,
     );
     // 1c. THE REGRESSION ITSELF: a 16-hex baked path means the explicit
     //     endpoints stopped winning over VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG.
@@ -1387,7 +1388,7 @@ async function run(browser: Browser, at: (path: string) => string): Promise<void
     expect(baked.length === 0, `baked per-project hash path leaked: ${JSON.stringify(baked)}`);
     // 1d. nothing may ask for an insights URL outside the configured prefixes.
     const stray = asked.filter(
-      (p) => !p.startsWith('/2xko-insights/') && !p.startsWith('/_vercel/speed-insights/'),
+      (p) => !p.startsWith('/2xko-insights/'),
     );
     expect(
       stray.length === 0,
