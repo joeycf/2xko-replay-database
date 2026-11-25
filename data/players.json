@@ -14558,5 +14558,25 @@
         "ballsohard"
       ]
     }
+  },
+  {
+    "id": "heydelios",
+    "handle": "Heydelios",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "heydelios"
+      ]
+    }
+  },
+  {
+    "id": "windero7",
+    "handle": "WINDERO7",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "windero7"
+      ]
+    }
   }
 ]
