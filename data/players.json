@@ -14578,5 +14578,15 @@
         "windero7"
       ]
     }
+  },
+  {
+    "id": "fae",
+    "handle": "FAE",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "fae"
+      ]
+    }
   }
 ]
