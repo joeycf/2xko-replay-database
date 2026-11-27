@@ -1,25 +1,25 @@
 # 2XKO replay parse report
 
-_Generated 2026-11-26T16:56:34.295Z._
+_Generated 2026-11-27T16:42:33.510Z._
 
 ## Summary
-- Total videos: **7127**
-- High confidence: **7099**  ·  Low confidence: **18**  ·  Manual (hand-authored): **10**
-- Newly discovered players (auto-added to `players.json`): **1**
-- Fill rates — season: **95.8%** · patchVersion: **95.6%** · patch label: **19.3%** · fuse: **99.2%**
+- Total videos: **7134**
+- High confidence: **7105**  ·  Low confidence: **19**  ·  Manual (hand-authored): **10**
+- Newly discovered players (auto-added to `players.json`): **0**
+- Fill rates — season: **95.8%** · patchVersion: **95.6%** · patch label: **19.4%** · fuse: **99.1%**
 - Season derivation (date-authoritative) — boundary-graced: **6** · stale description labels overridden: **646**
 
 ## Records by source
 
 | source | records | mode |
 |---|---|---|
-| `bestReplays` | 2843 | fetched |
-| `highLevel` | 2048 | fetched |
+| `bestReplays` | 2847 | fetched |
+| `highLevel` | 2051 | fetched |
 | `proReplays` | 1317 | carried (frozen) |
 | `replayTheater` | 888 | carried (pull found no new tournament entries) |
 | `evoEvents` | 21 | fetched |
 | `manual` | 10 | hand-authored |
-| **Σ** | **7127** | |
+| **Σ** | **7134** | |
 
 ## Frozen channels (1)
 _Not fetched. Their committed records are carried forward and still receive fuse detections and `overrides.json` verdicts. Pruning one requires editing `frozen.records` in `scripts/channels.ts`._
@@ -92,9 +92,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `d075s3HPm_0` | Frosty Faustings 2026 | Losers Final |  |
 | `bSJgmmHctq8` | Frosty Faustings 2026 | Grand Final |  |
 
-## Low-confidence records (18)
+## Low-confidence records (19)
 | id | channel | reason | raw title |
 |---|---|---|---|
+| `Mdu9SfwlULk` | highLevel | team right: 1 character(s) (expected 2) | 2XKO ▰ Windzero (Thresh / Blitzcrank) vs Dapper Dinosaur ( Warwick ) ▰ High Level Gameplay |
 | `_ZiLJoh3KMA` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Romerulez ( Warwick ) vs Poog (Lux / Jinx) ▰ High Level Gameplay |
 | `KGURPriuuoE` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ D.Dinosaur ( Warwick ) vs pMoney+pMoneyjr (Thresh / Blitzcrank) ▰ High Level Gameplay |
 | `Ezt0FRx73f4` | highLevel | team left: 1 character(s) (expected 2) | 2XKO ▰ Dapper dinosaur ( Warwick ) vs Romerulez (Warwick / Thresh) ▰ High Level Gameplay |
@@ -114,12 +115,10 @@ _Hand-authored in `data/manual-videos.json` — never parse failures. Entries wi
 | `VklFg7dEoSQ` | proReplays | carried from a frozen channel — original parse reasons not retained | Justin Wong (Blitzcranck-Vi) vs Mega20xx (Ekko-Vi) ▰ 2XKO Pro level replays |
 | `KtljpBCtoko@4191` | replayTheater | carried from the index source — original parse reasons not retained | 2XKO ▰ Vincentdabaddie (Juggernaut Illaoi) vs Dragoon (Yasuo / Ahri) ▰ ParagOnline #1 |
 
-## Newly discovered players (1)
+## Newly discovered players (0)
 _Auto-added to `data/players.json` with a best-guess `displayName`. Fix casing / add aliases as needed._
 
-| slug | displayName | occurrences | aliases seen |
-|---|---|---|---|
-| `fae` | FAE | 1 | fae |
+_None._
 
 ## Tournament placements — Liquipedia Tier 1–2, CC BY-SA 3.0
 
