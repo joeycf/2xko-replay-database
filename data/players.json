@@ -14588,5 +14588,15 @@
         "fae"
       ]
     }
+  },
+  {
+    "id": "daedalus",
+    "handle": "Daedalus",
+    "featured": false,
+    "extra": {
+      "aliases": [
+        "daedalus"
+      ]
+    }
   }
 ]
